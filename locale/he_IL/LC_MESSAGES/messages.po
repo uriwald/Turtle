@@ -1,0 +1,246 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: TurtleAcademy\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-03-12 21:23+0200\n"
+"PO-Revision-Date: 2012-03-13 00:35+0200\n"
+"Last-Translator: uri wald <uriwald@turtleacademy.com>\n"
+"Language-Team: Wald\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: c:\\gentoo\\share\n"
+"X-Poedit-Language: Hebrew\n"
+"X-Poedit-Country: ISRAEL\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: c:\\gentoo\\share\n"
+"X-Poedit-SearchPath-1: c:\\gentoo\\share\n"
+
+#: c:\gentoo\share/dummy.php:4
+#, php-format
+msgid "%d comment"
+msgid_plural "%d comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: c:\gentoo\share/index.php:18
+msgid "Turtle Academy - learn logo programming in your browser"
+msgstr " אקדמיית הצב - למד תכנות לוגו היישר מתוך הדפדפן"
+
+#: c:\gentoo\share/index.php:75
+msgid "Turtle Academy"
+msgstr "אקדמיית הצב"
+
+#: c:\gentoo\share/index.php:90
+msgid "Your browser does not support canvas - an updated browser is recommended"
+msgstr " הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יותר"
+
+#: c:\gentoo\share/index.php:109
+msgid "Next"
+msgstr "הבא"
+
+#: c:\gentoo\share/index.php:115
+msgid "Prev"
+msgstr "הקודם"
+
+#: c:\gentoo\share/index.php:124
+msgid "project doc"
+msgstr "תיעוד הפרוייקט"
+
+msgid "Hi Welcome to the Turtle world"
+msgstr "שלום! וברוכים הבאים לעולמו של הצב"
+
+msgid "to"
+msgstr "למד"
+
+msgid "word"
+msgstr "מילה"
+
+msgid "list"
+msgstr "רשימה"
+
+msgid "sentence"
+msgstr "משפט"
+
+msgid "combine"
+msgstr "צרף"
+
+msgid "reverse"
+msgstr "אחורנית"
+
+msgid "gensym"
+msgstr "צורסמל"
+
+msgid "first"
+msgstr "ראשון"
+
+msgid "last"
+msgstr "אחרון"
+
+msgid "print"
+msgstr "הדפס"
+
+msgid "sin"
+msgstr "סינוס"
+
+msgid "cos"
+msgstr "קוסינוס"
+
+msgid "tan"
+msgstr "טנגנס"
+
+msgid "random"
+msgstr "אקראי"
+
+msgid "true"
+msgstr "אמת"
+
+msgid "false"
+msgstr "שקר"
+
+msgid "and"
+msgstr "וגם"
+
+msgid "or"
+msgstr "או"
+
+
+msgid "xor"
+msgstr "אומוציא"
+
+msgid "not"
+msgstr "לא"
+
+msgid "fd"
+msgstr "קד"
+
+msgid "forward"
+msgstr "קדימה"
+
+msgid "bk"
+msgstr "אח"
+
+msgid "back"
+msgstr "אחורה"
+
+msgid "lt"
+msgstr "שמ"
+
+msgid "left"
+msgstr "שמאלה"
+
+msgid "rt"
+msgstr "ימ"
+
+msgid "right"
+msgstr "ימינה"
+
+msgid "home"
+msgstr "הביתה"
+
+msgid "st"
+msgstr "הצ"
+
+msgid "showturtle"
+msgstr "הצגצב"
+
+msgid "ht"
+msgstr "הח"
+
+msgid "hideturtle"
+msgstr "החבאצב"
+
+msgid "clean"
+msgstr "נקה"
+
+msgid "cs"
+msgstr "נמ"
+
+msgid "clearscreen"
+msgstr "נקהמסך"
+
+msgid "label"
+msgstr "תווית"
+
+msgid "pd"
+msgstr "הו"
+
+msgid "pendown"
+msgstr "הורדעט"
+
+msgid "pu"
+msgstr "הר"
+
+msgid "penup"
+msgstr "הרםעט"
+
+msgid "penpaint"
+msgstr "עטצובע"
+
+msgid "setcolor"
+msgstr "שנהצבע"
+
+msgid "setpencolor"
+msgstr "שנהצבעעט"
+
+msgid "setwidth"
+msgstr "שנהרוחב"
+
+msgid "setpensize"
+msgstr "שנהגודלעט"
+
+msgid "pencolor"
+msgstr "צבעעט"
+
+msgid "pensize"
+msgstr "גודלעט"
+
+msgid "repeat"
+msgstr "חזור"
+
+msgid "repcount"
+msgstr "מונהחזרה"
+
+msgid "if"
+msgstr "אם"
+
+msgid "ifelse"
+msgstr "אםאחרת"
+
+msgid "iftrue"
+msgstr "אםאמת"
+
+msgid "iffalse"
+msgstr "אםשקר"
+
+msgid "for"
+msgstr "עבור"
+
+msgid "end"
+msgstr "סוף"
+
+msgid "Don't know how to"
+msgstr "לא יודע מה זה"
+
+msgid "Unexpected end of instructions"
+msgstr "חסר סוף לפקודות"
+
+msgid "Expected identifier"
+msgstr "מזהה היה צפוי"
+
+msgid "Please don't try to override primitive functions"
+msgstr "אין להשתמש במילים שמורות להגדרת פונקציות"
+
+msgid "Error"
+msgstr "שגיאה"
+
+msgid "hint"
+msgstr "רמז"
+
+
+
+
+
+

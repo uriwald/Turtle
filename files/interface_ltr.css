@@ -1,0 +1,53 @@
+
+.menu li {
+    float:left;
+    min-width:100px;
+}
+.menu a {
+    position:relative;
+    display:block; 
+    text-decoration:none; 
+    min-width:100px; 
+    float:left; 
+}
+.menu a:hover em {
+    display:block; 
+    overflow:hidden; 
+    border:6px solid #06a; 
+    border-color:#06a #fff; 
+    border-width:6px 6px 0 6px; 
+    position:absolute; 
+    left:50%; 
+    margin-left:-6px;
+}
+
+#header {
+   /* direction: rtl; */
+    margin:auto;
+    overflow: hidden;
+    width: 970px;
+   
+}
+
+
+#title h1 { /* direction: rtl; */
+           margin: 2px 20px;
+}
+
+#logoer {
+    width: 660px;
+    float: right; 
+    margin: 0px 3px;
+}
+
+#accordion {
+    width: 300px;
+    /*height: 500px;*/
+    float: left;
+     direction: ltr; 
+}
+
+#lessonnav {
+    float: right;
+}
+
