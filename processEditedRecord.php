@@ -6,6 +6,7 @@
 
 <?php
 session_start();
+echo $_POST["precedence"];
 $lessonSteps = array();
 for ($i = 1; $i <= $_POST['numOfObjects']; $i += 1) {
     $title = "title" . $i;
@@ -20,9 +21,13 @@ for ($i = 1; $i <= $_POST['numOfObjects']; $i += 1) {
 $m = new Mongo();
 // select a database
 $db = $m->turtleTestDb;
-
 // select a collection (analogous to a relational database's table)
+$precedence = 1;
 $lessons = $db->lessons;
+//If we set a precedence
+
+if (isset ($_POST["precedence"]) )
+    $precedence =$_POST["precedence"] ;
 //Case we are inserting a new lesson
 if (!isset($_POST["ObjId"]) OR $_POST["ObjId"] == null OR strlen($_POST["ObjId"]) < 2) {
     $titles = array('locale_he_IL' => $_POST['lessonTitle']);
@@ -55,7 +60,7 @@ if (!isset($_POST["ObjId"]) OR $_POST["ObjId"] == null OR strlen($_POST["ObjId"]
         
         $lessonsTitle["$localeValue"] = $_POST['lessonTitle'];
         //print_r($finalArrAfterTranslation);
-        $result = $lessons->update($criteria, array('$set' => array("steps" => $finalArrAfterTranslation, "title" => $lessonsTitle)));
+        $result = $lessons->update($criteria, array('$set' => array("steps" => $finalArrAfterTranslation, "title" => $lessonsTitle , "precedence" => $precedence)));
     }
 }
 ?>

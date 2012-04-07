@@ -13,6 +13,7 @@ $lessonSteps = "steps";
 
 // find everything in the collection
 $cursor = $lessons->find();
+$cursor->sort(array('precedence' => 1));
 $i = 0; 
 //$fullJsFile = "var lessons = [";
 echo "var lessons = [";
