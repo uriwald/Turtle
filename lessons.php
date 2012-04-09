@@ -177,7 +177,13 @@ and open the template in the editor.
                 <?php
                  } //end of else
                 ?>
-                <input type="text" id="precedence" name="precedence" value ="1" />
+                <input type="text" id="precedence" name="precedence" 
+                       value =<?php 
+                            if (isset($cursor["precedence"]))
+                                echo $cursor["precedence"];
+                            else
+                                echo 1;
+                       ?> />
                 <input type="submit" id="btnSubmit" name="formSubmit" value="Save" />
                 <input type="submit" id="btnDelete" name="formDelete" value="Delete Lesson" />
                 <input type="text" name="language" id="language" display="none" value=<?php echo $locale ?> />

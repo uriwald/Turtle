@@ -1,3 +1,0 @@
-13:29:53: Poedit did not find any files in scanned directories.
-13:29:53: Entries in the catalog are probably incorrect.
-13:29:53: Updating the catalog failed. Click on 'More>>' for details.
