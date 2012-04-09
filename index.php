@@ -32,9 +32,7 @@
             
             if ( file_exists($file_path))
                 echo $po_file;
-            else
-                echo "gibris";
-            //Just checking if comment is in after commiting and history on
+
              
         ?>
         
