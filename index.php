@@ -1,5 +1,8 @@
 <?php
     require_once("localization.php");
+    require_once("files/footer.php");
+    require_once("files/cssUtils.php");
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,7 +11,11 @@
         <title>
         <?php
             _("Turtle Academy - learn logo programming in your browser");
-            //        אקדמיית הצב - למד תכנות לוגו היישר מתוך הדפדפן
+//        אקדמיית הצב - למד תכנות לוגו היישר מתוך הדפדפן                
+            $currentFile = $_SERVER["PHP_SELF"];
+            $parts = Explode('/', $currentFile);
+            $currentPage = $parts[count($parts) - 1];
+            
         ?>
         </title>    
 
@@ -43,7 +50,9 @@
         <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
         <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='./files/interface.css' type='text/css' media='all'/>
-            <?php
+        <?php
+             cssUtils::loadcss($locale, "./files/interface");
+        /*
             $interface_ltr = "<link rel='stylesheet' href='./files/interface_ltr.css' type='text/css' media='all'/>";
             $interface     = "<link rel='stylesheet' href='./files/interface_rtl.css' type='text/css' media='all'/>"; 
             if ($locale != "he_IL" )
@@ -54,6 +63,8 @@
             {
                 echo $interface;
             }
+         * */
+         
         ?>     
         <script type="application/javascript"> <!-- Google Analytics Tracking -->
 
@@ -150,6 +161,8 @@
                   
             </div>
         </div>
+        
+        <!--
         <footer id="footer">
             &copy; TurtleAcademy, <a id="doc" title="תעוד הפרוייקט" href="doc.html">
             <?php
@@ -159,10 +172,11 @@
                                  
             </a>
             <div id="langicons">
-                <a href="index.php?locale=he_IL"><img src="Images/flags/il.png"  title="עברית" /></a>
-               <a href="index.php"> <img src="Images/flags/us.png"  title="English" /></a>
-                
+                <a href="<?php echo $currentPage ?>?locale=he_IL"><img src="Images/flags/il.png"  title="עברית" /></a>
+                <a href="<?php echo $currentPage ?>"> <img src="Images/flags/us.png"  title="English" /></a>              
             </div>    
         </footer>
+        -->
+        <?php echo $footer ?>
 
     </body></html>

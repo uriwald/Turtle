@@ -49,8 +49,14 @@ msgstr "הקודם"
 msgid "project doc"
 msgstr "תיעוד הפרוייקט"
 
-msgid "Hi Welcome to the Turtle world"
-msgstr "שלום! וברוכים הבאים לעולמו של הצב"
+msgid "Welcome to the Turtle world"
+msgstr "וברוכים הבאים לעולמו של הצב"
+
+msgid "Hi"
+msgstr "שלום"
+
+
+
 
 msgid "to"
 msgstr "למד"

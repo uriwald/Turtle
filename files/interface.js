@@ -252,8 +252,8 @@ $(function() {
     // Creating the console.
     var welcome = 'Hello\nWelcome to the world of the turtle\n';
     
-    
-    window.jqconsole = $('#console').jqconsole(gt.gettext("Hi Welcome to the Turtle world"), '> ');
+    window.jqconsole = $('#console').jqconsole(gt.gettext("Hi") + "\n" + gt.gettext("Welcome to the Turtle world"), '> ');
+    //window.jqconsole = $('#console').jqconsole(gt.gettext("Hi \nWelcome to the Turtle world"), '> ');
     //        window.jqconsole = $('#console').jqconsole(gt.gettext("welcome"), '> ');
    
    //This is more elegant code but still not working
