@@ -10,7 +10,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>
         <?php
-            _("Turtle Academy - learn logo programming in your browser");
+            echo _("Turtle Academy - learn logo programming in your browser");
 //        אקדמיית הצב - למד תכנות לוגו היישר מתוך הדפדפן                
             $currentFile = $_SERVER["PHP_SELF"];
             $parts = Explode('/', $currentFile);
