@@ -72,3 +72,15 @@ a span {
     cursor:hand; 
     float : right
 }
+
+div{
+    height: 40px;
+}
+
+span.footer{
+    float: right;
+    margin-right: 80px;
+}
+span.title{
+    float: right;
+}

@@ -22,21 +22,6 @@ $finalLocale =  $localePrefix . $locale   ;
 
 cssUtils::loadcss($locale, "./files/lessons");
 
-//loading css
-/*
-            $lessons_ltr = "<link rel='stylesheet' href='./files/lessons.css' type='text/css' media='all'/>";
-            $lessons     = "<link rel='stylesheet' href='./files/lessons_rtl.css' type='text/css' media='all'/>"; 
-            if ($locale != "he_IL" )
-            {
-                echo $lessons_ltr;    
-            }
-            else
-            {
-                echo $lessons;
-            }
- * 
- */
-
 $m = new Mongo();
 
 // select a database
@@ -53,13 +38,15 @@ $lessonSteps = "steps";
 $cursor = $lessons->find();
 $cursor->sort(array('precedence' => 1));
 
-echo "<div> Edit one of the following lessons </div>";
+echo "<div> <span class='title'> Edit one of the following lessons </div>";
 foreach ($cursor as $lessonStructure) {
     $title =  $lessonStructure[$lessonTitle][$finalLocale] ;
     $objID = $lessonStructure['_id'];
-    echo "<a href='lessons.php?lesson=$objID&l=$locale' > <span> $title  </span> </a></br>";
+    echo "<div><a href='lessons.php?lesson=$objID&l=$locale' > <span> $title  </span> </a></div>";
     
 }
 
-echo $footer;
+echo "<div><a href='lessons.php' > <span> Create a new lesson  </span> </a></div>" ;
+
+echo "<span class='footer'>$footer</span>";
 ?>
