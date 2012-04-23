@@ -23,12 +23,21 @@ root {
     display: block;
     */
 }
+#lessonStep{
+   height: 100px;
+}
+#lessonStep #lessonStepLabel{
+   color :   #3D3624 ;
+   font-family: Arial, sans-serif;
+   font-size: 20px;
+}
 .lessonElement{
     display: inline-block;
     margin-left: 20px;
 }
 .lessonlables
 {
+    /*
    color :   #3D3624 ;
    font-family: Arial, sans-serif;
    font-size: 20px;
@@ -36,21 +45,34 @@ root {
    width : 200px;
    float : left ;
    margin-left: 20px;
+   */
+      color :   #3D3624 ;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-size: 13px;
+   font-weight: normal;
+   line-height: normal;
+   cursor: default;
+   margin: 0;
+   padding: 0;
+   border: 0;
+   width : 250px;
+   float : left;
 }
 .clonedInput{
     
     border:6px solid black;
     color: black;  
+
     
 }
 lable{
    color :   #3D3624 ;
-   font-family: Arial, sans-serif;
-   font-size: 20px;
-   height: 25px;
-   width : 225px;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-size: 13px;
+   font-weight: normal;
+   line-height: normal;
 }
-input{
+input.lessonInput{
     background-color: white;
     border-color:#A8A8A8 #E5E5E5 #E0E0E0 #B7B7B7;
     border-style:solid;
@@ -70,4 +92,28 @@ a span {
     padding:4px 16px; 
     width:400px; 
     cursor:hand; 
+}
+textarea {
+    height: 50px;
+    width : 400px;
+}
+.leftLessonElem{
+    float : left;
+    width :550px;
+}
+.rightLessonElem{
+    width :550px;
+    margin-left: 600px;
+    height: 400px;
+}
+
+.existing_step{
+    list-style: none;
+    display: inline-block;
+    background-image: none;
+    line-height: 20px;
+    color : grey;
+    background-position : 5px 50%;
+    width : 30px;
+    border:1px solid black;
 }
