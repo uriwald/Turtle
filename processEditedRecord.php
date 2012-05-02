@@ -60,7 +60,7 @@ if (!isset($_POST["ObjId"]) OR $_POST["ObjId"] == null OR strlen($_POST["ObjId"]
         
         $lessonsTitle["$localeValue"] = $_POST['lessonTitle'];
         //print_r($finalArrAfterTranslation);
-        $result = $lessons->update($criteria, array('$set' => array("steps" => $finalArrAfterTranslation, "title" => $lessonsTitle , "precedence" => $precedence)));
+       // $result = $lessons->update($criteria, array('$set' => array("steps" => $finalArrAfterTranslation, "title" => $lessonsTitle , "precedence" => $precedence)));
     }
 }
 ?>
