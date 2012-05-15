@@ -15,17 +15,19 @@ class LocalCache
             function set(key, data) {
                 localStorage.setItem(key, data);
             }
-            function get(key) {
-                return localStorage.getItem(key);
+            var gett = function get(key) {
+                //return localStorage.getItem(key);
+                return window['localStorage'][key];
             }
+            
             function remove(key) {
                 localStorage.removeItem(key);
             }
             function clear() {
                 localStorage.clear();
             }
-        }   
-        </script>n
+        }
+        </script>
 JAVASCRIPT;
         echo $js;
     }
@@ -48,10 +50,15 @@ JAVASCRIPT;
      */ 
     public function get($key)
     {
+       // echo window.gett(" . $key . ");;
         if (!is_string($key)) {
             throw new LocalCacheException('The supplied key for the get() method must be a string.');  
         }
-        echo "<script>get('' . $key . '');</script>" . "n";
+       // echo '<script>get($key);</script>' . "end of get";
+        
+        echo '<script>window.gett("' . $key . '");</script> ' . "n";
+
+        
     }
     
     /**

@@ -259,9 +259,31 @@ and open the template in the editor.
                         $('#btnAdd').attr('disabled','disabled');
                 });
                 
-                $('#btnSubmit').click(function() {
-                    var num     = $('.clonedInput').length;
-                    $('#btnSubmit').attr('value',num);
+                $('#btnSaveLesson').click(function() {
+                    //$('#waiting').show(500);
+                    $.ajax({
+                        type : 'POST',
+                        url : 'ajax.php',
+                        dataType : 'json',
+                        data: {
+                       // email : JSON.stringify($.Storage.get('lessonStepsValues'), null, 2)
+                       email : $.Storage.get('lessonStepsValues')
+                       //steps : $.Storage.get('lessonStepsValues')
+                        },
+                    success : function(data){
+                        $('#waiting').hide(500);
+                        $('#message').removeClass().addClass((data.error === true) ? 'error' : 'success').text(data.msg).show(500);
+                      //  if (data.error === true)
+                      //      $('#demoForm').show(500);
+                    },
+                    error : function(XMLHttpRequest, textStatus, errorThrown) {
+                        $('#waiting').hide(500);
+                        $('#message').removeClass().addClass('error')
+                        .text('There was an error.').show(500);
+                     //   $('#demoForm').show(500);
+                    }
+                    });
+return false;
                  
                 });
                   
@@ -391,10 +413,7 @@ and open the template in the editor.
                          ;
                          
                          //adding the step
-                        window.addStepVar(stepNumber , fullStep);
-                        //var allSteps = JSON.parse($.Storage.get("lessonStepsValues"));
-                        //allSteps.splice (stepNumber , 0 , fullStep); 
-                        //$.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))             
+                        window.addStepVar(stepNumber , fullStep);         
                        
                     </script>
                     
@@ -486,11 +505,15 @@ and open the template in the editor.
                             else
                                 echo 1;
 ?> />
-                            <input type="submit" id="btnSubmit" class="lessonInput" name="formSubmit" value="Save" />
+                            <input type="button" id="btnSaveLesson" class="lessonInput" name="formSave" value="Save" />
                             <input type="submit" id="btnDelete" class="lessonInput" name="formDelete" value="Delete Lesson" />
                             <input type="text" name="language" id="language" class="lessonInput" display="none" value=<?php echo $locale ?> />
                             <input type="text" name="numOfObjects" display="none" id="numOfObjects" class="lessonInput" value=<?php echo $i ?> />
 
                             </form>
+        <div id="message" style="display: none;">
+        <div id="waiting" style="display: none;">
+Please wait<br />
+</div>
                             </body>
                             </html>
