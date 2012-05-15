@@ -267,7 +267,7 @@ and open the template in the editor.
                         dataType : 'json',
                         data: {
                        // email : JSON.stringify($.Storage.get('lessonStepsValues'), null, 2)
-                       email : $.Storage.get('lessonStepsValues')
+                       steps : $.Storage.get('lessonStepsValues')
                        //steps : $.Storage.get('lessonStepsValues')
                         },
                     success : function(data){
