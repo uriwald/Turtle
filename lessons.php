@@ -98,11 +98,12 @@ and open the template in the editor.
                     allSteps.splice (stepPosition , 0 , stepArray);
                     $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2)) 
             };
-            
-            function onClick()
-            {
-                
-            }
+            /**
+             * Will use the get Variable lessons with his locale
+             * will use ajax request to load lesson data
+             * in order to get the lesson id and his locale
+             * than will load the existing step
+             */
             function loadExistingLessonSteps()
             {
                 var lessonid = $.getUrlVar('lesson');
@@ -113,16 +114,16 @@ and open the template in the editor.
                         $('.result').html(data);
                         //alert('Load was performed.');
                         var i = 1;
-                        var step = new Array();
-                        for (step in data)
-                            {
-                                 i = i + 1;
-                            }
+
                     }
                 });
                 
             }
             
+            /**
+             * Creating the step navigator
+             * each step containing the title , hint , solution explanation and etc 
+             */
             var createStepNavVar = function createStepNav()
             {
                var lessonStepValuesStorage = new Array(new Array());
@@ -190,14 +191,7 @@ and open the template in the editor.
                        var name = '#' + $.Storage.get("active-step");
                        $(name).css('background-color' , 'white')
                     }
-                    /*
-                    else
-                    {
-                        $.Storage.set('lesson_step1',JSON.stringify(fullStep, null, 2));
-                    }
-                    */
-                    
-                    
+
                     if ($.Storage.get('active-step-num'))
                     {
                         //var arrayCell = parseInt($.Storage.get("active-step-num")) - 1;
@@ -392,6 +386,7 @@ return false;
                     $i++;
                     ?>
                     <script type='text/javascript'>
+                        //Here I am parsing the response from the ajax request regarding loading an existing lesson
                          var stepNumber = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
                          $.Storage.set("lesson-total-number-of-steps" , stepNumber.toString());
                          

@@ -6,8 +6,13 @@
     }
     else {
         $return['error'] = false;
-        $return['msg'] = 'You\'ve entered: ' . $_POST['steps'] . '.';
-        //$return['enconded'] = json_encode($_POST['email'] );
+        $steps = $_POST['steps'];
+        
+        $decodedStepValue = json_decode($steps);
+        $return['msg'] = 'You\'ve entered: ' . $steps . '.';
+        $return['firstElem'] = $decodedStepValue[1];
+
+        //$return['keys'] = array_keys($_POST['steps'] );
     }
     echo json_encode($return);
 ?>
