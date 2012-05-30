@@ -337,8 +337,9 @@ return false;
                 $solution = "";
                 $hint = "";
             }
+            
             // $baseInputText = "<div> <label> %%a: </label> <input type='text' style='width:500px;' class='lessonElement' name='%%b' id='%%b' value='%%c' />  </div>";
-            $baseInputText = "<div> <label class='lessonlables'> %%a: </label> <textarea type='text'  name='%%b' id='%%b' placeholder='Step %%a'>%%c</textarea> </div>";
+            $baseInputText = "<div> <label class='lessonlables'> %%a: </label> <textarea class='lessonInfoElement' type='text'  name='%%b' id='%%b' placeholder='Step %%a'>%%c</textarea> </div>";
             $toReplace = array("%%a", "%%b", "%%c");
             //$replaceWithAction = array("Action ", "action$i", $action);
             //$replaceWithSolution = array("Solution ", "solution$i", $solution);
@@ -390,7 +391,6 @@ return false;
                          var stepNumber = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
                          $.Storage.set("lesson-total-number-of-steps" , stepNumber.toString());
                          
-                         
                          var stepExplanation = <?php echo json_encode($step["explanation"]); ?>;
                          var stepTitle= <?php echo json_encode($step["title"]); ?>;
                          var stepAction = <?php echo json_encode($step["action"]); ?>;
@@ -404,19 +404,11 @@ return false;
                          fullStep[1] = stepAction;
                          fullStep[2] = stepSolution;
                          fullStep[3] = stepHint;
-                         fullStep[4] = stepExplanation
-                         ;
-                         
+                         fullStep[4] = stepExplanation;                  
                          //adding the step
                         window.addStepVar(stepNumber , fullStep);         
                        
                     </script>
-                    
-
-                    
-                    
-                    
-
                  <?php
                  } //End of for each loop
                  
