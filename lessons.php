@@ -155,6 +155,11 @@ and open the template in the editor.
                 loadCKEditor();
                 createStepNavVar();
                 showFirstStepIfExist();
+                
+                if (!$.Storage.get("active-step-num"))
+                {
+                    $.Storage.set('active-step-num' , '1');    
+                }
                 $('#addStep').click(function () {
                     var val = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
                     $.Storage.set("lesson-total-number-of-steps" , val.toString());
@@ -172,6 +177,37 @@ and open the template in the editor.
 
                 });
                 
+                //TODO : creating onkeyup event
+                
+                $('.lessonInfoElement').live("keyup" , function() {
+                    if ($.Storage.get("active-step-num"))
+                    {
+                        var fullStep =  getStepValues();    
+                        var allSteps;
+                        if ($.Storage.get("lessonStepsValues"))  
+                        {
+                        allSteps = JSON.parse($.Storage.get("lessonStepsValues"));     
+                        }
+                        if ($.Storage.get('active-step-num'))
+                        {
+                            //var arrayCell = parseInt($.Storage.get("active-step-num")) - 1;
+                            allSteps.splice(parseInt($.Storage.get("active-step-num")),1,fullStep);              
+                            //allSteps[arrayCell] =  fullStep;
+                            $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))       
+                        } else {
+                        allSteps[0] =  fullStep;  
+                        $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))   
+                        }
+                     }
+                });
+                
+                $('#lessonTitle').keyup(function() {       
+                    var lessonTitle = $('#lessonTitle').val();           
+                    $.Storage.set('lessonTitle' , lessonTitle);
+                });
+                
+                
+                //While clicking on other step .. saving step info
                 $('.existing_step').live("click" , function() {
                     var fullStep =  getStepValues();         
                     var allSteps;
