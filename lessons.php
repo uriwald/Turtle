@@ -92,10 +92,21 @@ and open the template in the editor.
                 }); 
                 
             }
-            var addStepVar = function addStep(stepPosition , stepArray)
+            //Adding new full step the the steps array
+            //Replace flag will be set to true while replacing
+            var addStepVar = function addStep(stepPosition , stepArray , replace)
             {
+                    window.initializeSteps();
                     var allSteps = JSON.parse($.Storage.get("lessonStepsValues"));
-                    allSteps.splice (stepPosition , 0 , stepArray);
+                    if (replace === true )
+                    {
+                       allSteps.splice (stepPosition , 1 , stepArray);      
+                    }
+                    else
+                    {
+                       allSteps.splice (stepPosition , 0 , stepArray); 
+                    }
+                    
                     $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2)) 
             };
             /**
@@ -119,7 +130,15 @@ and open the template in the editor.
                 });
                 
             }
-            
+            var clearStep = function clearStep()
+            {
+                $('#title').val("");
+                $('#action').val("");
+                $('#solution').val("");
+                $('#hint').val("");
+                $('#explanation').val("");
+            }
+
             /**
              * Creating the step navigator
              * each step containing the title , hint , solution explanation and etc 
@@ -149,6 +168,14 @@ and open the template in the editor.
                     }
             };
             
+            var initializeSteps = function initializeSteps()
+            {
+                if (! $.Storage.get('lessonStepsValues'))
+                {
+                    var lessonStepValuesStorage = new Array(new Array());
+                    $.Storage.set('lessonStepsValues',JSON.stringify(lessonStepValuesStorage, null, 2))
+                }
+            }
 
             $(document).ready(function() {
                 loadExistingLessonSteps();
@@ -163,7 +190,9 @@ and open the template in the editor.
                 $('#addStep').click(function () {
                     var val = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
                     $.Storage.set("lesson-total-number-of-steps" , val.toString());
-                    addStepVar(val , new Array());
+                    $.Storage.set('active-step-num' , val.toString());  
+                    addStepVar(val , new Array() , false);
+                    clearStep();
                     createStepNavVar();
                 });
                $('#removeStep').click(function () {
@@ -180,6 +209,15 @@ and open the template in the editor.
                 //TODO : creating onkeyup event
                 
                 $('.lessonInfoElement').live("keyup" , function() {
+                    if ($.Storage.get("lesson-total-number-of-steps") == 1)
+                    {
+                        
+                        window.initializeSteps();
+                        var firstStep = getStepValues();
+                        addStepVar(1,firstStep,true);//Making replace
+                 //       alert("ddd");
+                    }
+                    
                     if ($.Storage.get("active-step-num"))
                     {
                         var fullStep =  getStepValues();    
@@ -198,7 +236,7 @@ and open the template in the editor.
                         allSteps[0] =  fullStep;  
                         $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))   
                         }
-                     }
+                    }
                 });
                 
                 $('#lessonTitle').keyup(function() {       
@@ -442,7 +480,7 @@ return false;
                          fullStep[3] = stepHint;
                          fullStep[4] = stepExplanation;                  
                          //adding the step
-                        window.addStepVar(stepNumber , fullStep);         
+                        window.addStepVar(stepNumber , fullStep , false);         
                        
                     </script>
                  <?php
@@ -460,7 +498,7 @@ return false;
                             echo "</div>";
                         ?>
                         <div class="leftLessonElem"> 
-                             <lable class='lessonlables' > Title:  </lable> <textarea type="text"  name="title" id="title" ></textarea>
+                             <lable class='lessonlables' > Title:  </lable> <textarea type="text"  name="title" id="title" class="lessonInfoElement" ></textarea>
                                     <?php
                                          printElement($i, false, null);
                                     ?>
@@ -504,7 +542,7 @@ return false;
                             echo "</div>";
                         ?>
                         <div class="leftLessonElem"> 
-                             <lable class='lessonlables' > Title:  </lable> <textarea type="text"  name="title" id="title" ></textarea>
+                             <lable class='lessonlables' > Title:  </lable> <textarea type="text"  name="title" id="title" class="lessonInfoElement" ></textarea>
                                     <?php
                                          printElement($i, false, null);
                                     ?>
