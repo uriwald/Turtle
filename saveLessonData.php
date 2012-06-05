@@ -34,6 +34,7 @@
             $titles = array('locale_en_US' => $_POST['lessonTitle']);
             $structure = array("steps" => $lessonSteps, "title" => $titles);
             $result = $lessons->insert($structure, array('safe' => true));
+            $return['objID'] = $structure['_id'];
         } else { //updating existing lesson
             $theObjId = new MongoId($_POST['ObjId']);
             $criteria = $lessons->findOne(array("_id" => $theObjId));
