@@ -22,7 +22,48 @@
             $lessonSteps[$i] = $translatArray;
                    
         }   
-        //$return['lessonSteps'] = $lessonSteps;
+        $m = new Mongo();
+        // select a database
+        $db = $m->turtleTestDb;
+        // select a collection (analogous to a relational database's table)
+        $precedence = 100;
+        $lessons = $db->lessons;
+        //Case we are inserting a new lesson
+        //TODO indentify if an object was already sent
+        if (!isset($_POST["ObjId"]) OR $_POST["ObjId"] == null OR strlen($_POST["ObjId"]) < 2) {
+            $titles = array('locale_en_US' => $_POST['lessonTitle']);
+            $structure = array("steps" => $lessonSteps, "title" => $titles);
+            $result = $lessons->insert($structure, array('safe' => true));
+        } else { //updating existing lesson
+            $theObjId = new MongoId($_POST['ObjId']);
+            $criteria = $lessons->findOne(array("_id" => $theObjId));
+
+            //Case we want to remove object 
+            if (isset($_POST["formDelete"])) {
+                $result = $lessons->remove(array('_id' => $theObjId), true);
+            } else {
+                $originLanguageStepsArr = $criteria["steps"];
+                $originalTitle = $criteria["title"];
+                echo $originalTitle;
+                $i = 1;
+                $localeValue = "locale_" . $_POST['language'];
+                $finalArrAfterTranslation = array();
+
+                foreach ($originLanguageStepsArr as $lessonStep) {
+                    $lessonStep["$localeValue"] = $lessonSteps[$i];
+                    $finalArrAfterTranslation[$i] = $lessonStep;
+                    $i = $i + 1;
+                }
+                $lessonsTitle = $originalTitle;
+                //$lessonsTitle = array();
+                //$lessonsTitle['locale_he_IL'] = "";
+                //$lessonsTitle['locale_en_US'] = "";
+
+                $lessonsTitle["$localeValue"] = $_POST['lessonTitle'];
+                //print_r($finalArrAfterTranslation);
+            // $result = $lessons->update($criteria, array('$set' => array("steps" => $finalArrAfterTranslation, "title" => $lessonsTitle , "precedence" => $precedence)));
+            }
+        }
 
         //$return['keys'] = array_keys($_POST['steps'] );
     }
