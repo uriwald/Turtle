@@ -119,7 +119,11 @@ and open the template in the editor.
             {
                 var lessonid = $.getUrlVar('lesson');
                 var locale = $.getUrlVar('l');
-                    $.ajax({
+                if (lessonid != null && lessonid.length > 2)
+                    {
+                        $.Storage.set("ObjId" , lessonid);
+                    }
+                $.ajax({
                     url: 'files/loadLessonSteps.php?lesson=' + lessonid + '&l=' + locale,
                     success: function(data) {
                         $('.result').html(data);
@@ -183,6 +187,10 @@ and open the template in the editor.
                 createStepNavVar();
                 showFirstStepIfExist();
                 
+                if (!$.Storage.get("ObjId"))
+                {
+                    $.Storage.set("ObjId" , "");
+                }
                 if (!$.Storage.get("active-step-num"))
                 {
                     $.Storage.set('active-step-num' , '1');    
@@ -205,8 +213,9 @@ and open the template in the editor.
                         }
 
                 });
+                //TODO : create a button to freshely start a lesson good in cases we load an existing lesson and want to clear local storage
                 
-                //TODO : creating onkeyup event
+                //TODO : creating onkeyup event to automatically save lesson data
                 
                 $('.lessonInfoElement').live("keyup" , function() {
                     if ($.Storage.get("lesson-total-number-of-steps") == 1)
@@ -215,7 +224,6 @@ and open the template in the editor.
                         window.initializeSteps();
                         var firstStep = getStepValues();
                         addStepVar(1,firstStep,true);//Making replace
-                 //       alert("ddd");
                     }
                     
                     if ($.Storage.get("active-step-num"))
@@ -228,9 +236,7 @@ and open the template in the editor.
                         }
                         if ($.Storage.get('active-step-num'))
                         {
-                            //var arrayCell = parseInt($.Storage.get("active-step-num")) - 1;
                             allSteps.splice(parseInt($.Storage.get("active-step-num")),1,fullStep);              
-                            //allSteps[arrayCell] =  fullStep;
                             $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))       
                         } else {
                         allSteps[0] =  fullStep;  
@@ -328,18 +334,24 @@ and open the template in the editor.
                 });
                 
                 $('#btnSaveLesson').click(function() {
-                    //$('#waiting').show(500);
                     $.ajax({
                         type : 'POST',
-                        url : 'ajax.php',
+                        url : 'saveLessonData.php',
                         dataType : 'json',
                         data: {
-                       // email : JSON.stringify($.Storage.get('lessonStepsValues'), null, 2)
-                       steps : $.Storage.get('lessonStepsValues')
+                        steps : $.Storage.get('lessonStepsValues') ,
+                        numOfSteps : $.Storage.get('lesson-total-number-of-steps') ,
+                        lessonTitle : $.Storage.get('lessonTitle'),
+                        ObjId : $.Storage.get('ObjId')
+                            
                        //steps : $.Storage.get('lessonStepsValues')
                         },
+                        
                     success : function(data){
                         $('#waiting').hide(500);
+                        $('#lessonObjectId').val(data.objID.$id);
+                        $.Storage.set("ObjId" , data.objID.$id);
+                               
                         $('#message').removeClass().addClass((data.error === true) ? 'error' : 'success').text(data.msg).show(500);
                       //  if (data.error === true)
                       //      $('#demoForm').show(500);
@@ -348,7 +360,6 @@ and open the template in the editor.
                         $('#waiting').hide(500);
                         $('#message').removeClass().addClass('error')
                         .text('There was an error.').show(500);
-                     //   $('#demoForm').show(500);
                     }
                     });
 return false;
@@ -411,13 +422,8 @@ return false;
                 $solution = "";
                 $hint = "";
             }
-            
-            // $baseInputText = "<div> <label> %%a: </label> <input type='text' style='width:500px;' class='lessonElement' name='%%b' id='%%b' value='%%c' />  </div>";
             $baseInputText = "<div> <label class='lessonlables'> %%a: </label> <textarea class='lessonInfoElement' type='text'  name='%%b' id='%%b' placeholder='Step %%a'>%%c</textarea> </div>";
             $toReplace = array("%%a", "%%b", "%%c");
-            //$replaceWithAction = array("Action ", "action$i", $action);
-            //$replaceWithSolution = array("Solution ", "solution$i", $solution);
-            //$replaceWithHint = array("Hint ", "hint$i", $hint);
             $replaceWithAction = array("Action ", "action", $action);
             $replaceWithSolution = array("Solution ", "solution", $solution);
             $replaceWithHint = array("Hint ", "hint", $hint);
