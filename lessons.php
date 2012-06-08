@@ -217,7 +217,8 @@ and open the template in the editor.
                 
                 //TODO : creating onkeyup event to automatically save lesson data
                 
-                $('.lessonInfoElement').live("keyup" , function() {
+                function infoElementKeyUpEvent()
+                {
                     if ($.Storage.get("lesson-total-number-of-steps") == 1)
                     {
                         
@@ -242,7 +243,14 @@ and open the template in the editor.
                         allSteps[0] =  fullStep;  
                         $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))   
                         }
-                    }
+                    } 
+                }
+                
+                $('.lessonInfoElement').live("keyup" , function() {
+                    infoElementKeyUpEvent();
+                });
+                $('.cke_editor_explanation').live("keyup" , function() {
+                    infoElementKeyUpEvent();
                 });
                 
                 $('#lessonTitle').keyup(function() {       
@@ -334,6 +342,7 @@ and open the template in the editor.
                 });
                 
                 $('#btnSaveLesson').click(function() {
+                    infoElementKeyUpEvent();
                     $.ajax({
                         type : 'POST',
                         url : 'saveLessonData.php',
