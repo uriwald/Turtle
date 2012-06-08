@@ -11,7 +11,7 @@
         $decodedStepValue = json_decode($steps);
         $return['msg'] = 'You\'ve entered: ' . $steps . '.';
         $return['firstElem'] = $decodedStepValue[1];
-        $return['numOfSteps'] = $_POST['numOfSteps'];
+        
         
         
         /// Saving the lesson data into MongoDB
@@ -36,6 +36,10 @@
             $result = $lessons->insert($structure, array('safe' => true));
             $return['objID'] = $structure['_id'];
         } else { //updating existing lesson
+            // TODO see that we got the objId for existing lesson
+             $return['objID'] = $_POST["ObjId"];
+             $return['isExistingLesson'] = "true";
+            
             $theObjId = new MongoId($_POST['ObjId']);
             $criteria = $lessons->findOne(array("_id" => $theObjId));
 
@@ -43,27 +47,39 @@
             if (isset($_POST["formDelete"])) {
                 $result = $lessons->remove(array('_id' => $theObjId), true);
             } else {
+                            
                 $originLanguageStepsArr = $criteria["steps"];
                 $originalTitle = $criteria["title"];
-                echo $originalTitle;
+                
+                
                 $i = 1;
+                $localeValue = "locale_en_US";
+                if(isset($_POST['language']))
                 $localeValue = "locale_" . $_POST['language'];
-                $finalArrAfterTranslation = array();
-
-                foreach ($originLanguageStepsArr as $lessonStep) {
+                
+                $finalArrAfterTranslation = array();   
+                
+                $return['originLanguageStepsArr'] = $originLanguageStepsArr;
+                //foreach ($originLanguageStepsArr as $lessonStep) {
+                $return['numOfSteps'] = $_POST['numOfSteps'];
+                for ($i = 1; $i <= $_POST['numOfSteps']; $i += 1) {
+                    $return['$i'] = $i;
                     $lessonStep["$localeValue"] = $lessonSteps[$i];
                     $finalArrAfterTranslation[$i] = $lessonStep;
-                    $i = $i + 1;
                 }
+                
                 $lessonsTitle = $originalTitle;
-                //$lessonsTitle = array();
-                //$lessonsTitle['locale_he_IL'] = "";
-                //$lessonsTitle['locale_en_US'] = "";
-
                 $lessonsTitle["$localeValue"] = $_POST['lessonTitle'];
-                //print_r($finalArrAfterTranslation);
-            // $result = $lessons->update($criteria, array('$set' => array("steps" => $finalArrAfterTranslation, "title" => $lessonsTitle , "precedence" => $precedence)));
+                
+                $return['finalArrAfterTranslation'] = $finalArrAfterTranslation;
+                $result = $lessons->update($criteria, array('$set' => array("steps" => $finalArrAfterTranslation, "title" => $lessonsTitle , "precedence" => $precedence)));
+
+                $return['isExistingLesson'] = "If We got Any result";
+
             }
+             
+            
+             
         }
 
         //$return['keys'] = array_keys($_POST['steps'] );
