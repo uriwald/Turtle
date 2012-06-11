@@ -17,8 +17,10 @@
         /// Saving the lesson data into MongoDB
         for ($i = 1; $i <= $_POST['numOfSteps']; $i += 1) {
             $stepsArray = $decodedStepValue[$i];
-            $translatArray = array("title" => $stepsArray[0], "explanation" => $stepsArray[1], "action" => $stepsArray[2],
-                "solution" => $stepsArray[3], "hint" => $stepsArray[4]);
+           // $translatArray = array("title" => $stepsArray[0], "explanation" => $stepsArray[1], "action" => $stepsArray[2],
+           //     "solution" => $stepsArray[3], "hint" => $stepsArray[4]);
+            $translatArray = array("title" => $stepsArray[0], "action" => $stepsArray[1], "solution" => $stepsArray[2],
+                "hint" => $stepsArray[3], "explanation" => $stepsArray[4]);
             $lessonSteps[$i] = $translatArray;
                    
         }   
