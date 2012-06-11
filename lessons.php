@@ -448,11 +448,13 @@ return false;
             <div>
                 <lable> Lesson Title : </lable> <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
             </div>                                
-            Object ID: <input type="text" name="ObjId" display="none" id="lessonObjectId" class="lessonInput" value="<?php
+           <!Object ID: --!> 
+            <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
         if (isset($cursor["_id"]))
             echo $cursor["_id"]; else {
             echo "";
         }
+        
         ?>"/>
 
             <?php
