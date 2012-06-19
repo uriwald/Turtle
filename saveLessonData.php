@@ -56,8 +56,9 @@
                 
                 $i = 1;
                 $localeValue = "locale_en_US";
-                if(isset($_POST['language']))
-                $localeValue = "locale_" . $_POST['language'];
+                
+                if(isset($_POST['locale']))
+                    $localeValue = $_POST['locale'];
                 
                 $finalArrAfterTranslation = array();   
                 

@@ -119,6 +119,10 @@ and open the template in the editor.
             {
                 var lessonid = $.getUrlVar('lesson');
                 var locale = $.getUrlVar('l');
+                if (locale != null && locale.length > 2)
+                    {
+                        $.Storage.set("locale" , locale);
+                    }
                 if (lessonid != null && lessonid.length > 2)
                     {
                         $.Storage.set("ObjId" , lessonid);
@@ -351,7 +355,8 @@ and open the template in the editor.
                         steps : $.Storage.get('lessonStepsValues') ,
                         numOfSteps : $.Storage.get('lesson-total-number-of-steps') ,
                         lessonTitle : $.Storage.get('lessonTitle'),
-                        ObjId : $.Storage.get('ObjId')
+                        ObjId : $.Storage.get('ObjId'),
+                        locale : $.Storage.get('locale')
                             
                        //steps : $.Storage.get('lessonStepsValues')
                         },
@@ -454,8 +459,8 @@ return false;
             echo $cursor["_id"]; else {
             echo "";
         }
-        
         ?>"/>
+        
 
             <?php
             $i = 1; //Set default value to 1 in case there are no steps
