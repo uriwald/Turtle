@@ -35,7 +35,11 @@ and open the template in the editor.
             function loadCKEditor()
             {
                 //$( 'textarea' ).ckeditor( function() { /* callback code */ }, { skin : 'kama' , toolbar : [ [ 'Source', '-', 'Bold', 'Italic', 'Underline', 'Strike','-','Link', '-', 'MyButton' ] ] });
-                var lang = document.getElementById('language');
+                var lang = $.getUrlVar('l');
+                if (lang == null || lang.length < 2)
+                    {
+                        lang = "en_US";
+                    }
                 $( 'textarea.expTxtErea' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : 'ltr' /*, skin : 'office2003' */});       
             }
             var showFirstStepIfExist = function showFirstStepIfExist()
@@ -550,8 +554,6 @@ return false;
 ?> />
                             <input type="button" id="btnSaveLesson" class="lessonInput" name="formSave" value="Save" />
                             <input type="submit" id="btnDelete" class="lessonInput" name="formDelete" value="Delete Lesson" />
-                            <input type="text" name="language" id="language" class="lessonInput" display="none" value=<?php echo $locale ?> />
-
                             </form>
         <div id="message" style="display: none;">
         <div id="waiting" style="display: none;">
