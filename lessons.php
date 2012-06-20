@@ -316,34 +316,6 @@ and open the template in the editor.
             
                 });
                 
-                $('#btnAdd').click(function() {       
-                    var num     = $('.clonedInput').length; // how many "duplicatable" input fields we currently have
-                    var newNum  = new Number(num + 1);      // the numeric ID of the new input field being added
-                    $('#numOfObjects').attr('value',newNum);
-
-                    // create the new element via clone(), and manipulate it's ID using newNum value
-                    var newElem = $('#input' + num).clone().attr('id', 'input' + newNum);
-                    // manipulate the name/id values of the input inside the new element
-                    newElem.children(':first').attr('id', 'title' + newNum).attr('name', 'title' + newNum).attr('value','');
-                    newElem.children(':first').next().attr('id', 'explanation' + newNum).attr('name', 'explanation' + newNum).attr('value','');
-                    // newElem.children(':first').next().next() is the cke element 
-                    newElem.children(':first').next().next().remove();
-                    newElem.children(':first').next().next().next().attr('id', 'action' + newNum).attr('name', 'action' + newNum).attr('value','');
-                    newElem.children(':first').next().next().next().next().attr('id', 'solution' + newNum).attr('name', 'solution' + newNum).attr('value','');
-                    newElem.children(':first').next().next().next().next().next().attr('id', 'hint' + newNum).attr('name', 'hint' + newNum).attr('value','');
-
- 
-                    // insert the new element after the last "duplicatable" input field
-                    $('#input' + num).after(newElem);
- 
-                    // enable the "remove" button
-                    $('#btnDel').attr('disabled','');
- 
-                    bu();
-                    // business rule: you can only add 5 names
-                    if (newNum == 10)
-                        $('#btnAdd').attr('disabled','disabled');
-                });
                 
                 $('#btnSaveLesson').click(function() {
                     infoElementKeyUpEvent();
@@ -379,23 +351,9 @@ and open the template in the editor.
 return false;
                  
                 });
-                  
-   
-                
-                $('#btnDel').click(function() {
-                    var num = $('.clonedInput').length; // how many "duplicatable" input fields we currently have
-                    $('#input' + num).remove();     // remove the last element
-                    $('#numOfObjects').attr('value',num - 1);
-                    // enable the "add" button
-                    $('#btnAdd').attr('disabled','');
-             
-                    // if only one element remains, disable the "remove" button
-                    if (num-1 == 1)
-                        $('#btnDel').attr('disabled','disabled');
-                });
- 
                 $('#btnDel').attr('disabled','disabled');
             });
+            
         </script>
     </head>
     <body>
@@ -512,8 +470,9 @@ return false;
                        <div id="input1" style="margin-bottom:4px;" class="clonedInput">
                         <?php
                             echo "<div id='lessonStep'>";
-                                echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
+                               // echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
                                 echo "<div id='stepNev'>" ;
+                                echo "lesson Steps";
                                 echo    "<ul id='lessonStepUl'>";
                                 echo    "</ul>";
                                 echo "</div>";
@@ -556,8 +515,9 @@ return false;
                    <div id="input1" style="margin-bottom:4px;" class="clonedInput">
                         <?php
                             echo "<div id='lessonStep'>";
-                                echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
+                            //    echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
                                 echo "<div id='stepNev'>" ;
+                                echo "lesson Steps";
                                 echo    "<ul id='lessonStepUl'>";
                                 echo    "</ul>";
                                 echo "</div>";
@@ -591,7 +551,6 @@ return false;
                             <input type="button" id="btnSaveLesson" class="lessonInput" name="formSave" value="Save" />
                             <input type="submit" id="btnDelete" class="lessonInput" name="formDelete" value="Delete Lesson" />
                             <input type="text" name="language" id="language" class="lessonInput" display="none" value=<?php echo $locale ?> />
-                            <input type="text" name="numOfObjects" display="none" id="numOfObjects" class="lessonInput" value=<?php echo $i ?> />
 
                             </form>
         <div id="message" style="display: none;">
