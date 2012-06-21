@@ -62,8 +62,15 @@ root {
     
     border:6px solid black;
     color: black;  
-
+    display: block;
     
+}
+.stepsSection{
+    border:6px solid black;
+    color: black;  
+    display: block;
+    clear: both;
+    height: 600px;
 }
 lable{
    color :   #3D3624 ;
@@ -99,11 +106,15 @@ textarea {
 }
 .leftLessonElem{
     float : left;
+    display: inline;
+    position: relative;
     width :550px;
 }
 .rightLessonElem{
     width :550px;
-    margin-left: 600px;
+    /* margin-left: 600px;  */
+    /* display: inline; */
+    float : left;
     height: 400px;
 }
 

@@ -499,7 +499,7 @@ and open the template in the editor.
                     <?php
                 } //End of for each loop
                 ?>  
-                <div id="input1" style="margin-bottom:4px;" class="clonedInput">
+                <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
                     <?php
                     echo "<div id='lessonStep'>";
                     // echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
@@ -511,13 +511,15 @@ and open the template in the editor.
                     echo "</div>";
                     ?>
                     <div class="leftLessonElem"> 
-                        <lable class='lessonlables' > Title:  </lable> <textarea type="text"  name="title" id="title" class="lessonInfoElement" ></textarea>
+                        <lable class='lessonlables' > Title:  </lable> <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement" ></textarea>
                         <?php
                         printElement($i, false, null);
                         ?>
                     </div>
                     <div class="rightLessonElem">
-                        <lable class='lessonlables' > Explanation : </lable> <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
+                        <lable class='lessonlables' > Explanation : </lable> 
+                        </br>
+                        <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                     </div>     
 
                     <div>
@@ -547,7 +549,7 @@ and open the template in the editor.
             } //end of if
             else {
                 ?>
-                <div id="input1" style="margin-bottom:4px;" class="clonedInput">
+                <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
                     <?php
                     echo "<div id='lessonStep'>";
                     //    echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
@@ -559,13 +561,16 @@ and open the template in the editor.
                     echo "</div>";
                     ?>
                     <div class="leftLessonElem"> 
-                        <lable class='lessonlables' > Title:  </lable> <textarea type="text"  name="title" id="title" class="lessonInfoElement" ></textarea>
+                        <lable class='lessonlables' > Title:  </lable> <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement" ></textarea>
                         <?php
                         printElement($i, false, null);
                         ?>
                     </div>
                     <div class="rightLessonElem">
-                        <lable class='lessonlables' > Explanation : </lable> <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
+                        <lable class='lessonlables' > Explanation : </lable>
+                        </br>
+                        
+                        <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                     </div>     
 
                     <div>
