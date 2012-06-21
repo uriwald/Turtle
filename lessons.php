@@ -440,19 +440,6 @@ and open the template in the editor.
             echo $elementHint;
         }
         ?>
-        <form id="myForm" action="processEditedRecord.php" method="post">
-            <div>
-                <lable> Lesson Title : </lable> <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
-            </div>                                
-            <! Object ID: --!> 
-            <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
-        if (isset($cursor["_id"]))
-            echo $cursor["_id"]; else {
-            echo "";
-        }
-        ?>"/>
-
-
             <?php
             $i = 1; //Set default value to 1 in case there are no steps
             if (isset($cursor["steps"]) && count($cursor["steps"]) > 0) {
@@ -500,6 +487,16 @@ and open the template in the editor.
                 } //End of for each loop
                 ?>  
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
+                    <div>
+                        <lable> Lesson Title : </lable> <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
+                        <! Object ID: --!> 
+                        <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
+                            if (isset($cursor["_id"]))
+                                echo $cursor["_id"]; else {
+                                echo "";
+                            }
+                            ?>"/>
+                    </div>   
                     <?php
                     echo "<div id='lessonStep'>";
                     // echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
@@ -517,7 +514,7 @@ and open the template in the editor.
                         ?>
                     </div>
                     <div class="rightLessonElem">
-                        <lable class='lessonlables' > Explanation : </lable> 
+                        <lable class='lessonlables' > Please write a details explanation of this step </lable> 
                         </br>
                         <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                     </div>     
@@ -550,6 +547,16 @@ and open the template in the editor.
             else {
                 ?>
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
+                    <div>
+                        <lable> Lesson Title : </lable> <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
+                        <! Object ID: --!> 
+                        <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
+                            if (isset($cursor["_id"]))
+                                echo $cursor["_id"]; else {
+                                echo "";
+                            }
+                            ?>"/>
+                    </div>                     
                     <?php
                     echo "<div id='lessonStep'>";
                     //    echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
@@ -567,7 +574,7 @@ and open the template in the editor.
                         ?>
                     </div>
                     <div class="rightLessonElem">
-                        <lable class='lessonlables' > Explanation : </lable>
+                        <lable class='lessonlables' > Please write a details explanation of this step </lable>
                         </br>
                         
                         <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
@@ -584,7 +591,6 @@ and open the template in the editor.
             } //end of else
             ?>
             <input type="button" id="btnDeleteLesson" class="lessonInput" name="formDelete" value="Delete Lesson" />
-        </form>
         <div id="message" style="display: none;">
             <div id="waiting" style="display: none;">
                 Please wait<br />
