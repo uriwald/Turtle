@@ -216,6 +216,10 @@ and open the template in the editor.
                 {
                     $.Storage.set("ObjId" , "");
                 }
+                if (!$.Storage.get("locale")) //Setting default locale to en_US
+                {
+                    $.Storage.set("locale" , "locale_en_US");
+                }
                 if (!$.Storage.get("active-step-num"))
                 {
                     $.Storage.set('active-step-num' , '1');    
@@ -396,10 +400,8 @@ and open the template in the editor.
         $m = new Mongo();
 // select a database
         $db = $m->turtleTestDb;
-
 // select a collection (analogous to a relational database's table)
         $lessons = $db->lessons;
-
         $locale = "en_US";
         $languageGet = "l";
         $localePrefix = "locale_";
@@ -413,8 +415,8 @@ and open the template in the editor.
             $lu = new lessonsUtil($locale, "locale_", $lessons, $_GET['lesson']);
             $theObjId = new MongoId($_GET['lesson']);
             $cursor = $lessons->findOne(array("_id" => $theObjId));
-            $localSteps = $lu->getStepsByLocale($localePrefix . $_GET[$languageGet]);
-            $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $_GET[$languageGet]);
+            $localSteps = $lu->getStepsByLocale($localePrefix . $locale);
+            $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $locale);
         }
 
         function printElement($i, $flag, $step) {
@@ -488,7 +490,7 @@ and open the template in the editor.
                 ?>  
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
                     <div>
-                        <lable> Lesson Title : </lable> <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
+                        <lable class="lessonHeader"> Lesson Title : </lable> <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
                         <! Object ID: --!> 
                         <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
                             if (isset($cursor["_id"]))
@@ -504,6 +506,11 @@ and open the template in the editor.
                     echo "lesson Steps";
                     echo "<ul id='lessonStepUl'>";
                     echo "</ul>";
+                    //Inserting the step div
+                    echo "<div>";
+                        echo "<input type='button' id='addStep' class='stepInput' value='add Add lesson step' />"   ;               
+                        echo "<input type='button' id='removeStep' class='stepInput' value='remove lesson step' />"  ;
+                    echo "</div>";
                     echo "</div>";
                     echo "</div>";
                     ?>
@@ -514,7 +521,7 @@ and open the template in the editor.
                         ?>
                     </div>
                     <div class="rightLessonElem">
-                        <lable class='lessonlables' > Please write a details explanation of this step </lable> 
+                        <lable class='lessonlablesright' > Please write a details explanation of this step </lable> 
                         </br>
                         <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                     </div>     
@@ -528,12 +535,14 @@ and open the template in the editor.
                 </div> 
 
 
-                <div>
-                    <input type="button" id="btnAdd" class="lessonInput" value="Add lesson step" />
-                    <input type="button" id="btnDel" class="lessonInput" value="remove lesoon step" />
-                    <input type="button" id="btnSaveLesson" class="lessonInput" name="formSave" value="Save" />
-                </div>
-
+                     <div>
+                        <!--
+                        <input type="button" id="addStep" class="lessonInput" value="add Add lesson step" />
+                        <input type="button" id="removeStep" class="lessonInput" value="remove lesson step" />
+                         -->
+                        <input type="button" id="btnSaveLesson" class="lessonInput" name="formSave" value="Save" />
+                        <input type="button" id="btnDeleteLesson" class="lessonInput" name="formDelete" value="Delete Lesson" />
+                    </div>
                 <script type='text/javascript'>
                                                 
                     //Print Nav  
@@ -548,7 +557,7 @@ and open the template in the editor.
                 ?>
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
                     <div>
-                        <lable> Lesson Title : </lable> <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
+                        <lable class="lessonHeader"> Lesson Title : </lable> <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
                         <! Object ID: --!> 
                         <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
                             if (isset($cursor["_id"]))
@@ -565,6 +574,11 @@ and open the template in the editor.
                     echo "<ul id='lessonStepUl'>";
                     echo "</ul>";
                     echo "</div>";
+                    //Inserting the step div
+                    echo "<div>";
+                        echo "<input type='button' id='addStep' class='stepInput' value='add Add lesson step' />"   ;               
+                        echo "<input type='button' id='removeStep' class='stepInput' value='remove lesson step' />"  ;
+                    echo "</div>";
                     echo "</div>";
                     ?>
                     <div class="leftLessonElem"> 
@@ -574,23 +588,25 @@ and open the template in the editor.
                         ?>
                     </div>
                     <div class="rightLessonElem">
-                        <lable class='lessonlables' > Please write a details explanation of this step </lable>
+                        <lable class='lessonlablesright' > Please write a details explanation of this step </lable>
                         </br>
                         
                         <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                     </div>     
-
+                        
                     <div>
+                        <!--
                         <input type="button" id="addStep" class="lessonInput" value="add Add lesson step" />
                         <input type="button" id="removeStep" class="lessonInput" value="remove lesson step" />
+                         -->
                         <input type="button" id="btnSaveLesson" class="lessonInput" name="formSave" value="Save" />
-
+                        <input type="button" id="btnDeleteLesson" class="lessonInput" name="formDelete" value="Delete Lesson" />
                     </div>
+                   
                 </div>     
                 <?php
             } //end of else
             ?>
-            <input type="button" id="btnDeleteLesson" class="lessonInput" name="formDelete" value="Delete Lesson" />
         <div id="message" style="display: none;">
             <div id="waiting" style="display: none;">
                 Please wait<br />

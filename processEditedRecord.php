@@ -6,7 +6,7 @@
 
 <?php
 session_start();
-echo $_POST["precedence"];
+//echo $_POST["precedence"];
 $lessonSteps = array();
 for ($i = 1; $i <= $_POST['numOfObjects']; $i += 1) {
     $title = "title" . $i;

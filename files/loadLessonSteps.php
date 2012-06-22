@@ -18,6 +18,7 @@
         {
        //     echo json_encode($step);
         }
+        //TOOD return title
         echo json_encode($localSteps);
         
     }
