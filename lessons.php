@@ -90,14 +90,32 @@ and open the template in the editor.
                     if (r)
                     {
                         var allSteps = JSON.parse($.Storage.get("lessonStepsValues"));
-                        allSteps.splice(stepNumber - 1,1);
+                        allSteps.splice(stepNumber ,1);
                         $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2));
                         var val = parseInt($.Storage.get("lesson-total-number-of-steps")) - 1;
                         $.Storage.set("lesson-total-number-of-steps" , val.toString());
-                        createStepNavVar();    
+                        var val = parseInt($.Storage.get("active-step-num")) - 1;
+                        if (!val == 0)
+                            {
+                                $.Storage.set("active-step-num" , val.toString());
+                            }
+                        createStepNavVar(); 
+                        populateInputsWithCurrentStep();
+                        //Saving new data
+                        window.saveLessonData();
                     }
                 }); 
                 
+            }
+            function populateInputsWithCurrentStep()
+            {
+                    var allSteps = JSON.parse($.Storage.get("lessonStepsValues"));
+                    var currentSteps = allSteps[$.Storage.get('active-step-num')];
+                    $('#title').val(currentSteps[0]);
+                    $('#action').val(currentSteps[1]);
+                    $('#solution').val(currentSteps[2]);
+                    $('#hint').val(currentSteps[3]);
+                    $('#explanation').val(currentSteps[4]);
             }
             //Remove a full lesson
             function removelesson()
@@ -112,8 +130,80 @@ and open the template in the editor.
                 }); 
                 
             }
+            var infoElementKeyUpEvent = function infoElementKeyUpEvent()
+                {
+                    if ($.Storage.get("lesson-total-number-of-steps") == 1)
+                    {
+                        
+                        window.initializeSteps();
+                        var firstStep = getStepValues();
+                        addStepVar(1,firstStep,true);//Making replace
+                    }
+                    
+                    if ($.Storage.get("active-step-num"))
+                    {
+                        var fullStep =  getStepValues();    
+                        var allSteps;
+                        if ($.Storage.get("lessonStepsValues"))  
+                        {
+                            allSteps = JSON.parse($.Storage.get("lessonStepsValues"));     
+                        }
+                        if ($.Storage.get('active-step-num'))
+                        {
+                            allSteps.splice(parseInt($.Storage.get("active-step-num")),1,fullStep);              
+                            $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))       
+                        } else {
+                            allSteps[0] =  fullStep;  
+                            $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))   
+                        }
+                    } 
+                }
             
+            var clearLocalStorage = function clearLocalStorage()
+            {
+                    $.Storage.remove("lessonStepsValues");
+                    $.Storage.remove("active-step-num");
+                    $.Storage.remove("lesson-total-number-of-steps");
+                    $.Storage.remove("active-step");
+                    $.Storage.remove("ObjId");
+                    $.Storage.remove("lessonTitle");
+     
+            }
             
+            var saveLessonData = function saveLessonData()
+                {
+                    window.infoElementKeyUpEvent();
+                    $.ajax({
+                        type : 'POST',
+                        url : 'saveLessonData.php',
+                        dataType : 'json',
+                        data: {
+                            steps : $.Storage.get('lessonStepsValues') ,
+                            numOfSteps : $.Storage.get('lesson-total-number-of-steps') ,
+                            lessonTitle : $.Storage.get('lessonTitle'),
+                            ObjId : $.Storage.get('ObjId'),
+                            locale : $.Storage.get('locale')
+                            
+                            //steps : $.Storage.get('lessonStepsValues')
+                        },
+                        
+                        success : function(data){
+                            $('#waiting').hide(500);
+                            $('#lessonObjectId').val(data.objID.$id);
+                            $.Storage.set("ObjId" , data.objID.$id);
+                               
+                            $('#message').removeClass().addClass((data.error === true) ? 'error' : 'success').text(data.msg).show(500);
+                            //  if (data.error === true)
+                            //      $('#demoForm').show(500);
+                        },
+                        error : function(XMLHttpRequest, textStatus, errorThrown) {
+                            $('#waiting').hide(500);
+                            $('#message').removeClass().addClass('error')
+                            .text('There was an error.').show(500);
+                        }
+                    });
+                    return false;
+                }
             
             //Adding new full step the the steps array
             //Replace flag will be set to true while replacing
@@ -150,17 +240,28 @@ and open the template in the editor.
                 {
                     $.Storage.set("ObjId" , lessonid);
                 }
-                $.ajax({
-                    url: 'files/loadLessonSteps.php?lesson=' + lessonid + '&l=' + locale,
-                    success: function(data) {
-                        $('.result').html(data);
-                        //alert('Load was performed.');
-                        var i = 1;
+                if (locale != null && locale.length > 2 && lessonid != null && lessonid.length > 2)
+                    {
+                        $.ajax({
+                            url: 'files/loadLessonSteps.php?lesson=' + lessonid + '&l=' + locale,
+                            success: function(data) {
+                                var rdata;
+                                rdata = JSON.parse(data);
+                                $.Storage.set("lessonTitle" , rdata.title);
+                                $('#lessonTitle').val(rdata.title);
+                                $('.result').html(data);
+                                //alert('Load was performed.');
+                                var i = 1;
+                            } ,
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                alert('en error occured');
+                                }
 
+                        });
                     }
-                });
                 
             }
+            
             var clearStep = function clearStep()
             {
                 $('#title').val("");
@@ -220,7 +321,8 @@ and open the template in the editor.
                 }
                 if (!$.Storage.get("locale")) //Setting default locale to en_US
                 {
-                    $.Storage.set("locale" , "locale_en_US");
+                    $.Storage.set("locale" , "en_US"); 
+                    
                 }
                 if (!$.Storage.get("active-step-num"))
                 {
@@ -244,7 +346,41 @@ and open the template in the editor.
                     }
 
                 });
-                                
+                function saveLessonData()
+                {
+                    window.infoElementKeyUpEvent();
+                    $.ajax({
+                        type : 'POST',
+                        url : 'saveLessonData.php',
+                        dataType : 'json',
+                        data: {
+                            steps : $.Storage.get('lessonStepsValues') ,
+                            numOfSteps : $.Storage.get('lesson-total-number-of-steps') ,
+                            lessonTitle : $.Storage.get('lessonTitle'),
+                            ObjId : $.Storage.get('ObjId'),
+                            locale : $.Storage.get('locale')
+                            
+                            //steps : $.Storage.get('lessonStepsValues')
+                        },
+                        
+                        success : function(data){
+                            $('#waiting').hide(500);
+                            $('#lessonObjectId').val(data.objID.$id);
+                            $.Storage.set("ObjId" , data.objID.$id);
+                               
+                            $('#message').removeClass().addClass((data.error === true) ? 'error' : 'success').text(data.msg).show(500);
+                            //  if (data.error === true)
+                            //      $('#demoForm').show(500);
+                        },
+                        error : function(XMLHttpRequest, textStatus, errorThrown) {
+                            $('#waiting').hide(500);
+                            $('#message').removeClass().addClass('error')
+                            .text('There was an error.').show(500);
+                        }
+                    });
+                    return false;
+                }
+                
                 function infoElementKeyUpEvent()
                 {
                     if ($.Storage.get("lesson-total-number-of-steps") == 1)
@@ -275,10 +411,10 @@ and open the template in the editor.
                 }
                 
                 $('.lessonInfoElement').live("keyup" , function() {
-                    infoElementKeyUpEvent();
+                    window.infoElementKeyUpEvent();
                 });
                 $('.cke_editor_explanation').live("keyup" , function() {
-                    infoElementKeyUpEvent();
+                    window.infoElementKeyUpEvent();
                 });
                 
                 $('#lessonTitle').keyup(function() {       
@@ -323,7 +459,8 @@ and open the template in the editor.
                     $(this).css('background-color' , '#AAA');
                     $.Storage.set('active-step' , pressed);
                     $.Storage.set('active-step-num' , pressed.substring(11));
-
+                    populateInputsWithCurrentStep();    
+                    /*
                     var allsteps = JSON.parse($.Storage.get('lessonStepsValues'));
                     var currentSteps = allsteps[$.Storage.get('active-step-num')];
                     $('#title').val(currentSteps[0]);
@@ -331,6 +468,7 @@ and open the template in the editor.
                     $('#solution').val(currentSteps[2]);
                     $('#hint').val(currentSteps[3]);
                     $('#explanation').val(currentSteps[4]);
+                    */
                     // }
                 
                    
@@ -354,7 +492,12 @@ and open the template in the editor.
                                 },
 
                                 success : function(data){
+                                   window.clearLocalStorage();
+                                   window.clearStep();
+                                   var url = document.URL ;
+                                   var myUrl = url.split("?");
                                    alert('successfully deleted');
+                                   window.location.replace(myUrl[0]);
                                 },
                                 error : function(XMLHttpRequest, textStatus, errorThrown) {
                                     alert('en error occured');
@@ -362,11 +505,13 @@ and open the template in the editor.
                             });
                     }
                      }); 
-                });
-                
+                });     
                 
                 $('#btnSaveLesson').click(function() {
-                    infoElementKeyUpEvent();
+                
+                    window.saveLessonData();
+                  /*  
+                    window.infoElementKeyUpEvent();
                     $.ajax({
                         type : 'POST',
                         url : 'saveLessonData.php',
@@ -397,7 +542,7 @@ and open the template in the editor.
                         }
                     });
                     return false;
-                 
+                 */
                 });
                 $('#btnDel').attr('disabled','disabled');
             });
@@ -428,7 +573,6 @@ and open the template in the editor.
         if (isset($_GET[$languageGet]))
             $locale = $_GET[$languageGet];
 
-
 //If we are in existing lesson we will enter editing mode 
         if (isset($_GET['lesson'])) {
             $lu = new lessonsUtil($locale, "locale_", $lessons, $_GET['lesson']);
@@ -437,6 +581,7 @@ and open the template in the editor.
             $localSteps = $lu->getStepsByLocale($localePrefix . $locale);
             $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $locale);
         }
+        
 
         function printElement($i, $flag, $step) {
             if ($flag) {
@@ -541,22 +686,24 @@ and open the template in the editor.
                     <div class="leftLessonElem"> 
                         <lable class='lessonlables' > Title:  </lable> </br> 
                         <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement"  >
-                            <?php echo "bur"//$step["title"] ?>  
+                            <?php //echo  "bur"//$step["title"] ?>  
+
                         </textarea>
                         <?php
                             printElement($i, false, null);
                         ?>
                     </div>
                     <div class="rightLessonElem"> 
-                        <lable class='lessonlablesright' > Please write a details explanation of this step </lable> 
+                        <lable class='lessonlablesright' > Please write a details explanation of this step exist</lable> 
                         </br>
                         <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                     </div>     
-                </div> 
+                
                      <div>
                         <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save" />
                         <input type="button" id="btnDeleteLesson" class="lessonInputButton" name="formDelete" value="Delete Lesson" />
                     </div>
+                </div> 
                 <script type='text/javascript'>
                                                 
                     //Print Nav  
@@ -594,28 +741,26 @@ and open the template in the editor.
                     echo "</ul>";
                     echo "</div>";
                     //Inserting the step div
-                    echo "<div>";
-                        echo "<input type='button' id='addStep' class='stepInput' value='add Add lesson step' />"   ;               
-                        echo "<input type='button' id='removeStep' class='stepInput' value='remove lesson step' />"  ;
-                    echo "</div>";
+                        echo "<div>";
+                            echo "<input type='button' id='addStep' class='stepInput' value='add Add lesson step' />"   ;               
+                            echo "<input type='button' id='removeStep' class='stepInput' value='remove lesson step' />"  ;
+                        echo "</div>";
                     echo "</div>";
                     ?>
                     <div class="leftLessonElem"> 
                         <lable class='lessonlables' > Title:  </lable> </br> 
                         <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement">
-                          <?php echo $step["title"] ?>  
+                          <?php //echo "yes" ?>  
                         </textarea>
                         <?php
                         printElement($i, false, null);
                         ?>
                     </div>
                     <div class="rightLessonElem">
-                        <lable class='lessonlablesright' > Please write a details explanation of this step </lable>
+                        <lable class='lessonlablesright' > Please write a details explanation of this step not exist </lable>
                         </br>
-                        
                         <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                     </div>     
-                        
                     <div>
                         <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save" />
                         <input type="button" id="btnDeleteLesson" class="lessonInputButton" name="formDelete" value="Delete Lesson" />
