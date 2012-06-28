@@ -167,6 +167,7 @@ and open the template in the editor.
                     $.Storage.remove("active-step");
                     $.Storage.remove("ObjId");
                     $.Storage.remove("lessonTitle");
+                    $.Storage.remove("locale");
      
             }
             
@@ -310,6 +311,7 @@ and open the template in the editor.
             }
 
             $(document).ready(function() {
+                window.clearLocalStorage();
                 loadExistingLessonSteps();
                 loadCKEditor();
                 createStepNavVar();
@@ -358,9 +360,7 @@ and open the template in the editor.
                             numOfSteps : $.Storage.get('lesson-total-number-of-steps') ,
                             lessonTitle : $.Storage.get('lessonTitle'),
                             ObjId : $.Storage.get('ObjId'),
-                            locale : $.Storage.get('locale')
-                            
-                            //steps : $.Storage.get('lessonStepsValues')
+                            locale : $.Storage.get('locale')                            
                         },
                         
                         success : function(data){
@@ -426,6 +426,7 @@ and open the template in the editor.
                 //While clicking on other step .. saving step info
                 $('.existing_step').live("click" , function() {
                     var fullStep =  getStepValues();         
+                    window.clearStep();
                     var allSteps;
                     if ($.Storage.get("lessonStepsValues"))
                     
@@ -439,18 +440,16 @@ and open the template in the editor.
                     
                     if ($.Storage.get("active-step"))
                     {
-                        $.Storage.set($.Storage.get("active-step"), JSON.stringify(fullStep, null, 2));     
+                        //$.Storage.set($.Storage.get("active-step"), JSON.stringify(fullStep, null, 2));     
                         var name = '#' + $.Storage.get("active-step");
                         $(name).css('background-color' , 'white')
                     }
 
                     if ($.Storage.get('active-step-num'))
                     {
-                        //var arrayCell = parseInt($.Storage.get("active-step-num")) - 1;
                         allSteps.splice(parseInt($.Storage.get("active-step-num")),1,fullStep);              
-                        //allSteps[arrayCell] =  fullStep;
                         $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))       
-                    } else {
+                    } else { //Case of first step
                         allSteps[0] =  fullStep;  
                         $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))   
                     }
@@ -460,19 +459,6 @@ and open the template in the editor.
                     $.Storage.set('active-step' , pressed);
                     $.Storage.set('active-step-num' , pressed.substring(11));
                     populateInputsWithCurrentStep();    
-                    /*
-                    var allsteps = JSON.parse($.Storage.get('lessonStepsValues'));
-                    var currentSteps = allsteps[$.Storage.get('active-step-num')];
-                    $('#title').val(currentSteps[0]);
-                    $('#action').val(currentSteps[1]);
-                    $('#solution').val(currentSteps[2]);
-                    $('#hint').val(currentSteps[3]);
-                    $('#explanation').val(currentSteps[4]);
-                    */
-                    // }
-                
-                   
-                    //$.Storage.set("lesson-total-number-of-steps" , val.toString());
             
                 });
                 
@@ -507,43 +493,10 @@ and open the template in the editor.
                      }); 
                 });     
                 
-                $('#btnSaveLesson').click(function() {
-                
+                $('#btnSaveLesson').click(function() {           
                     window.saveLessonData();
-                  /*  
-                    window.infoElementKeyUpEvent();
-                    $.ajax({
-                        type : 'POST',
-                        url : 'saveLessonData.php',
-                        dataType : 'json',
-                        data: {
-                            steps : $.Storage.get('lessonStepsValues') ,
-                            numOfSteps : $.Storage.get('lesson-total-number-of-steps') ,
-                            lessonTitle : $.Storage.get('lessonTitle'),
-                            ObjId : $.Storage.get('ObjId'),
-                            locale : $.Storage.get('locale')
-                            
-                            //steps : $.Storage.get('lessonStepsValues')
-                        },
-                        
-                        success : function(data){
-                            $('#waiting').hide(500);
-                            $('#lessonObjectId').val(data.objID.$id);
-                            $.Storage.set("ObjId" , data.objID.$id);
-                               
-                            $('#message').removeClass().addClass((data.error === true) ? 'error' : 'success').text(data.msg).show(500);
-                            //  if (data.error === true)
-                            //      $('#demoForm').show(500);
-                        },
-                        error : function(XMLHttpRequest, textStatus, errorThrown) {
-                            $('#waiting').hide(500);
-                            $('#message').removeClass().addClass('error')
-                            .text('There was an error.').show(500);
-                        }
-                    });
-                    return false;
-                 */
                 });
+                
                 $('#btnDel').attr('disabled','disabled');
             });
             
@@ -656,7 +609,7 @@ and open the template in the editor.
                     <div>
                         
                             <lable class="lessonHeader"> Lesson Title : </lable> 
-                        
+                            </br>
                         
                             <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
                             <! Object ID: --!> 
@@ -666,19 +619,20 @@ and open the template in the editor.
                                     echo "";
                                 }
                                 ?>"/>
-                        
+                            
                     </div>   
+                    </br>
                     <?php
                     echo "<div id='lessonStep'>";
                     // echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
                     echo "<div id='stepNev'>";
-                    echo "lesson Steps";
+                    echo "<lable class='lessonHeader'>lesson Steps </lable>";
                     echo "<ul id='lessonStepUl'>";
                     echo "</ul>";
                     //Inserting the step div
                     echo "<div>";
-                        echo "<input type='button' id='addStep' class='stepInput' value='add Add lesson step' />"   ;               
-                        echo "<input type='button' id='removeStep' class='stepInput' value='remove lesson step' />"  ;
+                        echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
+                        echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";
@@ -720,6 +674,7 @@ and open the template in the editor.
                     <div>
                            
                             <lable class="lessonHeader"> Lesson Title : </lable>
+                            </br>
                        
                         
                             <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
@@ -730,20 +685,22 @@ and open the template in the editor.
                                     echo "";
                                 }
                                 ?>"/>
+                            
                         
-                    </div>                     
+                    </div>  
+                    </br>
                     <?php
                     echo "<div id='lessonStep'>";
                     //    echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
                     echo "<div id='stepNev'>";
-                    echo "lesson Steps";
+                    echo "<lable class='lessonHeader'>lesson Steps </lable>";
                     echo "<ul id='lessonStepUl'>";
                     echo "</ul>";
                     echo "</div>";
                     //Inserting the step div
                         echo "<div>";
-                            echo "<input type='button' id='addStep' class='stepInput' value='add Add lesson step' />"   ;               
-                            echo "<input type='button' id='removeStep' class='stepInput' value='remove lesson step' />"  ;
+                            echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
+                            echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
                         echo "</div>";
                     echo "</div>";
                     ?>

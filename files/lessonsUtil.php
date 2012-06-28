@@ -82,9 +82,7 @@ class lessonsUtil {
             }
         }
         return $titleByLocale;
-        //print_r($this->titles);
     }
-
 }
 
 ?>

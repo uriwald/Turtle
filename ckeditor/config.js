@@ -9,7 +9,7 @@ CKEDITOR.editorConfig = function( config )
 	// config.language = 'he';
 	// config.uiColor = '#AADC6E';
         config.height = '200px';
-        config.width = '500px';
+        config.width = '600px';
         
         
     config.toolbar_Full =
