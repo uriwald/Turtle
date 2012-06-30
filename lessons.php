@@ -43,7 +43,9 @@ and open the template in the editor.
                     lang = "en_US";
                 }
                 $( 'textarea.expTxtErea' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : 'ltr' /*, skin : 'office2003' */});       
+   
             }
+            
             var showFirstStepIfExist = function showFirstStepIfExist()
             {
                 if ($.Storage.get('lessonStepsValues'))
@@ -158,16 +160,21 @@ and open the template in the editor.
                         }
                     } 
                 }
-            
             var clearLocalStorage = function clearLocalStorage()
             {
+                var lessonid = $.getUrlVar('lesson');
+                if (lessonid == null || lessonid.length < 3)
+                {
                     $.Storage.remove("lessonStepsValues");
-                    $.Storage.remove("active-step-num");
                     $.Storage.remove("lesson-total-number-of-steps");
+                    $.Storage.remove("active-step-num");
                     $.Storage.remove("active-step");
                     $.Storage.remove("ObjId");
                     $.Storage.remove("lessonTitle");
                     $.Storage.remove("locale");
+                }
+
+
      
             }
             
@@ -638,17 +645,15 @@ and open the template in the editor.
                     echo "</div>";
                     ?>
                     <div class="leftLessonElem"> 
-                        <lable class='lessonlables' > Title:  </lable> </br> 
-                        <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement"  >
-                            <?php //echo  "bur"//$step["title"] ?>  
-
+                        <lable class='lessonlables' > Title :  </lable> </br> 
+                        <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement" >
                         </textarea>
                         <?php
                             printElement($i, false, null);
                         ?>
                     </div>
                     <div class="rightLessonElem"> 
-                        <lable class='lessonlablesright' > Please write a details explanation of this step exist</lable> 
+                        <lable class='lessonlables' > Explanation </lable> 
                         </br>
                         <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                     </div>     
@@ -705,16 +710,15 @@ and open the template in the editor.
                     echo "</div>";
                     ?>
                     <div class="leftLessonElem"> 
-                        <lable class='lessonlables' > Title:  </lable> </br> 
+                        <lable class='lessonlables' > Title :  </lable> </br> 
                         <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement">
-                          <?php //echo "yes" ?>  
                         </textarea>
                         <?php
                         printElement($i, false, null);
                         ?>
                     </div>
                     <div class="rightLessonElem">
-                        <lable class='lessonlablesright' > Please write a details explanation of this step not exist </lable>
+                        <lable class='lessonlables' > Explanation : </lable>
                         </br>
                         <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                     </div>     
