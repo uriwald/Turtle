@@ -553,7 +553,7 @@ and open the template in the editor.
                 $solution = "";
                 $hint = "";
             }
-            $baseInputText = "<div> <label class='lessonlables'> %%a: </label> </br> <textarea class='lessonInfoElement' type='text'  name='%%b' id='%%b' placeholder='Step %%a'>%%c</textarea> </div>";
+            $baseInputText = "<div> <label class='lessonlables'> %%a: </label> <textarea class='lessonInfoElement' type='text'  name='%%b' id='%%b' placeholder='Step %%a'>%%c</textarea> </div>";
             $toReplace = array("%%a", "%%b", "%%c");
             $replaceWithAction = array("Action ", "action", $action);
             $replaceWithSolution = array("Solution ", "solution", $solution);
@@ -616,8 +616,6 @@ and open the template in the editor.
                     <div>
                         
                             <lable class="lessonHeader"> Lesson Title : </lable> 
-                            </br>
-                        
                             <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
                             <! Object ID: --!> 
                             <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
@@ -645,7 +643,7 @@ and open the template in the editor.
                     echo "</div>";
                     ?>
                     <div class="leftLessonElem"> 
-                        <lable class='lessonlables' > Title :  </lable> </br> 
+                        <lable class='lessonlables' > Title :  </lable> 
                         <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement" >
                         </textarea>
                         <?php
@@ -679,7 +677,7 @@ and open the template in the editor.
                     <div>
                            
                             <lable class="lessonHeader"> Lesson Title : </lable>
-                            </br>
+                           
                        
                         
                             <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
@@ -694,6 +692,7 @@ and open the template in the editor.
                         
                     </div>  
                     </br>
+                    
                     <?php
                     echo "<div id='lessonStep'>";
                     //    echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
@@ -710,7 +709,7 @@ and open the template in the editor.
                     echo "</div>";
                     ?>
                     <div class="leftLessonElem"> 
-                        <lable class='lessonlables' > Title :  </lable> </br> 
+                        <lable class='lessonlables' > Title :  </lable> 
                         <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement">
                         </textarea>
                         <?php
