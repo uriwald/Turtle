@@ -40,10 +40,21 @@ $cursor->sort(array('precedence' => 1));
 
 echo "<div> <span class='title'> Edit one of the following lessons </div>";
 foreach ($cursor as $lessonStructure) {
-    $title =  $lessonStructure[$lessonTitle][$finalLocale] ;
-    $objID = $lessonStructure['_id'];
-    echo "<div><a href='lessons.php?lesson=$objID&l=$locale' > <span> $title  </span> </a></div>";
-    
+    $title         =            $lessonStructure[$lessonTitle][$finalLocale] ;
+    $objID         =            $lessonStructure['_id'];
+    $pendingStatus =    $lessonStructure['pending'];
+    $editLessonHref    = "<a href='lessons.php?lesson=$objID&l=$locale' > <span class='lessonh'> $title </span> </a>";
+    $approveLesson ;
+    if ($pendingStatus)
+    {
+        $approveLesson = "<a href='approveLesson.php?lesson=$objID&pending=false' > <span class='lessonh'> Approve Lesson </span> </a>";
+    }
+    else
+    {
+        $approveLesson = "<a href='approveLesson.php?lesson=$objID&pending=true' > <span class='lessonh'> Unapprove </span> </a>";
+    }
+     echo "<div style='display:inline;height:60px;'>$editLessonHref $approveLesson </div>";   
+     echo "</br>";
 }
 
 echo "<div><a href='lessons.php' > <span> Create a new lesson  </span> </a></div>" ;
