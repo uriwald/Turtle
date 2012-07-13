@@ -14,60 +14,68 @@ $lessonSteps = "steps";
 // find everything in the collection
 $cursor = $lessons->find();
 $cursor->sort(array('precedence' => 1));
-$i = 0; 
+$i = 0;
 //$fullJsFile = "var lessons = [";
 echo "var lessons = [";
 
 foreach ($cursor as $lessonStructure) {
     //  Unset the lesson ID
-    $lessonStructure['id'] = ''. $lessonStructure['_id']; 
-    unset ($lessonStructure['_id']);   
-     if (isset($lessonStructure['locale_'.$_GET['l']])) {
-         $lessonStructure = $lessonStructure['locale_'.$_GET['l']];
-     }
-     $lessonSteps = $lessonStructure["steps"];
-     foreach ($lessonSteps as $key => $value) {
-           //echo "Key = " . $key ;
-           // If we have local for the current step we will set him
-           if (isset($lessonSteps[$key]['locale_'.$_GET['l']])) {
-              $lessonSteps[$key] = $lessonSteps[$key]['locale_'.$_GET['l']];
-           }
-           // unsetting the other locale values
-           foreach ($value as $kkey => $vvalue)
-           {
-               //echo "Key = " . $kkey ;
-               if (strpos($kkey,'locale') === 0) {
-                    unset ($lessonSteps[$key][$kkey]);
-
-               }
-           }
-            
-     }
-      $lessonStructure["steps"] = $lessonSteps;
-      $finalTitle =  $lessonStructure["title"];
-      //Now handling the title
-      
-      $lessonTitles = $lessonStructure["title"] ;
-      foreach ($lessonTitles as $key => $value) {
-          //echo "@@@".$key;
-          if ($key == 'locale_'.$_GET['l'] )
-          {
-              $finalTitle = $lessonTitles[$key];
-          }
-      }
-      $lessonStructure["title"] = $finalTitle ;
+    $lessonStructure['id'] = '' . $lessonStructure['_id'];
+    unset($lessonStructure['_id']);
     
-     // cleanup extra locales
-     foreach ($lessonStructure as $key => $value) {
-         if (strpos($key,'locale') === 0) {
-             unset ($lessonStructure[$key]);
-         }
-     }
-    echo json_encode($lessonStructure);
+    // If the requested language is in the current json collection
+    if (isset($lessonStructure['locale_' . $_GET['l']])) {
+        $lessonStructure = $lessonStructure['locale_' . $_GET['l']];
+    }
+    if (isset($lessonStructure["steps"])) {
+        $lessonSteps = $lessonStructure["steps"];
+    }
+    
+    $showItem = true ;
+    foreach ($lessonSteps as $key => $value) {
+        //echo "Key = " . $key ;
+        // If we have local for the current step we will set him
+        if (isset($lessonSteps[$key]['locale_' . $_GET['l']])) {
+            $lessonSteps[$key] = $lessonSteps[$key]['locale_' . $_GET['l']];
+        }
+        else
+        {
+            $showItem = false ;
+        }
+        // unsetting the other locale values
+        foreach ($value as $kkey => $vvalue) {
+            //echo "Key = " . $kkey ;
+            if (strpos($kkey, 'locale') === 0) {
+                unset($lessonSteps[$key][$kkey]);
+            }
+        }
+    }
+    $lessonStructure["steps"] = $lessonSteps;
+    $finalTitle = $lessonStructure["title"];
+    //Now handling the title
+
+    $lessonTitles = $lessonStructure["title"];
+    foreach ($lessonTitles as $key => $value) {
+        //echo "@@@".$key;
+        if ($key == 'locale_' . $_GET['l']) {
+            $finalTitle = $lessonTitles[$key];
+        }
+    }
+    $lessonStructure["title"] = $finalTitle;
+
+    // cleanup extra locales
+    foreach ($lessonStructure as $key => $value) {
+        if (strpos($key, 'locale') === 0) {
+            unset($lessonStructure[$key]);
+        }
+    }
+    if ( ($lessonStructure["pending"] == false) && ($showItem == true) )
+    {
+        echo json_encode($lessonStructure);
         echo ",";
+    }
 
     $i++;
-     
 }
 echo "]";
 
