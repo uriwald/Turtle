@@ -635,7 +635,7 @@ and open the template in the editor.
                     echo "<ul id='lessonStepUl'>";
                     echo "</ul>";
                     //Inserting the step div
-                    echo "<div>";
+                    echo "<div class='actionButtons'>";
                         echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
                         echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
                     echo "</div>";
@@ -656,7 +656,7 @@ and open the template in the editor.
                         <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                     </div>     
                 
-                     <div>
+                     <div class="actionButtons">
                         <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save" />
                         <input type="button" id="btnDeleteLesson" class="lessonInputButton" name="formDelete" value="Delete Lesson" />
                     </div>
@@ -702,7 +702,7 @@ and open the template in the editor.
                     echo "</ul>";
                     echo "</div>";
                     //Inserting the step div
-                        echo "<div>";
+                        echo "<div class='actionButtons'>";
                             echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
                             echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
                         echo "</div>";
@@ -721,7 +721,7 @@ and open the template in the editor.
                         </br>
                         <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                     </div>     
-                    <div>
+                    <div class="actionButtons">
                         <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save" />
                         <input type="button" id="btnDeleteLesson" class="lessonInputButton" name="formDelete" value="Delete Lesson" />
                     </div>
