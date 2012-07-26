@@ -37,13 +37,14 @@ and open the template in the editor.
             function loadCKEditor()
             {
                 //$( 'textarea' ).ckeditor( function() { /* callback code */ }, { skin : 'kama' , toolbar : [ [ 'Source', '-', 'Bold', 'Italic', 'Underline', 'Strike','-','Link', '-', 'MyButton' ] ] });
-                var lang = $.getUrlVar('l');
+                var lang = $.getUrlVar('lfrom');
                 if (lang == null || lang.length < 2)
                 {
                     lang = "en_US";
                 }
-                $( 'textarea.expTxtErea' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : 'ltr' /*, skin : 'office2003' */});       
-   
+                $( 'textarea.expTxtErea' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : 'ltr' , width : '500px' , readOnly : true /*, skin : 'office2003' */});       
+                $( 'textarea.expTxtErea1' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : 'ltr' , width : '500px'  /*, skin : 'office2003' */});       
+
             }
             
             var showFirstStepIfExist = function showFirstStepIfExist()
@@ -102,16 +103,17 @@ and open the template in the editor.
                                 $.Storage.set("active-step-num" , val.toString());
                             }
                         createStepNavVar(); 
-                        populateInputsWithCurrentStep();
+                        populateInputsWithCurrentStep('lessonStepsValues');
                         //Saving new data
                         window.saveLessonData();
                     }
                 }); 
                 
             }
-            function populateInputsWithCurrentStep()
+            function populateInputsWithCurrentStep(stepsType)
             {
-                    var allSteps = JSON.parse($.Storage.get("lessonStepsValues"));
+                    var allSteps = JSON.parse($.Storage.get(stepsType));
+                    //var allStepsTranslated = JSON.parse($.Storage.get("lessonStepsValues"));
                     var currentSteps = allSteps[$.Storage.get('active-step-num')];
                     $('#title').val(currentSteps[0]);
                     $('#action').val(currentSteps[1]);
@@ -119,6 +121,7 @@ and open the template in the editor.
                     $('#hint').val(currentSteps[3]);
                     $('#explanation').val(currentSteps[4]);
             }
+            
             //Remove a full lesson
             function removelesson()
             {
@@ -137,9 +140,9 @@ and open the template in the editor.
                     if ($.Storage.get("lesson-total-number-of-steps") == 1)
                     {
                         
-                        window.initializeSteps();
+                        window.initializeSteps('lessonStepsValues');
                         var firstStep = getStepValues();
-                        addStepVar(1,firstStep,true);//Making replace
+                        addStepVar(1,firstStep,true , "lessonStepsValues");//Making replace
                     }
                     
                     if ($.Storage.get("active-step-num"))
@@ -172,6 +175,7 @@ and open the template in the editor.
                     $.Storage.remove("ObjId");
                     $.Storage.remove("lessonTitle");
                     $.Storage.remove("locale");
+                    //TODO remove translation elements
                 }
 
 
@@ -190,7 +194,8 @@ and open the template in the editor.
                             numOfSteps : $.Storage.get('lesson-total-number-of-steps') ,
                             lessonTitle : $.Storage.get('lessonTitle'),
                             ObjId : $.Storage.get('ObjId'),
-                            locale : $.Storage.get('locale')
+                            locale : $.Storage.get('locale'),
+                            translate : true
                             
                             //steps : $.Storage.get('lessonStepsValues')
                         },
@@ -215,10 +220,11 @@ and open the template in the editor.
             
             //Adding new full step the the steps array
             //Replace flag will be set to true while replacing
-            var addStepVar = function addStep(stepPosition , stepArray , replace)
+            var addStepVar = function addStep(stepPosition , stepArray , replace , allStepsArray)
             {
-                window.initializeSteps();
-                var allSteps = JSON.parse($.Storage.get("lessonStepsValues"));
+                window.initializeSteps('lessonStepsValues');
+                window.initializeSteps('lessonStepsValuesTranslate');
+                var allSteps = JSON.parse($.Storage.get(allStepsArray));
                 if (replace === true )
                 {
                     allSteps.splice (stepPosition , 1 , stepArray);      
@@ -228,7 +234,7 @@ and open the template in the editor.
                     allSteps.splice (stepPosition , 0 , stepArray); 
                 }
                     
-                $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2)) 
+                $.Storage.set(allStepsArray,JSON.stringify(allSteps, null, 2)) 
             };
             /**
              * Will use the get Variable lessons with his locale
@@ -236,22 +242,22 @@ and open the template in the editor.
              * in order to get the lesson id and his locale
              * than will load the existing step
              */
-            function loadExistingLessonSteps()
-            {
-                var lessonid = $.getUrlVar('lesson');
-                var locale = $.getUrlVar('l');
-                if (locale != null && locale.length > 2)
+            function loadExistingLessonSteps( lessonid ,originLang , transLang)
+            {        
+                //var lessonid = $.getUrlVar('lesson');
+                //var locale = $.getUrlVar('lfrom');
+                if (originLang != null && originLang.length > 2)
                 {
-                    $.Storage.set("locale" , locale);
+                    $.Storage.set("locale" , originLang);
                 }
                 if (lessonid != null && lessonid.length > 2)
                 {
                     $.Storage.set("ObjId" , lessonid);
                 }
-                if (locale != null && locale.length > 2 && lessonid != null && lessonid.length > 2)
+                if (originLang != null && originLang.length > 2 && lessonid != null && lessonid.length > 2)
                     {
                         $.ajax({
-                            url: 'files/loadLessonSteps.php?lesson=' + lessonid + '&l=' + locale,
+                            url: 'files/loadLessonSteps.php?lesson=' + lessonid + '&l=' + originLang,
                             success: function(data) {
                                 var rdata;
                                 rdata = JSON.parse(data);
@@ -267,7 +273,31 @@ and open the template in the editor.
 
                         });
                     }
-                
+                 if (transLang != null && transLang.length > 2 && lessonid != null && lessonid.length > 2)
+                    {
+                        $.ajax({
+                            url: 'files/loadLessonSteps.php?lesson=' + lessonid + '&l=' + transLang,
+                            success: function(data) {
+                                var rdata;
+                                rdata = JSON.parse(data);
+                                $.Storage.set("lessonTitleTrans" , rdata.title);
+                                $('#lessonTitlet').val(rdata.title);
+                                /*
+                                var rdata;
+                                rdata = JSON.parse(data);
+                                $.Storage.set("lessonTitleTrans" , rdata.title);
+                                $('#lessonTitle').val(rdata.title);
+                                $('.result').html(data);
+                                //alert('Load was performed.');
+                                var i = 1;
+                                */
+                            } ,
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                alert('en error occured');
+                                }
+
+                        });
+                    }
             }
             
             var clearStep = function clearStep()
@@ -305,21 +335,26 @@ and open the template in the editor.
                     $("#lessonStepUl" ).append('<li class="existing_step"> 1 </li>');  
                     $.Storage.set('lesson-total-number-of-steps' , '1');
                     $.Storage.set('lessonStepsValues',JSON.stringify(lessonStepValuesStorage, null, 2))
+                    $.Storage.set('lessonStepsValuesTranslate',JSON.stringify(lessonStepValuesStorage, null, 2))
                 }
             };
             
-            var initializeSteps = function initializeSteps()
+            var initializeSteps = function initializeSteps(stepsToInitialize)
             {
-                if (! $.Storage.get('lessonStepsValues'))
+                if (! $.Storage.get(stepsToInitialize))
                 {
                     var lessonStepValuesStorage = new Array(new Array());
-                    $.Storage.set('lessonStepsValues',JSON.stringify(lessonStepValuesStorage, null, 2))
+                    $.Storage.set(stepsToInitialize,JSON.stringify(lessonStepValuesStorage, null, 2))
                 }
             }
 
             $(document).ready(function() {
+                
                 window.clearLocalStorage();
-                loadExistingLessonSteps();
+                var lessonid = $.getUrlVar('lesson');
+                var originLang = $.getUrlVar('lfrom');
+                var transLang = $.getUrlVar('ltranslate');
+                loadExistingLessonSteps(lessonid ,originLang , transLang );
                 loadCKEditor();
                 createStepNavVar();
                 showFirstStepIfExist();
@@ -341,7 +376,7 @@ and open the template in the editor.
                     var val = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
                     $.Storage.set("lesson-total-number-of-steps" , val.toString());
                     $.Storage.set('active-step-num' , val.toString());  
-                    addStepVar(val , new Array() , false);
+                    addStepVar(val , new Array() , false , "lessonStepsValues");
                     clearStep();
                     createStepNavVar();
                 });
@@ -393,9 +428,9 @@ and open the template in the editor.
                     if ($.Storage.get("lesson-total-number-of-steps") == 1)
                     {
                         
-                        window.initializeSteps();
+                        window.initializeSteps('lessonStepsValues');
                         var firstStep = getStepValues();
-                        addStepVar(1,firstStep,true);//Making replace
+                        addStepVar(1,firstStep,true , "lessonStepsValues");//Making replace
                     }
                     
                     if ($.Storage.get("active-step-num"))
@@ -431,6 +466,7 @@ and open the template in the editor.
                 
                 
                 //While clicking on other step .. saving step info
+                //TODO while clicking existing step make it more generic to support translation
                 $('.existing_step').live("click" , function() {
                     var fullStep =  getStepValues();         
                     window.clearStep();
@@ -527,11 +563,22 @@ and open the template in the editor.
 // select a collection (analogous to a relational database's table)
         $lessons = $db->lessons;
         $locale = "en_US";
-        $languageGet = "l";
+        $localeTranslate = "";
+        $languageGet = "lfrom";
+        $languageGetTranslate = "ltranslate";
+        $doTranslate = false ;
+        
         $localePrefix = "locale_";
+        
         $lessonFinalTitle = "";
         if (isset($_GET[$languageGet]))
             $locale = $_GET[$languageGet];
+        
+        if (isset($_GET[$languageGetTranslate]))
+        {
+            $localeTranslate = $_GET[$languageGetTranslate];
+            $doTranslate = true ;
+        }
 
 //If we are in existing lesson we will enter editing mode 
         if (isset($_GET['lesson'])) {
@@ -540,6 +587,11 @@ and open the template in the editor.
             $cursor = $lessons->findOne(array("_id" => $theObjId));
             $localSteps = $lu->getStepsByLocale($localePrefix . $locale);
             $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $locale);
+            if ($doTranslate)
+            {
+                $localStepsTranslate = $lu->getStepsByLocale($localePrefix . $localeTranslate);
+                $lessonFinalTitleTranslate    = $lu->getTitleByLocale($localePrefix . $localeTranslate);
+            }
         }
         
 
@@ -617,16 +669,51 @@ and open the template in the editor.
                         fullStep[2] = stepSolution;
                         fullStep[3] = stepHint;
                         fullStep[4] = stepExplanation;                  
+                        
                         //adding the step
-                        window.addStepVar(stepNumber , fullStep , false);         
+                        window.addStepVar(stepNumber , fullStep , false , "lessonStepsValues");         
                                
                     </script>
                     <?php
                 } //End of for each loop
+                
+                if ($doTranslate)
+                {
+                foreach ($localStepsTranslate as $step) {
+                    $i++;
+                    ?>
+                    <script type='text/javascript'>
+                        //Here I am parsing the response from the ajax request regarding loading an existing lesson
+                        //var stepNumber = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
+                        //$.Storage.set("lesson-total-number-of-steps" , stepNumber.toString());
+                                 
+                        var stepExplanation = <?php echo json_encode($step["explanation"]); ?>;
+                        var stepTitle= <?php echo json_encode($step["title"]); ?>;
+                        var stepAction = <?php echo json_encode($step["action"]); ?>;
+                        var stepSolution = <?php echo json_encode($step["solution"]); ?>;
+                        var stepHint = <?php echo json_encode($step["hint"]); ?>;
+                                 
+                        //$.Storage.set("lesson-total-number-of-steps" , stepNumber.toString());
+                                                     
+                        var fullStep = new Array();        
+                        fullStep[0] = stepTitle;
+                        fullStep[1] = stepAction;
+                        fullStep[2] = stepSolution;
+                        fullStep[3] = stepHint;
+                        fullStep[4] = stepExplanation;                  
+                        
+                        //adding the step
+                        window.addStepVar(stepNumber , fullStep , false , "lessonStepsValuesTranslate");         
+                               
+                    </script>
+                    <?php
+                } //End of for each loop
+                } //End of If
                 ?>  
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
                     <div>
                         
+                        <div class="leftLessonElem">
                             <lable class="lessonHeader"> Lesson Title : </lable> 
                             <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
                             <! Object ID: --!> 
@@ -636,7 +723,13 @@ and open the template in the editor.
                                     echo "";
                                 }
                                 ?>"/>
-                            
+                        </div>  
+                        <div class="rightLessonElem rightLessonTitleElem">
+                            <lable class="lessonHeader"> Lesson Title : </lable> 
+                            <input type="text" name="lessonTitlet"  id="lessonTitlet" class="lessonInput" placeholder="Lesson Title"/>
+     
+                         
+                        </div>
                     </div>   
                     </br>
                     <?php
@@ -647,9 +740,7 @@ and open the template in the editor.
                     echo "<ul id='lessonStepUl'>";
                     echo "</ul>";
                     //Inserting the step div
-                    echo "<div>";
 
-                    echo "</div>";
                     echo "</div>";
                     echo "</div>";
                     ?>
@@ -675,7 +766,7 @@ and open the template in the editor.
                         ?>
                         <lable class='lessonlables' > Explanation </lable> 
                         </br>
-                        <textarea type="text"  name="explanation1" id="explanation1" class="expTxtErea"></textarea>
+                        <textarea type="text"  name="explanation1" id="explanation1" class="expTxtErea1"></textarea>
 
                     </div>     
                 
@@ -718,13 +809,13 @@ and open the template in the editor.
                     <?php
                     echo "<div id='lessonStep'>";
                     //    echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
-                    echo "<div id='stepNev'>";
-                    echo "<lable class='lessonHeader'>lesson Steps </lable>";
-                    echo "<ul id='lessonStepUl'>";
-                    echo "</ul>";
-                    echo "</div>";
+                        echo "<div id='stepNev'>";
+                        echo "<lable class='lessonHeader'>lesson Steps </lable>";
+                        echo "<ul id='lessonStepUl'>";
+                        echo "</ul>";
+                        echo "</div>";
                     //Inserting the step div
-
+                    echo "</div>";    
                     echo "</div>";
                     ?>
                     <div class="leftLessonElem"> 
