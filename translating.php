@@ -47,20 +47,31 @@ and open the template in the editor.
 
             }
             
-            var showFirstStepIfExist = function showFirstStepIfExist()
+            var showFirstStepIfExist = function showFirstStepIfExist(stepsType)
             {
-                if ($.Storage.get('lessonStepsValues'))
+                if ($.Storage.get(stepsType))
                 {   
                     
                     if ($.Storage.get('active-step'))
                     {
-                        var allsteps = JSON.parse($.Storage.get('lessonStepsValues'));
+                        var allsteps = JSON.parse($.Storage.get(stepsType));
                         var currentSteps = allsteps[1];
-                        $('#title').val(currentSteps[0]);
-                        $('#action').val(currentSteps[1]);
-                        $('#solution').val(currentSteps[2]);
-                        $('#hint').val(currentSteps[3]);
-                        $('#explanation').val(currentSteps[4]);  
+                        if ( stepsType == "lessonStepsValues")
+                        {
+                            $('#title').val(currentSteps[0]);
+                            $('#action').val(currentSteps[1]);
+                            $('#solution').val(currentSteps[2]);
+                            $('#hint').val(currentSteps[3]);
+                            $('#explanation').val(currentSteps[4]);  
+                        }
+                        else
+                        {
+                            $('#title1').val(currentSteps[0]);
+                            $('#action1').val(currentSteps[1]);
+                            $('#solution1').val(currentSteps[2]);
+                            $('#hint1').val(currentSteps[3]);
+                            $('#explanation1').val(currentSteps[4]);      
+                        }
                     }
                 }
             };
@@ -104,6 +115,7 @@ and open the template in the editor.
                             }
                         createStepNavVar(); 
                         populateInputsWithCurrentStep('lessonStepsValues');
+                        populateInputsWithCurrentStep('lessonStepsValuesTranslate');
                         //Saving new data
                         window.saveLessonData();
                     }
@@ -112,14 +124,26 @@ and open the template in the editor.
             }
             function populateInputsWithCurrentStep(stepsType)
             {
+                    
                     var allSteps = JSON.parse($.Storage.get(stepsType));
                     //var allStepsTranslated = JSON.parse($.Storage.get("lessonStepsValues"));
                     var currentSteps = allSteps[$.Storage.get('active-step-num')];
-                    $('#title').val(currentSteps[0]);
-                    $('#action').val(currentSteps[1]);
-                    $('#solution').val(currentSteps[2]);
-                    $('#hint').val(currentSteps[3]);
-                    $('#explanation').val(currentSteps[4]);
+                    if (stepsType == "lessonStepsValues")
+                    {
+                        $('#title').val(currentSteps[0]);
+                        $('#action').val(currentSteps[1]);
+                        $('#solution').val(currentSteps[2]);
+                        $('#hint').val(currentSteps[3]);
+                        $('#explanation').val(currentSteps[4]);
+                    }
+                    else
+                    {
+                        $('#title1').val(currentSteps[0]);
+                        $('#action1').val(currentSteps[1]);
+                        $('#solution1').val(currentSteps[2]);
+                        $('#hint1').val(currentSteps[3]);
+                        $('#explanation1').val(currentSteps[4]); 
+                    }
             }
             
             //Remove a full lesson
@@ -357,7 +381,7 @@ and open the template in the editor.
                 loadExistingLessonSteps(lessonid ,originLang , transLang );
                 loadCKEditor();
                 createStepNavVar();
-                showFirstStepIfExist();
+                showFirstStepIfExist('lessonStepsValues');
                 
                 if (!$.Storage.get("ObjId"))
                 {
@@ -501,7 +525,8 @@ and open the template in the editor.
                     $(this).css('background-color' , '#AAA');
                     $.Storage.set('active-step' , pressed);
                     $.Storage.set('active-step-num' , pressed.substring(11));
-                    populateInputsWithCurrentStep();    
+                    populateInputsWithCurrentStep('lessonStepsValues');
+                    populateInputsWithCurrentStep('lessonStepsValuesTranslate');   
             
                 });
                 
@@ -779,7 +804,8 @@ and open the template in the editor.
                     //Print Nav  
                     window.createStepNavVar();
                         
-                    window.showFirstStepIfExist();
+                    window.showFirstStepIfExist('lessonStepsValues');
+                    window.showFirstStepIfExist('lessonStepsValuesTranslate');
                     
                 </script>
                 <?php
