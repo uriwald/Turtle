@@ -1,4 +1,5 @@
 <?php
+    //TODO refer translation mode when I get the translation = true by the translating.php page
     sleep(3);
     if (empty($_POST['steps'])) {
         $return['error'] = true;
@@ -35,14 +36,13 @@
         if(isset($_POST['locale']))
             $localeValue = "locale_".$_POST['locale'];
         //Case we are inserting a new lesson
-        //TODO indentify if an object was already sent
         if (!isset($_POST["ObjId"]) OR $_POST["ObjId"] == null OR strlen($_POST["ObjId"]) < 2) {
             $titles = array('locale_en_US' => $_POST['lessonTitle']);
             for ($i = 1; $i <= $_POST['numOfSteps']; $i += 1) {
                     $lessonStep["$localeValue"] = $lessonSteps[$i];
                     $finalArrAfterTranslation[$i] = $lessonStep;
             }
-            $structure = array("steps" => $finalArrAfterTranslation, "title" => $titles);
+            $structure = array("steps" => $finalArrAfterTranslation, "title" => $titles , "pending"=> "true");
             $result = $lessons->insert($structure, array('safe' => true));
             $return['objID'] = $structure['_id'];
         } else { //updating existing lesson
