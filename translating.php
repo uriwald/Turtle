@@ -76,13 +76,23 @@ and open the template in the editor.
                 }
             };
             
-            function getStepValues()
+            function getStepValues(isTranslate)
             {
-                var stepTitle = $('#title').val();
-                var stepAction = $('#action').val();
-                var stepSolution = $('#solution').val();
-                var stepHint = $('#hint').val();
-                var stepExplanation = $('#explanation').val();   
+                if (isTranslate)
+                {
+                    var stepTitle = $('#title1').val();
+                    var stepAction = $('#action1').val();
+                    var stepSolution = $('#solution1').val();
+                    var stepHint = $('#hint1').val();
+                    var stepExplanation = $('#explanation1').val(); 
+                }
+                else {
+                    var stepTitle = $('#title').val();
+                    var stepAction = $('#action').val();
+                    var stepSolution = $('#solution').val();
+                    var stepHint = $('#hint').val();
+                    var stepExplanation = $('#explanation').val();  
+                }
                     
                 var fullStep = new Array();
                     
@@ -90,8 +100,7 @@ and open the template in the editor.
                 fullStep[1] = stepAction;
                 fullStep[2] = stepSolution;
                 fullStep[3] = stepHint;
-                fullStep[4] = stepExplanation;
-                    
+                fullStep[4] = stepExplanation;                
                 return fullStep;
             }
             
@@ -117,7 +126,7 @@ and open the template in the editor.
                         populateInputsWithCurrentStep('lessonStepsValues');
                         populateInputsWithCurrentStep('lessonStepsValuesTranslate');
                         //Saving new data
-                        window.saveLessonData();
+                        window.saveLessonData(false);
                     }
                 }); 
                 
@@ -159,34 +168,42 @@ and open the template in the editor.
                 }); 
                 
             }
-            var infoElementKeyUpEvent = function infoElementKeyUpEvent()
+            // TODO suuport case of translating page
+            var infoElementKeyUpEvent = function infoElementKeyUpEvent(isTranslate)
                 {
+                    var stepsType ="" ;
+                    if (isTranslate)
+                        stepsType = "lessonStepsValuesTranslate";
+                    else
+                        stepsType = "lessonStepsValues";
+                    
                     if ($.Storage.get("lesson-total-number-of-steps") == 1)
                     {
-                        
-                        window.initializeSteps('lessonStepsValues');
-                        var firstStep = getStepValues();
-                        addStepVar(1,firstStep,true , "lessonStepsValues");//Making replace
-                    }
+                             window.initializeSteps(stepsType);
+                             var firstStep = getStepValues(isTranslate);
+                             addStepVar(1,firstStep,true , stepsType);//Making replace     
+                   }
                     
                     if ($.Storage.get("active-step-num"))
                     {
-                        var fullStep =  getStepValues();    
+                        var fullStep =  getStepValues(isTranslate);    
                         var allSteps;
-                        if ($.Storage.get("lessonStepsValues"))  
+                        if ($.Storage.get(stepsType))  
                         {
-                            allSteps = JSON.parse($.Storage.get("lessonStepsValues"));     
+                            allSteps = JSON.parse($.Storage.get(stepsType));     
                         }
                         if ($.Storage.get('active-step-num'))
                         {
                             allSteps.splice(parseInt($.Storage.get("active-step-num")),1,fullStep);              
-                            $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))       
+                            $.Storage.set(stepsType,JSON.stringify(allSteps, null, 2))       
                         } else {
                             allSteps[0] =  fullStep;  
-                            $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))   
+                            $.Storage.set(stepsType,JSON.stringify(allSteps, null, 2))   
                         }
                     } 
                 }
+                
+                
             var clearLocalStorage = function clearLocalStorage()
             {
                 var lessonid = $.getUrlVar('lesson');
@@ -200,25 +217,31 @@ and open the template in the editor.
                     $.Storage.remove("lessonTitle");
                     $.Storage.remove("locale");
                     //TODO remove translation elements
+                    $.Storage.remove("lessonStepsValuesTranslate");
+                    $.Storage.remove("localeTransale");
+                    $.Storage.remove("lessonTitleTrans");   
                 }
-
-
-     
+                else
+                    {
+                        $.Storage.remove("lessonStepsValuesTranslate");
+                        $.Storage.remove("localeTransale");
+                        $.Storage.remove("lessonTitleTrans");    
+                    }
             }
             
-            var saveLessonData = function saveLessonData()
+            var saveLessonData = function saveLessonData(isTranslate)
                 {
-                    window.infoElementKeyUpEvent();
+                    window.infoElementKeyUpEvent(isTranslate);
                     $.ajax({
                         type : 'POST',
                         url : 'saveLessonData.php',
                         dataType : 'json',
                         data: {
-                            steps : $.Storage.get('lessonStepsValues') ,
+                            steps : $.Storage.get('lessonStepsValuesTranslate') , //Should be a parameter
                             numOfSteps : $.Storage.get('lesson-total-number-of-steps') ,
                             lessonTitle : $.Storage.get('lessonTitle'),
                             ObjId : $.Storage.get('ObjId'),
-                            locale : $.Storage.get('locale'),
+                            locale : $.Storage.get('localeTranslate'),  //Should be a parameter
                             translate : true
                             
                             //steps : $.Storage.get('lessonStepsValues')
@@ -273,6 +296,7 @@ and open the template in the editor.
                 if (originLang != null && originLang.length > 2)
                 {
                     $.Storage.set("locale" , originLang);
+                    $.Storage.set("localeTranslate" , transLang);
                 }
                 if (lessonid != null && lessonid.length > 2)
                 {
@@ -302,6 +326,7 @@ and open the template in the editor.
                         $.ajax({
                             url: 'files/loadLessonSteps.php?lesson=' + lessonid + '&l=' + transLang,
                             success: function(data) {
+                                //alert(data);
                                 var rdata;
                                 rdata = JSON.parse(data);
                                 $.Storage.set("lessonTitleTrans" , rdata.title);
@@ -331,6 +356,12 @@ and open the template in the editor.
                 $('#solution').val("");
                 $('#hint').val("");
                 $('#explanation').val("");
+                // Translate elemnets
+                $('#title1').val("");
+                $('#action1').val("");
+                $('#solution1').val("");
+                $('#hint1').val("");
+                $('#explanation1').val("");
             }
 
             /**
@@ -375,6 +406,7 @@ and open the template in the editor.
             $(document).ready(function() {
                 
                 window.clearLocalStorage();
+                window.clearStep();
                 var lessonid = $.getUrlVar('lesson');
                 var originLang = $.getUrlVar('lfrom');
                 var transLang = $.getUrlVar('ltranslate');
@@ -390,6 +422,7 @@ and open the template in the editor.
                 if (!$.Storage.get("locale")) //Setting default locale to en_US
                 {
                     $.Storage.set("locale" , "en_US"); 
+                    $.Storage.set("localeTranslate" , "he_IL");
                     
                 }
                 if (!$.Storage.get("active-step-num"))
@@ -414,52 +447,21 @@ and open the template in the editor.
                     }
 
                 });
-                function saveLessonData()
-                {
-                    window.infoElementKeyUpEvent();
-                    $.ajax({
-                        type : 'POST',
-                        url : 'saveLessonData.php',
-                        dataType : 'json',
-                        data: {
-                            steps : $.Storage.get('lessonStepsValues') ,
-                            numOfSteps : $.Storage.get('lesson-total-number-of-steps') ,
-                            lessonTitle : $.Storage.get('lessonTitle'),
-                            ObjId : $.Storage.get('ObjId'),
-                            locale : $.Storage.get('locale')                            
-                        },
-                        
-                        success : function(data){
-                            $('#waiting').hide(500);
-                            $('#lessonObjectId').val(data.objID.$id);
-                            $.Storage.set("ObjId" , data.objID.$id);
-                               
-                            $('#message').removeClass().addClass((data.error === true) ? 'error' : 'success').text(data.msg).show(500);
-                            //  if (data.error === true)
-                            //      $('#demoForm').show(500);
-                        },
-                        error : function(XMLHttpRequest, textStatus, errorThrown) {
-                            $('#waiting').hide(500);
-                            $('#message').removeClass().addClass('error')
-                            .text('There was an error.').show(500);
-                        }
-                    });
-                    return false;
-                }
                 
+               /*
                 function infoElementKeyUpEvent()
                 {
                     if ($.Storage.get("lesson-total-number-of-steps") == 1)
                     {
                         
                         window.initializeSteps('lessonStepsValues');
-                        var firstStep = getStepValues();
+                        var firstStep = getStepValues(false);
                         addStepVar(1,firstStep,true , "lessonStepsValues");//Making replace
                     }
                     
                     if ($.Storage.get("active-step-num"))
                     {
-                        var fullStep =  getStepValues();    
+                        var fullStep =  getStepValues(false);    
                         var allSteps;
                         if ($.Storage.get("lessonStepsValues"))  
                         {
@@ -475,12 +477,14 @@ and open the template in the editor.
                         }
                     } 
                 }
-                
+                */
+               
+                // We are now in translating page so isTranslate = true
                 $('.lessonInfoElement').live("keyup" , function() {
-                    window.infoElementKeyUpEvent();
+                    window.infoElementKeyUpEvent(true);
                 });
                 $('.cke_editor_explanation').live("keyup" , function() {
-                    window.infoElementKeyUpEvent();
+                    window.infoElementKeyUpEvent(true);
                 });
                 
                 $('#lessonTitle').keyup(function() {       
@@ -492,7 +496,7 @@ and open the template in the editor.
                 //While clicking on other step .. saving step info
                 //TODO while clicking existing step make it more generic to support translation
                 $('.existing_step').live("click" , function() {
-                    var fullStep =  getStepValues();         
+                    var fullStep =  getStepValues(false);         
                     window.clearStep();
                     var allSteps;
                     if ($.Storage.get("lessonStepsValues"))
@@ -588,7 +592,9 @@ and open the template in the editor.
 // select a collection (analogous to a relational database's table)
         $lessons = $db->lessons;
         $locale = "en_US";
+        $localeFullName ="";
         $localeTranslate = "";
+        $localeFullNameTranslate ="";
         $languageGet = "lfrom";
         $languageGetTranslate = "ltranslate";
         $doTranslate = false ;
@@ -599,10 +605,13 @@ and open the template in the editor.
         if (isset($_GET[$languageGet]))
             $locale = $_GET[$languageGet];
         
+        $localeFullName = "locale_".$locale;
+        
         if (isset($_GET[$languageGetTranslate]))
         {
             $localeTranslate = $_GET[$languageGetTranslate];
             $doTranslate = true ;
+            $localeFullNameTranslate = "locale_".$localeTranslate;
         }
 
 //If we are in existing lesson we will enter editing mode 
@@ -614,7 +623,7 @@ and open the template in the editor.
             $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $locale);
             if ($doTranslate)
             {
-                $localStepsTranslate = $lu->getStepsByLocale($localePrefix . $localeTranslate);
+                $localStepsTranslate          = $lu->getStepsByLocale($localePrefix . $localeTranslate);
                 $lessonFinalTitleTranslate    = $lu->getTitleByLocale($localePrefix . $localeTranslate);
             }
         }
@@ -673,13 +682,14 @@ and open the template in the editor.
                 </script>
                 <?php
                 foreach ($localSteps as $step) {
-                    $i++;
+                    //$i++;
+                    //var_dump($step);
+                    //var_dump($step["$localeFullName"]);
                     ?>
                     <script type='text/javascript'>
                         //Here I am parsing the response from the ajax request regarding loading an existing lesson
                         var stepNumber = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
-                        $.Storage.set("lesson-total-number-of-steps" , stepNumber.toString());
-                                 
+                        $.Storage.set("lesson-total-number-of-steps" , stepNumber.toString());                                 
                         var stepExplanation = <?php echo json_encode($step["explanation"]); ?>;
                         var stepTitle= <?php echo json_encode($step["title"]); ?>;
                         var stepAction = <?php echo json_encode($step["action"]); ?>;
@@ -702,37 +712,65 @@ and open the template in the editor.
                     <?php
                 } //End of for each loop
                 
+                
                 if ($doTranslate)
                 {
-                foreach ($localStepsTranslate as $step) {
-                    $i++;
-                    ?>
-                    <script type='text/javascript'>
-                        //Here I am parsing the response from the ajax request regarding loading an existing lesson
-                        //var stepNumber = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
+                    var_dump($localStepsTranslate); 
+                    if ($localStepsTranslate != null)   
+                    {
+                        foreach ($localStepsTranslate as $step) {
+                            $i++;
+                            //echo $localeFullName;
+                            var_dump($step);
+                            var_dump($step["$localeFullName"]);
+
+                            echo json_encode($step["$localeFullName"]["explanation"]);
+                            ?>
+                            <script type='text/javascript'>
+                                //Here I am parsing the response from the ajax request regarding loading an existing lesson
+                                //var stepNumber = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
+                                //$.Storage.set("lesson-total-number-of-steps" , stepNumber.toString());
+                                //TODO Need to handle case translation not exist                      
+
+                                var stepExplanation = <?php echo json_encode($step["$localeFullNameTranslate"]["explanation"]); ?>;
+                                var stepTitle= <?php echo json_encode($step["$localeFullNameTranslate"]["title"]); ?>;
+                                var stepAction = <?php echo json_encode($step["$localeFullNameTranslate"]["action"]); ?>;
+                                var stepSolution = <?php echo json_encode($step["$localeFullNameTranslate"]["solution"]); ?>;
+                                var stepHint = <?php echo json_encode($step["$localeFullNameTranslate"]["hint"]); ?>;       
                         //$.Storage.set("lesson-total-number-of-steps" , stepNumber.toString());
-                                 
-                        var stepExplanation = <?php echo json_encode($step["explanation"]); ?>;
-                        var stepTitle= <?php echo json_encode($step["title"]); ?>;
-                        var stepAction = <?php echo json_encode($step["action"]); ?>;
-                        var stepSolution = <?php echo json_encode($step["solution"]); ?>;
-                        var stepHint = <?php echo json_encode($step["hint"]); ?>;
-                                 
-                        //$.Storage.set("lesson-total-number-of-steps" , stepNumber.toString());
-                                                     
-                        var fullStep = new Array();        
-                        fullStep[0] = stepTitle;
-                        fullStep[1] = stepAction;
-                        fullStep[2] = stepSolution;
-                        fullStep[3] = stepHint;
-                        fullStep[4] = stepExplanation;                  
-                        
-                        //adding the step
-                        window.addStepVar(stepNumber , fullStep , false , "lessonStepsValuesTranslate");         
-                               
-                    </script>
-                    <?php
-                } //End of for each loop
+
+                                var fullStep = new Array();        
+                                fullStep[0] = stepTitle;
+                                fullStep[1] = stepAction;
+                                fullStep[2] = stepSolution;
+                                fullStep[3] = stepHint;
+                                fullStep[4] = stepExplanation;                  
+
+                                //adding the step
+                                window.addStepVar(stepNumber , fullStep , false , "lessonStepsValuesTranslate");         
+
+                            </script>
+                            <?php
+                        } //End of for each loop
+                    } // end of if there are translation steps
+                    else { // no translation steps
+                        ?>
+                        <script type='text/javascript'>
+                            var maxSteps = $.Storage.get("lesson-total-number-of-steps");
+                            for (i=0; i<maxSteps; i++)
+                            {
+                                    var fullStep = new Array();        
+                                    fullStep[0] = stepTitle;
+                                    fullStep[1] = stepAction;
+                                    fullStep[2] = stepSolution;
+                                    fullStep[3] = stepHint;
+                                    fullStep[4] = stepExplanation;                  
+                                    //adding the step
+                                    window.addStepVar(stepNumber , fullStep , false , "lessonStepsValuesTranslate");      
+                            }   
+                        </script>
+                        <?php
+                    }
                 } //End of If
                 ?>  
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
