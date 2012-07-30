@@ -25,6 +25,8 @@ root {
 }
 #lessonStep{
    height: 120px;
+   width : 50%;
+   
 }
 #lessonStep #lessonStepLabel{
    color :   #3D3624 ;
@@ -168,6 +170,23 @@ textarea {
     /* display: inline; */
     float : left;
     height: 400px;
+}
+.leftLessonElemm{
+    float : left;
+    display: inline;
+    position: relative;
+    width :40%;
+}
+.rightLessonElemm{
+    width :40%;
+    /* margin-left: 600px;  */
+    /* display: inline; */
+    float : left;
+    /* height: 100px; */
+}
+.rightLessonTitleElem
+{
+   height : 50px;  
 }
 .actionButtons
 {
