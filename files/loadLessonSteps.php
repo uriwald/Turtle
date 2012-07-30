@@ -14,10 +14,10 @@
         $localSteps = $lu->getStepsByLocale($localePrefix . $_GET[$languageGet]);
         $localtitle = $lu->getTitleByLocale($localePrefix . $_GET[$languageGet]);
         //return $localSteps;
-        foreach ($localSteps as $step)
-        {
+       // foreach ($localSteps as $step)
+        //{
        //     echo json_encode($step);
-        }
+        //}
         //TOOD return title
         
         $return['title'] = $localtitle;
