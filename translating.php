@@ -560,7 +560,7 @@ and open the template in the editor.
                 });     
                 
                 $('#btnSaveLesson').click(function() {           
-                    window.saveLessonData();
+                    window.saveLessonData(true);
                 });
                 
                 $('#btnDel').attr('disabled','disabled');
