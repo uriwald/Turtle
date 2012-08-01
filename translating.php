@@ -233,20 +233,29 @@ and open the template in the editor.
             
             var saveLessonData = function saveLessonData(isTranslate)
             {
+                // Making translation case more dynamic according to the isTranslate flag
                 window.infoElementKeyUpEvent(isTranslate);
+                var lessonSteps = 'lessonStepsValues';
+                var lessonTitle = 'lessonTitle';
+                var lessonLocale = 'locale';
+                if (isTranslate)
+                 {
+                    var lessonSteps = 'lessonStepsValuesTranslate';
+                    var lessonTitle = 'lessonTitlet';
+                    var lessonLocale = 'localeTranslate';  
+                 }
                 $.ajax({
                     type : 'POST',
                     url : 'saveLessonData.php',
                     dataType : 'json',
                     data: {
-                        steps : $.Storage.get('lessonStepsValuesTranslate') , //Should be a parameter
+                        steps : $.Storage.get(lessonSteps) , //Should be a parameter
                         numOfSteps : $.Storage.get('lesson-total-number-of-steps') ,
-                        lessonTitle : $.Storage.get('lessonTitle'),
+                        lessonTitle : $.Storage.get(lessonTitle),
                         ObjId : $.Storage.get('ObjId'),
-                        locale : $.Storage.get('localeTranslate'),  //Should be a parameter
+                        locale : $.Storage.get(lessonLocale),  //Should be a parameter
                         translate : true
-                            
-                        //steps : $.Storage.get('lessonStepsValues')
+
                     },
                         
                     success : function(data){
@@ -486,6 +495,11 @@ and open the template in the editor.
                     $.Storage.set('lessonTitle' , lessonTitle);
                 });
                 
+                $('#lessonTitlet').keyup(function() {       
+                    var lessonTitle = $('#lessonTitlet').val();           
+                    $.Storage.set('lessonTitlet' , lessonTitle);
+                });
+                
                 
                 //While clicking on other step .. saving step info
                 //TODO while clicking existing step make it more generic to support translation
@@ -707,12 +721,12 @@ and open the template in the editor.
     //TODO Need to fill the lesson elements in case the translation is exist
 
     if ($doTranslate) {
-        var_dump($localStepsTranslate);
+        //var_dump($localStepsTranslate);
         if ($localStepsTranslate != null) {
             foreach ($localStepsTranslate as $step) {
                 $i++;
                 //echo $localeFullName;
-                var_dump($step);
+                //var_dump($step);
                // var_dump($step["$localeFullName"]);
 
                // echo json_encode($step["$localeFullName"]["explanation"]);
