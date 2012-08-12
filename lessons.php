@@ -10,6 +10,7 @@ and open the template in the editor.
         </title>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+        <script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
         <script  type="text/javascript" src="ckeditor/ckeditor.js"></script>
         <script  type="text/javascript" src="ckeditor/adapters/jquery.js"></script>
         <script  type="text/javascript" src="alerts/jquery.alerts.js"></script>
