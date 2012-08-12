@@ -2,20 +2,37 @@
 To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+    require_once("localization.php");
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>
-
         </title>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+        <script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
         <script  type="text/javascript" src="ckeditor/ckeditor.js"></script>
         <script  type="text/javascript" src="ckeditor/adapters/jquery.js"></script>
         <script  type="text/javascript" src="alerts/jquery.alerts.js"></script>
         <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
+        <script type="application/javascript" src="files/js/lesson.js"></script> <!-- lessonFunctions -->     
         <link rel='stylesheet' href='./files/lessons.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='./alerts/jquery.alerts.css' type='text/css' media='all'/>
+        
+        <?php
+                $languageGet = "ltranslate";
+                $localetr = "en_US";
+                if (isset($_GET[$languageGet]))
+                    $localetr = $_GET[$languageGet];
+            $file_path = "locale/".$localetr."/LC_MESSAGES/messages.po";
+            $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$localetr."/LC_MESSAGES/messages.po'"." />";        
+             if ( file_exists($file_path))
+                echo $po_file;
+             
+        ?>
+        <!--
         <script type="text/javascript">
             $.extend({
                 getUrlVars: function(){
@@ -581,6 +598,7 @@ and open the template in the editor.
             });
             
         </script>
+        -->
     </head>
     <body>
         <header id="titleHeader">
@@ -648,8 +666,8 @@ and open the template in the editor.
             if (!$istranslate)
                 $disabled = "disabled='disabled'";
 
-
-            $baseInputText = "<div> <label class='lessonlables'> %%a: </label> <textarea class='lessonInfoElement'  $disabled type='text'  name='%%b' id='%%b' placeholder='Step %%a'>%%c</textarea> </div>";
+            $step =  _("Step") ;
+            $baseInputText = "<div> <label class='lessonlables'> %%a: </label> <textarea class='lessonInfoElement'  $disabled type='text'  name='%%b' id='%%b' placeholder='$step %%a'>%%c</textarea> </div>";
 
             $toReplace = array("%%a", "%%b", "%%c");
             if (!$istranslate) {
@@ -657,9 +675,9 @@ and open the template in the editor.
                 $replaceWithSolution = array("Solution ", "solution", $solution);
                 $replaceWithHint = array("Hint ", "hint", $hint);
             } else {
-                $replaceWithAction = array("Action ", "action1", $action);
-                $replaceWithSolution = array("Solution ", "solution1", $solution);
-                $replaceWithHint = array("Hint ", "hint1", $hint);
+                $replaceWithAction = array(_("Action"), "action1", $action);
+                $replaceWithSolution = array(_("Solution"), "solution1", $solution);
+                $replaceWithHint = array( _("Hint") , "hint1", $hint);
             }
             $elementAction = str_replace($toReplace, $replaceWithAction, $baseInputText);
             $elementSolution = str_replace($toReplace, $replaceWithSolution, $baseInputText);
@@ -842,22 +860,31 @@ and open the template in the editor.
 
                 <div class="rightLessonElem"> 
                     <!-- here I should do something equal to left for translating -->
-                    <lable class='lessonlables' > Title :  </lable> 
+                    <lable class='lessonlables' > 
+                        <?php 
+                             // echo ($localetr == 'he_IL') ?  "&larr;" :  "&rarr;";     
+                             echo _("Title");        
+                        ?> 
+                    
+                    </lable> 
                     <textarea type="text"  name="title1" id="title1" placeholder="Step Title" class="lessonInfoElement" >
                     </textarea>
-    <?php
-    printElement($i, false, null, true);
-    ?>
-                    <lable class='lessonlables' > Explanation </lable> 
+                    <?php
+                    printElement($i, false, null, true);
+                    ?>
+                    <lable class='lessonlables' >                         
+                        <?php     
+                             echo _("Explanation");        
+                        ?> 
+                    </lable> 
                     </br>
                     <textarea type="text"  name="explanation1" id="explanation1" class="expTxtErea1"></textarea>
 
                 </div>     
-
-                <div>
+                <div class="downButton">
                     <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save" />
                 </div>
-            </div> 
+            </div>  
             <script type='text/javascript'>
                                                     
                 //Print Nav  
