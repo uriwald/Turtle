@@ -15,8 +15,11 @@ and open the template in the editor.
         <script  type="text/javascript" src="ckeditor/adapters/jquery.js"></script>
         <script  type="text/javascript" src="alerts/jquery.alerts.js"></script>
         <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
+        <script type="application/javascript" src="files/js/lesson.js"></script> <!-- lessonFunctions -->     
+        
         <link rel='stylesheet' href='./files/lessons.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='./alerts/jquery.alerts.css' type='text/css' media='all'/>
+        <!--
         <script type="text/javascript">
             $.extend({
                 getUrlVars: function(){
@@ -509,6 +512,7 @@ and open the template in the editor.
             });
             
         </script>
+        -->
     </head>
     <body>
         <header id="titleHeader">
@@ -607,7 +611,7 @@ and open the template in the editor.
                         fullStep[3] = stepHint;
                         fullStep[4] = stepExplanation;                  
                         //adding the step
-                        window.addStepVar(stepNumber , fullStep , false);         
+                        window.addStepVar(stepNumber , fullStep , false , "lessonStepsValues");         
                                
                     </script>
                     <?php
