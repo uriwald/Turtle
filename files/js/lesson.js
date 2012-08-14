@@ -202,7 +202,6 @@
                     $.Storage.remove("ObjId");
                     $.Storage.remove("lessonTitle");
                     $.Storage.remove("locale");
-                    //TODO remove translation elements
                     $.Storage.remove("lessonStepsValuesTranslate");
                     $.Storage.remove("localeTransale");
                     $.Storage.remove("lessonTitleTrans");   
@@ -250,8 +249,8 @@
                         $.Storage.set("ObjId" , data.objID.$id);
                                
                         $('#message').removeClass().addClass((data.error === true) ? 'error' : 'success').text(data.msg).show(500);
-                        //  if (data.error === true)
-                        //      $('#demoForm').show(500);
+                        //alert(data.msg);
+                        //alert("Lesson Saved");
                     },
                     error : function(XMLHttpRequest, textStatus, errorThrown) {
                         $('#waiting').hide(500);
@@ -528,9 +527,11 @@
                     }); 
                 });     
                 
-                $('#btnSaveLesson').click(function() {           
+                $('#btnSaveLessonTranslate').click(function() {           
                     window.saveLessonData(true);
                 });
-                
+                $('#btnSaveLesson').click(function() {           
+                    window.saveLessonData(false);
+                });
                 $('#btnDel').attr('disabled','disabled');
             });
