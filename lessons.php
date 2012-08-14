@@ -164,7 +164,7 @@ and open the template in the editor.
                     <div class="rightLessonElem"> 
                         <lable class='lessonlables' > Explanation </lable> 
                         </br>
-                        <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
+                        <textarea type="text"  name="explanation" id="explanation" class="expTxtErea1"></textarea>
                     </div>     
                 
                      <div class="actionButtons">
@@ -230,7 +230,7 @@ and open the template in the editor.
                     <div class="rightLessonElem">
                         <lable class='lessonlables' > Explanation : </lable>
                         </br>
-                        <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
+                        <textarea type="text"  name="explanation" id="explanation" class="expTxtErea1"></textarea>
                     </div>     
                     <div class="actionButtons">
                         <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save" />
