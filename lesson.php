@@ -49,7 +49,7 @@ if ($show)
         $title         =            $lessonStructure[$lessonTitle][$finalLocale] ;
         $objID         =            $lessonStructure['_id'];
         $pendingStatus =    $lessonStructure['pending'];
-        $editLessonHref    = "<a href='lessons.php?lesson=$objID&l=$locale' > <span class='lessonh'> $title </span> </a>";
+        $editLessonHref    = "<a href='lessons.php?lesson=$objID&lfrom=$locale' > <span class='lessonh'> $title </span> </a>";
         $approveLesson ;
         if ($pendingStatus)
         {
