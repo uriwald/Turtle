@@ -7,7 +7,6 @@
 */
 
 /* 
-   TODO customize this sample style
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
@@ -75,8 +74,9 @@ root {
     color: black;  
     display: block;
     clear: both;
-    height: 550px;
+    height: 900px;
 }
+
 lable{
    color :   #3D3624 ;
    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -100,6 +100,13 @@ input.lessonInput{
     width : 300px;
     display : inline-block;   
     
+}
+.downButton{
+    width : 600px;
+}
+#message
+{
+   width : 100% 
 }
 input.lessonInputButton{
    /* background-color: #A8A8A8; 
