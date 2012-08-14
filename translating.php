@@ -169,8 +169,6 @@ and open the template in the editor.
                 </script>
         <?php
     } //End of for each loop
-    //TODO Need to fill the lesson elements in case the translation is exist
-
     if ($doTranslate) {
         //var_dump($localStepsTranslate);
         if ($localStepsTranslate != null) {
@@ -315,7 +313,7 @@ and open the template in the editor.
 
                 </div>     
                 <div class="downButton">
-                    <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save" />
+                    <input type="button" id="btnSaveLessonTranslate" class="lessonInputButton" name="formSave" value="Save" />
                 </div>
             </div>  
             <script type='text/javascript'>
@@ -377,7 +375,7 @@ else {
                     <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                 </div>     
                 <div>
-                    <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save" />
+                    <input type="button" id="btnSaveLessonTranslate" class="lessonInputButton" name="formSave" value="Save" />
                     <input type="button" id="btnDeleteLesson" class="lessonInputButton" name="formDelete" value="Delete Lesson" />
                 </div>
 
