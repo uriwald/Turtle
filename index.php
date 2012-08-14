@@ -15,12 +15,17 @@
             $currentFile = $_SERVER["PHP_SELF"];
             $parts = Explode('/', $currentFile);
             $currentPage = $parts[count($parts) - 1];
-            
         ?>
         </title>    
 
         <script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js'></script> 
-        <script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js'></script>         
+        <script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js'></script>
+        
+        <script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
+        <script  type="text/javascript" src="ajax/libs/jquery/1.8.16/jquery-ui.js"></script> <!--- equal to googleapis -->
+        
+        <script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
+        
         <script type="application/javascript" src="files/compat.js"></script> <!-- ECMAScript 5 Functions -->
         <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
         <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
