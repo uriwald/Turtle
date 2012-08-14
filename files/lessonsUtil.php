@@ -54,15 +54,18 @@ class lessonsUtil {
     public function printSteps() {
         print_r($this->steps);
     }
-
+    
     public function getStepsByLocale($locale) {
         // Here i put default value
         // I don't think it's the best practise better return null for translation issues
         $localeSteps = null;
-        foreach ($this->steps as $key => $value) {
-            if (isset($this->steps[$key][$locale])) {
+        if(isset($this->steps))
+        {
+            foreach ($this->steps as $key => $value) {
+                if (isset($this->steps[$key][$locale])) {
 
-                $localeSteps[$key] = $this->steps[$key][$locale];
+                    $localeSteps[$key] = $this->steps[$key][$locale];
+                }
             }
         }
         return $localeSteps;
@@ -70,17 +73,19 @@ class lessonsUtil {
 
     public function getTitleByLocale($locale) {
         $titleByLocale = "";
-
-        foreach ($this->titles as $key => $value) {
-            if (isset($this->titles[$key][$locale])) 
-            {
-                if ($key == $locale) {
-                    $titleByLocale = $value;
+        if(isset($this->titles))
+        {
+            foreach ($this->titles as $key => $value) {
+                if (isset($this->titles[$key][$locale])) 
+                {
+                    if ($key == $locale) {
+                        $titleByLocale = $value;
+                    }
+                } 
+                else 
+                { 
+                    $this->titles = $this->titles[$key];
                 }
-            } 
-            else 
-            { 
-                $this->titles = $this->titles[$key];
             }
         }
         return $titleByLocale;
