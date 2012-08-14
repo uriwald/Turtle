@@ -14,7 +14,7 @@ if (empty($_POST['steps'])) {
     $return['firstElem'] = $decodedStepValue[1];
 
 
-
+    //TODO case of removing singel step 
     /// Saving the lesson data into lessonSteps
     for ($i = 1; $i <= $_POST['numOfSteps']; $i += 1) {
         $stepsArray = $decodedStepValue[$i];
@@ -48,7 +48,7 @@ if (empty($_POST['steps'])) {
         $return['objID'] = $structure['_id'];
     } 
     else { //updating existing lesson
-        // TODO see that we got the objId for existing lesson
+
         $return['objID'] = $_POST["ObjId"];
         $return['isExistingLesson'] = "true";
 
