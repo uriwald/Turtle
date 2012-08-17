@@ -21,8 +21,8 @@
         <script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js'></script> 
         <script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js'></script>
         
-        <script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
-        <script  type="text/javascript" src="ajax/libs/jquery/1.8.16/jquery-ui.js"></script> <!--- equal to googleapis -->
+       <!-- <script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script>  --> <!--- equal to googleapis -->
+        <!--  <script  type="text/javascript" src="ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>  --> <!--- equal to googleapis -->
         
         <script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
         
