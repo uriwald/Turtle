@@ -46,10 +46,17 @@ root {
    cursor: default;
    padding-top: 10px ;
    border: 0;
-   width : 200px;
+   width : 500px;
    float : left;
 }
 
+.lessonlabelsRtl{
+    text-align: right;
+}
+
+.textAreaRtl{
+     direction: rtl; 
+}
 .lessonlablesright
 {
    color :   #3D3624 ;
