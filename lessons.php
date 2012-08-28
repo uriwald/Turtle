@@ -3,6 +3,18 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
+<?php
+    session_start();
+    if (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true)
+    {
+        $show = true ;
+    }
+    else
+    {
+        $show = false ;
+    }
+?>
+
 <html>
     <head>
         <title>
@@ -159,7 +171,15 @@ and open the template in the editor.
                         </textarea>
                         <?php
                             printElement($i, false, null);
+                            if ($show)
+                            {
                         ?>
+                            <lable class='lessonlables' > Precedence :  </lable> 
+                            <textarea type="text"  name="precedence" id="precedence" placeholder="precedence" class="lessonInfoElement" > 100 </textarea> 
+                        <?php
+                            }
+                         ?>
+
                     </div>
                     <div class="rightLessonElem"> 
                         <lable class='lessonlables' > Explanation </lable> 
