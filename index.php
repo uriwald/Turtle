@@ -16,15 +16,18 @@
             $parts = Explode('/', $currentFile);
             $currentPage = $parts[count($parts) - 1];
         ?>
+           
         </title>    
 
         <script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js'></script> 
         <script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js'></script>
+       
+        <script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
+        <script  type="text/javascript" src="ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script> <!--- equal to googleapis -->
+        <script  type="text/javascript" src="files/lang/he.js"></script> <!--- Translation of commands used in logo.js-->
         
-       <!-- <script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script>  --> <!--- equal to googleapis -->
-        <!--  <script  type="text/javascript" src="ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>  --> <!--- equal to googleapis -->
         
-        <script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
+        <!--<script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
         
         <script type="application/javascript" src="files/compat.js"></script> <!-- ECMAScript 5 Functions -->
         <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
@@ -46,6 +49,7 @@
                 echo $po_file;
              
         ?>
+        
         
         <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
         <script type="application/javascript" src="readMongo.php?l=<?php echo $locale?>"></script> <!-- Lessons scripts -->
