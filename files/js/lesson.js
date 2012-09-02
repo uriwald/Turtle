@@ -28,8 +28,17 @@
                 {
                     lang = "en_US";
                 }
+                
+                var translation = $.getUrlVar('ltranslate');
+                var direction = "rtl";
+                if (translation != null && translation.length > 2)
+                {
+                    if (translation == 'he_IL')
+                       direction = "rtl"; 
+                }
+                
                 $( 'textarea.expTxtErea' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : 'ltr' , width : '500px' , readOnly : true /*, skin : 'office2003' */});       
-                $( 'textarea.expTxtErea1' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : 'ltr' , width : '500px'  /*, skin : 'office2003' */});       
+                $( 'textarea.expTxtErea1' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : direction , width : '500px'  /*, skin : 'office2003' */});       
 
             }
             
@@ -42,26 +51,30 @@
                     {
                         var allsteps = JSON.parse($.Storage.get(stepsType));
                         var currentSteps = allsteps[1];
-                        if ( stepsType == "lessonStepsValues")
+                        
+                        if (currentSteps != null)
                         {
-                            $('#title').val(currentSteps[0]);
-                            $('#action').val(currentSteps[1]);
-                            $('#solution').val(currentSteps[2]);
-                            $('#hint').val(currentSteps[3]);
-                            $('#explanation').val(currentSteps[4]);  
-                        }
-                        else
-                        {
-                            $('#title1').val(currentSteps[0]);
-                            $('#action1').val(currentSteps[1]);
-                            $('#solution1').val(currentSteps[2]);
-                            $('#hint1').val(currentSteps[3]);
-                            $('#explanation1').val(currentSteps[4]);      
+                            if ( stepsType == "lessonStepsValues")
+                            {
+                                $('#title').val(currentSteps[0]);
+                                $('#action').val(currentSteps[1]);
+                                $('#solution').val(currentSteps[2]);
+                                $('#hint').val(currentSteps[3]);
+                                $('#explanation').val(currentSteps[4]);  
+                            }
+                            else
+                            {
+                                $('#title1').val(currentSteps[0]);
+                                $('#action1').val(currentSteps[1]);
+                                $('#solution1').val(currentSteps[2]);
+                                $('#hint1').val(currentSteps[3]);
+                                $('#explanation1').val(currentSteps[4]);      
+                            }
                         }
                     }
                 }
             };
-            
+          
             function getStepValues(isTranslate)
             {
                 if (isTranslate)
@@ -154,7 +167,7 @@
                 }); 
                 
             }
-            // TODO suuport case of translating page
+        
             var infoElementKeyUpEvent = function infoElementKeyUpEvent(isTranslate)
             {
                 var stepsType ="" ;
@@ -187,6 +200,12 @@
                         $.Storage.set(stepsType,JSON.stringify(allSteps, null, 2))   
                     }
                 } 
+                //Setting precedence
+                var prec = $('#precedence').val();
+                if (prec != null)
+                {
+                    $.Storage.set('precedence',prec);
+                }
             }
                 
                 
@@ -239,7 +258,8 @@
                         lessonTitle : $.Storage.get(lessonTitle),
                         ObjId : $.Storage.get('ObjId'),
                         locale : $.Storage.get(lessonLocale),  //Should be a parameter
-                        translate : true
+                        precedence :$.Storage.get('precedence'),
+                        translate : isTranslate
 
                     },
                         
@@ -248,10 +268,10 @@
                         $('#lessonObjectId').val(data.objID.$id);
                         $.Storage.set("ObjId" , data.objID.$id);
                                
-                        $('#message').removeClass().addClass((data.error === true) ? 'error' : 'success').text(data.msg).show(500);
+                        //$('#message').removeClass().addClass((data.error === true) ? 'error' : 'success').text(data.msg).show(500);
                         //alert(data.msg);
-                        //alert("Lesson Saved");
-                    },
+                        alert("Lesson Saved");
+                    },        
                     error : function(XMLHttpRequest, textStatus, errorThrown) {
                         $('#waiting').hide(500);
                         $('#message').removeClass().addClass('error')
@@ -416,6 +436,10 @@
                 if (!$.Storage.get("active-step-num"))
                 {
                     $.Storage.set('active-step-num' , '1');    
+                }
+                if (!$.Storage.get("precedence"))
+                {
+                     $.Storage.set('precedence' , '100');
                 }
                 $('#addStep').click(function () {
                     var val = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
