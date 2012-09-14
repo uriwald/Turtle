@@ -206,8 +206,7 @@
                 {
                     $.Storage.set('precedence',prec);
                 }
-            }
-                
+            }       
                 
             var clearLocalStorage = function clearLocalStorage()
             {
@@ -275,7 +274,7 @@
                     error : function(XMLHttpRequest, textStatus, errorThrown) {
                         $('#waiting').hide(500);
                         $('#message').removeClass().addClass('error')
-                        .text('There was an error.').show(500);
+                        .text(XMLHttpRequest.responseText).show(500);
                     }
                 });
                 return false;
