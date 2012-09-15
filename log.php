@@ -52,7 +52,7 @@
         if ( $username == "burbur" && $password = "563")
         {
             $_SESSION['Admin'] = true ;
-            header("location: lesson.php");
+            header("location: lessons.php");
         }
         
         /*
