@@ -78,7 +78,14 @@ and open the template in the editor.
                 $solution = "";
                 $hint = "";
             }
-            $baseInputText = "<div> <label class='lessonlables'> %%a: </label> <textarea class='lessonInfoElement' type='text'  name='%%b' id='%%b' placeholder='Step %%a'>%%c</textarea> </div>";
+            $baseInputText = "<div> <label class='lessonlables'> %%a: 
+                                        <lable class='lessonLableDescription'>
+                                            Please enter the step number
+                                            <lable id='currentSteplable' class='currentSteplable' > 1 </lable>
+                                                %%a info
+                                        </label>
+                                    </label>
+<textarea class='lessonInfoElement' type='text'  name='%%b' id='%%b' placeholder='Step %%a'>%%c</textarea> </div>";
             $toReplace = array("%%a", "%%b", "%%c");
             $replaceWithAction = array("Action ", "action", $action);
             $replaceWithSolution = array("Solution ", "solution", $solution);
@@ -107,6 +114,7 @@ and open the template in the editor.
                     $.Storage.set("active-step" , "1");
                     $.Storage.set("lesson-total-number-of-steps" ,"0");
                 </script>
+                
                 <?php
                 foreach ($localSteps as $step) {
                     $i++;
@@ -158,10 +166,23 @@ and open the template in the editor.
                     echo "<div id='lessonStep'>";
                     // echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
                     echo "<div id='stepNev'>";
-                    echo "<lable class='lessonHeader'>lesson Steps </lable>";
+                    echo "<lable class='lessonHeader'>lesson Steps" ;
+                    if (isset($_GET['lesson']))    
+                        echo " ↓(please choose step to edit)";
+                    echo "</lable>";
+                    
                     echo "<ul id='lessonStepUl'>";
                     echo "</ul>";
                     //Inserting the step div
+                    echo "<div id ='stepbar'>";
+                         echo " You are currently editing step" ;
+                         ?>
+                    <lable id='currentSteplable' class='currentSteplable'> 1 </lable> 
+                    
+                    <lable> (In order to edit  another step please select from the bar above ↑) </lable>
+
+                        <?php
+                    echo "</div>";
                     echo "<div class='actionButtons'>";
                         echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
                         echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
@@ -170,7 +191,16 @@ and open the template in the editor.
                     echo "</div>";
                     ?>
                     <div class="leftLessonElem"> 
-                        <lable class='lessonlables' > Title :  </lable> 
+                        <lable class='lessonlables' > Title :  
+                            <lable class='lessonLableDescription'>
+                            <?php
+                                $labelStepNumber = "<lable id='currentSteplable' class='currentSteplable' > 1 </lable> ";
+                                echo "Please enter the step number ". $labelStepNumber .  " title description";
+                                    
+                            ?>
+                            </lable>
+                        </lable>
+
                         <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement" >
                         </textarea>
                         <?php
@@ -186,13 +216,20 @@ and open the template in the editor.
 
                     </div>
                     <div class="rightLessonElem"> 
-                        <lable class='lessonlables' > Explanation </lable> 
+                        <lable class='lessonlables' > Explanation 
+                            <lable class='lessonLableDescription'>
+                                <?php
+                                    echo "Please enter the step info for step <lable id='currentSteplable' class='currentSteplable'> 1 </lable> ";
+                                ?>
+                            </lable>
+                        </lable> 
+                        
                         </br>
                         <textarea type="text"  name="explanation" id="explanation" class="expTxtErea1"></textarea>
                     </div>     
-                
+
                      <div class="actionButtons">
-                        <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save" />
+                        <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save Lesson" />
                         <input type="button" id="btnDeleteLesson" class="lessonInputButton" name="formDelete" value="Delete Lesson" />
                     </div>
                 </div> 
@@ -232,7 +269,10 @@ and open the template in the editor.
                     echo "<div id='lessonStep'>";
                     //    echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
                     echo "<div id='stepNev'>";
-                    echo "<lable class='lessonHeader'>lesson Steps </lable>";
+                    echo "<lable class='lessonHeader'>lesson Steps" ;
+                    //if (isset($_GET['lesson']))    
+                    //    echo "ddd";
+                    echo "</lable>";
                     echo "<ul id='lessonStepUl'>";
                     echo "</ul>";
                     echo "</div>";
