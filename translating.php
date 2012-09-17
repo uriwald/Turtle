@@ -4,22 +4,28 @@ and open the template in the editor.
 -->
 <?php
     require_once("localization.php");
+    require_once("files/footer.php");
+    require_once("files/cssUtils.php");
 ?>
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>
         </title>  
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
         <script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
         <script  type="text/javascript" src="ckeditor/ckeditor.js"></script>
         <script  type="text/javascript" src="ckeditor/adapters/jquery.js"></script>
         <script  type="text/javascript" src="alerts/jquery.alerts.js"></script>
         <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
-        <script type="application/javascript" src="files/js/lesson.js"></script> <!-- lessonFunctions -->     
-        <link rel='stylesheet' href='./files/lessons.css' type='text/css' media='all'/>
+        <script type="application/javascript" src="files/js/lesson.js"></script> <!-- lessonFunctions -->  
+        <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
+        <link rel='stylesheet' href='./files/css/lessons.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='./alerts/jquery.alerts.css' type='text/css' media='all'/>
+        
+        <script type="application/javascript" src="files/Gettext.js"></script>
         
         <?php
                 $languageGet = "ltranslate";
@@ -44,7 +50,7 @@ and open the template in the editor.
         </header>
         <?php
         //session_start();
-        require_once ("files/lessonsUtil.php");
+        require_once ("files/utils/lessonsUtil.php");
         $m = new Mongo();
 // select a database
         $db = $m->turtleTestDb;
@@ -100,7 +106,20 @@ and open the template in the editor.
                 $disabled = "disabled='disabled'";
 
             $step =  _("Step") ;
-            $baseInputText = "<div> <label class='lessonlables'> %%a: </label> <textarea class='lessonInfoElement'  $disabled type='text'  name='%%b' id='%%b' placeholder='$step %%a'>%%c</textarea> </div>";
+            //TODO get list of rtl country from db
+            $rtl             = "";
+            $rtlLabel        = "" ;
+            if ($istranslate)
+            {
+                
+                //Todo if $localeTranslate in a list of given rtl list
+                if ($_GET["ltranslate"] == "he_IL")
+                {
+                    $rtl = "textAreaRtl";
+                    $rtlLabel = "lessonlabelsRtl";
+                } 
+            }   
+            $baseInputText = "<div> <label class='lessonlables $rtlLabel'> %%a </label> <textarea class='lessonInfoElement $rtl'  $disabled type='text'  name='%%b' id='%%b' placeholder='$step %%a'>%%c</textarea> </div>";
 
             $toReplace = array("%%a", "%%b", "%%c");
             if (!$istranslate) {
@@ -205,24 +224,6 @@ and open the template in the editor.
                 <?php
             } //End of for each loop
         } // end of if there are translation steps
-        /**
-        else {
-            foreach ($localSteps as $step) {
-               ?>
-                <script type='text/javascript'>         
-                    var fullStep = new Array();        
-                    fullStep[0] = stepTitle;
-                    fullStep[1] = stepAction;
-                    fullStep[2] = stepSolution;
-                    fullStep[3] = stepHint;
-                    fullStep[4] = stepExplanation;   
-                    //adding the step
-                    window.addStepVar(stepNumber , fullStep , false , "lessonStepsValuesTranslate");  
-                </script>
-              <?php
-              } //end of foreach loop in case there are no translation steps
-        }
-         ***/ 
         else { // no translation steps
             ?>
                     <script type='text/javascript'>
@@ -244,6 +245,17 @@ and open the template in the editor.
     } //End of If
     ?>  
             <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
+                    <?php
+                        $rtl = "";
+                        $rtlLabel = "";
+                        //TODO if $localeTranslate in a list of given rtl list
+                        if ($localeTranslate == "he_IL")
+                        {
+                            $rtl = "textAreaRtl";
+                            $rtlLabel = "lessonlabelsRtl";
+                        } 
+                          
+                    ?>
                 <div>
 
                     <div class="leftLessonElem">
@@ -251,15 +263,15 @@ and open the template in the editor.
                         <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
                         <! Object ID: --!> 
                         <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
-    if (isset($cursor["_id"]))
-        echo $cursor["_id"]; else {
-        echo "";
-    }
+                        if (isset($cursor["_id"]))
+                            echo $cursor["_id"]; else {
+                            echo "";
+                        }
     ?>"/>
                     </div>  
                     <div class="rightLessonElem rightLessonTitleElem">
                         <lable class="lessonHeader"> Lesson Title : </lable> 
-                        <input type="text" name="lessonTitlet"  id="lessonTitlet" class="lessonInput" placeholder="Lesson Title"/>
+                        <input type="text" name="lessonTitlet"  id="lessonTitlet" class="lessonInput <?php echo $rtlLabel ?>" placeholder="Lesson Title"/>
 
 
                     </div>
@@ -290,20 +302,19 @@ and open the template in the editor.
                 </div>
 
                 <div class="rightLessonElem"> 
-                    <!-- here I should do something equal to left for translating -->
-                    <lable class='lessonlables' > 
+                    <lable class='lessonlables <?php echo $rtlLabel ?>' > 
                         <?php 
                              // echo ($localetr == 'he_IL') ?  "&larr;" :  "&rarr;";     
-                             echo _("Title");        
+                            echo _("Title");        
                         ?> 
                     
                     </lable> 
-                    <textarea type="text"  name="title1" id="title1" placeholder="Step Title" class="lessonInfoElement" >
+                    <textarea type="text"  name="title1" id="title1" placeholder="Step Title" class="lessonInfoElement <?php echo $rtl ?>" >
                     </textarea>
                     <?php
                     printElement($i, false, null, true);
-                    ?>
-                    <lable class='lessonlables' >                         
+                    ?> 
+                    <lable class='lessonlables <?php echo $rtlLabel ?>' >                         
                         <?php     
                              echo _("Explanation");        
                         ?> 
