@@ -1,0 +1,231 @@
+/* 
+    Document   : lessons
+    Created on : 04/03/2012, 12:00:03
+    Author     : lucio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+#lessonTitle{
+    /* 
+    border:6px solid #06a; 
+    border-color:#06a #fff;
+    
+    display: block;
+    */
+}
+#lessonStep{
+   height: 160px;
+   width : 50%;
+   
+}
+#lessonStep #lessonStepLabel{
+   color :   #3D3624 ;
+   font-family: Arial, sans-serif;
+   font-size: 20px;
+}
+.lessonElement{
+    display: inline-block;
+    margin-left: 20px;
+}
+.lessonlables
+{
+   color :   blue ;
+   /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+   font-size: 16px;
+   font-weight: normal;
+   line-height: normal;
+   cursor: default;
+   padding-top: 10px ;
+   border: 0;
+   width : 500px;
+   float : left;
+}
+.lessonLableDescription
+{
+   color :   black ;
+   font-size: 12px;
+}
+
+.lessonlabelsRtl{
+    text-align: right;
+}
+
+.textAreaRtl{
+     direction: rtl; 
+}
+.lessonlablesright
+{
+   color :   #3D3624 ;
+   /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+   font-size: 13px;
+   font-weight: normal;
+   line-height: normal;
+   cursor: default;
+   margin: 0;
+   padding: 0;
+   border: 0;
+   width : 400px;
+   float : left;
+}
+.clonedInput{   
+    border:6px solid black;
+    color: black;  
+    display: block;   
+}
+.stepsSection{
+    /* border:6px solid black; */
+    color: black;  
+    display: block;
+    clear: both;
+    height: 900px;
+}
+
+lable{
+   color :   #3D3624 ;
+   /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+   /* font-size: 13px;
+   font-weight: normal;
+   line-height: normal; */
+}
+lable.lessonHeader {
+   color :   black ;
+   /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+   font-size: 20px;
+   font-weight: bold;
+   line-height: normal;
+}
+input.lessonInput{
+    background-color: white;
+    border-color:#A8A8A8 #E5E5E5 #E0E0E0 #B7B7B7;
+    border-style:solid;
+    border-width:2px;
+    height : 22px;
+    width : 300px;
+    display : inline-block;   
+    
+}
+.downButton{
+    width : 600px;
+}
+#message
+{
+   width : 100% 
+}
+input.lessonInputButton{
+   /* background-color: #A8A8A8; 
+   
+    border-color:#A8A8A8 #E5E5E5 #E0E0E0 #B7B7B7;
+    border-style:solid;
+    border-width:2px;
+    */
+    border : 1px solid #A8A296 ;
+    border-radius: 4px;
+    cursor: pointer;
+    height : 30px;
+    width : 200px;
+    font-size: 14px;
+    font-weight: bold;
+    display : inline-block;   
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;    
+    background: -webkit-linear-gradient(top, #F3F3F1 0%, #DDDCD7 100%);
+    margin-left: 10px;
+color: black;
+text-shadow: 0 1px 1px white;
+}
+input.stepInput{
+    background-color: #A8A8A8;
+    border-color:#A8A8A8 #E5E5E5 #E0E0E0 #B7B7B7;
+    border-style:solid;
+    border-width:2px;
+    color : white ;
+    height : 22px;
+    width : 150px;
+    margin-left: 5px;
+    display : inline-block;   
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;    
+}
+a span {
+    display:block; 
+    color:#000; 
+    background:#c4c4c4; 
+    border:1px solid #fff; 
+    border-width:2px 1px; 
+    text-align:left; 
+    padding:4px 16px; 
+    width:400px; 
+    cursor:hand; 
+}
+textarea {
+    height: 50px;
+    width : 500px;
+    border:1px solid #A8A8A8; 
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+}
+
+.leftLessonElem{
+    float : left;
+    display: inline;
+    position: relative;
+    width :40%;
+}
+.rightLessonElem{
+    width :40%;
+    /* margin-left: 600px;  */
+    /* display: inline; */
+    float : left;
+    height: 470px;
+}
+.leftLessonElemm{
+    float : left;
+    display: inline;
+    position: relative;
+    width :40%;
+}
+.rightLessonElemm{
+    width :40%;
+    /* margin-left: 600px;  */
+    /* display: inline; */
+    float : left;
+    /* height: 100px; */
+}
+.rightLessonTitleElem
+{
+   height : 50px;  
+}
+.actionButtons
+{
+    width : 80%;
+    float : left;
+    margin-top: 10px;
+}
+
+.existing_step{
+    list-style: none;
+    display: inline-block;
+    background-image: none;
+    line-height: 20px;
+    text-align: center ;
+    font-weight: bold ;
+    color : blueViolet ;
+    background-position : 5px 50%;
+    width : 30px;
+    border:1px solid black;
+}
+#stepbar{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
