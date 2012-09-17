@@ -1,5 +1,5 @@
 <?php
-    require_once ("lessonsUtil.php");
+    require_once ("utils/lessonsUtil.php");
     if (isset($_GET['lesson'])) {
         $m = new Mongo();
         $db = $m->turtleTestDb;
@@ -22,9 +22,7 @@
         
         $return['title'] = $localtitle;
         $return['steps'] = $localSteps;
-        echo json_encode($return);
-        
-        
+        echo json_encode($return);        
     }
     //return null;
 ?> 
