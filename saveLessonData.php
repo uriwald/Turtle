@@ -30,9 +30,8 @@ if (empty($_POST['steps'])) {
     // select a database
     $db = $m->turtleTestDb;
     // select a collection (analogous to a relational database's table)
-    $precedence = 100;
+    $precedence = $_POST['precedence'];
     $lessons = $db->lessons;
-
     $localeValue = "locale_en_US";
     if (isset($_POST['locale']))
         $localeValue = "locale_" . $_POST['locale'];
