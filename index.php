@@ -2,6 +2,7 @@
     require_once("localization.php");
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
+    require_once("files/utils/languageUtil.php");
     
 ?>
 <!DOCTYPE html>
@@ -58,22 +59,9 @@
         <script type="application/javascript" src="files/jqconsole.js"></script> <!-- Console -->
         <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
         <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/>
-        <link rel='stylesheet' href='./files/interface.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/>
         <?php
-             cssUtils::loadcss($locale, "./files/interface");
-        /*
-            $interface_ltr = "<link rel='stylesheet' href='./files/interface_ltr.css' type='text/css' media='all'/>";
-            $interface     = "<link rel='stylesheet' href='./files/interface_rtl.css' type='text/css' media='all'/>"; 
-            if ($locale != "he_IL" )
-            {
-                echo $interface_ltr;    
-            }
-            else
-            {
-                echo $interface;
-            }
-         * */
-         
+             cssUtils::loadcss($locale, "./files/css/interface");       
         ?>     
         <script type="application/javascript"> <!-- Google Analytics Tracking -->
 
@@ -103,8 +91,8 @@
                 <div id="progress">
                 </div>
             </div>
-            <div id="logoer">
-                <div id="display">
+            <div id="logoer"> 
+                <div id="display"> 
                     <!-- <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content" style="position: absolute; z-index: 0;">-->
                     <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content">   
                     <span style="color: red; background-color: yellow; font-weight: bold;">
@@ -119,10 +107,11 @@
                     </canvas>
                     <!--<canvas id="turtle" width="660" height="350" style="position: absolute; z-index: 1;"> -->
                     <canvas id="turtle" width="660" height="350">   
+                        drawing box
                     </canvas>
                 </div>
 
-                <div id="console" class="ui-corner-all ui-widget-content"></div>
+                <div id="console" class="ui-corner-all ui-widget-content"> command box</div>
             </div>
 
             <div id="accordion">
@@ -130,20 +119,25 @@
             <div id="lessonnav">
                 <?php
                      //should be change to all rtl lnaguages
-                    if($locale == 'he_IL')
+                    $lu = new languageUtil("turtleTestDb" , "rtlLanguages");
+                    $isRtlLocale = $lu->findIfLocaleExist($locale);
+                   // if($locale == 'he_IL')
+                    if ($isRtlLocale)
                     {
                 ?>  
                     
                     <button id="nextlesson"> 
                     <?php
                         //should be change to all rtl lnaguages
-                        echo ($locale == 'he_IL') ?  "&larr;" :  "&rarr;";     
+                       // echo ($locale == 'he_IL') ?  "&larr;" :  "&rarr;";     
+                        echo ($isRtlLocale) ?  "&larr;" :  "&rarr;"; 
                         echo _("Next");                   
                     ?> 
                     </button>
                     <button id="prevlesson">
                     <?php
-                    echo ($locale == 'he_IL') ?  "&rarr;" :  "&larr;";  
+                    //echo ($locale == 'he_IL') ?  "&rarr;" :  "&larr;";  
+                    echo ($isRtlLocale) ?  "&rarr;" :  "&larr;";  
                     echo _("Prev");                    
                     ?>            
                     </button>
@@ -152,14 +146,16 @@
                 ?>     
                     <button id="prevlesson">
                     <?php
-                        echo ($locale == 'he_IL') ?  "&rarr;" :  "&larr;";  
+                       // echo ($locale == 'he_IL') ?  "&rarr;" :  "&larr;";  
+                        echo ($isRtlLocale) ?  "&rarr;" :  "&larr;";  
                         echo _("Prev");                    
                     ?>            
                     </button>
                     <button id="nextlesson"> 
                     <?php
                         //should be change to all rtl lnaguages
-                        echo ($locale == 'he_IL') ?  "&larr;" :  "&rarr;";     
+                        echo ($isRtlLocale) ?  "&larr;" :  "&rarr;";   
+                        //echo ($locale == 'he_IL') ?  "&larr;" :  "&rarr;"; 
                         echo _("Next");                   
                     ?> 
                     </button>
