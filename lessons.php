@@ -49,15 +49,18 @@ if ($show)
         $title         =            $lessonStructure[$lessonTitle][$finalLocale] ;
         $objID         =            $lessonStructure['_id'];
         $pendingStatus =    $lessonStructure['pending'];
-        $editLessonHref    = "<a href='lesson.php?lesson=$objID&lfrom=$locale' > <span class='lessonh'> $title </span> </a>";
+        echo "Lesson name is <b>" . $title . "</b> " ;
+        $editLessonHref    = "<a href='lesson.php?lesson=$objID&lfrom=$locale' > <span class='lessonh'> Edit Lesson <b>" . $title . " </b></span> </a>";
         $approveLesson ;
         if ($pendingStatus)
         {
-            $approveLesson = "<a href='approveLesson.php?lesson=$objID&pending=false' > <span class='lessonh'> Approve Lesson </span> </a>";
+            echo "Lesson is currently unapproved";
+            $approveLesson = "<a href='approveLesson.php?lesson=$objID&pending=false' > <span class='lessonh'> Approve Lesson (lesson will appear in main page) </span> </a>";
         }
         else
         {
-            $approveLesson = "<a href='approveLesson.php?lesson=$objID&pending=true' > <span class='lessonh'> Unapprove </span> </a>";
+            echo "Lesson is curretnly approved";
+            $approveLesson = "<a href='approveLesson.php?lesson=$objID&pending=true' > <span class='lessonh'> Unapprove (lesson won't appear in main page) </span> </a>";
         }
         echo "<div style='display:inline;height:60px;'>$editLessonHref $approveLesson </div>";   
         echo "</br>";
