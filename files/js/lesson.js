@@ -37,8 +37,8 @@
                        direction = "rtl"; 
                 }
                 
-                $( 'textarea.expTxtErea' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : 'ltr' , width : '500px' , readOnly : true /*, skin : 'office2003' */});       
-                $( 'textarea.expTxtErea1' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : direction , width : '500px'  /*, skin : 'office2003' */});       
+                $( 'textarea.expTxtErea' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : 'ltr' , width : '500px' , height  : '260px' , readOnly : true /*, skin : 'office2003' */});       
+                $( 'textarea.expTxtErea1' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : direction , width : '500px' , height  : '260px' /*, skin : 'office2003' */});       
 
             }
             
@@ -504,7 +504,7 @@
                     if ($.Storage.get('active-step-num'))
                     {
                         allSteps.splice(parseInt($.Storage.get("active-step-num")),1,fullStep);              
-                        $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))       
+                        $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2));
                     } else { //Case of first step
                         allSteps[0] =  fullStep;  
                         $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2))   
@@ -514,6 +514,7 @@
                     $(this).css('background-color' , '#AAA');
                     $.Storage.set('active-step' , pressed);
                     $.Storage.set('active-step-num' , pressed.substring(11));
+                    $('.currentSteplable').text($.Storage.get('active-step-num')) ;
                     populateInputsWithCurrentStep('lessonStepsValues');
                     populateInputsWithCurrentStep('lessonStepsValuesTranslate');   
             
