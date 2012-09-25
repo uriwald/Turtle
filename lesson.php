@@ -59,11 +59,12 @@ and open the template in the editor.
 
 //If we are in existing lesson we will enter editing mode 
         if (isset($_GET['lesson'])) {
-            $lu = new lessonsUtil($locale, "locale_", $lessons, $_GET['lesson']);
-            $theObjId = new MongoId($_GET['lesson']);
-            $cursor = $lessons->findOne(array("_id" => $theObjId));
-            $localSteps = $lu->getStepsByLocale($localePrefix . $locale);
-            $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $locale);
+            $lu                 = new lessonsUtil($locale, "locale_", $lessons, $_GET['lesson']);
+            $theObjId           = new MongoId($_GET['lesson']);
+            $cursor             = $lessons->findOne(array("_id" => $theObjId));
+            $localSteps         = $lu->getStepsByLocale($localePrefix . $locale);
+            $lessonFinalTitle   = $lu->getTitleByLocale($localePrefix . $locale);
+            $lessonPrecedence   = $lu->getPrecedence();
             //echo $lessonFinalTitle;
         }
         
@@ -209,7 +210,11 @@ and open the template in the editor.
                             {
                         ?>
                             <lable class='lessonlables' > Precedence :  </lable> 
-                            <textarea type="text"  name="precedence" id="precedence" placeholder="precedence" class="lessonInfoElement" > 100 </textarea> 
+                            <textarea type="text"  name="precedence" id="precedence" placeholder="precedence" class="lessonInfoElement" ><?php
+                                echo $lessonPrecedence;
+                            ?>
+                            
+                            </textarea> 
                         <?php
                             }
                          ?>

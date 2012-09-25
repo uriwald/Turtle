@@ -18,6 +18,7 @@ class lessonsUtil {
     private $lessonObjId;
     private $steps;
     private $titles;
+    private $precedence = 100;
 
     
     # Constructor  
@@ -45,10 +46,11 @@ class lessonsUtil {
     }
 
     public function setLessonStepsAndTitles() {
-        $theObjId = new MongoId($this->lessonObjId);
-        $cursor = $this->db->findOne(array("_id" => $theObjId));
-        $this->titles = $cursor["title"];
-        $this->steps = $cursor["steps"];
+        $theObjId           = new MongoId($this->lessonObjId);
+        $cursor             = $this->db->findOne(array("_id" => $theObjId));
+        $this->titles       = $cursor["title"];
+        $this->steps        = $cursor["steps"];
+        $this->precedence   = $cursor["precedence"];
     }
 
     public function printSteps() {
@@ -69,6 +71,9 @@ class lessonsUtil {
             }
         }
         return $localeSteps;
+    }
+    public function getPrecedence(){
+        return $this->precedence;
     }
 
     public function getTitleByLocale($locale) {
