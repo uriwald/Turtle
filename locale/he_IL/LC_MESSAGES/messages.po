@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TurtleAcademy\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-03 21:27+0800\n"
-"PO-Revision-Date: 2012-08-03 21:28+0800\n"
+"PO-Revision-Date: 2012-09-25 19:00+0800\n"
 "Last-Translator: \n"
 "Language-Team: Wald\n"
 "MIME-Version: 1.0\n"
@@ -88,188 +88,198 @@ msgstr "הסבר"
 msgid "Turtle Academy - User Registration"
 msgstr "אקדמיית הצב - רישום משתמש"
 
-#~ msgid "to"
-#~ msgstr "למד"
+msgid "forward"
+msgstr "קדימה"
 
-#~ msgid "word"
-#~ msgstr "מילה"
+msgid "Don't know how to"
+msgstr "לא יודע מה זה"
 
-#~ msgid "list"
-#~ msgstr "רשימה"
+msgid "fd"
+msgstr "קד"
 
-#~ msgid "sentence"
-#~ msgstr "משפט"
+msgid "back"
+msgstr "אחורה"
 
-#~ msgid "combine"
-#~ msgstr "צרף"
+msgid "to"
+msgstr "למד"
 
-#~ msgid "reverse"
-#~ msgstr "אחורנית"
+msgid "word"
+msgstr "מילה"
 
-#~ msgid "gensym"
-#~ msgstr "צורסמל"
+msgid "list"
+msgstr "רשימה"
 
-#~ msgid "first"
-#~ msgstr "ראשון"
+msgid "sentence"
+msgstr "משפט"
 
-#~ msgid "last"
-#~ msgstr "אחרון"
+msgid "combine"
+msgstr "צרף"
 
-#~ msgid "print"
-#~ msgstr "הדפס"
+msgid "reverse"
+msgstr "אחורנית"
 
-#~ msgid "sin"
-#~ msgstr "סינוס"
+msgid "gensym"
+msgstr "צורסמל"
 
-#~ msgid "cos"
-#~ msgstr "קוסינוס"
+msgid "first"
+msgstr "ראשון"
 
-#~ msgid "tan"
-#~ msgstr "טנגנס"
+msgid "last"
+msgstr "אחרון"
 
-#~ msgid "random"
-#~ msgstr "אקראי"
+msgid "print"
+msgstr "הדפס"
 
-#~ msgid "true"
-#~ msgstr "אמת"
+msgid "sin"
+msgstr "סינוס"
 
-#~ msgid "false"
-#~ msgstr "שקר"
+msgid "cos"
+msgstr "קוסינוס"
 
-#~ msgid "and"
-#~ msgstr "וגם"
+msgid "tan"
+msgstr "טנגנס"
 
-#~ msgid "or"
-#~ msgstr "או"
+msgid "random"
+msgstr "אקראי"
 
-#~ msgid "xor"
-#~ msgstr "אומוציא"
+msgid "true"
+msgstr "אמת"
 
-#~ msgid "not"
-#~ msgstr "לא"
+msgid "false"
+msgstr "שקר"
 
-#~ msgid "fd"
-#~ msgstr "קד"
+msgid "and"
+msgstr "וגם"
 
-#~ msgid "forward"
-#~ msgstr "קדימה"
+msgid "or"
+msgstr "או"
 
-#~ msgid "bk"
-#~ msgstr "אח"
+msgid "xor"
+msgstr "אומוציא"
 
-#~ msgid "back"
-#~ msgstr "אחורה"
+msgid "not"
+msgstr "לא"
 
-#~ msgid "lt"
-#~ msgstr "שמ"
+msgid "bk"
+msgstr "אח"
 
-#~ msgid "left"
-#~ msgstr "שמאלה"
+msgid "lt"
+msgstr "שמ"
 
-#~ msgid "rt"
-#~ msgstr "ימ"
+msgid "left"
+msgstr "שמאלה"
 
-#~ msgid "right"
-#~ msgstr "ימינה"
+msgid "rt"
+msgstr "ימ"
 
-#~ msgid "home"
-#~ msgstr "הביתה"
+msgid "right"
+msgstr "ימינה"
 
-#~ msgid "st"
-#~ msgstr "הצ"
+msgid "home"
+msgstr "הביתה"
 
-#~ msgid "showturtle"
-#~ msgstr "הצגצב"
+msgid "st"
+msgstr "הצ"
 
-#~ msgid "ht"
-#~ msgstr "הח"
+msgid "showturtle"
+msgstr "הצגצב"
 
-#~ msgid "hideturtle"
-#~ msgstr "החבאצב"
+msgid "ht"
+msgstr "הח"
 
-#~ msgid "clean"
-#~ msgstr "נקה"
+msgid "hideturtle"
+msgstr "החבאצב"
 
-#~ msgid "cs"
-#~ msgstr "נמ"
+msgid "clean"
+msgstr "נקה"
 
-#~ msgid "clearscreen"
-#~ msgstr "נקהמסך"
+msgid "cs"
+msgstr "נמ"
 
-#~ msgid "label"
-#~ msgstr "תווית"
+msgid "clearscreen"
+msgstr "נקהמסך"
 
-#~ msgid "pd"
-#~ msgstr "הו"
+msgid "label"
+msgstr "תווית"
 
-#~ msgid "pendown"
-#~ msgstr "הורדעט"
+msgid "pd"
+msgstr "הו"
 
-#~ msgid "pu"
-#~ msgstr "הר"
+msgid "pendown"
+msgstr "הורדעט"
 
-#~ msgid "penup"
-#~ msgstr "הרםעט"
+msgid "pu"
+msgstr "הר"
 
-#~ msgid "penpaint"
-#~ msgstr "עטצובע"
+msgid "penup"
+msgstr "הרםעט"
 
-#~ msgid "setcolor"
-#~ msgstr "שנהצבע"
+msgid "penpaint"
+msgstr "עטצובע"
 
-#~ msgid "setpencolor"
-#~ msgstr "שנהצבעעט"
+msgid "setcolor"
+msgstr "שנהצבע"
 
-#~ msgid "setwidth"
-#~ msgstr "שנהרוחב"
+msgid "setpencolor"
+msgstr "שנהצבעעט"
 
-#~ msgid "setpensize"
-#~ msgstr "שנהגודלעט"
+msgid "setwidth"
+msgstr "שנהרוחב"
 
-#~ msgid "pencolor"
-#~ msgstr "צבעעט"
+msgid "setpensize"
+msgstr "שנהגודלעט"
 
-#~ msgid "pensize"
-#~ msgstr "גודלעט"
+msgid "pencolor"
+msgstr "צבעעט"
 
-#~ msgid "repeat"
-#~ msgstr "חזור"
+msgid "pensize"
+msgstr "גודלעט"
 
-#~ msgid "repcount"
-#~ msgstr "מונהחזרה"
+msgid "repeat"
+msgstr "חזור"
 
-#~ msgid "if"
-#~ msgstr "אם"
+msgid "repcount"
+msgstr "מונהחזרה"
 
-#~ msgid "ifelse"
-#~ msgstr "אםאחרת"
+msgid "if"
+msgstr "אם"
 
-#~ msgid "iftrue"
-#~ msgstr "אםאמת"
+msgid "ifelse"
+msgstr "אםאחרת"
 
-#~ msgid "iffalse"
-#~ msgstr "אםשקר"
+msgid "iftrue"
+msgstr "אםאמת"
 
-#~ msgid "for"
-#~ msgstr "עבור"
+msgid "iffalse"
+msgstr "אםשקר"
 
-#~ msgid "end"
-#~ msgstr "סוף"
+msgid "for"
+msgstr "עבור"
 
-#~ msgid "Don't know how to"
-#~ msgstr "לא יודע מה זה"
+msgid "end"
+msgstr "סוף"
 
-#~ msgid "Unexpected end of instructions"
-#~ msgstr "חסר סוף לפקודות"
+msgid "Unexpected end of instructions"
+msgstr "חסר סוף לפקודות"
 
-#~ msgid "Expected identifier"
-#~ msgstr "מזהה היה צפוי"
+msgid "Expected identifier"
+msgstr "מזהה היה צפוי"
 
-#~ msgid "Please don't try to override primitive functions"
-#~ msgstr "אין להשתמש במילים שמורות להגדרת פונקציות"
+msgid "Please don't try to override primitive functions"
+msgstr "אין להשתמש במילים שמורות להגדרת פונקציות"
 
-#~ msgid "Error"
-#~ msgstr "שגיאה"
+msgid "Error"
+msgstr "שגיאה"
 
-#~ msgid "hint"
-#~ msgstr "רמז"
+msgid "hint"
+msgstr "רמז"
+
+msgid "sum"
+msgstr "סכום"
+
+msgid "minus"
+msgstr "חיסור"
+
+msgid "make"
+msgstr "עשה"
+
