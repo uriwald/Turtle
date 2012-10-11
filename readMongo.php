@@ -1,5 +1,6 @@
 <?php
-
+//TODO check why when translating .. the title is being changin
+//TODO check why not all cache steps are being saved
 $m = new Mongo();
 
 // select a database
