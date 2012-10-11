@@ -10,9 +10,10 @@ if (empty($_POST['steps'])) {
     $return['error'] = false;
     $steps = $_POST['steps'];
 
-    $decodedStepValue = json_decode($steps);
-    $return['msg'] = 'You\'ve entered: ' . $steps . '.';
-    $return['firstElem'] = $decodedStepValue[1];
+    $decodedStepValue           = json_decode($steps);
+    $return['decodedSteps']     = $decodedStepValue;
+    $return['msg']              = 'You\'ve entered: ' . $steps . '.';
+    $return['firstElem']        = $decodedStepValue[1];
 
 
     //TODO case of removing singel step 
@@ -72,8 +73,9 @@ if (empty($_POST['steps'])) {
             $originalTitle = $criteria["title"];
             $i = 1;
             //$finalArrAfterTranslation = array();
-
-            for ($i = 1; $i <= $_POST['numOfSteps']; $i += 1) {
+            $numberOfSteps  =  $_POST['numOfSteps']; 
+            for ($i = 1; $i <= $numberOfSteps; $i++) {
+                
                 $return['$i'] = $i;
                 $originLanguageStepsArr[$i]["$localeValue"] = $lessonSteps[$i];
             }
@@ -88,9 +90,13 @@ if (empty($_POST['steps'])) {
                //for ($i = 0; $i < $lenStepToRemove; $i += 1) {
                    //unset($originLanguageStepsArr[$stepToRemove[$i]]);   
                $return['originLanguageStepsArrBeforeSet'] = $originLanguageStepsArr;
-                   unset($originLanguageStepsArr[$stepToRemove]);        
+                unset($originLanguageStepsArr[$stepToRemove]);        
                    //Return index array from 0 ( need from 1 will create a function to fix)
-                   $originLanguageStepsArr = arrayUtil::reindexArray($originLanguageStepsArr);
+                $originLanguageStepsArr = arrayUtil::reindexArray($originLanguageStepsArr);
+                for ($i = 1; $i <= $numberOfSteps; $i += 1) {
+                    $originLanguageStepsArr[$i]["$localeValue"] = $lessonSteps[$i];
+                } 
+
                //} 
             }
             $return['originLanguageStepsArrAfterSet'] = $originLanguageStepsArr;
