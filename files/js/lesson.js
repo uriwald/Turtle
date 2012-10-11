@@ -111,11 +111,41 @@
                     jAlert('Confirmed: ' + r, 'Confirmation Results');
                     if (r)
                     {
+                        //Indicating that some steps has been 
+                        //var stepNumberToRemove = stepNumber;
+                        $.Storage.set('isStepRemoved',"true");
+                        /*
+                        if (! $.Storage.get("stepToRemove"))
+                        {
+                           var stepToRemove=new Array();
+                        }
+                       
+                        if ( $.Storage.get("stepToRemove"))
+                        {
+                            var stepToRemove = JSON.parse($.Storage.get("stepToRemove"));
+                            var arrayLen = stepToRemove.length;
+                            stepToRemove.sort(function(a,b){return a-b});
+                            var counter = 0 ;
+                            for (i=0;i<=arrayLen;i++)
+                            {
+                                if (stepToRemove[i] <= parseInt(stepNumber) + i )
+                                  counter++ ;
+                                else
+                                    break ;
+                            }
+                            stepNumberToRemove = parseInt(stepNumber) + parseInt(counter);
+                            alert(stepToRemove.length);
+                        }
+                        stepToRemove.push(stepNumberToRemove.toString());
+                         */
+                        $.Storage.set('stepToRemove' ,stepNumber );
+                        
+                        
                         var allSteps = JSON.parse($.Storage.get("lessonStepsValues"));
                         allSteps.splice(stepNumber ,1);
                         $.Storage.set('lessonStepsValues',JSON.stringify(allSteps, null, 2));
-                        var val = parseInt($.Storage.get("lesson-total-number-of-steps")) - 1;
-                        $.Storage.set("lesson-total-number-of-steps" , val.toString());
+                        var valTotalSteps = parseInt($.Storage.get("lesson-total-number-of-steps")) - 1;
+                        $.Storage.set("lesson-total-number-of-steps" , valTotalSteps.toString());
                         var val = parseInt($.Storage.get("active-step-num")) - 1;
                         if (!val == 0)
                         {
@@ -222,10 +252,16 @@
                     $.Storage.remove("locale");
                     $.Storage.remove("lessonStepsValuesTranslate");
                     $.Storage.remove("localeTransale");
-                    $.Storage.remove("lessonTitleTrans");   
+                    $.Storage.remove("lessonTitleTrans"); 
+                    $.Storage.remove("stepToRemove"); 
+                    $.Storage.remove("isStepRemoved"); 
+                    
+                    
                 }
                 else
                 {
+                     $.Storage.remove("stepToRemove"); 
+                    $.Storage.remove("isStepRemoved"); 
                     /*
                         $.Storage.remove("lessonStepsValuesTranslate");
                         $.Storage.remove("localeTransale");
@@ -241,6 +277,17 @@
                 var lessonSteps = 'lessonStepsValues';
                 var lessonTitle = 'lessonTitle';
                 var lessonLocale = 'locale';
+                //After removing a step the lesson will be saved automatically
+                var isStepRemoved = false ;
+                var stepToRemove = "";
+                
+                if ($.Storage.get('isStepRemoved'))
+                    isStepRemoved = $.Storage.get('isStepRemoved');
+                if ($.Storage.get('stepToRemove'))
+                {
+                    stepToRemove = JSON.parse($.Storage.get('stepToRemove')) ;
+                }
+                //End of case
                 if (isTranslate)
                  {
                     var lessonSteps = 'lessonStepsValuesTranslate';
@@ -258,7 +305,9 @@
                         ObjId : $.Storage.get('ObjId'),
                         locale : $.Storage.get(lessonLocale),  //Should be a parameter
                         precedence :$.Storage.get('precedence'),
-                        translate : isTranslate
+                        translate : isTranslate,
+                        isStepRemove  : isStepRemoved ,                    
+                        stepToRemove : stepToRemove
 
                     },
                         
@@ -266,7 +315,7 @@
                         $('#waiting').hide(500);
                         $('#lessonObjectId').val(data.objID.$id);
                         $.Storage.set("ObjId" , data.objID.$id);
-                               
+                        $.Storage.set('isStepRemoved' , "false");   
                         //$('#message').removeClass().addClass((data.error === true) ? 'error' : 'success').text(data.msg).show(500);
                         //alert(data.msg);
                         alert("Lesson Saved");
@@ -275,6 +324,7 @@
                         $('#waiting').hide(500);
                         $('#message').removeClass().addClass('error')
                         .text(XMLHttpRequest.responseText).show(500);
+                        $.Storage.set('isStepRemoved' , "false");  
                     }
                 });
                 return false;

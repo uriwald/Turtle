@@ -1,6 +1,7 @@
 <?php
 
 //TODO refer translation mode when I get the translation = true by the translating.php page
+ require_once("files/utils/arrayUtil.php");
 sleep(3);
 if (empty($_POST['steps'])) {
     $return['error'] = true;
@@ -35,6 +36,8 @@ if (empty($_POST['steps'])) {
     $localeValue = "locale_en_US";
     if (isset($_POST['locale']))
         $localeValue = "locale_" . $_POST['locale'];
+    
+    
     //Case we are inserting a new lesson
     if (!isset($_POST["ObjId"]) OR $_POST["ObjId"] == null OR strlen($_POST["ObjId"]) < 2) {
         $titles = array('locale_en_US' => $_POST['lessonTitle']);
@@ -46,37 +49,59 @@ if (empty($_POST['steps'])) {
         $result = $lessons->insert($structure, array('safe' => true));
         $return['objID'] = $structure['_id'];
     } 
-    else { //updating existing lesson
+    else 
+    { //updating existing lesson
 
         $return['objID'] = $_POST["ObjId"];
         $return['isExistingLesson'] = "true";
 
         $theObjId = new MongoId($_POST['ObjId']);
         $criteria = $lessons->findOne(array("_id" => $theObjId));
+        
+        $isStepRemove = $_POST["isStepRemove"];
+        $stepToRemove = $_POST["stepToRemove"];
 
         //Case we want to remove object 
         if (isset($_POST["formDelete"])) {
             $result = $lessons->remove(array('_id' => $theObjId), true);
-        } else { //Case we don't want to remove object but updating existing one
-            $originLanguageStepsArr = $criteria["steps"];
             
+        } else { //Case we don't want to remove object but updating existing one
+            
+            $originLanguageStepsArr = $criteria["steps"]; 
+            $return['originLanguageStepsArrBeforeSet'] = $originLanguageStepsArr;
             $originalTitle = $criteria["title"];
             $i = 1;
-            $finalArrAfterTranslation = array();
+            //$finalArrAfterTranslation = array();
 
             for ($i = 1; $i <= $_POST['numOfSteps']; $i += 1) {
                 $return['$i'] = $i;
                 $originLanguageStepsArr[$i]["$localeValue"] = $lessonSteps[$i];
             }
-            $return['originLanguageStepsArr'] = $originLanguageStepsArr;
+            $return['originLanguageStepsAfterSettingLessonSteps'] = $originLanguageStepsArr;
+            //Will delete step by step not in a list
+            if ($isStepRemove)
+            {
+               $return['isStepRemove']          = true ; 
+               $return['stepToRemove']         = $stepToRemove;
+               //$lenStepToRemove                 = sizeof($stepToRemove);
+               //$return['stepToRemoveLen']      = $lenStepToRemove;
+               //for ($i = 0; $i < $lenStepToRemove; $i += 1) {
+                   //unset($originLanguageStepsArr[$stepToRemove[$i]]);   
+               $return['originLanguageStepsArrBeforeSet'] = $originLanguageStepsArr;
+                   unset($originLanguageStepsArr[$stepToRemove]);        
+                   //Return index array from 0 ( need from 1 will create a function to fix)
+                   $originLanguageStepsArr = arrayUtil::reindexArray($originLanguageStepsArr);
+               //} 
+            }
+            $return['originLanguageStepsArrAfterSet'] = $originLanguageStepsArr;
             $lessonsTitle = $originalTitle;
             $lessonsTitle["$localeValue"] = $_POST['lessonTitle'];
-            $return['finalArrAfterTranslation'] = $finalArrAfterTranslation;
+            //$return['finalArrAfterTranslation'] = $finalArrAfterTranslation;
             $result = $lessons->update($criteria, array('$set' => array("steps" => $originLanguageStepsArr, "title" => $lessonsTitle, "precedence" => $precedence)));
             $return['isExistingLesson'] = "If We got Any result";
         }
     }
-
+    
     //$return['keys'] = array_keys($_POST['steps'] );
 }
 echo json_encode($return);
