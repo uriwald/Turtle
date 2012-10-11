@@ -5,14 +5,9 @@ and open the template in the editor.
 <!DOCTYPE html>
 <?php
     session_start();
-    if (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true)
-    {
-        $show = true ;
-    }
-    else
-    {
-        $show = false ;
-    }
+    (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) ? $show = true : $show = false ;
+    if ($show == false)
+        (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) ? $show = true : $show = false ;
 ?>
 
 <html>
@@ -247,7 +242,7 @@ and open the template in the editor.
                     
                 </script>
                 <?php
-            } //end of if
+            } //end of if lesson exist
             else {
                 ?>
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
@@ -275,13 +270,24 @@ and open the template in the editor.
                     //    echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
                     echo "<div id='stepNev'>";
                     echo "<lable class='lessonHeader'>lesson Steps" ;
-                    //if (isset($_GET['lesson']))    
-                    //    echo "ddd";
+                    if (!isset($_GET['lesson']))    
+                        echo " ↓(here you can add or remove steps)";
                     echo "</lable>";
                     echo "<ul id='lessonStepUl'>";
                     echo "</ul>";
                     echo "</div>";
                     //Inserting the step div
+                    echo "<div id ='stepbar'>";
+                         echo " You are currently editing step" ;
+                   ?>
+                    <lable id='currentSteplable' class='currentSteplable'> 1 </lable> 
+                    
+                    <lable> (In order to edit another step please select from the bar above ↑) </lable></br>
+                    <lable> In order to create a new step please press on the "Add lesson step" button </lable>
+                    <?php
+                    echo "</div>";
+                    
+                    
                         echo "<div class='actionButtons'>";
                             echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
                             echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
@@ -289,7 +295,20 @@ and open the template in the editor.
                     echo "</div>";
                     ?>
                     <div class="leftLessonElem"> 
-                        <lable class='lessonlables' > Title :  </lable> 
+                        
+                        <lable class='lessonlables' > Title :  
+                            <lable class='lessonLableDescription'>
+                            <?php
+                                $labelStepNumber = "<lable id='currentSteplable' class='currentSteplable' > 1 </lable> ";
+                                echo "Please enter the step number ". $labelStepNumber .  " title description";
+                                    
+                            ?>
+                            </lable>
+                        </lable>
+                        
+                        
+                        
+                        <!-- <lable class='lessonlables' > Title :  </lable>  -->
                         <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement">
                         </textarea>
                         <?php

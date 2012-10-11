@@ -54,6 +54,11 @@
             $_SESSION['Admin'] = true ;
             header("location: lessons.php");
         }
+        if ( $username == "guest" && $password = "guest")
+        {
+            $_SESSION['Guest'] = true ;
+            header("location: lesson.php");
+        }
         
         /*
 	if(mysql_num_rows($result) == 1) {
