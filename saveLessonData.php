@@ -1,8 +1,21 @@
 <?php
 
-//TODO refer translation mode when I get the translation = true by the translating.php page
+//TODO refer translation mode when I get the translation = true by the translating.php page 
+if (!isset($_SESSION)) {
+  session_start();
+}
  require_once("files/utils/arrayUtil.php");
 sleep(3);
+
+
+//Getting User Info
+$user = "Unknown";
+if (isset($_SESSION['user']))
+{
+    $user = $_SESSION['user'] ;
+}
+  //$return['session'] = Print_r($_SESSION);
+
 if (empty($_POST['steps'])) {
     $return['error'] = true;
     $return['msg'] = 'You did not enter you email.';
@@ -13,7 +26,7 @@ if (empty($_POST['steps'])) {
     $decodedStepValue           = json_decode($steps);
     $return['decodedSteps']     = $decodedStepValue;
     $return['msg']              = 'You\'ve entered: ' . $steps . '.';
-    $return['firstElem']        = $decodedStepValue[1];
+    //$return['firstElem']        = $decodedStepValue[1];
 
 
     //TODO case of removing singel step 
@@ -46,7 +59,7 @@ if (empty($_POST['steps'])) {
             $lessonStep["$localeValue"] = $lessonSteps[$i];
             $finalArrAfterTranslation[$i] = $lessonStep;
         }
-        $structure = array("steps" => $finalArrAfterTranslation, "title" => $titles, "pending" => "true");
+        $structure = array("steps" => $finalArrAfterTranslation, "title" => $titles, "pending" => "true" , "user" => $user);
         $result = $lessons->insert($structure, array('safe' => true));
         $return['objID'] = $structure['_id'];
     } 
