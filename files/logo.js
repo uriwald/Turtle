@@ -165,6 +165,14 @@ function LogoInterpreter(turtle, stream)
     var regexListDelimiter = /^(\[|\])(.*?)$/;
     var regexOperator = /^(\+|\-|\*|\/|%|\^|>=|<=|<>|=|<|>|\[|\]|\(|\))(.*?)$/;
     var regexInfix = /^(\+|\-|\*|\/|%|\^|>=|<=|<>|=|<|>)$/;
+    
+        //
+    // Expose parse for external use
+    //
+    
+    self.parse = function(string) {
+        return parse(string);
+    } 
 
   //
   // Construct a parse tree
