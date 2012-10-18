@@ -8,6 +8,8 @@ and open the template in the editor.
     (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) ? $show = true : $show = false ;
     if ($show == false)
         (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) ? $show = true : $show = false ;
+     if ($show == false)
+        header("location: login.php");
 ?>
 
 <html>
@@ -226,8 +228,12 @@ and open the template in the editor.
                         
                         </br>
                         <textarea type="text"  name="explanation" id="explanation" class="expTxtErea1"></textarea>
-                    </div>     
-
+                    </div>  
+                    <div class="guide">
+                        <iframe frameborder="0" src="files/language.html" id="guide_body" style="hieght : 350px ; border : none;">
+                        </iframe>  
+                    </div>
+                   
                      <div class="actionButtons">
                         <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save Lesson" />
                         <input type="button" id="btnDeleteLesson" class="lessonInputButton" name="formDelete" value="Delete Lesson" />
@@ -324,7 +330,27 @@ and open the template in the editor.
                         <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save" />
                         <input type="button" id="btnDeleteLesson" class="lessonInputButton" name="formDelete" value="Delete Lesson" />
                     </div>
-                   
+                    <div class="guide" style="height : 350px ;">
+                         
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h2> Language Reference </h2>
+                                    </td>
+                                   
+                                    <td style="text-align : right;">
+                                        <a id="toggle_link" href="#" onclick="var gb = document.getElementById('guide_body'); var show = (gb.style.display === 'none'); gb.style.display = show ? '' : 'none'; this.innerHTML = show ? 'hide' : 'show'; return false;">hide</a>
+                                    </td>
+                                     
+                                        
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <iframe frameborder="0" src="files/language.html" id="guide_body" style="height: 350px ; width: 320px ;border : none;">
+                        </iframe>  
+                    </div>
                 </div>     
                 <?php
             } //end of else
