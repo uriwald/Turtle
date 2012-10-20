@@ -1,11 +1,14 @@
+
+<!DOCTYPE html>
 <?php
+    if(session_id() == '') 
+        session_start();
     require_once("localization.php");
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
     require_once("files/utils/languageUtil.php");
     
 ?>
-<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,7 +28,7 @@
        
         <script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
         <script  type="text/javascript" src="ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script> <!--- equal to googleapis -->
-        <script  type="text/javascript" src="files/lang/he.js"></script> <!--- Translation of commands used in logo.js-->
+       <!---  <script  type="text/javascript" src="files/lang/he.js"></script> Translation of commands used in logo.js-->
         
         
         <!--<script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
@@ -36,12 +39,21 @@
         <script type="application/javascript" src="files/jquery.tmpl.js"></script> <!-- jquerytmpl -->
 
         <?php
-            if (!isset($_GET["locale"]))
-                $locale = "en_US";
+           // if (!isset($_GET["locale"]))
+                    if ( !isset ($locale))
+               ///          $locale = $_SESSION['locale'];
+               ///     else
+                    {
+                        //echo $locale;
+                         $locale = "en_US";
+                    }
+                    /*
             else {
                 $str = explode(".",$locale);
                 $locale = $str[0];
             }
+                     * 
+                     */
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
             $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$locale."/LC_MESSAGES/messages.po'"." />";
             
@@ -52,10 +64,13 @@
         ?>
         
         
+        <script type="text/javascript">
+                var locale = "<?php echo $locale; ?>";
+        </script>
         <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
-        <script type="application/javascript" src="readMongo.php?l=<?php echo $locale?>"></script> <!-- Lessons scripts -->
+        <script type="application/javascript" src="readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
         <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
-        <script type="application/javascript" src="files/interface.js"></script> <!-- Interface scripts -->
+        <script type="application/javascript" src="files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
         <script type="application/javascript" src="files/jqconsole.js"></script> <!-- Console -->
         <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
         <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/>
@@ -78,6 +93,8 @@
         </script>
     </head>
     <body> 
+        
+
         <header id="title">
             <h1><img src="files/turtles.png" alt="צב במשקפיים">
             <?php
@@ -95,23 +112,20 @@
                 <div id="display"> 
                     <!-- <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content" style="position: absolute; z-index: 0;">-->
                     <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content">   
-                    <span style="color: red; background-color: yellow; font-weight: bold;">
-                        <?php
-                             echo _("Your browser does not support canvas - an updated browser is recommended");
-                             //    הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יות
-                                   
-        ?> 
-                            
-                                                   
-                        </span>
+                            <span style="color: red; background-color: yellow; font-weight: bold;">
+                            <?php
+                                echo _("Your browser does not support canvas - an updated browser is recommended");
+                                //    הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יות                                
+                            ?>                                      
+                            </span>
                     </canvas>
                     <!--<canvas id="turtle" width="660" height="350" style="position: absolute; z-index: 1;"> -->
                     <canvas id="turtle" width="660" height="350">   
-                        drawing box
+                        <!-- drawing box -->
                     </canvas>
                 </div>
 
-                <div id="console" class="ui-corner-all ui-widget-content"> command box</div>
+                <div id="console" class="ui-corner-all ui-widget-content"><!-- command box --></div>
             </div>
 
             <div id="accordion">
