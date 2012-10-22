@@ -89,7 +89,7 @@ $(function() {
     // The header template
     
     var gt = new Gettext({'domain' : 'messages'});
-    var locale = $.getUrlVar('locale');
+    //var locale = $.getUrlVar('locale'); 
     var localeWithPrefix = 'locale_' + locale;
     
     var markup =
