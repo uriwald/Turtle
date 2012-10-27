@@ -1,9 +1,10 @@
 <?php
+    require_once("../environment.php");
     require_once ("utils/lessonsUtil.php");
     if (isset($_GET['lesson'])) {
         $m = new Mongo();
-        $db = $m->turtleTestDb;
-        $lessons = $db->lessons;
+        $db = $m->$dbName;
+        $lessons = $db->$dbLessonCollection;
         $localePrefix = "locale_";
         
         $languageGet = "l";

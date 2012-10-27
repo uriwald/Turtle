@@ -173,7 +173,6 @@ function LogoInterpreter(turtle, stream)
     self.parse = function(string) {
         return parse(string);
     } 
-
   //
   // Construct a parse tree
   //

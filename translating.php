@@ -3,6 +3,7 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
+    require_once("environment.php");
     require_once("localization.php");
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
@@ -53,9 +54,9 @@ and open the template in the editor.
         require_once ("files/utils/lessonsUtil.php");
         $m = new Mongo();
 // select a database
-        $db = $m->turtleTestDb;
+        $db = $m->$dbName;
 // select a collection (analogous to a relational database's table)
-        $lessons = $db->lessons;
+        $lessons = $db->$dbLessonCollection;
         $locale = "en_US";
         $localeFullName = "";
         $localeTranslate = "";

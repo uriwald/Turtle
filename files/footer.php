@@ -24,10 +24,11 @@
                 </ul
                 <div id='langicons'>
                     <a href=he.php><img src='Images/flags/Israel.png'  title='עברית' class='flagIcon' /></a>
-                    <a href=index.php> <img src='Images/flags/UnitedStates.png'  title='English' class='flagIcon' /></a>              
+                    <a href=index.php> <img src='Images/flags/UnitedStates.png'  title='English' class='flagIcon' /></a> 
+                    <a href=zh.php> <img src='Images/flags/China.png'  title='Chinese' class='flagIcon' /></a>  
                 </div>    
         </footer>            
-        "       
+        "        
                 
                 //                    <a href=$currentPage?locale=he_IL><img src='Images/flags/Israel.png'  title='עברית' class='flagIcon' /></a>
                 //   <a href=$currentPage> <img src='Images/flags/UnitedStates.png'  title='English' class='flagIcon' /></a>   

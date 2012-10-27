@@ -1,9 +1,10 @@
 <?php
+    require_once("environment.php");
     $m = new Mongo();
     // select a database
-    $db = $m->turtleTestDb;
+    $db = $m->$dbName;
     // select a collection (analogous to a relational database's table)
-    $lessons = $db->lessons;
+    $lessons = $db->$dbLessonCollection;
 
     $theObjId = new MongoId($_POST['ObjId']);
     

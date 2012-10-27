@@ -1,16 +1,18 @@
 <?php
 //TODO check why when translating .. the title is being changin
 //TODO check why not all cache steps are being saved
+require_once("environment.php");
 $m = new Mongo();
 
 // select a database
-$db = $m->turtleTestDb;
+$db = $m->$dbName;
 
 // select a collection (analogous to a relational database's table)
-$lessons = $db->lessons;
+$lessons = $db->$dbLessonCollection;
 
 $lessonTitle = "title";
 $lessonSteps = "steps";
+$localPosted = "locale";
 
 // find everything in the collection
 $cursor = $lessons->find();
@@ -25,8 +27,8 @@ foreach ($cursor as $lessonStructure) {
     unset($lessonStructure['_id']);
     
     // If the requested language is in the current json collection
-    if (isset($lessonStructure['locale_' . $_GET['l']])) {
-        $lessonStructure = $lessonStructure['locale_' . $_GET['l']];
+    if (isset($lessonStructure['locale_' . $_GET[$localPosted]])) {
+        $lessonStructure = $lessonStructure['locale_' . $_GET[$localPosted]];
     }
     if (isset($lessonStructure["steps"])) {
         $lessonSteps = $lessonStructure["steps"];
@@ -36,8 +38,8 @@ foreach ($cursor as $lessonStructure) {
     foreach ($lessonSteps as $key => $value) {
         //echo "Key = " . $key ;
         // If we have local for the current step we will set him
-        if (isset($lessonSteps[$key]['locale_' . $_GET['l']])) {
-            $lessonSteps[$key] = $lessonSteps[$key]['locale_' . $_GET['l']];
+        if (isset($lessonSteps[$key]['locale_' . $_GET[$localPosted]])) {
+            $lessonSteps[$key] = $lessonSteps[$key]['locale_' . $_GET[$localPosted]];
         }
         else
         {
@@ -58,7 +60,7 @@ foreach ($cursor as $lessonStructure) {
     $lessonTitles = $lessonStructure["title"];
     foreach ($lessonTitles as $key => $value) {
         //echo "@@@".$key;
-        if ($key == 'locale_' . $_GET['l']) {
+        if ($key == 'locale_' . $_GET[$localPosted]) {
             $finalTitle = $lessonTitles[$key];
         }
     }

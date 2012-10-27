@@ -41,12 +41,13 @@ and open the template in the editor.
         <?php
         //session_start();
         require_once ("files/utils/lessonsUtil.php");
+        require_once("environment.php");
         
         $m = new Mongo();
 // select a database
-        $db = $m->turtleTestDb;
+        $db = $m->$dbName;
 // select a collection (analogous to a relational database's table)
-        $lessons = $db->lessons;
+        $lessons = $db->$dbLessonCollection;
         $locale = "en_US";
         $languageGet = "l";
         $localePrefix = "locale_";

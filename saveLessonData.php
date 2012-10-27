@@ -4,7 +4,8 @@
 if (!isset($_SESSION)) {
   session_start();
 }
- require_once("files/utils/arrayUtil.php");
+require_once("environment.php");
+require_once("files/utils/arrayUtil.php");
 sleep(3);
 
 
@@ -43,10 +44,16 @@ if (empty($_POST['steps'])) {
     
     $m = new Mongo();
     // select a database
-    $db = $m->turtleTestDb;
+    $db = $m->$dbName;
     // select a collection (analogous to a relational database's table)
     $precedence = $_POST['precedence'];
-    $lessons = $db->lessons;
+    
+    $dbCollection   =   "lessons";
+    if (isset($_POST['collection']))
+       $dbCollection    =   $_POST['collection'] ;
+    $lessons = $db->$dbCollection;
+    //$lessons = $db->lessons;
+    //$lessons = $db->lessons;
     $localeValue = "locale_en_US";
     if (isset($_POST['locale']))
         $localeValue = "locale_" . $_POST['locale'];
