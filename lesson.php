@@ -97,7 +97,7 @@ and open the template in the editor.
             echo $elementHint;
         }
         ?>
-            <?php
+        <?php
             $i = 1; //Set default value to 1 in case there are no steps
             if (isset($cursor["steps"]) && count($cursor["steps"]) > 0) {
                 $i = 0;
@@ -108,12 +108,14 @@ and open the template in the editor.
                     $.Storage.remove("active-step-num");
                     $.Storage.remove("lesson-total-number-of-steps");
                     $.Storage.remove("active-step");
+                    $.Storage.remove("collection-name");
                     var lessonStepValuesStorage = new Array(new Array());
                     $.Storage.set('lessonStepsValues',JSON.stringify(lessonStepValuesStorage, null, 2))
                     $.Storage.set("active-step" , "1");
                     $.Storage.set("lesson-total-number-of-steps" ,"0");
+                    $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
                 </script>
-                
+               
                 <?php
                 foreach ($localSteps as $step) {
                     $i++;
@@ -252,6 +254,10 @@ and open the template in the editor.
             } //end of if lesson exist
             else {
                 ?>
+                <script type='text/javascript'>
+                     $.Storage.remove("collection-name");
+                     $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
+                </script>
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
                     <div>
                            
@@ -354,7 +360,7 @@ and open the template in the editor.
                     </div>
                 </div>     
                 <?php
-            } //end of else
+            } //end of else (New Lesson)
             ?>
         <div id="message" style="display: none;">
             <div id="waiting" style="display: none;">

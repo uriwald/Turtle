@@ -272,6 +272,7 @@
             
             var saveLessonData = function saveLessonData(isTranslate)
             {
+                //TODO get the working collection from storage if exist
                 // Making translation case more dynamic according to the isTranslate flag
                 window.infoElementKeyUpEvent(isTranslate);
                 var lessonSteps = 'lessonStepsValues';
@@ -280,6 +281,7 @@
                 //After removing a step the lesson will be saved automatically
                 var isStepRemoved = false ;
                 var stepToRemove = "";
+                var collectionName = $.Storage.get('collection-name');
                 
                 if ($.Storage.get('isStepRemoved'))
                     isStepRemoved = $.Storage.get('isStepRemoved');
@@ -290,9 +292,10 @@
                 //End of case
                 if (isTranslate)
                  {
-                    var lessonSteps = 'lessonStepsValuesTranslate';
-                    var lessonTitle = 'lessonTitlet';
-                    var lessonLocale = 'localeTranslate';  
+                    var lessonSteps     = 'lessonStepsValuesTranslate';
+                    var lessonTitle     = 'lessonTitlet';
+                    var lessonLocale    = 'localeTranslate'; 
+                    //collectionName      = "lessons_translate";           
                  }
                 $.ajax({
                     type : 'POST',
@@ -306,7 +309,8 @@
                         locale : $.Storage.get(lessonLocale),  //Should be a parameter
                         precedence :$.Storage.get('precedence'),
                         translate : isTranslate,
-                        isStepRemove  : isStepRemoved ,                    
+                        isStepRemove  : isStepRemoved ,
+                        collection  : collectionName ,
                         stepToRemove : stepToRemove
 
                     },
