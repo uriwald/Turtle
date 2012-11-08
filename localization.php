@@ -10,11 +10,14 @@
     //echo $locale;
     if ( !isset ($locale))
     {
+        if (isSet($_GET["ltranslate"])) 
+            $localeEnv = $_GET["ltranslate"].".utf8";
+        else
             $localeEnv = "en_US.utf8";
     }
      else {
        $localeEnv = $locale.".utf8" ; 
-    }
+    } 
     putenv("LC_ALL=$localeEnv");
     setlocale(LC_ALL, $localeEnv);
     //setlocale(LC_ALL, "sp_SP.utf8");
