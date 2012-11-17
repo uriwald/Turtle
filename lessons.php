@@ -5,6 +5,13 @@
     require_once("files/cssUtils.php");
     $show = false ;
     session_start();
+    $permissionNum            =   $_SESSION['permision'] ;
+    $permForEditLesson        = array(1,100);
+    $permTraChinese           = array(1,2);
+    $permTraSpanish           = array(1,2);
+    $permAprvLesson           = array(1);
+    echo "PermissionNumberIs".$permissionNum;
+
     /*
     if (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true)
     {
@@ -17,7 +24,7 @@
     {
             echo "Hello ";
             echo $_SESSION['user'];
-            if ($_SESSION['user'] == "translator" || $_SESSION['user'] == "admin" )
+            if ($_SESSION['user'] == "translator" || $_SESSION['user'] == "admin" || $_SESSION['user'] == "eneditor")
                 $show = true ;
     }
 
@@ -59,12 +66,14 @@
 
         echo "<div> <span class='title'> Edit one of the following lessons </div>";
         foreach ($cursor as $lessonStructure) {
-            $title         =            $lessonStructure[$lessonTitle][$finalLocale] ;
-            $objID         =            $lessonStructure['_id'];
-            $pendingStatus =    $lessonStructure['pending'];
+            $title                          =            $lessonStructure[$lessonTitle][$finalLocale] ;
+            $objID                          =            $lessonStructure['_id'];
+            $pendingStatus                  =    $lessonStructure['pending'];
+            //$translateToLanguage            
             echo "Lesson name is <b>" . $title . "</b> " ;
             $editLessonHref    = "<a href='lesson.php?lesson=$objID&lfrom=$locale' > <span class='lessonh'> Edit Lesson <b>" . $title . " </b></span> </a>";
-            $translateLessonToChinese   = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=zh_CN' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b></span> </a>";
+            $translateLessonToChinese   = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=zh_CN' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to chinenese </span> </a>";
+            $translateLessonToSpanish   = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=es_AR' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to Spanish </span> </a>";
             $approveLesson ;
             if ($pendingStatus)
             {
@@ -76,9 +85,21 @@
                 echo "Lesson is curretnly approved";
                 $approveLesson = "<a href='approveLesson.php?lesson=$objID&pending=true' > <span class='lessonh'> Unapprove (lesson won't appear in main page) </span> </a>";
             }
-            echo "<div style='display:inline;height:60px;'>$editLessonHref $translateLessonToChinese $approveLesson </div>";   
-            echo "</br>";
-        }
+            echo "<div style='display:inline;height:60px;'>";     
+            if (in_array($permissionNum , $permForEditLesson)) 
+            {
+                    echo "ddd";
+                    echo $editLessonHref;
+            }
+            if (in_array($permissionNum , $permTraChinese )) 
+                    echo $translateLessonToChinese;
+            if (in_array($permissionNum , $permTraSpanish)) 
+                    echo $translateLessonToSpanish;
+            if (in_array($permissionNum , $permAprvLesson)) 
+                    echo $approveLesson;
+             echo   "</div>";   
+            echo "</br>"; 
+        } 
 
         echo "<div><a href='lesson.php' > <span> Create a new lesson  </span> </a></div>" ;
 

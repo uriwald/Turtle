@@ -32,7 +32,6 @@
 		$errflag = true; //Set flag so it says theres an error
 	}
 
-
 	//If there are input validations, redirect back to the registration form
 	if($errflag) {
 		$_SESSION['ERRMSG'] = $errmsg; //Write errors
@@ -41,23 +40,36 @@
 		exit(); //Block scripts
 	}
 
-	//Create SELECT query
-        /*
-	$qry = "SELECT * FROM `users` WHERE `Username` = '$username' AND `Password` = '" . md5($password) . "'";
-	$result = mysql_query($qry);
-	*/
-	
 
         //Check whether the query was successful or not
         if ( $username == "burbur" && $password = "563")
         {
             $_SESSION['Admin'] = true ;
             header("location: lessons.php");
+            $_SESSION['user'] = "admin";
+            $_SESSION['permision'] = 1;
         }
         if ( $username == "guest" && $password = "guest")
         {
             $_SESSION['Guest'] = true ;
             header("location: lesson.php");
+            $_SESSION['user'] = "guest";
+            $_SESSION['permision'] = 2;
+        }
+        if ( $username == "translator" && $password = "translator")
+        {
+            $_SESSION['translator'] = true ;
+            header("location: lessons.php");
+            $_SESSION['user'] = "translator";
+            $_SESSION['permision'] = 2;
+        }
+        
+        if ( $username == "eneditor" && $password = "eneditor")
+        {
+            $_SESSION['translator'] = true ;
+            header("location: lessons.php");
+            $_SESSION['user'] = "eneditor";
+            $_SESSION['permision'] = 100;
         }
         
         /*
