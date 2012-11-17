@@ -88,7 +88,6 @@
             echo "<div style='display:inline;height:60px;'>";     
             if (in_array($permissionNum , $permForEditLesson)) 
             {
-                    echo "ddd";
                     echo $editLessonHref;
             }
             if (in_array($permissionNum , $permTraChinese )) 
