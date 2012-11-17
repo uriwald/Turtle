@@ -10,7 +10,7 @@
     $permTraChinese           = array(1,2);
     $permTraSpanish           = array(1,2);
     $permAprvLesson           = array(1);
-    echo "PermissionNumberIs".$permissionNum;
+    //echo "PermissionNumberIs".$permissionNum;
 
     /*
     if (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true)
