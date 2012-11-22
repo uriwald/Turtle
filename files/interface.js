@@ -8,6 +8,8 @@ var g_logo;
 
 var activeLesson = 0;
 
+var lastLessonClick = null ;
+
 $.extend({
   getUrlVars: function(){
     var vars = [], hash;
@@ -33,7 +35,6 @@ function loadLesson(lessonID)
 {
     //Set the activeLesson
     activeLesson = lessonID;
-
     //Clear the accordion
     $( "#accordion" ).replaceWith('<div id="accordion">');
 
@@ -96,8 +97,13 @@ $(function() {
     '{{each lessons}}'
     + '<li>'
     + '<div>'
-    + '<a href="#" data-lesson="${$index}" id="lucio" name="lucio">'
-    + '<span>'
+    + '<a href="#" data-lesson="${$index}" id="lucio${$index}" name="lucio${$index}" class="lucio">'
+    + '{{if $index == 0}}'
+        + '<span style="background:#00FF00">'
+    + '{{else}}'
+        + '<span>'
+    + '{{/if}}'
+  //  + '<span>'
     + '<b>${$index+1}. ${title}</b>'
     + '</a>'
     + '</span>'
@@ -206,9 +212,22 @@ $(function() {
     $.tmpl( "headTemplate", lessons[0],{} ).appendTo( "#header" );
 
     // Attach the loadlesson on click action
-    $("#header a#lucio").click(function() {
-        loadLesson($(this).data('lesson'));
-        return false;
+    $("#header a.lucio").click(function() {
+       
+         $(this).children().css("background","#00FF00");
+         //$( "#lucio" ).children().css("background","#00FF00")
+         if (lastLessonClick != null)
+         {
+             lastLessonClick.children().css("background","#C4C4C4");
+         }
+         else
+         {
+            $( "#lucio0" ).children().css("background","#C4C4C4");
+         }
+        
+         loadLesson($(this).data('lesson'));
+         lastLessonClick = $(this);
+         return false;
     });
     
     // attach the next/prev movement
@@ -227,9 +246,10 @@ $(function() {
 			$dialog
 				.load($link.attr('href'))
 				.dialog({
-					title: $link.attr('title'),
-					width: 500,
-					height: 300
+					title: $link.attr('title')
+                                        //,
+					//width: 500,
+					//height: 300
 				});
 
 			$link.click(function() {
@@ -274,7 +294,7 @@ $(function() {
          $('#console').find(".jqconsole").height('200px');   
         }
  
-     $('#console').find(".jqconsole-cursor").css('position','');    
+     $('#console').find(".jqconsole-cursor").css('position','relative');    
     // Abort prompt on Ctrl+Z.
     jqconsole.RegisterShortcut('Z', function() {
         jqconsole.AbortPrompt();
