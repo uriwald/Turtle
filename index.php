@@ -77,7 +77,7 @@
         <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/>
         <?php
              cssUtils::loadcss($locale, "./files/css/interface");       
-        ?>     
+        ?>    
         <script type="application/javascript"> <!-- Google Analytics Tracking -->
 
             var _gaq = _gaq || [];
@@ -101,6 +101,10 @@
                  echo _("Turtle Academy");
             //        אקדמיית הצב                    
              ?> 
+                    <a href=he.php><img src='Images/flags/Israel.png'  title='עברית' class='flagIcon' /></a>
+                    <a href=index.php> <img src='Images/flags/UnitedStates.png'  title='English' class='flagIcon' /></a> 
+                    <a href=zh.php> <img src='Images/flags/China.png'  title='中文' class='flagIcon' /></a>  
+                    <a href=es.php> <img src='Images/flags/Argentina.png'  title='Español' class='flagIcon' /></a>  
             </h1>
         </header>
         <div id="main">

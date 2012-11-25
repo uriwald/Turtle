@@ -25,7 +25,8 @@
                 <div id='langicons'>
                     <a href=he.php><img src='Images/flags/Israel.png'  title='עברית' class='flagIcon' /></a>
                     <a href=index.php> <img src='Images/flags/UnitedStates.png'  title='English' class='flagIcon' /></a> 
-                    <a href=zh.php> <img src='Images/flags/China.png'  title='Chinese' class='flagIcon' /></a>  
+                    <a href=zh.php> <img src='Images/flags/China.png'  title='中文' class='flagIcon' /></a>  
+                    <a href=es.php> <img src='Images/flags/Argentina.png'  title='Español' class='flagIcon' /></a> 
                 </div>    
         </footer>            
         "        
