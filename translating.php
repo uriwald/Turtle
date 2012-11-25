@@ -1,7 +1,7 @@
 <!--
 To change this template, choose Tools | Templates
 and open the template in the editor.
--->
+--> 
 <?php
     require_once("environment.php");
     require_once("localization.php");
@@ -35,7 +35,8 @@ and open the template in the editor.
                     $localetr = $_GET[$languageGet];
             $file_path = "locale/".$localetr."/LC_MESSAGES/messages.po";
             $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$localetr."/LC_MESSAGES/messages.po'"." />";        
-             if ( file_exists($file_path))
+            //echo $po_file; 
+            if ( file_exists($file_path))
                 echo $po_file;
              
         ?>
@@ -46,7 +47,7 @@ and open the template in the editor.
                 <?php
                 echo _("Turtle Academy - Translate a lesson");
                 //        אקדמיית הצב                    
-                ?> 
+                ?>
             </h1>
         </header>
         <?php
@@ -86,10 +87,12 @@ and open the template in the editor.
             $cursor = $lessons->findOne(array("_id" => $theObjId));
             $localSteps = $lu->getStepsByLocale($localePrefix . $locale);
             $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $locale);
+            $lessonPrecedence = 75;
             if ($doTranslate) {
                 $localStepsTranslate = $lu->getStepsByLocale($localePrefix . $localeTranslate);
                 $lessonFinalTitleTranslate = $lu->getTitleByLocale($localePrefix . $localeTranslate);
             }
+            $lessonPrecedence   = $lu->getPrecedence();
         }
 
         function printElement($i, $flag, $step, $istranslate) {
@@ -152,11 +155,17 @@ and open the template in the editor.
                 $.Storage.remove("active-step-num");
                 $.Storage.remove("lesson-total-number-of-steps");
                 $.Storage.remove("active-step");
+                $.Storage.remove("precedence");
+                $.Storage.remove("collection-name");
+
+               
                 var lessonStepValuesStorage = new Array(new Array());
                 $.Storage.set('lessonStepsValues',JSON.stringify(lessonStepValuesStorage, null, 2));
                 $.Storage.set('lessonStepsValuesTranslate',JSON.stringify(lessonStepValuesStorage, null, 2));
                 $.Storage.set("active-step" , "1");
                 $.Storage.set("lesson-total-number-of-steps" ,"0");
+                $.Storage.set("precedence","<?php echo intval($lessonPrecedence)?>");
+                $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
             </script>
     <?php
     foreach ($localSteps as $step) {
