@@ -2,15 +2,10 @@
 	//include("sql.php"); //Connect to SQL
 
 	session_start(); //Start session for writing
+        session_unset();
+        require_once("environment.php");
 
-//	function Fix($str) { //Clean the fields
-//		$str = trim($str);
-//		if(get_magic_quotes_gpc()) {
-//			$str = stripslashes($str);
-//		}
-//		return mysql_real_escape_string($str);
-//	}
-
+        $validateUser = false ;
 	$errmsg = array(); //Array to store errors
 	
 	$errflag = false; //Error flag
@@ -48,6 +43,7 @@
             header("location: lessons.php");
             $_SESSION['user'] = "admin";
             $_SESSION['permision'] = 1;
+            $validateUser = true;
         }
         if ( $username == "guest" && $password = "guest")
         {
@@ -55,6 +51,7 @@
             header("location: lesson.php");
             $_SESSION['user'] = "guest";
             $_SESSION['permision'] = 2;
+            $validateUser = true;
         }
         if ( $username == "translator" && $password = "translator")
         {
@@ -62,6 +59,7 @@
             header("location: lessons.php");
             $_SESSION['user'] = "translator";
             $_SESSION['permision'] = 2;
+            $validateUser = true;
         }
         
         if ( $username == "eneditor" && $password = "eneditor")
@@ -70,21 +68,33 @@
             header("location: lessons.php");
             $_SESSION['user'] = "eneditor";
             $_SESSION['permision'] = 100;
+            $validateUser = true;
         }
-        
-        /*
-	if(mysql_num_rows($result) == 1) {
-		while($row = mysql_fetch_assoc($result)) {
-			$_SESSION['UID'] = $row['UID']; //Retrieve the UID from the database and put it into a session
-			$_SESSION['USERNAME'] = $username; //Set the username as a session
-			session_write_close(); //Close the session
-			header("location: member.php"); //Redirect
-		}
-	} else {
-		$_SESSION['ERRMSG'] = "Invalid username or password"; //Error
-		session_write_close(); //Close the session
-		header("location: login.php"); //Rediect
-		exit(); //Block scripts
-	}
-         */
+        if ( $username == "gereditor" && $password = "gereditor")
+        {
+            $_SESSION['translator'] = true ;
+            header("location: lessons.php");
+            $_SESSION['user'] = "gereditor";
+            $_SESSION['permision'] = 103;
+            $validateUser = true;
+        }
+        if ( $username == "rueditor" && $password = "rueditor")
+        {
+            $_SESSION['translator'] = true ;
+            header("location: lessons.php");
+            $_SESSION['user'] = "gereditor";
+            $_SESSION['permision'] = 107;
+            $validateUser = true;
+        }
+        if ($validateUser)
+        {
+            $m = new Mongo();
+            $db = $m->$dbName;
+            $loginLog = $db->login_volunteers;
+            date_default_timezone_set('America/Los_Angeles');
+            $date = date('Y-m-d H:i:s');
+            $structure = array("username" => $username = $_POST['username'], "date" => $date);
+            $result = $loginLog->insert($structure, array('safe' => true));
+        }
+
 ?>
