@@ -5,11 +5,11 @@ and open the template in the editor.
 <!DOCTYPE html>
 <?php
     session_start();
-    (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) ? $show = true : $show = false ;
-    if ($show == false)
-        (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) ? $show = true : $show = false ;
-     if ($show == false)
-        header("location: login.php");
+    (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true) ? $show = true : $show = false ;
+    //$show = false;
+     //if ($show == false)
+        //$guestDbForNewLessons = "lessons_translate"; 
+        //header("location: login.php");
 ?>
 
 <html>
@@ -47,13 +47,16 @@ and open the template in the editor.
 // select a database
         $db = $m->$dbName;
 // select a collection (analogous to a relational database's table)
+        if ($show == false)
+            $dbLessonCollection = "lessons_created_by_guest";
+        //echo $dbLessonCollection;
         $lessons = $db->$dbLessonCollection;
         $locale = "en_US";
         $languageGet = "l";
         $localePrefix = "locale_";
         $lessonFinalTitle = "";
         if (isset($_GET[$languageGet]))
-            $locale = $_GET[$languageGet];
+            $locale = $_GET[$languageGet]; 
 
 //If we are in existing lesson we will enter editing mode 
         if (isset($_GET['lesson'])) {
@@ -151,8 +154,9 @@ and open the template in the editor.
                         
                             <lable class="lessonHeader"> Lesson Title : </lable> 
                             <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"
-                                   value=" <?php echo $lessonFinalTitle ?>"
-                                   />                      
+                                   value="<?php echo $lessonFinalTitle ?>"
+                            />    
+                            </input>
                             <! Object ID: --!> 
                             <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
                                 if (isset($cursor["_id"]))

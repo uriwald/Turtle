@@ -371,11 +371,12 @@
                 {
                     $.Storage.set("ObjId" , lessonid);
                 }
+                var collection = $.Storage.get("collection-name");
                 if (originLang != null && originLang.length > 2 && lessonid != null && lessonid.length > 2)
                 {
                     $.ajax({
-                        url: 'files/loadLessonSteps.php?lesson=' + lessonid + '&l=' + originLang,
-                        success: function(data) {
+                        url: 'files/loadLessonSteps.php?lesson=' + lessonid + '&l=' + originLang + '&col=' + collection ,
+                        success: function(data) { 
                             var rdata;
                             rdata = JSON.parse(data);
                             $.Storage.set("lessonTitle" , rdata.title);
@@ -492,7 +493,7 @@
                 }
                 if (!$.Storage.get("precedence"))
                 {
-                     $.Storage.set('precedence' , '100');
+                     $.Storage.set('precedence' , '80');
                 }
                 $('#addStep').click(function () {
                     var val = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;

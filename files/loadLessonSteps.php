@@ -4,6 +4,8 @@
     if (isset($_GET['lesson'])) {
         $m = new Mongo();
         $db = $m->$dbName;
+        if (isset($_GET['col']))
+            $dbLessonCollection = $_GET['col'];
         $lessons = $db->$dbLessonCollection;
         $localePrefix = "locale_";
         
