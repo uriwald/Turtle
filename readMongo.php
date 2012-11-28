@@ -8,7 +8,12 @@ $m = new Mongo();
 $db = $m->$dbName;
 
 // select a collection (analogous to a relational database's table)
+if (isset ($_GET["dab"]))
+{
+    $dbLessonCollection = $_GET["dab"];
+}
 $lessons = $db->$dbLessonCollection;
+//echo $dbLessonCollection;
 
 $lessonTitle = "title";
 $lessonSteps = "steps";
@@ -23,19 +28,25 @@ echo "var lessons = [";
 
 foreach ($cursor as $lessonStructure) {
     //  Unset the lesson ID
+ //   echo " some lessons found";
     $lessonStructure['id'] = '' . $lessonStructure['_id'];
     unset($lessonStructure['_id']);
-    
+   // print_r($lessonStructure);
     // If the requested language is in the current json collection
+    //echo "isset?  ".$lessonStructure['locale_' . $_GET[$localPosted]];
     if (isset($lessonStructure['locale_' . $_GET[$localPosted]])) {
+      //  echo "isset ".$lessonStructure['locale_' . $_GET[$localPosted]];
         $lessonStructure = $lessonStructure['locale_' . $_GET[$localPosted]];
     }
     if (isset($lessonStructure["steps"])) {
+       // echo "is set steps";
         $lessonSteps = $lessonStructure["steps"];
     }
-    
+    //echo " printing lesson steps ";
+    //print_r($lessonSteps);
     $showItem = true ;
     foreach ($lessonSteps as $key => $value) {
+        "enterLessonSteps";
         //echo "Key = " . $key ;
         // If we have local for the current step we will set him
         if (isset($lessonSteps[$key]['locale_' . $_GET[$localPosted]])) {
