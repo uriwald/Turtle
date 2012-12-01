@@ -23,7 +23,7 @@ root {
     padding: 10px;
     padding-bottom: 10px;
     /*position: absolute;*/
-    overflow: auto;
+    overflow: scroll;
     /*right: 0;
     top: 0;*/
 }
@@ -99,14 +99,13 @@ code { font-family: monospace; }
     list-style-type:none;
     white-space:nowrap;
 }
-
 * html .menu a {
     width:100px;
 }
 .menu a span {
     display:block; 
     color:#000; 
-    background:#c4c4c4; 
+    background:#3BDA00; 
     border:1px solid #fff; 
     border-width:2px 1px; 
     text-align:center; 
@@ -146,12 +145,18 @@ code { font-family: monospace; }
     position: relative;
     margin-top: 1px;
 }
-#title {margin:auto;
+#title {
+        margin:auto;
         overflow: hidden;
-        width: 970px;
-        font-size: 1.7em;
+        width: 970px; 
+         font-size: 1.7em; 
 }
-
+#turtletitle {
+       margin:auto;
+       overflow: hidden;
+       width: 500px; 
+       font-size: 1.7em; 
+}
 #footer {
     margin: 10px auto;
     overflow: hidden;
