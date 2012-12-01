@@ -274,6 +274,9 @@
             {
                 //TODO get the working collection from storage if exist
                 // Making translation case more dynamic according to the isTranslate flag
+                $.getScript("files/jquery.Storage.js", function(){
+                    //alert("Script loaded and executed.");
+                });
                 window.infoElementKeyUpEvent(isTranslate);
                 var lessonSteps = 'lessonStepsValues';
                 var lessonTitle = 'lessonTitle';
@@ -484,6 +487,8 @@
                 if (!$.Storage.get("locale")) //Setting default locale to en_US
                 {
                     $.Storage.set("locale" , "en_US"); 
+                    if ($.Storage.get("createLessonLocal"))
+                        $.Storage.set("locale" , $.Storage.get("createLessonLocal")); 
                     $.Storage.set("localeTranslate" , "he_IL");
                     
                 }
@@ -611,6 +616,39 @@
                 });
                 $('#btnSaveLesson').click(function() {           
                     window.saveLessonData(false);
+                });
+                $('#btnShowDoc').click(function() {           
+                    window.open('files/language.html','');
+                });
+                $('#selectedLanguage').change(function() {   
+                    var selLang = $('#selectedLanguage').val();
+                    $.Storage.set('createLessonLocal',selLang);
+                });
+                $('#btnCreateNewLesson').click(function() {  
+                    var locale = 'en_US';
+                    if ($.Storage.get('createLessonLocal'))
+                        locale = $.Storage.get('createLessonLocal')
+                    window.open('lesson.php?l=' + locale,'_self');
+                });
+                
+                
+                $('#btnShowLesson').click(function() {   
+                    var title       = $.Storage.get('lessonTitle');
+                    var steps       = $.Storage.get("lessonStepsValues");
+                    var numOfSteps  = $.Storage.get('lesson-total-number-of-steps');
+                    var locale      = $.Storage.get('locale');
+                    $.post('showLesson.php', {title : title , steps : steps , numOfSteps : numOfSteps , locale : locale} )
+                    //$.post('showLesson.php', data)
+                    .success(function(result){
+                        //window.open('showLesson.php?title=' + title + '&steps=' + steps + '&numOfSteps=' + numOfSteps + '&locale=' + locale,'');
+                        //window.open('showLesson.php','');
+                       // $('#previewLesson').html(result)
+                         $('#frame').attr('srcdoc', result);
+                    })
+                    .error(function(){
+                        alert('Error loading page');
+                    })
+                    
                 });
                 $('#btnDel').attr('disabled','disabled');
             });

@@ -6,10 +6,6 @@ and open the template in the editor.
 <?php
     session_start();
     (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true) ? $show = true : $show = false ;
-    //$show = false;
-     //if ($show == false)
-        //$guestDbForNewLessons = "lessons_translate"; 
-        //header("location: login.php");
 ?>
 
 <html>
@@ -19,6 +15,7 @@ and open the template in the editor.
         </title>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+        <!-- <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
         <script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
         <script  type="text/javascript" src="ckeditor/ckeditor.js"></script>
         <script  type="text/javascript" src="ckeditor/adapters/jquery.js"></script>
@@ -27,6 +24,7 @@ and open the template in the editor.
         <script type="application/javascript" src="files/js/lesson.js"></script> <!-- lessonFunctions -->     
         
         <link rel='stylesheet' href='./files/css/lessons.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='./files/bootstrap/css/bootstrap.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='./alerts/jquery.alerts.css' type='text/css' media='all'/>   
     </head>
     <body>
@@ -38,10 +36,13 @@ and open the template in the editor.
              ?> 
             </h1>
         </header>
-        <?php
+    <?php
         //session_start();
         require_once ("files/utils/lessonsUtil.php");
         require_once("environment.php");
+        require_once("localization.php");
+        require_once("files/cssUtils.php");
+        require_once("files/utils/languageUtil.php");
         
         $m = new Mongo();
 // select a database
@@ -50,14 +51,14 @@ and open the template in the editor.
         if ($show == false)
             $dbLessonCollection = "lessons_created_by_guest";
         //echo $dbLessonCollection;
-        $lessons = $db->$dbLessonCollection;
-        $locale = "en_US";
-        $languageGet = "l";
-        $localePrefix = "locale_";
-        $lessonFinalTitle = "";
+        $lessons            = $db->$dbLessonCollection;
+        $locale             = "en_US";
+        $languageGet        = "l";
+        $localePrefix       = "locale_";
+        $lessonFinalTitle   = "";
+        $lessonPrecedence   = 100;
         if (isset($_GET[$languageGet]))
             $locale = $_GET[$languageGet]; 
-
 //If we are in existing lesson we will enter editing mode 
         if (isset($_GET['lesson'])) {
             $lu                 = new lessonsUtil($locale, "locale_", $lessons, $_GET['lesson']);
@@ -66,10 +67,12 @@ and open the template in the editor.
             $localSteps         = $lu->getStepsByLocale($localePrefix . $locale);
             $lessonFinalTitle   = $lu->getTitleByLocale($localePrefix . $locale);
             $lessonPrecedence   = $lu->getPrecedence();
+            //echo $lessonPrecedence;
             //echo $lessonFinalTitle;
         }
-        
+        ?>
 
+        <?php
         function printElement($i, $flag, $step) {
             if ($flag) {
                 $action = $step["action"];
@@ -80,14 +83,13 @@ and open the template in the editor.
                 $solution = "";
                 $hint = "";
             }
-            $baseInputText = "<div> <label class='lessonlables'> %%a: 
-                                        <lable class='lessonLableDescription'>
-                                            Please enter the step number
-                                            <lable id='currentSteplable' class='currentSteplable' > 1 </lable>
-                                                %%a info
-                                        </label>
-                                    </label>
-<textarea class='lessonInfoElement' type='text'  name='%%b' id='%%b' placeholder='Step %%a'>%%c</textarea> </div>";
+            // <label class='control-label' > %%a: </lable>
+            $baseInputText = "<div class='control-group'> 
+                                <label class='control-label' > %%a: </label>
+                                <div class='controls'>
+                                     <textarea class='input-xlarge' type='text'  name='%%b' id='%%b' placeholder='Step %%a'>%%c</textarea> 
+                                </div>     
+                             </div>";
             $toReplace = array("%%a", "%%b", "%%c");
             $replaceWithAction = array("Action ", "action", $action);
             $replaceWithSolution = array("Solution ", "solution", $solution);
@@ -96,10 +98,11 @@ and open the template in the editor.
             $elementSolution = str_replace($toReplace, $replaceWithSolution, $baseInputText);
             $elementHint = str_replace($toReplace, $replaceWithHint, $baseInputText);
             echo $elementAction;
-            echo $elementSolution;
+            echo $elementSolution; 
             echo $elementHint;
         }
-        ?>
+        ?> 
+       
         <?php
             $i = 1; //Set default value to 1 in case there are no steps
             if (isset($cursor["steps"]) && count($cursor["steps"]) > 0) {
@@ -117,6 +120,7 @@ and open the template in the editor.
                     $.Storage.set("active-step" , "1");
                     $.Storage.set("lesson-total-number-of-steps" ,"0");
                     $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
+                    $.Storage.set("locale" ,"<?php echo $locale ?>");
                 </script>
                
                 <?php
@@ -195,56 +199,65 @@ and open the template in the editor.
                     echo "</div>";
                     echo "</div>";
                     ?>
+                    <div class="actionButtons">
+                        <input type="button" id="btnSaveLesson"   class="btn lessonInputButton"          name="formSave" value="Save Lesson" />
+                        <input type="button" id="btnShowLesson"   class="btn lessonInputButton"          name="formSave" value="show Lesson" />
+                        <input type="button" id="btnDeleteLesson" class="btn lessonInputButton"          name="formDelete" value="Delete Lesson" />
+                        <input type="button" id="btnShowDoc"      class="btn  btn-link" name="showDoc" value="Show reserve words" />
+                    </div>
                     <div class="leftLessonElem"> 
-                        <lable class='lessonlables' > Title :  
-                            <lable class='lessonLableDescription'>
-                            <?php
-                                $labelStepNumber = "<lable id='currentSteplable' class='currentSteplable' > 1 </lable> ";
-                                echo "Please enter the step number ". $labelStepNumber .  " title description";
-                                    
-                            ?>
-                            </lable>
-                        </lable>
-
-                        <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement" >
-                        </textarea>
-                        <?php
-                            printElement($i, false, null);
-                            if ($show)
-                            {
-                        ?>
-                            <lable class='lessonlables' > Precedence :  </lable> 
-                            <textarea type="text"  name="precedence" id="precedence" placeholder="precedence" class="lessonInfoElement" ><?php
-                                echo $lessonPrecedence;
-                            ?>
-                            
-                            </textarea> 
-                        <?php
-                            }
-                         ?>
-
-                    </div>
-                    <div class="rightLessonElem"> 
-                        <lable class='lessonlables' > Explanation 
-                            <lable class='lessonLableDescription'>
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="control-group">
+                                        <lable class="control-label" > Title :  
+                                        <?php
+                                        // $labelStepNumber = "<lable id='currentSteplable' class='currentSteplable' > 1 </lable> ";
+                                        // echo "Please enter the step number ". $labelStepNumber .  " title description";
+                                        ?>
+                                        </lable>    
+                                    <div class="controls">
+                                        <textarea type="text"  name="title" id="title" placeholder="Step Title" class="input-xlarge" >
+                                        </textarea>
+                                    </div>
+                                </div>
                                 <?php
-                                    echo "Please enter the step info for step <lable id='currentSteplable' class='currentSteplable'> 1 </lable> ";
+                                    printElement($i, false, null);
+                                    if ($show)
+                                    {
+                                    ?>
+                                        <div class="control-group">
+                                            <lable class="control-label" > Precedence : 
+                                            </lable>    
+                                            <div class="controls">
+                                                <textarea type="text"  name="precedence" id="precedence" placeholder="precedence" class="input-xlarge"><?php                            
+                                                    echo $lessonPrecedence;
+                                                ?>
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    } //End of if show
+                                    ?>
+                                <div class="control-group">
+                                     <lable class="control-label" > Explanation :  
+                                     </lable> 
+                                    <div class="controls">
+                                      <textarea type="text"  name="explanation" id="explanation" class="expTxtErea1"></textarea>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+
+                    </div> <!--  Close div leftLessonElem -->
+                    <div class="rightLessonElem"> 
+                        <iframe id="frame"  height="700" width="700" src="showLesson.php">
+                            <div id="previewLesson">
+                                <?php
+                                    echo "hello rubio";
                                 ?>
-                            </lable>
-                        </lable> 
-                        
-                        </br>
-                        <textarea type="text"  name="explanation" id="explanation" class="expTxtErea1"></textarea>
-                    </div>  
-                    <div class="guide">
-                        <iframe frameborder="0" src="files/language.html" id="guide_body" style="hieght : 350px ; border : none;">
-                        </iframe>  
-                    </div>
-                   
-                     <div class="actionButtons">
-                        <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save Lesson" />
-                        <input type="button" id="btnDeleteLesson" class="lessonInputButton" name="formDelete" value="Delete Lesson" />
-                    </div>
+                            </div>
+                        </iframe>   
+                    </div>  <!--  Close div RightLessonElem -->
                 </div> 
                 <script type='text/javascript'>
                                                 
@@ -254,21 +267,18 @@ and open the template in the editor.
                     window.showFirstStepIfExist();
                     
                 </script>
-                <?php
-            } //end of if lesson exist
-            else {
-                ?>
+            <?php
+                } //end of if lesson exist
+                else { //Starting case of creating a new lesson
+            ?>
                 <script type='text/javascript'>
                      $.Storage.remove("collection-name");
                      $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
                 </script>
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
-                    <div>
-                           
+                    <div>                           
                             <lable class="lessonHeader"> Lesson Title : </lable>
-                           
-                       
-                        
+
                             <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
                             <! Object ID: --!> 
                             <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
@@ -276,41 +286,94 @@ and open the template in the editor.
                                     echo $cursor["_id"]; else {
                                     echo "";
                                 }
-                                ?>"/>
-                            
-                        
+                                ?>"/>                       
                     </div>  
-                    </br>
-                    
+                    </br>           
                     <?php
-                    echo "<div id='lessonStep'>";
-                    //    echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
-                    echo "<div id='stepNev'>";
-                    echo "<lable class='lessonHeader'>lesson Steps" ;
-                    if (!isset($_GET['lesson']))    
-                        echo " ↓(here you can add or remove steps)";
-                    echo "</lable>";
-                    echo "<ul id='lessonStepUl'>";
-                    echo "</ul>";
-                    echo "</div>";
-                    //Inserting the step div
-                    echo "<div id ='stepbar'>";
-                         echo " You are currently editing step" ;
+                        echo "<div id='lessonStep'>";
+                            echo "<div id='stepNev'>";
+                                 echo "<lable class='lessonHeader'>lesson Steps" ;
+                                 if (!isset($_GET['lesson']))    
+                                     echo " ↓(here you can add or remove steps)";
+                                 echo "</lable>";
+                                 echo "<ul id='lessonStepUl'>";
+                                 echo "</ul>";
+                             echo "</div>";
+                        //Inserting the step div
+                            echo "<div id ='stepbar'>";
+                                echo " You are currently editing step" ;
                    ?>
-                    <lable id='currentSteplable' class='currentSteplable'> 1 </lable> 
-                    
-                    <lable> (In order to edit another step please select from the bar above ↑) </lable></br>
-                    <lable> In order to create a new step please press on the "Add lesson step" button </lable>
+                                <lable id='currentSteplable' class='currentSteplable'> 1 </lable>          
+                                <lable> (In order to edit another step please select from the bar above ↑) </lable></br>
+                                <lable> In order to create a new step please press on the "Add lesson step" button </lable>
                     <?php
-                    echo "</div>";
-                    
-                    
-                        echo "<div class='actionButtons'>";
-                            echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
-                            echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
-                        echo "</div>";
-                    echo "</div>";
+                            echo "</div>";                        
+                            echo "<div class='actionButtons'>";
+                                echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
+                                echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
+                            echo "</div>";
+                         echo "</div>"; //Closing the lessonStep div
                     ?>
+                    <div class="actionButtons">
+                        <input type="button" id="btnSaveLesson"   class="btn lessonInputButton"          name="formSave" value="Save Lesson" />
+                        <input type="button" id="btnShowLesson"   class="btn lessonInputButton"          name="formSave" value="show Lesson" />
+                        <input type="button" id="btnDeleteLesson" class="btn lessonInputButton"          name="formDelete" value="Delete Lesson" />
+                        <input type="button" id="btnShowDoc"      class="btn  btn-link" name="showDoc" value="Show reserve words" />
+                    </div>
+                     <div class="leftLessonElem"> 
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="control-group">
+                                        <lable class="control-label" > Title :  
+                                        <?php
+                                        // $labelStepNumber = "<lable id='currentSteplable' class='currentSteplable' > 1 </lable> ";
+                                        // echo "Please enter the step number ". $labelStepNumber .  " title description";
+                                        ?>
+                                        </lable>    
+                                    <div class="controls">
+                                        <textarea type="text"  name="title" id="title" placeholder="Step Title" class="input-xlarge" >
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <?php
+                                    printElement($i, false, null);
+                                    if ($show)
+                                    {
+                                    ?>
+                                        <div class="control-group">
+                                            <lable class="control-label" > Precedence : 
+                                            </lable>    
+                                            <div class="controls">
+                                                <textarea type="text"  name="precedence" id="precedence" placeholder="precedence" class="input-xlarge"><?php                            
+                                                    echo $lessonPrecedence;
+                                                ?>
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    } //End of if show
+                                    ?>
+                                <div class="control-group">
+                                     <lable class="control-label" > Explanation :  
+                                     </lable> 
+                                    <div class="controls">
+                                      <textarea type="text"  name="explanation" id="explanation" class="expTxtErea1"></textarea>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+
+                    </div> <!--  Close div leftLessonElem -->
+                    <div class="rightLessonElem"> 
+                        <iframe id="frame"  height="700" width="700" src="showLesson.php">
+                            <div id="previewLesson">
+                                <?php
+                                    echo "hello rubio";
+                                ?>
+                            </div>
+                        </iframe>   
+                    </div>  <!--  Close div RightLessonElem -->
+               <!-- Comment old code
                     <div class="leftLessonElem"> 
                         
                         <lable class='lessonlables' > Title :  
@@ -322,11 +385,7 @@ and open the template in the editor.
                             ?>
                             </lable>
                         </lable>
-                        
-                        
-                        
-                        <!-- <lable class='lessonlables' > Title :  </lable>  -->
-                        <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement">
+                        <textarea type="text"  name="title" id="title" placeholder="Step Title" class="input-xlarge">
                         </textarea>
                         <?php
                         printElement($i, false, null);
@@ -339,6 +398,7 @@ and open the template in the editor.
                     </div>     
                     <div class="actionButtons">
                         <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save" />
+                        <input type="button" id="btnShowLesson" class="lessonInputButton" name="formSave" value="show Lesson" />
                         <input type="button" id="btnDeleteLesson" class="lessonInputButton" name="formDelete" value="Delete Lesson" />
                     </div>
                     <div class="guide" style="height : 350px ;">
@@ -357,18 +417,20 @@ and open the template in the editor.
                                         
                                 </tr>
                             </tbody>
-                        </table>
-                        
+                        </table>                      
                         <iframe frameborder="0" src="files/language.html" id="guide_body" style="height: 350px ; width: 320px ;border : none;">
                         </iframe>  
                     </div>
+               -->
                 </div>     
                 <?php
-            } //end of else (New Lesson)
+            } //end of else (New Lesson) 
             ?>
         <div id="message" style="display: none;">
             <div id="waiting" style="display: none;">
                 Please wait<br />
             </div>
+        </div>           
+                  
     </body>
 </html>

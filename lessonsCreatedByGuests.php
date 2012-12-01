@@ -1,11 +1,26 @@
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+ <link rel='stylesheet' href='./files/bootstrap/css/bootstrap.css' type='text/css' media='all'/>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+        <!-- <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
+        <script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
+        <script  type="text/javascript" src="ckeditor/ckeditor.js"></script>
+        <script  type="text/javascript" src="ckeditor/adapters/jquery.js"></script>
+        <script  type="text/javascript" src="alerts/jquery.alerts.js"></script>
+        <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
+        <script type="application/javascript" src="files/js/lesson.js"></script> <!-- lessonFunctions -->   
 <?php
     require_once("environment.php");
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
+    ?>
+     <script type='text/javascript'>
+            $.Storage.remove("createLessonLocal");
+     </script>
+     <?php
     $show = false ;
     session_start();
-            if ($_SESSION['user'] != "admin")
+    if (!isset( $_SESSION['user']) || $_SESSION['user'] != "admin")
                 session_unset();
     if (isset ($_SESSION['permision']))
         $permissionNum            =   $_SESSION['permision'] ;
@@ -74,10 +89,15 @@
         foreach ($cursor as $lessonStructure) {
             $title                          =            $lessonStructure[$lessonTitle][$finalLocale] ;
             $objID                          =            $lessonStructure['_id'];
-            $pendingStatus                  =    $lessonStructure['pending'];
+            $pendingStatus                  =            $lessonStructure['pending'];
+            foreach($lessonStructure['steps'][1] as $key => $val) {
+                $locale =   substr($key, -5);
+            }
+
+           // print_r( $lessonStructure['steps'][1]);
             //$translateToLanguage            
             echo "Lesson name is <b>" . $title . "</b> " ;
-            $editLessonHref    = "<a href='lesson.php?lesson=$objID&lfrom=$locale' > <span class='lessonh'> Edit Lesson <b>" . $title . " </b></span> </a>";
+            $editLessonHref    = "<a href='lesson.php?lesson=$objID&l=$locale' > <span class='lessonh'> Edit Lesson <b>" . $title . " </b></span> </a>";
             $translateLessonToChinese   = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=zh_CN' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to chinenese </span> </a>";
             $translateLessonToSpanish   = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=es_AR' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to Spanish </span> </a>";
             $translateLessonToGerman    = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=de_DE' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to German </span> </a>";
@@ -115,9 +135,17 @@
              echo   "</div>";   
             echo "</br>"; 
         } 
+        ?>
+        <button id ="btnCreateNewLesson" class="btn btn-link" type="button">Create a new lesson using the following language</button>
+        <select id="selectedLanguage">
+            <option value="en_US">  English   </option>
+            <option value="he_IL">  עברית     </option>
+            <option value="zh_CN">  中文       </option>
+            <option value="es_AR">  Español   </option>
+        </select>
+         
+<?php
+        //echo "<div><a href='lesson.php' > <span> Create a new lesson  </span> </a></div>" ;
+        //echo "<span class='footer'>$footer</span>";
 
-        echo "<div><a href='lesson.php' > <span> Create a new lesson  </span> </a></div>" ;
-
-        echo "<span class='footer'>$footer</span>";
-    //}
 ?>

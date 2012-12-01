@@ -18,7 +18,7 @@ class lessonsUtil {
     private $lessonObjId;
     private $steps;
     private $titles;
-    private $precedence = 100;
+    private $precedence = 100 ;
 
     
     # Constructor  
@@ -28,6 +28,7 @@ class lessonsUtil {
                 $this->localePrefix = $localePrefix; 
                 $this->db = $db; 
                 $this->lessonObjId = $lessonObjId;
+                $this->precedence = 50 ;
                 self ::setLessonStepsAndTitles();
      }  
 
@@ -50,7 +51,8 @@ class lessonsUtil {
         $cursor             = $this->db->findOne(array("_id" => $theObjId));
         $this->titles       = $cursor["title"];
         $this->steps        = $cursor["steps"];
-        $this->precedence   = $cursor["precedence"];
+        if (isset($cursor["precedence"]))
+             $this->precedence   = $cursor["precedence"];
     }
 
     public function printSteps() {

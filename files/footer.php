@@ -19,7 +19,7 @@
                         </a>
                     </li>  
                     <li>
-                        <a href='lesson.php'>".$newLesson."</a>
+                        <a href='lessonsCreatedByGuests.php'>".$newLesson."</a>
                     </li>
                 </ul
                 <div id='langicons'>
