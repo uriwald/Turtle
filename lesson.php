@@ -161,6 +161,9 @@ and open the template in the editor.
                                    value="<?php echo $lessonFinalTitle ?>"
                             />    
                             </input>
+                            <script type='text/javascript'>
+                                $.Storage.set("lessonTitle" ,"<?php echo $lessonFinalTitle ?>");
+                            </script>
                             <! Object ID: --!> 
                             <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
                                 if (isset($cursor["_id"]))
@@ -272,8 +275,11 @@ and open the template in the editor.
                 else { //Starting case of creating a new lesson
             ?>
                 <script type='text/javascript'>
+                     var lessonTitle = $.('#lessonTitle').val();
                      $.Storage.remove("collection-name");
+                     $.Storage.remove("lessonTitle");
                      $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
+                     $.Storage.set("lessonTitle" ,lessonTitle);
                 </script>
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
                     <div>                           
@@ -373,55 +379,6 @@ and open the template in the editor.
                             </div>
                         </iframe>   
                     </div>  <!--  Close div RightLessonElem -->
-               <!-- Comment old code
-                    <div class="leftLessonElem"> 
-                        
-                        <lable class='lessonlables' > Title :  
-                            <lable class='lessonLableDescription'>
-                            <?php
-                                $labelStepNumber = "<lable id='currentSteplable' class='currentSteplable' > 1 </lable> ";
-                                echo "Please enter the step number ". $labelStepNumber .  " title description";
-                                    
-                            ?>
-                            </lable>
-                        </lable>
-                        <textarea type="text"  name="title" id="title" placeholder="Step Title" class="input-xlarge">
-                        </textarea>
-                        <?php
-                        printElement($i, false, null);
-                        ?>
-                    </div>
-                    <div class="rightLessonElem">
-                        <lable class='lessonlables' > Explanation : </lable>
-                        </br>
-                        <textarea type="text"  name="explanation" id="explanation" class="expTxtErea1"></textarea>
-                    </div>     
-                    <div class="actionButtons">
-                        <input type="button" id="btnSaveLesson" class="lessonInputButton" name="formSave" value="Save" />
-                        <input type="button" id="btnShowLesson" class="lessonInputButton" name="formSave" value="show Lesson" />
-                        <input type="button" id="btnDeleteLesson" class="lessonInputButton" name="formDelete" value="Delete Lesson" />
-                    </div>
-                    <div class="guide" style="height : 350px ;">
-                         
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h2> Language Reference </h2>
-                                    </td>
-                                   
-                                    <td style="text-align : right;">
-                                        <a id="toggle_link" href="#" onclick="var gb = document.getElementById('guide_body'); var show = (gb.style.display === 'none'); gb.style.display = show ? '' : 'none'; this.innerHTML = show ? 'hide' : 'show'; return false;">hide</a>
-                                    </td>
-                                     
-                                        
-                                </tr>
-                            </tbody>
-                        </table>                      
-                        <iframe frameborder="0" src="files/language.html" id="guide_body" style="height: 350px ; width: 320px ;border : none;">
-                        </iframe>  
-                    </div>
-               -->
                 </div>     
                 <?php
             } //end of else (New Lesson) 
