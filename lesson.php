@@ -11,7 +11,6 @@ and open the template in the editor.
 <html>
     <head>
         <title>
-
         </title>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
@@ -85,10 +84,10 @@ and open the template in the editor.
             }
             // <label class='control-label' > %%a: </lable>
             $baseInputText = "<div class='control-group'> 
-                                <label class='control-label' > %%a: </label>
-                                <div class='controls'>
+                                <div class='controlsa'>
                                      <textarea class='input-xlarge' type='text'  name='%%b' id='%%b' placeholder='Step %%a'>%%c</textarea> 
-                                </div>     
+                                </div> 
+                                <label class='control-label lesson-label' > %%a </label>
                              </div>";
             $toReplace = array("%%a", "%%b", "%%c");
             $replaceWithAction = array("Action ", "action", $action);
@@ -156,7 +155,7 @@ and open the template in the editor.
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
                     <div>
                         
-                            <lable class="lessonHeader"> Lesson Title : </lable> 
+                            <lable class="lessonHeader"> Lesson Title  </lable> 
                             <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"
                                    value="<?php echo $lessonFinalTitle ?>"
                             />    
@@ -175,84 +174,81 @@ and open the template in the editor.
                     </div>   
                     </br>
                     <?php
-                    echo "<div id='lessonStep'>";
-                    // echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
-                    echo "<div id='stepNev'>";
-                    echo "<lable class='lessonHeader'>lesson Steps" ;
-                    if (isset($_GET['lesson']))    
-                        echo " ↓(please choose step to edit)";
-                    echo "</lable>";
-                    
-                    echo "<ul id='lessonStepUl'>";
-                    echo "</ul>";
-                    //Inserting the step div
-                    echo "<div id ='stepbar'>";
-                         echo " You are currently editing step" ;
-                         ?>
-                    <lable id='currentSteplable' class='currentSteplable'> 1 </lable> 
-                    
-                    <lable> (In order to edit  another step please select from the bar above ↑) </lable>
-
-                        <?php
-                    echo "</div>";
-                    echo "<div class='actionButtons'>";
-                        echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
-                        echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</div>";
+                        echo "<div id='lessonStep'>";
+                            echo "<div id='stepNev'>";
+                                echo "<lable class='lessonHeader'>lesson Steps" ;
+                                if (isset($_GET['lesson']))    
+                                    echo " ↓(please choose step to edit)";
+                                echo "</lable>";
+                                echo "<ul id='lessonStepUl'>";
+                                echo "</ul>";
+                        //Inserting the step div
+                                echo "<div class='actionButtonsStep'>";
+                                    echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
+                                    echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
+                                echo "</div>"; //End of actionButtons div
+                                echo "<div id ='stepbar'>";
+                                    echo " <lable class='currentSteplableText'>Step </lable>" ;
+                                    ?>
+                                    <lable id='currentSteplable' class='currentSteplable'> 1 </lable> 
+                                    <!-- <lable> (In order to edit  another step please select from the bar above ↑) </lable> -->
+                                    <?php
+                                echo "</div>"; //End of stepbar div
+                           echo "</div>"; //End of stepNev div
+                       echo "</div>"; //End of lessonStep div
                     ?>
+                    <!--
                     <div class="actionButtons">
                         <input type="button" id="btnSaveLesson"   class="btn lessonInputButton"          name="formSave" value="Save Lesson" />
                         <input type="button" id="btnShowLesson"   class="btn lessonInputButton"          name="formSave" value="show Lesson" />
                         <input type="button" id="btnDeleteLesson" class="btn lessonInputButton"          name="formDelete" value="Delete Lesson" />
                         <input type="button" id="btnShowDoc"      class="btn  btn-link" name="showDoc" value="Show reserve words" />
                     </div>
+                    -->
                     <div class="leftLessonElem"> 
                         <form class="form-horizontal">
                             <fieldset>
                                 <div class="control-group">
-                                        <lable class="control-label" > Title :  
-                                        <?php
-                                        // $labelStepNumber = "<lable id='currentSteplable' class='currentSteplable' > 1 </lable> ";
-                                        // echo "Please enter the step number ". $labelStepNumber .  " title description";
-                                        ?>
-                                        </lable>    
-                                    <div class="controls">
+  
+                                    <div class="controlsa">
                                         <textarea type="text"  name="title" id="title" placeholder="Step Title" class="input-xlarge" >
                                         </textarea>
                                     </div>
+                                    <lable class="control-label lesson-label" > Title   
+                                    </lable>  
                                 </div>
                                 <?php
                                     printElement($i, false, null);
                                     if ($show)
                                     {
                                     ?>
-                                        <div class="control-group">
-                                            <lable class="control-label" > Precedence : 
-                                            </lable>    
-                                            <div class="controls">
+                                        <div class="control-group"> 
+                                            <div class="controlsa">
                                                 <textarea type="text"  name="precedence" id="precedence" placeholder="precedence" class="input-xlarge"><?php                            
                                                     echo $lessonPrecedence;
                                                 ?>
                                                 </textarea>
                                             </div>
+                                            <lable class="control-label lesson-label" > Precedence : 
+                                            </lable>   
                                         </div>
                                     <?php
                                     } //End of if show
                                     ?>
-                                <div class="control-group">
-                                     <lable class="control-label" > Explanation :  
-                                     </lable> 
-                                    <div class="controls">
-                                      <textarea type="text"  name="explanation" id="explanation" class="expTxtErea1"></textarea>
-                                    </div>
-                                </div>
+
                             </fieldset>
                         </form>
 
-                    </div> <!--  Close div leftLessonElem -->
-                    <div class="rightLessonElem"> 
+                    </div> <!--  Close div leftLessonElem style="visibility:hidden;" -->
+                    <div class="rightLessonElem" > 
+                        <div class="control-group">
+                                <lable class="control-label lesson-label" > Explanation   
+                                </lable> 
+                            <div class="controlsa">
+                                <textarea rows="15" type="text"  name="explanation" id="explanation" class="dscText input-xxlarge "></textarea>
+                            </div>
+                        </div>
+                        <!--
                         <iframe id="frame"  height="700" width="700" src="showLesson.php">
                             <div id="previewLesson">
                                 <?php
@@ -260,8 +256,29 @@ and open the template in the editor.
                                 ?>
                             </div>
                         </iframe>   
+                        -->
                     </div>  <!--  Close div RightLessonElem -->
+                    <!--
+                    <div class="rightLessonElem" > 
+                        <input type="button" id="btnSaveLesson"   class="btn lessonInputButton"          name="formSave" value="Save Lesson" /> </br></br>
+                        <input type="button" id="btnShowLesson"   class="btn lessonInputButton"          name="formSave" value="show Lesson" /> </br></br>
+                        <input type="button" id="btnDeleteLesson" class="btn lessonInputButton"          name="formDelete" value="Delete Lesson" /> </br></br>
+                        <input type="button" id="btnShowDoc"      class="btn  btn-link" name="showDoc" value="Show reserve words" /> </br></br>
+                    </div>  <!--  Close div RrightLessonElem -->
                 </div> 
+                <div class="actionButtonsLessons">
+                    <input type="button" id="btnSaveLesson"   class="btn lessonInputButton"          name="formSave" value="Save Lesson" />
+                    <input type="button" id="btnShowLesson"   class="btn lessonInputButton"          name="formSave" value="show Lesson" />
+                    <input type="button" id="btnDeleteLesson" class="btn lessonInputButton"          name="formDelete" value="Delete Lesson" />
+                    <input type="button" id="btnShowDoc"      class="btn  btn-link" name="showDoc" value="Show reserve words" />
+                </div>
+                <iframe id="frame"  height="700" width="90%" src="showLesson.php">
+                    <div id="previewLesson">
+                        <?php
+                            echo "hello rubio";
+                        ?>
+                    </div>
+                </iframe> 
                 <script type='text/javascript'>
                                                 
                     //Print Nav  
@@ -283,7 +300,7 @@ and open the template in the editor.
                 </script>
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
                     <div>                           
-                            <lable class="lessonHeader"> Lesson Title : </lable>
+                            <lable class="lessonHeader"> Lesson Title  </lable>
 
                             <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
                             <! Object ID: --!> 
@@ -307,20 +324,20 @@ and open the template in the editor.
                              echo "</div>";
                         //Inserting the step div
                             echo "<div id ='stepbar'>";
-                                echo " You are currently editing step" ;
+                            echo " <lable class='currentSteplable'>Step </lable>" ;
                    ?>
-                                <lable id='currentSteplable' class='currentSteplable'> 1 </lable>          
+                                <lable id='currentSteplableText' class='currentSteplable'> 1 </lable>          
                                 <lable> (In order to edit another step please select from the bar above ↑) </lable></br>
                                 <lable> In order to create a new step please press on the "Add lesson step" button </lable>
                     <?php
                             echo "</div>";                        
-                            echo "<div class='actionButtons'>";
+                            echo "<div class='actionButtonsStep'>";
                                 echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
                                 echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
                             echo "</div>";
                          echo "</div>"; //Closing the lessonStep div
                     ?>
-                    <div class="actionButtons">
+                    <div class="actionButtonsLessons">
                         <input type="button" id="btnSaveLesson"   class="btn lessonInputButton"          name="formSave" value="Save Lesson" />
                         <input type="button" id="btnShowLesson"   class="btn lessonInputButton"          name="formSave" value="show Lesson" />
                         <input type="button" id="btnDeleteLesson" class="btn lessonInputButton"          name="formDelete" value="Delete Lesson" />
@@ -330,13 +347,13 @@ and open the template in the editor.
                         <form class="form-horizontal">
                             <fieldset>
                                 <div class="control-group">
-                                        <lable class="control-label" > Title :  
+                                        <lable class="control-label lesson-label" > Title   
                                         <?php
                                         // $labelStepNumber = "<lable id='currentSteplable' class='currentSteplable' > 1 </lable> ";
                                         // echo "Please enter the step number ". $labelStepNumber .  " title description";
                                         ?>
                                         </lable>    
-                                    <div class="controls">
+                                    <div class="controlsa">
                                         <textarea type="text"  name="title" id="title" placeholder="Step Title" class="input-xlarge" >
                                         </textarea>
                                     </div>
@@ -347,9 +364,9 @@ and open the template in the editor.
                                     {
                                     ?>
                                         <div class="control-group">
-                                            <lable class="control-label" > Precedence : 
+                                            <lable class="control-label lesson-label" > Precedence  
                                             </lable>    
-                                            <div class="controls">
+                                            <div class="controlsa">
                                                 <textarea type="text"  name="precedence" id="precedence" placeholder="precedence" class="input-xlarge"><?php                            
                                                     echo $lessonPrecedence;
                                                 ?>
@@ -359,18 +376,25 @@ and open the template in the editor.
                                     <?php
                                     } //End of if show
                                     ?>
-                                <div class="control-group">
-                                     <lable class="control-label" > Explanation :  
-                                     </lable> 
-                                    <div class="controls">
-                                      <textarea type="text"  name="explanation" id="explanation" class="expTxtErea1"></textarea>
-                                    </div>
-                                </div>
+
                             </fieldset>
                         </form>
-
-                    </div> <!--  Close div leftLessonElem -->
+                    </div> <!--  Close div leftLessonElem  div class="rightLessonElem" style="visibility:hidden;">  -->
                     <div class="rightLessonElem"> 
+                        <div class="control-group">
+                                <lable class="control-label lesson-label" > Explanation   
+                                </lable> 
+                            <div class="controlsa">
+                                <textarea rows="15" type="text"  name="explanation" id="explanation" class="dscText input-xxlarge"></textarea>
+                            </div>
+                        </div>
+                    <div class="actionButtonsLessons">
+                        <input type="button" id="btnSaveLesson"   class="btn lessonInputButton"          name="formSave" value="Save Lesson" />
+                        <input type="button" id="btnShowLesson"   class="btn lessonInputButton"          name="formSave" value="show Lesson" />
+                        <input type="button" id="btnDeleteLesson" class="btn lessonInputButton"          name="formDelete" value="Delete Lesson" />
+                        <input type="button" id="btnShowDoc"      class="btn  btn-link" name="showDoc" value="Show reserve words" />
+                    </div>
+                        <!--
                         <iframe id="frame"  height="700" width="700" src="showLesson.php">
                             <div id="previewLesson">
                                 <?php
@@ -378,6 +402,7 @@ and open the template in the editor.
                                 ?>
                             </div>
                         </iframe>   
+                        -->
                     </div>  <!--  Close div RightLessonElem -->
                 </div>     
                 <?php
