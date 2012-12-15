@@ -30,7 +30,7 @@
                     echo _("The project enables to learn the Logo language and programming principles and can be used for programming logo");
                 ?>
             <div id="logo2"></div>
-            <h3>      
+            <h3>     
                 <?php
                     echo _("Why was it done");
                 ?>

@@ -13,7 +13,7 @@
                     &copy; TurtleAcademy 
                     <li>
                          
-                        <a id='doc' title='תעוד הפרוייקט' href='doc.php?locale=".$locale."'>
+                        <a id='doc' title='Project documentation' href='doc.php?locale=".$locale."'>
                         ". 
                         $doc ."
                         </a>

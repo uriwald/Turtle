@@ -36,7 +36,7 @@ function loadLesson(lessonID)
     //Set the activeLesson
     activeLesson = lessonID;
     //Clear the accordion
-    $( "#accordion" ).replaceWith('<div id="accordion">');
+    $( "#accordion" ).replaceWith('<div id="accordion" style="color:#4aa329">');
 
     // Render the template with the lessons data
     $.tmpl( "lessonTemplate", lessons[lessonID], {}).appendTo( "#accordion" );
@@ -99,7 +99,7 @@ $(function() {
     + '<div>'
     + '<a href="#" data-lesson="${$index}" id="lucio${$index}" name="lucio${$index}" class="lucio">'
     + '{{if $index == 0}}'
-        + '<span style="background:#00FF00">'
+        + '<span style="background:#8eed6a">'
     + '{{else}}'
         + '<span>'
     + '{{/if}}'
@@ -214,15 +214,15 @@ $(function() {
     // Attach the loadlesson on click action
     $("#header a.lucio").click(function() {
        
-         $(this).children().css("background","#00FF00");
+         $(this).children().css("background","#8eed6a");
          //$( "#lucio" ).children().css("background","#00FF00")
          if (lastLessonClick != null)
          {
-             lastLessonClick.children().css("background","#C4C4C4");
+             lastLessonClick.children().css("background","#3bda00");
          }
          else
          {
-            $( "#lucio0" ).children().css("background","#C4C4C4");
+            $( "#lucio0" ).children().css("background","#3bda00");
          }
         
          loadLesson($(this).data('lesson'));
@@ -241,13 +241,17 @@ $(function() {
 
     // load DOC in dialog
     $('#doc').each(function() {
-		var $dialog = $('<div dir="rtl"></div>');
+            if (locale != "he_IL")
+		var $dialog = $('<div dir="ltr"></div>');
+            else
+                var $dialog = $('<div dir="rtl"></div>');
 		var $link = $(this).one('click', function() {
 			$dialog
 				.load($link.attr('href'))
 				.dialog({
-					title: $link.attr('title')
-                                        //,
+					title: $link.attr('title'),
+                                        width: 700
+                                      
 					//width: 500,
 					//height: 300
 				});
@@ -261,7 +265,6 @@ $(function() {
 			return false;
 		});
 	});
-
     // Render the first lesson
     loadLesson(0);
 
