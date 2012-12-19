@@ -121,7 +121,7 @@ class Swift_Mime_Headers_DateHeader extends Swift_Mime_Headers_AbstractHeader
       {
           $this->setCachedValue(date('r', $this->_timestamp));
           //$this->setCachedValue(date_default_timezone_set());
-          echo $this->_timestamp;
+          //echo $this->_timestamp;
        // $this->setCachedValue(date_default_timezone_set($this->_timestamp));
       }
     }

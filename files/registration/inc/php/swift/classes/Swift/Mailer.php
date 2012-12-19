@@ -85,7 +85,7 @@ class Swift_Mailer
       $this->_transport->start();
     }
     
-    echo " about to send a message " ;
+    //echo " about to send a message " ;
     return $this->_transport->send($message, $failedRecipients);
   }
   
