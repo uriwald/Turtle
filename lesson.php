@@ -100,7 +100,65 @@ and open the template in the editor.
             echo $elementSolution; 
             echo $elementHint;
         }
-        ?> 
+        function printLeftLessonElemnt($i,$show)
+        {
+                 echo "<div class='leftLessonElem'> 
+                        <form class='form-horizontal'>
+                            <fieldset>
+                                <div class='control-group'>
+  
+                                    <div class='controlsa'>
+                                        <textarea type='text'  name='title' id='title' placeholder='Step Title' class='input-xlarge' >
+                                        </textarea>
+                                    </div>
+                                    <lable class='control-label lesson-label' > Title   
+                                    </lable>  
+                                </div>";
+
+                                    printElement($i, false, null);
+                                    if ($show)
+                                    {
+                                        echo "<div class='control-group'> 
+                                            <div class='controlsa'>
+                                                <textarea type='text'  name='precedence' id='precedence' placeholder='precedence' class='input-xlarge'>" ;                         
+                                                   echo  $lessonPrecedence;
+                                             echo"</textarea>
+                                            </div>
+                                            <lable class='control-label lesson-label' > Precedence : 
+                                            </lable>   
+                                        </div> ";
+                                    } //End of if show
+                       echo "</fieldset>
+                        </form>
+                    </div>  " ;
+            } //End of print left element
+             function printRightLessonElemnt()
+             {
+                  echo "  
+                 `  <div class='rightLessonElem' > 
+                        <div class='control-group'>
+                                <lable class='control-label lesson-label' > Explanation   
+                                </lable> 
+                            <div class='controlsa'>
+                                <textarea rows='15' type='text'  name='explanation' id='explanation' class='dscText input-xxlarge'></textarea>
+                            </div>
+                        </div>
+                    </div>  <!--  Close div RightLessonElem --> 
+                 ";
+             }
+             function printLessonButtons()
+             {
+                 echo "  
+                 <div class='actionButtonsLessons'>
+                    <input type='button' id='btnSaveLesson'   class='btn lessonInputButton'          name='formSave' value='Save Lesson' />
+                    <input type='button' id='btnShowLesson'   class='btn lessonInputButton'          name='formSave' value='show Lesson' />
+                    <input type='button' id='btnDeleteLesson' class='btn lessonInputButton'          name='formDelete' value='Delete Lesson' />
+                    <input type='button' id='btnShowDoc'      class='btn  btn-link' name='showDoc' value='Show reserve words' />
+                </div>";
+             }
+        ?>
+        
+        
        
         <?php
             $i = 1; //Set default value to 1 in case there are no steps
@@ -197,81 +255,15 @@ and open the template in the editor.
                            echo "</div>"; //End of stepNev div
                        echo "</div>"; //End of lessonStep div
                     ?>
-                    <!--
-                    <div class="actionButtons">
-                        <input type="button" id="btnSaveLesson"   class="btn lessonInputButton"          name="formSave" value="Save Lesson" />
-                        <input type="button" id="btnShowLesson"   class="btn lessonInputButton"          name="formSave" value="show Lesson" />
-                        <input type="button" id="btnDeleteLesson" class="btn lessonInputButton"          name="formDelete" value="Delete Lesson" />
-                        <input type="button" id="btnShowDoc"      class="btn  btn-link" name="showDoc" value="Show reserve words" />
-                    </div>
-                    -->
-                    <div class="leftLessonElem"> 
-                        <form class="form-horizontal">
-                            <fieldset>
-                                <div class="control-group">
-  
-                                    <div class="controlsa">
-                                        <textarea type="text"  name="title" id="title" placeholder="Step Title" class="input-xlarge" >
-                                        </textarea>
-                                    </div>
-                                    <lable class="control-label lesson-label" > Title   
-                                    </lable>  
-                                </div>
-                                <?php
-                                    printElement($i, false, null);
-                                    if ($show)
-                                    {
-                                    ?>
-                                        <div class="control-group"> 
-                                            <div class="controlsa">
-                                                <textarea type="text"  name="precedence" id="precedence" placeholder="precedence" class="input-xlarge"><?php                            
-                                                    echo $lessonPrecedence;
-                                                ?>
-                                                </textarea>
-                                            </div>
-                                            <lable class="control-label lesson-label" > Precedence : 
-                                            </lable>   
-                                        </div>
-                                    <?php
-                                    } //End of if show
-                                    ?>
-
-                            </fieldset>
-                        </form>
-
-                    </div> <!--  Close div leftLessonElem style="visibility:hidden;" -->
-                    <div class="rightLessonElem" > 
-                        <div class="control-group">
-                                <lable class="control-label lesson-label" > Explanation   
-                                </lable> 
-                            <div class="controlsa">
-                                <textarea rows="15" type="text"  name="explanation" id="explanation" class="dscText input-xxlarge "></textarea>
-                            </div>
-                        </div>
-                        <!--
-                        <iframe id="frame"  height="700" width="700" src="showLesson.php">
-                            <div id="previewLesson">
-                                <?php
-                                    echo "hello rubio";
-                                ?>
-                            </div>
-                        </iframe>   
-                        -->
-                    </div>  <!--  Close div RightLessonElem -->
-                    <!--
-                    <div class="rightLessonElem" > 
-                        <input type="button" id="btnSaveLesson"   class="btn lessonInputButton"          name="formSave" value="Save Lesson" /> </br></br>
-                        <input type="button" id="btnShowLesson"   class="btn lessonInputButton"          name="formSave" value="show Lesson" /> </br></br>
-                        <input type="button" id="btnDeleteLesson" class="btn lessonInputButton"          name="formDelete" value="Delete Lesson" /> </br></br>
-                        <input type="button" id="btnShowDoc"      class="btn  btn-link" name="showDoc" value="Show reserve words" /> </br></br>
-                    </div>  <!--  Close div RrightLessonElem -->
-                </div> 
-                <div class="actionButtonsLessons">
-                    <input type="button" id="btnSaveLesson"   class="btn lessonInputButton"          name="formSave" value="Save Lesson" />
-                    <input type="button" id="btnShowLesson"   class="btn lessonInputButton"          name="formSave" value="show Lesson" />
-                    <input type="button" id="btnDeleteLesson" class="btn lessonInputButton"          name="formDelete" value="Delete Lesson" />
-                    <input type="button" id="btnShowDoc"      class="btn  btn-link" name="showDoc" value="Show reserve words" />
-                </div>
+                    <?php
+                        printLeftLessonElemnt($i , $show);
+                        printRightLessonElemnt();
+                        
+                    ?>
+                </div>  <!-- End div step action -->
+                <?php
+                    printLessonButtons();
+                ?>
                 <iframe id="frame"  height="700" width="90%" src="showLesson.php">
                     <div id="previewLesson">
                         <?php
@@ -337,75 +329,13 @@ and open the template in the editor.
                             echo "</div>";
                          echo "</div>"; //Closing the lessonStep div
                     ?>
-                    <div class="actionButtonsLessons">
-                        <input type="button" id="btnSaveLesson"   class="btn lessonInputButton"          name="formSave" value="Save Lesson" />
-                        <input type="button" id="btnShowLesson"   class="btn lessonInputButton"          name="formSave" value="show Lesson" />
-                        <input type="button" id="btnDeleteLesson" class="btn lessonInputButton"          name="formDelete" value="Delete Lesson" />
-                        <input type="button" id="btnShowDoc"      class="btn  btn-link" name="showDoc" value="Show reserve words" />
-                    </div>
-                     <div class="leftLessonElem"> 
-                        <form class="form-horizontal">
-                            <fieldset>
-                                <div class="control-group">
-                                        <lable class="control-label lesson-label" > Title   
-                                        <?php
-                                        // $labelStepNumber = "<lable id='currentSteplable' class='currentSteplable' > 1 </lable> ";
-                                        // echo "Please enter the step number ". $labelStepNumber .  " title description";
-                                        ?>
-                                        </lable>    
-                                    <div class="controlsa">
-                                        <textarea type="text"  name="title" id="title" placeholder="Step Title" class="input-xlarge" >
-                                        </textarea>
-                                    </div>
-                                </div>
-                                <?php
-                                    printElement($i, false, null);
-                                    if ($show)
-                                    {
-                                    ?>
-                                        <div class="control-group">
-                                            <lable class="control-label lesson-label" > Precedence  
-                                            </lable>    
-                                            <div class="controlsa">
-                                                <textarea type="text"  name="precedence" id="precedence" placeholder="precedence" class="input-xlarge"><?php                            
-                                                    echo $lessonPrecedence;
-                                                ?>
-                                                </textarea>
-                                            </div>
-                                        </div>
-                                    <?php
-                                    } //End of if show
-                                    ?>
-
-                            </fieldset>
-                        </form>
-                    </div> <!--  Close div leftLessonElem  div class="rightLessonElem" style="visibility:hidden;">  -->
-                    <div class="rightLessonElem"> 
-                        <div class="control-group">
-                                <lable class="control-label lesson-label" > Explanation   
-                                </lable> 
-                            <div class="controlsa">
-                                <textarea rows="15" type="text"  name="explanation" id="explanation" class="dscText input-xxlarge"></textarea>
-                            </div>
-                        </div>
-                    <div class="actionButtonsLessons">
-                        <input type="button" id="btnSaveLesson"   class="btn lessonInputButton"          name="formSave" value="Save Lesson" />
-                        <input type="button" id="btnShowLesson"   class="btn lessonInputButton"          name="formSave" value="show Lesson" />
-                        <input type="button" id="btnDeleteLesson" class="btn lessonInputButton"          name="formDelete" value="Delete Lesson" />
-                        <input type="button" id="btnShowDoc"      class="btn  btn-link" name="showDoc" value="Show reserve words" />
-                    </div>
-                        <!--
-                        <iframe id="frame"  height="700" width="700" src="showLesson.php">
-                            <div id="previewLesson">
-                                <?php
-                                    echo "hello rubio";
-                                ?>
-                            </div>
-                        </iframe>   
-                        -->
-                    </div>  <!--  Close div RightLessonElem -->
+                    <?php
+                         printLeftLessonElemnt($i , $show);
+                         printRightLessonElemnt();
+                    ?>
                 </div>     
                 <?php
+                printLessonButtons();
             } //end of else (New Lesson) 
             ?>
         <div id="message" style="display: none;">
