@@ -24,6 +24,9 @@ and open the template in the editor.
         
         <link rel='stylesheet' href='./files/css/lessons.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='./files/bootstrap/css/bootstrap.css' type='text/css' media='all'/>
+         <!--<link rel='stylesheet' href='./files/bootstrap/css/bootstrap.min.css' type='text/css' media='all'/>--> 
+        <link rel='stylesheet' href='./files/bootstrap/css/bootstrap-responsive.min.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='./files/bootstrap/css/bootstrap-responsive.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='./alerts/jquery.alerts.css' type='text/css' media='all'/>   
     </head>
     <body>
@@ -54,7 +57,7 @@ and open the template in the editor.
         $locale             = "en_US";
         $languageGet        = "l";
         $localePrefix       = "locale_";
-        $lessonFinalTitle   = "";
+        $lessonFinalTitle   = "_";
         $lessonPrecedence   = 100;
         if (isset($_GET[$languageGet]))
             $locale = $_GET[$languageGet]; 
@@ -66,6 +69,8 @@ and open the template in the editor.
             $localSteps         = $lu->getStepsByLocale($localePrefix . $locale);
             $lessonFinalTitle   = $lu->getTitleByLocale($localePrefix . $locale);
             $lessonPrecedence   = $lu->getPrecedence();
+            if (strlen($lessonFinalTitle) <= 1)
+                $lessonFinalTitle   = "No Title";
             //echo $lessonPrecedence;
             //echo $lessonFinalTitle;
         }
@@ -83,11 +88,11 @@ and open the template in the editor.
                 $hint = "";
             }
             // <label class='control-label' > %%a: </lable>
-            $baseInputText = "<div class='control-group'> 
+            $baseInputText = "<div class='control-group lesson-label'> 
+                                <label class='lesson-label' > %%a </label>
                                 <div class='controlsa'>
                                      <textarea class='input-xlarge' type='text'  name='%%b' id='%%b' placeholder='Step %%a'>%%c</textarea> 
-                                </div> 
-                                <label class='control-label lesson-label' > %%a </label>
+                                </div>                              
                              </div>";
             $toReplace = array("%%a", "%%b", "%%c");
             $replaceWithAction = array("Action ", "action", $action);
@@ -99,20 +104,18 @@ and open the template in the editor.
             echo $elementAction;
             echo $elementSolution; 
             echo $elementHint;
-        }
+        } 
         function printLeftLessonElemnt($i,$show)
         {
                  echo "<div class='leftLessonElem'> 
                         <form class='form-horizontal'>
                             <fieldset>
-                                <div class='control-group'>
-  
+                                <div class='control-group lesson-label'> 
+                                    <label class='lesson-label ' > Title  </label> 
                                     <div class='controlsa'>
                                         <textarea type='text'  name='title' id='title' placeholder='Step Title' class='input-xlarge' >
                                         </textarea>
-                                    </div>
-                                    <lable class='control-label lesson-label' > Title   
-                                    </lable>  
+                                    </div>                                 
                                 </div>";
 
                                     printElement($i, false, null);
@@ -124,7 +127,7 @@ and open the template in the editor.
                                                    echo  $lessonPrecedence;
                                              echo"</textarea>
                                             </div>
-                                            <lable class='control-label lesson-label' > Precedence : 
+                                            <lable class='lesson-label' > Precedence : 
                                             </lable>   
                                         </div> ";
                                     } //End of if show
@@ -148,13 +151,73 @@ and open the template in the editor.
              }
              function printLessonButtons()
              {
-                 echo "  
-                 <div class='actionButtonsLessons'>
-                    <input type='button' id='btnSaveLesson'   class='btn lessonInputButton'          name='formSave' value='Save Lesson' />
-                    <input type='button' id='btnShowLesson'   class='btn lessonInputButton'          name='formSave' value='show Lesson' />
-                    <input type='button' id='btnDeleteLesson' class='btn lessonInputButton'          name='formDelete' value='Delete Lesson' />
-                    <input type='button' id='btnShowDoc'      class='btn  btn-link' name='showDoc' value='Show reserve words' />
-                </div>";
+                 //echo "  
+                
+               //  <div class='actionButtonsLessons'>
+                //    <input type='button' id='btnSaveLesson'   class='btn lessonInputButton'          name='formSave' value='Save Lesson' />
+                //    <input type='button' id='btnShowLesson'   class='btn lessonInputButton'          name='formSave' value='show Lesson' />
+                 //   <input type='button' id='btnDeleteLesson' class='btn lessonInputButton'          name='formDelete' value='Delete Lesson' />
+                //    <input type='button' id='btnShowDoc'      class='btn  btn-link' name='showDoc' value='Show reserve words' />
+                //</div>
+                 
+                 //";
+                 echo "   
+                    <div class='fill' style='margin-left:40px;width:400;float:left'>
+                       
+                            <button class='btn' id='btnSaveLesson'>Save Lesson</button>
+                            <button class='btn' id='btnShowLesson'>Show Lesson</button>
+                            <button class='btn' id='btnDeleteLesson'>Delete Lesson</button>
+                            <input type='button' id='btnShowDoc'      class='btn  btn-link' name='showDoc' value='Show reserve words' />
+                      
+                    </div>
+                
+";
+             }
+             function printLessonSteps()
+             {
+                       echo "<div id='lessonStep'>";
+                            echo "<div id='stepNev'>";
+                                echo "<h3 class='muted'>lesson Steps" ;
+                                if (isset($_GET['lesson']))    
+                                    echo " ↓(please choose step to edit)";
+                                echo "</h3>";
+                                echo "<ul id='lessonStepUl' class=' nav nav-pills'>";
+                                echo "</ul>";
+                        //Inserting the step div
+                                echo "<div class='actionButtonsStep'>";
+                                    echo "<button class='btn' id='addStep'>Add lesson step</button>";
+                                    echo "<button class='btn' id='removeStep'>Remove lesson step</button>";
+                                    //echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
+                                    //echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
+                                echo "</div>"; //End of actionButtons div
+                           echo "</div>"; //End of stepNev div
+                       echo "</div>"; //End of lessonStep div
+             }
+             function printLessonTitle($hasTitle,$lessonFinalTitle,$cursor)
+             {
+               echo "<div>
+                            <h3 class='muted'>Lesson Title </h3>
+                                <input type='text' name='lessonTitle'  id='lessonTitle' class='lessonInput' placeholder='Lesson Title'
+                                   value=\"";
+                                        if ($hasTitle)
+                                            echo $lessonFinalTitle;
+                                        else
+                                            echo "";
+                                        echo  "\"/>"; 
+                            if ($hasTitle)  
+                                echo "
+                            <script type='text/javascript'>
+                                $.Storage.set('lessonTitle' , '$lessonFinalTitle');
+                            </script>";
+                            echo "
+                            <input type='text' name='ObjId' style='display:none' id='lessonObjectId' class='lessonInput' value=\"" ;
+                                if (isset($cursor["_id"]))
+                                    echo $cursor["_id"];
+                                else {
+                                    echo "";
+                                }
+                                echo "\"/> 
+                    </div>";   
              }
         ?>
         
@@ -174,7 +237,7 @@ and open the template in the editor.
                     $.Storage.remove("collection-name");
                     var lessonStepValuesStorage = new Array(new Array());
                     $.Storage.set('lessonStepsValues',JSON.stringify(lessonStepValuesStorage, null, 2))
-                    $.Storage.set("active-step" , "1");
+                    $.Storage.set("active-step" , "lesson_step1");
                     $.Storage.set("lesson-total-number-of-steps" ,"0");
                     $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
                     $.Storage.set("locale" ,"<?php echo $locale ?>");
@@ -210,56 +273,15 @@ and open the template in the editor.
                     <?php
                 } //End of for each loop
                 ?>  
-                <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
-                    <div>
-                        
-                            <lable class="lessonHeader"> Lesson Title  </lable> 
-                            <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"
-                                   value="<?php echo $lessonFinalTitle ?>"
-                            />    
-                            </input>
-                            <script type='text/javascript'>
-                                $.Storage.set("lessonTitle" ,"<?php echo $lessonFinalTitle ?>");
-                            </script>
-                            <! Object ID: --!> 
-                            <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
-                                if (isset($cursor["_id"]))
-                                    echo $cursor["_id"]; else {
-                                    echo "";
-                                }
-                                ?>"/>
-                            
-                    </div>   
-                    </br>
+                <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">    
                     <?php
-                        echo "<div id='lessonStep'>";
-                            echo "<div id='stepNev'>";
-                                echo "<lable class='lessonHeader'>lesson Steps" ;
-                                if (isset($_GET['lesson']))    
-                                    echo " ↓(please choose step to edit)";
-                                echo "</lable>";
-                                echo "<ul id='lessonStepUl'>";
-                                echo "</ul>";
-                        //Inserting the step div
-                                echo "<div class='actionButtonsStep'>";
-                                    echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
-                                    echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
-                                echo "</div>"; //End of actionButtons div
-                                echo "<div id ='stepbar'>";
-                                    echo " <lable class='currentSteplableText'>Step </lable>" ;
-                                    ?>
-                                    <lable id='currentSteplable' class='currentSteplable'> 1 </lable> 
-                                    <!-- <lable> (In order to edit  another step please select from the bar above ↑) </lable> -->
-                                    <?php
-                                echo "</div>"; //End of stepbar div
-                           echo "</div>"; //End of stepNev div
-                       echo "</div>"; //End of lessonStep div
-                    ?>
-                    <?php
+                        printLessonTitle(true,$lessonFinalTitle,$cursor);
+                        printLessonSteps();
                         printLeftLessonElemnt($i , $show);
                         printRightLessonElemnt();
                         
                     ?>
+                </div> <!-- End of stepSection -->
                 </div>  <!-- End div step action -->
                 <?php
                     printLessonButtons();
@@ -281,55 +303,21 @@ and open the template in the editor.
                 </script>
             <?php
                 } //end of if lesson exist
-                else { //Starting case of creating a new lesson
+            else { //Starting case of creating a new lesson
             ?>
                 <script type='text/javascript'>
-                     var lessonTitle = $.('#lessonTitle').val();
+                     var lessonTitle = $('#lessonTitle').val();
                      $.Storage.remove("collection-name");
                      $.Storage.remove("lessonTitle");
+                     $.Storage.remove("active-step");
                      $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
                      $.Storage.set("lessonTitle" ,lessonTitle);
+                     $.Storage.set("active-step" , "lesson_step1");
                 </script>
-                <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">
-                    <div>                           
-                            <lable class="lessonHeader"> Lesson Title  </lable>
-
-                            <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
-                            <! Object ID: --!> 
-                            <input type="text" name="ObjId" style="display:none" id="lessonObjectId" class="lessonInput" value="<?php
-                                if (isset($cursor["_id"]))
-                                    echo $cursor["_id"]; else {
-                                    echo "";
-                                }
-                                ?>"/>                       
-                    </div>  
-                    </br>           
+                <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">                                
                     <?php
-                        echo "<div id='lessonStep'>";
-                            echo "<div id='stepNev'>";
-                                 echo "<lable class='lessonHeader'>lesson Steps" ;
-                                 if (!isset($_GET['lesson']))    
-                                     echo " ↓(here you can add or remove steps)";
-                                 echo "</lable>";
-                                 echo "<ul id='lessonStepUl'>";
-                                 echo "</ul>";
-                             echo "</div>";
-                        //Inserting the step div
-                            echo "<div id ='stepbar'>";
-                            echo " <lable class='currentSteplable'>Step </lable>" ;
-                   ?>
-                                <lable id='currentSteplableText' class='currentSteplable'> 1 </lable>          
-                                <lable> (In order to edit another step please select from the bar above ↑) </lable></br>
-                                <lable> In order to create a new step please press on the "Add lesson step" button </lable>
-                    <?php
-                            echo "</div>";                        
-                            echo "<div class='actionButtonsStep'>";
-                                echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
-                                echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
-                            echo "</div>";
-                         echo "</div>"; //Closing the lessonStep div
-                    ?>
-                    <?php
+                         printLessonTitle(false, $lessonFinalTitle,false);
+                         printLessonSteps();
                          printLeftLessonElemnt($i , $show);
                          printRightLessonElemnt();
                     ?>
@@ -337,7 +325,7 @@ and open the template in the editor.
                 <?php
                 printLessonButtons();
             } //end of else (New Lesson) 
-            ?>
+            ?> 
         <div id="message" style="display: none;">
             <div id="waiting" style="display: none;">
                 Please wait<br />

@@ -22,21 +22,7 @@ root {
     display: block;
     */
 }
-#lessonStep{
-   height: 140px;
-   width : 50%;
-   
-}
-#lessonStep #lessonStepLabel{
-   color :   #3D3624 ;
-   font-family: Arial, sans-serif;
-   font-size: 20px;
-}
-.lessonElement{
-    display: inline-block;
-    margin-left: 20px;
-}
-.lessonlables
+    .lessonlables
 {
    color :   blue ;
    /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
@@ -49,6 +35,21 @@ root {
    width : 500px;
    float : left;
 }
+#lessonStep{
+   height: 140px;
+   width : 100%;
+   
+}
+#lessonStep #lessonStepLabel{
+   color :   #3D3624 ;
+   font-family: Arial, sans-serif;
+   font-size: 20px;
+}
+.lessonElement{
+    display: inline-block;
+    margin-left: 20px;
+}
+
 .lessonLableDescription
 {
    color :   black ;
@@ -86,7 +87,7 @@ root {
     color: black;  
     display: block;
     clear: both;
-    height: 600px;
+    height: 700px;
 } 
 
 lable{
@@ -98,6 +99,7 @@ lable{
 }
 lable.lessonHeader {
    color :   black ;
+   width: 100%;
    /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
    font-size: 20px;
    font-weight: bold;
@@ -182,10 +184,10 @@ textarea {
     text-align: left;
     display: inline;
     position: relative;
-    width :30%;
+    width :40%;
 }
 .rightLessonElem{
-    width :35%;
+    width :45%;
     /* margin-left: 600px;  */
     /* display: inline; */
     float : left;
@@ -225,13 +227,23 @@ textarea {
 }
 .lesson-label
 {
+   /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    font-size: 16px;
+    cursor: default;
+    padding-top: 10px ;
+    border: 0;
+    width : 500px;
+    float : left;
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
     font-style: italic;
     color: #AAA;
-} 
+    text-align: left;
+    padding-top: 5px;
+}  
 .existing_step{
+    /*
     list-style: none;
     display: inline-block;
     background-image: none;
@@ -242,6 +254,7 @@ textarea {
     background-position : 5px 50%;
     width : 30px;
     border:1px solid black;
+    */
 }
 #stepbar{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -254,4 +267,7 @@ textarea {
     font-size: 18px;
     font-weight: bold;
     margin-top: 20px;
+}
+.translationdiv{
+    width : 50%;
 }

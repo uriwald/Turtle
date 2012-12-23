@@ -151,7 +151,7 @@
                         {
                             $.Storage.set("active-step-num" , val.toString());
                         }
-                        createStepNavVar(); 
+                        createStepNavVar(false,true); 
                         populateInputsWithCurrentStep('lessonStepsValues');
                         populateInputsWithCurrentStep('lessonStepsValuesTranslate');
                         //Saving new data
@@ -246,7 +246,7 @@
                     $.Storage.remove("lessonStepsValues");
                     $.Storage.remove("lesson-total-number-of-steps");
                     $.Storage.remove("active-step-num");
-                    $.Storage.remove("active-step");
+                    //$.Storage.remove("active-step");
                     $.Storage.remove("ObjId");
                     $.Storage.remove("lessonTitle");
                     $.Storage.remove("locale");
@@ -338,13 +338,16 @@
             }
             
             //Adding new full step the the steps array
-            //Replace flag will be set to true while replacing
-            var addStepVar = function addStep(stepPosition , stepArray , replace , allStepsArray)
+            //isReplace flag will be set to true while replacing
+            //currentStep is the correct step before we press on add step
+            //preActiveStep The step that was active before the change
+            var addStepVar = function addStep(stepPosition , stepArray , isReplace , allStepsArray , currentstep , preActiveStep)
             {
                 window.initializeSteps('lessonStepsValues');
                 window.initializeSteps('lessonStepsValuesTranslate');
-                var allSteps = JSON.parse($.Storage.get(allStepsArray));
-                if (replace === true )
+                var allSteps            =   JSON.parse($.Storage.get(allStepsArray));
+                allSteps[preActiveStep]  = currentstep;    
+                if (isReplace === true )
                 {
                     allSteps.splice (stepPosition , 1 , stepArray);      
                 }
@@ -431,8 +434,11 @@
             /**
              * Creating the step navigator
              * each step containing the title , hint , solution explanation and etc 
+             * Diffrent case between loading existin step , and adding a step to a lesson
+             * should be seen in active step perpective
+             * isAddStep - if the step was added now or not
              */
-            var createStepNavVar = function createStepNav()
+            var createStepNavVar = function createStepNav(isStepAdd , isStepRemove)
             {
                 var lessonStepValuesStorage = new Array(new Array());
                 if ($.Storage.get("lesson-total-number-of-steps"))
@@ -441,17 +447,48 @@
                     $('.existing_step').remove();
                     var numOfLessonSteps = $.Storage.get("lesson-total-number-of-steps");
                     var liElements = "";
+                    var active ="";
+                    var stepId = "lesson_step";
+                    
                     for (i=1;i<=numOfLessonSteps;i++)
                     {
-                        var id = 'lesson_step' + i ;
-                        liElements += '<li class="existing_step" id='+ id + ">" + i + "</li>";
+                       if (i == 1 )
+                           {
+                           if (!isStepAdd && !isStepRemove ) 
+                                active = "active";
+                           }
+                       else
+                           {
+                               if(!isStepRemove)
+                                   {
+                                        if (isStepAdd && i == numOfLessonSteps)  
+                                            active = "active";
+                                        else
+                                            active = "";  
+                                   }
+                               else
+                                   {
+                                       var val = parseInt($.Storage.get('stepToRemove'))-1;
+                                       if (i == val)
+                                           active = "active";                            
+                                   }
+                           }
+                           
+                       var id = stepId + i ;
+                       // liElements += '<li class="existing_step" id='+ id + "> <a href=# >" + i + "</a></li>";
+                       liElements += "<li class='existing_step " + active + "" + "'id=\"" +id + "\">" + " <a href='#'> " + i + " </a></li>";
+                       active = "";
                     }
+                    if (isStepAdd)
+                        {
+                            $.Storage.set('active-step' , stepId + numOfLessonSteps);
+                        }
                     $("#lessonStepUl" ).append(liElements);
                       
                 }
                 else
                 {
-                    $("#lessonStepUl" ).append('<li class="existing_step"> 1 </li>');  
+                    $("#lessonStepUl" ).append('<li class="existing_step active" id="lesson_step1"> <a href="#"> 1 </a></li>');  
                     $.Storage.set('lesson-total-number-of-steps' , '1');
                     $.Storage.set('lessonStepsValues',JSON.stringify(lessonStepValuesStorage, null, 2))
                     $.Storage.set('lessonStepsValuesTranslate',JSON.stringify(lessonStepValuesStorage, null, 2))
@@ -476,7 +513,7 @@
                 var transLang = $.getUrlVar('ltranslate');
                 loadExistingLessonSteps(lessonid ,originLang , transLang );
                 loadCKEditor();
-                createStepNavVar();
+                createStepNavVar(false,false);
                 showFirstStepIfExist('lessonStepsValues');
                 showFirstStepIfExist('lessonStepsValuesTranslate');
                 
@@ -501,12 +538,14 @@
                      $.Storage.set('precedence' , '80');
                 }
                 $('#addStep').click(function () {
-                    var val = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
+                    var val             = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
+                    var currentStep     =  getStepValues(false); 
+                    var preActiveStep   = $.Storage.get('active-step-num');
                     $.Storage.set("lesson-total-number-of-steps" , val.toString());
                     $.Storage.set('active-step-num' , val.toString());  
-                    addStepVar(val , new Array() , false , "lessonStepsValues");
+                    addStepVar(val , new Array() , false , "lessonStepsValues",currentStep,preActiveStep);
                     clearStep();
-                    createStepNavVar();
+                    createStepNavVar(true,false);
                 });
                 $('#removeStep').click(function () {
                     if (parseInt($.Storage.get("lesson-total-number-of-steps")) > 1)
@@ -554,11 +593,12 @@
                         allSteps = new Array();     
                     }
                     
+                    // Making some action on the privous press element
                     if ($.Storage.get("active-step"))
                     {
-                        //$.Storage.set($.Storage.get("active-step"), JSON.stringify(fullStep, null, 2));     
                         var name = '#' + $.Storage.get("active-step");
                         $(name).css('background-color' , 'white')
+                        $(name).removeClass('existing_step active').addClass('existing_step');
                     }
 
                     if ($.Storage.get('active-step-num'))
@@ -572,6 +612,7 @@
                         
                     var pressed = $(this).attr('id');
                     $(this).css('background-color' , '#AAA');
+                    $(this).removeClass('existing_step').addClass('existing_step active');
                     $.Storage.set('active-step' , pressed);
                     $.Storage.set('active-step-num' , pressed.substring(11));
                     $('.currentSteplable').text($.Storage.get('active-step-num')) ;
