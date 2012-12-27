@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TurtleAcademy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-15 16:19+0700\n"
-"PO-Revision-Date: 2012-12-15 16:44+0700\n"
+"POT-Creation-Date: 2012-12-27 16:54+0700\n"
+"PO-Revision-Date: 2012-12-27 16:56+0700\n"
 "Last-Translator: \n"
 "Language-Team: Wald\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "על הפרוייקט"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:29
 msgid "The project contains a client side learning environment and a compiler for the <a target='_bjlank' href='http://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%92%D7%95_(%D7%A9%D7%A4%D7%AA_%D7%AA%D7%9B%D7%A0%D7%95%D7%AA)'>Logo</a> Programming language."
-msgstr " הפרוייקט מכיל סביבת לימוד בצד לקוח ומהדר לשפת התכנות <a target=\"_blank\" href=\"http://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%92%D7%95_(%D7%A9%D7%A4%D7%AA_%D7%AA%D7%9B%D7%A0%D7%95%D7%AA)\">לוגו</a>"
+msgstr "הפרוייקט מכיל סביבת לימוד בצד לקוח ומהדר לשפת התכנות לוגו"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:30
 msgid "The project enables to learn the Logo language and programming principles and can be used for programming logo"
@@ -126,7 +126,8 @@ msgid "Credits"
 msgstr "קרדיטים"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:87
-msgid "A lot of written directories facilitate the creation of the website"
+#, fuzzy
+msgid "A lot of written libraries facilitate the creation of the website"
 msgstr "הרבה ספריות נכתבו המקילות על יצירת הפרוייקט"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:88
@@ -456,7 +457,7 @@ msgstr "הקודם"
 msgid "project doc"
 msgstr "תיעוד הפרוייקט"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:33
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:36
 msgid "Turtle Academy - Create a lesson"
 msgstr "אקדמיית הצב - צור שיעור"
 

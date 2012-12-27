@@ -84,7 +84,7 @@
                 ?>
             </h3>
             <?php
-                echo _("A lot of written directories facilitate the creation of the website"); echo "</br>";
+                echo _("A lot of written libraries facilitate the creation of the website"); echo "</br>";
                 echo _("<a target='_blank' href='http://www.calormen.com/Logo/'> Joshua Bell - wrote the logo component </a>"); echo "</br>";
                 echo _("<a target='_blank' href='https://github.com/replit/jq-console'> jsconsole- wrote the input element ( Console ) </a>"); echo "</br>";
                 echo _("<a target='_blank' href='http://jquery.com'> jquery - component which enabled easy java scripting </a>"); echo "</br>";
@@ -93,7 +93,7 @@
             ?>    
             <div id="logo6"></div>
             
-             <h3>
+             <h3> 
                  <?php
                     echo _("Contact us");
                 ?>
