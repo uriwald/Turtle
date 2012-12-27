@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: /var/www/localhost/htdocs/test2/files/symf1/app/config/routing_dev.yml
