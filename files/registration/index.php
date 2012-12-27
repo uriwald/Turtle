@@ -114,9 +114,7 @@ include 'inc/elements/header.php'; ?>
 <?php echo show_errors($action); ?>
 
 <form method="post" action="">
-
-    <fieldset>
-    
+    <fieldset>    
     	<ul>
     		<li>
     			<label for="username">Username:</label>
@@ -133,9 +131,7 @@ include 'inc/elements/header.php'; ?>
     		<li>
     			<input type="submit" value="Signup Now" class="large blue button" name="signup" />			
     		</li>
-    	</ul>
-    	
-    </fieldset>
-    
+    	</ul>   	
+    </fieldset>  
 </form>			
 
