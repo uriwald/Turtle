@@ -5,10 +5,14 @@
     require_once("files/cssUtils.php");
     $show = false ;
     session_start();
-    $permissionNum            =   $_SESSION['permision'] ;
+    $permissionNum            = 1;
+    if (isset ($_SESSION['permision']))
+        $permissionNum            =   $_SESSION['permision'] ;
     $permForEditLesson        = array(1,100);
     $permTraChinese           = array(1,2);
     $permTraSpanish           = array(1,2);
+    $permTraGerman            = array(1,103);
+    $permTraRussain           = array(1,107);
     $permAprvLesson           = array(1);
     //echo "PermissionNumberIs".$permissionNum;
 
@@ -24,7 +28,8 @@
     {
             echo "Hello ";
             echo $_SESSION['user'];
-            if ($_SESSION['user'] == "translator" || $_SESSION['user'] == "admin" || $_SESSION['user'] == "eneditor")
+            if ($_SESSION['user'] == "translator" || $_SESSION['user'] == "admin" || $_SESSION['user'] == "eneditor" ||
+                    $_SESSION['user'] == "gereditor" || $_SESSION['user'] == "rueditor")
                 $show = true ;
     }
 
@@ -74,6 +79,8 @@
             $editLessonHref    = "<a href='lesson.php?lesson=$objID&lfrom=$locale' > <span class='lessonh'> Edit Lesson <b>" . $title . " </b></span> </a>";
             $translateLessonToChinese   = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=zh_CN' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to chinenese </span> </a>";
             $translateLessonToSpanish   = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=es_AR' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to Spanish </span> </a>";
+            $translateLessonToGerman    = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=de_DE' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to German </span> </a>";
+            $translateLessonToRussain   = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=ru_RU' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to Russain </span> </a>";
             $approveLesson ;
             if ($pendingStatus)
             {
@@ -94,6 +101,12 @@
                     echo $translateLessonToChinese;
             if (in_array($permissionNum , $permTraSpanish)) 
                     echo $translateLessonToSpanish;
+            if (in_array($permissionNum , $permTraGerman)) 
+                    echo $translateLessonToGerman;
+            if (in_array($permissionNum , $permTraRussain)) 
+                    echo $translateLessonToRussain;
+            
+            
             if (in_array($permissionNum , $permAprvLesson)) 
                     echo $approveLesson;
              echo   "</div>";   
