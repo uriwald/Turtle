@@ -1,6 +1,8 @@
-
- <link rel='stylesheet' href='./files/bootstrap/css/bootstrap.css' type='text/css' media='all'/>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel='stylesheet' href='./files/bootstrap/css/bootstrap.css' type='text/css' media='all'/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
         <!-- <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
         <script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
@@ -9,6 +11,21 @@
         <script  type="text/javascript" src="alerts/jquery.alerts.js"></script>
         <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
         <script type="application/javascript" src="files/js/lesson.js"></script> <!-- lessonFunctions -->   
+        <script type="application/javascript"> <!-- Google Analytics Tracking -->
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-26588530-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </head>
+</html>
+
 <?php
     require_once("environment.php");
     require_once("files/footer.php");
@@ -87,12 +104,14 @@
 
         echo "<div> <span class='title'> Edit one of the following lessons </div>";
         foreach ($cursor as $lessonStructure) {
-            $title                          =            $lessonStructure[$lessonTitle][$finalLocale] ;
-            $objID                          =            $lessonStructure['_id'];
-            $pendingStatus                  =            $lessonStructure['pending'];
             foreach($lessonStructure['steps'][1] as $key => $val) {
                 $locale =   substr($key, -5);
             }
+            $finalLocale =  $localePrefix . $locale   ;
+            $title                          =            $lessonStructure[$lessonTitle][$finalLocale] ;
+            $objID                          =            $lessonStructure['_id'];
+            $pendingStatus                  =            $lessonStructure['pending'];
+
 
            // print_r( $lessonStructure['steps'][1]);
             //$translateToLanguage            
