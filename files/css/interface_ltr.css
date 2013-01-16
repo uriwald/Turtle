@@ -20,10 +20,9 @@
     left:50%; 
     margin-left:-6px;
 }
-
 #header {
    /* direction: rtl; */
-    margin:auto;
+    margin-top: 90px;
     overflow: hidden;
     width: 970px;
    

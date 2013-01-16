@@ -113,7 +113,12 @@ class collectionUtil {
                 $colTo->insert($criteria1);
         }
         if (isset($criteria1) && isset($criteria2))
-             $colTo->update($criteria2,$criteria1);
+        {
+            echo " Updating" ;
+            print_r($criteria1);
+            $colTo->update($criteria2,$criteria1);
+            
+        }
     }
     public static function copyLocaleLessonBetweenCollections($mongoid ,$dbName,$colFromName , $colToName , $locale , $stepnum) {
         $mo = new Mongo();
@@ -125,25 +130,12 @@ class collectionUtil {
         $steps              = "steps";
         $colTo              = $dbb->$colToName;
         $criteria1          = $colFrom->findOne(array("_id" => $mongoid));
-        //$criteria1Copy      = $criteria1 ;
-        //print_r($criteria1);
         print_r ($criteria1[$steps][$stepnum][$locale]);
         $criteria2          = $colTo->findOne(array("_id" => $mongoid));
         $criteria2Copy      = $criteria2;
         $criteria2Copy[$steps][$stepnum][$locale] = $criteria1[$steps][$stepnum][$locale];
         if (isset ($criteria2[$steps][$stepnum][$locale]))
              print_r ($criteria2[$steps][$stepnum][$locale]);
-        //print_r($criteria2);
-        /*
-        if (!isset($criteria2))
-            
-        {
-            if (isset($criteria1))
-                //$colTo->insert($criteria1);
-        }
-       // if (isset($criteria1) && isset($criteria2))
-             //$colTo->update($criteria2,$criteria1);
-         */
         $colTo->update($criteria2,$criteria2Copy);
     }
     

@@ -157,8 +157,13 @@ function LogoInterpreter(turtle, stream)
       throw new Error(__("Unexpected value: unknown type"));
     }
   }
+    // Russain \u0400-\u04FF
+    // Chinese \u4E00-\u9FA5
+    // German  \u0001-\u01FF
+    //    var regexIdentifier = /^(\.?[A-Za-zא-ת\u4E00-\u9FA5\u0400-\u04FF][A-Za-zא-ת\u4E00-\u9FA5\u0400-\u04FF0-9_.\?]*)(.*?)$/;
 
-    var regexIdentifier = /^(\.?[A-Za-zא-ת\u4E00-\u9FA5][A-Za-zא-ת\u4E00-\u9FA50-9_.\?]*)(.*?)$/;
+
+    var regexIdentifier = /^(\.?[A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF][A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF0-9_.\?]*)(.*?)$/;
     var regexStringLiteral = /^("[^ \[\]\(\)]*)(.*?)$/;
     var regexVariableLiteral = /^(:[A-Za-zא-ת][A-Za-zא-ת0-9]*)(.*?)$/;
     var regexNumberLiteral = /^([0-9]*\.?[0-9]+(?:[eE]\s*[\-+]?\s*[0-9]+)?)(.*?)$/;
@@ -170,7 +175,7 @@ function LogoInterpreter(turtle, stream)
     // Expose parse for external use
     //
     
-    self.parse = function(string) {
+    self.parse = function(string) { 
         return parse(string);
     } 
   //

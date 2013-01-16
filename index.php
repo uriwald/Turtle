@@ -3,6 +3,11 @@
 <?php
     if(session_id() == '') 
         session_start();
+    if ( !isset ($locale))
+    {
+            $locale = "en_US";
+    }
+                   
     require_once("localization.php");
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
@@ -37,33 +42,12 @@
         <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
         <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
         <script type="application/javascript" src="files/jquery.tmpl.js"></script> <!-- jquerytmpl -->
-
         <?php
-           // if (!isset($_GET["locale"]))
-                    if ( !isset ($locale))
-               ///          $locale = $_SESSION['locale'];
-               ///     else
-                    {
-                        //echo $locale;
-                         $locale = "en_US";
-                    }
-                    /*
-            else {
-                $str = explode(".",$locale);
-                $locale = $str[0];
-            }
-                     * 
-                     */
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$locale."/LC_MESSAGES/messages.po'"." />";
-            
-            
+            $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
             if ( file_exists($file_path))
-                echo $po_file;
-             
-        ?>
-        
-        
+                echo $po_file;            
+        ?>       
         <script type="text/javascript">
                 var locale = "<?php echo $locale; ?>";
         </script>
@@ -75,6 +59,7 @@
         <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
         <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='./files/css/footer.css' type='text/css' media='all'/> 
         <?php
              cssUtils::loadcss($locale, "./files/css/interface");       
         ?>    
@@ -98,7 +83,7 @@
         <header id="title">
             <h1><img src="files/turtles.png" alt="צב במשקפיים">
             <?php
-                 echo _("Turtle Academy");
+                 echo _('Turtle Academy');
             //        אקדמיית הצב                    
              ?> 
                     <a href=he.php><img src='Images/flags/Israel.png'  title='עברית' class='flagIcon' /></a>
@@ -201,5 +186,4 @@
         </footer>
         -->
         <?php echo $footer ?>
-
     </body></html>

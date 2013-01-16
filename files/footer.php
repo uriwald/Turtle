@@ -1,10 +1,11 @@
- <link rel='stylesheet' href='./files/css/footer.css' type='text/css' media='all'/>
 <?php
         $currentFile = $_SERVER["PHP_SELF"];
         $parts = Explode('/', $currentFile);
         $currentPage = $parts[count($parts) - 1];
         $doc = _('project doc');
         $newLesson  = _('Create new Lesson');
+        if (!isset ($locale))
+            $locale = "en_US";
         $footer =
         "
         <footer id='footer'>

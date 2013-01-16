@@ -30,7 +30,7 @@
 }
 #header {
     direction: rtl;
-    margin:auto;
+    margin-top:10px;
     overflow: hidden;
     width: 970px;
 }

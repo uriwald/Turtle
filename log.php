@@ -1,10 +1,11 @@
 <?php
 	//include("sql.php"); //Connect to SQL
+        require_once 'files/utils/userUtil.php';
 
-	session_start(); //Start session for writing
-        session_unset();
+	if(!isset($_SESSION)){session_start();}
+        //session_unset();
         require_once("environment.php");
-
+        
         $validateUser = false ;
 	$errmsg = array(); //Array to store errors
 	
@@ -19,72 +20,94 @@
 	if($username == '') {
 		$errmsg[] = 'Username missing'; //Error
 		$errflag = true; //Set flag so it says theres an error
+                		//header("location: loginnuser.php"); //Rediect
+		exit(); //Block scripts
 	}
 
 	//Check Password
 	if($password == '') {
 		$errmsg[] = 'Password missing'; //Error
 		$errflag = true; //Set flag so it says theres an error
-	}
-
-	//If there are input validations, redirect back to the registration form
-	if($errflag) {
-		$_SESSION['ERRMSG'] = $errmsg; //Write errors
-		session_write_close(); //Close session
-		header("location: login.php"); //Rediect
+                		header("location: loginnpass.php"); //Rediect
 		exit(); //Block scripts
 	}
-
 
         //Check whether the query was successful or not
         if ( $username == "burbur" && $password = "563")
         {
             $_SESSION['Admin'] = true ;
             header("location: lessons.php");
-            $_SESSION['user'] = "admin";
+            $_SESSION['username'] = "admin";
             $_SESSION['permision'] = 1;
             $validateUser = true;
         }
-        if ( $username == "guest" && $password = "guest")
+        else if ( $username == "guest" && $password = "guest")
         {
             $_SESSION['Guest'] = true ;
             header("location: lesson.php");
-            $_SESSION['user'] = "guest";
+            $_SESSION['username'] = "guest";
             $_SESSION['permision'] = 2;
             $validateUser = true;
         }
-        if ( $username == "translator" && $password = "translator")
+        else if ( $username == "translator" && $password = "translator")
         {
             $_SESSION['translator'] = true ;
             header("location: lessons.php");
-            $_SESSION['user'] = "translator";
+            $_SESSION['username'] = "translator";
             $_SESSION['permision'] = 2;
             $validateUser = true;
         }
         
-        if ( $username == "eneditor" && $password = "eneditor")
+        else if ( $username == "eneditor" && $password = "eneditor")
         {
             $_SESSION['translator'] = true ;
             header("location: lessons.php");
-            $_SESSION['user'] = "eneditor";
+            $_SESSION['username'] = "eneditor";
             $_SESSION['permision'] = 100;
             $validateUser = true;
         }
-        if ( $username == "gereditor" && $password = "gereditor")
+        else if ( $username == "gereditor" && $password = "gereditor")
         {
             $_SESSION['translator'] = true ;
             header("location: lessons.php");
-            $_SESSION['user'] = "gereditor";
+            $_SESSION['username'] = "gereditor";
             $_SESSION['permision'] = 103;
             $validateUser = true;
         }
-        if ( $username == "rueditor" && $password = "rueditor")
+        else if ( $username == "rueditor" && $password = "rueditor")
         {
             $_SESSION['translator'] = true ;
             header("location: lessons.php");
-            $_SESSION['user'] = "gereditor";
+            $_SESSION['username'] = "gereditor";
             $_SESSION['permision'] = 107;
             $validateUser = true;
+        }
+        //If we got the user name and password check if user available
+        else if (!$errflag)
+        {
+            echo "sdds";
+            $userExist  =   userUtil::varifyUser($username, $password);
+            if (!$userExist)
+            {
+               $errmsg[] = 'User not exist';
+               $errflag = true;        
+            }
+            //If there are input validations, redirect back to the registration form
+            if($errflag) {
+                    $_SESSION['ERRMSG'] = $errmsg; //Write errors
+                    //session_write_close(); //Close session
+                    header("location: loginrn.php"); //Rediect
+                    exit(); //Block scripts
+            } 
+            else {
+                $_SESSION['username'] = $username;
+                header("location: index2.php"); 
+            }
+        }
+        //Case registered user go to user page
+        else {
+           $_SESSION['username'] = $username;
+           header("location: users.php"); 
         }
         if ($validateUser)
         {

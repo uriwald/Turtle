@@ -1,7 +1,11 @@
 <?php
 
-function format_email($info, $format){
-
+function format_email($info, $format , $sitePath){
+        if (!isset($sitePath))
+        {
+            echo " noSITEPATH";
+            $sitePath = 'http://turtleacademy.com';
+        }
 	//set the root
 	$root = $_SERVER['DOCUMENT_ROOT'].'/files/registration';
         //echo "the info element is " ;
@@ -19,7 +23,7 @@ function format_email($info, $format){
         $template = str_replace('{USERNAME}', $info['username'], $template);
         $template = str_replace('{EMAIL}', $info['email'], $template);
 	$template = str_replace('{KEY}', $info['key'], $template);
-	$template = str_replace('{SITEPATH}','http://turtleacademy.com', $template);
+	$template = str_replace('{SITEPATH}',$sitePath, $template);
 	//return the html of the template
         //echo "now template before return is " , $template ;
 	return $template;
@@ -27,12 +31,12 @@ function format_email($info, $format){
 }
 
 //send the welcome letter
-function send_email($info){
+function send_email($info , $sitePath){
 		
 	//format each email
     
-	$body = format_email($info,'html');
-	$body_plain_txt = format_email($info,'txt');
+	$body = format_email($info,'html' , $sitePath);
+	$body_plain_txt = format_email($info,'txt' , $sitePath);
         //echo " email array format begining";
         //print_r($body);
         //echo "body plain text = " . $body_plain_txt;

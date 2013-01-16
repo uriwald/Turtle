@@ -60,7 +60,7 @@ routines.translated = {
     'readword' : '',
     'ct' : '',
     'cleartext' : '',
-    'sum' : '',
+    'sum' : 'סכוםצ',
     'difference' : '',
     'minus' : '',
     'product' : '',

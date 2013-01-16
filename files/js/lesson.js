@@ -691,5 +691,6 @@
                     })
                     
                 });
+
                 $('#btnDel').attr('disabled','disabled');
             });

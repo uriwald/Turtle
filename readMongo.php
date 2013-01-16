@@ -48,7 +48,7 @@ foreach ($cursor as $lessonStructure) {
     foreach ($lessonSteps as $key => $value) {
         "enterLessonSteps";
         //echo "Key = " . $key ;
-        // If we have local for the current step we will set him
+        // If we have locale for the current step we will set him
         if (isset($lessonSteps[$key]['locale_' . $_GET[$localPosted]])) {
             $lessonSteps[$key] = $lessonSteps[$key]['locale_' . $_GET[$localPosted]];
         }

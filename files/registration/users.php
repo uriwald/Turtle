@@ -76,10 +76,8 @@
           <form class="pull-left" action="">
             <input type="text" placeholder="Search">
               <button class="btn" type="submit">Go</button>
-          </form>
-          
-          <p class="pull-right">Logged in as <a href="#">
-                  
+          </form>        
+          <p class="pull-right">Logged in as <a href="#">              
                  <?php
                     echo $username;
                  ?>

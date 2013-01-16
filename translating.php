@@ -25,7 +25,9 @@ and open the template in the editor.
         <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
         <link rel='stylesheet' href='./files/css/lessons.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='./alerts/jquery.alerts.css' type='text/css' media='all'/>
-        
+        <link rel='stylesheet' href='./files/bootstrap/css/bootstrap.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='./files/bootstrap/css/bootstrap-responsive.min.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='./files/bootstrap/css/bootstrap-responsive.css' type='text/css' media='all'/>       
         <script type="application/javascript" src="files/Gettext.js"></script>
         
         <?php
@@ -122,8 +124,8 @@ and open the template in the editor.
                     $rtl = "textAreaRtl";
                     $rtlLabel = "lessonlabelsRtl";
                 } 
-            }   
-            $baseInputText = "<div> <label class='lessonlables $rtlLabel'> %%a </label> <textarea class='lessonInfoElement $rtl'  $disabled type='text'  name='%%b' id='%%b' placeholder='$step %%a'>%%c</textarea> </div>";
+            }  
+            $baseInputText = "<div> <label class='lesson-label $rtlLabel translating-label'> %%a </label> <textarea class='lessonInfoElement $rtl input-xlarge'  $disabled type='text'  name='%%b' id='%%b' placeholder='$step %%a'>%%c</textarea> </div>";
 
             $toReplace = array("%%a", "%%b", "%%c");
             if (!$istranslate) {
@@ -141,7 +143,22 @@ and open the template in the editor.
             echo $elementAction;
             echo $elementSolution;
             echo $elementHint;
-        }
+        } // end of print elements
+        function printLessonSteps()
+             {
+                       echo "<div id='lessonStep'>";
+                            echo "<div id='stepNev'>";
+                                echo "-- ";
+                                echo "<h3 class='muted'>Lesson Steps" ;
+                                if (isset($_GET['lesson']))    
+                                    echo " ↓(please choose step to edit)";
+                                echo "</h3>";
+                                echo "<ul id='lessonStepUl' class=' nav nav-pills'>";
+                                echo "</ul>";
+                        //Inserting the step div
+                           echo "</div>"; //End of stepNev div
+                       echo "</div>"; //End of lessonStep div
+             }
         ?>
         <?php
         $i = 1; //Set default value to 1 in case there are no steps
@@ -268,7 +285,7 @@ and open the template in the editor.
                     ?>
                 <div>
 
-                    <div class="leftLessonElem">
+                    <div class="leftLessonElem translationdiv">
                         <lable class="lessonHeader"> Lesson Title : </lable> 
                         <input type="text" name="lessonTitle"  id="lessonTitle" class="lessonInput" placeholder="Lesson Title"/>
                         <! Object ID: --!> 
@@ -277,7 +294,7 @@ and open the template in the editor.
                             echo $cursor["_id"]; else {
                             echo "";
                         }
-    ?>"/>
+                        ?>"/>
                     </div>  
                     <div class="rightLessonElem rightLessonTitleElem">
                         <lable class="lessonHeader"> Lesson Title : </lable> 
@@ -288,6 +305,8 @@ and open the template in the editor.
                 </div>   
                 </br>
     <?php
+    printLessonSteps();
+    /*
     echo "<div id='lessonStep'>";
     // echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
     echo "<div id='stepNev'>";
@@ -297,34 +316,35 @@ and open the template in the editor.
     //Inserting the step div
 
     echo "</div>";
-    echo "</div>";
+    echo "</div>"
+     */
     ?>
-                <div class="leftLessonElem"> 
-                    <lable class='lessonlables' > Title :  </lable> 
-                    <textarea type="text" disabled='disabled'  name="title" id="title" placeholder="Step Title" class="lessonInfoElement" >
+                <div class="leftLessonElem translationdiv"> 
+                    <lable class='lesson-label translating-label' > Title :  </lable> 
+                    <textarea type="text" disabled='disabled'  name="title" id="title" placeholder="Step Title" class="lessonInfoElement input-xlarge input-xlarge" >
                     </textarea>
                 <?php
                 printElement($i, false, null, false);
                 ?>
-                    <lable class='lessonlables' > Explanation </lable> 
+                    <lable class='lesson-label translating-label' > Explanation </lable> 
                     </br>
                     <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                 </div>
 
-                <div class="rightLessonElem"> 
-                    <lable class='lessonlables <?php echo $rtlLabel ?>' > 
+                <div class="rightLessonElem translationdiv"> 
+                    <lable class='lesson-label <?php echo $rtlLabel ?> translating-label' > 
                         <?php 
                              // echo ($localetr == 'he_IL') ?  "&larr;" :  "&rarr;";     
                             echo _("Title");        
                         ?> 
                     
                     </lable> 
-                    <textarea type="text"  name="title1" id="title1" placeholder="Step Title" class="lessonInfoElement <?php echo $rtl ?>" >
+                    <textarea type="text"  name="title1" id="title1" placeholder="Step Title" class="lessonInfoElement <?php echo $rtl ?> input-xlarge" >
                     </textarea>
                     <?php
                     printElement($i, false, null, true);
                     ?> 
-                    <lable class='lessonlables <?php echo $rtlLabel ?>' >                         
+                    <lable class='lesson-label <?php echo $rtlLabel ?> translating-label' >                         
                         <?php     
                              echo _("Explanation");        
                         ?> 
@@ -371,6 +391,8 @@ else {
                 </br>
 
     <?php
+    printLessonSteps();
+    /*
     echo "<div id='lessonStep'>";
     //    echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
     echo "<div id='stepNev'>";
@@ -381,17 +403,18 @@ else {
     //Inserting the step div
     echo "</div>";
     echo "</div>";
+     */
     ?>
-                <div class="leftLessonElem"> 
-                    <lable class='lessonlables' > Title :  </lable> 
-                    <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement">
+                <div class="leftLessonElem translationdiv"> 
+                    <lable class='lesson-label translating-label' > Title :  </lable> 
+                    <textarea type="text"  name="title" id="title" placeholder="Step Title" class="lessonInfoElement input-xlarge">
                     </textarea>
                 <?php
                 printElement($i, false, null, true);
                 ?>
                 </div> 
-                <div class="rightLessonElem">
-                    <lable class='lessonlables' > Explanation : </lable>
+                <div class="rightLessonElem translationdiv">
+                    <lable class='lesson-label translating-label' > Explanation : </lable>
                     </br>
                     <textarea type="text"  name="explanation" id="explanation" class="expTxtErea"></textarea>
                 </div>     

@@ -55,7 +55,9 @@ require_once("files/utils/languageUtil.php");
                         "hint" => $stepsArray[3], "explanation" => $stepsArray[4]);
                     $lessonSteps[$i] = $translatArray;
                 }
-                $lessonjs["title"] = $_POST['title'];
+                $lessonjs["title"] = "";
+                if (isset ($_POST['title']))
+                     $lessonjs["title"] = $_POST['title'];
                 $lessonjs["precedence"] = 100;
                 $lessonjs["pending"] = false;
                 $lessonjs["steps"] = $lessonSteps;

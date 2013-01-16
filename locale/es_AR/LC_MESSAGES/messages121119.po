@@ -1,0 +1,357 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: TurtleAcademy\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-08 01:11+0800\n"
+"PO-Revision-Date: 2012-11-12 20:21+0800\n"
+"Last-Translator: \n"
+"Language-Team: Wald\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: c:\\gentoo\\share\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: he_IL\n"
+"X-Poedit-SearchPath-0: C:\\Users\\Lucio\\Documents\\NetBeansProjects\\Turtle\n"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:3
+msgid "forward"
+msgstr "adelante"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:3
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
+msgid "fd"
+msgstr "קד"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:3
+msgid "Don't know how to"
+msgstr "לא יודע מה זה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:4
+msgid "back"
+msgstr "אחורה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:4
+msgid "to"
+msgstr "למד"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:4
+msgid "word"
+msgstr "מילה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:4
+msgid "list"
+msgstr "רשימה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:5
+msgid "sentence"
+msgstr "משפט"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:5
+msgid "combine"
+msgstr "צרף"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:5
+msgid "reverse"
+msgstr "אחורנית"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:6
+msgid "gensym"
+msgstr "צורסמל"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:6
+msgid "first"
+msgstr "ראשון"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:6
+msgid "last"
+msgstr "אחרון"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:7
+msgid "print"
+msgstr "הדפס"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:7
+msgid "sin"
+msgstr "סינוס"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:7
+msgid "cos"
+msgstr "קוסינוס"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:8
+msgid "tan"
+msgstr "טנגנס"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "random"
+msgstr "אקראי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "true"
+msgstr "אמת"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "false"
+msgstr "שקר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "and"
+msgstr "וגם"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "or"
+msgstr "או"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "xor"
+msgstr "אומוציא"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
+msgid "not"
+msgstr "לא"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
+msgid "bk"
+msgstr "אח"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
+msgid "lt"
+msgstr "iz"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
+msgid "left"
+msgstr "izquierda"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
+msgid "rt"
+msgstr "de"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
+msgid "right"
+msgstr "derecha"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
+msgid "home"
+msgstr "הביתה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
+msgid "st"
+msgstr "הצ"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:15
+msgid "showturtle"
+msgstr "הצגצב"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:15
+msgid "ht"
+msgstr "הח"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:15
+msgid "hideturtle"
+msgstr "החבאצב"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:15
+msgid "clean"
+msgstr "borrar"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
+msgid "cs"
+msgstr "bp"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
+msgid "clearscreen"
+msgstr "borrarpantalla"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
+msgid "label"
+msgstr "etiqueta"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:17
+msgid "pendown"
+msgstr "bajarlapiz"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:17
+msgid "pu"
+msgstr "sl"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:17
+msgid "penup"
+msgstr "subirlapiz"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:17
+msgid "penpaint"
+msgstr "lapizpinta"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:18
+msgid "setcolor"
+msgstr "ponercolor"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:18
+msgid "setpencolor"
+msgstr "ponercolorlapiz"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:18
+msgid "setwidth"
+msgstr "ponerancho"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:18
+msgid "setpensize"
+msgstr "ponerancholapiz"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:19
+msgid "pencolor"
+msgstr "lapizcolor"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:19
+msgid "pensize"
+msgstr "lapizancho"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:19
+msgid "repeat"
+msgstr "repetir"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:19
+msgid "repcount"
+msgstr "repetircontar"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:20
+msgid "if"
+msgstr "si"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:20
+msgid "ifelse"
+msgstr "sino"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:20
+msgid "iftrue"
+msgstr "siverdad"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:20
+msgid "iffalse"
+msgstr "sifalso"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:22
+msgid "for"
+msgstr "para"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:22
+msgid "end"
+msgstr "fin"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:22
+msgid "Unexpected end of instructions"
+msgstr "Se necesitan instrucciones"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:22
+msgid "Expected identifier"
+msgstr "Se necesita identificador"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:23
+msgid "Please don't try to override primitive functions"
+msgstr "No se pueden utilizar modificar primitivas del sistema"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:23
+msgid "Error"
+msgstr "Error"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:23
+msgid "hint"
+msgstr "Ayuda"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:23
+msgid "sum"
+msgstr "suma"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:25
+msgid "minus"
+msgstr "resta"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:25
+msgid "make"
+msgstr "hacer"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:25
+msgid "pd"
+msgstr "bl"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:25
+msgid "stop"
+msgstr "parar"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:17
+msgid "Turtle Academy - learn logo programming in your browser"
+msgstr "La Academia de la Tortuga - aprende logo desde tu navegador"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:101
+msgid "Turtle Academy"
+msgstr "La Academia de la Tortuga"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:117
+msgid "Your browser does not support canvas - an updated browser is recommended"
+msgstr "Tu navegador carece de soporte para el canvas - se recomienda descargar un browser mas avanzado"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:148
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:173
+msgid "Next"
+msgstr "Siguiente"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:155
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:165
+msgid "Prev"
+msgstr "Anterior"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:188
+msgid "project doc"
+msgstr "Documentación del Proyecto"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:36
+msgid "Turtle Academy - Create a lesson"
+msgstr "Academia de la Tortuga - Crear una lección"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testGeneral.php:13
+msgid "Welcome to the Turtle world"
+msgstr "Bienvenidos al Mundo de la Tortuga"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testGeneral.php:14
+msgid "Hi"
+msgstr "Hola"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:47
+msgid "Turtle Academy - Translate a lesson"
+msgstr "Academia de la Tortuga - Traducir una lección"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:111
+msgid "Step"
+msgstr "Paso"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:133
+msgid "Action"
+msgstr "Acción"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:134
+msgid "Solution"
+msgstr "Solución"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:135
+msgid "Hint"
+msgstr "Ayuda"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:312
+msgid "Title"
+msgstr "Título"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:323
+msgid "Explanation"
+msgstr "Explicación"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:7
+msgid "Create new Lesson"
+msgstr "Crear una nueva lección"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/signUp.php:19
+msgid "Turtle Academy - User Registration"
+msgstr "Academia de la Tortuga - Registrar nuevo usuario"
+

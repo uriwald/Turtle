@@ -110,32 +110,6 @@ $(function() {
     + '</div>'
     + '</li>'
     + '{{/each}}';
-
-    var  buri = 
-    '{{each lessons}}'
-    + '<li>'
-    + '<div>'
-    + '<a href="#" data-lesson="${$index}" id="lucio" name="lucio">'
-    + '<span>'
-/*
-   // + '{{if locale_he}}'
-   if (locale == "he_IL")
-        + '<b>${$index+1}. ${title.locale_he_IL}</b>'
-   // + '{{else}}'
-   else
-        + '<b>${$index+1}. ${title.locale_en_US}</b>'
-    +  '{{/if}}'
- */
-    + '<b>${$index+1}. ${title.' + localeWithPrefix + ' }</b>'
-    + '</a>'
-
-    + '<a href="http://10.0.0.4/test2/lessons.php?lesson=${id}" >' //data-lucio="${$index}">'
-    + 'edit'    //'<b><span>${$index+1}. ${id} </span></b><em></em>'
-    + '</a>'
-    + '</span>'
-    + '</div>'
-    + '</li>'
-    + '{{/each}}';
     
     $.template( "headTemplate", markup );
 
@@ -156,7 +130,9 @@ $(function() {
                   +  '<button>' + gt.gettext("hint") + '</button>'
                   +  '<p id="(${Id})" style="display: none">{{html hint}}</p>'
               + '{{/if}}'
+              +'<p id="' + activeLesson+'${$index +1}"> </p>'
           + '</div>'
+      
     //  +  '{{/if}}'
 
     /*
@@ -390,5 +366,23 @@ $(function() {
         canvas_element.width, canvas_element.height);
 
     g_logo = new LogoInterpreter(turtle, stream);
-    
+                function do_logo(id ,cmd) {
+                $('#'+id).css('width', '50px').css('height', '50px').append('<canvas id="'+id+'c" width="50" height="50" style="position: absolute; z-index: 0;"></canvas>' +
+                    '<canvas id="'+id+'t" width="50" height="50" style="position: absolute; z-index: 1;"></canvas>');
+                var canvas_element2 = document.getElementById(id+"c");
+                var turtle_element2 = document.getElementById(id+"t");
+                var turtle2 = new CanvasTurtle(
+                canvas_element2.getContext('2d'),
+                turtle_element2.getContext('2d'),
+                canvas_element2.width, canvas_element2.height);
+
+                g_logo2 = new LogoInterpreter(turtle2, null);
+                g_logo2.run(cmd);
+            } 
+            do_logo ('011', 'fd 100');
+            do_logo ('021', 'repeat 8 [fd 10 rt 360/8]');
+            //do_logo ('logo3', 'repeat 10 [repeat 8 [fd 10 rt 360/8] rt 360/10]');
+            //do_logo ('logo4', 'repeat 10 [fd repcount*8 rt 90] ht');
+            //do_logo ('logo5', 'window repeat 10 [fd 3 * repcount repeat 3 [fd 15 rt 360/3] rt 360/10] ht');
+            //do_logo ('logo6', 'window pu home repeat 20 [ setlabelheight 20-repcount fd repcount label "HTML5Fest bk repcount rt 18 ] ht');
 });

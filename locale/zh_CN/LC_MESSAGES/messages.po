@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TurtleAcademy\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-12 13:22+0800\n"
-"PO-Revision-Date: 2012-10-21 17:03+0800\n"
+"PO-Revision-Date: 2012-11-10 16:31+0800\n"
 "Last-Translator: \n"
 "Language-Team: Wald\n"
 "MIME-Version: 1.0\n"
@@ -19,15 +19,15 @@ msgstr ""
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:13
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexq2.php:13
 msgid "Turtle Academy - learn logo programming in your browser"
-msgstr "海龜學院 - 学习用浏览器设计Logo"
+msgstr "海龟学院 - 学习用浏览器设计Logo"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:89
 msgid "Turtle Academy"
-msgstr "海龜學院"
+msgstr "海龟学院"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:105
 msgid "Your browser does not support canvas - an updated browser is recommended"
-msgstr "您的瀏覽器不支持Canvas - 建议更新浏览器"
+msgstr "您的浏览器不支持Canvas功能 - 建议更新浏览器"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:134
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:156
@@ -42,11 +42,11 @@ msgstr "上一步"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:171
 msgid "project doc"
-msgstr ""
+msgstr "项目文档"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lessons.php:516
 msgid "Turtle Academy - Create a lesson"
-msgstr "提供"
+msgstr "海龟学院 - 创建课程"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testGeneral.php:13
 msgid "Welcome to the Turtle world"
@@ -58,7 +58,7 @@ msgstr "你好"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:606
 msgid "Turtle Academy - Translate a lesson"
-msgstr "提提提"
+msgstr "海龟学院 - 翻译课程"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:668
 msgid "Step"
@@ -74,7 +74,7 @@ msgstr "解决"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:679
 msgid "Hint"
-msgstr "暗示"
+msgstr "提示"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:865
 msgid "Title"
@@ -86,82 +86,82 @@ msgstr "解释"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/signUp.php:19
 msgid "Turtle Academy - User Registration"
-msgstr "海龜學院 - 用户注册"
+msgstr "海龟学院 - 用户注册"
 
 msgid "forward"
-msgstr "前面"
+msgstr "向前"
 
 msgid "Don't know how to"
-msgstr "לא יודע מה זה"
+msgstr "不知道怎么"
 
 msgid "fd"
 msgstr "前"
 
 msgid "back"
-msgstr "后面"
+msgstr "向后"
 
 msgid "to"
-msgstr "למד"
+msgstr "到"
 
 msgid "word"
-msgstr "字"
+msgstr "连接"
 
 msgid "list"
-msgstr "רשימה"
+msgstr "列表"
 
 msgid "sentence"
-msgstr "משפט"
+msgstr "增强列表"
 
 msgid "combine"
-msgstr "צרף bb"
+msgstr "组合"
 
 msgid "reverse"
-msgstr "אחורנית"
+msgstr "反转"
 
 msgid "gensym"
-msgstr "צורסמל"
+msgstr "唯一"
 
 msgid "first"
-msgstr "ראשון"
+msgstr "第一个"
 
 msgid "last"
-msgstr "אחרון"
+msgstr "最后一个"
 
 msgid "print"
-msgstr "הדפס"
+msgstr "打印"
 
 msgid "sin"
-msgstr "סינוס"
+msgstr "sin"
 
 msgid "cos"
-msgstr "קוסינוס"
+msgstr "cos"
 
 msgid "tan"
-msgstr "טנגנס"
+msgstr "tan"
 
 msgid "random"
-msgstr "אקראי"
+msgstr "随机"
 
 msgid "true"
-msgstr "אמת"
+msgstr "真"
 
 msgid "false"
-msgstr "שקר"
+msgstr "假"
 
 msgid "and"
-msgstr "וגם"
+msgstr "与"
 
 msgid "or"
-msgstr "או"
+msgstr "或"
 
 msgid "xor"
-msgstr "אומוציא"
+msgstr "与或"
 
 msgid "not"
-msgstr "לא"
+msgstr "否"
 
 msgid "bk"
-msgstr "אח"
+msgstr "后"
 
 msgid "lt"
 msgstr "左"
@@ -173,113 +173,113 @@ msgid "rt"
 msgstr "右"
 
 msgid "right"
-msgstr "右边"
+msgstr "向右"
 
 msgid "home"
-msgstr "הביתה"
+msgstr "复位"
 
 msgid "st"
-msgstr "הצ"
+msgstr "显示海龟"
 
 msgid "showturtle"
-msgstr "הצגצב"
+msgstr "显示海龟"
 
 msgid "ht"
-msgstr "הח"
+msgstr "隐藏海龟"
 
 msgid "hideturtle"
-msgstr "החבאצב"
+msgstr "隐藏海龟"
 
 msgid "clean"
-msgstr "נקה"
+msgstr "清除"
 
 msgid "cs"
-msgstr "נמ"
+msgstr "清屏"
 
 msgid "clearscreen"
-msgstr "נקהמסך"
+msgstr "清屏"
 
 msgid "label"
-msgstr "תווית"
+msgstr "标签"
 
 msgid "pd"
-msgstr "הו"
+msgstr "放笔"
 
 msgid "pendown"
-msgstr "הורדעט"
+msgstr "放笔"
 
 msgid "pu"
-msgstr "הר"
+msgstr "提笔"
 
 msgid "penup"
-msgstr "הרםעט"
+msgstr "提笔"
 
 msgid "penpaint"
-msgstr "עטצובע"
+msgstr "画"
 
 msgid "setcolor"
-msgstr "שנהצבע"
+msgstr "设置颜色"
 
 msgid "setpencolor"
-msgstr "שנהצבעעט"
+msgstr "设置笔颜色"
 
 msgid "setwidth"
-msgstr "שנהרוחב"
+msgstr "设置宽度"
 
 msgid "setpensize"
-msgstr "שנהגודלעט"
+msgstr "设置笔的尺寸"
 
 msgid "pencolor"
-msgstr "צבעעט"
+msgstr "笔颜色"
 
 msgid "pensize"
-msgstr "גודלעט"
+msgstr "笔尺寸"
 
 msgid "repeat"
-msgstr "חזור"
+msgstr "重复"
 
 msgid "repcount"
-msgstr "מונהחזרה"
+msgstr "重复次数"
 
 msgid "if"
-msgstr "אם"
+msgstr "如果"
 
 msgid "ifelse"
-msgstr "אםאחרת"
+msgstr "如果否则"
 
 msgid "iftrue"
-msgstr "אםאמת"
+msgstr "如果真"
 
 msgid "iffalse"
-msgstr "אםשקר"
+msgstr "如果假"
 
 msgid "for"
-msgstr "עבור"
+msgstr "循环"
 
 msgid "end"
-msgstr "סוף"
+msgstr "结束"
 
 msgid "Unexpected end of instructions"
-msgstr "חסר סוף לפקודות"
+msgstr "超过预期的结构体尾"
 
 msgid "Expected identifier"
-msgstr "מזהה היה צפוי"
+msgstr "预期的标识符"
 
 msgid "Please don't try to override primitive functions"
-msgstr "אין להשתמש במילים שמורות להגדרת פונקציות"
+msgstr "请不要试图覆盖最初的功能"
 
 msgid "Error"
-msgstr "Error Chinese"
+msgstr "错误"
 
 msgid "hint"
-msgstr "暗示"
+msgstr "提示"
 
 msgid "sum"
-msgstr "סכום"
+msgstr "合计"
 
 msgid "minus"
-msgstr "חיסור"
+msgstr "减"
 
 msgid "make"
-msgstr "עשה"
+msgstr "定义"
 
