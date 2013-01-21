@@ -28,24 +28,21 @@
             $currentPage = $parts[count($parts) - 1];
         ?>         
         </title>    
-            <!-- Adding the dropdown dd directory related -->
-              <script src="<?php echo $ddPath . 'js/jquery/jquery-1.8.2.min.js'?>"></script>
-            <!-- <msdropdown> -->
-            <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/dd.css'?>" />
-            <script src="<?php echo $ddPath . 'js/msdropdown/jquery.dd.min.js'?>"></script>
-            <!-- </msdropdown> -->
-
-            <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/skin2.css' ?>" />
-            <link rel="stylesheet" type="text/css" href="<?php echo $ddPath .  'css/msdropdown/flags.css' ?>" />
-              <!-- Finish the dropdown dd directory related -->
+     <!-- Adding the dropdown dd directory related -->
+        <script src="<?php echo $ddPath . 'js/jquery/jquery-1.8.2.min.js'?>"></script> 
+      <!-- <msdropdown> -->
+        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/dd.css'?>" />
+        <script src="<?php echo $ddPath . 'js/msdropdown/jquery.dd.min.js'?>"></script>
+      <!-- </msdropdown> -->
+        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/skin2.css' ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath .  'css/msdropdown/flags.css' ?>" /> 
+     <!-- Finish the dropdown dd directory related -->
         <!--<script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js'></script> -->
         <script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js'></script>
        
-        <!-- <script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
+        <!--<script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
         <script  type="text/javascript" src="ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script> <!--- equal to googleapis -->
-       <!---  <script  type="text/javascript" src="files/lang/he.js"></script> Translation of commands used in logo.js-->
-        
-        
+          
         <!--<script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis v
         
         <script type="application/javascript" src="files/compat.js"></script> <!-- ECMAScript 5 Functions -->
@@ -116,29 +113,15 @@
                         <ul class="nav">
                             <li><a href="index.php" style="color:gray;" >Home</a></li>
                             <li class="active"><a href="index.html">Sample</a></li>
-                            <!--
-                            <li>
-                                <a href=he.php><img src='Images/flags/Israel.png'  title='עברית' class='flagIcon' /></a>
-                                <a href=index.php> <img src='Images/flags/UnitedStates.png'  title='English' class='flagIcon' /></a> 
-                                <a href=zh.php> <img src='Images/flags/China.png'  title='中文' class='flagIcon' /></a>  
-                                <a href=es.php> <img src='Images/flags/Argentina.png'  title='Español' class='flagIcon' /></a>  
-                            </li>
-                            -->
                         </ul>
 
                         <form class="pull-left" action=""> 
-                            <!--
-                                <select id="selectedLanguage"> 
-                                    <option value="en_US" selected="selected">  Select Language </option>
-                                    <option value="index2.php">  English   </option>
-                                    <option value="he.php">  עברית     </option>
-                                    <option value="zh.php">  中文       </option>
-                                    <option value="es.php">  Español   </option>
-                                </select>
-                            -->
                             <select name="countries" id="selectedLanguage" style="width:200px;">
-                                <option value='es.php' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag ar" data-title="Argentina">Argentina</option>
-                                <option value='il' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">Israel</option>
+                                <option value='es.php' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag ar" data-title="Argentina">Español</option>
+                                <option value='es.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
+                                <option value='il.php' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
+                                <option value='index2.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
+                                <option value='zh.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
                             </select>
                         </form>       
                         <?php
@@ -291,7 +274,7 @@
 		
 	//convert
 	$("select").msDropdown();
-	createByJson();
+	//createByJson();
 	$("#tech").data("dd");             
           });
                function showValue(h) {
