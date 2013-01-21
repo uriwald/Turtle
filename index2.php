@@ -37,9 +37,12 @@
         <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/skin2.css' ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo $ddPath .  'css/msdropdown/flags.css' ?>" /> 
      <!-- Finish the dropdown dd directory related -->
+        
         <!--<script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js'></script> -->
+        <!-- Disable script when working on local mode without internet -->
+        <!--
         <script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js'></script>
-       
+        -->
         <!--<script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
         <script  type="text/javascript" src="ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script> <!--- equal to googleapis -->
           
@@ -65,14 +68,18 @@
         <script type="application/javascript" src="files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
         <script type="application/javascript" src="files/jqconsole.js"></script> <!-- Console -->
         <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
-        <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/>
+        <!-- Disable script when working on local mode without internet -->
+            <!-- <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/> -->
         <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='./files/css/footer.css' type='text/css' media='all'/> 
         <link href="<?php echo $relPath . 'styles/bootstrap.min.css' ?>" rel="stylesheet"> 
         <?php
              cssUtils::loadcss($locale, "./files/css/interface");       
         ?>    
-        <script type="application/javascript"> <!-- Google Analytics Tracking -->
+        <!-- Disable script when working without internet -->
+        <!-- Google Analytics Tracking -->
+        <!--
+        <script type="application/javascript"> 
 
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-26588530-1']);
@@ -85,24 +92,9 @@
             })();
 
         </script>
+        -->
     </head>
     <body> 
-
-      
-<!--
-        <header id="title">
-            <h1><img src="files/turtles.png" alt="צב במשקפיים">
-            <?php
-                 echo _('Turtle Academy');
-            //        אקדמיית הצב                    
-             ?> 
-                    <a href=he.php><img src='Images/flags/Israel.png'  title='עברית' class='flagIcon' /></a>
-                    <a href=index.php> <img src='Images/flags/UnitedStates.png'  title='English' class='flagIcon' /></a> 
-                    <a href=zh.php> <img src='Images/flags/China.png'  title='中文' class='flagIcon' /></a>  
-                    <a href=es.php> <img src='Images/flags/Argentina.png'  title='Español' class='flagIcon' /></a>  
-            </h1>
-        </header>
--->
         <div id="main">
             <!-- Should be different for log in user and for a guest -->
             <div class="topbar">
@@ -140,6 +132,10 @@
                             }
                             else
                             {
+                                if ( isset ($_SESSION['err_login_msg']) )
+                                {
+                                    echo $_SESSION['err_login_msg'] ; 
+                                }
                         ?>                                   
                                 <form action="log.php" class="pull-right" method='post'> 
                                     <input class="input-small" style="color:gray;" name="username" type="text" placeholder="Username">
