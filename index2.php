@@ -73,7 +73,10 @@
         <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='./files/css/footer.css' type='text/css' media='all'/> 
         <link href="<?php echo $relPath . 'styles/bootstrap.min.css' ?>" rel="stylesheet"> 
-        <?php
+        <!--<script type="application/javascript" src="<?php echo $relPath . 'scripts/bootstrap-dropdown.js' ?>"></script>  Bootstaps drop down -->
+        <script type="application/javascript" src="files/bootstrap/js/bootstrap.js"></script> <!-- Storage -->
+        <script type="application/javascript" src="files/bootstrap/js/bootstrap.min.js"></script> <!-- Storage --> 
+       <?php
              cssUtils::loadcss($locale, "./files/css/interface");       
         ?>    
         <!-- Disable script when working without internet -->
@@ -103,7 +106,7 @@
                         <img class="brand"  src="files/turtles.png" alt="צב במשקפיים">
                         <a class="brand" style="color:gray;" href="index.html">TurtleAcademy</a>
                         <ul class="nav">
-                            <li><a href="index.php" style="color:gray;" >Home</a></li>
+                             <!-- <li><a href="index.php" style="color:gray;" >Home</a></li> -->
                             <li class="active"><a href="index.html">Sample</a></li>
                         </ul>
 
@@ -120,33 +123,88 @@
                             if (isset($_SESSION['username']))
                             {
                         ?>                       
-                                <p class="pull-right">Hello <a href="#">              
-                                        <?php
-                                            echo $_SESSION['username'];
-                                        ?>
+                              <!--  <p class="pull-right">Hello <a href="#"> -->
+                                    <nav class="pull-right">
+                                        <ul class="nav nav-pills">
+                                            <li class="dropdown"> 
+
+                                                <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:black;" >
+                                                <?php
+                                                    echo $_SESSION['username'];
+                                                ?>
+                                                    <b class="caret"></b>
+                                                </a>
+                                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                    <li><a tabindex="-1" href="/docs"  id="help-nav">My account</a></li>
+                                                    <li><a tabindex="-1" href="/docs" id="hel-nav">Help</a></li>
+                                                </ul>
+
+
+                                            </li>
+                                        </ul> 
+                                        <p class="pull-right">
+                                             <a href="logout.php">Log out</a>
+                                         </p>
+                                    </nav>                                 
+                                      
                                     </a>
-                                    <a href="logout.php">Log out</a>
-                                </p>
+                              <!--  </p>  -->
 
                         <?php
                             }
                             else
                             {
-                                if ( isset ($_SESSION['err_login_msg']) )
-                                {
-                                    echo $_SESSION['err_login_msg'] ; 
-                                }
-                        ?>                                   
+
+                        ?>       
+                               
                                 <form action="log.php" class="pull-right" method='post'> 
-                                    <input class="input-small" style="color:gray;" name="username" type="text" placeholder="Username">
-                                    <input class="input-small" style="color:gray;" name="password" type="password" placeholder="Password"> 
-                                    <button class="btn" type="submit">Sign in</button>
+                                <?php
+                                    $err="<span class='help-block'>";
+                                    if ( isset ($_SESSION['err_login_msg']) )
+                                    {
+                                        foreach($_SESSION['err_login_msg'] as $msg) { //Get each error
+                                                $err .= "<span class='label important'>" . $msg . "</span>"; //Write them to a variable
+                                        }
+                                    }
+                                    $err .= "</span>";
+                                    echo $err;
+                                    unset($_SESSION['err_login_msg']);
+                                ?>
+                                    <div> 
+                                        <input class="input-small" style="color:gray;" name="username" type="text" placeholder="Username">
+                                        <input class="input-small" style="color:gray;" name="password" type="password" placeholder="Password"> 
+                                        <input id="comefrom" name="comefrom" size="30" type="text" value="index2.php" style="display:none;"/>
+                                        <button class="btn" type="submit">Sign in</button>
+                                        <button class="btn" >Register</button>
+                                    </div>
                                 </form>
+                               
+                            <!--    
+                                <div>
+                                    <ul class="nav nav-pills">
+                                        <li class="dropdown"> 
+                                         <div>
+                                            <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:black;" >
+                                                Dropdown
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                <li><a tabindex="-1" href="/docs"  id="help-nav">My account</a></li>
+                                                <li><a tabindex="-1" href="/docs" id="hel-nav">Help</a></li>
+                                            </ul>
+                                         </div>
+                                
+                                        </li>
+                                    </ul> 
+                                </div>
+                              -->  
+
                          <?php
                             }
                          ?>
                     </div>
                 </div>
+                
             </div>
             <div id="header" class="menu" >
                 <div id="progress">
@@ -245,7 +303,7 @@
         <script>
         // Select language in main page
       $(document).ready(function() {
-               
+                    $('.dropdown-toggle').dropdown();
                     $('#selectedLanguage').change(function() { 
                         window.location = this.value;
                        // alert('Handler for .change() called.' +  this.value);
