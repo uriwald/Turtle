@@ -3,4 +3,5 @@
     $dbName              =   "turtleTestDb";
     $dbLessonCollection  =   "lessons";
     $sitePath            =   "http://turtleacademy.com/next";
+    $homePage            =   "index2.php";
 ?>  

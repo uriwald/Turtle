@@ -137,18 +137,14 @@
                                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                                     <li><a tabindex="-1" href="/docs"  id="help-nav">My account</a></li>
                                                     <li><a tabindex="-1" href="/docs" id="hel-nav">Help</a></li>
+                                                    <li><a href="logout.php">Log out</a></li>
                                                 </ul>
 
 
                                             </li>
                                         </ul> 
-                                        <p class="pull-right">
-                                             <a href="logout.php">Log out</a>
-                                         </p>
-                                    </nav>                                 
-                                      
+                                    </nav>                                                                     
                                     </a>
-                              <!--  </p>  -->
 
                         <?php
                             }
