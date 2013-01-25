@@ -43,8 +43,9 @@ function loadLesson(lessonID)
 
     $( "#accordion" ).accordion({
         //      icons: icons,
-        icons : false ,
-        autoHeight: false
+        icons : true ,
+        autoHeight: false,
+        heightStyle: "content"
     });
     
     $('button').click(function () {
@@ -115,7 +116,7 @@ $(function() {
 
     // The lesson template
     var ltr ='';
-    if (locale != "he_IL") ltr = ' style="left: 270px"';
+    if (locale != "he_IL") ltr = ' style="margin-left: 250px; margin-top : -10px"';
     markup =
     '{{each steps}}'
      // + '{{if '+  localeWithPrefix + '}}'  
@@ -312,7 +313,10 @@ $(function() {
                 if (comparecommands(command, $(".ui-accordion-content-active").data('sol')))
                 {
                     // If this was correct, we add a checkmark and remember this for later, than progress to the next question of the lesson
-                    $(".ui-state-active a").append('<span class="ui-icon ui-icon-check"'+ltr+'></span>' );
+                    //Only if a not contain
+                    var selectorMatches = $('.ui-state-active a').is( ':has(span.ui-icon)');
+                    if(selectorMatches == false) 
+                        $(".ui-state-active a").append('<span class="ui-icon ui-icon-check"'+ltr+'></span>' );
                     $.Storage.set("q(" + activeLesson + ")" + $(".ui-accordion-content-active").data('qid'), "true");
                     $("#accordion").accordion( "option", "active", $("#accordion").accordion( "option", "active" ) + 1);
 
