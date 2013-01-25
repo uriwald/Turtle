@@ -9,8 +9,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'] .'/environment.php');
     <title>Login &amp; Sign Up Page 1</title>
     <meta name="description" content="">
     <meta name="author" content="">
-
-    
+   
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements c -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -58,8 +57,8 @@ require_once ($_SERVER['DOCUMENT_ROOT'] .'/environment.php');
     <link rel="apple-touch-icon" sizes="72x72" href="../bootstrap/twitter-bootstrap-sample-page-layouts-master/images/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="../bootstrap/twitter-bootstrap-sample-page-layouts-master/images/apple-touch-icon-114x114.png">
   </head>
+  
 <?php  
-
 //setup some variables/arrays
 $action = array();
 $action['result'] = null;

@@ -10,8 +10,8 @@ function format_email($info, $format , $sitePath){
 	$root = $_SERVER['DOCUMENT_ROOT'].'/files/registration';
         //echo "the info element is " ;
         //print_r($info);
-	//grab the template content
-	$template = file_get_contents('signup_template.'.$format); 
+	//grab the template content 
+	$template = file_get_contents($root .'/signup_template.'.$format); 
 	//echo " Template is " . $template ;		
 	//replace all the tags
         /*
@@ -49,7 +49,7 @@ function send_email($info , $sitePath){
 	//$transport = Swift_MailTransport::newInstance();
 	$mailer = Swift_Mailer::newInstance($transport);
 	$message = Swift_Message::newInstance();
-	$message ->setSubject('Welcome to Site Name');
+	$message ->setSubject('Welcome to TurtleAcademy');
 	$message ->setFrom(array('noreply@turtleacademy.com' => 'TurtleAcademy'));
 	$message ->setTo(array($info['email'] => $info['username']));
 	
