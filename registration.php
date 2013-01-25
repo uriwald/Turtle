@@ -1,44 +1,339 @@
+<!DOCTYPE html>
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+    if(session_id() == '') 
+        session_start();
+    $fullPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";  
+    $phpDirPath  =   "files/registration/inc/php/";
+    $incDirPath  =   "files/registration/inc/";
+    include_once $phpDirPath . 'config.php';
+    include_once $phpDirPath . 'functions.php';
+    require_once ('environment.php');
 ?>
-<form>
-    <fieldset>
-        
-    </fieldset>
-     <fieldset>
-         <ul>
-             <li>
-                 <label>
-                     <span>
-                         
-                     </span>
-                 </label>
-                 <span></span>
-                 <div>
-                     <input>
-                     <div>
-                         <ul>
-                             <li>
-                                 
-                             </li>
-                             <li>
-                                 
-                             </li>
-                         </ul>
-                     </div>
-                 </div>
-                 <div>
-                     <ul>
-                         <li> </li>
-                         <li> </li>
-                     </ul>
-                 </div>
-             </li>
-         </ul>
-        
-    </fieldset>
-</form>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Login &amp; Sign Up Page 1</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script src="<?php echo $fullPath . 'scripts/jquery.min.js'; ?>"></script>
+    <script src="<?php echo $fullPath . 'scripts/bootstrap-dropdown.js'; ?>"></script>
+    <script src="ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
+    
+    <script type='text/javascript'>
+        $.validator.setDefaults({
+                submitHandler: function() { alert("submitted!"); }
+        });
+        $(document).ready(function(){
+            $('#topbar').dropdown();
+            $('#username_in').focus();
+            $("#sign-in-form").validate({
+                    rules: {
+                            username: {
+                                    required: true,
+                                    minlength: 4
+                            },
+                            password: {
+				required: true,
+				minlength: 5
+                            }
+                    },
+                    messages: {
+                            username: {
+                                    required: "Please enter a username",
+                                    minlength: "Your username must consist of at least 4 characters"
+                            },
+                            password: {
+                                    required: "Please enter a password",
+                                    minlength: "Your password must consist of at least 5 characters"
+                            }
+                    }
+            });           
+             
+        });
+
+        $(document).delegate('.switch', 'click', function(){
+
+            var c = $(this).attr('data-switch');
+            $('#sign-in-form').slideUp(300, function(){ $(this).addClass('hide'); });
+            $('#forgot-password-form').slideUp(300, function(){ $(this).addClass('hide'); });
+            $('#'+c).slideDown(300, function(){
+                $(this).removeClass('hide');
+                $('input:first', this).focus();
+             });
+            c = null;
+       });
+    </script>
+    
+    <!-- Le styles -->
+    <link href="<?php echo $fullPath . 'styles/bootstrap.min.css'; ?>" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+      .switch{
+        display:inline-block;
+        cursor:pointer;
+      }
+    </style>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="<?php echo $fullPath . 'images/favicon.ico'; ?>">
+    <link rel="apple-touch-icon" href="<?php echo $fullPath . 'images/apple-touch-icon.png'; ?>">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $fullPath . 'images/apple-touch-icon-72x72.png'; ?>">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $fullPath . 'images/apple-touch-icon-114x114.png'; ?>">
+  </head>
+  <body>
+    <?php  
+    //setup some variables/arrays
+    $action = array();
+    $action['result'] = null;
+
+    $text = array();
+
+    //check if the form has been submitted
+    if(isset($_POST['signup'])){
+
+            //cleanup the variables
+            //prevent mysql injection
+            /*
+                $username = mysql_real_escape_string($_POST['username']);
+                $password = mysql_real_escape_string($_POST['password']);
+                $email = mysql_real_escape_string($_POST['email']);
+            */
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+                $email =    $_POST['email'];
+            //quick/simple validation
+            if(empty($username)){ $action['result'] = 'error'; array_push($text,'You forgot your username'); }
+            if(empty($password)){ $action['result'] = 'error'; array_push($text,'You forgot your password'); }
+            if(empty($email)){ $action['result'] = 'error'; array_push($text,'You forgot your email'); }
+            //print_r($action);
+
+            if($action['result'] != 'error'){
+                    $password = md5($password);	
+                    $m = new Mongo();
+                    $db = $m->turtleTestDb;	
+                    $users = $db->user_test;
+                    $userQuery       = array('email' => $email ,"confirm" => true);
+                    $userExist     = $users->count($userQuery);
+                    if ($userExist > 0 )
+                    {
+                        $action['result'] = 'error'; 
+                        array_push($text,'Email is already being used');
+                    }
+                    //add to the database
+                    //$add = mysql_query("INSERT INTO `users` VALUES(NULL,'$username','$password','$email',0)");
+                    $userStructure = array("username" => $username, "password" => $password, "email" => $email , "confirm" => false);
+                    $userResult = $users->insert($userStructure, array('safe' => true));
+                    $userid = $userStructure['_id'];		
+                    if($userResult){
+                            //get the new user id
+                            //$userid = mysql_insert_id();
+                            $users = $db->user_test_confirm;
+                            //create a random key
+                            //$key = $username . $email . date('mY');
+                            $key = $username . $email ;
+                            $key = md5($key);
+                            //add confirm row
+                            //$confirm = mysql_query("INSERT INTO `confirm` VALUES(NULL,'$userid','$key','$email')");	
+                            $userStructure = array("userid" => $userid, "key" => $key, "email" => $email );
+                            $userConfirmResult = $users->insert($userStructure, array('safe' => true));
+                            if($userConfirmResult){
+                                    //include the swift class
+                                    include_once $phpDirPath .'swift/swift_required.php';
+                                    //put info into an array to send to the function
+                                    $info = array(
+                                            'username' => $username,
+                                            'email' => $email,
+                                            'key' => $key);
+                                    //send the email
+                                    if(send_email($info , $sitePath)){
+                                    //if(send_email_test($info)){				
+                                            $action['result'] = 'success';
+                                            array_push($text,'Thanks for signing up. Please check your email for confirmation!');
+                                    }else{
+                                            $action['result'] = 'error';
+                                            array_push($text,'Could not send confirm email');
+
+                                    }
+                            }else{
+
+                                    $action['result'] = 'error';
+                                    //array_push($text,'Confirm row was not added to the database. Reason: ' . mysql_error());
+                                    array_push($text,'Confirm row was not added to the database. Reason: ' );
+                            }
+                    }else{
+                            $action['result'] = 'error';
+                            array_push($text,'User could not be added to the database. Reason: ' . mysql_error());
+                    }
+            }
+            $action['text'] = $text;
+    }
+    ?>
+    <?php
+        //include $incDirPath .'elements/header.php'; 
+    ?>
+    <div class="topbar">
+        <div class="fill">
+            <div class="container">
+                <a class="brand" href="index.html">Project X</a>
+                <ul class="nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="index.html">Sample</a></li>
+                </ul>       
+                <form class="pull-left" action="">
+                    <input type="text" placeholder="Search">
+                    <button class="btn" type="submit">Go</button>
+                </form>        
+                <ul class="nav secondary-nav">
+                    <li><a href="#">Welcome Guest!</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class='row'>
+        <!-- Main hero unit for a primary marketing message or call to action -->
+            <div class="well span6 offset2">
+                <form class='form-stacked' id='sign-up-form' method="post" action="">
+                    <h2>Sign Up for Free</h2>
+                    <?php
+                        echo show_errors($action);
+                    ?>
+                    <div class='cleaner_h20'></div>        
+                    <div class="clearfix">
+                        <label for="email_up">Email</label>
+                        <div class="input">
+                            <input id="email" name="email" size="30" type="text" class='xlarge'/>
+                                <!--
+                                <span class="help-block">
+                                <span class='label important'>Warning</span> incorrect email address
+                                </span>
+                                -->
+                        </div>
+                    </div>        
+                    <div class="clearfix">
+                        <label for="username_up">Username</label>
+                        <div class="input">
+                            <input id="username" name="username" size="30" type="text" class='xlarge'/>
+                            <!--
+                            <span class="help-block">
+                            <span class='label important'>Warning</span> the username already exists
+                            </span>
+                            -->
+                        </div>
+                    </div>         
+                    <div class="clearfix">
+                        <label for="pwd_up">Password</label>
+                        <div class="input">
+                            <input id="password" name="password" size="30" type="text" class='xlarge'/>
+                                <!--
+                                <span class="help-block">
+                                <span class='label important'>Warning</span> too easy - even I can guess it
+                            </span>
+                            -->
+                        </div>
+                    </div>        
+                    <div class='cleaner_h10'></div>           
+                    <ul class="inputs-list">
+                        <li>
+                            <label>
+                                <input type="checkbox" name="terms_up" id='terms_up' value="yes" checked='true' />
+                                <span for='terms_up'>Agree to <a href='#'>Terms of Use</a></span>
+                            </label>
+                        </li>
+                    </ul>       
+                    <div class='cleaner_h20'></div>
+                    <input type='submit' value='Sign Up &raquo;' id='signup' name='signup' class="btn primary"/>
+                </form>
+            </div>    
+            <div class="well span5">
+                <form class='form-stacked' id='sign-in-form' action='log.php' method='post'>
+                    <h2>Sign In</h2>
+                    <?php
+                        $err="<span class='help-block'>";
+                        if ( isset ($_SESSION['err_login_msg']) )
+                        {
+                            foreach($_SESSION['err_login_msg'] as $msg) { //Get each error
+                                    $err .= "<span class='label important'>" . $msg . "</span>"; //Write them to a variable
+                            }
+                        }
+                        $err .= "</span>";
+                        echo $err;
+                        if (isset ($_SESSION['err_login_msg']))
+                            unset($_SESSION['err_login_msg']);
+                    ?>
+                    <div class='cleaner_h20'></div>           
+                    <div class="clearfix">
+                        <label for="username">Username</label>
+                        <div class="input">
+                            <input id="username" name="username" size="30" type="text"/>
+                            <!--
+                            <span class="help-block">
+                            <span class='label important'>Warning</span> the username already exists
+                            </span>
+                            -->
+                        </div>
+                    </div>
+                    <input id="comefrom" name="comefrom" size="30" type="text" value="registration.php" style="display:none;"/>        
+                    <div class="clearfix">
+                        <label for="password">Password</label>
+                        <div class="input">
+                            <input id="password" name="password" size="30" type="text"/>
+                            <!--
+                            <span class="help-block">
+                            <span class='label important'>Warning</span> too easy - even I can guess it
+                        </span>
+                        -->
+                        </div>
+                    </div>           
+                    <ul class="inputs-list">
+                        <li>
+                            <label>
+                                <input type="checkbox" name="remember_in" id='remember_in' value="yes" checked='true' />
+                                <span for='remember_in'>Remember me</span>
+                            </label>
+                        </li>
+                    </ul>          
+                    <div class='cleaner_h20'></div>
+                    <input type='submit' value='Sign In &raquo;' id='submit_in' name='submit_in' class="btn primary"/>
+                    <span class='switch' data-switch='forgot-password-form'>Forgot my password</span>
+                </form>        
+                <form class='form-stacked hide' id='forgot-password-form'>
+                    <h2>Forgot Password</h2>
+                    <div class='cleaner_h20'></div>
+                    <div class="clearfix">
+                        <label for="email_pwd">Email</label>
+                        <div class="input">
+                            <input id="email_pwd" name="email_pwd" size="30" type="text"/>
+                            <!--
+                            <span class="help-block">
+                            <span class='label important'>Warning</span> the username already exists
+                            </span>
+                            -->
+                            <div class='cleaner_h10'></div>
+                            <span class='switch' data-switch='sign-in-form'>Never mind, I remember my password</span>
+                        </div>
+                    </div>           
+                    <div class='cleaner_h20'></div>
+                    <input type='submit' value='Remind me &raquo;' id='submit_pwd' name='submit_pwd' class="btn primary"/>
+                </form>
+            </div>
+        </div>
+        <div class='cleaner'></div>
+ 
+        <footer style='text-align:center;'>
+            <p>&copy; TurtleAcademy <a href='http://www.sherzod.me' target='_blank' title='Professional Web Developer'>Uri Wald</a></p>
+        </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
