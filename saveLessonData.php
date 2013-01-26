@@ -11,9 +11,10 @@ sleep(3);
 
 //Getting User Info
 $user = "Unknown";
-if (isset($_SESSION['user']))
+$username   =   "username";
+if (isset($_SESSION[$username]))
 {
-    $user = $_SESSION['user'] ;
+    $user = $_SESSION[$username] ;
 }
   //$return['session'] = Print_r($_SESSION);
 
