@@ -114,9 +114,8 @@
                                             $class = ($locale == "he_IL" ?  "full-right" :  "full-left");
                                             echo $class;                               
                                      ?>" action="" id="turtleHeaderLanguage"> 
-                            <select name="countries" id="selectedLanguage" style="width:200px;">
+                            <select name="selectedLanguage" id="selectedLanguage" style="width:200px;">
                                 <option value='index.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
-                                <option value='es.php' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag ar" data-title="Argentina">Español</option>
                                 <option value='es.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
                                 <option value='he.php' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
                                 <option value='zh.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
@@ -312,18 +311,29 @@
         // Select language in main page
       $(document).ready(function() {
                     $('.dropdown-toggle').dropdown();
-                    $('#selectedLanguage').change(function() { 
-                        window.location = this.value;
-                       // alert('Handler for .change() called.' +  this.value);
-                    });
                    
-                    //no use
+                    //Show selected lanugage from dropdown
                     try {
-                            var pages = $("#pages").msDropdown({on:{change:function(data, ui) {
+                            var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
                                     var val = data.value;
                                     if(val!="")
                                             window.location = val;
                             }}}).data("dd");
+                            var pagename = document.location.pathname.toString();
+                            pagename = pagename.split("/");
+                            pages.setIndexByValue(pagename[pagename.length-1]);
+                            //$("#ver").html(msBeautify.version.msDropdown);
+                    } catch(e) {
+                            //console.log(e);	
+                    }
+                    // Selecting language button
+                    try {
+                            var pages = $("#pages").msDropdown({on:{change:function(data, ui) {
+                                                                                                            var val = data.value;
+                                                                                                            if(val!="")
+                                                                                                                    window.location = val;
+                                                                                                    }}}).data("dd");
+
                             var pagename = document.location.pathname.toString();
                             pagename = pagename.split("/");
                             pages.setIndexByValue(pagename[pagename.length-1]);
@@ -365,7 +375,7 @@
                         //if $.Storage.get("q(" + activeLesson + ")" + ($index +1)) == "true"}
                     });
 	
-                    $("#ver").html(msBeautify.version.msDropdown);
+                    //$("#ver").html(msBeautify.version.msDropdown);
 
                     //convert
                     $("select").msDropdown();
