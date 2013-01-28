@@ -8,6 +8,7 @@
     if ( !isset ($locale))
     {
         $locale = "en_US";
+        $_SESSION['locale'] = "en_US";
     }                 
     require_once("localization.php");
     require_once("files/footer.php");
@@ -319,9 +320,12 @@
                                     if(val!="")
                                             window.location = val;
                             }}}).data("dd");
-                            var pagename = document.location.pathname.toString();
-                            pagename = pagename.split("/");
-                            pages.setIndexByValue(pagename[pagename.length-1]);
+                            var pagename    = document.location.pathname.toString();
+                            pagename        = pagename.split("/");
+                            var pageIndex   = pagename[pagename.length-1];
+                            if (pageIndex == "")
+                                pageIndex   = "index.php";
+                            pages.setIndexByValue(pageIndex);
                             //$("#ver").html(msBeautify.version.msDropdown);
                     } catch(e) {
                             //console.log(e);	

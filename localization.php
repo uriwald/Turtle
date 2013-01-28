@@ -8,6 +8,10 @@
      * */
      
     //echo $locale;
+    if(session_id() == '') 
+        session_start();
+    if (isset ($_SESSION["locale"]))
+        $locale =   $_SESSION["locale"];
     if ( !isset ($locale))
     {
         if (isSet($_GET["ltranslate"])) 
