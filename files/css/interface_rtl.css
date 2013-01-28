@@ -29,8 +29,7 @@
     margin-left:-6px;
 }
 #header {
-    direction: rtl;
-    margin-top:10px;
+    direction: rtl; 
     overflow: hidden;
     width: 970px;
 }
@@ -51,4 +50,10 @@
 
 #lessonnav {
     float: left;
+}
+#turtleimg , #turtleHeaderTitle , #turtleHeaderUl , #turtleHeaderLanguage{
+    float:right;
+}
+#turtleHeaderLogin{
+    direction: rtl;
 }

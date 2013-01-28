@@ -1,15 +1,16 @@
 <?php
+
 //TODO check why when translating .. the title is being changin
 //TODO check why not all cache steps are being saved
+if (session_id() == '')
+    session_start();
 require_once("environment.php");
-$m = new Mongo();
 
-// select a database
+$m = new Mongo();
 $db = $m->$dbName;
 
 // select a collection (analogous to a relational database's table)
-if (isset ($_GET["dab"]))
-{
+if (isset($_GET["dab"])) {
     $dbLessonCollection = $_GET["dab"];
 }
 $lessons = $db->$dbLessonCollection;
@@ -28,33 +29,31 @@ echo "var lessons = [";
 
 foreach ($cursor as $lessonStructure) {
     //  Unset the lesson ID
- //   echo " some lessons found";
+    //   echo " some lessons found";
     $lessonStructure['id'] = '' . $lessonStructure['_id'];
     unset($lessonStructure['_id']);
-   // print_r($lessonStructure);
+    // print_r($lessonStructure);
     // If the requested language is in the current json collection
     //echo "isset?  ".$lessonStructure['locale_' . $_GET[$localPosted]];
     if (isset($lessonStructure['locale_' . $_GET[$localPosted]])) {
-      //  echo "isset ".$lessonStructure['locale_' . $_GET[$localPosted]];
+        //  echo "isset ".$lessonStructure['locale_' . $_GET[$localPosted]];
         $lessonStructure = $lessonStructure['locale_' . $_GET[$localPosted]];
     }
     if (isset($lessonStructure["steps"])) {
-       // echo "is set steps";
+        // echo "is set steps";
         $lessonSteps = $lessonStructure["steps"];
     }
     //echo " printing lesson steps ";
     //print_r($lessonSteps);
-    $showItem = true ;
+    $showItem = true;
     foreach ($lessonSteps as $key => $value) {
         "enterLessonSteps";
         //echo "Key = " . $key ;
         // If we have locale for the current step we will set him
         if (isset($lessonSteps[$key]['locale_' . $_GET[$localPosted]])) {
             $lessonSteps[$key] = $lessonSteps[$key]['locale_' . $_GET[$localPosted]];
-        }
-        else
-        {
-            $showItem = false ;
+        } else {
+            $showItem = false;
         }
         // unsetting the other locale values
         foreach ($value as $kkey => $vvalue) {
@@ -83,8 +82,7 @@ foreach ($cursor as $lessonStructure) {
             unset($lessonStructure[$key]);
         }
     }
-    if ( ($lessonStructure["pending"] == false) && ($showItem == true) )
-    {
+    if (($lessonStructure["pending"] == false) && ($showItem == true)) {
         echo json_encode($lessonStructure);
         echo ",";
     }
@@ -93,6 +91,7 @@ foreach ($cursor as $lessonStructure) {
 }
 echo "]";
 
+updateLoclaStorageForLoggedUser($m , $db);
 function writeToJsFile($lessonStructure) {
 
 
@@ -104,3 +103,28 @@ function writeToJsFile($lessonStructure) {
     fwrite($ourFileHandle, $stringData);
     fclose($ourFileHandle);
 }
+function updateLoclaStorageForLoggedUser($m , $db)
+{
+    if (isset ($_SESSION['username']))
+    {
+        //echo "; var username = " . $_SESSION['username'] ;
+        $userProgressCol    =   $db->user_progress; 
+        $userQuery = array('username' => $_SESSION['username']);
+        $cursor = $userProgressCol->findone($userQuery);
+        echo ";";
+        if ($cursor != null)
+        {
+            $data = explode(",", $cursor['data']); ;
+            //print_r($data);
+            $datalen    = count($data);
+            $value = "true";
+            //echo ";<script>";
+            for ($i =0 ; $i < $datalen -1 ; $i++)
+            {
+               echo "localStorage.setItem('$data[$i]' , '$value' );";
+                 
+            }
+            //echo "</script>";
+        }
+    }
+} 

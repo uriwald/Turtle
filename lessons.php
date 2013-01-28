@@ -1,6 +1,7 @@
 <html>
     <head>
          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link rel='stylesheet' href='/files/css/footer.css' type='text/css' media='all'/>  
          <script type="application/javascript"> <!-- Google Analytics Tracking -->
 
             var _gaq = _gaq || [];
@@ -41,12 +42,12 @@
     }
     * 
     */
-    if (isset($_SESSION['user']))
+    if (isset($_SESSION['username']))
     {
             echo "Hello ";
-            echo $_SESSION['user'];
-            if ($_SESSION['user'] == "translator" || $_SESSION['user'] == "admin" || $_SESSION['user'] == "eneditor" ||
-                    $_SESSION['user'] == "gereditor" || $_SESSION['user'] == "rueditor")
+            echo $_SESSION['username'];
+            if ($_SESSION['username'] == "translator" || $_SESSION['username'] == "admin" || $_SESSION['username'] == "eneditor" ||
+                    $_SESSION['username'] == "gereditor" || $_SESSION['username'] == "rueditor")
                 $show = true ;
     }
 

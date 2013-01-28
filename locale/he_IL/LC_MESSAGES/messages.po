@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TurtleAcademy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-27 16:54+0700\n"
-"PO-Revision-Date: 2012-12-27 16:56+0700\n"
+"POT-Creation-Date: 2013-01-28 12:04+0530\n"
+"PO-Revision-Date: 2013-01-28 12:08+0530\n"
 "Last-Translator: \n"
 "Language-Team: Wald\n"
 "MIME-Version: 1.0\n"
@@ -126,9 +126,8 @@ msgid "Credits"
 msgstr "קרדיטים"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:87
-#, fuzzy
 msgid "A lot of written libraries facilitate the creation of the website"
-msgstr "הרבה ספריות נכתבו המקילות על יצירת הפרוייקט"
+msgstr "הרבה ספריות נכתבו המקילות על כתיבת הפרוייקט"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:88
 msgid "<a target='_blank' href='http://www.calormen.com/Logo/'> Joshua Bell - wrote the logo component </a>"
@@ -435,61 +434,89 @@ msgstr "וברוכים הבאים לעולמו של הצב"
 msgid "Turtle Academy - learn logo programming in your browser"
 msgstr " אקדמיית הצב - למד תכנות לוגו היישר מתוך הדפדפן"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:85
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:86
 msgid "Turtle Academy"
 msgstr "אקדמיית הצב"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:105
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:106
 msgid "Your browser does not support canvas - an updated browser is recommended"
 msgstr " הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יותר"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:136
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:161
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:137
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:162
 msgid "Next"
 msgstr "הבא"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:143
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:153
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:144
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:154
 msgid "Prev"
 msgstr "הקודם"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:176
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:177
 msgid "project doc"
 msgstr "תיעוד הפרוייקט"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:109
+msgid "TurtleAcademy"
+msgstr "אקדמיית הצב"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:112
+msgid "Sample"
+msgstr "דוגמאות"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:144
+msgid "My account"
+msgstr "החשבון שלי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:145
+msgid "Help"
+msgstr "עזרה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:146
+msgid "Log out"
+msgstr "התנתק"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:179
+msgid "Sign in"
+msgstr "התחבר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:180
+msgid "Register"
+msgstr "הרשם"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:36
 msgid "Turtle Academy - Create a lesson"
 msgstr "אקדמיית הצב - צור שיעור"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:48
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:50
 msgid "Turtle Academy - Translate a lesson"
 msgstr "אקדמיית הצב - תרגם מערך שיעור"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:112
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:114
 msgid "Step"
 msgstr "צעד"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:134
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:136
 msgid "Action"
 msgstr "פעולה"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:135
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:137
 msgid "Solution"
 msgstr "פתרון"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:136
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:138
 msgid "Hint"
 msgstr "רמז"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:318
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:338
 msgid "Title"
 msgstr "כותרת"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:329
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:349
 msgid "Explanation"
 msgstr "הסבר"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:7
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:6
 msgid "Create new Lesson"
 msgstr "יצירת שיעור חדש"
 

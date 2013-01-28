@@ -20,7 +20,7 @@ if (isset($_SESSION[$username]))
 
 if (empty($_POST['steps'])) {
     $return['error'] = true;
-    $return['msg'] = 'You did not enter you email.';
+    $return['msg'] = 'No steps found'; 
 } else {
     $return['error'] = false;
     $steps = $_POST['steps'];

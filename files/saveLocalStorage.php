@@ -12,6 +12,11 @@
     {
         $user = $_SESSION[$username] ;
     }
+    else
+    {
+        echo "";
+        exit();
+    }
     $return['username'] = $user;
     $storageData    = "";  
     if (isset($_POST['lclStoragevalues']))

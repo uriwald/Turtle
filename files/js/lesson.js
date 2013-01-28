@@ -671,7 +671,7 @@
                         locale = $.Storage.get('createLessonLocal')
                     window.open('lesson.php?l=' + locale,'_self');
                 });
-                
+
                 
                 $('#btnShowLesson').click(function() {   
                     var title       = $.Storage.get('lessonTitle');

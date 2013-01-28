@@ -20,12 +20,13 @@ root {
     border-style:solid;
     border-width:2px;
     
-}
+} 
 #footer li a {
-    text-decoration:none;
+    text-decoration:none; 
     color : #3333ff;
     font:15px arial,sans-serif;
-}
+} 
 ul{
-    list-style: disc;
+    list-style: disc; 
 }
+ 

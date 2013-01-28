@@ -100,7 +100,7 @@ $(function() {
     + '<div>'
     + '<a href="#" data-lesson="${$index}" id="lucio${$index}" name="lucio${$index}" class="lucio">'
     + '{{if $index == 0}}'
-        + '<span style="background:#8eed6a">'
+        + '<span style="color:#eb8f00">'
     + '{{else}}'
         + '<span>'
     + '{{/if}}'
@@ -116,9 +116,12 @@ $(function() {
 
     // The lesson template
     var ltr ='';
-    if (locale != "he_IL") ltr = ' style="margin-left: 250px; margin-top : -10px"';
+    if (locale != "he_IL") 
+        ltr = ' style="margin-left: 250px; margin-top : -10px"';
+    else
+        ltr = ' style="margin-right: 260px; margin-top : -12px"';
     markup =
-    '{{each steps}}'
+    '{{each steps}}' 
      // + '{{if '+  localeWithPrefix + '}}'  
           +  '<h3><a href="#"> ${$index}. ${title}'
           +  '{{if $.Storage.get("q(" + activeLesson + ")" + ($index +1)) == "true"}}'
@@ -128,7 +131,7 @@ $(function() {
           + '<div data-sol="${solution}" data-qid="${$index +1}">'
               + '<p>{{html explanation}}</p> <p>{{html action}}</p>'
               + '{{if hint.length > 0}}'
-                  +  '<button>' + gt.gettext("hint") + '</button>'
+                  +  '<button class="btn">' + gt.gettext("hint") + '</button>' 
                   +  '<p id="(${Id})" style="display: none">{{html hint}}</p>'
               + '{{/if}}'
               +'<p id="' + activeLesson+'${$index +1}"> </p>'
@@ -191,15 +194,15 @@ $(function() {
     // Attach the loadlesson on click action
     $("#header a.lucio").click(function() {
        
-         $(this).children().css("background","#8eed6a");
+         $(this).children().css("color","#eb8f00");
          //$( "#lucio" ).children().css("background","#00FF00")
          if (lastLessonClick != null)
          {
-             lastLessonClick.children().css("background","#3bda00");
+             lastLessonClick.children().css("color","#1c94c4");
          }
          else
          {
-            $( "#lucio0" ).children().css("background","#3bda00");
+            $( "#lucio0" ).children().css("color","#1c94c4");
          }
         
          loadLesson($(this).data('lesson'));
@@ -318,6 +321,33 @@ $(function() {
                     if(selectorMatches == false) 
                         $(".ui-state-active a").append('<span class="ui-icon ui-icon-check"'+ltr+'></span>' );
                     $.Storage.set("q(" + activeLesson + ")" + $(".ui-accordion-content-active").data('qid'), "true");
+                    //After setting new local storage value we will save user data if exist
+                    var lclStorageValue;
+                    for (var i=0;i<8;i++)
+                        for (var j=1;j<9;j++)
+                            {
+                                if ($.Storage.get("q(" + i +  ")" + j + "1" ))
+                                {
+                                    alert ("q(" + i +  ")" + j + "1");
+                                    lclStorageValue += "q(" + i +  ")" + j + "1,";
+                                }
+                            }
+                    $.ajax({
+                        type : 'POST',
+                        url : 'files/saveLocalStorage.php',
+                        dataType : 'json',
+                        data: {
+                            lclStoragevalues  :   lclStorageValue
+                        },
+                        success: function(data) { 
+                            var rdata;
+                            var i = 1;
+                        } ,
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            alert('en error occured');
+                        }
+                    });
+                    //End of saving user data
                     $("#accordion").accordion( "option", "active", $("#accordion").accordion( "option", "active" ) + 1);
 
                 }

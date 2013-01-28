@@ -104,8 +104,8 @@ code { font-family: monospace; }
 }
 .menu a span {
     display:block; 
-    color:#000; 
-    background:#3BDA00; 
+    color:#1c94c4; 
+    background:whitesmoke; 
     border:1px solid #fff; 
     border-width:2px 1px; 
     text-align:center; 

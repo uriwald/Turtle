@@ -158,7 +158,7 @@ if(isset($_POST['signup'])){
 		}else{
 		
 			$action['result'] = 'error';
-			array_push($text,'User could not be added to the database. Reason: ' . mysql_error());
+			array_push($text,'User could not be added to the database. Reason: ' );
 		
 		}
 	
@@ -167,37 +167,13 @@ if(isset($_POST['signup'])){
 	$action['text'] = $text;
 
 }
-
 ?>
-
 <?php
-include 'inc/elements/header.php'; ?>
+    include 'inc/elements/header.php'; 
+?>
 
 <?php echo show_errors($action);?>
   
-<!--
-<form class='form-stacked' method="post" action="">
-    <fieldset>    
-    	<ul>
-    		<li>
-    			<label for="username">Username:</label>
-    			<input type="text" name="username" />
-    		</li>
-    		<li>
-    			<label for="password">Password:</label>
-    			<input type="password" name="password" />
-    		</li>
-    		<li>
-    			<label for="email">Email:</label>
-    			<input type="text" name="email" />	
-    		</li>
-    		<li>
-    			<input type="submit" value="Signup Now" class="large blue button" name="signup" />			
-    		</li>
-    	</ul>   	
-    </fieldset>  
-</form>	
--->
       <div class="container">
       <div class='row'>
   <div class="well span6 offset2">

@@ -9,7 +9,6 @@
            $users = $db->user_test;
            
            $userQuery       = array('username' => $username , 'password' => $password , 'confirm'=> true);
-           $check_key       = $users->findOne($userQuery);
            $resultcount     = $users->count($userQuery);
            //Case no user found
            if ($resultcount == 0)

@@ -112,7 +112,7 @@
             } 
             else { //Case User is valid
                 $_SESSION['username'] = $username;
-                header("location: " . $comefrom); 
+                header("location: index.php" ); 
             }
         }
         //Case registered user go to user page 

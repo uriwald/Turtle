@@ -22,12 +22,10 @@
 }
 #header {
    /* direction: rtl; */
-    margin-top: 90px;
     overflow: hidden;
     width: 970px;
-   
 }
-
+ 
 
 #title h1 { /* direction: rtl; */
            margin: 2px 20px;
