@@ -1,0 +1,30 @@
+/* 
+    Document   : registration
+    Created on : Jan 29, 2013, 9:37:03 AM
+    Author     : Lucio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#sign-in-form , #sign-up-form , #forgot-password-form{
+    direction : rtl;
+}
+#signInUserNameLbl , #username , #signInPasswordLbl , #password , #remember_checkbox , #terms_up  {
+    float: right;
+}
+#signUpEmailLbl , #signUpUserNameLbl , #signUpUserNameLPwdLbl , #forgotEmail{
+    float : right;
+    width: 100px;
+    text-align: right;
+}
+#signInPasswordLbl{
+    width: 40px;
+}
+#remember_span , #signupAgreeToTerms{
+    float : right ;
+    margin-right: 20px;
+}

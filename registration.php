@@ -8,6 +8,16 @@
     include_once $phpDirPath . 'config.php';
     include_once $phpDirPath . 'functions.php';
     require_once ('environment.php');
+    require_once("localization.php");
+    
+    if ( !isset ($_SESSION['locale']))
+    {
+        $locale = "en_US";
+    }  
+    else
+    {
+      $locale  = $_SESSION['locale'];
+    }
 ?>
 <html lang="en">
   <head>
@@ -15,15 +25,19 @@
     <title>Login &amp; Sign Up Page 1</title>
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    
+    <?php
+        $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
+        $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
+        if ( file_exists($file_path))
+            echo $po_file;    
+        if (isset ($_SESSION['locale']) && $_SESSION['locale'] == "he_IL")
+            echo "<link rel='stylesheet' type='text/css' href='files/css/registration_rtl.css' /> ";
+    ?>    
+    <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
     <script src="<?php echo $fullPath . 'scripts/jquery.min.js'; ?>"></script>
     <script src="<?php echo $fullPath . 'scripts/bootstrap-dropdown.js'; ?>"></script>
     <script src="ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
+    
     
     <script type='text/javascript'>
         //$.validator.setDefaults({
@@ -214,13 +228,13 @@
         <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="well span6 offset2">
                 <form class='form-stacked' id='sign-up-form' method="post" action="">
-                    <h2>Sign Up for Free</h2>
+                    <h2><?php echo _("Sign Up for Free"); ?></h2>
                     <?php
                         echo show_errors($action);
                     ?>
                     <div class='cleaner_h20'></div>        
                     <div class="clearfix">
-                        <label for="email_up">Email</label>
+                        <label for="email_up" id="signUpEmailLbl"><?php echo _("Email"); ?></label>
                         <div class="input">
                             <input id="email" name="email" size="30" type="text" class='xlarge'/>
                                 <!--
@@ -231,7 +245,7 @@
                         </div>
                     </div>        
                     <div class="clearfix">
-                        <label for="username_up">Username</label>
+                        <label for="username_up" id="signUpUserNameLbl"><?php echo _("Username"); ?></label>
                         <div class="input">
                             <input id="username" name="username" size="30" type="text" class='xlarge'/>
                             <!--
@@ -242,7 +256,7 @@
                         </div>
                     </div>         
                     <div class="clearfix">
-                        <label for="pwd_up">Password</label>
+                        <label for="pwd_up" id="signUpUserNameLPwdLbl"><?php echo _("Password"); ?></label>
                         <div class="input">
                             <input id="password" name="password" size="30" type="text" class='xlarge'/>
                                 <!--
@@ -257,17 +271,17 @@
                         <li>
                             <label>
                                 <input type="checkbox" name="terms_up" id='terms_up' value="yes" checked='true' />
-                                <span for='terms_up'>Agree to <a href='#'>Terms of Use</a></span>
+                                <span for='terms_up' id="signupAgreeToTerms"><?php echo _("Agree to"); ?> <a href='#'><?php echo _("Terms of Use"); ?></a></span>
                             </label>
                         </li>
                     </ul>       
                     <div class='cleaner_h20'></div>
-                    <input type='submit' value='Sign Up &raquo;' id='signup' name='signup' class="btn primary"/>
+                    <input type='submit' value='<?php echo _("Sign Up"); ?>&raquo;' id='signup' name='signup' class="btn primary"/>
                 </form>
             </div>    
             <div class="well span5">
                 <form class='form-stacked' id='sign-in-form' action='log.php' method='post'>
-                    <h2>Sign In</h2>
+                    <h2><?php echo _("Sign In"); ?></h2>
                     <?php
                         $err="<span class='help-block'>";
                         if ( isset ($_SESSION['err_login_msg']) )
@@ -283,7 +297,7 @@
                     ?>
                     <div class='cleaner_h20'></div>           
                     <div class="clearfix">
-                        <label for="username">Username</label>
+                        <label for="username" id="signInUserNameLbl"><?php echo _("Username"); ?></label>
                         <div class="input">
                             <input id="username" name="username" size="30" type="text"/>
                             <!--
@@ -295,7 +309,7 @@
                     </div>
                     <input id="comefrom" name="comefrom" size="30" type="text" value="registration.php" style="display:none;"/>        
                     <div class="clearfix">
-                        <label for="password">Password</label>
+                        <label for="password" id="signInPasswordLbl"><?php echo _("Password"); ?></label>
                         <div class="input">
                             <input id="password" name="password" size="30" type="text"/>
                             <!--
@@ -308,20 +322,20 @@
                     <ul class="inputs-list">
                         <li>
                             <label>
-                                <input type="checkbox" name="remember_in" id='remember_in' value="yes" checked='true' />
-                                <span for='remember_in'>Remember me</span>
+                                <input type="checkbox" name="remember_checkbox" id='remember_checkbox' value="yes" checked='true' />
+                                <span for='remember_in' id='remember_span'><?php echo _("Remember me"); ?></span>
                             </label>
                         </li>
                     </ul>          
                     <div class='cleaner_h20'></div>
-                    <input type='submit' value='Sign In &raquo;' id='submit_in' name='submit_in' class="btn primary"/>
-                    <span class='switch' data-switch='forgot-password-form'>Forgot my password</span>
+                    <input type='submit' value='<?php echo _("Sign In"); ?>&raquo;' id='submit_in' name='submit_in' class="btn primary"/>
+                    <span class='switch' data-switch='forgot-password-form'><?php echo _("Forgot my password"); ?></span>
                 </form>        
                 <form class='form-stacked hide' id='forgot-password-form'>
-                    <h2>Forgot Password</h2>
+                    <h2><?php echo _("Forgot Password"); ?></h2>
                     <div class='cleaner_h20'></div>
                     <div class="clearfix">
-                        <label for="email_pwd">Email</label>
+                        <label for="email_pwd" id="forgotEmail"><?php echo _("Email"); ?></label>
                         <div class="input">
                             <input id="email_pwd" name="email_pwd" size="30" type="text"/>
                             <!--
@@ -330,18 +344,18 @@
                             </span>
                             -->
                             <div class='cleaner_h10'></div>
-                            <span class='switch' data-switch='sign-in-form'>Never mind, I remember my password</span>
+                            <span class='switch' data-switch='sign-in-form<?php echo _("Never mind, I remember my password"); ?></span>
                         </div>
                     </div>           
                     <div class='cleaner_h20'></div>
-                    <input type='submit' value='Remind me &raquo;' id='submit_pwd' name='submit_pwd' class="btn primary"/>
+                    <input type='submit' value='<?php echo _("Remind me"); ?>&raquo;' id='submit_pwd' name='submit_pwd' class="btn primary"/>
                 </form>
             </div>
         </div>
         <div class='cleaner'></div>
  
         <footer style='text-align:center;'>
-            <p>&copy; TurtleAcademy <a href='http://www.sherzod.me' target='_blank' title='Professional Web Developer'>Uri Wald</a></p>
+            <p>&copy; <?php echo _("TurtleAcademy"); ?> <a href='http://www.sherzod.me' target='_blank' title='Professional Web Developer'>Uri Wald</a></p>
         </footer>
 
     </div> <!-- /container -->
