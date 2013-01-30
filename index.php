@@ -37,9 +37,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/skin2.css' ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo $ddPath .  'css/msdropdown/flags.css' ?>" /> 
      <!-- Finish the dropdown dd directory related -->
-        
-        <!-- <script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js'></script>  -->
-        <!-- Disable script when working on local mode without internet -->
+
                
         <!--<script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
         <script  type="text/javascript" src="<?php echo $jqueryui .  'js/jquery-ui-1.10.0.custom.js' ?>"></script> <!--- equal to googleapis -->
@@ -73,7 +71,7 @@
         <!-- Disable script when working on local mode without internet 
         <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/> 
         -->
-            <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='./files/css/footer.css' type='text/css' media='all'/> 
         <link href="<?php echo $relPath . 'styles/bootstrap.min.css' ?>" rel="stylesheet"> 
         <!--<script type="application/javascript" src="<?php echo $relPath . 'scripts/bootstrap-dropdown.js' ?>"></script>  Bootstaps drop down -->
@@ -99,23 +97,27 @@
         </script>
     </head>
     <body> 
+        <?php  
+            echo $_SESSION['locale'] ;
+            $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
+            $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");    
+        ?>
         <div id="main">
             <!-- Should be different for log in user and for a guest -->
             <div class="topbar" style="position: static;">
                 <div class="fill">
                     <div class="container span16" > 
                         <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
-                        <a class="brand" id="turtleHeaderTitle" style="color:gray;" href="index.html"><?php echo _("TurtleAcademy");?></a>
+                        
                         <ul class="nav" id="turtleHeaderUl"> 
-                             <!-- <li><a href="index.php" style="color:gray;" >Home</a></li> -->
-                            <li class="active"><a href="index.html"><?php echo _("Sample");?></a></li>
+                              <li><a href="index.php" style="color:gray;" ><?php echo _("TurtleAcademy");?></a></li> 
+                             <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
                         </ul>
-
+                            
                         <form class="<?php  
-                                            $class = ($locale == "he_IL" ?  "full-right" :  "full-left");
-                                            echo $class;                               
-                                     ?>" action="" id="turtleHeaderLanguage"> 
-                            <select name="selectedLanguage" id="selectedLanguage" style="width:200px;">
+                                            echo $class . " form-inline";                                
+                                     ?>" action="" id="turtleHeaderLanguage">  
+                            <select name="selectedLanguage" id="selectedLanguage" style="width:120px;">
                                 <option value='index.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
                                 <option value='es.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
                                 <option value='he.php' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
@@ -127,21 +129,21 @@
                             {
                         ?>                       
                               <!--  <p class="pull-right">Hello <a href="#"> -->
-                                    <nav class="pull-right" style="width:200px;">
-                                        <ul class="nav nav-pills">
+                                    <nav class="<?php echo $login ?>" style="width:200px;" id="turtleHeaderLoggedUser">
+                                        <ul class="nav nav-pills <?php echo $login ?>" id="loggedUserUl">
                                             
-                                            <li style="padding: 10px 10px 11px;"> Hello</li>
+                                            <li style="padding: 10px 10px 11px;"> <?php echo _("Hello");?></li>
                                             <li class="cc-button-group btn-group"> 
-                                                <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:blue;background-color: #D4D7FE;" >
+                                                <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:#ffffff; background-color: rgba(0, 0, 0, 0.5);" >
                                                 <?php
                                                     echo $_SESSION['username'];
                                                 ?>
                                                     <b class="caret"></b>
                                                 </a>
-                                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                    <li><a tabindex="-1" href="/docs"  id="help-nav"><?php echo _("My account");?></a></li>
-                                                    <li><a tabindex="-1" href="/docs" id="hel-nav"><?php echo _("Help");?></a></li>
-                                                    <li><a href="logout.php"><?php echo _("Log out");?></a></li>
+                                                <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
+                                                    <li><a tabindex="-1" href="/docs"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
+                                                    <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
+                                                    <li><a href="logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
                                                 </ul>
 
 
@@ -156,8 +158,11 @@
                             {
 
                         ?>       
-                               
-                                <form action="log.php" class="pull-right" method='post' id="turtleHeaderLogin"> 
+                                <ul class="nav <?php echo $login ?>" id="turtleHeaderUl">  
+                                    <li><a href="registration.php" style="color:gray;" ><?php echo _("Login");?></a></li> 
+                                </ul>
+                                    <!--
+                                <form action="log.php" class="pull-right form-inline" method='post' id="turtleHeaderLogin" name="turtleHeaderLogin"> 
                                 <?php 
                                     $err="<span class='help-block'>";
                                     if ( isset ($_SESSION['err_login_msg']) )
@@ -178,7 +183,7 @@
                                         <a class="btn" href="registration.php" ><?php echo _("Register");?></a>
                                     </div>
                                 </form>
-                               
+                                -->
                             <!--    
                                 <div>
                                     <ul class="nav nav-pills">
@@ -312,9 +317,10 @@
         // Select language in main page
       $(document).ready(function() {
                     $('.dropdown-toggle').dropdown();
-                   
+                    $.Storage.set("locale","<?php echo $_SESSION['locale']; ?>");
                     //Show selected lanugage from dropdown
                     try {
+     
                             var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
                                     var val = data.value;
                                     if(val!="")
@@ -333,10 +339,10 @@
                     // Selecting language button
                     try {
                             var pages = $("#pages").msDropdown({on:{change:function(data, ui) {
-                                                                                                            var val = data.value;
-                                                                                                            if(val!="")
-                                                                                                                    window.location = val;
-                                                                                                    }}}).data("dd");
+                            var val = data.value;
+                            if(val!="")
+                                    window.location = val;
+                    }}}).data("dd");
 
                             var pagename = document.location.pathname.toString();
                             pagename = pagename.split("/");

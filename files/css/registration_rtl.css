@@ -36,3 +36,6 @@ root {
 .form-stacked label.error{
     float : right;
 }
+#turtleimg , #turtleHeaderTitle , #turtleHeaderUl , #turtleHeaderLanguage{
+    float:right;
+}

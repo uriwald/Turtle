@@ -6,6 +6,8 @@ and open the template in the editor.
 <?php
     session_start();
     (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true) ? $show = true : $show = false ;
+    
+    $bootstrapPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
 ?>
 
 <html>
@@ -24,6 +26,7 @@ and open the template in the editor.
         
         <link rel='stylesheet' href='./files/css/lessons.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='./files/bootstrap/css/bootstrap.css' type='text/css' media='all'/>
+         <link rel='stylesheet' href='<?php echo $bootstrapPath . "styles/bootstrap.min.css"?>' type='text/css' media='all'/>
          <!--<link rel='stylesheet' href='./files/bootstrap/css/bootstrap.min.css' type='text/css' media='all'/>--> 
         <link rel='stylesheet' href='./files/bootstrap/css/bootstrap-responsive.min.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='./files/bootstrap/css/bootstrap-responsive.css' type='text/css' media='all'/>
@@ -107,8 +110,8 @@ and open the template in the editor.
         } 
         function printLeftLessonElemnt($i,$show)
         {
-                 echo "<div class='leftLessonElem'> 
-                        <form class='form-horizontal'>
+                 echo "<div class='leftLessonElem well span5'> 
+                        <form class='form-stacked'>
                             <fieldset>
                                 <div class='control-group lesson-label'> 
                                     <label class='lesson-label ' > Title  </label> 
@@ -133,19 +136,24 @@ and open the template in the editor.
                                     } //End of if show
                        echo "</fieldset>
                         </form>
+                        <div>
+                            <button class='btn' id='btnSaveLesson'>Save Lesson</button>
+                            <button class='btn' id='btnShowLesson'>Show Lesson</button>
+                            <button class='btn btn-danger' id='btnDeleteLesson'>Delete Lesson</button>
+                        </div>
                     </div>  " ;
             } //End of print left element
              function printRightLessonElemnt()
              {
                   echo "  
-                 `  <div class='rightLessonElem' > 
+                 `  <div class='rightLessonElem well span5' > 
                         <div class='control-group'>
                                 <lable class='control-label lesson-label' > Explanation   
                                 </lable> 
                             <div class='controlsa'>
-                                <textarea rows='15' type='text'  name='explanation' id='explanation' class='dscText input-xxlarge'></textarea>
+                                <textarea rows='15' type='text'  name='explanation' id='explanation' class='dscText input-xlarge'></textarea>
                             </div>
-                        </div>
+                        </div> 
                     </div>  <!--  Close div RightLessonElem --> 
                  ";
              }
@@ -162,18 +170,13 @@ and open the template in the editor.
                  
                  //";
                  echo "   
-                    <div class='fill' style='margin-left:40px;width:400;float:left'>
-                       
-                            <button class='btn' id='btnSaveLesson'>Save Lesson</button>
-                            <button class='btn' id='btnShowLesson'>Show Lesson</button>
-                            <button class='btn' id='btnDeleteLesson'>Delete Lesson</button>
+                    <div class='btn-navbar' style='margin-left:40px;width:400;float:left'>
                             <input type='button' id='btnShowDoc'      class='btn  btn-link' name='showDoc' value='Show reserve words' />
-                      
                     </div>
                 
 ";
              }
-             function printLessonSteps()
+             function printLessonSteps() 
              {
                        echo "<div id='lessonStep'>";
                             echo "<div id='stepNev'>";
@@ -183,12 +186,9 @@ and open the template in the editor.
                                 echo "</h3>";
                                 echo "<ul id='lessonStepUl' class=' nav nav-pills'>";
                                 echo "</ul>";
-                        //Inserting the step div
-                                echo "<div class='actionButtonsStep'>";
-                                    echo "<button class='btn' id='addStep'>Add lesson step</button>";
-                                    echo "<button class='btn' id='removeStep'>Remove lesson step</button>";
-                                    //echo "<input type='button' id='addStep' class='lessonInputButton' value='Add lesson step' />"   ;               
-                                    //echo "<input type='button' id='removeStep' class='lessonInputButton' value='Remove lesson step' />"  ;
+                        //Inserting the step div 
+                                echo "<div class='actionButtonsStep btn-group'>";
+                                    echo "<button class='btn btn-danger' id='removeStep'>Remove lesson step</button>";
                                 echo "</div>"; //End of actionButtons div
                            echo "</div>"; //End of stepNev div
                        echo "</div>"; //End of lessonStep div
@@ -274,9 +274,10 @@ and open the template in the editor.
                 } //End of for each loop
                 ?>  
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">    
-                    <?php
+                    <?php 
                         printLessonTitle(true,$lessonFinalTitle,$cursor);
                         printLessonSteps();
+
                         printLeftLessonElemnt($i , $show);
                         printRightLessonElemnt();
                         
@@ -314,7 +315,7 @@ and open the template in the editor.
                      $.Storage.set("lessonTitle" ,lessonTitle);
                      $.Storage.set("active-step" , "lesson_step1");
                 </script>
-                <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">                                
+                <div id="stepSection" style="margin-bottom:4px;" class="stepsSection ">                                
                     <?php
                          printLessonTitle(false, $lessonFinalTitle,false);
                          printLessonSteps();

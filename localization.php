@@ -12,6 +12,8 @@
         session_start();
     if (isset ($_SESSION["locale"]))
         $locale =   $_SESSION["locale"];
+    if (isset ($_GET['l']))
+        $locale =   $_GET['l'];
     if ( !isset ($locale))
     {
         if (isSet($_GET["ltranslate"])) 
