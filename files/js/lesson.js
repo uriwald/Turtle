@@ -445,6 +445,8 @@
                 {
                     //var currentNumOfLessonStep = $('.existing_step').length;
                     $('.existing_step').remove();
+                    $('.add_step').remove();
+                    
                     var numOfLessonSteps = $.Storage.get("lesson-total-number-of-steps");
                     var liElements = "";
                     var active ="";
@@ -479,9 +481,10 @@
                        liElements += "<li class='existing_step " + active + "" + "'id=\"" +id + "\">" + " <a href='#'> " + i + " </a></li>";
                        active = "";
                     }
+                    liElements += "<li><a class='add_step' id='addStep'>Add lesson step</a></li>";
                     if (isStepAdd)
                         {
-                            $.Storage.set('active-step' , stepId + numOfLessonSteps);
+                            $.Storage.set('active-step' , stepId + numOfLessonSteps); 
                         }
                     $("#lessonStepUl" ).append(liElements);
                       

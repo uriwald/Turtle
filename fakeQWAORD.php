@@ -23,7 +23,10 @@
     echo _("Please don't try to override primitive functions");  echo _("Error");  echo _("hint");  echo _("sum"); 
         
     echo _("minus");  echo _("make"); echo _("pd"); echo _("stop");
-    echo _("Hi") ; echo _("Welcome to the Turtle world");
+    echo _("Hi") ; echo _("Welcome to the Turtle world"); 
+    
+    echo _("Please enter your username");echo _("Please enter your password");
+    echo _("Your username must contain at least 4 characters");echo _("Your password must contain at least 5 characters");
     
                   
                   

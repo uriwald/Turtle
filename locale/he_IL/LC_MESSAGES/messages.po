@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TurtleAcademy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-28 12:04+0530\n"
-"PO-Revision-Date: 2013-01-28 12:08+0530\n"
+"POT-Creation-Date: 2013-01-30 13:20+0530\n"
+"PO-Revision-Date: 2013-01-30 13:22+0530\n"
 "Last-Translator: \n"
 "Language-Team: Wald\n"
 "MIME-Version: 1.0\n"
@@ -430,63 +430,159 @@ msgstr "שלום"
 msgid "Welcome to the Turtle world"
 msgstr "וברוכים הבאים לעולמו של הצב"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:22
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:28
+msgid "Please enter your username"
+msgstr "בבקשה הכנס את שם המשתמש שלך"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:28
+msgid "Please enter your password"
+msgstr "בבקשה הכנס את הססמא שלך"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:29
+msgid "Your username must contain at least 4 characters"
+msgstr "שם המשתמש חייב להכיל לפחות 4 תוים"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:29
+msgid "Your password must contain at least 5 characters"
+msgstr "הסממא חייבת להכיל לפחות 5 תוים"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:26
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index3.php:23
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:17
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:22
 msgid "Turtle Academy - learn logo programming in your browser"
 msgstr " אקדמיית הצב - למד תכנות לוגו היישר מתוך הדפדפן"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:86
-msgid "Turtle Academy"
-msgstr "אקדמיית הצב"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:106
-msgid "Your browser does not support canvas - an updated browser is recommended"
-msgstr " הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יותר"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:137
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:162
-msgid "Next"
-msgstr "הבא"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:144
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:154
-msgid "Prev"
-msgstr "הקודם"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:177
-msgid "project doc"
-msgstr "תיעוד הפרוייקט"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:109
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:112
 msgid "TurtleAcademy"
 msgstr "אקדמיית הצב"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:112
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:113
 msgid "Sample"
 msgstr "דוגמאות"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:144
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:134
+msgid "Hello"
+msgstr "שלום"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:143
 msgid "My account"
 msgstr "החשבון שלי"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:145
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:144
 msgid "Help"
 msgstr "עזרה"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:146
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:145
 msgid "Log out"
 msgstr "התנתק"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:179
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:161
+msgid "Login"
+msgstr "הכנס"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:181
 msgid "Sign in"
 msgstr "התחבר"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index2.php:180
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:182
 msgid "Register"
 msgstr "הרשם"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:36
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:223
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:121
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:106
+msgid "Your browser does not support canvas - an updated browser is recommended"
+msgstr " הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יותר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:262
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:287
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:152
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:177
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:137
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:162
+msgid "Next"
+msgstr "הבא"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:269
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:279
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:159
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:169
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:144
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:154
+msgid "Prev"
+msgstr "הקודם"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:302
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:192
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:177
+msgid "project doc"
+msgstr "תיעוד הפרוייקט"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:101
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:86
+msgid "Turtle Academy"
+msgstr "אקדמיית הצב"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:39
 msgid "Turtle Academy - Create a lesson"
 msgstr "אקדמיית הצב - צור שיעור"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:232
+msgid "Sign Up for Free"
+msgstr "הירשם בחינם"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:238
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:340
+msgid "Email"
+msgstr "אי מייל"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:249
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:302
+msgid "Username"
+msgstr "שם משתמש"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:261
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:314
+msgid "Password"
+msgstr "ססמא"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:276
+msgid "Agree to"
+msgstr "אני מסכים ל"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:276
+msgid "Terms of Use"
+msgstr "תנאי שימוש"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:281
+msgid "Sign Up"
+msgstr "הרשם"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:286
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:333
+msgid "Sign In"
+msgstr "התחבר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:328
+msgid "Remember me"
+msgstr "זכור אותי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:334
+msgid "Forgot my password"
+msgstr "שכחתי ססמא"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:337
+msgid "Forgot Password"
+msgstr "שכחתי ססמא"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:349
+msgid "Never mind, I remember my password"
+msgstr "לא משנה, נזכרתי בססמא"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:353
+msgid "Remind me"
+msgstr "הזכר לי"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:50
 msgid "Turtle Academy - Translate a lesson"
@@ -516,13 +612,19 @@ msgstr "כותרת"
 msgid "Explanation"
 msgstr "הסבר"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:6
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:7
 msgid "Create new Lesson"
 msgstr "יצירת שיעור חדש"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/signUp.php:19
 msgid "Turtle Academy - User Registration"
 msgstr "אקדמיית הצב - רישום משתמש"
+
+#~ msgid "Sign Up &raquo"
+#~ msgstr "הרשם  &raquo"
+
+#~ msgid "Sign In &raquo"
+#~ msgstr "התחבר  &raquo;"
 
 #, fuzzy
 #~ msgid ""

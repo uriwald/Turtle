@@ -13,18 +13,26 @@ root {
 #sign-in-form , #sign-up-form , #forgot-password-form{
     direction : rtl;
 }
-#signInUserNameLbl , #username , #signInPasswordLbl , #password , #remember_checkbox , #terms_up  {
+  #signInPasswordLbl  , #remember_checkbox , #terms_up  {
     float: right;
 }
-#signUpEmailLbl , #signUpUserNameLbl , #signUpUserNameLPwdLbl , #forgotEmail{
+#signUpEmailLbl , #signUpUserNameLPwdLbl , #forgotEmail{
     float : right;
     width: 100px;
     text-align: right;
 }
 #signInPasswordLbl{
-    width: 40px;
-}
+    width: 50px;
+} 
 #remember_span , #signupAgreeToTerms{
     float : right ;
     margin-right: 20px;
+}
+#signInUserNameLbl ,#signUpUserNameLbl , #signInPasswordLbl{
+ float : right;
+ text-align: right;
+ width : 260px; 
+}
+.form-stacked label.error{
+    float : right;
 }

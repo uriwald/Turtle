@@ -44,6 +44,7 @@
         //        submitHandler: function() { alert("submitted!"); }
         //});
         $(document).ready(function(){
+            var gt = new Gettext({'domain' : 'messages'});
             $('#topbar').dropdown();
             $('#username_in').focus();
             $("#sign-in-form").validate({
@@ -59,12 +60,12 @@
                     },
                     messages: {
                             username: {
-                                    required: "Please enter a username",
-                                    minlength: "Your username must consist of at least 4 characters"
+                                    required: gt.gettext("Please enter your username"), 
+                                    minlength: gt.gettext("Your username must contain at least 4 characters")
                             },
                             password: {
-                                    required: "Please enter a password",
-                                    minlength: "Your password must consist of at least 5 characters"
+                                    required: gt.gettext("Please enter your password"),
+                                    minlength: gt.gettext("Your password must contain at least 5 characters")
                             }
                     }
             });           
@@ -248,6 +249,7 @@
                         <label for="username_up" id="signUpUserNameLbl"><?php echo _("Username"); ?></label>
                         <div class="input">
                             <input id="username" name="username" size="30" type="text" class='xlarge'/>
+                            </br>
                             <!--
                             <span class="help-block">
                             <span class='label important'>Warning</span> the username already exists
