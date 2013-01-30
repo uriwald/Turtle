@@ -98,7 +98,6 @@
     </head>
     <body> 
         <?php  
-            echo $_SESSION['locale'] ;
             $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
             $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");    
         ?>
