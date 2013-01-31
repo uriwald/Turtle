@@ -491,7 +491,7 @@
                 }
                 else
                 {
-                    $("#lessonStepUl" ).append('<li class="existing_step active" id="lesson_step1"> <a href="#"> 1 </a></li>');  
+                    $("#lessonStepUl" ).append('<li class="existing_step active" id="lesson_step1"> <a href="#"> 1 </a></li><li><a class="add_step" id="addStep">Add lesson step</a></li>');  
                     $.Storage.set('lesson-total-number-of-steps' , '1');
                     $.Storage.set('lessonStepsValues',JSON.stringify(lessonStepValuesStorage, null, 2))
                     $.Storage.set('lessonStepsValuesTranslate',JSON.stringify(lessonStepValuesStorage, null, 2))
@@ -540,7 +540,7 @@
                 {
                      $.Storage.set('precedence' , '80');
                 }
-                $('#addStep').click(function () {
+                $('#addStep').live("click" , function() {
                     var val             = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;
                     var currentStep     =  getStepValues(false); 
                     var preActiveStep   = $.Storage.get('active-step-num');
