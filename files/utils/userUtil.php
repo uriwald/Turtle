@@ -6,7 +6,7 @@
            $password = md5($password); 
            $m = new Mongo();
            $db = $m->turtleTestDb;	
-           $users = $db->user_test;
+           $users = $db->users;
            
            $userQuery       = array('username' => $username , 'password' => $password , 'confirm'=> true);
            $resultcount     = $users->count($userQuery);

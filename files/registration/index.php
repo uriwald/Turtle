@@ -92,7 +92,7 @@ if(isset($_POST['signup'])){
 
                 $db = $m->turtleTestDb;	
 
-                $users = $db->user_test;
+                $users = $db->users;
 
                 $userQuery       = array('email' => $email ,"confirm" => true);
                 $userExist     = $users->count($userQuery);
@@ -111,7 +111,7 @@ if(isset($_POST['signup'])){
 			//get the new user id
 			//$userid = mysql_insert_id();
 			
-                        $users = $db->user_test_confirm;
+                        $users = $db->users_waiting_approvment;
 			//create a random key
                         //$key = $username . $email . date('mY');
 			$key = $username . $email ;

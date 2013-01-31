@@ -25,8 +25,8 @@ if(empty($_GET['email']) || empty($_GET['key'])){
 if($action['result'] != 'error'){
         $m = new Mongo();
         $db = $m->turtleTestDb;
-        $usersconfirmation = $db->user_test_confirm;
-        $users             = $db->user_test;
+        $usersconfirmation = $db->users_waiting_approvment;
+        $users             = $db->users;
 	//cleanup the variables
 	//$email = mysql_real_escape_string($_GET['email']);
 	//$key = mysql_real_escape_string($_GET['key']);

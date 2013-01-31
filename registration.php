@@ -5,12 +5,20 @@
     $fullPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";  
     $phpDirPath  =   "files/registration/inc/php/";
     $incDirPath  =   "files/registration/inc/";
+    $relPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
+    $ddPath     =   "files/test/dd/";
+    $jqueryui   =   "ajax/libs/jqueryui/1.10.0/";
     include_once $phpDirPath . 'config.php';
     include_once $phpDirPath . 'functions.php';
     require_once ('environment.php');
     require_once("localization.php");
     
-    if ( !isset ($_SESSION['locale']))
+    if (isset ($_GET['l']))
+    {
+        $locale = $_GET['l']  ;
+        $_SESSION['locale'] = $locale;
+    }
+    else if ( !isset ($_SESSION['locale']))
     {
         $locale = "en_US";
     }  
@@ -30,16 +38,50 @@
         $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
         if ( file_exists($file_path))
             echo $po_file;    
-        if (isset ($_SESSION['locale']) && $_SESSION['locale'] == "he_IL")
+        if ($locale == "he_IL")
             echo "<link rel='stylesheet' type='text/css' href='files/css/registration_rtl.css' /> ";
-    ?>    
-    <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
-    <script src="<?php echo $fullPath . 'scripts/jquery.min.js'; ?>"></script>
-    <script src="<?php echo $fullPath . 'scripts/bootstrap-dropdown.js'; ?>"></script>
-    <script src="ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
-    
-    
-    <script type='text/javascript'>
+    ?>     
+    <!-- Adding the dropdown dd directory related -->
+        <script src="<?php echo $ddPath . 'js/jquery/jquery-1.8.2.min.js'?>"></script> 
+        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/dd.css'?>" />
+        <script src="<?php echo $ddPath . 'js/msdropdown/jquery.dd.min.js'?>"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/skin2.css' ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath .  'css/msdropdown/flags.css' ?>" /> 
+     <!-- Finish the dropdown dd directory related -->
+
+               
+        <!--<script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
+        <script  type="text/javascript" src="<?php echo $jqueryui .  'js/jquery-ui-1.10.0.custom.js' ?>"></script> <!--- equal to googleapis -->
+        <link rel='stylesheet' href='<?php echo $jqueryui .  'css/ui-lightness/jquery-ui-1.10.0.custom.css' ?>' type='text/css' media='all'/> 
+        <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
+        <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
+        <script type="application/javascript" src="files/jquery.tmpl.js"></script> <!-- jquerytmpl -->
+        <!--<script src="<?php echo $relPath . 'scripts/jquery.min.js' ?>"></script>-->
+        <?php
+            $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
+            $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
+            if ( file_exists($file_path))
+                echo $po_file;            
+        ?>        
+        <script type="text/javascript">
+                var locale = "<?php echo $locale; ?>";
+        </script>
+        <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
+
+        <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
+        <!-- Disable script when working on local mode without internet 
+        <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/> 
+        -->
+        <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='./files/css/footer.css' type='text/css' media='all'/> 
+        <link href="<?php echo $relPath . 'styles/bootstrap.min.css' ?>" rel="stylesheet"> 
+        <!--<script type="application/javascript" src="<?php echo $relPath . 'scripts/bootstrap-dropdown.js' ?>"></script>  Bootstaps drop down -->
+        <script type="application/javascript" src="files/bootstrap/js/bootstrap.js"></script> <!-- Storage -->
+        <script type="application/javascript" src="files/bootstrap/js/bootstrap.min.js"></script> <!-- Storage --> 
+            <script src="ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
+            <script  type="text/javascript" src="<?php echo $jqueryui .  'js/jquery-ui-1.10.0.custom.js' ?>"></script> <!--- equal to googleapis -->
+        <link rel='stylesheet' href='<?php echo $jqueryui .  'css/ui-lightness/jquery-ui-1.10.0.custom.css' ?>' type='text/css' media='all'/> 
+    <script type='text/javascript'> 
         //$.validator.setDefaults({
         //        submitHandler: function() { alert("submitted!"); }
         //});
@@ -68,10 +110,54 @@
                                     minlength: gt.gettext("Your password must contain at least 5 characters")
                             }
                     }
-            });           
-             
+            }); 
+            $("#sign-up-form").validate({
+                    rules: {
+                            username: {
+                                    required: true,
+                                    minlength: 4
+                            },
+                            password: {
+				required: true,
+				minlength: 5
+                            },
+                            email : {
+                                required: true,
+				email: true
+                            }
+                    },
+                    messages: {
+                            username: {
+                                    required: gt.gettext("Please enter your username"), 
+                                    minlength: gt.gettext("Your username must contain at least 4 characters")
+                            },
+                            password: {
+                                    required: gt.gettext("Please enter your password"),
+                                    minlength: gt.gettext("Your password must contain at least 5 characters")
+                            },
+                            email: "Please enter a valid email address"
+                    }
+            }); 
+            try {
+                var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
+                        var val = data.value;
+                        $.Storage.set("locale",val);
+                        if(val!="")
+                            {
+                                window.location.assign('registration.php?l=' + val);
+                                
+                            }
+                                //window.location = 'registration.php?l=' + val ;
+                }}}).data("dd");
+                var pageIndex   =  $.Storage.get("locale");
+                if (pageIndex == "")
+                    pageIndex   = "en_US";
+                pages.setIndexByValue(pageIndex);
+            } catch(e) {
+                    console.log(e);	
+            }
         });
-
+ 
         $(document).delegate('.switch', 'click', function(){
 
             var c = $(this).attr('data-switch');
@@ -88,9 +174,7 @@
     <!-- Le styles -->
     <link href="<?php echo $fullPath . 'styles/bootstrap.min.css'; ?>" rel="stylesheet">
     <style type="text/css">
-      body {
-        padding-top: 60px;
-      }
+
       .switch{
         display:inline-block;
         cursor:pointer;
@@ -134,7 +218,7 @@
                     $password = md5($password);	
                     $m = new Mongo();
                     $db = $m->turtleTestDb;	
-                    $users = $db->user_test;
+                    $users = $db->users;
                     //Query if email already exist and approved
                     $queryEmail             = array('email' => $email ,"confirm" => true);
                     $existEmail             = $users->count($queryEmail);
@@ -159,7 +243,7 @@
                         if($userResult){
                                 //get the new user id
                                 //$userid = mysql_insert_id();
-                                $users = $db->user_test_confirm;
+                                $users = $db->users_waiting_approvment;
                                 //create a random key
                                 //$key = $username . $email . date('mY');
                                 $key = $username . $email ;
@@ -201,29 +285,70 @@
             }
             $action['text'] = $text;
     }
-    ?>
-    <?php
-        //include $incDirPath .'elements/header.php'; 
-    ?>
-    <div class="topbar">
-        <div class="fill">
-            <div class="container">
-                <a class="brand" href="index.html">Project X</a>
-                <ul class="nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active"><a href="index.html">Sample</a></li>
-                </ul>       
-                <form class="pull-left" action="">
-                    <input type="text" placeholder="Search">
-                    <button class="btn" type="submit">Go</button>
-                </form>        
-                <ul class="nav secondary-nav">
-                    <li><a href="#">Welcome Guest!</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+ 
+            $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
+            $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");    
+   ?>
+    <div class="topbar" style="position: static;">
+            <div class="fill">
+                <div class="container span13" > 
+                    <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
 
+                    <ul class="nav" id="turtleHeaderUl"> 
+                            <li><a href="index.php" style="color:gray;" ><?php echo _("TurtleAcademy");?></a></li> 
+                            <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
+                    </ul>
+
+                    <form class="<?php  
+                                        echo $class . " form-inline";                                
+                                    ?>" action="" id="turtleHeaderLanguage">  
+                        <select name="selectedLanguage" id="selectedLanguage" style="width:120px;">
+                            <option value='en_US' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
+                            <option value='es_AR' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
+                            <option value='he_IL' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
+                            <option value='zh_CN' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
+                        </select>
+                    </form>       
+                    <?php
+                        if (isset($_SESSION['username']))
+                        {
+                    ?>                       
+                            <!--  <p class="pull-right">Hello <a href="#"> -->
+                                <nav class="<?php echo $login ?>" style="width:200px;" id="turtleHeaderLoggedUser">
+                                    <ul class="nav nav-pills <?php echo $login ?>" id="loggedUserUl">
+
+                                        <li style="padding: 10px 10px 11px;"> <?php echo _("Hello");?></li>
+                                        <li class="cc-button-group btn-group"> 
+                                            <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:#ffffff; background-color: rgba(0, 0, 0, 0.5);" >
+                                            <?php
+                                                echo $_SESSION['username'];
+                                            ?>
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
+                                                <li><a tabindex="-1" href="/docs"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
+                                                <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
+                                                <li><a href="logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
+                                            </ul>
+
+
+                                        </li>
+                                    </ul> 
+                                </nav>                                                                     
+                                </a>
+
+                    <?php
+                        }
+                        else
+                        {
+
+                        }
+                        ?>
+                </div>
+            </div> <!-- Ending dill bare -->
+        </div> <!-- Ending top bare -->
+          
+          
     <div class="container">
         <div class='row'>
         <!-- Main hero unit for a primary marketing message or call to action -->
@@ -357,7 +482,7 @@
         <div class='cleaner'></div>
  
         <footer style='text-align:center;'>
-            <p>&copy; <?php echo _("TurtleAcademy"); ?> <a href='http://www.sherzod.me' target='_blank' title='Professional Web Developer'>Uri Wald</a></p>
+            <p>&copy; <?php echo _("TurtleAcademy"); ?></p>
         </footer>
 
     </div> <!-- /container -->
