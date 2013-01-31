@@ -140,7 +140,7 @@
                                                     <b class="caret"></b>
                                                 </a>
                                                 <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
-                                                    <li><a tabindex="-1" href="/docs"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
+                                                    <li><a tabindex="-1" href="users.php"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
                                                     <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
                                                     <li><a href="logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
                                                 </ul>
@@ -159,50 +159,7 @@
                         ?>       
                                 <ul class="nav <?php echo $login ?>" id="turtleHeaderUl">  
                                     <li><a href="registration.php" style="color:gray;" ><?php echo _("Login");?></a></li> 
-                                </ul>
-                                    <!--
-                                <form action="log.php" class="pull-right form-inline" method='post' id="turtleHeaderLogin" name="turtleHeaderLogin"> 
-                                <?php 
-                                    $err="<span class='help-block'>";
-                                    if ( isset ($_SESSION['err_login_msg']) )
-                                    {
-                                        foreach($_SESSION['err_login_msg'] as $msg) { //Get each error
-                                                $err .= "<span class='label important'>" . $msg . "</span>"; //Write them to a variable
-                                        }
-                                    }
-                                    $err .= "</span>";
-                                    echo $err;
-                                    unset($_SESSION['err_login_msg']);
-                                ?>  
-                                    <div> 
-                                        <input class="input-small" style="color:gray;" name="username" type="text" placeholder="Username">
-                                        <input class="input-small" style="color:gray;" name="password" type="password" placeholder="Password"> 
-                                        <input id="comefrom" name="comefrom" size="30" type="text" value="index2.php" style="display:none;"/>
-                                        <button class="btn" type="submit"><?php echo _("Sign in");?></button>
-                                        <a class="btn" href="registration.php" ><?php echo _("Register");?></a>
-                                    </div>
-                                </form>
-                                -->
-                            <!--    
-                                <div>
-                                    <ul class="nav nav-pills">
-                                        <li class="dropdown"> 
-                                         <div>
-                                            <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:black;" >
-                                                Dropdown
-                                                <b class="caret"></b>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                <li><a tabindex="-1" href="/docs"  id="help-nav">My account</a></li>
-                                                <li><a tabindex="-1" href="/docs" id="hel-nav">Help</a></li>
-                                            </ul>
-                                         </div>
-                                
-                                        </li>
-                                    </ul> 
-                                </div>
-                              -->  
-
+                                </ul>                         
                          <?php
                             }
                          ?>
