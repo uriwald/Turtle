@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
  $.extend({
                 getUrlVars: function(){
                     var vars = [], hash;
@@ -278,13 +277,16 @@
                     //alert("Script loaded and executed.");
                 });
                 window.infoElementKeyUpEvent(isTranslate);
-                var lessonSteps = 'lessonStepsValues';
-                var lessonTitle = 'lessonTitle';
-                var lessonLocale = 'locale';
+                var lessonSteps     = 'lessonStepsValues';
+                var lessonTitle     = 'lessonTitle';
+                var lessonLocale    = 'locale';
                 //After removing a step the lesson will be saved automatically
-                var isStepRemoved = false ;
-                var stepToRemove = "";
-                var collectionName = $.Storage.get('collection-name');
+                var isStepRemoved   = false ;
+                var stepToRemove    =   "";
+                var user        =  "";
+                if ($.Storage.get('username'))
+                    user        =   $.Storage.get('username'); 
+                var collectionName  = $.Storage.get('collection-name');
                 
                 if ($.Storage.get('isStepRemoved'))
                     isStepRemoved = $.Storage.get('isStepRemoved');
@@ -314,7 +316,8 @@
                         translate : isTranslate,
                         isStepRemove  : isStepRemoved ,
                         collection  : collectionName ,
-                        stepToRemove : stepToRemove
+                        stepToRemove : stepToRemove ,
+                        username : user
 
                     },
                         
@@ -509,13 +512,14 @@
 
             $(document).ready(function() {
                 
+                $('.dropdown-toggle').dropdown();
                 window.clearLocalStorage();
                 window.clearStep();
                 var lessonid = $.getUrlVar('lesson');
                 var originLang = $.getUrlVar('lfrom');
                 var transLang = $.getUrlVar('ltranslate');
                 loadExistingLessonSteps(lessonid ,originLang , transLang );
-                loadCKEditor();
+                //loadCKEditor();
                 createStepNavVar(false,false);
                 showFirstStepIfExist('lessonStepsValues');
                 showFirstStepIfExist('lessonStepsValuesTranslate');
@@ -677,6 +681,7 @@
 
                 
                 $('#btnShowLesson').click(function() {   
+                    
                     var title       = $.Storage.get('lessonTitle');
                     var steps       = $.Storage.get("lessonStepsValues");
                     var numOfSteps  = $.Storage.get('lesson-total-number-of-steps');
@@ -688,11 +693,50 @@
                         //window.open('showLesson.php','');
                        // $('#previewLesson').html(result)
                          $('#frame').attr('srcdoc', result);
-                    })
+                    }) 
                     .error(function(){
                         alert('Error loading page');
                     })
                     
+                   /*
+                            var title       = $.Storage.get('lessonTitle');
+                            var steps       = $.Storage.get("lessonStepsValues");
+                            var numOfSteps  = $.Storage.get('lesson-total-number-of-steps');
+                            var locale      = $.Storage.get('locale');
+                            if (locale != "he_IL")
+                                var $dialog = $('<div dir="ltr"></div>');
+                            else
+                                var $dialog = $('<div dir="rtl"></div>');
+                                $.ajax({
+                                    type : 'POST',
+                                    url: "showLesson.php",
+                                    dataType : 'json',
+                                    data: {title : title , steps : steps , numOfSteps : numOfSteps , locale : locale},
+                                    success: function(data) {
+                                      $($dialog).append(data);
+                                    }
+                                });
+                                var $link = $(this).one('click', function() {
+                                        $dialog
+                                                
+                                                //.load('showLesson.php?locale=en_US')
+                                                .dialog({
+                                                        title: $link.attr('title'),
+                                                        width: 700
+
+                                                        //width: 500,
+                                                        //height: 300
+                                                });
+
+                                        $link.click(function() {
+                                                $dialog.dialog('open');
+
+                                                return false;
+                                        });
+
+                                        return false;
+                                });
+                    */
                 });
 
                 $('#btnDel').attr('disabled','disabled');

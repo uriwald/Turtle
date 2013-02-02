@@ -67,7 +67,7 @@ if (empty($_POST['steps'])) {
             $lessonStep["$localeValue"] = $lessonSteps[$i];
             $finalArrAfterTranslation[$i] = $lessonStep;
         }
-        $structure = array("steps" => $finalArrAfterTranslation, "title" => $titles, "pending" => "true" , "user" => $user);
+        $structure = array("steps" => $finalArrAfterTranslation, "title" => $titles, "pending" => "true" , "username" => $user);
         $result = $lessons->insert($structure, array('safe' => true));
         $return['objID'] = $structure['_id'];
     } 
@@ -124,7 +124,7 @@ if (empty($_POST['steps'])) {
             $lessonsTitle = $originalTitle;
             $lessonsTitle["$localeValue"] = $_POST['lessonTitle'];
             //$return['finalArrAfterTranslation'] = $finalArrAfterTranslation;
-            $result = $lessons->update($criteria, array('$set' => array("steps" => $originLanguageStepsArr, "title" => $lessonsTitle, "precedence" => $precedence)));
+            $result = $lessons->update($criteria, array('$set' => array("steps" => $originLanguageStepsArr, "title" => $lessonsTitle, "precedence" => $precedence, "username" => $user)));
             $return['isExistingLesson'] = "If We got Any result";
         }
     }

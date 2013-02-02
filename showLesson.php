@@ -1,4 +1,5 @@
 <?php
+
 if (!isset($_POST['locale']))
     echo "You will be able to see your lesson here by pressing show lesson button"; //Case of initial loading
 else {
@@ -26,6 +27,13 @@ require_once("files/utils/languageUtil.php");
         <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
         <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
         <script type="application/javascript" src="files/jquery.tmpl.js"></script> <!-- jquerytmpl -->
+        <script type="application/javascript" src="files/Gettext.js"></script> 
+        <script type="application/javascript" src="files/interface.js?locale=<?php echo $locale ?>"></script> 
+        <script type="application/javascript" src="files/jqconsole.js"></script> 
+        <script type="application/javascript" src="files/logo.js"></script> 
+        <script type="application/javascript" src="files/jquery.Storage.js"></script> 
+        <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/>
         <?php
         if (isset($_POST['locale']))
             $locale = $_POST['locale'];
@@ -42,15 +50,61 @@ require_once("files/utils/languageUtil.php");
         <script type="text/javascript">
             var locale = "<?php echo $locale; ?>";
         </script>
-        <script type="text/javascript">  
+        <script type="text/javascript"> 
+            /*
+                        var lesson = new Array();
+                        var allSteps = JSON.parse($.Storage.get("lessonStepsValues"));
+                        var singleStep = new Array(new Array);
+                        var steps   = new Array();
+                        var precedence = 100;
+                        var pending     = false;
+                        var title       = "fake";
+                        var i = 1
+                        
+                        var singleStepobj = new Object();
+                        var allStepsobj    = new Object();
+
+                        var singleStepfilter = new Array();
+                        singleStepfilter[0] = "title";
+                        singleStepfilter[1] = "solution";
+                        singleStepfilter[2] = "hint";
+                        singleStepfilter[3] = "explanation";
+                        
+                        var allStepfilter   = new Array();
+                        allStepfilter[0] =  "title";
+                        allStepfilter[1] = "precedence";
+                        allStepfilter[2] = "pending";
+                        allStepfilter[3] = "steps";
+                         steps[0] = null ;
+                        for (var i=1;i<allSteps.length;i++)
+                            {
+                                singleStep[0]['title'] = allSteps[i][0]; 
+                                singleStep[0]['solution'] = allSteps[i][1]; 
+                                singleStep[0]['hint'] = allSteps[i][2]; 
+                                singleStep[0]['explanation'] = allSteps[i][3]; 
+                                
+                                singleStepobj.title = allSteps[i][0];
+                                singleStepobj.solution = allSteps[i][2];
+                                singleStepobj.hint = allSteps[i][3];
+                                singleStepobj.explanation = allSteps[i][4];
+                                //steps[i]    =  JSON.stringify(singleStepobj, singleStepfilter, "\t");
+                                steps[i]    =  singleStep[0]; 
+                            }
+                        allStepsobj.title =   title;
+                        allStepsobj.precedence =   precedence;
+                        allStepsobj.pending   = pending;
+                        allStepsobj.steps    = steps;
+                        var lessons  =  JSON.stringify(allStepsobj,allStepfilter);
+                        */
+    
             <?php
+            
                 echo "var lessons = [";
                 $steps = $_POST['steps'];
                 $decodedStepValue = json_decode($steps);
                 for ($i = 1; $i <= $_POST['numOfSteps']; $i += 1) {
                     $stepsArray = $decodedStepValue[$i];
-                    // $translatArray = array("title" => $stepsArray[0], "explanation" => $stepsArray[1], "action" => $stepsArray[2],
-                    //     "solution" => $stepsArray[3], "hint" => $stepsArray[4]);
+      
                     $translatArray = array("title" => $stepsArray[0], "action" => $stepsArray[1], "solution" => $stepsArray[2],
                         "hint" => $stepsArray[3], "explanation" => $stepsArray[4]);
                     $lessonSteps[$i] = $translatArray;
@@ -64,15 +118,11 @@ require_once("files/utils/languageUtil.php");
                 echo json_encode($lessonjs);
                 echo ",";
                 echo "]";
+        
+             
             ?>  
         </script>    
-        <script type="application/javascript" src="files/Gettext.js"></script> 
-        <script type="application/javascript" src="files/interface.js?locale=<?php echo $locale ?>"></script> 
-        <script type="application/javascript" src="files/jqconsole.js"></script> 
-        <script type="application/javascript" src="files/logo.js"></script> 
-        <script type="application/javascript" src="files/jquery.Storage.js"></script> 
-        <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/>
-        <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/>
+
 <?php
 cssUtils::loadcss($locale, "./files/css/interface");
 ?>    

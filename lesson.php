@@ -4,10 +4,18 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <?php
-    session_start();
+    if(session_id() == '') 
+        session_start();
     (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true) ? $show = true : $show = false ;
     
-    $bootstrapPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
+    $relPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
+        $ddPath     =   "files/test/dd/";
+    $jqueryui   =   "ajax/libs/jqueryui/1.10.0/";
+        if ( !isset ($locale))
+    {
+        $locale = "en_US";
+        $_SESSION['locale'] = "en_US";
+    } 
 ?>
 
 <html>
@@ -15,32 +23,118 @@ and open the template in the editor.
         <title>
         </title>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-        <!-- <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
-        <script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
-        <script  type="text/javascript" src="ckeditor/ckeditor.js"></script>
-        <script  type="text/javascript" src="ckeditor/adapters/jquery.js"></script>
+              <script src="<?php echo $ddPath . 'js/jquery/jquery-1.8.2.min.js'?>"></script> 
+        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/dd.css'?>" />
+        <script src="<?php echo $ddPath . 'js/msdropdown/jquery.dd.min.js'?>"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/skin2.css' ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath .  'css/msdropdown/flags.css' ?>" /> 
+     <!-- Finish the dropdown dd directory related -->
+             
+        <script  type="text/javascript" src="<?php echo $jqueryui .  'js/jquery-ui-1.10.0.custom.js' ?>"></script> <!--- equal to googleapis -->
+        <link rel='stylesheet' href='<?php echo $jqueryui .  'css/ui-lightness/jquery-ui-1.10.0.custom.css' ?>' type='text/css' media='all'/> 
         <script  type="text/javascript" src="alerts/jquery.alerts.js"></script>
+        <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
+        <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
+        <script type="application/javascript" src="files/jquery.tmpl.js"></script> <!-- jquerytmpl -->
+        <!--<script src="<?php echo $relPath . 'scripts/jquery.min.js' ?>"></script>-->
+        <?php
+            $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
+            $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
+            if ( file_exists($file_path))
+                echo $po_file;  
+            $username="Unknown";
+            if (isset($_SESSION['username']))
+                 $username= $_SESSION['username'];
+        ?>        
+        <script type="text/javascript">
+                var locale = "<?php echo $locale; ?>";
+        </script>
+        <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
+        <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
         <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
-        <script type="application/javascript" src="files/js/lesson.js"></script> <!-- lessonFunctions -->     
-        
-        <link rel='stylesheet' href='./files/css/lessons.css' type='text/css' media='all'/>
-        <link rel='stylesheet' href='./files/bootstrap/css/bootstrap.css' type='text/css' media='all'/>
-         <link rel='stylesheet' href='<?php echo $bootstrapPath . "styles/bootstrap.min.css"?>' type='text/css' media='all'/>
-         <!--<link rel='stylesheet' href='./files/bootstrap/css/bootstrap.min.css' type='text/css' media='all'/>--> 
-        <link rel='stylesheet' href='./files/bootstrap/css/bootstrap-responsive.min.css' type='text/css' media='all'/>
-        <link rel='stylesheet' href='./files/bootstrap/css/bootstrap-responsive.css' type='text/css' media='all'/>
-        <link rel='stylesheet' href='./alerts/jquery.alerts.css' type='text/css' media='all'/>   
+
+            <link href="files/bootstrap/css/bootstrap.css" rel="stylesheet"> 
+        <link href="<?php echo $relPath . 'styles/bootstrap.min.css' ?>" rel="stylesheet"> 
+        <!--<script type="application/javascript" src="<?php echo $relPath . 'scripts/bootstrap-dropdown.js' ?>"></script>  Bootstaps drop down -->
+        <link   rel="stylesheet" href="./alerts/jquery.alerts.css" type="text/css" media="all" >  
+        <script type="application/javascript" src="files/bootstrap/js/bootstrap.js"></script> <!-- Storage -->
+        <script type="application/javascript" src="files/bootstrap/js/bootstrap.min.js"></script> <!-- Storage --> 
+      
+     <script type="application/javascript" src="files/js/lesson.js"></script> <!-- lessonFunctions --> 
     </head>
     <body>
-        <header id="titleHeader">
-            <h1><img src="files/turtles.png" alt="צב במשקפיים">
-            <?php
-                 echo _("Turtle Academy - Create a lesson");
-            //        אקדמיית הצב                    
-             ?> 
-            </h1>
-        </header>
+        <?php   
+            $locale             = "en_US";
+            $languageGet        = "l";
+            if (isset($_GET[$languageGet]))
+                $locale = $_GET[$languageGet]; 
+            $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
+            $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");  
+        ?>
+            <!-- Should be different for log in user and for a guest -->
+            <div class="topbar" style="position: static;">
+                <div class="fill">
+                    <div class="container span16" style="float:none;" > 
+                        <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
+                        
+                        <ul class="nav" id="turtleHeaderUl"> 
+                              <li><a href="index.php" style="color:gray;" ><?php echo _("TurtleAcademy");?></a></li> 
+                             <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
+                        </ul>
+                            
+                        <form class="<?php  
+                                            echo $class . " form-inline";                                
+                                     ?>" action="" id="turtleHeaderLanguage">  
+                            <select name="selectedLanguage" id="selectedLanguage" style="width:120px;">
+                                <option value='index.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
+                                <option value='es.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
+                                <option value='he.php' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
+                                <option value='zh.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
+                            </select>
+                        </form>       
+                        <?php
+                            if (isset($_SESSION['username']))
+                            {
+                        ?>                       
+                              <!--  <p class="pull-right">Hello <a href="#"> -->
+                                    <nav class="<?php echo $login ?>" style="width:200px;" id="turtleHeaderLoggedUser">
+                                        <ul class="nav nav-pills <?php echo $login ?>" id="loggedUserUl">
+                                            
+                                            <li style="padding: 10px 10px 11px;"> <?php echo _("Hello");?></li>
+                                            <li class="cc-button-group btn-group"> 
+                                                <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:#ffffff; background-color: rgba(0, 0, 0, 0.5);font-size: 13px" >
+                                                <?php
+                                                    echo $_SESSION['username'];
+                                                ?>
+                                                    <b class="caret"></b>
+                                                </a>
+                                                <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
+                                                    <li><a tabindex="-1" href="users.php"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
+                                                    <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
+                                                    <li><a href="logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
+                                                </ul>
+
+
+                                            </li>
+                                        </ul> 
+                                    </nav>                                                                     
+                                    </a>
+
+                        <?php
+                            }
+                            else
+                            {
+
+                        ?>       
+                                <ul class="nav <?php echo $login ?>" id="turtleHeaderUl">  
+                                    <li><a href="registration.php" style="color:gray;" ><?php echo _("Login");?></a></li> 
+                                </ul>                         
+                         <?php
+                            }
+                         ?>
+                    </div>
+                </div>             
+            </div> <!-- End of Top menu -->
     <?php
         //session_start();
         require_once ("files/utils/lessonsUtil.php");
@@ -110,9 +204,9 @@ and open the template in the editor.
         } 
         function printLeftLessonElemnt($i,$show)
         {
-                 echo "<div class='leftLessonElem well span5'> 
+                 echo "<div class='leftLessonElem well span7' style='margin-top:10px; margin-left: 0px;  height:350px;'> 
                         <form class='form-stacked'>
-                            <fieldset>
+                            <fieldset> 
                                 <div class='control-group lesson-label'> 
                                     <label class='lesson-label ' > Title  </label> 
                                     <div class='controlsa'>
@@ -138,7 +232,7 @@ and open the template in the editor.
                         </form>
                         <div>
                             <button class='btn' id='btnSaveLesson'>Save Lesson</button>
-                            <button class='btn' id='btnShowLesson'>Show Lesson</button>
+                            <button class='btn' id='btnShowLesson' title='show Lesson'>Show Lesson</button>
                             <button class='btn btn-danger' id='btnDeleteLesson'>Delete Lesson</button>
                         </div>
                     </div>  " ;
@@ -146,7 +240,7 @@ and open the template in the editor.
              function printRightLessonElemnt()
              {
                   echo "  
-                 `  <div class='rightLessonElem well span5' > 
+                 `  <div class='rightLessonElem well span7' style='margin-top:10px; margin-left: 0px; height:350px;' > 
                         <div class='control-group'>
                                 <lable class='control-label lesson-label' > Explanation   
                                 </lable> 
@@ -184,10 +278,12 @@ and open the template in the editor.
                                 if (isset($_GET['lesson']))    
                                     echo " ↓(please choose step to edit)";
                                 echo "</h3>";
-                                echo "<ul id='lessonStepUl' class=' nav nav-pills'>";
-                                echo "</ul>";
+                                echo "<div style='height:40px;'>";
+                                    echo "<ul id='lessonStepUl' class=' nav nav-pills'>";
+                                    echo "</ul>";
+                                echo "</div>";
                         //Inserting the step div 
-                                echo "<div class='actionButtonsStep btn-group'>";
+                                echo "<div class='actionButtonsStep btn-group' >";
                                     echo "<button class='btn btn-danger' id='removeStep'>Remove lesson step</button>";
                                 echo "</div>"; //End of actionButtons div
                            echo "</div>"; //End of stepNev div
@@ -235,12 +331,14 @@ and open the template in the editor.
                     $.Storage.remove("lesson-total-number-of-steps");
                     $.Storage.remove("active-step");
                     $.Storage.remove("collection-name");
+                    $.Storage.remove("username");
                     var lessonStepValuesStorage = new Array(new Array());
                     $.Storage.set('lessonStepsValues',JSON.stringify(lessonStepValuesStorage, null, 2))
                     $.Storage.set("active-step" , "lesson_step1");
                     $.Storage.set("lesson-total-number-of-steps" ,"0");
                     $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
                     $.Storage.set("locale" ,"<?php echo $locale ?>");
+                    $.Storage.set("username" ,"<?php echo $username ;?>");
                 </script>
                
                 <?php
@@ -273,17 +371,19 @@ and open the template in the editor.
                     <?php
                 } //End of for each loop
                 ?>  
-                <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">    
-                    <?php 
-                        printLessonTitle(true,$lessonFinalTitle,$cursor);
-                        printLessonSteps();
+                <div class="container span16" style="float:none;" >
+                    <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">    
+                        <?php 
+                            printLessonTitle(true,$lessonFinalTitle,$cursor);
+                            printLessonSteps();
 
-                        printLeftLessonElemnt($i , $show);
-                        printRightLessonElemnt();
-                        
-                    ?>
-                </div> <!-- End of stepSection -->
-                </div>  <!-- End div step action -->
+                            printLeftLessonElemnt($i , $show);
+                            printRightLessonElemnt();
+
+                        ?>
+                    </div> <!-- End of stepSection -->
+                 </div> <!-- container -->
+                x
                 <?php
                     printLessonButtons();
                 ?>
@@ -293,7 +393,7 @@ and open the template in the editor.
                             echo "hello rubio";
                         ?>
                     </div>
-                </iframe> 
+                </iframe>
                 <script type='text/javascript'>
                                                 
                     //Print Nav  
@@ -311,22 +411,33 @@ and open the template in the editor.
                      $.Storage.remove("collection-name");
                      $.Storage.remove("lessonTitle");
                      $.Storage.remove("active-step");
+                     $.Storage.remove("username");
                      $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
                      $.Storage.set("lessonTitle" ,lessonTitle);
                      $.Storage.set("active-step" , "lesson_step1");
+                     $.Storage.set("username" ,"<?php echo $username ?>");
                 </script>
-                <div id="stepSection" style="margin-bottom:4px;" class="stepsSection ">                                
+                 <div class="container span16" style="float:none;" >
+                        <div id="stepSection" style="margin-bottom:4px;" class="stepsSection ">                                
                     <?php
                          printLessonTitle(false, $lessonFinalTitle,false);
                          printLessonSteps();
                          printLeftLessonElemnt($i , $show);
                          printRightLessonElemnt();
                     ?>
-                </div>     
+                        </div>  <!-- Finish div stepSection -->  
+                 </div> <!-- Finish stepContainer div -->
                 <?php
                 printLessonButtons();
             } //end of else (New Lesson) 
             ?> 
+        <iframe id="frame"  height="700" width="90%" src="showLesson.php">
+            <div id="previewLesson">
+                <?php
+                    echo "hello rubio";
+                ?>
+            </div>
+        </iframe>
         <div id="message" style="display: none;">
             <div id="waiting" style="display: none;">
                 Please wait<br />
