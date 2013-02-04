@@ -564,6 +564,24 @@
                     }
 
                 });
+                //Case of swithing language in creating lesson page
+                try {
+                     var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
+                        var val = data.value;
+                        $.Storage.set("locale",val);
+                        if(val!="")
+                        {
+                            window.location.assign('lesson.php?l=' + val);          
+                        }
+                }}}).data("dd");
+                var pageIndex   =  $.Storage.get("locale");
+                if (pageIndex == "")
+                    pageIndex   = "en_US";
+                pages.setIndexByValue(pageIndex);
+                } catch(e) {
+                        console.log(e);	
+                }
+                //Ending case of swithing languages
                               
                 // We are now in translating page so isTranslate = true
                 $('.lessonInfoElement').live("keyup" , function() {
@@ -662,8 +680,15 @@
                 $('#btnSaveLessonTranslate').click(function() {           
                     window.saveLessonData(true);
                 });
-                $('#btnSaveLesson').click(function() {           
-                    window.saveLessonData(false);
+                $('#btnSaveLesson').click(function() {  
+                    if ($.Storage.get('lessonTitle'))
+                        {
+                           if ($.Storage.get('lessonTitle').length > 2)
+                               window.saveLessonData(false);
+                           else
+                               alert("Lesson title should contain at least2 caracters");
+                        }
+                    
                 });
                 $('#btnShowDoc').click(function() {           
                     window.open('files/language.html','');
@@ -680,8 +705,8 @@
                 });
 
                 
-                $('#btnShowLesson').click(function() {   
-                    
+                $('#btnShowLesson').each(function() {
+                    /*
                     var title       = $.Storage.get('lessonTitle');
                     var steps       = $.Storage.get("lessonStepsValues");
                     var numOfSteps  = $.Storage.get('lesson-total-number-of-steps');
@@ -697,8 +722,8 @@
                     .error(function(){
                         alert('Error loading page');
                     })
-                    
-                   /*
+                    */
+                   
                             var title       = $.Storage.get('lessonTitle');
                             var steps       = $.Storage.get("lessonStepsValues");
                             var numOfSteps  = $.Storage.get('lesson-total-number-of-steps');
@@ -707,6 +732,14 @@
                                 var $dialog = $('<div dir="ltr"></div>');
                             else
                                 var $dialog = $('<div dir="rtl"></div>');
+                            //$.post('showLesson.php', {title : title , steps : steps , numOfSteps : numOfSteps , locale : locale} )
+                            //.success(function(result){
+                                //window.open('showLesson.php?title=' + title + '&steps=' + steps + '&numOfSteps=' + numOfSteps + '&locale=' + locale,'');
+                                //window.open('showLesson.php','');
+                            // $('#previewLesson').html(result)
+                            //     $($dialog).appendTo(result);
+                            //}) 
+                            /*
                                 $.ajax({
                                     type : 'POST',
                                     url: "showLesson.php",
@@ -714,12 +747,16 @@
                                     data: {title : title , steps : steps , numOfSteps : numOfSteps , locale : locale},
                                     success: function(data) {
                                       $($dialog).append(data);
+                                    },
+                                    error : function(XMLHttpRequest, textStatus, errorThrown) {
+                                        alert(textStatus);
                                     }
                                 });
+                                */
                                 var $link = $(this).one('click', function() {
                                         $dialog
                                                 
-                                                //.load('showLesson.php?locale=en_US')
+                                                .load('showLesson.php?' + locale)
                                                 .dialog({
                                                         title: $link.attr('title'),
                                                         width: 700
@@ -736,7 +773,7 @@
 
                                         return false;
                                 });
-                    */
+                    
                 });
 
                 $('#btnDel').attr('disabled','disabled');
