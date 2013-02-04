@@ -3,7 +3,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel='stylesheet' href='./files/bootstrap/css/bootstrap.css' type='text/css' media='all'/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
         <!-- <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
         <script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis -->
         <script  type="text/javascript" src="ckeditor/ckeditor.js"></script>
@@ -99,7 +98,9 @@
 
 
         // find everything in the collection
-        $cursor = $lessons->find();
+        $userQuery       = array('username' => "Unknown");
+        $cursor     = $lessons->find($userQuery);
+        //$cursor = $lessons->find();
         $cursor->sort(array('precedence' => 1));
 
         echo "<div> <span class='title'> Edit one of the following lessons </div>";
@@ -108,7 +109,7 @@
                 $locale =   substr($key, -5);
             }
             $finalLocale =  $localePrefix . $locale   ;
-            $title                          =            $lessonStructure[$lessonTitle][$finalLocale] ;
+            $title                          =            print_r($lessonStructure[$lessonTitle]);//[$finalLocale] ;
             $objID                          =            $lessonStructure['_id'];
             $pendingStatus                  =            $lessonStructure['pending'];
 
