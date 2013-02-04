@@ -201,6 +201,7 @@ and open the template in the editor.
             echo $elementAction;
             echo $elementSolution; 
             echo $elementHint;
+            echo "</fieldset></form>"; // Close the left lesson elements
         } 
         function printLeftLessonElemnt($i,$show)
         {
@@ -208,7 +209,7 @@ and open the template in the editor.
                         <form class='form-stacked'>
                             <fieldset> 
                                 <div class='control-group lesson-label'> 
-                                    <label class='lesson-label ' > Title  </label> 
+                                    <label class='lesson-label' > Title  </label> 
                                     <div class='controlsa'>
                                         <textarea type='text'  name='title' id='title' placeholder='Step Title' class='input-xlarge' >
                                         </textarea>
@@ -235,40 +236,27 @@ and open the template in the editor.
                             <button class='btn' id='btnShowLesson' title='show Lesson'>Show Lesson</button>
                             <button class='btn btn-danger' id='btnDeleteLesson'>Delete Lesson</button>
                         </div>
-                    </div>  " ;
+                    </div>" ; // Closing left lesson elements
             } //End of print left element
              function printRightLessonElemnt()
              {
-                  echo "  
-                 `  <div class='rightLessonElem well span7' style='margin-top:10px; margin-left: 0px; height:350px;' > 
-                        <div class='control-group'>
-                                <lable class='control-label lesson-label' > Explanation   
-                                </lable> 
-                            <div class='controlsa'>
-                                <textarea rows='15' type='text'  name='explanation' id='explanation' class='dscText input-xlarge'></textarea>
+                  echo "<div class='rightLessonElem well span7' style='margin-top:10px; margin-left: 0px; height:350px;' > 
+                            <form class='form-stacked'>
+                                <fieldset>
+                                    <div class='control-group lesson-label'>
+                                            <label class='lesson-label' > Explanation </label> 
+                                        <div class='controlsa'>
+                                            <textarea rows='15' type='text'  name='explanation' id='explanation' class='dscText input-xlarge'></textarea>
+                                        </div>
+                                    </div> 
+                                </fieldset>
+                            </form>
+                             <div>
+                                 <input type='button' id='btnShowDoc'      class='btn  btn-link' name='showDoc' value='Show reserve words' />
                             </div>
-                        </div> 
-                    </div>  <!--  Close div RightLessonElem --> 
-                 ";
-             }
-             function printLessonButtons()
-             {
-                 //echo "  
-                
-               //  <div class='actionButtonsLessons'>
-                //    <input type='button' id='btnSaveLesson'   class='btn lessonInputButton'          name='formSave' value='Save Lesson' />
-                //    <input type='button' id='btnShowLesson'   class='btn lessonInputButton'          name='formSave' value='show Lesson' />
-                 //   <input type='button' id='btnDeleteLesson' class='btn lessonInputButton'          name='formDelete' value='Delete Lesson' />
-                //    <input type='button' id='btnShowDoc'      class='btn  btn-link' name='showDoc' value='Show reserve words' />
-                //</div>
-                 
-                 //";
-                 echo "   
-                    <div class='btn-navbar' style='margin-left:40px;width:400;float:left'>
-                            <input type='button' id='btnShowDoc'      class='btn  btn-link' name='showDoc' value='Show reserve words' />
-                    </div>
-                
-";
+                        </div>";  //<!--  Close div RightLessonElem --> 
+             
+
              }
              function printLessonSteps() 
              {
@@ -376,17 +364,15 @@ and open the template in the editor.
                         <?php 
                             printLessonTitle(true,$lessonFinalTitle,$cursor);
                             printLessonSteps();
-
                             printLeftLessonElemnt($i , $show);
                             printRightLessonElemnt();
 
                         ?>
                     </div> <!-- End of stepSection -->
                  </div> <!-- container -->
-                x
-                <?php
-                    printLessonButtons();
-                ?>
+                
+                
+                <!--
                 <iframe id="frame"  height="700" width="90%" src="showLesson.php">
                     <div id="previewLesson">
                         <?php
@@ -394,6 +380,7 @@ and open the template in the editor.
                         ?>
                     </div>
                 </iframe>
+                -->
                 <script type='text/javascript'>
                                                 
                     //Print Nav  
@@ -428,16 +415,9 @@ and open the template in the editor.
                         </div>  <!-- Finish div stepSection -->  
                  </div> <!-- Finish stepContainer div -->
                 <?php
-                printLessonButtons();
+                
             } //end of else (New Lesson) 
             ?> 
-        <iframe id="frame"  height="700" width="90%" src="showLesson.php">
-            <div id="previewLesson">
-                <?php
-                    echo "hello rubio";
-                ?>
-            </div>
-        </iframe>
         <div id="message" style="display: none;">
             <div id="waiting" style="display: none;">
                 Please wait<br />
