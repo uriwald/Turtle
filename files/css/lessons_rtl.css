@@ -1,0 +1,25 @@
+/* 
+    Document   : lessons_rtl
+    Created on : Feb 4, 2013, 12:03:56 PM
+    Author     : Lucio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#stepSection{
+    direction: rtl;
+}
+div ul li.existing_step , #lessonStepUl{
+    float : right;
+} 
+#lesson-fieldset{
+    float : right ;
+    margin-right: 10px;
+}
+.form-stacked label.lesson-label{
+    text-align:  right;
+}
