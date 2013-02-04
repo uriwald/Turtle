@@ -322,13 +322,13 @@ $(function() {
                         $(".ui-state-active a").append('<span class="ui-icon ui-icon-check"'+ltr+'></span>' );
                     $.Storage.set("q(" + activeLesson + ")" + $(".ui-accordion-content-active").data('qid'), "true");
                     //After setting new local storage value we will save user data if exist
-                    var lclStorageValue;
+                    var lclStorageValue="";
                     for (var i=0;i<8;i++)
                         for (var j=1;j<9;j++)
                             {
                                 if ($.Storage.get("q(" + i +  ")" + j + "1" ))
                                 {
-                                    alert ("q(" + i +  ")" + j + "1");
+                                    //alert ("q(" + i +  ")" + j + "1");
                                     lclStorageValue += "q(" + i +  ")" + j + "1,";
                                 }
                             }
@@ -341,7 +341,6 @@ $(function() {
                         },
                         success: function(data) { 
                             var rdata;
-                            var i = 1;
                         } ,
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert('en error occured');
