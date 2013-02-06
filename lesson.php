@@ -9,17 +9,18 @@ if (session_id() == '')
 (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true) ? $show = true : $show = false;
 
 $relPath = "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
-$ddPath = "files/test/dd/";
+//$ddPath = "files/test/dd/";
 $jqueryui = "ajax/libs/jqueryui/1.10.0/";
 if (!isset($locale)) {
     $locale = "en_US";
     $_SESSION['locale'] = "en_US";
 }
 ?>
-
+ 
 <html>
     <head>
         <?php
+            include_once("files/inc/dropdowndef.php");
             $locale = "en_US";
             $languageGet = "l";
             if (isset($_GET[$languageGet]))
@@ -30,24 +31,19 @@ if (!isset($locale)) {
         ?>
         <title>
         </title>  
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="<?php echo $ddPath . 'js/jquery/jquery-1.8.2.min.js' ?>"></script> 
-        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/dd.css' ?>" />
-        <script src="<?php echo $ddPath . 'js/msdropdown/jquery.dd.min.js' ?>"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/skin2.css' ?>" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/flags.css' ?>" /> 
-        <!-- Finish the dropdown dd directory related -->
+        
+
         <?php
         if ($locale == "he_IL")
             echo "<link rel='stylesheet' type='text/css' href='files/css/lessons_rtl.css' /> ";   
-        ?>
-        <script  type="text/javascript" src="<?php echo $jqueryui . 'js/jquery-ui-1.10.0.custom.js' ?>"></script> <!--- equal to googleapis -->
-        <link rel='stylesheet' href='<?php echo $jqueryui . 'css/ui-lightness/jquery-ui-1.10.0.custom.css' ?>' type='text/css' media='all'/> 
-        <script  type="text/javascript" src="alerts/jquery.alerts.js"></script>
+        include_once("files/inc/jquerydef.php");
+        ?> 
+        <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
         <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
         <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
-        <script type="application/javascript" src="files/jquery.tmpl.js"></script> <!-- jquerytmpl -->
-        <!--<script src="<?php echo $relPath . 'scripts/jquery.min.js' ?>"></script>-->
+
+
+         
         <?php
         $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
         $po_file = "<link   rel='gettext' type='application/x-po' href='locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
@@ -57,20 +53,15 @@ if (!isset($locale)) {
         if (isset($_SESSION['username']))
             $username = $_SESSION['username'];
         ?>        
+        <link rel='stylesheet' type='text/css' href='files/css/lessons.css' />
+        <link rel='stylesheet' href='./files/css/topbar.css' type='text/css' media='all'/> 
         <script type="text/javascript">
             var locale = "<?php echo $locale; ?>";
         </script>
-        <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
-        <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
-        <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
 
-        <link href="files/bootstrap/css/bootstrap.css" rel="stylesheet"> 
-        <link href="<?php echo $relPath . 'styles/bootstrap.min.css' ?>" rel="stylesheet"> 
-        <!--<script type="application/javascript" src="<?php echo $relPath . 'scripts/bootstrap-dropdown.js' ?>"></script>  Bootstaps drop down -->
-        <link   rel="stylesheet" href="./alerts/jquery.alerts.css" type="text/css" media="all" >  
-        <script type="application/javascript" src="files/bootstrap/js/bootstrap.js"></script> <!-- Storage -->
-        <script type="application/javascript" src="files/bootstrap/js/bootstrap.min.js"></script> <!-- Storage --> 
-
+        <?php
+            include_once("files/inc/boostrapdef.php");
+         ?>
         <script type="application/javascript" src="files/js/lesson.js"></script> <!-- lessonFunctions --> 
     </head>
     <body>
@@ -78,18 +69,18 @@ if (!isset($locale)) {
         <!-- Should be different for log in user and for a guest -->
     <div class="topbar" style="position: static;">
             <div class="fill">
-                <div class="container span13" style="float:none;" > 
+                <div class="container span16" style="float:none;" > 
                     <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
 
                     <ul class="nav" id="turtleHeaderUl"> 
-                            <li><a href="index.php" style="color:gray;" ><?php echo _("TurtleAcademy");?></a></li> 
+                            <li><a href="index.php" ><?php echo _("TurtleAcademy");?></a></li> 
                             <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
                     </ul>
 
-                    <form class="<?php  
+                    <form class="<?php 
                                         echo $formPullingSide . " form-inline";                                
                                     ?>" action="" id="turtleHeaderLanguage">  
-                        <select name="selectedLanguage" id="selectedLanguage" style="width:120px;">
+                        <select name="selectedLanguage" id="selectedLanguage">
                             <option value='en_US' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
                             <option value='es_AR' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
                             <option value='he_IL' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
@@ -101,28 +92,25 @@ if (!isset($locale)) {
                         {
                     ?>                       
                             <!--  <p class="pull-right">Hello <a href="#"> -->
-                                <nav class="<?php echo $login ?>" style="width:200px;" id="turtleHeaderLoggedUser">
+                                <nav class="<?php echo $login ?>"  id="turtleHeaderLoggedUser">
                                     <ul class="nav nav-pills <?php echo $login ?>" id="loggedUserUl">
 
                                         <li style="padding: 10px 10px 11px;"> <?php echo _("Hello");?></li>
                                         <li class="cc-button-group btn-group"> 
-                                            <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:#ffffff; background-color: rgba(0, 0, 0, 0.5);" >
+                                            <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" >
                                             <?php
                                                 echo $_SESSION['username'];
                                             ?>
-                                                <b class="caret"></b>
+                                                <!-- <b class="caret"></b>  -->
                                             </a>
                                             <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
-                                                <li><a tabindex="-1" href="/docs"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
+                                                <li><a tabindex="-1" href="users.php"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
                                                 <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
                                                 <li><a href="logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
-                                            </ul>
-
-
+                                            </ul> 
                                         </li>
                                     </ul> 
                                 </nav>                                                                     
-                                </a>
 
                     <?php
                         }
@@ -203,7 +191,7 @@ if (!isset($locale)) {
             echo $elementAction;
             echo $elementSolution;
             echo $elementHint;
-            echo "</fieldset></form>"; // Close the left lesson elements
+           // echo "</fieldset></form>"; // Close the left lesson elements
         }
 
         function printLeftLessonElemnt($i, $show , $formPullingSide) {
@@ -230,13 +218,13 @@ if (!isset($locale)) {
                                             </lable>   
                                         </div> ";
             } //End of if show
-            echo "</fieldset>
-                        </form>
-                        <div>
-                            <button class='btn' id='btnSaveLesson'>Save Lesson</button>
-                            <button class='btn' id='btnShowLesson' title='show Lesson'>Show Lesson</button>
-                            <button class='btn btn-danger' id='btnDeleteLesson'>Delete Lesson</button>
+            echo "<div class='divActionBtn'>
+                            <a class='btn' id='btnSaveLesson'>". _("Save Lesson") ."</a>
+                            <a class='btn' id='btnShowLesson' title='show Lesson'>" . _("Show Lesson") ."</a>
+                            <a class='btn btn-danger' id='btnDeleteLesson'>" . _("Delete Lesson") ."</a>
                         </div>
+                        </fieldset>                      
+                      </form> 
                     </div>"; // Closing left lesson elements
         }
 
@@ -252,18 +240,18 @@ if (!isset($locale)) {
                                             <textarea rows='15' type='text'  name='explanation' id='explanation' class='dscText input-xlarge'></textarea>
                                         </div>
                                     </div> 
+                                    <div class='divActionBtn'>
+                                        <input type='button' id='btnShowDoc'      class='btn  btn-link' name='showDoc' value='" . _("Show reserve words") ."' />
+                                    </div>
                                 </fieldset>
                             </form>
-                             <div>
-                                 <input type='button' id='btnShowDoc'      class='btn  btn-link' name='showDoc' value='Show reserve words' />
-                            </div>
                         </div>";  //<!--  Close div RightLessonElem --> 
         }
 
         function printLessonSteps() {
             echo "<div id='lessonStep'>";
             echo "<div id='stepNev'>";
-            echo "<h3 class='muted'>lesson Steps";
+            echo "<h3 class='muted'>" . _("lesson Steps");
             if (isset($_GET['lesson']))
                 echo " ↓(please choose step to edit)";
             echo "</h3>";
@@ -281,8 +269,8 @@ if (!isset($locale)) {
 
         function printLessonTitle($hasTitle, $lessonFinalTitle, $cursor) {
             echo "<div>
-                            <h3 class='muted'>Lesson Title </h3>
-                                <input type='text' name='lessonTitle'  id='lessonTitle' class='lessonInput' placeholder='Lesson Title'
+                            <h3 class='muted'>" . _("Lesson Title") ." </h3>
+                                <input type='text' name='lessonTitle'  id='lessonTitle' class='lessonInput' placeholder='". _("Lesson Title") ."'
                                    value=\"";
             if ($hasTitle)
                 echo $lessonFinalTitle;
@@ -360,7 +348,7 @@ if (!isset($locale)) {
         <?php
     } //End of for each loop
     ?>  
-            <div class="container span16" style="float:none;" >
+            <div class="container span14" style="float:none;" >
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">    
                     <?php
                     printLessonTitle(true, $lessonFinalTitle, $cursor);
@@ -422,6 +410,5 @@ else { //Starting case of creating a new lesson
                 Please wait<br />
             </div>
         </div>           
-
     </body>
 </html>
