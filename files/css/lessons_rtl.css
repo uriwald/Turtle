@@ -23,3 +23,9 @@ div ul li.existing_step , #lessonStepUl{
 .form-stacked label.lesson-label{
     text-align:  right;
 }
+.input-xlarge{
+    float:right;
+}
+.divActionBtn{
+    float: right;
+}

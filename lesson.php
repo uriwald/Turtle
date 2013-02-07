@@ -4,17 +4,22 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <?php
-if (session_id() == '')
-    session_start();
-(isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true) ? $show = true : $show = false;
+    if (session_id() == '')
+        session_start();
+    (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true) ? $show = true : $show = false;
 
-$relPath = "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
-//$ddPath = "files/test/dd/";
-$jqueryui = "ajax/libs/jqueryui/1.10.0/";
-if (!isset($locale)) {
-    $locale = "en_US";
-    $_SESSION['locale'] = "en_US";
-}
+    $relPath = "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
+    //$ddPath = "files/test/dd/";
+    $jqueryui = "ajax/libs/jqueryui/1.10.0/";
+    if (!isset($locale)) {
+        $locale = "en_US";
+        $_SESSION['locale'] = "en_US";
+    }
+    require_once ("files/utils/lessonsUtil.php");
+    require_once("environment.php");
+    require_once("localization.php");
+    require_once("files/cssUtils.php");
+    require_once("files/utils/languageUtil.php");
 ?>
  
 <html>
@@ -30,20 +35,19 @@ if (!isset($locale)) {
             $login = ($locale != "he_IL" ? "pull-right" : "pull-left");
         ?>
         <title>
-        </title>  
-        
-
+        </title> 
         <?php
-        if ($locale == "he_IL")
-            echo "<link rel='stylesheet' type='text/css' href='files/css/lessons_rtl.css' /> ";   
-        include_once("files/inc/jquerydef.php");
+            if ($locale == "he_IL")
+            {
+                echo "<link rel='stylesheet' type='text/css' href='files/css/lessons_rtl.css' /> ";   
+                echo "<link rel='stylesheet' type='text/css' href='files/css/topbar_rtl.css' /> "; 
+            }
+            include_once("files/inc/jquerydef.php");
         ?> 
         <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
         <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
         <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
 
-
-         
         <?php
         $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
         $po_file = "<link   rel='gettext' type='application/x-po' href='locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
@@ -74,7 +78,6 @@ if (!isset($locale)) {
 
                     <ul class="nav" id="turtleHeaderUl"> 
                             <li><a href="index.php" ><?php echo _("TurtleAcademy");?></a></li> 
-                            <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
                     </ul>
 
                     <form class="<?php 
@@ -95,7 +98,7 @@ if (!isset($locale)) {
                                 <nav class="<?php echo $login ?>"  id="turtleHeaderLoggedUser">
                                     <ul class="nav nav-pills <?php echo $login ?>" id="loggedUserUl">
 
-                                        <li style="padding: 10px 10px 11px;"> <?php echo _("Hello");?></li>
+                                        <li style="padding: 10px 10px 11px;" id='loggedUserLI'> <?php echo _("Hello");?></li>
                                         <li class="cc-button-group btn-group"> 
                                             <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" >
                                             <?php
@@ -126,12 +129,6 @@ if (!isset($locale)) {
         
                     <?php
                     //session_start();
-                    require_once ("files/utils/lessonsUtil.php");
-                    require_once("environment.php");
-                    require_once("localization.php");
-                    require_once("files/cssUtils.php");
-                    require_once("files/utils/languageUtil.php");
-
                     $m = new Mongo();
 // select a database
                     $db = $m->$dbName;
