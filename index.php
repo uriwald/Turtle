@@ -72,6 +72,7 @@
         <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/> 
         -->
         <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='./files/css/topbar.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='./files/css/footer.css' type='text/css' media='all'/> 
         <link href="<?php echo $relPath . 'styles/bootstrap.min.css' ?>" rel="stylesheet"> 
         <!--<script type="application/javascript" src="<?php echo $relPath . 'scripts/bootstrap-dropdown.js' ?>"></script>  Bootstaps drop down -->
@@ -79,11 +80,10 @@
         <script type="application/javascript" src="files/bootstrap/js/bootstrap.min.js"></script> <!-- Storage --> 
        <?php
              cssUtils::loadcss($locale, "./files/css/interface");       
-        ?>    
+        ?>     
         <!-- Disable script when working without internet -->
-        <!-- Google Analytics Tracking -->
+        <!-- Google Analytics Tracking --> 
         <script type="application/javascript"> 
-
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-26588530-1']);
             _gaq.push(['_trackPageview']);
@@ -109,9 +109,9 @@
                         <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
                         
                         <ul class="nav" id="turtleHeaderUl"> 
-                              <li><a href="index.php" style="color:gray;" ><?php echo _("TurtleAcademy");?></a></li> 
+                              <li><a href="index.php" ><?php echo _("TurtleAcademy");?></a></li> 
                              <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
-                        </ul>
+                        </ul> 
                             
                         <form class="<?php  
                                             echo $class . " form-inline";                                
@@ -128,12 +128,12 @@
                             {
                         ?>                       
                               <!--  <p class="pull-right">Hello <a href="#"> -->
-                                    <nav class="<?php echo $login ?>" style="width:200px;" id="turtleHeaderLoggedUser">
+                                    <nav class="<?php echo $login ?>"  id="turtleHeaderLoggedUser">
                                         <ul class="nav nav-pills <?php echo $login ?>" id="loggedUserUl">
                                             
                                             <li style="padding: 10px 10px 11px;"> <?php echo _("Hello");?></li>
                                             <li class="cc-button-group btn-group"> 
-                                                <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:#ffffff; background-color: rgba(0, 0, 0, 0.5);" >
+                                                <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" >
                                                 <?php
                                                     echo $_SESSION['username'];
                                                 ?>
@@ -144,12 +144,9 @@
                                                     <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
                                                     <li><a href="logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
                                                 </ul>
-
-
                                             </li>
                                         </ul> 
                                     </nav>                                                                     
-                                    </a>
 
                         <?php
                             }
@@ -164,9 +161,8 @@
                             }
                          ?>
                     </div>
-                </div>
-                
-            </div>
+                </div>             
+            </div> <!-- End of Top menu -->
             <div id="header" class="menu" >
                 <div id="progress">
                 </div>
@@ -189,14 +185,6 @@
                 </div>
 
                 <div id="console" class="ui-corner-all ui-widget-content"><!-- command box --></div>
-                <?php
-                if (isset($_SESSION['username']))
-                    {
-                ?>
-                <div id="console" class="ui-corner-all ui-widget-content"><button class="btn" id="btnSaveUsrLessonData"> save data </button></div>
-                <?php
-                    }
-                ?>
              </div>
 
             <div id="accordion">
@@ -275,6 +263,7 @@
                     $('.dropdown-toggle').dropdown();
                     $.Storage.set("locale","<?php echo $_SESSION['locale']; ?>");
                     //Show selected lanugage from dropdown
+                    
                     try {
      
                             var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
@@ -291,22 +280,7 @@
                             //$("#ver").html(msBeautify.version.msDropdown);
                     } catch(e) {
                             //console.log(e);	
-                    }
-                    // Selecting language button
-                    try {
-                            var pages = $("#pages").msDropdown({on:{change:function(data, ui) {
-                            var val = data.value;
-                            if(val!="")
-                                    window.location = val;
-                    }}}).data("dd");
-
-                            var pagename = document.location.pathname.toString();
-                            pagename = pagename.split("/");
-                            pages.setIndexByValue(pagename[pagename.length-1]);
-                            $("#ver").html(msBeautify.version.msDropdown);
-                    } catch(e) {
-                            //console.log(e);	
-                    }
+                    } 
                     $('#btnSaveUsrLessonData').click(function() {
                         var lclStorageValue = ""
                         var isAnyDataToSave = false;
