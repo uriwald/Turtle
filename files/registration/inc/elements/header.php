@@ -22,5 +22,5 @@
 
 		<div id="content">
 		
-		<h1>Signup Today!</h1>
+		<h1>Thanks for registering TurtleAcademy!</h1>
 		

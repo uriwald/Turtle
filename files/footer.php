@@ -22,7 +22,7 @@
                         </a>
                     </li>  
                     <li>
-                        <a href='lessonsCreatedByGuests.php'>".$newLesson."</a>
+                        <a href='users.php'>".$newLesson."</a>
                     </li>
                     <li>
                         <a href='mailto:support@turtleacademy.com'>".$contactUs."</a>

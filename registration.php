@@ -345,8 +345,8 @@
                         }
                         ?>
                 </div>
-            </div> <!-- Ending dill bare -->
-        </div> <!-- Ending top bare -->
+            </div> <!-- Ending fill barf -->
+        </div> <!-- Ending top bar -->
           
           
     <div class="container">
@@ -385,7 +385,7 @@
                     <div class="clearfix">
                         <label for="pwd_up" id="signUpUserNameLPwdLbl"><?php echo _("Password"); ?></label>
                         <div class="input">
-                            <input id="password" name="password" size="30" type="text" class='xlarge'/>
+                            <input id="password" name="password" size="30" type="password" class='xlarge'/>
                                 <!--
                                 <span class="help-block">
                                 <span class='label important'>Warning</span> too easy - even I can guess it
@@ -438,7 +438,7 @@
                     <div class="clearfix">
                         <label for="password" id="signInPasswordLbl"><?php echo _("Password"); ?></label>
                         <div class="input">
-                            <input id="password" name="password" size="30" type="text"/>
+                            <input id="password" name="password" size="30" type="password"/>
                             <!--
                             <span class="help-block">
                             <span class='label important'>Warning</span> too easy - even I can guess it

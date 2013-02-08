@@ -121,7 +121,7 @@ function updateLoclaStorageForLoggedUser($m , $db)
             //echo ";<script>";
             for ($i =0 ; $i < $datalen -1 ; $i++)
             {
-               echo "localStorage.setItem('$data[$i]' , '$value' );";
+               echo "localStorage.setItem('$data[$i]' ,'$value' );";
                  
             }
             //echo "</script>";

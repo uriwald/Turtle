@@ -2,7 +2,7 @@
 $incDirPath = "files/registration/inc/";
 include_once $incDirPath . 'php/config.php';
 include_once $incDirPath . 'php/functions.php';
-include $incDirPath . 'elements/header.php';
+include_once $incDirPath . 'elements/header.php';
 
 //setup some variables
 $action = array();

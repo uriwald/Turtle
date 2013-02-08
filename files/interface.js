@@ -401,19 +401,19 @@ $(function() {
     g_logo = new LogoInterpreter(turtle, stream);
                 function do_logo(id ,cmd) {
                 $('#'+id).css('width', '50px').css('height', '50px').append('<canvas id="'+id+'c" width="50" height="50" style="position: absolute; z-index: 0;"></canvas>' +
-                    '<canvas id="'+id+'t" width="50" height="50" style="position: absolute; z-index: 1;"></canvas>');
+                    '<canvas id="'+id+'t" width="50" height="50" style="position: absolute; z-index: 1;"></canvas>'); 
                 var canvas_element2 = document.getElementById(id+"c");
-                var turtle_element2 = document.getElementById(id+"t");
+                var turtle_element2 = document.getElementById(id+"t"); 
                 var turtle2 = new CanvasTurtle(
                 canvas_element2.getContext('2d'),
                 turtle_element2.getContext('2d'),
                 canvas_element2.width, canvas_element2.height);
 
-                g_logo2 = new LogoInterpreter(turtle2, null);
+                g_logo2 = new LogoInterpreter(turtle2, null); 
                 g_logo2.run(cmd);
-            } 
-            do_logo ('011', 'fd 100');
-            do_logo ('021', 'repeat 8 [fd 10 rt 360/8]');
+            }  
+            //do_logo ('011', 'hideturtle fd 50');
+            //do_logo ('021', 'hideturtle repeat 8 [fd 10 rt 360/8]'); 
             //do_logo ('logo3', 'repeat 10 [repeat 8 [fd 10 rt 360/8] rt 360/10]');
             //do_logo ('logo4', 'repeat 10 [fd repcount*8 rt 90] ht');
             //do_logo ('logo5', 'window repeat 10 [fd 3 * repcount repeat 3 [fd 15 rt 360/3] rt 360/10] ht');

@@ -53,21 +53,23 @@ if (empty($_POST['steps'])) {
     if (isset($_POST['collection']))
        $dbCollection    =   $_POST['collection'] ;
     $lessons = $db->$dbCollection;
-    //$lessons = $db->lessons;
-    //$lessons = $db->lessons;
-    $localeValue = "locale_en_US";
+    $localefullpath = "locale_en_US";
+    $locale         = "en_US";
     if (isset($_POST['locale']))
-        $localeValue = "locale_" . $_POST['locale'];
+    {
+        $locale         =   $_POST['locale'];
+        $localefullpath = "locale_" . $locale;       
+    }
     
     
     //Case we are inserting a new lesson
     if (!isset($_POST["ObjId"]) OR $_POST["ObjId"] == null OR strlen($_POST["ObjId"]) < 2) {
         $titles = array('locale_en_US' => $_POST['lessonTitle']);
         for ($i = 1; $i <= $_POST['numOfSteps']; $i += 1) {
-            $lessonStep["$localeValue"] = $lessonSteps[$i];
+            $lessonStep["$localefullpath"] = $lessonSteps[$i];
             $finalArrAfterTranslation[$i] = $lessonStep;
         }
-        $structure = array("steps" => $finalArrAfterTranslation, "title" => $titles, "pending" => "true" , "username" => $user);
+        $structure = array("steps" => $finalArrAfterTranslation, "title" => $titles, "pending" => "true" , "username" => $user , "localeCreated" => $locale );
         $result = $lessons->insert($structure, array('safe' => true));
         $return['objID'] = $structure['_id'];
     } 
@@ -98,7 +100,7 @@ if (empty($_POST['steps'])) {
             for ($i = 1; $i <= $numberOfSteps; $i++) {
                 
                 $return['$i'] = $i;
-                $originLanguageStepsArr[$i]["$localeValue"] = $lessonSteps[$i];
+                $originLanguageStepsArr[$i]["$localefullpath"] = $lessonSteps[$i];
             }
             $return['originLanguageStepsAfterSettingLessonSteps'] = $originLanguageStepsArr;
             //Will delete step by step not in a list
@@ -115,14 +117,13 @@ if (empty($_POST['steps'])) {
                    //Return index array from 0 ( need from 1 will create a function to fix)
                 $originLanguageStepsArr = arrayUtil::reindexArray($originLanguageStepsArr);
                 for ($i = 1; $i <= $numberOfSteps; $i += 1) {
-                    $originLanguageStepsArr[$i]["$localeValue"] = $lessonSteps[$i];
+                    $originLanguageStepsArr[$i]["$localefullpath"] = $lessonSteps[$i];
                 } 
-
                //} 
             }
             $return['originLanguageStepsArrAfterSet'] = $originLanguageStepsArr;
             $lessonsTitle = $originalTitle;
-            $lessonsTitle["$localeValue"] = $_POST['lessonTitle'];
+            $lessonsTitle["$localefullpath"] = $_POST['lessonTitle'];
             //$return['finalArrAfterTranslation'] = $finalArrAfterTranslation;
             $result = $lessons->update($criteria, array('$set' => array("steps" => $originLanguageStepsArr, "title" => $lessonsTitle, "precedence" => $precedence, "username" => $user)));
             $return['isExistingLesson'] = "If We got Any result";

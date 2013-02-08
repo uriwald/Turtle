@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TurtleAcademy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-30 13:20+0530\n"
-"PO-Revision-Date: 2013-01-30 13:22+0530\n"
+"POT-Creation-Date: 2013-02-09 00:57+0530\n"
+"PO-Revision-Date: 2013-02-09 00:58+0530\n"
 "Last-Translator: \n"
 "Language-Team: Wald\n"
 "MIME-Version: 1.0\n"
@@ -446,6 +446,34 @@ msgstr "שם המשתמש חייב להכיל לפחות 4 תוים"
 msgid "Your password must contain at least 5 characters"
 msgstr "הסממא חייבת להכיל לפחות 5 תוים"
 
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:30
+msgid "Add lesson step"
+msgstr "הוסף צעד לשיעור"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:30
+msgid "Are you sure you want to delete the lesson"
+msgstr "אתה בטוח שברצונך למחוק את השיעור ?"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:30
+msgid "Your lessson has been deleted"
+msgstr "השיעור נמחק בהצלחה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:31
+msgid "successfully deleted"
+msgstr "נמחק בהצלחה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:31
+msgid "an error occured"
+msgstr "קרתה שגיאה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:31
+msgid "Lesson title should contain at least 2 caracters"
+msgstr "על כותרת השיעור להכיל לפחות 2 תוים"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:32
+msgid "You must save the lesson before show lesson"
+msgstr "חובה לשמור את השיעור לפני הצגתו"
+
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:26
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index3.php:23
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:17
@@ -454,49 +482,52 @@ msgid "Turtle Academy - learn logo programming in your browser"
 msgstr " אקדמיית הצב - למד תכנות לוגו היישר מתוך הדפדפן"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:112
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:89
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:90
 msgid "TurtleAcademy"
 msgstr "אקדמיית הצב"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:113
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:91
 msgid "Sample"
 msgstr "דוגמאות"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:134
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:110
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:112
 msgid "Hello"
 msgstr "שלום"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:143
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:119
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:121
 msgid "My account"
 msgstr "החשבון שלי"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:144
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:120
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:122
 msgid "Help"
 msgstr "עזרה"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:145
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:121
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:123
 msgid "Log out"
 msgstr "התנתק"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:161
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:158
 msgid "Login"
 msgstr "הכנס"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:181
-msgid "Sign in"
-msgstr "התחבר"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:182
-msgid "Register"
-msgstr "הרשם"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:223
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:176
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:121
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:106
 msgid "Your browser does not support canvas - an updated browser is recommended"
 msgstr " הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יותר"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:262
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:287
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:207
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:232
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:152
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:177
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:137
@@ -504,8 +535,8 @@ msgstr " הדפדפן שלך אינו תומך בקנבס - מומלץ להשת�
 msgid "Next"
 msgstr "הבא"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:269
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:279
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:214
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:224
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:159
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:169
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:144
@@ -513,7 +544,7 @@ msgstr "הבא"
 msgid "Prev"
 msgstr "הקודם"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:302
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:247
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:192
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:177
 msgid "project doc"
@@ -524,101 +555,185 @@ msgstr "תיעוד הפרוייקט"
 msgid "Turtle Academy"
 msgstr "אקדמיית הצב"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:39
-msgid "Turtle Academy - Create a lesson"
-msgstr "אקדמיית הצב - צור שיעור"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:232
-msgid "Sign Up for Free"
-msgstr "הירשם בחינם"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:238
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:340
-msgid "Email"
-msgstr "אי מייל"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:249
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:302
-msgid "Username"
-msgstr "שם משתמש"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:261
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:314
-msgid "Password"
-msgstr "ססמא"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:276
-msgid "Agree to"
-msgstr "אני מסכים ל"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:276
-msgid "Terms of Use"
-msgstr "תנאי שימוש"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:281
-msgid "Sign Up"
-msgstr "הרשם"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:286
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:333
-msgid "Sign In"
-msgstr "התחבר"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:328
-msgid "Remember me"
-msgstr "זכור אותי"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:334
-msgid "Forgot my password"
-msgstr "שכחתי ססמא"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:337
-msgid "Forgot Password"
-msgstr "שכחתי ססמא"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:349
-msgid "Never mind, I remember my password"
-msgstr "לא משנה, נזכרתי בססמא"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:353
-msgid "Remind me"
-msgstr "הזכר לי"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:50
-msgid "Turtle Academy - Translate a lesson"
-msgstr "אקדמיית הצב - תרגם מערך שיעור"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:114
-msgid "Step"
-msgstr "צעד"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:136
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:194
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:200
 msgid "Action"
 msgstr "פעולה"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:137
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:195
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:201
 msgid "Solution"
 msgstr "פתרון"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:138
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:196
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:202
 msgid "Hint"
 msgstr "רמז"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:338
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:211
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:217
 msgid "Title"
 msgstr "כותרת"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:349
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:231
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:237
+msgid "Save Lesson"
+msgstr "שמירת שיעור"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:232
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:238
+msgid "Show Lesson"
+msgstr "הצג שיעור"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:233
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:239
+msgid "Delete Lesson"
+msgstr "מחיקת שיעור"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:247
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:253
 msgid "Explanation"
 msgstr "הסבר"
 
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:253
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:259
+msgid "Show reserve words"
+msgstr "הראה מילים שמורות"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:263
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:269
+msgid "lesson Steps"
+msgstr "צעדי השיעור"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:265
+msgid "please choose step to edit"
+msgstr "בבקשה בחר צעד לעריכה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:273
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:279
+msgid "Remove lesson step"
+msgstr "הסר צעד נוכחי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:281
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:282
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:287
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:288
+msgid "Lesson Title"
+msgstr "כותרת שיעור"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:357
+msgid "Sign Up for Free"
+msgstr "הירשם בחינם"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:363
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:465
+msgid "Email"
+msgstr "אי מייל"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:374
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:427
+msgid "Username"
+msgstr "שם משתמש"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:386
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:439
+msgid "Password"
+msgstr "ססמא"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:401
+msgid "Agree to"
+msgstr "אני מסכים ל"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:401
+msgid "Terms of Use"
+msgstr "תנאי שימוש"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:406
+msgid "Sign Up"
+msgstr "הרשם"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:411
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:458
+msgid "Sign In"
+msgstr "התחבר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:453
+msgid "Remember me"
+msgstr "זכור אותי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:459
+msgid "Forgot my password"
+msgstr "שכחתי ססמא"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:462
+msgid "Forgot Password"
+msgstr "שכחתי ססמא"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:474
+msgid "Never mind, I remember my password"
+msgstr "לא משנה, נזכרתי בססמא"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:478
+msgid "Remind me"
+msgstr "הזכר לי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:48
+msgid "Turtle Academy - Translate a lesson"
+msgstr "אקדמיית הצב - תרגם מערך שיעור"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:112
+msgid "Step"
+msgstr "צעד"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:182
+msgid "Messages"
+msgstr "הודעות"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:182
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:183
+msgid "coming soon"
+msgstr "בקרוב"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:183
+msgid "Account Settings"
+msgstr "הגדרות חשבון"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:184
+msgid "Add a new lesson"
+msgstr "הוסף שיעור חדש"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:189
+msgid "Your lessons"
+msgstr "השיעורים שלי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:218
+msgid "Edit"
+msgstr "ערוך"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:6
+msgid "Project doc"
+msgstr "תיעוד הפרוייקט"
+
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:7
 msgid "Create new Lesson"
-msgstr "יצירת שיעור חדש"
+msgstr "צור שיעור חדש"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:8
+msgid "Contact Us"
+msgstr "צור קשר"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/signUp.php:19
 msgid "Turtle Academy - User Registration"
 msgstr "אקדמיית הצב - רישום משתמש"
+
+#~ msgid "Sign in"
+#~ msgstr "התחבר"
+
+#~ msgid "Register"
+#~ msgstr "הרשם"
+
+#~ msgid "Turtle Academy - Create a lesson"
+#~ msgstr "אקדמיית הצב - צור שיעור"
 
 #~ msgid "Sign Up &raquo"
 #~ msgstr "הרשם  &raquo"

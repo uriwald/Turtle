@@ -74,6 +74,23 @@ class lessonsUtil {
         }
         return $localeSteps;
     }
+    
+    public function getStepsByCreatedLocale($locale) {
+        // Here i put default value
+        // I don't think it's the best practise better return null for translation issues
+        $localeSteps = null;
+        if(isset($this->steps))
+        {
+            foreach ($this->steps as $key => $value) {
+                if (isset($this->steps[$key][$locale])) {
+
+                    $localeSteps[$key] = $this->steps[$key][$locale];
+                }
+            }
+        }
+        return $localeSteps;
+    }
+    
     public function getPrecedence(){
         return $this->precedence;
     }

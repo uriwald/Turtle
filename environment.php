@@ -1,7 +1,7 @@
 <?php
     // including some data to change between environments
     $dbName              =   "turtleTestDb";
-    $dbLessonCollection  =   "lessons";
+    $dbLessonCollection  =   "lessons_translate";
     $sitePath            =   "http://turtleacademy.com/next";
-    $homePage            =   "index2.php";
+    $homePage            =   "index.php";
 ?>  

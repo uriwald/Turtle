@@ -2,13 +2,14 @@
     
     if(session_id() == '') 
         session_start();
+    if (isset( $_SESSION['locale']))
+        $locale =   $_SESSION['locale'];
     if ( !isset ($locale))
     {
         $locale = "en_US";
         $_SESSION['locale'] = "en_US";
     } 
     $root       =   $_SERVER['DOCUMENT_ROOT'];
-    if(!isset($_SESSION)){session_start();}
     $username   =   "Guest";
     if (isset ($_SESSION['username']))
         $username = $_SESSION['username'];
@@ -180,8 +181,8 @@
             
             <p><a href='#'><?php echo _("Messages"); echo "(" ; echo _("coming soon"); echo ")"; ?></a></p>
             <p><a href='#'><?php echo _("Account Settings"); echo "(" ; echo _("coming soon"); echo ")"; ?></a></p>
-            <p><a href='lesson.php'><?php echo _("Add a new lesson"); ?></a></p>
-            <p><a href='#'>Help</a></p>
+            <p><a href='lesson.php?l=<?php echo $locale; ?>'><?php echo _("Add a new lesson"); ?></a></p>
+            <p><a href='#'><?php echo _("Help"); ?></a></p>
         </div><!-- end of sidebar -->
         
         <div class='span16'id="usrLessonDiv"> 
@@ -206,13 +207,21 @@
                       <td><?php echo $lesson['title']['locale_en_US'] ?></td>
                       <td>
                         <!--<div class='btn small success disabled'>Renewed</div> -->
-                        <a class='btn small info' href="lesson.php?lesson=<?php echo $lesson['_id']; ?> ">  <?php echo _("Edit"); ?></a>
+                        <a class='btn small info' href="lesson.php?lesson=<?php echo $lesson['_id']."&locale=";
+                        $lessonLocale = "en_US";
+                        if (isset ($lesson['localeCreated']))
+                            $lessonLocale = $lesson['localeCreated'];
+                        echo $lessonLocale;
+                        
+                        ?> 
+                           
+                           ">  <?php echo _("Edit"); ?></a>
                         <!--<div class='btn small danger'>Remove</div> -->
                       </td>
                   </tr>
                   <?php
                         } 
-                  ?>
+                  ?> 
               </tbody>  
           </table>
         </div><!-- end of center content -->

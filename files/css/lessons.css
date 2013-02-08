@@ -162,12 +162,12 @@ input.stepInput{
 a span {
     display:block; 
     color:#000; 
-    background:#c4c4c4; 
+    /*background:#c4c4c4; */
     border:1px solid #fff; 
     border-width:2px 1px; 
     text-align:left; 
-    padding:4px 16px; 
-    width:400px; 
+    /*padding:4px 16px; 
+    width:400px; */
     cursor:hand; 
 }
 textarea {
@@ -285,4 +285,7 @@ fieldset{
 .divActionBtn{
     height : 50px;
     float: left;
+}
+#btnShowDoc{
+    margin-top: 11px;
 }

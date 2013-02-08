@@ -27,10 +27,7 @@
     
     echo _("Please enter your username");echo _("Please enter your password");
     echo _("Your username must contain at least 4 characters");echo _("Your password must contain at least 5 characters");
-    
-                  
-                  
-           
-           
-      
+    echo _("Add lesson step");echo _("Are you sure you want to delete the lesson");echo _("Your lessson has been deleted");
+    echo _("successfully deleted");echo _("an error occured");echo _("Lesson title should contain at least 2 caracters");
+    echo _("You must save the lesson before show lesson");
 ?>

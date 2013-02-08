@@ -92,7 +92,6 @@ code { font-family: monospace; }
     border: solid 1px black;
 }
 
-
 .menu {
     padding:0; 
     margin:0; 
@@ -145,12 +144,6 @@ code { font-family: monospace; }
     position: relative;
     margin-top: 1px;
 }
-#title {
-        margin:auto;
-        overflow: hidden;
-        width: 970px; 
-        font-size: 1.7em; 
-}
 #turtletitle {
        margin:auto;
        overflow: hidden;
@@ -173,21 +166,6 @@ code { font-family: monospace; }
     position: absolute;
     z-index: 1;
 }
- #turtleHeaderTitle , #turtleHeaderUl , #turtleHeaderLoggedUser  {
-    margin-top: 35px; 
-} 
-#turtleHeaderLanguage{
-  margin-top: 44px;   
-}
-#turtleHeaderLogin{
-   margin-top: 32px;   
-}
-.pull-right#loggedUserUl{
-    float: right;
-}
-.pull-left#loggedUserUl{
-    float: left;
-}
 #ddmenu{
   width: 120px;
   text-align: left;
@@ -201,13 +179,4 @@ code { font-family: monospace; }
 .dropdown-menu li a.innerLink{
      color: rgb(0, 136, 204);
      background-color: rgba(0, 0, 0,0);
-}
-.nav.pull-right#turtleHeaderUl{
-    float: right;
-}
-.nav.pull-left#turtleHeaderUl{
-    float: left; 
-}
-.pull-left ul li ul{
-    left:-1px;
 }

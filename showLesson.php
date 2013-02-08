@@ -13,7 +13,7 @@ else {
 require_once("localization.php");
 require_once("files/cssUtils.php");
 require_once("files/utils/languageUtil.php");
-
+include_once("files/inc/dropdowndef.php");
     $relPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
     $ddPath     =   "files/test/dd/";
     $jqueryui   =   "ajax/libs/jqueryui/1.10.0/";
@@ -26,14 +26,6 @@ require_once("files/utils/languageUtil.php");
             echo _("Turtle Academy - learn logo programming in your browser");
             ?>         
         </title>  
-             <!-- Adding the dropdown dd directory related -->
-        <script src="<?php echo $ddPath . 'js/jquery/jquery-1.8.2.min.js'?>"></script> 
-        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/dd.css'?>" />
-        <script src="<?php echo $ddPath . 'js/msdropdown/jquery.dd.min.js'?>"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/skin2.css' ?>" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath .  'css/msdropdown/flags.css' ?>" /> 
-     <!-- Finish the dropdown dd directory related -->
-
                
         <!--<script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
         <script  type="text/javascript" src="<?php echo $jqueryui .  'js/jquery-ui-1.10.0.custom.js' ?>"></script> <!--- equal to googleapis -->
@@ -57,8 +49,8 @@ require_once("files/utils/languageUtil.php");
         <script type="application/javascript" src="files/jquery.Storage.js"></script> 
         <!-- <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/>  --> 
         <?php
-        if (isset($_POST['locale']))
-            $locale = $_POST['locale'];
+        if (isset($_GET['locale']))
+            $locale = $_GET['locale'];
         if (!isset($locale)) {
             $locale = "en_US";
         }
@@ -163,7 +155,7 @@ require_once("files/utils/languageUtil.php");
             ?>  
         </script>    
 
-<?php
+<?php   
     cssUtils::loadcss($locale, "./files/css/interface");
 ?>    
 

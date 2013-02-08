@@ -4,39 +4,25 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <?php
-    if (session_id() == '')
-        session_start();
-    (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true) ? $show = true : $show = false;
+if (session_id() == '')
+    session_start();
+(isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true) ? $show = true : $show = false;
 
-    if (isset( $_SESSION['locale']))
-        $locale =   $_SESSION['locale'];
-    if (isset( $_GET['locale']))
-        $locale =   $_GET['locale'];
-    if (!isset($locale)) {
-        $locale = "en_US";
-        $_SESSION['locale'] = "en_US";
-    }
-    require_once ("files/utils/lessonsUtil.php");
-    require_once("environment.php");
-    if (isset( $_SESSION['locale']))
-        $locale =   $_SESSION['locale'];
-    if (isset( $_GET['locale']))
-        $locale =   $_GET['locale'];
-    if (!isset($locale)) {
-        $locale = "en_US";
-        $_SESSION['locale'] = "en_US";
-    }
-    require_once("localization.php");
-    require_once("files/cssUtils.php");
-    require_once("files/utils/languageUtil.php");
+$relPath = "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
+//$ddPath = "files/test/dd/";
+$jqueryui = "ajax/libs/jqueryui/1.10.0/";
+if (!isset($locale)) {
+    $locale = "en_US";
+    $_SESSION['locale'] = "en_US";
+}
 ?>
- 
+
 <html>
     <head>
         <?php
             include_once("files/inc/dropdowndef.php");
             $locale = "en_US";
-            $languageGet = "locale";
+            $languageGet = "l";
             if (isset($_GET[$languageGet]))
                 $locale = $_GET[$languageGet];
             $formPullingSide ="";
@@ -44,20 +30,30 @@ and open the template in the editor.
             $login = ($locale != "he_IL" ? "pull-right" : "pull-left");
         ?>
         <title>
-        </title> 
+        </title>  
+        <!-- Starting the dropdown dd directory related -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="<?php echo $ddPath . 'js/jquery/jquery-1.8.2.min.js' ?>"></script> 
+        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/dd.css' ?>" />
+        <script src="<?php echo $ddPath . 'js/msdropdown/jquery.dd.min.js' ?>"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/skin2.css' ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/flags.css' ?>" /> 
+        <!-- Finish the dropdown dd directory related -->
+        
+        <link rel='stylesheet' type='text/css' href='files/css/lessons.css' />
+        <link rel='stylesheet' href='./files/css/topbar.css' type='text/css' media='all'/> 
         <?php
-            if ($locale == "he_IL")
-            {
-                echo "<link rel='stylesheet' type='text/css' href='files/css/lessons_rtl.css' /> ";   
-                echo "<link rel='stylesheet' type='text/css' href='files/css/topbar_rtl.css' /> "; 
-            }
-            include_once("files/inc/jquerydef.php");
-        ?> 
-        <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
+        if ($locale == "he_IL")
+            echo "<link rel='stylesheet' type='text/css' href='files/css/lessons_rtl.css' /> ";   
+        ?>
+        <script  type="text/javascript" src="<?php echo $jqueryui . 'js/jquery-ui-1.10.0.custom.js' ?>"></script> <!--- equal to googleapis -->
+        <link rel='stylesheet' href='<?php echo $jqueryui . 'css/ui-lightness/jquery-ui-1.10.0.custom.css' ?>' type='text/css' media='all'/> 
+        <script  type="text/javascript" src="alerts/jquery.alerts.js"></script>
         <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
         <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
+        <script type="application/javascript" src="files/jquery.tmpl.js"></script> <!-- jquerytmpl -->
 
-        <?php
+        <?php 
         $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
         $po_file = "<link   rel='gettext' type='application/x-po' href='locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
         if (file_exists($file_path))
@@ -66,15 +62,20 @@ and open the template in the editor.
         if (isset($_SESSION['username']))
             $username = $_SESSION['username'];
         ?>        
-        <link rel='stylesheet' type='text/css' href='files/css/lessons.css' />
-        <link rel='stylesheet' href='./files/css/topbar.css' type='text/css' media='all'/> 
         <script type="text/javascript">
             var locale = "<?php echo $locale; ?>";
         </script>
+        <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
+        <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
+        <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
 
-        <?php
-            include_once("files/inc/boostrapdef.php");
-         ?>
+        <link href="files/bootstrap/css/bootstrap.css" rel="stylesheet"> 
+        <link href="<?php echo $relPath . 'styles/bootstrap.min.css' ?>" rel="stylesheet"> 
+        <!--<script type="application/javascript" src="<?php echo $relPath . 'scripts/bootstrap-dropdown.js' ?>"></script>  Bootstaps drop down -->
+        <link   rel="stylesheet" href="./alerts/jquery.alerts.css" type="text/css" media="all" >  
+        <script type="application/javascript" src="files/bootstrap/js/bootstrap.js"></script> <!-- Storage -->
+        <script type="application/javascript" src="files/bootstrap/js/bootstrap.min.js"></script> <!-- Storage --> 
+
         <script type="application/javascript" src="files/js/lesson.js"></script> <!-- lessonFunctions --> 
     </head>
     <body>
@@ -86,13 +87,14 @@ and open the template in the editor.
                     <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
 
                     <ul class="nav" id="turtleHeaderUl"> 
-                            <li><a href="index.php" ><?php echo _("TurtleAcademy");?></a></li> 
+                            <li><a href="index.php" style="color:gray;" ><?php echo _("TurtleAcademy");?></a></li> 
+                            <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
                     </ul>
 
-                    <form class="<?php 
+                    <form class="<?php  
                                         echo $formPullingSide . " form-inline";                                
                                     ?>" action="" id="turtleHeaderLanguage">  
-                        <select name="selectedLanguage" id="selectedLanguage">
+                        <select name="selectedLanguage" id="selectedLanguage" style="width:120px;">
                             <option value='en_US' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
                             <option value='es_AR' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
                             <option value='he_IL' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
@@ -107,7 +109,7 @@ and open the template in the editor.
                                 <nav class="<?php echo $login ?>"  id="turtleHeaderLoggedUser">
                                     <ul class="nav nav-pills <?php echo $login ?>" id="loggedUserUl">
 
-                                        <li style="padding: 10px 10px 11px;" id='loggedUserLI'> <?php echo _("Hello");?></li>
+                                        <li style="padding: 10px 10px 11px;"> <?php echo _("Hello");?></li>
                                         <li class="cc-button-group btn-group"> 
                                             <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" >
                                             <?php
@@ -123,6 +125,7 @@ and open the template in the editor.
                                         </li>
                                     </ul> 
                                 </nav>                                                                     
+                                </a>
 
                     <?php
                         }
@@ -138,20 +141,25 @@ and open the template in the editor.
         
                     <?php
                     //session_start();
+                    require_once ("files/utils/lessonsUtil.php");
+                    require_once("environment.php");
+                    require_once("localization.php");
+                    require_once("files/cssUtils.php");
+                    require_once("files/utils/languageUtil.php");
+
                     $m = new Mongo();
 // select a database
                     $db = $m->$dbName;
 // select a collection (analogous to a relational database's table)
                     if ($show == false)
-                    $dbLessonCollection = "lessons_created_by_guest";
+                        $dbLessonCollection = "lessons_created_by_guest";
                     //echo $dbLessonCollection;
-                    $lessons            = $db->$dbLessonCollection;
-                    $locale             = "en_US";
-                    $languageGet        = "l";
-                    $localePrefix       = "locale_";
-                    $lessonFinalTitle   = "_";
-                    $lessonPrecedence   = 100;
-                    $localeCreated      =   "en_US";
+                    $lessons = $db->$dbLessonCollection;
+                    $locale = "en_US";
+                    $languageGet = "l";
+                    $localePrefix = "locale_";
+                    $lessonFinalTitle = "_";
+                    $lessonPrecedence = 100;
                     if (isset($_GET[$languageGet]))
                         $locale = $_GET[$languageGet];
 //If we are in existing lesson we will enter editing mode 
@@ -159,13 +167,11 @@ and open the template in the editor.
                         $lu = new lessonsUtil($locale, "locale_", $lessons, $_GET['lesson']);
                         $theObjId = new MongoId($_GET['lesson']);
                         $cursor = $lessons->findOne(array("_id" => $theObjId));
-                        if (isset ($cursor['localeCreated']))
-                             $localeCreated = $cursor['localeCreated'];
-                        $localSteps = $lu->getStepsByLocale($localePrefix . $localeCreated);
-                        $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $localeCreated);                        
+                        $localSteps = $lu->getStepsByLocale($localePrefix . $locale);
+                        $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $locale);
                         $lessonPrecedence = $lu->getPrecedence();
                         if (strlen($lessonFinalTitle) <= 1)
-                            $lessonFinalTitle = "No Title"; 
+                            $lessonFinalTitle = "No Title";
                         //echo $lessonPrecedence;
                         //echo $lessonFinalTitle;
                     }
@@ -228,9 +234,9 @@ and open the template in the editor.
                                         </div> ";
             } //End of if show
             echo "<div class='divActionBtn'>
-                            <a class='btn' id='btnSaveLesson'>". _("Save Lesson") ."</a>
-                            <a class='btn' id='btnShowLesson' title='show Lesson'>" . _("Show Lesson") ."</a>
-                            <a class='btn btn-danger' id='btnDeleteLesson'>" . _("Delete Lesson") ."</a>
+                            <button class='btn' id='btnSaveLesson'>". _("Save Lesson") ."</button>
+                            <button class='btn' id='btnShowLesson' title='show Lesson'>" . _("Show Lesson") ."</button>
+                            <button class='btn btn-danger' id='btnDeleteLesson'>" . _("Delete Lesson") ."</button>
                         </div>
                         </fieldset>                      
                       </form> 
@@ -262,7 +268,7 @@ and open the template in the editor.
             echo "<div id='stepNev'>";
             echo "<h3 class='muted'>" . _("lesson Steps");
             if (isset($_GET['lesson']))
-                echo " ↓(" . _("please choose step to edit").")";
+                echo " ↓(please choose step to edit)";
             echo "</h3>";
             echo "<div style='height:40px;'>";
             echo "<ul id='lessonStepUl' class=' nav nav-pills'>";
@@ -323,7 +329,7 @@ and open the template in the editor.
             $.Storage.set("active-step" , "lesson_step1");
             $.Storage.set("lesson-total-number-of-steps" ,"0");
             $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
-            $.Storage.set("locale" ,"<?php echo $localeCreated ?>");
+            $.Storage.set("locale" ,"<?php echo $locale ?>");
             $.Storage.set("username" ,"<?php echo $username; ?>");
             </script>
 
@@ -419,5 +425,6 @@ else { //Starting case of creating a new lesson
                 Please wait<br />
             </div>
         </div>           
+
     </body>
 </html>

@@ -40,6 +40,7 @@
                 $( 'textarea.expTxtErea1' ).ckeditor( function() { /* callback code */ }, { language : lang.value , contentsLangDirection : direction , width : '500px' , height  : '260px' /*, skin : 'office2003' */});       
 
             }
+            var isLessonSaved   =   false;
             
             var showFirstStepIfExist = function showFirstStepIfExist(stepsType)
             {
@@ -300,6 +301,7 @@
                     success : function(data){
                         $('#waiting').hide(500);
                         $('#lessonObjectId').val(data.objID.$id);
+                        window.isLessonSaved =   true;
                         $.Storage.set("ObjId" , data.objID.$id);
                         $.Storage.set('isStepRemoved' , "false");   
                         //$('#message').removeClass().addClass((data.error === true) ? 'error' : 'success').text(data.msg).show(500);
@@ -549,14 +551,14 @@
                         //$.Storage.set("locale",val);
                         if(val!="")
                         {
-                            window.location.assign('lesson.php?l=' + val);          
+                            window.location.assign('lesson.php?locale=' + val);          
                         }
                 }}}).data("dd");
                 var pageIndex   =  $.Storage.get("locale");
                 if (pageIndex == "")
                     pageIndex   = "en_US";
                 pages.setIndexByValue(pageIndex);
-                } catch(e) {
+                } catch(e) { 
                         console.log(e);	
                 }
                 //Ending case of swithing languages
@@ -627,8 +629,9 @@
                 $('#btnDeleteLesson').click(function() {
                     //removelesson();
                     //need to remove from DB
-                    jConfirm('Are you sure you want to delete the whole lesson '  , 'Confirmation Dialog', function(r) {
-                        jAlert('Your lessson has been deleted' + r, 'confirm delete');
+                    var gt = new Gettext({'domain' : 'messages'});
+                    jConfirm(gt.gettext("Are you sure you want to delete the lesson") , 'Confirmation Dialog', function(r) {
+                        jAlert(gt.gettext("Your lessson has been deleted") + r, 'confirm delete');
                         if (r)
                         {
                             $.ajax({
@@ -644,11 +647,11 @@
                                     window.clearStep();
                                     var url = document.URL ;
                                     var myUrl = url.split("?");
-                                    alert('successfully deleted');
+                                    alert(gt.gettext("successfully deleted"));
                                     window.location.replace(myUrl[0]);
                                 },
                                 error : function(XMLHttpRequest, textStatus, errorThrown) {
-                                    alert('en error occured');
+                                    alert(gt.gettext("an error occured"));
                                 }
                             });
                         }
@@ -659,15 +662,16 @@
                     window.saveLessonData(true);
                 });
                 $('#btnSaveLesson').click(function() {  
+                    var gt = new Gettext({'domain' : 'messages'});
                     if ($.Storage.get('lessonTitle'))
                         {
                            if ($.Storage.get('lessonTitle').length > 2)
                                window.saveLessonData(false);
                            else
-                               alert("Lesson title should contain at least2 caracters");
+                               alert(gt.gettext("Lesson title should contain at least 2 caracters"));
                         }
                     else{
-                        alert("Lesson title should contain at least2 caracters");
+                        alert(gt.gettext("Lesson title should contain at least 2 caracters"));
                     }
                     
                 });
@@ -687,75 +691,40 @@
 
                 
                 $('#btnShowLesson').each(function() {
-                    /*
-                    var title       = $.Storage.get('lessonTitle');
-                    var steps       = $.Storage.get("lessonStepsValues");
-                    var numOfSteps  = $.Storage.get('lesson-total-number-of-steps');
-                    var locale      = $.Storage.get('locale');
-                    $.post('showLesson.php', {title : title , steps : steps , numOfSteps : numOfSteps , locale : locale} )
-                    //$.post('showLesson.php', data)
-                    .success(function(result){
-                        //window.open('showLesson.php?title=' + title + '&steps=' + steps + '&numOfSteps=' + numOfSteps + '&locale=' + locale,'');
-                        //window.open('showLesson.php','');
-                       // $('#previewLesson').html(result)
-                         $('#frame').attr('srcdoc', result);
-                    }) 
-                    .error(function(){
-                        alert('Error loading page');
-                    })
-                    */
-                   
+                            var gt = new Gettext({'domain' : 'messages'});
                             var title       = $.Storage.get('lessonTitle');
                             var steps       = $.Storage.get("lessonStepsValues");
                             var numOfSteps  = $.Storage.get('lesson-total-number-of-steps');
-                            var locale      = $.Storage.get('locale');
+                            var locale      = $.Storage.get('locale');      
+                            var dialogCreatedOnce   =   false ;
                             if (locale != "he_IL")
                                 var $dialog = $('<div dir="ltr"></div>');
                             else
                                 var $dialog = $('<div dir="rtl"></div>');
-                            //$.post('showLesson.php', {title : title , steps : steps , numOfSteps : numOfSteps , locale : locale} )
-                            //.success(function(result){
-                                //window.open('showLesson.php?title=' + title + '&steps=' + steps + '&numOfSteps=' + numOfSteps + '&locale=' + locale,'');
-                                //window.open('showLesson.php','');
-                            // $('#previewLesson').html(result)
-                            //     $($dialog).appendTo(result);
-                            //}) 
-                            /*
-                                $.ajax({
-                                    type : 'POST',
-                                    url: "showLesson.php",
-                                    dataType : 'json',
-                                    data: {title : title , steps : steps , numOfSteps : numOfSteps , locale : locale},
-                                    success: function(data) {
-                                      $($dialog).append(data);
-                                    },
-                                    error : function(XMLHttpRequest, textStatus, errorThrown) {
-                                        alert(textStatus);
+                            var $link = $(this).live('click', function() {
+                                    if (window.isLessonSaved == false)
+                                        alert(gt.gettext("You must save the lesson before show lesson"));
+                                    else
+                                    { 
+                                    $dialog                           
+                                            .load('showLesson.php?locale=' + locale)
+                                            .dialog({
+                                                    title: $link.attr('title'),
+                                                    width: 700,
+                                                    close: function( event, ui ) {
+                                                       //$dialog.dialog('close'); 
+                                                    }
+                                                    
+                                            }); 
+                                            $link.click(function() {
+                                                    $dialog.dialog('open');
+                                                    dialogCreatedOnce = true;
+                                                    return false;
+                                            });
+                                    return false;
                                     }
-                                });
-                                */
-                                var $link = $(this).one('click', function() {
-                                        $dialog
-                                                
-                                                .load('showLesson.php?locale=' + locale)
-                                                .dialog({
-                                                        title: $link.attr('title'),
-                                                        width: 700
-
-                                                        //width: 500,
-                                                        //height: 300
-                                                }); 
-
-                                        $link.click(function() {
-                                                $dialog.dialog('open');
-
-                                                return false;
-                                        });
-
-                                        return false;
-                                });
-                    
-                });
+                            });                                           
+                    });
 
                 $('#btnDel').attr('disabled','disabled');
             });
