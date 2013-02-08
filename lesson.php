@@ -8,15 +8,24 @@ and open the template in the editor.
         session_start();
     (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true) ? $show = true : $show = false;
 
-    $relPath = "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
-    //$ddPath = "files/test/dd/";
-    $jqueryui = "ajax/libs/jqueryui/1.10.0/";
+    if (isset( $_SESSION['locale']))
+        $locale =   $_SESSION['locale'];
+    if (isset( $_GET['locale']))
+        $locale =   $_GET['locale'];
     if (!isset($locale)) {
         $locale = "en_US";
         $_SESSION['locale'] = "en_US";
     }
     require_once ("files/utils/lessonsUtil.php");
     require_once("environment.php");
+    if (isset( $_SESSION['locale']))
+        $locale =   $_SESSION['locale'];
+    if (isset( $_GET['locale']))
+        $locale =   $_GET['locale'];
+    if (!isset($locale)) {
+        $locale = "en_US";
+        $_SESSION['locale'] = "en_US";
+    }
     require_once("localization.php");
     require_once("files/cssUtils.php");
     require_once("files/utils/languageUtil.php");
@@ -27,7 +36,7 @@ and open the template in the editor.
         <?php
             include_once("files/inc/dropdowndef.php");
             $locale = "en_US";
-            $languageGet = "l";
+            $languageGet = "locale";
             if (isset($_GET[$languageGet]))
                 $locale = $_GET[$languageGet];
             $formPullingSide ="";
@@ -134,14 +143,15 @@ and open the template in the editor.
                     $db = $m->$dbName;
 // select a collection (analogous to a relational database's table)
                     if ($show == false)
-                        $dbLessonCollection = "lessons_created_by_guest";
+                    $dbLessonCollection = "lessons_created_by_guest";
                     //echo $dbLessonCollection;
-                    $lessons = $db->$dbLessonCollection;
-                    $locale = "en_US";
-                    $languageGet = "l";
-                    $localePrefix = "locale_";
-                    $lessonFinalTitle = "_";
-                    $lessonPrecedence = 100;
+                    $lessons            = $db->$dbLessonCollection;
+                    $locale             = "en_US";
+                    $languageGet        = "l";
+                    $localePrefix       = "locale_";
+                    $lessonFinalTitle   = "_";
+                    $lessonPrecedence   = 100;
+                    $localeCreated      =   "en_US";
                     if (isset($_GET[$languageGet]))
                         $locale = $_GET[$languageGet];
 //If we are in existing lesson we will enter editing mode 
@@ -149,11 +159,13 @@ and open the template in the editor.
                         $lu = new lessonsUtil($locale, "locale_", $lessons, $_GET['lesson']);
                         $theObjId = new MongoId($_GET['lesson']);
                         $cursor = $lessons->findOne(array("_id" => $theObjId));
-                        $localSteps = $lu->getStepsByLocale($localePrefix . $locale);
-                        $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $locale);
+                        if (isset ($cursor['localeCreated']))
+                             $localeCreated = $cursor['localeCreated'];
+                        $localSteps = $lu->getStepsByLocale($localePrefix . $localeCreated);
+                        $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $localeCreated);                        
                         $lessonPrecedence = $lu->getPrecedence();
                         if (strlen($lessonFinalTitle) <= 1)
-                            $lessonFinalTitle = "No Title";
+                            $lessonFinalTitle = "No Title"; 
                         //echo $lessonPrecedence;
                         //echo $lessonFinalTitle;
                     }
@@ -311,7 +323,7 @@ and open the template in the editor.
             $.Storage.set("active-step" , "lesson_step1");
             $.Storage.set("lesson-total-number-of-steps" ,"0");
             $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
-            $.Storage.set("locale" ,"<?php echo $locale ?>");
+            $.Storage.set("locale" ,"<?php echo $localeCreated ?>");
             $.Storage.set("username" ,"<?php echo $username; ?>");
             </script>
 
@@ -345,7 +357,7 @@ and open the template in the editor.
         <?php
     } //End of for each loop
     ?>  
-            <div class="container span14" style="float:none;" >
+            <div class="container span16" style="float:none;" >
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">    
                     <?php
                     printLessonTitle(true, $lessonFinalTitle, $cursor);
