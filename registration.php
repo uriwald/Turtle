@@ -156,6 +156,29 @@
             } catch(e) {
                     console.log(e);	
             }
+            $('#termsofuse').each(function() {
+                    var locale      = $.Storage.get('locale');      
+                    if (locale != "he_IL")
+                        var $dialog = $('<div dir="ltr"></div>');
+                    else
+                        var $dialog = $('<div dir="rtl"></div>');
+                    var $link = $(this).one('click', function() {                      
+                            $dialog                           
+                                    .load('termsOfUse.php')
+                                    .dialog({
+                                            title: "Terms of use",
+                                            width: 700,
+                                            close: function( event, ui ) {
+                                            }
+
+                                    }); 
+                                    $link.click(function() {
+                                            $dialog.dialog('open');
+                                            return false;
+                                    });
+                            return false;                       
+                    });                                           
+            });                       
         });
  
         $(document).delegate('.switch', 'click', function(){
@@ -169,6 +192,7 @@
              });
             c = null;
        });
+
     </script>
     
     <!-- Le styles -->
@@ -398,7 +422,7 @@
                         <li>
                             <label>
                                 <input type="checkbox" name="terms_up" id='terms_up' value="yes" checked='true' />
-                                <span for='terms_up' id="signupAgreeToTerms"><?php echo _("Agree to"); ?> <a href='#'><?php echo _("Terms of Use"); ?></a></span>
+                                <span for='terms_up' id="signupAgreeToTerms"><?php echo _("Agree to"); ?> <a id="termsofuse" href='#'><?php echo _("Terms of Use"); ?></a></span>
                             </label>
                         </li>
                     </ul>       
@@ -465,13 +489,8 @@
                         <label for="email_pwd" id="forgotEmail"><?php echo _("Email"); ?></label>
                         <div class="input">
                             <input id="email_pwd" name="email_pwd" size="30" type="text"/>
-                            <!--
-                            <span class="help-block">
-                            <span class='label important'>Warning</span> the username already exists
-                            </span>
-                            -->
                             <div class='cleaner_h10'></div>
-                            <span class='switch' data-switch='sign-in-form<?php echo _("Never mind, I remember my password"); ?></span>
+                            <span class='switch' data-switch='sign-in-form'> <?php echo _("Never mind, I remember my password"); ?></span>
                         </div>
                     </div>           
                     <div class='cleaner_h20'></div>
