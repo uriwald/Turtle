@@ -2,10 +2,10 @@
 <?php
     if(session_id() == '') 
         session_start();
-    $fullPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";  
+    //$fullPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";  
     $phpDirPath  =   "files/registration/inc/php/";
     $incDirPath  =   "files/registration/inc/";
-    $relPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
+    //$relPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
     $ddPath     =   "files/test/dd/";
     $jqueryui   =   "ajax/libs/jqueryui/1.10.0/";
     include_once $phpDirPath . 'config.php';
@@ -40,23 +40,16 @@
             echo $po_file;    
         if ($locale == "he_IL")
             echo "<link rel='stylesheet' type='text/css' href='files/css/registration_rtl.css' /> ";
+        include_once("files/inc/dropdowndef.php");
+        include_once("files/inc/boostrapdef.php");
+        include_once("files/inc/jquerydef.php");
+      
     ?>     
-    <!-- Adding the dropdown dd directory related -->
-        <script src="<?php echo $ddPath . 'js/jquery/jquery-1.8.2.min.js'?>"></script> 
-        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/dd.css'?>" />
-        <script src="<?php echo $ddPath . 'js/msdropdown/jquery.dd.min.js'?>"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/skin2.css' ?>" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath .  'css/msdropdown/flags.css' ?>" /> 
-     <!-- Finish the dropdown dd directory related -->
-
-               
-        <!--<script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
         <script  type="text/javascript" src="<?php echo $jqueryui .  'js/jquery-ui-1.10.0.custom.js' ?>"></script> <!--- equal to googleapis -->
         <link rel='stylesheet' href='<?php echo $jqueryui .  'css/ui-lightness/jquery-ui-1.10.0.custom.css' ?>' type='text/css' media='all'/> 
         <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
         <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
-        <script type="application/javascript" src="files/jquery.tmpl.js"></script> <!-- jquerytmpl -->
-        <!--<script src="<?php echo $relPath . 'scripts/jquery.min.js' ?>"></script>-->
+        <link rel='stylesheet' href='files/css/topbar.css' type='text/css' media='all'/>
         <?php
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
             $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
@@ -67,20 +60,9 @@
                 var locale = "<?php echo $locale; ?>";
         </script>
         <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
-
-        <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
-        <!-- Disable script when working on local mode without internet 
-        <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/> 
-        -->
         <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='./files/css/footer.css' type='text/css' media='all'/> 
-        <link href="<?php echo $relPath . 'styles/bootstrap.min.css' ?>" rel="stylesheet"> 
-        <!--<script type="application/javascript" src="<?php echo $relPath . 'scripts/bootstrap-dropdown.js' ?>"></script>  Bootstaps drop down -->
-        <script type="application/javascript" src="files/bootstrap/js/bootstrap.js"></script> <!-- Storage -->
-        <script type="application/javascript" src="files/bootstrap/js/bootstrap.min.js"></script> <!-- Storage --> 
-            <script src="ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
-            <script  type="text/javascript" src="<?php echo $jqueryui .  'js/jquery-ui-1.10.0.custom.js' ?>"></script> <!--- equal to googleapis -->
-        <link rel='stylesheet' href='<?php echo $jqueryui .  'css/ui-lightness/jquery-ui-1.10.0.custom.css' ?>' type='text/css' media='all'/> 
+        <script src="ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
     <script type='text/javascript'> 
         //$.validator.setDefaults({
         //        submitHandler: function() { alert("submitted!"); }
@@ -195,8 +177,8 @@
 
     </script>
     
-    <!-- Le styles -->
-    <link href="<?php echo $fullPath . 'styles/bootstrap.min.css'; ?>" rel="stylesheet">
+    <!-- Le styles 
+    <link href="<?php echo $fullPath . 'styles/bootstrap.min.css'; ?>" rel="stylesheet">-->
     <style type="text/css">
 
       .switch{
@@ -204,12 +186,6 @@
         cursor:pointer;
       }
     </style>
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="<?php echo $fullPath . 'images/favicon.ico'; ?>">
-    <link rel="apple-touch-icon" href="<?php echo $fullPath . 'images/apple-touch-icon.png'; ?>">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $fullPath . 'images/apple-touch-icon-72x72.png'; ?>">
-    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $fullPath . 'images/apple-touch-icon-114x114.png'; ?>">
   </head>
   <body>
     <?php  
@@ -288,7 +264,8 @@
                                         if(send_email($info , $sitePath)){
                                         //if(send_email_test($info)){				
                                                 $action['result'] = 'success';
-                                                array_push($text,'Thanks for signing up. Please check your email for confirmation!');
+                                                array_push($text,'Thanks for signing up. Please check your email for confirmation!');   
+//header("location: files/registerok.php"); 
                                         }else{
                                                 $action['result'] = 'error';
                                                 array_push($text,'Could not send confirm email');
@@ -302,10 +279,6 @@
                                 }
                             }
                     }
-                    //else{
-                    //        $action['result'] = 'error';
-                    //        array_push($text,'User could not be added to the database. Reason: ' . mysql_error());
-                    //}
             }
             $action['text'] = $text;
     }
@@ -315,7 +288,7 @@
    ?>
     <div class="topbar" style="position: static;">
             <div class="fill">
-                <div class="container span13" > 
+                <div class="container span13" style="float: none;"> 
                     <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
 
                     <ul class="nav" id="turtleHeaderUl"> 
