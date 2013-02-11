@@ -103,9 +103,9 @@
         ?>
         <div id="main">
             <!-- Should be different for log in user and for a guest -->
-            <div class="topbar" style="position: static;">
-                <div class="fill">
-                    <div class="container span16" > 
+            <div class="topbar" id="topbarMainDiv"> 
+                <div class="fill" id="topbarfill">
+                    <div class="container span16" id="topbarContainer"> 
                         <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
                         
                         <ul class="nav" id="turtleHeaderUl"> 

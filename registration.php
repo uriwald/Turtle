@@ -265,7 +265,7 @@
                                         //if(send_email_test($info)){				
                                                 $action['result'] = 'success';
                                                 array_push($text,'Thanks for signing up. Please check your email for confirmation!');   
-//header("location: files/registerok.php"); 
+                                                //header("location: files/registerok.php"); 
                                         }else{
                                                 $action['result'] = 'error';
                                                 array_push($text,'Could not send confirm email');
@@ -286,9 +286,9 @@
             $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
             $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");    
    ?>
-    <div class="topbar" style="position: static;">
-            <div class="fill">
-                <div class="container span13" style="float: none;"> 
+        <div class="topbar" id="topbarMainDiv"> 
+            <div class="fill" id="topbarfill">
+                <div class="container span13" id="topbarContainer"> 
                     <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
 
                     <ul class="nav" id="turtleHeaderUl"> 

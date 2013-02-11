@@ -106,11 +106,10 @@
             $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
             $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");    
         ?>
-            <!-- Should be different for log in user and for a guest -->
-            <div class="topbar" style="position: static;">
-                <div class="fill">
-                    <div class="container span16" id='topbarContainer' >  
-                        <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
+        <div class="topbar" id="topbarMainDiv"> 
+            <div class="fill" id="topbarfill">
+                <div class="container span16" id="topbarContainer"> 
+                        <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים"> 
                         
                         <ul class="nav" id="turtleHeaderUl"> 
                               <li><a href="index.php" ><?php echo _("TurtleAcademy");?></a></li> 

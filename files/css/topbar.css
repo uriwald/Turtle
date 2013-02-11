@@ -63,6 +63,14 @@ root {
 #selectedLanguage{
     width : 120px;
 }
-#topbarContainer{
+#topbarContainer , #topbarfill{ 
    float : none ;
+   background-color: white;
+}
+#topbarMainDiv{
+    position: static;
+    background-color: white;
+}
+#topbarfill{
+    filter : none;
 }
