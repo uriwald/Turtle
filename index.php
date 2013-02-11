@@ -15,7 +15,6 @@
     require_once("files/cssUtils.php");
     require_once("files/utils/languageUtil.php");
     $relPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
-    $ddPath     =   "files/test/dd/";
     $jqueryui   =   "ajax/libs/jqueryui/1.10.0/";
 ?>
 <html>
@@ -28,34 +27,24 @@
             $currentFile = $_SERVER["PHP_SELF"];
             $parts = Explode('/', $currentFile);
             $currentPage = $parts[count($parts) - 1];
-        ?>         
-        </title>     
-     <!-- Adding the dropdown dd directory related -->
-        <script src="<?php echo $ddPath . 'js/jquery/jquery-1.8.2.min.js'?>"></script> 
-        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/dd.css'?>" />
-        <script src="<?php echo $ddPath . 'js/msdropdown/jquery.dd.min.js'?>"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath . 'css/msdropdown/skin2.css' ?>" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $ddPath .  'css/msdropdown/flags.css' ?>" /> 
-     <!-- Finish the dropdown dd directory related -->
+           
+        ?>  
 
-               
-        <!--<script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
-        <script  type="text/javascript" src="<?php echo $jqueryui .  'js/jquery-ui-1.10.0.custom.js' ?>"></script> <!--- equal to googleapis -->
-        <link rel='stylesheet' href='<?php echo $jqueryui .  'css/ui-lightness/jquery-ui-1.10.0.custom.css' ?>' type='text/css' media='all'/> 
-        <!--
-        <script  type="text/javascript" src="<?php echo $jqueryui .  'js/jquery-ui-1.10.0.custom.min.js' ?>"></script> 
-        <link rel='stylesheet' href='<?php echo $jqueryui .  'css/ui-lightness/jquery-ui-1.10.0.custom.min.css' ?>' type='text/css' media='all'/> 
-        -->
+        </title>      
+        <?php
+             include_once("files/inc/dropdowndef.php");
+             include_once("files/inc/jquerydef.php");
+             include_once("files/inc/boostrapdef.php");
+        ?>   
+
         <!--<script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis v
          
         <script type="application/javascript" src="files/compat.js"></script> <!-- ECMAScript 5 Functions -->
-        <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
-        <script type="application/javascript" src="files/jquery.tmpl.js"></script> <!-- jquerytmpl -->
-        <!--<script src="<?php echo $relPath . 'scripts/jquery.min.js' ?>"></script>-->
+        <script type="application/javascript" src="/files/logo.js"></script> <!-- Logo interpreter -->
+        <script type="application/javascript" src="/files/turtle.js"></script> <!-- Canvas turtle -->
         <?php
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
+            $po_file =  "<link   rel='gettext' type='application/x-po' href='/locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
             if ( file_exists($file_path))
                 echo $po_file;            
         ?>        
@@ -63,23 +52,16 @@
                 var locale = "<?php echo $locale; ?>";
         </script>
         <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
-        <script type="application/javascript" src="readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
-        <script type="application/javascript" src="files/Gettext.js"></script> <!-- Using JS GetText -->
-        <script type="application/javascript" src="files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
-        <script type="application/javascript" src="files/jqconsole.js"></script> <!-- Console -->
-        <script type="application/javascript" src="files/jquery.Storage.js"></script> <!-- Storage -->
-        <!-- Disable script when working on local mode without internet 
-        <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' type='text/css' media='all'/> 
-        -->
-        <link rel='stylesheet' href='./files/css/interface.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='./files/css/topbar.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='./files/css/footer.css' type='text/css' media='all'/> 
-        <link href="<?php echo $relPath . 'styles/bootstrap.min.css' ?>" rel="stylesheet"> 
-        <!--<script type="application/javascript" src="<?php echo $relPath . 'scripts/bootstrap-dropdown.js' ?>"></script>  Bootstaps drop down -->
-        <script type="application/javascript" src="files/bootstrap/js/bootstrap.js"></script> <!-- Storage -->
-        <script type="application/javascript" src="files/bootstrap/js/bootstrap.min.js"></script> <!-- Storage --> 
+        <script type="application/javascript" src="/readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
+        <script type="application/javascript" src="/files/Gettext.js"></script> <!-- Using JS GetText -->
+        <script type="application/javascript" src="/files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
+        <script type="application/javascript" src="/files/jqconsole.js"></script> <!-- Console -->
+
+        <link rel='stylesheet' href='/files/css/interface.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='/files/css/topbar.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='/files/css/footer.css' type='text/css' media='all'/> 
        <?php
-             cssUtils::loadcss($locale, "./files/css/interface");       
+             cssUtils::loadcss($locale, "/files/css/interface");       
         ?>     
         <!-- Disable script when working without internet -->
         <!-- Google Analytics Tracking --> 
@@ -106,7 +88,7 @@
             <div class="topbar" id="topbarMainDiv"> 
                 <div class="fill" id="topbarfill">
                     <div class="container span16" id="topbarContainer"> 
-                        <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
+                        <img class="brand" id="turtleimg" src="/files/turtles.png" alt="צב במשקפיים">
                         
                         <ul class="nav" id="turtleHeaderUl"> 
                               <li><a href="index.php" ><?php echo _("TurtleAcademy");?></a></li> 
@@ -116,11 +98,11 @@
                         <form class="<?php  
                                             echo $class . " form-inline";                                
                                      ?>" action="" id="turtleHeaderLanguage">  
-                            <select name="selectedLanguage" id="selectedLanguage" style="width:120px;">
-                                <option value='index.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
-                                <option value='es.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
-                                <option value='he.php' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
-                                <option value='zh.php' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
+                            <select name="selectedLanguage" id="selectedLanguage" style="width:120px;"> 
+                                <option value='en' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
+                                <option value='es' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
+                                <option value='he' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
+                                <option value='zh' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
                             </select>
                         </form>       
                         <?php
@@ -269,13 +251,13 @@
                             var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
                                     var val = data.value;
                                     if(val!="")
-                                            window.location = val;
+                                           window.location = "/lang/" + val; 
                             }}}).data("dd");
-                            var pagename    = document.location.pathname.toString();
+                                                        var pagename    = document.location.pathname.toString();
                             pagename        = pagename.split("/");
                             var pageIndex   = pagename[pagename.length-1];
                             if (pageIndex == "")
-                                pageIndex   = "index.php";
+                                 pageIndex   = "en";
                             pages.setIndexByValue(pageIndex);
                             //$("#ver").html(msBeautify.version.msDropdown);
                     } catch(e) {
@@ -298,7 +280,7 @@
                         {
                             $.ajax({
                                 type : 'POST',
-                                url : 'files/saveLocalStorage.php',
+                                url : '/files/saveLocalStorage.php',
                                 dataType : 'json',
                                 data: {
                                     lclStoragevalues  :   lclStorageValue

@@ -334,7 +334,7 @@ $(function() {
                             }
                     $.ajax({
                         type : 'POST',
-                        url : 'files/saveLocalStorage.php',
+                        url : '/files/saveLocalStorage.php',
                         dataType : 'json',
                         data: {
                             lclStoragevalues  :   lclStorageValue
