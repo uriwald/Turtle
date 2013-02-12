@@ -119,10 +119,10 @@
                                                 <?php
                                                     echo $_SESSION['username'];
                                                 ?>
-                                                    <b class="caret"></b>
+                                               
                                                 </a>
                                                 <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
-                                                    <li><a tabindex="-1" href="users.php"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
+                                                    <li><a tabindex="-1" href="/users.php"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
                                                     <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
                                                     <li><a href="logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
                                                 </ul>
@@ -137,7 +137,7 @@
 
                         ?>       
                                 <ul class="nav <?php echo $login ?>" id="turtleHeaderUl">  
-                                    <li><a href="registration.php" style="color:gray;" ><?php echo _("Login");?></a></li> 
+                                    <li><a href="/registration.php" style="color:gray;" ><?php echo _("Login");?></a></li> 
                                 </ul>                         
                          <?php
                             }
@@ -244,10 +244,8 @@
       $(document).ready(function() {
                     $('.dropdown-toggle').dropdown();
                     $.Storage.set("locale","<?php echo $_SESSION['locale']; ?>");
-                    //Show selected lanugage from dropdown
-                    
-                    try {
-     
+                    //Show selected lanugage from dropdown                   
+                    try { 
                             var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
                                     var val = data.value;
                                     if(val!="")
@@ -256,7 +254,7 @@
                                                         var pagename    = document.location.pathname.toString();
                             pagename        = pagename.split("/");
                             var pageIndex   = pagename[pagename.length-1];
-                            if (pageIndex == "")
+                            if (pageIndex == "" || pageIndex == "index.php" )
                                  pageIndex   = "en";
                             pages.setIndexByValue(pageIndex);
                             //$("#ver").html(msBeautify.version.msDropdown);
