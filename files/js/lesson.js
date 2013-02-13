@@ -491,8 +491,8 @@
 
             $(document).ready(function() {
                      
-                
-                $('.dropdown-toggle').dropdown();
+                if ($('.dropdown-toggle').length > 0)
+                     $('.dropdown-toggle').dropdown();
                 window.clearLocalStorage();
                 window.clearStep();
                 var lessonid = $.getUrlVar('lesson');

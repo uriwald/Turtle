@@ -9,7 +9,6 @@
         $locale = "en_US";
         $_SESSION['locale'] = "en_US";
     } 
-    $root       =   $_SERVER['DOCUMENT_ROOT'];
     $username   =   "Guest";
     if (isset ($_SESSION['username']))
         $username = $_SESSION['username'];
@@ -32,9 +31,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <?php
-         include_once("files/inc/dropdowndef.php");
-         include_once("files/inc/jquerydef.php");
-         include_once("files/inc/boostrapdef.php");
+
         if ($locale == "he_IL")
         {
                 echo "<link rel='stylesheet' type='text/css' href='files/css/users_rtl.css' /> ";  
@@ -47,6 +44,9 @@
         $username = "Unknown";
         if (isset($_SESSION['username']))
             $username = $_SESSION['username'];
+          include_once("files/inc/dropdowndef.php");
+         include_once("files/inc/jquerydef.php");
+         include_once("files/inc/boostrapdef.php");
        
     ?>
      <link rel='stylesheet' href='./files/css/topbar.css' type='text/css' media='all'/>  

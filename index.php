@@ -9,7 +9,8 @@
     {
         $locale = "en_US";
         $_SESSION['locale'] = "en_US";
-    }                 
+    } 
+    require_once("environment.php");
     require_once("localization.php");
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
@@ -40,11 +41,11 @@
         <!--<script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis v
          
         <script type="application/javascript" src="files/compat.js"></script> <!-- ECMAScript 5 Functions -->
-        <script type="application/javascript" src="/files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="application/javascript" src="/files/turtle.js"></script> <!-- Canvas turtle -->
+        <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
+        <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
         <?php
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='/locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
+            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
             if ( file_exists($file_path))
                 echo $po_file;            
         ?>        
@@ -52,16 +53,16 @@
                 var locale = "<?php echo $locale; ?>";
         </script>
         <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
-        <script type="application/javascript" src="/readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
-        <script type="application/javascript" src="/files/Gettext.js"></script> <!-- Using JS GetText -->
-        <script type="application/javascript" src="/files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
-        <script type="application/javascript" src="/files/jqconsole.js"></script> <!-- Console -->
+        <script type="application/javascript" src="<?php echo $rootDir; ?>readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
+        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
+        <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
+        <script type="application/javascript" src="<?php echo $rootDir; ?>files/jqconsole.js"></script> <!-- Console -->
 
-        <link rel='stylesheet' href='/files/css/interface.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='/files/css/topbar.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='/files/css/footer.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
        <?php
-             cssUtils::loadcss($locale, "/files/css/interface");       
+             cssUtils::loadcss($locale, $rootDir . "files/css/interface");       
         ?>     
         <!-- Disable script when working without internet -->
         <!-- Google Analytics Tracking --> 
@@ -88,21 +89,21 @@
             <div class="topbar" id="topbarMainDiv"> 
                 <div class="fill" id="topbarfill">
                     <div class="container span16" id="topbarContainer"> 
-                        <img class="brand" id="turtleimg" src="/files/turtles.png" alt="צב במשקפיים">
+                        <img class="brand" id="turtleimg" src="<?php echo $rootDir; ?>files/turtles.png" alt="צב במשקפיים">
                         
                         <ul class="nav" id="turtleHeaderUl"> 
-                              <li><a href="index.php" ><?php echo _("TurtleAcademy");?></a></li> 
-                             <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
+                              <li><a href="/index.php" ><?php echo _("TurtleAcademy");?></a></li> 
+                             <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> --> 
                         </ul> 
                             
                         <form class="<?php  
                                             echo $class . " form-inline";                                
                                      ?>" action="" id="turtleHeaderLanguage">  
                             <select name="selectedLanguage" id="selectedLanguage" style="width:120px;"> 
-                                <option value='en' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
-                                <option value='es' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
-                                <option value='he' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
-                                <option value='zh' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
+                                <option value='en' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
+                                <option value='es' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
+                                <option value='he' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
+                                <option value='zh' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
                             </select>
                         </form>       
                         <?php
@@ -124,7 +125,7 @@
                                                 <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
                                                     <li><a tabindex="-1" href="/users.php"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
                                                     <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
-                                                    <li><a href="logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
+                                                    <li><a href="<?php echo $rootDir; ?>logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
                                                 </ul>
                                             </li>
                                         </ul> 
@@ -137,7 +138,7 @@
 
                         ?>       
                                 <ul class="nav <?php echo $login ?>" id="turtleHeaderUl">  
-                                    <li><a href="/registration.php" style="color:gray;" ><?php echo _("Login");?></a></li> 
+                                    <li><a href="<?php echo $rootDir; ?>registration.php" style="color:gray;" ><?php echo _("Login");?></a></li> 
                                 </ul>                         
                          <?php
                             }
@@ -249,7 +250,7 @@
                             var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
                                     var val = data.value;
                                     if(val!="")
-                                           window.location = "/lang/" + val; 
+                                           window.location = "<?php echo $rootDir; ?>lang/" + val; 
                             }}}).data("dd");
                                                         var pagename    = document.location.pathname.toString();
                             pagename        = pagename.split("/");

@@ -112,13 +112,13 @@
             } 
             else { //Case User is valid
                 $_SESSION['username'] = $username;
-                header("location: index.php" ); 
+                header("location: ".$rootDir."index.php" ); 
             }
         }
         //Case registered user go to user page 
         else {
            $_SESSION['username'] = $username;
-           header("location: users.php"); 
+           header("location: ".$rootDir."users.php"); 
         }
         if ($validateUser)
         {
