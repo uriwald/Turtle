@@ -53,9 +53,9 @@ root {
      color: rgb(0, 136, 204);
      background-color: rgba(0, 0, 0,0);
 }
-#turtleHeaderUl li a{
-    color:gray;
-} 
+#turtleHeaderUlLogin{
+   color:gray; 
+}
 #turtleHeaderLoggedUser{
     width:200px;
     font-size: 13px;
