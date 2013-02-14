@@ -6,7 +6,8 @@ and open the template in the editor.
 <?php
     if (session_id() == '')
         session_start();
-    (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true) ? $show = true : $show = false;
+    (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true)  ? $show = true : $show = false;
+    (isset($_SESSION['username'])) ? $showpage = true : $showpage = false;
 
     if (isset( $_SESSION['locale']))
         $locale =   $_SESSION['locale'];
@@ -30,11 +31,13 @@ and open the template in the editor.
     require_once("files/cssUtils.php");
     require_once("files/utils/languageUtil.php");
 ?>
- 
+
+    
 <html>
     <head>
         <?php
             include_once("files/inc/dropdowndef.php");
+            //include_once("files/inc/boostrapdef.php");  
             $locale = "en_US";
             $languageGet = "locale";
             if (isset($_GET[$languageGet]))
@@ -70,13 +73,17 @@ and open the template in the editor.
         <link rel='stylesheet' href='./files/css/topbar.css' type='text/css' media='all'/> 
         <script type="text/javascript">
             var locale = "<?php echo $locale; ?>";
-        </script>
+        </script> 
 
         <?php
             include_once("files/inc/boostrapdef.php");
          ?>
         <script type="application/javascript" src="files/js/lesson.js"></script> <!-- lessonFunctions --> 
     </head>
+    <?php
+    if ($showpage)
+    { // Show the page for register user
+?>
     <body>
 
         <!-- Should be different for log in user and for a guest -->
@@ -368,16 +375,6 @@ and open the template in the editor.
                 </div> <!-- End of stepSection -->
             </div> <!-- container -->
 
-
-            <!--
-            <iframe id="frame"  height="700" width="90%" src="showLesson.php">
-                <div id="previewLesson">
-    <?php
-    echo "hello rubio";
-    ?>
-                </div>
-            </iframe>
-            -->
             <script type='text/javascript'>
                                                     
             //Print Nav  
@@ -421,3 +418,11 @@ else { //Starting case of creating a new lesson
         </div>           
     </body>
 </html>
+<?php
+    }
+    else
+    { //Unregister user
+        echo "Only registered users are allowed to add lessons";
+        echo "<p><a class='btn primary large' href='/registration.php'>Register for free</a></p>";
+    }
+?> 
