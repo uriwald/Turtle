@@ -6,6 +6,8 @@
         $doc            = _('Project doc');
         $newLesson      = _('Create new Lesson');
         $contactUs      = _('Contact Us');
+        if (!isset ($rootDir))
+             $rootDir = "/";
         if (!isset ($locale))
             $locale = "en_US";
         $footer =
@@ -16,7 +18,7 @@
                     &copy; TurtleAcademy 
                     <li>
                          
-                        <a id='doc' title='Project documentation' href='doc.php?locale=".$locale."'>
+                        <a id='doc' title='Project documentation' href='".$rootDir."doc.php?locale=".$locale."'>
                         ". 
                         $doc ."
                         </a>
