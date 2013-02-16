@@ -2,6 +2,18 @@
   var $, DEFAULT_INDENT_WIDTH, DEFAULT_PROMPT_CONINUE_LABEL, DEFAULT_PROMPT_LABEL, JQConsole, KEY_BACKSPACE, KEY_DELETE, KEY_DOWN, KEY_END, KEY_ENTER, KEY_HOME, KEY_LEFT, KEY_PAGE_DOWN, KEY_PAGE_UP, KEY_RIGHT, KEY_TAB, KEY_UP, STATE_INPUT, STATE_OUTPUT, STATE_PROMPT;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __slice = Array.prototype.slice;
   $ = jQuery;
+  var locale      = $.Storage.get('locale');
+  var left , right ;
+  if ($.Storage.get('locale') == "he_IL")
+      {
+        left = 39;
+        right = 37;
+      }
+  else
+    {
+        left = 37;
+        right = 39;
+    }
   STATE_INPUT = 0;
   STATE_OUTPUT = 1;
   STATE_PROMPT = 2;
@@ -9,8 +21,8 @@
   KEY_TAB = 9;
   KEY_DELETE = 46;
   KEY_BACKSPACE = 8;
-  KEY_LEFT = 39;
-  KEY_RIGHT = 37;
+  KEY_LEFT = left;
+  KEY_RIGHT = right;
 //  KEY_LEFT = 37; 
 //  KEY_RIGHT = 39;
   KEY_UP = 38;
