@@ -28,7 +28,7 @@ root {
     top: 0;*/
 }
 .jqconsole-cursor {
-    background-color: #999;        
+    background-color: blue;        
 }
 .jqconsole-blurred .jqconsole-cursor {
     background-color: #666;
@@ -179,4 +179,7 @@ code { font-family: monospace; }
 .dropdown-menu li a.innerLink{
      color: rgb(0, 136, 204);
      background-color: rgba(0, 0, 0,0);
+}
+#accorPlusNav{
+    width: 300px;
 }

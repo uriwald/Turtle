@@ -135,10 +135,10 @@
                             }
                             else
                             {
-
                         ?>       
                                 <ul class="nav <?php echo $login ?>" id="turtleHeaderUl">  
-                                    <li><a href="<?php echo $rootDir; ?>registration.php" style="color:gray;" ><?php echo _("Login");?></a></li> 
+                                    <li><a href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
+                                    <li><a class='btn primary large' href="<?php echo $rootDir; ?>registration.php" ><?php echo _("SignUp for free");?></a></li> 
                                 </ul>                         
                          <?php
                             }
@@ -169,58 +169,59 @@
 
                 <div id="console" class="ui-corner-all ui-widget-content"><!-- command box --></div>
              </div>
-
-            <div id="accordion">
-            </div>
-            <div id="lessonnav">
-                <?php
-                     //should be change to all rtl lnaguages
-                    $lu = new languageUtil("turtleTestDb" , "rtlLanguages");
-                    $isRtlLocale = $lu->findIfLocaleExist($locale);
-                   // if($locale == 'he_IL')
-                    if ($isRtlLocale)
-                    {
-                ?>  
-                    
-                    <button id="nextlesson" class="btn"> 
+            <div id="accorPlusNav">
+                <div id="accordion">
+                </div>
+                <div id="lessonnav">
                     <?php
                         //should be change to all rtl lnaguages
-                       // echo ($locale == 'he_IL') ?  "&larr;" :  "&rarr;";     
-                        echo ($isRtlLocale) ?  "&larr;" :  "&rarr;"; 
-                        echo _("Next");                   
-                    ?> 
-                    </button>
-                    <button id="prevlesson" class="btn">
-                    <?php
-                    //echo ($locale == 'he_IL') ?  "&rarr;" :  "&larr;";  
-                    echo ($isRtlLocale) ?  "&rarr;" :  "&larr;";  
-                    echo _("Prev");                    
-                    ?>            
-                    </button>
-                <?php
-                    }else{
-                ?>     
-                    <button id="prevlesson" class="btn">
-                    <?php
-                       // echo ($locale == 'he_IL') ?  "&rarr;" :  "&larr;";  
+                        $lu = new languageUtil("turtleTestDb" , "rtlLanguages");
+                        $isRtlLocale = $lu->findIfLocaleExist($locale);
+                    // if($locale == 'he_IL')
+                        if ($isRtlLocale)
+                        {
+                    ?>  
+
+                        <button id="nextlesson" class="btn"> 
+                        <?php
+                            //should be change to all rtl lnaguages
+                        // echo ($locale == 'he_IL') ?  "&larr;" :  "&rarr;";     
+                            echo ($isRtlLocale) ?  "&larr;" :  "&rarr;"; 
+                            echo _("Next");                   
+                        ?> 
+                        </button>
+                        <button id="prevlesson" class="btn">
+                        <?php
+                        //echo ($locale == 'he_IL') ?  "&rarr;" :  "&larr;";  
                         echo ($isRtlLocale) ?  "&rarr;" :  "&larr;";  
                         echo _("Prev");                    
-                    ?>            
-                    </button>
-                    <button id="nextlesson" class="btn"> 
+                        ?>            
+                        </button>
                     <?php
-                        //should be change to all rtl lnaguages
-                        echo ($isRtlLocale) ?  "&larr;" :  "&rarr;";   
-                        //echo ($locale == 'he_IL') ?  "&larr;" :  "&rarr;"; 
-                        echo _("Next");                   
-                    ?> 
-                    </button>
+                        }else{
+                    ?>     
+                        <button id="prevlesson" class="btn">
+                        <?php
+                        // echo ($locale == 'he_IL') ?  "&rarr;" :  "&larr;";  
+                            echo ($isRtlLocale) ?  "&rarr;" :  "&larr;";  
+                            echo _("Prev");                    
+                        ?>            
+                        </button>
+                        <button id="nextlesson" class="btn"> 
+                        <?php
+                            //should be change to all rtl lnaguages
+                            echo ($isRtlLocale) ?  "&larr;" :  "&rarr;";   
+                            //echo ($locale == 'he_IL') ?  "&larr;" :  "&rarr;"; 
+                            echo _("Next");                   
+                        ?> 
+                        </button>
 
-                <?php
-                    } //ending else
-                ?>
-                  
-            </div>
+                    <?php
+                        } //ending else
+                    ?>
+
+                </div>
+            </div> <!-- End Accordion + nav -->
         </div>
         
         <!--
