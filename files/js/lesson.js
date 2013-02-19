@@ -695,26 +695,23 @@
                             var title       = $.Storage.get('lessonTitle');
                             var steps       = $.Storage.get("lessonStepsValues");
                             var numOfSteps  = $.Storage.get('lesson-total-number-of-steps');
-                            var locale      = $.Storage.get('locale');      
+                            var locale      = $.Storage.get('locale');
+                            var objid       = $.Storage.get('ObjId');
                             var dialogCreatedOnce   =   false ;
                             if (locale != "he_IL")
-                                var $dialog = $('<div dir="ltr"></div>');
+                                var $dialog = $('<div dir="ltr"></div>'); 
                             else
                                 var $dialog = $('<div dir="rtl"></div>');
                             var $link = $(this).live('click', function() {
                                     if (window.isLessonSaved == false)
                                         alert(gt.gettext("You must save the lesson before show lesson"));
                                     else
-                                    { 
+                                    {  
                                     $dialog                           
-                                            .load('showLesson.php?locale=' + locale)
+                                            .load('showLesson.php?locale=' + locale + '&objid=' + objid)
                                             .dialog({
                                                     title: $link.attr('title'),
-                                                    width: 700,
-                                                    close: function( event, ui ) {
-                                                       //$dialog.dialog('close'); 
-                                                    }
-                                                    
+                                                    width: 700                                                  
                                             }); 
                                             $link.click(function() {
                                                     $dialog.dialog('open');
