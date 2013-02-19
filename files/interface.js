@@ -136,53 +136,6 @@ $(function() {
               + '{{/if}}'
               +'<p id="' + activeLesson+'${$index +1}"> </p>'
           + '</div>'
-      
-    //  +  '{{/if}}'
-
-    /*
-    + '{{if locale_he_IL}}'
-      +  '<h3><a href="#">${$index +1}. ${locale_he_IL.title}'
-      +  '{{if $.Storage.get("q(" + activeLesson + ")" + ($index +1)) == "true"}}'
-    
-          +  '<span class="ui-icon ui-icon-check"'+ltr+'></span>'  
-  
-      +  '{{/if}}'
-
-    
-      + '</a></h3>'
-
-      + '<div data-sol="${locale_he_IL.solution}" data-qid="${$index +1}">'
-      + '<p>{{html locale_he_IL.explanation}}</p> <p>{{html locale_he_IL.action}}</p>'
-      + '{{if locale_he_IL.hint.length > 0}}'
-      +  '<button>' + gt.gettext("hint") + '</button>'
-      +  '<p id="(${Id})" style="display: none">{{html locale_he_IL.hint}}</p>'
-      + '{{/if}}'
-      + '</div>'
-    
-    
-    + '{{else}}'
-
-
-      + '<h3><a href="#">${$index +1}. ${title}'
-        +  '{{if $.Storage.get("q(" + activeLesson + ")" + ($index +1)) == "true"}}'
-    
-          +  '<span class="ui-icon ui-icon-check"'+ltr+'></span>'  
-  
-       +  '{{/if}}'
-
-      + '</a></h3>'
-
-      + '<div data-sol="${solution}" data-qid="${$index +1}">'
-      + '<p>{{html explanation}}</p> <p>{{html action}}</p>'
-      + '{{if hint.length > 0}}'
-        +  '<button>' + gt.gettext("hint") + '</button>'
-        +  '<p id="(${Id})" style="display: none">{{html hint}}</p>'
-      + '{{/if}}'
-      + '</div>'
-    
-    +  '{{/if}}'
-    
-    */
     + '{{/each}}'
     ;
 
@@ -212,13 +165,32 @@ $(function() {
     
     // attach the next/prev movement
     $("#nextlesson").click(function() {
-        loadLesson(activeLesson +1);
+         // Unset the focus from current lesson and focus on the next
+         setTitleFocus(activeLesson,activeLesson + 1);
+         /*
+         $( "#lucio" + activeLesson ).children().css("color","#1c94c4");
+         var newLessonVal = activeLesson +1;
+         $( "#lucio" + newLessonVal ).children().css("color","#eb8f00");
+          loadLesson(newLessonVal);
+        */
     });
     
     $("#prevlesson").click(function() {
-        loadLesson(activeLesson -1);
+         // Unset the focus from current lesson and focus on the privous   
+         setTitleFocus(activeLesson,activeLesson - 1);
+         /*
+         $( "#lucio" + activeLesson ).children().css("color","#1c94c4");
+         var newLessonVal = activeLesson -1;
+         $( "#lucio" + newLessonVal ).children().css("color","#eb8f00");
+        loadLesson(newLessonVal);
+        */
     })
-
+    function setTitleFocus(oldLessonVal,newLessonVal)
+    {
+        $( "#lucio" + oldLessonVal ).children().css("color","#1c94c4");
+        $( "#lucio" + newLessonVal ).children().css("color","#eb8f00");
+        loadLesson(newLessonVal);
+    }
     // load DOC in dialog
     $('#doc').each(function() {
             if (locale != "he_IL")
