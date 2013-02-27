@@ -145,7 +145,7 @@
                          ?>
                     </div>
                 </div>             
-            </div> <!-- End of Top menu -->
+            </div> <!-- End of Top menu --> 
             <div id="header" class="menu" >
                 <div id="progress">
                 </div>
@@ -156,10 +156,12 @@
                     <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content">   
                             <span style="color: red; background-color: yellow; font-weight: bold;">
                             <?php
-                                echo _("Your browser does not support canvas - an updated browser is recommended");
+                                echo _("TurtleAcademy learn programming for free");
+                                echo _("Your browser is not supporting canvas");
+                                echo _("We recoomnd you to use Chrome or Firefox browsers");
                                 //    הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יות                                
                             ?>                                      
-                            </span>
+                            </span> 
                     </canvas>
                     <!--<canvas id="turtle" width="660" height="350" style="position: absolute; z-index: 1;"> -->
                     <canvas id="turtle" width="660" height="350">   
