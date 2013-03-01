@@ -51,12 +51,6 @@
 #lessonnav {
     float: left;
 }
-#turtleimg , #turtleHeaderTitle , #turtleHeaderUl , #turtleHeaderLanguage{
-    float:right;
-}
-#turtleHeaderLogin{
-    direction: rtl;
-}
 #accorPlusNav{
     float : right;
 }

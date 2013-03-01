@@ -3,13 +3,20 @@
 <?php
     if(session_id() == '') 
         session_start();
-    //if (!isset($_SESSION['username']))
-    //        $_SESSION['username'] = "lucio";
     if ( !isset ($locale))
     {
-        $locale = "en_US";
-        $_SESSION['locale'] = "en_US";
+        if (isset($_SESSION['locale']))
+           $locale = $_SESSION['locale']; 
+        else
+        {
+            $locale = "en_US";
+            $_SESSION['locale'] = "en_US";
+        }
     } 
+    else
+    {
+        $_SESSION['locale'] =  $locale;  
+    }
     require_once("environment.php");
     require_once("localization.php");
     require_once("files/footer.php");
@@ -62,7 +69,8 @@
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
        <?php
-             cssUtils::loadcss($locale, $rootDir . "files/css/interface");       
+             cssUtils::loadcss($locale, $rootDir . "files/css/interface");    
+             cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
         ?>     
         <!-- Disable script when working without internet -->
         <!-- Google Analytics Tracking --> 
@@ -93,6 +101,7 @@
                         
                         <ul class="nav" id="turtleHeaderUl"> 
                               <li><a href="/index.php" ><?php echo _("TurtleAcademy");?></a></li> 
+                              <li><a href="/documentation.php" ><?php echo _("About");?></a></li>
                              <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> --> 
                         </ul> 
                             
@@ -136,15 +145,15 @@
                             else
                             {
                         ?>       
-                                <ul class="nav <?php echo $login ?>" id="turtleHeaderUl">  
+                                <ul class="nav <?php echo $login ?>" id="turtleHeaderUl"> 
                                     <li><a href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
-                                    <li><a class='btn primary large' href="<?php echo $rootDir; ?>registration.php" ><?php echo _("SignUp for free");?></a></li> 
+                                    <li><a class='btn primary large' href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li> 
                                 </ul>                         
                          <?php
                             }
                          ?>
                     </div>
-                </div>             
+                </div>            
             </div> <!-- End of Top menu --> 
             <div id="header" class="menu" >
                 <div id="progress">
