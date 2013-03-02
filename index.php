@@ -31,6 +31,7 @@
         <title>
         <?php
             echo _("Turtle Academy - learn logo programming in your browser");
+            echo _(" free programming materials for kids");
 //        אקדמיית הצב - למד תכנות לוגו היישר מתוך הדפדפן                
             $currentFile = $_SERVER["PHP_SELF"];
             $parts = Explode('/', $currentFile);
@@ -101,7 +102,7 @@
                         
                         <ul class="nav" id="turtleHeaderUl"> 
                               <li><a href="/index.php" ><?php echo _("TurtleAcademy");?></a></li> 
-                              <li><a href="/documentation.php" ><?php echo _("About");?></a></li>
+                              <li><a href="/doc" ><?php echo _("About");?></a></li>
                              <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> --> 
                         </ul> 
                             

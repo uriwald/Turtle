@@ -1,0 +1,8 @@
+RewriteEngine on
+
+RewriteRule ^users/?$   users.php [NC,L]
+RewriteRule ^lang/en/?$   en.php [NC,L]
+RewriteRule ^lang/es/?$   es.php [NC,L]
+RewriteRule ^lang/zh/?$   zh.php [NC,L]
+RewriteRule ^lang/he/?$   he.php [NC,L]
+RewriteRule ^doc/?$       documentation.php [NC,L]
