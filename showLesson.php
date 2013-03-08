@@ -9,7 +9,7 @@ if (!isset($_POST['locale']) && !isset($locale))
     echo "You will be able to see your lesson here by pressing show lesson button"; //Case of initial loading
 else {
     
-
+require_once("environment.php");
 require_once("localization.php");
 require_once("files/cssUtils.php");
 require_once("files/utils/languageUtil.php");
@@ -65,93 +65,77 @@ include_once("files/inc/dropdowndef.php");
             var locale = "<?php echo $locale; ?>";
         </script>
         <script type="text/javascript"> 
-            
-                        var lesson = new Array();
-                        var allSteps = JSON.parse($.Storage.get("lessonStepsValues"));
-                        var singleStep = new Array(new Array);
-                        var steps   = new Array();
-                        var precedence = 100;
-                        var pending     = false;
-                        var title       = $.Storage.get("lessonTitle");
-                        var i = 1
-                        
-                        var singleStepobj = new Object();
-                        var allStepsobj    = new Object();
-
-                        var singleStepfilter = new Array();
-                        singleStepfilter[0] = "title";
-                        singleStepfilter[1] = "action";
-                        singleStepfilter[2] = "solution";
-                        singleStepfilter[3] = "hint";
-                        singleStepfilter[4] = "explanation";
-                        
-                        var allStepfilter   = new Array();
-                        allStepfilter[0] =  "title";
-                        allStepfilter[1] = "precedence";
-                        allStepfilter[2] = "pending";
-                        allStepfilter[3] = "steps";
-                         steps[0] = null ;
-                        var lessonString ="[{";
-                        var stepString = "\"steps\":{";
-                        var len = allSteps.length;
-                        for (var i=1;i<len;i++)
-                            {
-                                stepString += "\"" + i + "\":{";
-                                singleStep[0]['title'] = allSteps[i][0]; 
-                                stepString += "\"title\":" + "\"" + allSteps[i][0] + "\",";
-                                singleStep[0]['action'] = allSteps[i][1]; 
-                                stepString += "\"action\":" + "\"" + allSteps[i][1] + "\",";
-                                singleStep[0]['solution'] = allSteps[i][2]; 
-                                stepString += "\"solution\":" + "\"" + allSteps[i][2] + "\",";
-                                singleStep[0]['hint'] = allSteps[i][3]; 
-                                stepString += "\"hint\":" + "\"" + allSteps[i][3] + "\",";
-                                singleStep[0]['explanation'] = allSteps[i][4]; 
-                                stepString += "\"explanation\":" + "\"" + allSteps[i][4] + "\"}";
-                                if (i != len-1 )
-                                    stepString += ",";
-                                singleStepobj.title = allSteps[i][0];
-                                singleStepobj.solution = allSteps[i][2];
-                                singleStepobj.hint = allSteps[i][3];
-                                singleStepobj.explanation = allSteps[i][4];
-                                steps[i]    =  JSON.stringify(singleStepobj, singleStepfilter, i);
-                                //steps[i]    =  singleStep[0]; 
+        <?php  
+            $m              = new Mongo();
+            // select a database
+            $db             = $m->$dbName;
+            $lessons        =   $db->lessons_created_by_guest;
+            $theObjId       =   new MongoId($_GET['objid']);
+            $localPosted    =   $_GET['locale'];
+            $cursor = $lessons->find(array("_id" => $theObjId));
+            echo "var lessons = [";
+                foreach ($cursor as $lessonStructure) {
+                    //echo "cursorexist";
+                    //  Unset the lesson ID
+                    //   echo " some lessons found";
+                    $lessonStructure['id'] = '' . $lessonStructure['_id'];
+                    unset($lessonStructure['_id']);
+                    // print_r($lessonStructure);
+                    // If the requested language is in the current json collection
+                    //echo "isset?  ".$lessonStructure['locale_' . $_GET[$localPosted]];
+                    if (isset($lessonStructure['locale_' . $localPosted])) {
+                        //  echo "isset ".$lessonStructure['locale_' . $_GET[$localPosted]];
+                        $lessonStructure = $lessonStructure['locale_' . $localPosted];
+                    }
+                    if (isset($lessonStructure["steps"])) {
+                        // echo "is set steps";
+                        $lessonSteps = $lessonStructure["steps"];
+                    }
+                    //echo " printing lesson steps ";
+                    //print_r($lessonSteps);
+                    $showItem = true;
+                    foreach ($lessonSteps as $key => $value) {
+                        "enterLessonSteps";
+                        //echo "Key = " . $key ;
+                        // If we have locale for the current step we will set him
+                        if (isset($lessonSteps[$key]['locale_' . $localPosted])) {
+                            $lessonSteps[$key] = $lessonSteps[$key]['locale_' . $localPosted];
+                        } else {
+                            $showItem = false;
+                        }
+                        // unsetting the other locale values
+                        foreach ($value as $kkey => $vvalue) {
+                            //echo "Key = " . $kkey ;
+                            if (strpos($kkey, 'locale') === 0) {
+                                unset($lessonSteps[$key][$kkey]);
                             }
-                        stepString += "}";
-                        allStepsobj.title =   title;
-                        lessonString +=  "\"title\":" + "\"" + title + "\",";
-                        allStepsobj.precedence =   precedence;
-                        lessonString +=  "\"precedence\":" +  precedence + ",";
-                        allStepsobj.pending   = pending
-                        lessonString +=  "\"pending\":" +  pending + ",";
-                        allStepsobj.steps    = steps;
-                        lessonString += stepString
-                        lessonString += "}]";
-                        //var lessons  =  JSON.stringify(allStepsobj,allStepfilter);
-                       var lessons = JSON.parse(lessonString);
-     
-            <?php   
-            /*
-                echo "var lessons = [";
-                $steps = $_POST['steps'];
-                $decodedStepValue = json_decode($steps);
-                for ($i = 1; $i <= $_POST['numOfSteps']; $i += 1) {
-                    $stepsArray = $decodedStepValue[$i];
-      
-                    $translatArray = array("title" => $stepsArray[0], "action" => $stepsArray[1], "solution" => $stepsArray[2],
-                        "hint" => $stepsArray[3], "explanation" => $stepsArray[4]);
-                    $lessonSteps[$i] = $translatArray;
-                }
-                $lessonjs["title"] = "";
-                if (isset ($_POST['title']))
-                     $lessonjs["title"] = $_POST['title'];
-                $lessonjs["precedence"] = 100;
-                $lessonjs["pending"] = false;
-                $lessonjs["steps"] = $lessonSteps;
-                echo json_encode($lessonjs);
-                echo ",";
-                echo "]";
+                        }
+                    }
+                    $lessonStructure["steps"] = $lessonSteps;
+                    $finalTitle = $lessonStructure["title"];
+                    //Now handling the title
 
-             */
+                    $lessonTitles = $lessonStructure["title"];
+                    foreach ($lessonTitles as $key => $value) {
+                        //echo "@@@".$key;
+                        if ($key == 'locale_' . $localPosted) {
+                            $finalTitle = $lessonTitles[$key];
+                        }
+                    }
+                    $lessonStructure["title"] = $finalTitle;
+
+                    // cleanup extra locales
+                    foreach ($lessonStructure as $key => $value) {
+                        if (strpos($key, 'locale') === 0) {
+                            unset($lessonStructure[$key]);
+                        }
+                    }
+                   
+                        echo json_encode($lessonStructure);
+                        echo ",";
+                    
+                }
+                echo "]";
             ?>  
         </script>    
 
