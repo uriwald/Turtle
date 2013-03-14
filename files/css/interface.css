@@ -144,6 +144,12 @@ code { font-family: monospace; }
     position: relative;
     margin-top: 1px;
 }
+#displayplain {
+    width: 940px;
+    height: 500px; 
+   /* position: relative;
+    margin-top: 1px; */
+}
 #turtletitle {
        margin:auto;
        overflow: hidden;
