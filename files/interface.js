@@ -132,7 +132,7 @@ $(function() {
               + '<p>{{html explanation}}</p> <p>{{html action}}</p>'
               + '{{if hint.length > 0}}'
                   +  '<button class="btn">' + gt.gettext("hint") + '</button>' 
-                  +  '<p id="(${Id})" style="display: none">{{html hint}}</p>'
+                  +  '<p id="(${Id})" style="display: none;color:black;">{{html hint}}</p>' 
               + '{{/if}}'
               +'<p id="' + activeLesson+'${$index +1}"> </p>'
           + '</div>'
