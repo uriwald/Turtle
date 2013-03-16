@@ -326,6 +326,28 @@ $(function() {
                     $("#accordion").accordion( "option", "active", $("#accordion").accordion( "option", "active" ) + 1);
 
                 }
+                // if the command evaluation is not mathing the solution we will store it
+                else{ 
+                  var errorStep  = "q(" + activeLesson + ")" + $(".ui-accordion-content-active").data('qid');  
+                  var errorString = command;
+                  $.ajax({
+                        type : 'POST',
+                        url : '/files/saveUserError.php',
+                        dataType : 'json',
+                        data: {
+                            errorStep   :   errorStep,
+                            errorString : errorString
+                        },
+                        success: function(data) { 
+                            var rdata;
+                        } ,
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            alert('en error occured');
+                        }
+                    });
+                  
+                  //$.Storage.set("q(" + activeLesson + ")" + $(".ui-accordion-content-active").data('qid') + 'e', command);              
+                }
             } catch (e) {
                 // Write the failure to our console
                 jqconsole.Write(gt.gettext('Error') +': ' + e + '\n');
