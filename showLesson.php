@@ -26,7 +26,9 @@ include_once("files/inc/dropdowndef.php");
             echo _("Turtle Academy - learn logo programming in your browser");
             ?>         
         </title>  
-               
+        <?php
+            include_once("files/inc/jquerydef.php");
+        ?>
         <!--<script  type="text/javascript" src="ajax/libs/jquery/1.6.4/jquery.js"></script> <!--- equal to googleapis -->
         <script  type="text/javascript" src="<?php echo $jqueryui .  'js/jquery-ui-1.10.0.custom.js' ?>"></script> <!--- equal to googleapis -->
         <link rel='stylesheet' href='<?php echo $jqueryui .  'css/ui-lightness/jquery-ui-1.10.0.custom.css' ?>' type='text/css' media='all'/> 
@@ -70,6 +72,8 @@ include_once("files/inc/dropdowndef.php");
             // select a database
             $db             = $m->$dbName;
             $lessons        =   $db->lessons_created_by_guest;
+            //TODO if not editing mode and lesson was just created Get won't help need to take from local storage
+            
             $theObjId       =   new MongoId($_GET['objid']);
             $localPosted    =   $_GET['locale'];
             $cursor = $lessons->find(array("_id" => $theObjId));
