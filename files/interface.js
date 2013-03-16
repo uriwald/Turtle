@@ -129,12 +129,16 @@ $(function() {
           +  '{{/if}}'
           + '</a></h3>'
           + '<div data-sol="${solution}" data-qid="${$index +1}">'
-              + '<p>{{html explanation}}</p> <p>{{html action}}</p>'
+              + '<p>{{html explanation}}</p> '
+              + '<p>{{html action}}</p>'
               + '{{if hint.length > 0}}'
                   +  '<button class="btn">' + gt.gettext("hint") + '</button>' 
                   +  '<p id="(${Id})" style="display: none;color:black;">{{html hint}}</p>' 
               + '{{/if}}'
+              +  '<button class="btn">' + gt.gettext("Solution") + '</button>' 
+              + '<p id="(${Id})" style="display: none;color:black;">{{html solution}}</p>'
               +'<p id="' + activeLesson+'${$index +1}"> </p>'
+              
           + '</div>'
     + '{{/each}}'
     ;
