@@ -692,17 +692,16 @@
                 
                 $('#btnShowLesson').each(function() {
                             var gt = new Gettext({'domain' : 'messages'});
-                            var title       = $.Storage.get('lessonTitle');
-                            var steps       = $.Storage.get("lessonStepsValues");
-                            var numOfSteps  = $.Storage.get('lesson-total-number-of-steps');
-                            var locale      = $.Storage.get('locale');
-                            var objid       = $.Storage.get('ObjId');
+                            
+                            
                             var dialogCreatedOnce   =   false ;
                             if (locale != "he_IL")
                                 var $dialog = $('<div dir="ltr"></div>'); 
                             else
                                 var $dialog = $('<div dir="rtl"></div>');
                             var $link = $(this).live('click', function() {
+                                    var locale      = $.Storage.get('locale');
+                                    var objid       = $.Storage.get('ObjId');
                                     if (window.isLessonSaved == false)
                                         alert(gt.gettext("You must save the lesson before show lesson"));
                                     else
