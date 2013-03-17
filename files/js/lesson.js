@@ -207,11 +207,17 @@
                     }
                 } 
                 //Setting precedence
-                var prec = $('#precedence').val();
+                var prec            = $('#precedence').val();
+                var turtleId        =  $('#turtleId').val();
                 if (prec != null)
                 {
                     $.Storage.set('precedence',prec);
                 }
+                if (turtleId != null)
+                {
+                    $.Storage.set('turtleId',turtleId);
+                }
+               
             }       
                 
             var clearLocalStorage = function clearLocalStorage()
@@ -290,6 +296,7 @@
                         ObjId : $.Storage.get('ObjId'),
                         locale : $.Storage.get(lessonLocale),  //Should be a parameter
                         precedence :$.Storage.get('precedence'),
+                        turtleId   :$.Storage.get('turtleId'),
                         translate : isTranslate,
                         isStepRemove  : isStepRemoved ,
                         collection  : collectionName ,
@@ -523,6 +530,10 @@
                 if (!$.Storage.get("precedence"))
                 {
                      $.Storage.set('precedence' , '80');
+                }
+                if (!$.Storage.get("turtleId"))
+                {
+                     $.Storage.set('turtleId' , '80');
                 }
                 $('#addStep').live("click" , function() {
                     var val             = parseInt($.Storage.get("lesson-total-number-of-steps")) + 1;

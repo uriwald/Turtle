@@ -19,7 +19,7 @@ class lessonsUtil {
     private $steps;
     private $titles;
     private $precedence = 100 ;
-
+    private $turtleId   = 10 ;
     
     # Constructor  
     public function __construct($locale,$localePrefix,$db,$lessonObjId)  
@@ -29,6 +29,7 @@ class lessonsUtil {
                 $this->db = $db; 
                 $this->lessonObjId = $lessonObjId;
                 $this->precedence = 50 ;
+                $this->turtleId = 50 ;
                 self ::setLessonStepsAndTitles();
      }  
 
@@ -52,7 +53,13 @@ class lessonsUtil {
         $this->titles       = $cursor["title"];
         $this->steps        = $cursor["steps"];
         if (isset($cursor["precedence"]))
+        {
              $this->precedence   = $cursor["precedence"];
+        }
+        if (isset($cursor["lesson_turtle_id"]))
+        {
+             $this->turtleId   = $cursor["lesson_turtle_id"];
+        }
     }
 
     public function printSteps() {
@@ -93,6 +100,9 @@ class lessonsUtil {
     
     public function getPrecedence(){
         return $this->precedence;
+    }
+    public function getTurtleId(){
+        return $this->turtleId;
     }
 
     public function getTitleByLocale($locale) {
