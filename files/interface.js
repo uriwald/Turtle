@@ -8,6 +8,8 @@ var g_logo;
 
 var activeLesson = 0;
 
+var turtleid = 0 ;
+
 var lastLessonClick = null ;
 
 $.extend({
@@ -98,7 +100,7 @@ $(function() {
     '{{each lessons}}'
     + '<li>'
     + '<div>'
-    + '<a href="#" data-lesson="${$index}" id="lucio${$index}" name="lucio${$index}" class="lucio">'
+    + '<a href="#" data-lesson="${$index}" id="lucio${$index}" data-turtleid="${lesson_turtle_id}" name="lucio${$index}" class="lucio">'
     + '{{if $index == 0}}'
         + '<span style="color:#eb8f00">'
     + '{{else}}'
@@ -124,7 +126,7 @@ $(function() {
     '{{each steps}}' 
      // + '{{if '+  localeWithPrefix + '}}'  
           +  '<h3><a href="#"> ${$index}. ${title}'
-          +  '{{if $.Storage.get("q(" + activeLesson + ")" + ($index +1)) == "true"}}'
+          +  '{{if $.Storage.get("q(" + turtleid + ")" + ($index +1)) == "true"}}'
               +  '<span class="ui-icon ui-icon-check"'+ltr+'></span>'  
           +  '{{/if}}'
           + '</a></h3>'
@@ -137,7 +139,7 @@ $(function() {
               + '{{/if}}'
               +  '<button class="btn">' + gt.gettext("Solution") + '</button>' 
               + '<p id="(${Id})" style="display: none;color:black;">{{html solution}}</p>'
-              +'<p id="' + activeLesson+'${$index +1}"> </p>'
+              +'<p id="' + turtleid+'${$index +1}"> </p>'
               
           + '</div>'
     + '{{/each}}'
@@ -162,6 +164,7 @@ $(function() {
             $( "#lucio0" ).children().css("color","#1c94c4");
          }
         
+         turtleid = $(this).data('turtleid');
          loadLesson($(this).data('lesson'));
          lastLessonClick = $(this);
          return false;
@@ -193,6 +196,7 @@ $(function() {
     {
         $( "#lucio" + oldLessonVal ).children().css("color","#1c94c4");
         $( "#lucio" + newLessonVal ).children().css("color","#eb8f00");
+        turtleid = $( "#lucio" + newLessonVal ).data('turtleid');
         loadLesson(newLessonVal);
     }
     // load DOC in dialog
@@ -296,7 +300,7 @@ $(function() {
                     var selectorMatches = $('.ui-state-active a').is( ':has(span.ui-icon)');
                     if(selectorMatches == false) 
                         $(".ui-state-active a").append('<span class="ui-icon ui-icon-check"'+ltr+'></span>' );
-                    $.Storage.set("q(" + activeLesson + ")" + $(".ui-accordion-content-active").data('qid'), "true");
+                    $.Storage.set("q(" + turtleid + ")" + $(".ui-accordion-content-active").data('qid'), "true");
                     //After setting new local storage value we will save user data if exist
                     var lclStorageValue="";
                     for (var i=0;i<8;i++)
@@ -328,7 +332,7 @@ $(function() {
                 }
                 // if the command evaluation is not mathing the solution we will store it
                 else{ 
-                  var errorStep  = "q(" + activeLesson + ")" + $(".ui-accordion-content-active").data('qid');  
+                  var errorStep  = "q(" + turtleid + ")" + $(".ui-accordion-content-active").data('qid');  
                   var errorString = command;
                   $.ajax({
                         type : 'POST',
