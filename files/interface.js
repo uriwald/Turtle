@@ -8,7 +8,7 @@ var g_logo;
 
 var activeLesson = 0;
 
-var turtleid = 0 ;
+var turtleid = 1 ;
 
 var lastLessonClick = null ;
 
@@ -269,7 +269,11 @@ $(function() {
         jqconsole.MoveToStart();
         handler();
     });
-
+    
+    jqconsole.RegisterShortcut('C', function() {
+          jqconsole.Reset();
+        handler();
+    });
     // Move to line end Ctrl+E.
     jqconsole.RegisterShortcut('E', function() {
         jqconsole.MoveToEnd();
@@ -303,8 +307,8 @@ $(function() {
                     $.Storage.set("q(" + turtleid + ")" + $(".ui-accordion-content-active").data('qid'), "true");
                     //After setting new local storage value we will save user data if exist
                     var lclStorageValue="";
-                    for (var i=0;i<8;i++)
-                        for (var j=1;j<9;j++)
+                    for (var i=0;i<20;i++)
+                        for (var j=1;j<12;j++)
                             {
                                 if ($.Storage.get("q(" + i +  ")" + j + "1" ))
                                 {
