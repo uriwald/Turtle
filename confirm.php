@@ -43,7 +43,7 @@ if ($action['result'] != 'error' && !$istest) {
     //$uesrid; 
     //foreach ($check_key as $doc) {
     //    $uesrid = $doc['userid'];
-    // }
+    // 
     $uesrid = $check_key['userid'];
     $confirmid = $check_key['_id'];
     $confirmidMongo = new MongoId($confirmid);
@@ -58,7 +58,7 @@ if ($action['result'] != 'error' && !$istest) {
         $result = $usersconfirmation->remove(array('_id' => $confirmidMongo), array("justOne" => true));
         if ($update_users) {
             $action['result'] = 'success';
-            $action['text'] = 'User has been confirmed. Thank-You!';
+            $action['text'] = "User has been confirmed. Thank-You! please <a href='registration.php'> Login </a>";
         } else {
             $action['result'] = 'error';
             $action['text'] = 'The user could not be updated Reason: ';

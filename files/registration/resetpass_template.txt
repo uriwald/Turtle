@@ -1,0 +1,7 @@
+Hello {USERNAME}!
+
+You will be able to reset your password in the following link
+
+{SITEPATH}/RESETconfirm.php?email={EMAIL}&key={KEY}
+
+Thanks!

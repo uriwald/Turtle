@@ -1,6 +1,6 @@
 <?php
 
-function format_email($info, $format , $sitePath){
+function format_email($info, $format , $sitePath , $templateType){
         if (!isset($sitePath))
         {
             echo " noSITEPATH";
@@ -11,7 +11,7 @@ function format_email($info, $format , $sitePath){
         //echo "the info element is " ;
         //print_r($info);
 	//grab the template content 
-	$template = file_get_contents($root .'/signup_template.'.$format); 
+	$template = file_get_contents($root .'/' .$templateType . '.'.$format); 
 	//echo " Template is " . $template ;		
 	//replace all the tags
         /*
@@ -31,12 +31,12 @@ function format_email($info, $format , $sitePath){
 }
 
 //send the welcome letter
-function send_email($info , $sitePath){
+function send_email($info , $sitePath , $templateType = "signup_template"){
 		
 	//format each email
     
-	$body = format_email($info,'html' , $sitePath);
-	$body_plain_txt = format_email($info,'txt' , $sitePath);
+	$body = format_email($info,'html' , $sitePath , $templateType);
+	$body_plain_txt = format_email($info,'txt' , $sitePath , $templateType);
         //echo " email array format begining";
         //print_r($body);
         //echo "body plain text = " . $body_plain_txt;
@@ -49,7 +49,10 @@ function send_email($info , $sitePath){
 	//$transport = Swift_MailTransport::newInstance();
 	$mailer = Swift_Mailer::newInstance($transport);
 	$message = Swift_Message::newInstance();
-	$message ->setSubject('Welcome to TurtleAcademy');
+        if ($templateType == "resetpass_template")
+            $message ->setSubject('TurtleAcademy password reset');
+        else
+            $message ->setSubject('Welcome to TurtleAcademy');
 	$message ->setFrom(array('noreply@turtleacademy.com' => 'TurtleAcademy'));
 	$message ->setTo(array($info['email'] => $info['username']));
 	

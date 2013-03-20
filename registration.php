@@ -11,7 +11,8 @@
     include_once $phpDirPath . 'config.php';
     include_once $phpDirPath . 'functions.php';
     require_once ('environment.php');
-    require_once("localization.php");
+    require_once ("localization.php");
+    require_once ("files/cssUtils.php");
     
     if (isset ($_GET['l']))
     {
@@ -51,6 +52,7 @@
         <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
         <link rel='stylesheet' href='files/css/topbar.css' type='text/css' media='all'/>
         <?php
+            cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
             $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
             if ( file_exists($file_path))
@@ -118,6 +120,17 @@
                                     minlength: gt.gettext("Your password must contain at least 5 characters")
                             },
                             email: "Please enter a valid email address"
+                    }
+            }); 
+             $("#forgot-password-form").validate({
+                    rules: {
+                            email_pwd : {
+                                required: true,
+				email: true
+                            }
+                    },
+                    messages: {
+                            email_pwd: "Please enter your email address"
                     }
             }); 
             try {
@@ -195,16 +208,9 @@
 
     $text = array();
 
+       
     //check if the form has been submitted
     if(isset($_POST['signup'])){
-
-            //cleanup the variables
-            //prevent mysql injection
-            /*
-                $username = mysql_real_escape_string($_POST['username']);
-                $password = mysql_real_escape_string($_POST['password']);
-                $email = mysql_real_escape_string($_POST['email']);
-            */
             $username   = $_POST['username'];
             $password   = $_POST['password'];
             $email      = $_POST['email'];
@@ -282,6 +288,54 @@
             }
             $action['text'] = $text;
     }
+     if(isset($_POST['email_pwd'])){
+         //varifaction it's a mail will be done by js
+            $email      = $_POST['email_pwd'];
+            //$password = md5($password);	
+            $m = new Mongo();
+            $db = $m->turtleTestDb;	
+            $users = $db->users;
+            //Query if email already exist and approved
+            $queryEmail             = array('email' => $email ,"confirm" => true);
+            $existEmail             = $users->count($queryEmail);
+            if ($existEmail > 0 ) //Check if email already exist then we will continue
+            {
+                $curretnUser    =   $users->findOne($queryEmail);
+                $password       =   $curretnUser['password'];
+                $username       =   $curretnUser['username'];
+                $userid         =   $curretnUser['_id'];
+                $users = $db->users_remind_pass;
+                $key = $username . $email ;
+                $key = md5($key);
+                $userStructure = array("userid" => $userid, "key" => $key, "email" => $email );
+                $userConfirmResult = $users->insert($userStructure, array('safe' => true));
+                if($userConfirmResult){
+                        //include the swift class
+                        include_once $phpDirPath .'swift/swift_required.php';
+                        //put info into an array to send to the function
+                        $info = array(
+                                'username' => $username,
+                                'email' => $email,
+                                'key' => $key);
+                        //send the email
+                        if(send_email($info , $sitePath , "resetpass_template")){
+                            $action['result'] = 'success';
+                            array_push($text,'Please check your email to continue with password reset');  
+                        }else{
+                             $action['result'] = 'error';
+                             array_push($text,'Could not send confirm email');
+
+                        }
+                }else{
+
+                        $action['result'] = 'error';
+                        array_push($text,'Confirm row was not added to the database. Reason: ' );
+                }
+            }
+            $action['text'] = $text;
+
+        
+     }
  
             $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
             $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");    
@@ -455,7 +509,7 @@
                     <input type='submit' value='<?php echo _("Sign In"); ?>&raquo;' id='submit_in' name='submit_in' class="btn primary"/>
                     <span class='switch' data-switch='forgot-password-form'><?php echo _("Forgot my password"); ?></span>
                 </form>        
-                <form class='form-stacked hide' id='forgot-password-form'>
+                <form class='form-stacked hide' id='forgot-password-form' method='post'>
                     <h2><?php echo _("Forgot Password"); ?></h2>
                     <div class='cleaner_h20'></div>
                     <div class="clearfix">
