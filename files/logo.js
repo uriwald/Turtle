@@ -160,10 +160,12 @@ function LogoInterpreter(turtle, stream)
     // Russain \u0400-\u04FF
     // Chinese \u4E00-\u9FA5
     // German  \u0001-\u01FF
+    // Thai    \u0E00-\u0E5B
+    // Arabic  \u0600-\u06FF
     //    var regexIdentifier = /^(\.?[A-Za-zא-ת\u4E00-\u9FA5\u0400-\u04FF][A-Za-zא-ת\u4E00-\u9FA5\u0400-\u04FF0-9_.\?]*)(.*?)$/;
 
 
-    var regexIdentifier = /^(\.?[A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF][A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF0-9_.\?]*)(.*?)$/;
+    var regexIdentifier = /^(\.?[A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF\u0E00-\u0E5B\u0600-\u06FF][A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF0u0E00-\u0E5B\u0600-\u06FF-9_.\?]*)(.*?)$/;
     var regexStringLiteral = /^("[^ \[\]\(\)]*)(.*?)$/;
     var regexVariableLiteral = /^(:[A-Za-zא-ת][A-Za-zא-ת0-9]*)(.*?)$/;
     var regexNumberLiteral = /^([0-9]*\.?[0-9]+(?:[eE]\s*[\-+]?\s*[0-9]+)?)(.*?)$/;
@@ -172,7 +174,7 @@ function LogoInterpreter(turtle, stream)
     var regexInfix = /^(\+|\-|\*|\/|%|\^|>=|<=|<>|=|<|>)$/;
     
         //
-    // Expose parse for external use
+    // Expose parse for external use 
     //
     
     self.parse = function(string) { 
