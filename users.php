@@ -47,6 +47,7 @@
           include_once("files/inc/dropdowndef.php");
          include_once("files/inc/jquerydef.php");
          include_once("files/inc/boostrapdef.php");
+        cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
        
     ?>
      <link rel='stylesheet' href='./files/css/topbar.css' type='text/css' media='all'/>  
@@ -113,7 +114,6 @@
                         
                         <ul class="nav" id="turtleHeaderUl"> 
                               <li><a href="index.php" ><?php echo _("TurtleAcademy");?></a></li> 
-                             <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
                         </ul> 
                         <form class="<?php  
                                             echo $class . " form-inline";                                
@@ -181,9 +181,83 @@
             <p><a href='#'><?php echo _("Messages"); echo "(" ; echo _("coming soon"); echo ")"; ?></a></p>
             <p><a href='#'><?php echo _("Account Settings"); echo "(" ; echo _("coming soon"); echo ")"; ?></a></p>
             <p><a href='lesson.php?l=<?php echo $locale; ?>'><?php echo _("Add a new lesson"); ?></a></p>
+            <p><a href='#myProgress'><?php echo _("My progress"); ?></a></p>
             <p><a href='#'><?php echo _("Help"); ?></a></p>
+            
         </div><!-- end of sidebar -->
-        
+                    <div class=" span10 tab-pane active" id="myProgress">
+                <h2>
+                    <?php  echo _("My progress"); ?>  
+                </h2>
+                <div class='cleaner_h20'></div>
+                <p>
+                    <?php
+                        echo _("Steps that I have done :) ");
+                        if (isset($_SESSION['username']))
+                        {
+                            $username           =   $_SESSION['username'];
+                            $m                  = new Mongo();
+                            $db                 = $m->turtleTestDb;
+                            $userProgress       = $db->user_progress;
+                            $numberOfLessons    = 20;
+                            //check if the key is in the database
+                            //$check_key = mysql_query("SELECT * FROM `confirm` WHERE `email` = '$email' AND `key` = '$key' LIMIT 1") or die(mysql_error());
+                            $userQuery          = array('username' => $username);
+                            $check_key          = $userProgress->findOne($userQuery);
+                            $resultcount        = $userProgress->count($userQuery);
+                            if ($resultcount != 0) {
+                                $UserProgressData   = $check_key['data'];
+                                $steps              = explode(",", $UserProgressData);
+                                $numOfSteps         = count($steps);
+                                $numOfSteps         = $numOfSteps -1 ;
+                                echo " You have done " . $numOfSteps . " So far";
+                                $NumberOfStepsDoneInlesson  =   array_fill(0, $numberOfLessons, 0);
+                                $lessonNumber = 0; 
+                                for ( $i=0; $i<=$numOfSteps ; $i++) 
+                                {
+                                    echo $steps[$i];
+                                    if ($steps[$i] != "" && $steps[$i] != null)
+                                    {
+                                        $lessonNumber   =   substr($steps[$i], 2, 1);
+                                        echo "**lesson number is " . $lessonNumber . "";  // bcd 
+                                        $NumberOfStepsDoneInlesson[$lessonNumber]++;
+                                        echo " THE STEP IS " . $steps[$i] . "END OF STEP";
+                                    }
+                                }
+                                $count              =   0;
+                                $numStepsInLesson   =   10;
+                                print_r($NumberOfStepsDoneInlesson);
+                                
+                                for ( $i=0; $i<$numberOfLessons ; $i++)
+                                {
+                                    if ($NumberOfStepsDoneInlesson[$i] > 0 )
+                                   {
+                                       echo "On Lesson number --" . $i ." --you have created " .$NumberOfStepsDoneInlesson[$i] . " steps which are ";
+                                       for ( $j=0; $j<=$NumberOfStepsDoneInlesson[$i] ; $j++)
+                                       {
+                                           if ($steps[$count] != null && $steps[$count] != "")
+                                           {
+                                                echo "COUNT ===" . $count ."===  ";
+                                                echo "You did step " . $steps[$count];  
+                                                $count++;
+                                           }
+                                          
+                                       } 
+                                      
+                                   }
+                                } 
+                                
+
+                            }
+                            else {  //No progress was detected by user
+                                echo " No progress was detected ";
+                            }    
+
+
+                        }
+                    ?>
+                </p>    
+            </div>
         <div class='span16'id="usrLessonDiv"> 
           <h2><?php echo _("Your lessons"); ?></h2>
           <table class='zebra-striped ads'>
@@ -229,9 +303,6 @@
         if (isset ($footer))
             echo $footer ;
        ?>
-      <!-- <footer>
-        <p>&copy; Company 2011 <a href='http://www.sherzod.me' target='_blank' title='Professional Web Developer'>Sherzod Kutfiddinov</a></p>
-      </footer> -->
     </div>
 
   </body>
