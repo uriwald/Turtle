@@ -22,6 +22,7 @@
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
     require_once("files/utils/languageUtil.php");
+    require_once ('files/openid.php');
     $relPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
     $jqueryui   =   "ajax/libs/jqueryui/1.10.0/";
 ?>
@@ -69,9 +70,11 @@
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/>
        <?php
              cssUtils::loadcss($locale, $rootDir . "files/css/interface");    
              cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
+             cssUtils::loadcss($locale, $rootDir . "files/css/topbar"); 
         ?>     
         <!-- Disable script when working without internet -->
         <!-- Google Analytics Tracking --> 
@@ -101,8 +104,9 @@
                         <img class="brand" id="turtleimg" src="<?php echo $rootDir; ?>files/turtles.png" alt="צב במשקפיים">
                         
                         <ul class="nav" id="turtleHeaderUl"> 
-                              <li><a href="/index.php" ><?php echo _("TurtleAcademy");?></a></li> 
-                              <li><a href="/doc" ><?php echo _("About");?></a></li>
+                              <li><a href="<?php echo $rootDir; ?>index.php" ><?php echo _("TurtleAcademy");?></a></li> 
+                              <li><a href="<?php echo $rootDir; ?>needed.php" ><?php echo _("Help Us");?></a></li>
+                              <li><a href="<?php echo $rootDir; ?>project/doc" ><?php echo _("About");?></a></li>
                              <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> --> 
                         </ul> 
                             
@@ -128,13 +132,19 @@
                                             <li class="cc-button-group btn-group"> 
                                                 <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" >
                                                 <?php
-                                                    echo $_SESSION['username'];
+                                                    $displayUserName    = $_SESSION['username'];  
+                                                    if (isset($_SESSION['isOpenID']))
+                                                    {
+                                                        $emailDetails = explode('@',$_SESSION['username']);
+                                                        $displayUserName = $emailDetails[0];
+                                                    }
+                                                        echo $displayUserName;
                                                 ?>
                                                
                                                 </a>
                                                 <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
                                                     <li><a tabindex="-1" href="/users.php"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
-                                                    <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
+                                                    <li><a tabindex="-1" href="/project/doc" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
                                                     <li><a href="<?php echo $rootDir; ?>logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
                                                 </ul>
                                             </li>
@@ -147,6 +157,7 @@
                             {
                         ?>       
                                 <ul class="nav <?php echo $login ?>" id="turtleHeaderUl"> 
+                                   
                                     <li><a href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
                                     <li><a class='btn primary large' href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li> 
                                 </ul>                         

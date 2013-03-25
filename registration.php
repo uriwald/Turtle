@@ -13,6 +13,7 @@
     require_once ('environment.php');
     require_once ("localization.php");
     require_once ("files/cssUtils.php");
+    require_once ('files/openid.php');
     
     if (isset ($_GET['l']))
     {
@@ -51,6 +52,7 @@
         <script type="application/javascript" src="files/logo.js"></script> <!-- Logo interpreter -->
         <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
         <link rel='stylesheet' href='files/css/topbar.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/>
         <?php
             cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
@@ -202,6 +204,18 @@
   </head>
   <body>
     <?php  
+
+    $openid = new LightOpenID($sitePath);
+
+    $openid->identity = 'https://www.google.com/accounts/o8/id';
+    $openid->required = array(
+    'namePerson/first',
+    'namePerson/last',
+    'contact/email',
+    'pref/language',
+    );
+    $openid->returnUrl = $sitePath . "loginopen.php";// 'http://turtle.com/loginopen.php';
+
     //setup some variables/arrays
     $action = array();
     $action['result'] = null;
@@ -507,7 +521,11 @@
                     </ul>          
                     <div class='cleaner_h20'></div>
                     <input type='submit' value='<?php echo _("Sign In"); ?>&raquo;' id='submit_in' name='submit_in' class="btn primary"/>
-                    <span class='switch' data-switch='forgot-password-form'><?php echo _("Forgot my password"); ?></span>
+
+                    <span class='switch' data-switch='forgot-password-form'><?php echo _("Forgot my password"); ?></span> </br></br>
+                    
+                    <a href="<?php echo $openid->authUrl() ?>" class="zocial google"><?php echo _("Sign In");echo " ";echo _("with google")?></a>
+
                 </form>        
                 <form class='form-stacked hide' id='forgot-password-form' method='post'>
                     <h2><?php echo _("Forgot Password"); ?></h2>
