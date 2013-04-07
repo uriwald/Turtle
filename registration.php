@@ -206,7 +206,6 @@
     <?php  
 
     $openid = new LightOpenID($sitePath);
-
     $openid->identity = 'https://www.google.com/accounts/o8/id';
     $openid->required = array(
     'namePerson/first',
@@ -225,6 +224,7 @@
        
     //check if the form has been submitted
     if(isset($_POST['signup'])){
+            $isTestUser = false;
             $username   = $_POST['username'];
             $password   = $_POST['password'];
             $email      = $_POST['email'];
@@ -233,7 +233,6 @@
             if(empty($password)){ $action['result'] = 'error'; array_push($text,'You forgot your password'); }
             if(empty($email)){ $action['result'] = 'error'; array_push($text,'You forgot your email'); }
             //print_r($action);
-
             if($action['result'] != 'error'){
                     $password = md5($password);	
                     $m = new Mongo();
@@ -244,7 +243,11 @@
                     $existEmail             = $users->count($queryEmail);
                     $queryUsername          = array('username' => $username ,"confirm" => true);
                     $existUsername          = $users->count($queryUsername);
-                    if ($existEmail > 0 ) //Check if email already exist
+                    if ($isTestUser)
+                    {
+                       addUserToDb($username,$password,$email,$users,$db); 
+                    }
+                    else if ($existEmail > 0 ) //Check if email already exist
                     {
                         $action['result'] = 'error'; 
                         array_push($text,'Email is already being used /n please enter a valid email');
@@ -255,52 +258,55 @@
                         array_push($text,'Username is already being used');
                     }
                     else {
-                        //add to the database
-                        //$add = mysql_query("INSERT INTO `users` VALUES(NULL,'$username','$password','$email',0)");
-                        $userStructure = array("username" => $username, "password" => $password, "email" => $email , "confirm" => false);
-                        $userResult = $users->insert($userStructure, array('safe' => true));
-                        $userid = $userStructure['_id'];		
-                        if($userResult){
-                                //get the new user id
-                                //$userid = mysql_insert_id();
-                                $users = $db->users_waiting_approvment;
-                                //create a random key
-                                //$key = $username . $email . date('mY');
-                                $key = $username . $email ;
-                                $key = md5($key);
-                                //add confirm row
-                                //$confirm = mysql_query("INSERT INTO `confirm` VALUES(NULL,'$userid','$key','$email')");	
-                                $userStructure = array("userid" => $userid, "key" => $key, "email" => $email );
-                                $userConfirmResult = $users->insert($userStructure, array('safe' => true));
-                                if($userConfirmResult){
-                                        //include the swift class
-                                        include_once $phpDirPath .'swift/swift_required.php';
-                                        //put info into an array to send to the function
-                                        $info = array(
-                                                'username' => $username,
-                                                'email' => $email,
-                                                'key' => $key);
-                                        //send the email
-                                        if(send_email($info , $sitePath)){
-                                        //if(send_email_test($info)){				
-                                                $action['result'] = 'success';
-                                                array_push($text,'Thanks for signing up. Please check your email for confirmation!');   
-                                                //header("location: files/registerok.php"); 
-                                        }else{
-                                                $action['result'] = 'error';
-                                                array_push($text,'Could not send confirm email');
-
-                                        }
-                                }else{
-
-                                        $action['result'] = 'error';
-                                        //array_push($text,'Confirm row was not added to the database. Reason: ' . mysql_error());
-                                        array_push($text,'Confirm row was not added to the database. Reason: ' );
-                                }
-                            }
+                        addUserToDb($username,$password,$email,$users,$db);
                     }
             }
             $action['text'] = $text;
+    }
+    function addUserToDb($username,$password,$email,$users,$db)
+    {
+            global $phpDirPath,$sitePath,$text,$action ;
+            $date = date('Y-m-d H:i:s');
+            $userStructure = array("username" => $username, "password" => $password, "email" => $email , "confirm" => false , "date" => $date);
+            $userResult = $users->insert($userStructure, array('safe' => true));
+            $userid = $userStructure['_id'];		
+            if($userResult){
+                //get the new user id
+            //$userid = mysql_insert_id();
+                $users = $db->users_waiting_approvment;
+                //create a random key
+                $key = $username . $email ;
+                $key = md5($key);
+                //add confirm row
+                //$confirm = mysql_query("INSERT INTO `confirm` VALUES(NULL,'$userid','$key','$email')");	
+                $userStructure = array("userid" => $userid, "key" => $key, "email" => $email );
+                $userConfirmResult = $users->insert($userStructure, array('safe' => true));
+                if($userConfirmResult){
+                        //include the swift class
+                        include_once $phpDirPath .'swift/swift_required.php';
+                        //put info into an array to send to the function
+                        $info = array(
+                                'username' => $username,
+                                'email' => $email,
+                                'key' => $key);
+                        //send the email
+                        if(send_email($info , $sitePath)){
+                        //if(send_email_test($info)){				
+                                $action['result'] = 'success';
+                                array_push($text,'Thanks for signing up. Please check your email for confirmation!');   
+                                //header("location: files/registerok.php"); 
+                        }else{
+                                $action['result'] = 'error';
+                                array_push($text,'Could not send confirm email');
+
+                        }
+                }else{
+
+                        $action['result'] = 'error';
+                        //array_push($text,'Confirm row was not added to the database. Reason: ' . mysql_error());
+                        array_push($text,'Confirm row was not added to the database. Reason: ' );
+                }
+            }
     }
      if(isset($_POST['email_pwd'])){
          //varifaction it's a mail will be done by js
