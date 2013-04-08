@@ -11,7 +11,8 @@
     } 
     $username   =   "Guest";
     if (isset ($_SESSION['username']))
-        $username = $_SESSION['username'];
+        $username = $username;
+    $displayUserName    = $_SESSION['username']; 
     require_once 'files/utils/userUtil.php';
     require_once("environment.php");
     require_once("localization.php");
@@ -44,6 +45,7 @@
         $username = "Unknown";
         if (isset($_SESSION['username']))
             $username = $_SESSION['username'];
+        $displayUserName  = $username;  
           include_once("files/inc/dropdowndef.php");
          include_once("files/inc/jquerydef.php");
          include_once("files/inc/boostrapdef.php");
@@ -136,7 +138,15 @@
                                             <li class="cc-button-group btn-group"> 
                                                 <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" >
                                                 <?php
-                                                    echo $_SESSION['username'];
+                                                                                       
+                                                    //$displayUserName    = $_SESSION['username'];  
+                                                    if (isset($_SESSION['isOpenID']))
+                                                    {
+                                                        $emailDetails = explode('@',$_SESSION['username']);
+                                                        $displayUserName = $emailDetails[0];
+                                                    }
+                                                        echo $displayUserName;
+                                              
                                                 ?>
                                                 </a>
                                                 <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
@@ -172,7 +182,7 @@
         <div class="well span4 sidebar">
             <h4>
                 <?php
-                    echo $username;
+                    echo $displayUserName;
                 ?>
             </h4>
             <div class='cleaner_h10'></div>
@@ -210,47 +220,58 @@
                                 $steps              = explode(",", $UserProgressData);
                                 $numOfSteps         = count($steps);
                                 $numOfSteps         = $numOfSteps -1 ;
-                                echo " You have done " . $numOfSteps . " So far";
+                                echo " So far you have done" . $numOfSteps . " " . "steps " . "</br>";
                                 $NumberOfStepsDoneInlesson  =   array_fill(0, $numberOfLessons, 0);
                                 $lessonNumber = 0; 
                                 for ( $i=0; $i<=$numOfSteps ; $i++) 
                                 {
-                                    echo $steps[$i];
+                                    //echo $steps[$i];
                                     if ($steps[$i] != "" && $steps[$i] != null)
                                     {
-                                        $lessonNumber   =   substr($steps[$i], 2, 1);
-                                        echo "**lesson number is " . $lessonNumber . "";  // bcd 
+                                       
+                                        
+                                        if (strlen($steps[$i]) == 6)
+                                        {
+                                            //echo "equal 6";
+                                            $lessonNumber   =   substr($steps[$i], 2, 1);
+                                        }
+                                        else
+                                        {
+                                            //echo "equal" . strlen($steps[$i]);
+                                            $lessonNumber   =   substr($steps[$i], 2, 2);
+                                        }
+                                        //echo "**lesson number is " . $lessonNumber . "";  // bcd 
                                         $NumberOfStepsDoneInlesson[$lessonNumber]++;
-                                        echo " THE STEP IS " . $steps[$i] . "END OF STEP";
+                                        //echo " THE STEP IS " . $steps[$i] . "END OF STEP";
                                     }
                                 }
                                 $count              =   0;
                                 $numStepsInLesson   =   10;
-                                print_r($NumberOfStepsDoneInlesson);
-                                
+                                //print_r($NumberOfStepsDoneInlesson);
+
                                 for ( $i=0; $i<$numberOfLessons ; $i++)
                                 {
                                     if ($NumberOfStepsDoneInlesson[$i] > 0 )
-                                   {
-                                       echo "On Lesson number --" . $i ." --you have created " .$NumberOfStepsDoneInlesson[$i] . " steps which are ";
-                                       for ( $j=0; $j<=$NumberOfStepsDoneInlesson[$i] ; $j++)
-                                       {
-                                           if ($steps[$count] != null && $steps[$count] != "")
-                                           {
-                                                echo "COUNT ===" . $count ."===  ";
-                                                echo "You did step " . $steps[$count];  
-                                                $count++;
-                                           }
-                                          
-                                       } 
-                                      
-                                   }
+                                {
+                                    echo "<b>" . "At Lesson number " . $i ." you have done" ." " .$NumberOfStepsDoneInlesson[$i] . " ". " steps so far which are" . ": </br></b>";
+                                    for ( $j=0; $j<$NumberOfStepsDoneInlesson[$i] ; $j++)
+                                    {
+                                        if ($steps[$count] != null && $steps[$count] != "")
+                                        {
+                                                if ($i < 10)
+                                                    echo substr($steps[$count], 4, 1) . "  ";
+                                                else
+                                                    echo substr($steps[$count], 5, 1) . "  ";
+                                                $count++; 
+                                        }              
+                                    } 
+                                    echo "</br>";
+                                }
                                 } 
                                 
-
                             }
                             else {  //No progress was detected by user
-                                echo " No progress was detected ";
+                                echo " No Pregress was made yet";
                             }    
 
 
