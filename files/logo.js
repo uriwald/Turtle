@@ -165,13 +165,14 @@ function LogoInterpreter(turtle, stream)
     //    var regexIdentifier = /^(\.?[A-Za-zא-ת\u4E00-\u9FA5\u0400-\u04FF][A-Za-zא-ת\u4E00-\u9FA5\u0400-\u04FF0-9_.\?]*)(.*?)$/;
 
 
-    var regexIdentifier = /^(\.?[A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF\u0E00-\u0E5B\u0600-\u06FF][A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF0u0E00-\u0E5B\u0600-\u06FF-9_.\?]*)(.*?)$/;
-    var regexStringLiteral = /^("[^ \[\]\(\)]*)(.*?)$/;
-    var regexVariableLiteral = /^(:[A-Za-zא-ת][A-Za-zא-ת0-9]*)(.*?)$/;
-    var regexNumberLiteral = /^([0-9]*\.?[0-9]+(?:[eE]\s*[\-+]?\s*[0-9]+)?)(.*?)$/;
-    var regexListDelimiter = /^(\[|\])(.*?)$/;
-    var regexOperator = /^(\+|\-|\*|\/|%|\^|>=|<=|<>|=|<|>|\[|\]|\(|\))(.*?)$/;
-    var regexInfix = /^(\+|\-|\*|\/|%|\^|>=|<=|<>|=|<|>)$/;
+    var regexIdentifier         = /^(\.?[A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF\u0E00-\u0E5B\u0600-\u06FF][A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF0u0E00-\u0E5B\u0600-\u06FF-9_.\?]*)(.*?)$/;
+    var regexStringLiteral      = /^("[^ \[\]\(\)]*)(.*?)$/;
+    var regexVariableLiteral    = /^(:[A-Za-zא-ת][A-Za-zא-ת0-9]*)(.*?)$/;
+    var regexNumberLiteral      = /^([0-9]*\.?[0-9]+(?:[eE]\s*[\-+]?\s*[0-9]+)?)(.*?)$/;
+    var regexListDelimiter      = /^(\[|\])(.*?)$/;
+    var regexHasNumber          = /([0-9])$/;
+    var regexOperator           = /^(\+|\-|\*|\/|%|\^|>=|<=|<>|=|<|>|\[|\]|\(|\))(.*?)$/;
+    var regexInfix              = /^(\+|\-|\*|\/|%|\^|>=|<=|<>|=|<|>)$/;
     
         //
     // Expose parse for external use 
@@ -559,7 +560,13 @@ function LogoInterpreter(turtle, stream)
 
   self.dispatch = function(name, tokenlist, natural) {
     var procedure = self.routines[name.toLowerCase()];
-    if (!procedure) { throw new Error(format(__("Don't know how to {name}"), { name: name.toUpperCase() })); }
+    if (!procedure) { 
+        if (name.match(regexHasNumber))
+            throw new Error(format(__("Command and number should be seperate by space e.g forward 50 and not forward50"), { name: name.toUpperCase() })); 
+        else    
+            throw new Error(format(__("Don't know how to {name}"), { name: name.toUpperCase() })); 
+    
+}
 
     if (procedure.special) {
       // Special routines are built-ins that get handed the token list:
