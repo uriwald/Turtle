@@ -32,8 +32,7 @@ foreach ($cursor as $lessonStructure) {
     //   echo " some lessons found";
     $lessonStructure['id'] = '' . $lessonStructure['_id'];
     unset($lessonStructure['_id']);
-    // print_r($lessonStructure);
-    // If the requested language is in the current json collection
+
     //echo "isset?  ".$lessonStructure['locale_' . $_GET[$localPosted]];
     if (isset($lessonStructure['locale_' . $_GET[$localPosted]])) {
         //  echo "isset ".$lessonStructure['locale_' . $_GET[$localPosted]];
@@ -114,7 +113,7 @@ function updateLoclaStorageForLoggedUser($m , $db)
         echo ";";
         if ($cursor != null)
         {
-            $data = explode(",", $cursor['data']); ;
+            $data = explode(",", $cursor['stepCompleted']); ;
             //print_r($data);
             $datalen    = count($data);
             $value = "true";
@@ -123,6 +122,11 @@ function updateLoclaStorageForLoggedUser($m , $db)
             {
                echo "localStorage.setItem('$data[$i]' ,'$value' );";
                  
+            }
+            if (isset($cursor['userHistory']))
+            {
+                $historyVal     =   $cursor['userHistory'];
+                echo "localStorage.setItem('logo-history' ,'$historyVal' );";
             }
             //echo "</script>";
         }
