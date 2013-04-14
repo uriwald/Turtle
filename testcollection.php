@@ -1,16 +1,20 @@
 <?php
     require_once("files/utils/collectionUtil.php");
-    /*
-    $lu = new collectionUtil("turtleTestDb" , "lessons");
-    $singelItemId = new MongoId("5078fc8ca51ffbe80c000001");
-    $collection = $lu->CollectionItemsAddAttribute("pending" , false);
-    $collection = $lu->CollectionItemChangeAttribute($singelItemId,"user","admin");
+    
+    //$lu = new collectionUtil("turtleTestDb" , "lessons_translate");
+    $lu = new collectionUtil("turtleTestDb" , "user_progress");
+    $singelItemId = new MongoId("510b6df9f458590a73000000");
+    //$collection = $lu->cloneColumn($singelItemId,"data","stepCompleted"); 
+    $lu->cloneColumns("data","stepCompleted"); 
+    //$collection = $lu->CollectionItemChangeAttribute($singelItemId,"lesson_turtle_id","16");
     ///$collection = $lu->printCollectionItems();
-    echo $collection;
+    //echo $collection;
     
     /*
      * Testing coping between collections
      */
+    
+    /*
     $mongoid        =   new MongoId("4ecabd633b6d7b2407000000");
     $dbName         =   "turtleTestDb";
     $colFromName    =   "lessons_translate";
@@ -19,6 +23,6 @@
     $stepnum        =   1 ;
     collectionUtil::copyLocaleLessonBetweenCollections($mongoid, $dbName, $colFromName, $colToName,$locale , $stepnum);
     //collectionUtil::copyFullLessonBetweenCollections($mongoid, $dbName, $colFromName, $colToName);
-
+*/
 ?>
     

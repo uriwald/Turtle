@@ -27,7 +27,6 @@ class collectionUtil {
                 $this->collection = $thisdb->$collection;
                 echo "Ddd";
      }  
-
     public function __get($property) {
         if (property_exists($this, $property)) {
             return $this->$property;
@@ -64,9 +63,36 @@ class collectionUtil {
           $result = $this->collection->update($criteria,$cursor);
         //print_r($cursor);
     }
-    
-    public function CollectionItemChangeAttribute ($mongoid , $attName , $attVal)
+    public function cloneColumn ($mongoid , $attOldName , $attNewName)
     {
+        $criteria           = $this->collection->findOne(array("_id" => $mongoid));
+        $cursor             = $criteria;
+    
+        $attributeValue     = $cursor[$attOldName];
+        $this->collection->update($cursor , array('$unset' => array($attOldName)),array("multiple" => true)) ;
+        $this->collection->update($cursor , array('$set' => array($attNewName => $attributeValue)),array("multiple" => true)) ;
+        //print_r($cursor);
+    }
+    
+        
+    public function cloneColumns($attOldName , $attNewName) {      
+
+        $cursor = $this->collection->find();
+        foreach ($cursor as $user_object) {
+            $attributeValue ="";
+            if (isset ($user_object[$attOldName]))
+            {
+                $attributeValue     = $user_object[$attOldName];
+                echo "New User Object " . $user_object[$attOldName] . "</br>" ;
+                $this->collection->update($user_object , array('$set' => array($attNewName => $attributeValue)),array("multiple" => true)) ;
+            }
+        }
+        echo "done cloning " . $attOldName . " to " . $attNewName;
+
+    }
+    
+    public function CollectionItemChangeAttributeVal ($mongoid , $attName , $attVal)
+    { 
         $criteria = $this->collection->findOne(array("_id" => $mongoid));
         $cursor = $criteria;
         $cursor["$attName"] = $attVal ;

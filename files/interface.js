@@ -295,7 +295,23 @@ $(function() {
                 g_logo.run(command);
                 // Assuming the command ran, we can store the history for later usage
                 if (typeof jqconsole.history != 'undefined') $.Storage.set('logo-history',JSON.stringify(jqconsole.history.slice(jqconsole.history.length-10)));
-
+                //Saving the history to db
+                    $.ajax({
+                        type : 'POST',
+                        url : '/files/saveLocalStorage.php',
+                        dataType : 'json',
+                        data: {
+                            userHistory  :   $.Storage.get('logo-history')
+                        },
+                        success: function(data) { 
+                            var rdata;
+                        } ,
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            alert('en error occured');
+                        }
+                    });
+                
+                
                 // Now we evaluate the command against the one we were expecting
                 if (comparecommands(command, $(".ui-accordion-content-active").data('sol')))
                 {
@@ -405,6 +421,26 @@ $(function() {
         canvas_element.width, canvas_element.height);
 
     g_logo = new LogoInterpreter(turtle, stream);
+    //Runing the TO commands
+    if ($.Storage.get("logo-history"))
+    {
+        var history = $.Storage.get('logo-history'); 
+        historyArray = history.split(','); 
+        var historyLen  =   historyArray.length ;
+        var commandLen = 0;
+        var commandToRun ;
+        for(var i = 0; i < historyLen; i++)
+        {
+
+            if (historyArray[i].substring(1, 3) =="to")
+                {
+                    commandLen   = historyArray[i].length -1;
+                    commandToRun = historyArray[i].substring(1,commandLen);
+                    g_logo.run(commandToRun);
+                }
+        }
+    }
+    
                 function do_logo(id ,cmd) {
                 $('#'+id).css('width', '50px').css('height', '50px').append('<canvas id="'+id+'c" width="50" height="50" style="position: absolute; z-index: 0;"></canvas>' +
                     '<canvas id="'+id+'t" width="50" height="50" style="position: absolute; z-index: 1;"></canvas>'); 
@@ -414,7 +450,6 @@ $(function() {
                 canvas_element2.getContext('2d'),
                 turtle_element2.getContext('2d'),
                 canvas_element2.width, canvas_element2.height);
-
                 g_logo2 = new LogoInterpreter(turtle2, null); 
                 g_logo2.run(cmd);
             }  
