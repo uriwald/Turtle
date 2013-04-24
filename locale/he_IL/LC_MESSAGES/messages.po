@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TurtleAcademy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-09 00:57+0530\n"
-"PO-Revision-Date: 2013-02-09 00:58+0530\n"
+"POT-Creation-Date: 2013-04-25 00:11+0800\n"
+"PO-Revision-Date: 2013-04-25 00:12+0800\n"
 "Last-Translator: \n"
 "Language-Team: Wald\n"
 "MIME-Version: 1.0\n"
@@ -16,146 +16,360 @@ msgstr ""
 "Language: he_IL\n"
 "X-Poedit-SearchPath-0: C:\\Users\\Lucio\\Documents\\NetBeansProjects\\Turtle\n"
 
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/c.php:26
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:71
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:71
+msgid "TurtleAcademy"
+msgstr "אקדמיית הצב"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:18
+msgid "login"
+msgstr "הכנס"
+
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:4
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:15
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:15
 msgid "Project Documentation"
 msgstr "תיעוד הפרוייקט"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:22
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:26
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:30
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:137
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:150
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:121
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:128
 msgid "About the project"
 msgstr "על הפרוייקט"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:29
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:33
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:155
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:133
 msgid "The project contains a client side learning environment and a compiler for the <a target='_bjlank' href='http://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%92%D7%95_(%D7%A9%D7%A4%D7%AA_%D7%AA%D7%9B%D7%A0%D7%95%D7%AA)'>Logo</a> Programming language."
 msgstr "הפרוייקט מכיל סביבת לימוד בצד לקוח ומהדר לשפת התכנות לוגו"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:30
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:34
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:156
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:134
 msgid "The project enables to learn the Logo language and programming principles and can be used for programming logo"
 msgstr "הפרוייקט מאפשר ללמוד  תכנות בשפת לוגו וכן את עקרונות התכנות , כמו כן יכול לשמש לפיתוח בשפת לוגו"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:35
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:39
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:138
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:163
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:139
 msgid "Why was it done"
 msgstr "למה עשינו אותו"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:39
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:43
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:168
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:144
 msgid "My brother has been volunteering in a primary school in Israel for the past few years."
 msgstr ".אחי מתנדב במהלך השנים האחרונות בבתי ספר יסודיים בישראל"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:40
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:44
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:169
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:145
 msgid "He was trying to instill the basic programming skills in the children and he discovered that there are three main problems."
 msgstr "הוא ניסה להנחיל את יסודות התכנות אצל הילדים וגילה שישנן שלוש בעיות עיקריות."
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:41
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:45
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:170
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:146
 msgid "The first is the language barrier (all the programming languages are using English and the children's do not speak the language ),"
 msgstr "הבעייה הראשונה היא מחסום השפה (כל השפות תכנות כתובות באנגלית והילדים לא דיברו או כתבו באנגלית),"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:42
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:46
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:171
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:147
 msgid "the second issue is that currently there are not many online learning programs which address children."
 msgstr "הבעייה השנייה היא שלא קיימות הרבה תוכנות אונליין שקהל היעד שלהם הוא ילדים"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:43
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:47
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:172
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:148
 msgid "The third issue is the installation requirement of an appropriate programming environment in order to be able to start programming."
 msgstr "הבעייה השלישית הוא דרישות ההתקשה של סביבת הפיתוח על מנת להתחיל לכתוב פקודות ולתכנת"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:48
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:52
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:173
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:149
 msgid "For this reason we thought it would be a good idea to join forces and create TurtleAcademy"
 msgstr "לכן חשבנו שזה רעיון טוב ונרתמנו למשימה ביחד כדי ליצור את אקדמיית הצב"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:49
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:53
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:174
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:150
 msgid "The inspiration for the project came from other projects like <a target='_blank' href='http://www.khanacademy.org/'> Khanacademy</a> And a javascript learning project named <a target='_blank' href='http://www.codecademy.com/'>Codecademy</a>"
 msgstr "ההשראה לפרוייקט התקבלה בין היתר מפרוייקטים כגון <a target=\"_blank\" href=\"http://www.khanacademy.org/\">האקדמיה של חאן</a> ומפרוייקט לימוד גאווהסקריפט בשם <a target=\"_blank\" href=\"http://www.codecademy.com/\">קודקדמי</a>"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:54
-msgid "Who are we ?"
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:58
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:139
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:181
+msgid "Who we are ?"
 msgstr "מי אנחנו"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:58
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:62
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:161
 msgid "Lucio  - Webmaster  and  amateur ping pong player"
 msgstr "לוסיו - מפתח האתר ושחקן פינג פונג חובב"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:59
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:63
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:162
 msgid "Ofer   - Father of three , amateur entrepreneur"
 msgstr "עופר - אבא לשלושה, ויזם חובב"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:60
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:64
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:163
 msgid "Amir   - Colnect master , uncle of six"
 msgstr "אמיר - מיסטר קולנקט, ודוד לשישה"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:61
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:65
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:164
 msgid "Dana   - Tiger painter , likes to read lessons"
-msgstr "דנה - ציירת נמרים וחובבת קריאת מערכי שיעור"
+msgstr " ציירת נמרים וחובבת קדריאת מערכי שיעור"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:62
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:66
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:165
 msgid "Ayelet - Full time mother"
 msgstr "איילת - אמא במשרה מלאה"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:63
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:67
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:166
 msgid "Almog  - Blogger , made his first QA steps at the age of seven"
 msgstr "אלמוג - בלוגר צעיר שעשה את צעדיו הראשונים בתחום ה QA בגיל 7"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:64
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:68
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:167
 msgid "Inbar  - Very talented Wii player"
 msgstr "ענבר - שחקן wii מוכשר"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:65
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:69
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:168
 msgid "Raz    - QA and vegetarian"
 msgstr "רז - QA וצמחוני"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:66
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:70
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:169
 msgid "Yuval  - QA and future Messi"
 msgstr "יובל - QA ומסי עתידי"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:71
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:75
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:140
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:271
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:174
 msgid "Tricks"
 msgstr "טריקים"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:76
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:80
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:277
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:180
 msgid "New commands that have been learned will be saved even after the browser restarts"
 msgstr "הפקודות החדשות שנלמדו נשרמות גם לאחר אתחול הדפדפן"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:77
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:81
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:278
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:181
 msgid "The turtle remembers the student's progress over time, allowing the student to follow his own progress"
 msgstr "הצב זוכר את התקדמות התלמיד לארוך זמן , ובכך מאפשר לתלמיד מעקב אחריי התקדמותו"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:78
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:82
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:279
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:182
 msgid "The drawing that appear below actually show live logo programs !"
 msgstr "הציורים המופיעים מטה הם בעצם תוכניות לוגו חיות"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:83
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:87
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:141
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:287
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:187
 msgid "Credits"
 msgstr "קרדיטים"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:87
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:91
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:292
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:192
 msgid "A lot of written libraries facilitate the creation of the website"
 msgstr "הרבה ספריות נכתבו המקילות על כתיבת הפרוייקט"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:88
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:92
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:293
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:193
 msgid "<a target='_blank' href='http://www.calormen.com/Logo/'> Joshua Bell - wrote the logo component </a>"
 msgstr "<a target=\"_blank\" href=\"http://www.calormen.com/Logo/\">Joshua Bell - כתיבת רכיב עבור שפת לוגו</a>"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:89
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:93
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:294
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:194
 msgid "<a target='_blank' href='https://github.com/replit/jq-console'> jsconsole- wrote the input element ( Console ) </a>"
 msgstr "<a target=\"_blank\" href=\"https://github.com/replit/jq-console\">jsconsole - כתיבת רכיב קלט (קונסול)</a>"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:90
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:94
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:295
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:195
 msgid "<a target='_blank' href='http://jquery.com'> jquery - component which enabled easy java scripting </a>"
 msgstr "<a target=\"_blank\" href=\"http://jquery.com\">jquery - רכיב המאפשר תכנות פשוט בג'אווהסקריפט</a>"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:91
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:95
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:296
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:196
 msgid "<a target='_blank' href='http://jqueryui.com/'> jqueryui - a collection of graphical components </a>"
 msgstr "<a target=\"_blank\" href=\"http://jqueryui.com/\">jqueryui - אוסף רכיבים גרפיים ל-jquery</a>"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:92
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:96
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:297
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:197
 msgid "<a target='_blank' href='http://api.jquery.com/category/plugins/templates/'> jquerytemplates - enable transmission of data to html </a>"
 msgstr "<a target=\"_blank\" href=\"http://api.jquery.com/category/plugins/templates/\">jquerytemplates - מאפשר המרת מבני נתונים ל-html</a>"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:98
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:102
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:142
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:305
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:203
 msgid "Contact us"
 msgstr "צרו קשר"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:102
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:106
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:309
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:207
 msgid "Send an email"
 msgstr "שלח email"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:72
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:72
+msgid "Sample"
+msgstr "דוגמאות"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:82
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:82
+msgid "Hello"
+msgstr "שלום"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:91
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:91
+msgid "My account"
+msgstr "החשבון שלי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:92
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:92
+msgid "Help"
+msgstr "עזרה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:93
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:93
+msgid "Log out"
+msgstr "התנתק"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:108
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:108
+msgid "Login"
+msgstr "הכנס"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:109
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:109
+msgid "Sign Up for free"
+msgstr "הירשם בחינם"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:132
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:136
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:189
+msgid "About"
+msgstr "אודות"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:188
+msgid "Name"
+msgstr "שם"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:195
+msgid "Lucio"
+msgstr "לוסיו"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:196
+msgid "Webmaster  and  amateur ping pong player"
+msgstr " מפתח האתר ושחקן פינג פונג חובב"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:200
+msgid "Ofer"
+msgstr "עופר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:201
+msgid "Father of three , amateur entrepreneur"
+msgstr "אבא לשלושה, ויזם חובב"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:205
+msgid "Amir"
+msgstr "אמיר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:206
+msgid "Colnect master , uncle of six"
+msgstr " מיסטר קולנקט, ודוד לשישה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:210
+msgid "Dana"
+msgstr "דנה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:211
+msgid "Tiger painter , likes to read lessons"
+msgstr "ציירת נמרים וחובבת קריאת מערכי שיעור"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:215
+msgid "Andy"
+msgstr "אנדי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:216
+msgid "Feeding the turtle , Spanish section"
+msgstr "מאכיל את הצב , אחראי ספרדית"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:220
+msgid "Mona"
+msgstr "מונה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:221
+msgid "Yoga master , Chinese section"
+msgstr "מסטרית יוגה , אחראית סינית"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:225
+msgid "Ayelet"
+msgstr "איילת"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:226
+msgid "Full time mother"
+msgstr "אמא במשרה מלאה"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:230
+msgid "Almog"
+msgstr "אלמוג"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:231
+msgid "Blogger , made his first QA steps at the age of seven"
+msgstr " בלוגר צעיר שעשה את צעדיו הראשונים בתחום ה QA בגיל 7"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:235
+msgid "Inbar"
+msgstr "ענבר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:236
+msgid "Very talented Wii player"
+msgstr " שחקן wii מוכשר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:240
+msgid "Raz"
+msgstr "רז"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:241
+msgid "QA and vegetarian"
+msgstr "QA וצמחוני"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:245
+msgid "Yuval"
+msgstr "huck"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:246
+msgid "QA and future Messi"
+msgstr "QA ומסי עתידי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation130320.php:155
+msgid "Who are we ?"
+msgstr "מי אנחנו"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:3
 msgid "forward"
@@ -474,60 +688,123 @@ msgstr "על כותרת השיעור להכיל לפחות 2 תוים"
 msgid "You must save the lesson before show lesson"
 msgstr "חובה לשמור את השיעור לפני הצגתו"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:26
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index3.php:23
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:34
+msgid "setlabelheight"
+msgstr "קבעגודלתווית"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:34
+msgid "setheading"
+msgstr "כווןראש"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:34
+msgid "seth"
+msgstr "כר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:34
+msgid "setxy"
+msgstr "קבעמיקוםצב"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:34
+msgid "sety"
+msgstr "קבעמיקוםאנכי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:34
+msgid "setx"
+msgstr "קבעמיקוםאפקי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:34
+msgid "arc"
+msgstr "קשת"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:35
+msgid "pos"
+msgstr "מיקום"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:35
+msgid "xcor"
+msgstr "מיקוםאפקי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:35
+msgid "ycor"
+msgstr "מיקוםאנכי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:35
+msgid "heading"
+msgstr "לאן"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:35
+msgid "towards"
+msgstr "כיצדלהגיע"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:37
+msgid "item"
+msgstr "פריט"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:37
+msgid "pick"
+msgstr "בחר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:37
+msgid "butfirst"
+msgstr "בליראשון"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:37
+msgid "bf"
+msgstr "בר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:37
+msgid "butlast"
+msgstr "בליאחרון"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:37
+msgid "bl"
+msgstr "בא"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/forum.php:121
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:116
+msgid "Forums"
+msgstr "פורומים"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/forum.php:128
+msgid "Forums now avialable only in english"
+msgstr "הפורומים זמינים כרגע באנגלית בלבד"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/forum.php:133
+msgid "Please press the following link in order to post on the forum."
+msgstr "בבקשה הקלק על הלינק הבא כדי להיכנס לפורומים"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/forum.php:135
+msgid "A new window will be open"
+msgstr "חלון חדש יפתח."
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:34
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:17
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:22
 msgid "Turtle Academy - learn logo programming in your browser"
 msgstr " אקדמיית הצב - למד תכנות לוגו היישר מתוך הדפדפן"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:112
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:89
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:90
-msgid "TurtleAcademy"
-msgstr "אקדמיית הצב"
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:35
+msgid " free programming materials for kids"
+msgstr "חומרי לימוד חינמיים לילדים"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:113
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:91
-msgid "Sample"
-msgstr "דוגמאות"
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:115
+msgid "Help Us"
+msgstr "עזור לנו"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:134
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:110
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:112
-msgid "Hello"
-msgstr "שלום"
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:187
+msgid "TurtleAcademy learn programming for free"
+msgstr " אקדמיית הצב - למד תכנות לוגו היישר מתוך הדפדפן"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:143
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:119
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:121
-msgid "My account"
-msgstr "החשבון שלי"
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:188
+msgid "Your browser is not supporting canvas"
+msgstr " הדפדפן שלך אינו תומך בקנבס"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:144
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:120
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:122
-msgid "Help"
-msgstr "עזרה"
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:189
+msgid "We recoomnd you to use Chrome or Firefox browsers"
+msgstr "אנחנו ממליצים להשתמש בכרום או פיירפוקס"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:145
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:121
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:123
-msgid "Log out"
-msgstr "התנתק"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:158
-msgid "Login"
-msgstr "הכנס"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:176
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:121
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:106
-msgid "Your browser does not support canvas - an updated browser is recommended"
-msgstr " הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יותר"
-
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:207
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:232
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:220
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:245
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:152
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:177
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:137
@@ -535,8 +812,8 @@ msgstr " הדפדפן שלך אינו תומך בקנבס - מומלץ להשת�
 msgid "Next"
 msgstr "הבא"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:214
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:224
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:227
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:237
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:159
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:169
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:144
@@ -544,7 +821,7 @@ msgstr "הבא"
 msgid "Prev"
 msgstr "הקודם"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:247
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:261
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:192
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:177
 msgid "project doc"
@@ -555,127 +832,170 @@ msgstr "תיעוד הפרוייקט"
 msgid "Turtle Academy"
 msgstr "אקדמיית הצב"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:194
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:200
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:121
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:106
+msgid "Your browser does not support canvas - an updated browser is recommended"
+msgstr " הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יותר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:206
 msgid "Action"
 msgstr "פעולה"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:195
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:201
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:207
 msgid "Solution"
 msgstr "פתרון"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:196
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:202
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:208
 msgid "Hint"
 msgstr "רמז"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:211
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:217
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:223
 msgid "Title"
 msgstr "כותרת"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:231
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:237
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:252
 msgid "Save Lesson"
 msgstr "שמירת שיעור"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:232
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:238
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:253
 msgid "Show Lesson"
 msgstr "הצג שיעור"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:233
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:239
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:254
 msgid "Delete Lesson"
 msgstr "מחיקת שיעור"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:247
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:253
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:268
 msgid "Explanation"
 msgstr "הסבר"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:253
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:259
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:274
 msgid "Show reserve words"
 msgstr "הראה מילים שמורות"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:263
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:269
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:284
 msgid "lesson Steps"
 msgstr "צעדי השיעור"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:265
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:286
 msgid "please choose step to edit"
 msgstr "בבקשה בחר צעד לעריכה"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:273
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:279
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:294
 msgid "Remove lesson step"
 msgstr "הסר צעד נוכחי"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:281
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:282
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:287
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:288
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:302
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:303
 msgid "Lesson Title"
 msgstr "כותרת שיעור"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:357
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:128
+msgid "Translate"
+msgstr "תרגם"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:133
+msgid "TurtleAcademy aspires to be available for kids all around the world. "
+msgstr "אקדמיית הצב שואפת להיות נגישה לילדים בכל העולם."
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:134
+msgid "if you wish to help translating the project please contact us."
+msgstr "אם אתה מוכן לעזור בתרגום הפרוייקט בבקשה צור קשר"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:140
+msgid "Add some content"
+msgstr "הוסף תוכן"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:146
+msgid "Did you like the lessons and you feel you can contribute more knowledge. "
+msgstr "האם אהבת את השיעורים ואתה מרגיש שביכולתך לתרום עוד ידע"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:147
+msgid "Please register and create more lesson in your own native language."
+msgstr "בבקשה הירשם וצור יותר שיעורים בשפת האם שלך"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:148
+msgid "after adding the lessons they can be available for kids all around the world."
+msgstr "אחריי שתוסיפו שיעורים הם יוכלו להיות נגישים לילדים בכל העולם."
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:445
 msgid "Sign Up for Free"
 msgstr "הירשם בחינם"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:363
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:465
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:451
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:560
 msgid "Email"
 msgstr "אי מייל"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:374
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:427
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:462
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:515
 msgid "Username"
 msgstr "שם משתמש"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:386
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:439
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:474
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:527
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:315
 msgid "Password"
 msgstr "ססמא"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:401
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:489
 msgid "Agree to"
 msgstr "אני מסכים ל"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:401
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:489
 msgid "Terms of Use"
 msgstr "תנאי שימוש"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:406
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:494
 msgid "Sign Up"
 msgstr "הרשם"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:411
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:458
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:499
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:546
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:550
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:552
 msgid "Sign In"
 msgstr "התחבר"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:453
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:541
 msgid "Remember me"
 msgstr "זכור אותי"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:459
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:548
 msgid "Forgot my password"
 msgstr "שכחתי ססמא"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:462
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:550
+msgid "with google"
+msgstr "באמצעות גוגל"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:552
+msgid "with Yahoo"
+msgstr "באמצעות יאהו"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:557
 msgid "Forgot Password"
 msgstr "שכחתי ססמא"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:474
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:564
 msgid "Never mind, I remember my password"
 msgstr "לא משנה, נזכרתי בססמא"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:478
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:568
 msgid "Remind me"
 msgstr "הזכר לי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:300
+msgid "Reset your password"
+msgstr "אפס את ססמתך"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:323
+msgid "Retype Password"
+msgstr "הקלד ססמא שנית"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:330
+msgid "Reset"
+msgstr "אפס"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:48
 msgid "Turtle Academy - Translate a lesson"
@@ -685,28 +1005,37 @@ msgstr "אקדמיית הצב - תרגם מערך שיעור"
 msgid "Step"
 msgstr "צעד"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:182
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:188
 msgid "Messages"
 msgstr "הודעות"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:182
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:183
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:188
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:189
 msgid "coming soon"
 msgstr "בקרוב"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:183
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:189
 msgid "Account Settings"
 msgstr "הגדרות חשבון"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:184
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:190
 msgid "Add a new lesson"
 msgstr "הוסף שיעור חדש"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:189
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:191
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:197
+msgid "My progress"
+msgstr "ההתקדמות שלי"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:202
+msgid "Steps that I have done :) "
+msgstr "צעדים שביצעתי :)"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:280
 msgid "Your lessons"
 msgstr "השיעורים שלי"
 
-#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:218
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:309
 msgid "Edit"
 msgstr "ערוך"
 
