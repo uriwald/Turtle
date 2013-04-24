@@ -14,7 +14,7 @@
         }
     } 
     else
-    {
+    { 
         $_SESSION['locale'] =  $locale;  
     }
     require_once("environment.php");
@@ -45,11 +45,18 @@
              include_once("files/inc/dropdowndef.php");
              include_once("files/inc/jquerydef.php");
              include_once("files/inc/boostrapdef.php");
+             if (isset($_SESSION['username']))
+                { 
         ?>   
+             <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
+             <?php
+                }
+                ?>
 
         <!--<script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis v
          
         <script type="application/javascript" src="files/compat.js"></script> <!-- ECMAScript 5 Functions -->
+                                 
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
         <?php
@@ -120,9 +127,9 @@
                                 <option value='zh' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
                             </select>
                         </form>       
-                        <?php
+                        <?php 
                             if (isset($_SESSION['username']))
-                            {
+                            {  
                         ?>                       
                               <!--  <p class="pull-right">Hello <a href="#"> -->
                                     <nav class="<?php echo $login ?>"  id="turtleHeaderLoggedUser">
@@ -139,8 +146,7 @@
                                                         $displayUserName = $emailDetails[0];
                                                     }
                                                         echo $displayUserName;
-                                                ?>
-                                               
+                                                ?>                                               
                                                 </a>
                                                 <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
                                                     <li><a tabindex="-1" href="/users.php"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>

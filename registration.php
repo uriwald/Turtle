@@ -205,6 +205,9 @@
   <body>
     <?php  
 
+    $googleid = createOpenIdObject('https://www.google.com/accounts/o8/id' ,"loginopen.php" );
+    $yahooid =  createOpenIdObject('https://me.yahoo.com' ,"loginopen.php" );   
+    /*
     $openid = new LightOpenID($sitePath);
     $openid->identity = 'https://www.google.com/accounts/o8/id';
     $openid->required = array(
@@ -214,7 +217,7 @@
     'pref/language',
     );
     $openid->returnUrl = $sitePath . "loginopen.php";// 'http://turtle.com/loginopen.php';
-
+    */
     //setup some variables/arrays
     $action = array();
     $action['result'] = null;
@@ -262,6 +265,20 @@
                     }
             }
             $action['text'] = $text;
+    }
+    function createOpenIdObject($identity ,$returnUrl )
+    {
+       global $sitePath; 
+       $openid = new LightOpenID($sitePath);
+       $openid->identity = $identity;
+       $openid->required = array(
+            'namePerson/first',
+            'namePerson/last',
+            'contact/email',
+            'pref/language',
+            );
+       $openid->returnUrl = $sitePath . $returnUrl;// 'http://turtle.com/loginopen.php';
+       return $openid;
     }
     function addUserToDb($username,$password,$email,$users,$db)
     {
@@ -528,9 +545,12 @@
                     <div class='cleaner_h20'></div>
                     <input type='submit' value='<?php echo _("Sign In"); ?>&raquo;' id='submit_in' name='submit_in' class="btn primary"/>
 
-                    <span class='switch' data-switch='forgot-password-form'><?php echo _("Forgot my password"); ?></span> </br></br>
+                    <span class='switch' data-switch='forgot-password-form'><?php echo _("Forgot my password"); ?></span> </br></br></br>
                     
-                    <a href="<?php echo $openid->authUrl() ?>" class="zocial google"><?php echo _("Sign In");echo " ";echo _("with google")?></a>
+                    <a href="<?php echo $googleid->authUrl() ?>" class="zocial google"><?php echo _("Sign In");echo " ";echo _("with google")?></a>
+                    </br></br>
+                    <a href="<?php echo $yahooid->authUrl() ?>" class="zocial yahoo"><?php echo _("Sign In");echo " ";echo _("with Yahoo")?></a>
+                    
 
                 </form>        
                 <form class='form-stacked hide' id='forgot-password-form' method='post'>
