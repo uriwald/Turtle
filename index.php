@@ -112,7 +112,8 @@
                         
                         <ul class="nav" id="turtleHeaderUl"> 
                               <li><a href="<?php echo $rootDir; ?>index.php" ><?php echo _("TurtleAcademy");?></a></li> 
-                              <li><a href="<?php echo $rootDir; ?>needed.php" ><?php echo _("Help Us");?></a></li>
+                              <!--<li><a href="<?php echo $rootDir; ?>needed.php" ><?php echo _("Help Us");?></a></li> -->
+                              <li><a href="<?php echo $rootDir; ?>forum.php" ><?php echo _("Forums");?></a></li>
                               <li><a href="<?php echo $rootDir; ?>project/doc" ><?php echo _("About");?></a></li>
                              <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> --> 
                         </ul> 
