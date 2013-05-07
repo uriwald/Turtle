@@ -194,7 +194,7 @@ function CanvasTurtle(canvas_ctx, turtle_ctx, width, height) {
     x = x + (width / 2);
     y = -y + (height / 2);
 
-    return 90 - rad2deg(Math.atan2(this.y - y, x - this.x));
+    return (90 - rad2deg(Math.atan2(this.y - y, x - this.x))).toFixed(2);
   };
 
   this.setheading = function(angle) {
@@ -227,12 +227,21 @@ function CanvasTurtle(canvas_ctx, turtle_ctx, width, height) {
     return this.visible;
   };
 
-  this.getheading = function() {
-    return 90 - rad2deg(this.r);
+  this.getheading = function() { // Return the heading inside the circle boundries 
+      var heading = (90 - rad2deg(this.r)).toFixed(2);
+      while (heading > 360 || heading < 0)
+        {
+            if (heading > 360)
+                heading = heading - 360;
+            else
+                heading = heading + 360;
+        }
+    
+    return heading;
   };
 
-  this.getxy = function() {
-    return [this.x - (width / 2), -this.y + (height / 2)];
+  this.getxy = function() { //Return only 2 digits after the dot e.g 34.56
+    return [(this.x - (width / 2)).toFixed(2), (-this.y + (height / 2)).toFixed(2)];
   };
 
   this.drawtext = function(text) {
