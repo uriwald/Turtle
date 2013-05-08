@@ -1,18 +1,43 @@
 RewriteEngine on
 
 RewriteRule ^next/users/?$     next/users.php [NC,L]
+RewriteRule ^next/forum/?$     next/forum.php [NC,L]
 RewriteRule ^next/lang/en/?$   next/en.php [NC,L]
 RewriteRule ^next/lang/es/?$   next/es.php [NC,L]
 RewriteRule ^next/lang/zh/?$   next/zh.php [NC,L]
 RewriteRule ^next/lang/he/?$   next/he.php [NC,L]
+RewriteRule ^next/lang/ru/?$   next/ru.php [NC,L]
+
+# RewriteRule ^next/plain/lang/he/?$     next/plain.php?locale=he_IL [NC,L]
+RewriteRule ^next/plain/lang/en/?$     next/plain.php?locale=en_US [NC,L]
+RewriteRule ^next/plain/lang/es/?$     next/plain.php?locale=es_AR [NC,L]
+RewriteRule ^next/plain/lang/zh/?$     next/plain.php?locale=zh_CN [NC,L]
+
 RewriteRule ^next/project/doc/?$       next/documentation.php [NC,L] 
 RewriteRule ^users/?$     users.php [NC,L]
+RewriteRule ^forum/?$     forum.php [NC,L]
 RewriteRule ^lang/en/?$   en.php [NC,L]
 RewriteRule ^lang/es/?$   es.php [NC,L]
 RewriteRule ^lang/zh/?$   zh.php [NC,L]
 RewriteRule ^lang/he/?$   he.php [NC,L]
-RewriteRule ^plain/lang/he/?$     plain.php?locale=he_IL [NC,L]
-RewriteRule ^plain/lang/en/?$     plain.php?locale=en_US [NC,L]
-RewriteRule ^plain/lang/es/?$     plain.php?locale=es_AR [NC,L]
-RewriteRule ^plain/lang/zh/?$     plain.php?locale=zh_CN [NC,L]
+RewriteRule ^lang/ru/?$   ru.php [NC,L]
+
+ RewriteRule ^playground/he/?$     files/playground.php?locale=he_IL [NC,L]
+ RewriteRule ^playground/es/?$     files/playground.php?locale=es_AR [NC,L]
+ RewriteRule ^playground/zh/?$     files/playground.php?locale=zh_CN [NC,L]
+ RewriteRule ^playground/en/?$     files/playground.php?locale=en_US [NC,L]
+
+# RewriteRule ^plain/he/?$     plain.php?locale=he_IL [NC,L]
+# RewriteRule ^plain/es/?$     plain.php?locale=es_AR [NC,L]
+# RewriteRule ^plain/zh/?$     plain.php?locale=zh_CN [NC,L]
+# RewriteRule ^plain/en/?$     plain.php?locale=en_US [NC,L]
+
+RewriteRule ^plain/he/?$     heplain.php [NC,L]
+RewriteRule ^plain/es/?$     esplain.php [NC,L]
+RewriteRule ^plain/zh/?$     zhplain.php [NC,L]
+RewriteRule ^plain/en/?$     enplain.php [NC,L]
+
+
 RewriteRule ^project/doc/?$       documentation.php [NC,L] 
+
+# RewriteRule    ^plain/lang/([A-Za-z0-9-]+)/?$    plain.php?locale=$1    [NC,L]    # Process parrots
