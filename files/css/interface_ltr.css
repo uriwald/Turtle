@@ -10,7 +10,7 @@
     min-width:100px; 
     float:left; 
 }
-.menu a:hover em {
+.menu a:hover em { 
     display:block; 
     overflow:hidden; 
     border:6px solid #06a; 
@@ -20,24 +20,33 @@
     left:50%; 
     margin-left:-6px;
 }
+#carousel-control-left , #carousel-control-right{
+    position : relative; float:left; margin-top:0px;line-height: 20px;min-width:10px;
+}
+#carousel-control-right{
+    margin-left:100;
+}
 #header {
-   /* direction: rtl; */
+   /* direction: rtl; */ 
     overflow: hidden;
     width: 970px;
+    height: 45px;
 }
  
 
 #title h1 { /* direction: rtl; */
            margin: 2px 20px;
 }
-
+#myCarousel{
+   /* margin-left: 170px; */ 
+}
 #logoer {
     width: 660px;
     float: right; 
     margin: 0px 3px;
 }
 #logoerplain {
-    width: 940px;
+    width: 970px;
     /*height: 600px;
      float: right; 
     margin: 0px 3px; */

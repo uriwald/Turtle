@@ -97,9 +97,18 @@ $(function() {
     var localeWithPrefix = 'locale_' + locale;
     
     var markup =
-    '{{each lessons}}'
-    + '<li>'
-    + '<div>'
+   
+    '<div id="myCarousel" class="carousel-inner" align="center">'  
+    +'{{each lessons}}'
+    + '{{if $index == 0}}'
+
+        + '<div class="item active">'
+      + '{{else}}'
+            + '{{if $index %4 === 0 && $index !== 16 }}'
+                 + '<div class="item ">'
+            + '{{/if}}'
+    + '{{/if}}'
+    + '<div align="center">'
     + '<a href="#" data-lesson="${$index}" id="lucio${$index}" data-turtleid="${lesson_turtle_id}" name="lucio${$index}" class="lucio">'
     + '{{if $index == 0}}'
         + '<span style="color:#eb8f00">'
@@ -111,11 +120,28 @@ $(function() {
     + '</a>'
     + '</span>'
     + '</div>'
-    + '</li>'
-    + '{{/each}}';
+    + '{{if $index == 3}}'
+        + '</div>'
+    + '{{/if}}'
+    + '{{if $index == 7}}'
+        + '</div>'
+    + '{{/if}}'
+    + '{{if $index == 11}}'
+        + '</div>'
+    + '{{/if}}'
+    + '{{if $index == 15}}'
+        + '</div>'
+    + '{{/if}}'
+    + '{{/each}}'
+
+    + '</div>'
+    + '<a class="carousel-control" id="carousel-control-left" href="#myCarousel" data-slide="prev" >&lsaquo;</a>'
+    + '<a class="carousel-control" id="carousel-control-right" href="#myCarousel" data-slide="next">&rsaquo;</a>';
+
+
     
     $.template( "headTemplate", markup );
-
+ 
     // The lesson template
     var ltr ='';
     if (locale != "he_IL") 
@@ -165,7 +191,9 @@ $(function() {
          }
         
          turtleid = $(this).data('turtleid');
-         loadLesson($(this).data('lesson'));
+         newval   = $(this).data('lesson');
+         setTitleFocus(activeLesson,newval);
+         //loadLesson($(this).data('lesson'));
          lastLessonClick = $(this);
          return false;
     });
@@ -173,7 +201,23 @@ $(function() {
     // attach the next/prev movement
     $("#nextlesson").click(function() {
          // Unset the focus from current lesson and focus on the next
+         if (activeLesson ==3 || activeLesson ==7 || activeLesson ==11)
+            $("#myCarousel").carousel('next'); 
+            //$("#myCarousel").next();
          setTitleFocus(activeLesson,activeLesson + 1);
+
+         /*
+         $( "#lucio" + activeLesson ).children().css("color","#1c94c4");
+         var newLessonVal = activeLesson +1;
+         $( "#lucio" + newLessonVal ).children().css("color","#eb8f00");
+          loadLesson(newLessonVal);
+        */
+    });
+        $("#prevlesson").click(function() {
+         // Unset the focus from current lesson and focus on the next
+         if (activeLesson ==4 || activeLesson ==8 || activeLesson ==12)
+            $("#myCarousel").carousel('prev');
+         setTitleFocus(activeLesson,activeLesson -1);
          /*
          $( "#lucio" + activeLesson ).children().css("color","#1c94c4");
          var newLessonVal = activeLesson +1;
@@ -182,15 +226,23 @@ $(function() {
         */
     });
     
-    $("#prevlesson").click(function() {
-         // Unset the focus from current lesson and focus on the privous   
-         setTitleFocus(activeLesson,activeLesson - 1);
-         /*
-         $( "#lucio" + activeLesson ).children().css("color","#1c94c4");
-         var newLessonVal = activeLesson -1;
-         $( "#lucio" + newLessonVal ).children().css("color","#eb8f00");
-        loadLesson(newLessonVal);
-        */
+    $("#carousel-control-right").click(function() {
+         // Unset the focus from current lesson and focus on the privous  
+         if (activeLesson >=0 && activeLesson <= 3)
+            setTitleFocus(activeLesson,4);
+         else if (activeLesson >=4 && activeLesson <= 7)
+            setTitleFocus(activeLesson,8);
+         else if (activeLesson >=8 && activeLesson <= 11)
+            setTitleFocus(activeLesson,12);
+    })
+    $("#carousel-control-left").click(function() {
+         // Unset the focus from current lesson and focus on the privous  
+         if (activeLesson >=4 && activeLesson <= 7)
+            setTitleFocus(activeLesson,0);
+         else if (activeLesson >=8 && activeLesson <= 11)
+            setTitleFocus(activeLesson,4);
+         else if (activeLesson >=12 && activeLesson <= 15)
+            setTitleFocus(activeLesson,8);
     })
     function setTitleFocus(oldLessonVal,newLessonVal)
     {
@@ -285,8 +337,15 @@ $(function() {
     jqconsole.RegisterMatching('[', ']', 'bracket');
 
     // Load console history from localStorage for consistant console
-    if ($.Storage.get("logo-history")) jqconsole.history = JSON.parse($.Storage.get("logo-history"));
-
+    try {
+        if ($.Storage.get("logo-history"))
+            {} //For now I don't really see a reason for loading the console history for the user cause
+            // More damage than benefit .. maybe in the future
+            //jqconsole.history = JSON.parse($.Storage.get("logo-history"));
+    } catch (e) {
+                // Write the failure to our console
+        jqconsole.Write(gt.gettext('Error Loading History') +': ' + e + '\n');
+    }
     // Handle a command.
     var handler = function(command) {
         if (command) {
@@ -294,7 +353,8 @@ $(function() {
                 // Allow the logo vm to run the command
                 g_logo.run(command);
                 // Assuming the command ran, we can store the history for later usage
-                if (typeof jqconsole.history != 'undefined') $.Storage.set('logo-history',JSON.stringify(jqconsole.history.slice(jqconsole.history.length-10)));
+                if (typeof jqconsole.history != 'undefined') 
+                    $.Storage.set('logo-history',JSON.stringify(jqconsole.history.slice(jqconsole.history.length-10)));
                 //Saving the history to db
                     $.ajax({
                         type : 'POST',
@@ -427,16 +487,29 @@ $(function() {
         var history = $.Storage.get('logo-history'); 
         historyArray = history.split(','); 
         var historyLen  =   historyArray.length ;
-        var commandLen = 0;
+        var commandLen = 0; 
         var commandToRun ;
-        for(var i = 0; i < historyLen; i++)
+        for(var i = 0; i < historyLen; i++)  
         {
 
-            if (historyArray[i].substring(1, 3) =="to")
+            var commandParts = historyArray[i].split(' ');
+            var toCmd        = commandParts[0].substr(1, commandParts[0].length);
+            if (i == 0)
+                toCmd = toCmd.substr(1,toCmd.length -1);
+            if (toCmd == gt.gettext("to")) 
                 {
                     commandLen   = historyArray[i].length -1;
-                    commandToRun = historyArray[i].substring(1,commandLen);
-                    g_logo.run(commandToRun);
+                    var startcmd = 1;
+                    if (i == 0)
+                        startcmd = 2;
+                    commandToRun = historyArray[i].substring(startcmd,commandLen);
+                    try
+                    {
+                        g_logo.run(commandToRun);
+                    }catch (e) {
+                        // DO NOTHING FOR NOW
+                       // jqconsole.Write(gt.gettext('Error') +': ' + e + '\n');
+                    }
                 }
         }
     }

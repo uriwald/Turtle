@@ -1,5 +1,6 @@
 
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
 <?php
     if(session_id() == '') 
         session_start();
@@ -58,13 +59,15 @@
         <script type="application/javascript" src="files/compat.js"></script> <!-- ECMAScript 5 Functions -->
                                  
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
+        <script type="text/javascript" src="<?php echo $rootDir; ?>files/floodfill.js"></script>
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
+        <script src="http://www.nihilogic.dk/labs/canvas2image/canvas2image.js"></script>
         <?php
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
             $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
             if ( file_exists($file_path))
                 echo $po_file;            
-        ?>        
+        ?>       
         <script type="text/javascript">
                 var locale = "<?php echo $locale; ?>";
         </script>
@@ -73,7 +76,11 @@
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/jqconsole.js"></script> <!-- Console -->
-
+        
+        <!-- Adding new boostrap for crusel -->
+       
+        <script src="<?php echo $rootDir; ?>twitter-bootstrap-v2/docs/assets/js/bootstrap-carousel.js"></script>
+        <link href="<?php echo $rootDir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
@@ -174,10 +181,18 @@
                     </div>
                 </div>            
             </div> <!-- End of Top menu --> 
-            <div id="header" class="menu" >
+            <div id="header" class="carousel slide menu" >
                 <div id="progress">
                 </div>
+                
+                
             </div>
+            <!-- 
+            <div id="slider" class="span16" style="height : 40px;">
+                <a class="carousel-control left" id="carousel-control-left" href="#myCarousel" data-slide="prev" style="position : relative; float:left;">&lsaquo;</a>
+                <a class="carousel-control right" id="carousel-control-right" href="#myCarousel" data-slide="next" style="position : relative; float:right;">&rsaquo;</a>
+            </div> 
+            --> 
             <div id="logoer"> 
                 <div id="display"> 
                     <!-- <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content" style="position: absolute; z-index: 0;">-->
@@ -189,7 +204,7 @@
                                 echo _("We recoomnd you to use Chrome or Firefox browsers");
                                 //    הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יות                                
                             ?>                                      
-                            </span> 
+                            </span>  
                     </canvas>
                     <!--<canvas id="turtle" width="660" height="350" style="position: absolute; z-index: 1;"> -->
                     <canvas id="turtle" width="660" height="350">   
@@ -268,7 +283,8 @@
                 <a href="<?php echo $currentPage ?>"> <img src="Images/flags/us.png"  title="English" /></a>              
             </div>    
         </footer>
-        -->
+       
+        <div><button id="savePic">Draw to Image</button></div> --> 
         <?php echo $footer ?>
         
         <script>
@@ -293,6 +309,12 @@
                     } catch(e) {
                             //console.log(e);	
                     } 
+                    $('#savePic').click(function() {
+                         var canvas = document.getElementById("sandbox");
+                         //document.getElementById("theimage").src = canvas.toDataURL();
+                         Canvas2Image.saveAsPNG(canvas);
+                    });
+                    
                     $('#btnSaveUsrLessonData').click(function() {
                         var lclStorageValue = ""
                         var isAnyDataToSave = false;
