@@ -104,7 +104,7 @@ $(function() {
 
         + '<div class="item active">'
       + '{{else}}'
-            + '{{if $index %4 === 0 && $index !== 16 }}'
+            + '{{if $index %6 === 0 && $index !== 16 }}'
                  + '<div class="item ">'
             + '{{/if}}'
     + '{{/if}}'
@@ -120,21 +120,15 @@ $(function() {
     + '</a>'
     + '</span>'
     + '</div>'
-    + '{{if $index == 3}}'
-        + '</div>'
-    + '{{/if}}'
-    + '{{if $index == 7}}'
+    + '{{if $index == 5}}'
         + '</div>'
     + '{{/if}}'
     + '{{if $index == 11}}'
         + '</div>'
     + '{{/if}}'
-    + '{{if $index == 15}}'
-        + '</div>'
-    + '{{/if}}'
     + '{{/each}}'
 
-    + '</div>'
+    + '</div>'  
     + '<a class="carousel-control" id="carousel-control-left" href="#myCarousel" data-slide="prev" >&lsaquo;</a>'
     + '<a class="carousel-control" id="carousel-control-right" href="#myCarousel" data-slide="next">&rsaquo;</a>';
 
@@ -201,8 +195,16 @@ $(function() {
     // attach the next/prev movement
     $("#nextlesson").click(function() {
          // Unset the focus from current lesson and focus on the next
-         if (activeLesson ==3 || activeLesson ==7 || activeLesson ==11)
+         if (activeLesson ==5 )
+         {
             $("#myCarousel").carousel('next'); 
+         }
+         else if(activeLesson ==11)
+         {
+             $("#myCarousel").carousel('next');
+             $("#carousel-control-right").hide();
+         }
+        
             //$("#myCarousel").next();
          setTitleFocus(activeLesson,activeLesson + 1);
 
@@ -215,34 +217,38 @@ $(function() {
     });
         $("#prevlesson").click(function() {
          // Unset the focus from current lesson and focus on the next
-         if (activeLesson ==4 || activeLesson ==8 || activeLesson ==12)
+         if (activeLesson ==6)
             $("#myCarousel").carousel('prev');
+         else if (activeLesson ==12)
+         {
+              $("#myCarousel").carousel('prev');
+            $("#carousel-control-right").show();
+           
+         }
          setTitleFocus(activeLesson,activeLesson -1);
-         /*
-         $( "#lucio" + activeLesson ).children().css("color","#1c94c4");
-         var newLessonVal = activeLesson +1;
-         $( "#lucio" + newLessonVal ).children().css("color","#eb8f00");
-          loadLesson(newLessonVal);
-        */
     });
     
     $("#carousel-control-right").click(function() {
          // Unset the focus from current lesson and focus on the privous  
-         if (activeLesson >=0 && activeLesson <= 3)
-            setTitleFocus(activeLesson,4);
-         else if (activeLesson >=4 && activeLesson <= 7)
-            setTitleFocus(activeLesson,8);
-         else if (activeLesson >=8 && activeLesson <= 11)
+         if (activeLesson >=0 && activeLesson <= 5)
+            setTitleFocus(activeLesson,6);
+         else if (activeLesson >=6 && activeLesson <= 11)
+         {
             setTitleFocus(activeLesson,12);
+            $("#carousel-control-right").hide();  
+             
+            //this.css("visibility","hidden");
+         }
     })
     $("#carousel-control-left").click(function() {
          // Unset the focus from current lesson and focus on the privous  
-         if (activeLesson >=4 && activeLesson <= 7)
+         if (activeLesson >=6 && activeLesson <= 11)
             setTitleFocus(activeLesson,0);
-         else if (activeLesson >=8 && activeLesson <= 11)
-            setTitleFocus(activeLesson,4);
-         else if (activeLesson >=12 && activeLesson <= 15)
-            setTitleFocus(activeLesson,8);
+         else if (activeLesson >=12 && activeLesson <= 16)
+         {
+            setTitleFocus(activeLesson,6);
+             $("#carousel-control-right").show();  
+         }
     })
     function setTitleFocus(oldLessonVal,newLessonVal)
     {
@@ -527,9 +533,5 @@ $(function() {
                 g_logo2.run(cmd);
             }  
             //do_logo ('011', 'hideturtle fd 50');
-            //do_logo ('021', 'hideturtle repeat 8 [fd 10 rt 360/8]'); 
-            //do_logo ('logo3', 'repeat 10 [repeat 8 [fd 10 rt 360/8] rt 360/10]');
-            //do_logo ('logo4', 'repeat 10 [fd repcount*8 rt 90] ht');
-            //do_logo ('logo5', 'window repeat 10 [fd 3 * repcount repeat 3 [fd 15 rt 360/3] rt 360/10] ht');
-            //do_logo ('logo6', 'window pu home repeat 20 [ setlabelheight 20-repcount fd repcount label "HTML5Fest bk repcount rt 18 ] ht');
+
 });
