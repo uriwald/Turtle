@@ -9,9 +9,6 @@
         $locale = "en_US";
         $_SESSION['locale'] = "en_US";
     } 
-    $username   =   "Guest";
-    if (isset ($_SESSION['username']))
-        $username = $username;
     $displayUserName    = $_SESSION['username']; 
     require_once 'files/utils/userUtil.php';
     require_once("environment.php");
@@ -23,6 +20,10 @@
 
     //echo $root ;
     //require_once( $root ."/files/footer.php");
+    
+    $lessonsNamesArray = Array("","Logo's turtle","Controlling the Turtle and Pen","Turtle world","The turtle answer","Cool labels","Loops",
+        "Polygons","The pen width","The turtle is learning","Colors and Printing","Variables","Procedure",
+        "The for loop","Recursion","Lists", "Accessing the list");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -216,11 +217,11 @@
                             $check_key          = $userProgress->findOne($userQuery);
                             $resultcount        = $userProgress->count($userQuery);
                             if ($resultcount != 0) {
-                                $UserProgressData   = $check_key['data'];
+                                $UserProgressData   = $check_key['stepCompleted'];
                                 $steps              = explode(",", $UserProgressData);
                                 $numOfSteps         = count($steps);
                                 $numOfSteps         = $numOfSteps -1 ;
-                                echo " So far you have done" . $numOfSteps . " " . "steps " . "</br>";
+                                echo " So far you have " . $numOfSteps . " " . "Points " . "</br>";
                                 $NumberOfStepsDoneInlesson  =   array_fill(0, $numberOfLessons, 0);
                                 $lessonNumber = 0; 
                                 for ( $i=0; $i<=$numOfSteps ; $i++) 
@@ -253,7 +254,7 @@
                                 {
                                     if ($NumberOfStepsDoneInlesson[$i] > 0 )
                                 {
-                                    echo "<b>" . "At Lesson number " . $i ." you have done" ." " .$NumberOfStepsDoneInlesson[$i] . " ". " steps so far which are" . ": </br></b>";
+                                    echo "<b>" . "At Lesson  '" . $lessonsNamesArray[$i] ."' you have done" ." " .$NumberOfStepsDoneInlesson[$i] . " ". " steps so far which are" . ": </br></b>";
                                     for ( $j=0; $j<$NumberOfStepsDoneInlesson[$i] ; $j++)
                                     {
                                         if ($steps[$count] != null && $steps[$count] != "")
