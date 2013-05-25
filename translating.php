@@ -87,12 +87,15 @@ and open the template in the editor.
             $cursor = $lessons->findOne(array("_id" => $theObjId));
             $localSteps = $lu->getStepsByLocale($localePrefix . $locale);
             $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $locale);
-            $lessonPrecedence = 75;
+            $lessonPrecedence    = 75;
+            $lessonTurtleId      = 80; //Default value 
             if ($doTranslate) {
                 $localStepsTranslate = $lu->getStepsByLocale($localePrefix . $localeTranslate);
                 $lessonFinalTitleTranslate = $lu->getTitleByLocale($localePrefix . $localeTranslate);
             }
             $lessonPrecedence   = $lu->getPrecedence();
+            $lessonTurtleId     = $lu->getTurtleId();
+            
         }
 
         function printElement($i, $flag, $step, $istranslate) {
@@ -171,6 +174,7 @@ and open the template in the editor.
                 $.Storage.remove("lesson-total-number-of-steps");
                 $.Storage.remove("active-step");
                 $.Storage.remove("precedence");
+                $.Storage.remove("turtleId");
                 $.Storage.remove("collection-name");
 
                
@@ -179,7 +183,8 @@ and open the template in the editor.
                 $.Storage.set('lessonStepsValuesTranslate',JSON.stringify(lessonStepValuesStorage, null, 2));
                 $.Storage.set("active-step" , "1");
                 $.Storage.set("lesson-total-number-of-steps" ,"0");
-                $.Storage.set("precedence","<?php echo intval($lessonPrecedence)?>");
+                $.Storage.set("precedence", "<?php echo intval($lessonPrecedence)?>");
+                $.Storage.set("turtleId",   "<?php echo intval($lessonTurtleId)?>");
                 $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
             </script>
     <?php

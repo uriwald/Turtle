@@ -16,7 +16,6 @@
         </script>
     </head>
 </html>
-
 <?php
     require_once("environment.php");
     require_once("files/footer.php");
@@ -26,12 +25,16 @@
     $permissionNum            = 1;
     if (isset ($_SESSION['permision']))
         $permissionNum            =   $_SESSION['permision'] ;
+    //echo $permissionNum;
+    
     $permForEditLesson        = array(1,100);
     $permTraChinese           = array(1,2);
     $permTraSpanish           = array(1,2);
     $permTraGerman            = array(1,103);
     $permTraRussain           = array(1,107);
-    $permAprvLesson           = array(1);
+    $permTraArb               = array(1,108);
+    $permTraThai              = array(1,109);
+    $permAprvLesson           = array(1); 
     //echo "PermissionNumberIs".$permissionNum;
 
     /*
@@ -47,7 +50,8 @@
             echo "Hello ";
             echo $_SESSION['username'];
             if ($_SESSION['username'] == "translator" || $_SESSION['username'] == "admin" || $_SESSION['username'] == "eneditor" ||
-                    $_SESSION['username'] == "gereditor" || $_SESSION['username'] == "rueditor")
+                    $_SESSION['username'] == "gereditor" || $_SESSION['username'] == "rueditor" || $_SESSION['username'] == "areditor"
+                    || $_SESSION['username'] == "theditor")
                 $show = true ;
     }
 
@@ -99,6 +103,9 @@
             $translateLessonToSpanish   = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=es_AR' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to Spanish </span> </a>";
             $translateLessonToGerman    = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=de_DE' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to German </span> </a>";
             $translateLessonToRussain   = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=ru_RU' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to Russain </span> </a>";
+            $translateLessonToArb       = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=ar_SY' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to Arabic </span> </a>";
+            $translateLessonToThai      = "<a href='translating.php?lesson=$objID&lfrom=$locale&ltranslate=th_TH' > <span class='lessonh'> Translate Lesson <b>" . $title . " </b> to Thai </span> </a>";
+            
             $approveLesson ;
             if ($pendingStatus)
             {
@@ -123,7 +130,10 @@
                     echo $translateLessonToGerman;
             if (in_array($permissionNum , $permTraRussain)) 
                     echo $translateLessonToRussain;
-            
+            if (in_array($permissionNum , $permTraArb)) 
+                    echo $translateLessonToArb;           
+            if (in_array($permissionNum , $permTraThai)) 
+                    echo $translateLessonToThai;  
             
             if (in_array($permissionNum , $permAprvLesson)) 
                     echo $approveLesson;
@@ -134,5 +144,9 @@
         echo "<div><a href='lesson.php' > <span> Create a new lesson  </span> </a></div>" ;
 
         echo "<span class='footer'>$footer</span>";
+    }
+    else
+    {
+        echo " User is not register ";
     }
 ?>

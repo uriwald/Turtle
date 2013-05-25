@@ -3,7 +3,7 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<?php
+<?php 
     if (session_id() == '')
         session_start();
     (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true) || (isset($_SESSION['Guest']) && $_SESSION['Guest'] == true) || (isset($_SESSION['translator']) && $_SESSION['translator'] == true)  ? $show = true : $show = false;
@@ -36,8 +36,7 @@ and open the template in the editor.
 <html>
     <head>
         <?php
-            include_once("files/inc/dropdowndef.php");
-            //include_once("files/inc/boostrapdef.php");  
+            include_once("files/inc/dropdowndef.php");  
             $locale = "en_US";
             $languageGet = "locale";
             if (isset($_GET[$languageGet]))
@@ -100,10 +99,10 @@ and open the template in the editor.
                                         echo $formPullingSide . " form-inline";                                
                                     ?>" action="" id="turtleHeaderLanguage">  
                         <select name="selectedLanguage" id="selectedLanguage">
-                            <option value='en_US' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
-                            <option value='es_AR' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
-                            <option value='he_IL' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
-                            <option value='zh_CN' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
+                            <option value='en_US' data-image="/images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
+                            <option value='es_AR' data-image="/images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
+                            <option value='he_IL' data-image="/images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
+                            <option value='zh_CN' data-image="/images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
                         </select>
                     </form>       
                     <?php
@@ -117,9 +116,15 @@ and open the template in the editor.
                                         <li style="padding: 10px 10px 11px;" id='loggedUserLI'> <?php echo _("Hello");?></li>
                                         <li class="cc-button-group btn-group"> 
                                             <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" >
-                                            <?php
-                                                echo $_SESSION['username'];
-                                            ?>
+                                                <?php
+                                                    $displayUserName    = $_SESSION['username'];  
+                                                    if (isset($_SESSION['isOpenID']))
+                                                    {
+                                                        $emailDetails = explode('@',$_SESSION['username']);
+                                                        $displayUserName = $emailDetails[0];
+                                                    }
+                                                        echo $displayUserName;
+                                                ?> 
                                                 <!-- <b class="caret"></b>  -->
                                             </a>
                                             <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
@@ -143,7 +148,7 @@ and open the template in the editor.
         </div> <!-- Ending top bar -->        
         
         
-                    <?php
+        <?php
                     //session_start();
                     $m = new Mongo();
 // select a database
@@ -158,6 +163,7 @@ and open the template in the editor.
                     $localePrefix       = "locale_";
                     $lessonFinalTitle   = "_";
                     $lessonPrecedence   = 100;
+                    $lessonTurtleId           = 100;
                     $localeCreated      =   "en_US";
                     if (isset($_GET[$languageGet]))
                         $locale = $_GET[$languageGet];
@@ -171,12 +177,11 @@ and open the template in the editor.
                         $localSteps = $lu->getStepsByLocale($localePrefix . $localeCreated);
                         $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $localeCreated);                        
                         $lessonPrecedence = $lu->getPrecedence();
+                        $lessonTurtleId  = $lu->getTurtleId();
                         if (strlen($lessonFinalTitle) <= 1)
                             $lessonFinalTitle = "No Title"; 
-                        //echo $lessonPrecedence;
-                        //echo $lessonFinalTitle;
                     }
-                    ?>
+        ?>
 
         <?php
 
@@ -210,7 +215,7 @@ and open the template in the editor.
            // echo "</fieldset></form>"; // Close the left lesson elements
         }
 
-        function printLeftLessonElemnt($i, $show , $formPullingSide) {
+        function printLeftLessonElemnt($i, $show , $formPullingSide , $lessonPrecedence , $lessonTurtleId) {
             echo "<div class='leftLessonElem well span7 " . $formPullingSide . "' style='margin-top:10px; margin-left: 0px;  height:350px;'> 
                         <form class='form-stacked'>
                             <fieldset class='lesson-fieldset'> 
@@ -227,12 +232,21 @@ and open the template in the editor.
                 echo "<div class='control-group'> 
                                             <div class='controlsa'>
                                                 <textarea type='text'  name='precedence' id='precedence' placeholder='precedence' class='input-xlarge'>";
-                echo $lessonPrecedence;
-                echo"</textarea>
+                                                    echo $lessonPrecedence;
+                                                echo"</textarea>
                                             </div>
                                             <lable class='lesson-label' > Precedence : 
                                             </lable>   
-                                        </div> ";
+                        </div> ";
+                echo "<div class='control-group'> 
+                            <div class='controlsa'>
+                                <textarea type='text'  name='turtleId' id='turtleId' placeholder='turtleId' class='input-xlarge'>";
+                                    echo $lessonTurtleId;
+                                echo"</textarea>
+                            </div>
+                            <lable class='lesson-label' > TurtleId : 
+                            </lable>   
+                    </div> ";
             } //End of if show
             echo "<div class='divActionBtn'>
                             <a class='btn' id='btnSaveLesson'>". _("Save Lesson") ."</a>
@@ -296,7 +310,7 @@ and open the template in the editor.
             if ($hasTitle)
                 echo "
                             <script type='text/javascript'>
-                                $.Storage.set('lessonTitle' , '$lessonFinalTitle');
+                                $.Storage.set(\"lessonTitle\" , \"$lessonFinalTitle\");
                             </script>";
             echo "
                             <input type='text' name='ObjId' style='display:none' id='lessonObjectId' class='lessonInput' value=\"";
@@ -325,6 +339,7 @@ and open the template in the editor.
             $.Storage.remove("active-step");
             $.Storage.remove("collection-name");
             $.Storage.remove("username");
+            $.Storage.remove("turtleId");
             var lessonStepValuesStorage = new Array(new Array());
             $.Storage.set('lessonStepsValues',JSON.stringify(lessonStepValuesStorage, null, 2))
             $.Storage.set("active-step" , "lesson_step1");
@@ -332,9 +347,11 @@ and open the template in the editor.
             $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
             $.Storage.set("locale" ,"<?php echo $localeCreated ?>");
             $.Storage.set("username" ,"<?php echo $username; ?>");
+            $.Storage.set("turtleId",   "<?php echo intval($lessonTurtleId)?>");
             </script>
 
     <?php
+    
     foreach ($localSteps as $step) {
         $i++;
         ?>
@@ -367,10 +384,10 @@ and open the template in the editor.
             <div class="container span16" style="float:none;" >
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection">    
                     <?php
-                    printLessonTitle(true, $lessonFinalTitle, $cursor);
-                    printLessonSteps();
-                    printLeftLessonElemnt($i, $show ,$formPullingSide);
-                    printRightLessonElemnt();
+                        printLessonTitle(true, $lessonFinalTitle, $cursor);
+                        printLessonSteps();
+                        printLeftLessonElemnt($i, $show ,$formPullingSide , $lessonPrecedence , $lessonTurtleId);
+                        printRightLessonElemnt();
                     ?>
                 </div> <!-- End of stepSection -->
             </div> <!-- container -->
@@ -393,17 +410,20 @@ else { //Starting case of creating a new lesson
             $.Storage.remove("lessonTitle");
             $.Storage.remove("active-step");
             $.Storage.remove("username");
+            $.Storage.remove("turtleId");
             $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
             $.Storage.set("lessonTitle" ,lessonTitle);
             $.Storage.set("active-step" , "lesson_step1");
             $.Storage.set("username" ,"<?php echo $username ?>");
+            
             </script>
             <div class="container span16" style="float:none;" >
                 <div id="stepSection" style="margin-bottom:4px;" class="stepsSection ">                                
     <?php
+
     printLessonTitle(false, $lessonFinalTitle, false);
     printLessonSteps();
-    printLeftLessonElemnt($i, $show, $formPullingSide);
+    printLeftLessonElemnt($i, $show, $formPullingSide , $lessonPrecedence , $lessonTurtleId);
     printRightLessonElemnt();
     ?>
                 </div>  <!-- Finish div stepSection -->  
