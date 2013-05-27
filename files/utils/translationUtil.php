@@ -23,6 +23,14 @@ class translationUtil extends lessonsUtil {
             $this->localePrefix = $localePrefix; 
             $this->db = $db; 
      }  
+     public static function showStrToTranslate() 
+     {
+           $m       = new Mongo();
+           $db      = $m->turtleTestDb;	
+           $strings = $db->stringTranslation;
+           $results = $strings->find();
+           return $results;
+     }
    
 }
 
