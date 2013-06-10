@@ -15,7 +15,6 @@ if (isset($_GET["dab"])) {
 }
 $lessons = $db->$dbLessonCollection;
 //echo $dbLessonCollection;
-
 $lessonTitle = "title";
 $lessonSteps = "steps";
 $localPosted = "locale";
@@ -26,12 +25,16 @@ $cursor->sort(array('precedence' => 1));
 $i = 0;
 //$fullJsFile = "var lessons = [";
 echo "var lessons = [";
-
+$notRegisterUser    = !isset($_SESSION['username']);
 foreach ($cursor as $lessonStructure) {
     //  Unset the lesson ID
     //   echo " some lessons found";
-    $lessonStructure['id'] = '' . $lessonStructure['_id'];
+    //print_r($lessonStructure);
+    $lessonStructure['id']      = '' . $lessonStructure['_id'];
     unset($lessonStructure['_id']);
+    $lessonForRegisterUserOnly  = false;
+    if (isset($lessonStructure["register_only"]) ) 
+        $lessonForRegisterUserOnly  = $lessonStructure["register_only"];
 
     //echo "isset?  ".$lessonStructure['locale_' . $_GET[$localPosted]];
     if (isset($lessonStructure['locale_' . $_GET[$localPosted]])) {
@@ -44,9 +47,16 @@ foreach ($cursor as $lessonStructure) {
     }
     //echo " printing lesson steps ";
     //print_r($lessonSteps);
-    $showItem = true;
+    $showItem           = true;
+    //If it's not a register user and the lesson should appear only for register users
+    if ($notRegisterUser && $lessonForRegisterUserOnly )
+        {
+            //echo $lessonStructure['register_only'];
+            $showItem = false;
+        }
+    
     foreach ($lessonSteps as $key => $value) {
-        "enterLessonSteps";
+        //"enterLessonSteps";
         //echo "Key = " . $key ;
         // If we have locale for the current step we will set him
         if (isset($lessonSteps[$key]['locale_' . $_GET[$localPosted]])) {
@@ -54,6 +64,7 @@ foreach ($cursor as $lessonStructure) {
         } else {
             $showItem = false;
         }
+
         // unsetting the other locale values
         foreach ($value as $kkey => $vvalue) {
             //echo "Key = " . $kkey ;
@@ -111,10 +122,11 @@ function updateLoclaStorageForLoggedUser($m , $db)
         $userQuery = array('username' => $_SESSION['username']);
         $cursor = $userProgressCol->findone($userQuery);
         echo ";";
-        if ($cursor != null)
+        if ($cursor != null && isset($cursor['stepCompleted']))
         {
             $data = explode(",", $cursor['stepCompleted']); ;
             //print_r($data);
+            
             $datalen    = count($data);
             $value = "true";
             //echo ";<script>";
