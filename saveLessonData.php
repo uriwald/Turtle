@@ -48,7 +48,7 @@ if (empty($_POST['steps'])) {
     $db = $m->$dbName;
     // select a collection (analogous to a relational database's table)
     $precedence = $_POST['precedence'];
-    
+    $turtleId = $_POST['turtleId'];
     $dbCollection   =   "lessons";
     if (isset($_POST['collection']))
        $dbCollection    =   $_POST['collection'] ;
@@ -69,7 +69,7 @@ if (empty($_POST['steps'])) {
             $lessonStep["$localefullpath"] = $lessonSteps[$i];
             $finalArrAfterTranslation[$i] = $lessonStep;
         }
-        $structure = array("steps" => $finalArrAfterTranslation, "title" => $titles, "pending" => "true" , "username" => $user , "localeCreated" => $locale );
+        $structure = array("steps" => $finalArrAfterTranslation, "title" => $titles, "pending" => "true" , "username" => $user , "localeCreated" => $locale , "register_only" => false );
         $result = $lessons->insert($structure, array('safe' => true));
         $return['objID'] = $structure['_id'];
     } 
@@ -125,7 +125,7 @@ if (empty($_POST['steps'])) {
             $lessonsTitle = $originalTitle;
             $lessonsTitle["$localefullpath"] = $_POST['lessonTitle'];
             //$return['finalArrAfterTranslation'] = $finalArrAfterTranslation;
-            $result = $lessons->update($criteria, array('$set' => array("steps" => $originLanguageStepsArr, "title" => $lessonsTitle, "precedence" => $precedence, "username" => $user)));
+            $result = $lessons->update($criteria, array('$set' => array("steps" => $originLanguageStepsArr, "title" => $lessonsTitle, "precedence" => $precedence, "username" => $user , "lesson_turtle_id" => $turtleId)));
             $return['isExistingLesson'] = "If We got Any result";
         }
     }
