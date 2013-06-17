@@ -31,7 +31,7 @@
             "locale_es_AR" => "" );
              $strcol->insert($obj);
              echo " String was successfully inserted";
-        } 
+        }
         else //Updating existing user
         {
             $zh         =   $strExist['locale_zh_CN'];
@@ -40,11 +40,6 @@
                                                                 "locale_zh_CN" => $zh ,"locale_es_AR" => $es ));
             echo " String was successfully Updated" ;
         }
-        
-        
-        
-        
-
-    }
+    } 
     
 ?>

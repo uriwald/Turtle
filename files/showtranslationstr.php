@@ -20,7 +20,7 @@
                   </tr>
                 </thead>
                   <?php
-                        $transString    =   translationUtil::showStrToTranslate();
+                        $transString    =   translationUtil::showColItemToTranslate("stringTranslation");
                         $i              = 0;
                         foreach ($transString as $str)
                         {

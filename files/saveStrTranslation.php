@@ -17,7 +17,6 @@
         $strQuery               = array('str' => $str);
         $strExist               = $strcol->findOne($strQuery);
         $resultcount            = $strcol->count($strQuery);
-
         //Case we need to add a new record to db
         if (!$resultcount > 0 ) 
         { 

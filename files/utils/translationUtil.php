@@ -23,11 +23,16 @@ class translationUtil extends lessonsUtil {
             $this->localePrefix = $localePrefix; 
             $this->db = $db; 
      }  
-     public static function showStrToTranslate() 
+     /**
+      *
+      * @param type $colname - which collection should we bring the data from
+      * @return type 
+      */
+     public static function showColItemToTranslate($colname) 
      {
            $m       = new Mongo();
            $db      = $m->turtleTestDb;	
-           $strings = $db->stringTranslation;
+           $strings = $db->$colname;
            $results = $strings->find();
            return $results;
      }
