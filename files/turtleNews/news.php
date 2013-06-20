@@ -100,36 +100,20 @@
             $approveLesson ;
             if ($pendingStatus)
             {
-                echo "Lesson is currently unapproved";
-                $approveLesson = "<a href='approveNewsItem.php?item=$objID&pending=false&col=news' > <span class='lessonh'> Approve Lesson (lesson will appear in main page) </span> </a>";
+                echo "Lesson is currently approved";
+                $approveLesson = "<a href='approveNewsItem.php?item=$objID&pending=false&col=news' > <span class='lessonh'> Unapprove Lesson (lesson will appear in main page) </span> </a>";
             }
             else
             {
-                echo "Lesson is curretnly approved";
-                $approveLesson = "<a href='approveNewsItem.php?item=$objID&pending=true&col=news' > <span class='lessonh'> Unapprove (lesson won't appear in main page) </span> </a>";
+                echo "Lesson is curretnly unapproved";
+                $approveLesson = "<a href='approveNewsItem.php?item=$objID&pending=true&col=news' > <span class='lessonh'> Approve (lesson won't appear in main page) </span> </a>";
             }
+
             echo "<div style='display:inline;height:60px;'>";    
-            /*
-            if (in_array($permissionNum , $permForEditLesson)) 
-            {
-                    echo $editLessonHref;
-            }
-            if (in_array($permissionNum , $permTraChinese )) 
-                    echo $translateLessonToChinese;
-            if (in_array($permissionNum , $permTraSpanish)) 
-                    echo $translateLessonToSpanish;
-            if (in_array($permissionNum , $permTraGerman)) 
-                    echo $translateLessonToGerman;
-            if (in_array($permissionNum , $permTraRussain)) 
-                    echo $translateLessonToRussain;
-            if (in_array($permissionNum , $permTraArb)) 
-                    echo $translateLessonToArb;           
-            if (in_array($permissionNum , $permTraThai)) 
-                    echo $translateLessonToThai;  
-            */
             if (in_array($permissionNum , $permAprvLesson)) 
                     echo $approveLesson;
-             echo   "</div>";   
+                echo "<a href='insertNewsItem.php?itemid=$objID'> Edit </a>"; 
+            echo   "</div>";   
             echo "</br>"; 
         } 
 
