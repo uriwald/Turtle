@@ -17,7 +17,7 @@
     
     if (isset ($_GET['l']))
     {
-        $locale = $_GET['l']  ;
+        $locale = $_GET['l'];
         $_SESSION['locale'] = $locale;
     }
     else if ( !isset ($_SESSION['locale']))
@@ -121,7 +121,7 @@
                                     required: gt.gettext("Please enter your password"),
                                     minlength: gt.gettext("Your password must contain at least 5 characters")
                             },
-                            email: "Please enter a valid email address"
+                            email: gt.gettext("Please enter a valid email address")
                     }
             }); 
              $("#forgot-password-form").validate({
@@ -132,7 +132,7 @@
                             }
                     },
                     messages: {
-                            email_pwd: "Please enter your email address"
+                            email_pwd: gt.gettext("Please enter a valid email address")
                     }
             }); 
             try {
@@ -227,26 +227,28 @@
        
     //check if the form has been submitted
     if(isset($_POST['signup'])){
-            $isTestUser = false;
+            $isTestUser = true;
             $username   = $_POST['username'];
             $password   = $_POST['password'];
             $email      = $_POST['email'];
             //quick/simple validation
             if(empty($username)){ $action['result'] = 'error'; array_push($text,'You forgot your username'); }
             if(empty($password)){ $action['result'] = 'error'; array_push($text,'You forgot your password'); }
-            if(empty($email)){ $action['result'] = 'error'; array_push($text,'You forgot your email'); }
+            if(empty($email)){ $action['result']    = 'error'; array_push($text,'You forgot your email'); }
             //print_r($action);
             if($action['result'] != 'error'){
                     $password = md5($password);	
                     $m = new Mongo();
                     $db = $m->turtleTestDb;	
                     $users = $db->users;
+                    
                     //Query if email already exist and approved
                     $queryEmail             = array('email' => $email ,"confirm" => true);
                     $existEmail             = $users->count($queryEmail);
                     $queryUsername          = array('username' => $username ,"confirm" => true);
                     $existUsername          = $users->count($queryUsername);
-                    if ($isTestUser)
+                    
+                    if ($isTestUser) //Case of testing we will insert to db
                     {
                        addUserToDb($username,$password,$email,$users,$db); 
                     }
@@ -284,7 +286,8 @@
     {
             global $phpDirPath,$sitePath,$text,$action ;
             $date = date('Y-m-d H:i:s');
-            $userStructure = array("username" => $username, "password" => $password, "email" => $email , "confirm" => false , "date" => $date);
+            $userStructure = array("username" => $username, "password" => $password, "email" => $email ,
+                                                "confirm" => false , "date" => $date);
             $userResult = $users->insert($userStructure, array('safe' => true));
             $userid = $userStructure['_id'];		
             if($userResult){
@@ -296,22 +299,32 @@
                 $key = md5($key);
                 //add confirm row
                 //$confirm = mysql_query("INSERT INTO `confirm` VALUES(NULL,'$userid','$key','$email')");	
-                $userStructure = array("userid" => $userid, "key" => $key, "email" => $email );
-                $userConfirmResult = $users->insert($userStructure, array('safe' => true));
+                $userStructure      = array("userid" => $userid, "key" => $key, "email" => $email );
+                $userConfirmResult  = $users->insert($userStructure, array('safe' => true));
+                
+                //In case the user properly inserted into the database
                 if($userConfirmResult){
                         //include the swift class
                         include_once $phpDirPath .'swift/swift_required.php';
                         //put info into an array to send to the function
+                        $locale = $_SESSION['locale'];
                         $info = array(
-                                'username' => $username,
-                                'email' => $email,
-                                'key' => $key);
+                                'username'  => $username,
+                                'email'     => $email,
+                                'key'       => $key ,
+                                'locale'    => $locale);
                         //send the email
-                        if(send_email($info , $sitePath)){
-                        //if(send_email_test($info)){				
-                                $action['result'] = 'success';
-                                array_push($text,'Thanks for signing up. Please check your email for confirmation!');   
-                                //header("location: files/registerok.php"); 
+                        $templateType = "signup_template";
+                        if ($locale != "en_US")
+                            $templateType = $templateType ."_" . $locale ;
+                        
+                        if(send_email($info , $sitePath , $templateType)){
+                            $thanks             =   _("Thanks for signing up"); 
+                            $checkEmail         =   _("Please check your email for confirmation");
+                            $action['result']   = 'success';
+                            array_push($text, $thanks .". " . $checkEmail . "!!");   
+                             
+                            //header("location: files/registerok.php"); 
                         }else{
                                 $action['result'] = 'error';
                                 array_push($text,'Could not send confirm email');

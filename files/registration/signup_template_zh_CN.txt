@@ -1,0 +1,5 @@
+请点击以下链接确认你的密码.
+
+{SITEPATH}/confirm.php?email={EMAIL}&key={KEY}&locale={LOCALE}
+
+谢谢!

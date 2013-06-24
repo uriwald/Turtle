@@ -1,8 +1,23 @@
 <?php
-$incDirPath = "files/registration/inc/";
-include_once $incDirPath . 'php/config.php';
-include_once $incDirPath . 'php/functions.php';
-include_once $incDirPath . 'elements/header.php';
+    $incDirPath = "files/registration/inc/";
+    include_once $incDirPath . 'php/config.php';
+    include_once $incDirPath . 'php/functions.php';
+    //include_once $incDirPath . 'elements/confirmHeader.php';
+    
+    require_once("localization.php");
+    require_once("environment.php");
+   
+
+    $locale = "en_US";
+    if (isset($_GET['locale']))
+        $locale = $_GET['locale'];
+
+    $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
+    $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
+    if ( file_exists($file_path))
+        echo $po_file;            
+    include_once 'confirmHeader.php';
+    //require_once("confirmHeader.php");
 
 //setup some variables
 $action = array();
@@ -11,17 +26,28 @@ $istest =   false;
 
 //check if the $_GET variables are present
 //quick/simple validation 
+//String to be translated
+$strUserConfrim         = _("User has been confirmed");
+$strThankU              = _("Thank you");
+$strPlease              = _("Please");
+$strMissing             = _("We are missing email address or generated key");
+$strDoubleCheck         = _("Please double check your email");
+$strKeyEmailNotAppear   = _("The key or email doesn't appear in our database");
+
 if (empty($_GET['email']) || empty($_GET['key'])) {
     if ($istest)
     {
-        $action['result'] = 'success';
-        $action['text'] = "User has been confirmed. Thank-You! please <a href='" . $rootDir . "registration.php'>" .  _('login')  . "</a>" ; ?> 
+        $action['result']   = 'success';
+
+        $action['text']     = $strUserConfrim .". ".$strThankU ."! ".$strPlease . "<a href='". $rootDir . "registration.php'>" .  _('login')  . "</a>";
+        //"User has been confirmed. Thank-You! please <a href='" . $rootDir . "registration.php'>" .  _('login')  . "</a>" ; ?> 
             <?php
     }
     else
     {
-        $action['result'] = 'error';
-        $action['text'] = 'We are missing email address or generated key. Please double check your email.';
+        $action['result']       = 'error';
+        $action['text']         = $strMissing . ". " .$strDoubleCheck .".";
+                //We are missing email address or generated key. Please double check your email.';
     }
 }
 
@@ -58,14 +84,14 @@ if ($action['result'] != 'error' && !$istest) {
         $result = $usersconfirmation->remove(array('_id' => $confirmidMongo), array("justOne" => true));
         if ($update_users) {
             $action['result'] = 'success';
-            $action['text'] = "User has been confirmed. Thank-You! please <a href='registration.php'> Login </a>";
+            $action['text']     = $strUserConfrim .". ".$strThankU ."! ".$strPlease . "<a href='". $rootDir . "registration.php'>" .  _('login')  . "</a>";
         } else {
             $action['result'] = 'error';
             $action['text'] = 'The user could not be updated Reason: ';
         }
     } else {
         $action['result'] = 'error';
-        $action['text'] = 'The key and email is not in our database.';
+        $action['text'] = $strKeyEmailNotAppear;
     }
 }
 ?>
