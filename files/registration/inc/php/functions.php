@@ -55,8 +55,8 @@ function send_email($info , $sitePath , $templateType = "signup_template" , $loc
 	$mailer             = Swift_Mailer::newInstance($transport);
 	$message            = Swift_Message::newInstance();
         
-        $strWelcomeMsg      = _('Welcome to TurtleAcademy');
-        $strResetMsg        = _('TurtleAcademy password reset'); 
+        $strWelcomeMsg      = $info['msgWelcome'];
+        $strResetMsg        = $info['msgReset'];
         if ($templateType == "resetpass_template")
             $message ->setSubject($strResetMsg);
         else

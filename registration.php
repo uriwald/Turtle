@@ -227,7 +227,7 @@
        
     //check if the form has been submitted
     if(isset($_POST['signup'])){
-            $isTestUser = true;
+            $isTestUser = false;
             $username   = $_POST['username'];
             $password   = $_POST['password'];
             $email      = $_POST['email'];
@@ -289,7 +289,7 @@
             $userStructure = array("username" => $username, "password" => $password, "email" => $email ,
                                                 "confirm" => false , "date" => $date);
             $userResult = $users->insert($userStructure, array('safe' => true));
-            $userid = $userStructure['_id'];		
+            $userid = $userStructure['_id'];	
             if($userResult){
                 //get the new user id
             //$userid = mysql_insert_id();
@@ -303,16 +303,20 @@
                 $userConfirmResult  = $users->insert($userStructure, array('safe' => true));
                 
                 //In case the user properly inserted into the database
+                $strWelcomeMsg      = _("Welcome to TurtleAcademy");
+                $strResetMsg        = _("TurtleAcademy password reset"); 
                 if($userConfirmResult){
                         //include the swift class
                         include_once $phpDirPath .'swift/swift_required.php';
                         //put info into an array to send to the function
                         $locale = $_SESSION['locale'];
                         $info = array(
-                                'username'  => $username,
-                                'email'     => $email,
-                                'key'       => $key ,
-                                'locale'    => $locale);
+                                'username'   => $username,
+                                'email'      => $email,
+                                'key'        => $key ,
+                                'locale'     => $locale,
+                                'msgWelcome' => $strWelcomeMsg,
+                                'msgReset'   => $strResetMsg );
                         //send the email
                         $templateType = "signup_template";
                         if ($locale != "en_US")
@@ -382,7 +386,7 @@
                         array_push($text,'Confirm row was not added to the database. Reason: ' );
                 }
             }
-            $action['text'] = $text;
+            $action['text'] = $text; 
 
         
      }
