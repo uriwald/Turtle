@@ -1,0 +1,5 @@
+Please reset your password on the link below.
+
+{SITEPATH}/confirm.php?email={EMAIL}&key={KEY}
+
+Thanks! 
