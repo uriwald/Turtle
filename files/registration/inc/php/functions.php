@@ -20,6 +20,11 @@ function format_email($info, $format , $sitePath , $templateType){
 	$template = ereg_replace('{KEY}', $info['key'], $template);
 	$template = ereg_replace('{SITEPATH}','http://site-path.com', $template);
 		*/
+        $locale   = $info['locale'];
+        if ($locale != "en_US")
+            $template = str_replace('{LOCALE}', $locale, $template);
+        else
+            $template = str_replace('{LOCALE}', "", $template);
         $template = str_replace('{USERNAME}', $info['username'], $template);
         $template = str_replace('{EMAIL}', $info['email'], $template);
 	$template = str_replace('{KEY}', $info['key'], $template);
@@ -31,7 +36,7 @@ function format_email($info, $format , $sitePath , $templateType){
 }
 
 //send the welcome letter
-function send_email($info , $sitePath , $templateType = "signup_template"){
+function send_email($info , $sitePath , $templateType = "signup_template" , $locale = "en_us"){
 		
 	//format each email
     
@@ -47,12 +52,15 @@ function send_email($info , $sitePath , $templateType = "signup_template"){
             ->setUsername('noreply@turtleacademy.com')
             ->setPassword('noreply11');
 	//$transport = Swift_MailTransport::newInstance();
-	$mailer = Swift_Mailer::newInstance($transport);
-	$message = Swift_Message::newInstance();
+	$mailer             = Swift_Mailer::newInstance($transport);
+	$message            = Swift_Message::newInstance();
+        
+        $strWelcomeMsg      = _('Welcome to TurtleAcademy');
+        $strResetMsg        = _('TurtleAcademy password reset'); 
         if ($templateType == "resetpass_template")
-            $message ->setSubject('TurtleAcademy password reset');
+            $message ->setSubject($strResetMsg);
         else
-            $message ->setSubject('Welcome to TurtleAcademy');
+            $message ->setSubject($strWelcomeMsg);
 	$message ->setFrom(array('noreply@turtleacademy.com' => 'TurtleAcademy'));
 	$message ->setTo(array($info['email'] => $info['username']));
 	
