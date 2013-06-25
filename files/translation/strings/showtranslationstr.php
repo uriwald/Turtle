@@ -11,14 +11,14 @@
     <table>
         <tbody>
                 <thead>
-                  <tr>
-                      <th class='span2'></th>
-                      <th class='span2'>String</th>
-                      <th class='span2'>Appear in page</th>
-                      <th class='span2'>Context</th>
-                      <th class='span2'>Translation</th>
-                      <th class='span2'>Action</th>
-                  </tr>
+                    <tr>
+                        <th class='span2'></th>
+                        <th class='span2'>String</th>
+                        <th class='span2'>Appear in page</th>
+                        <th class='span2'>Context</th>
+                        <th class='span2'>Translation</th>
+                        <th class='span2'>Action</th>
+                    </tr>
                 </thead>
                   <?php
                         $transString    =   translationUtil::showColItemToTranslate("stringTranslation");
@@ -26,23 +26,25 @@
                         foreach ($transString as $str)
                         {
                             $i++ ;
-                  ?>
-                  
-                  <tr>
-                      <td></td>
-                      <td id='str<?php echo $i ?>'><?php echo $str['str'] ?></td>
-                      <td id='page<?php echo $i ?>'><?php echo $str['page'] ?></td>
-                      <td id='context<?php echo $i ?>'><?php echo $str['context'] ?></td>
-                      <td><input type='text' id='input<?php echo $i ?>' value='<?php echo $str["locale_" . $locale] ?>'></input></td>
-                      <td>
-                        <div class='btn small info pressed' id='<?php echo $i ?>'>save</div>
-                      </td>
-                  </tr>
-                  <?php
-                        } 
+                            if ($str["display"][$locale])
+                            {
+                  ?>           
+                                <tr>
+                                    <td></td>
+                                    <td id='str<?php echo $i ?>'><?php echo $str['str'] ?></td>
+                                    <td id='page<?php echo $i ?>'><?php echo $str['page'] ?></td>
+                                    <td id='context<?php echo $i ?>'><?php echo $str['context'] ?></td>
+                                    <td><input type='text' id='input<?php echo $i ?>' value='<?php echo $str["translate"]["locale_" . $locale] ?>'></input></td>
+                                    <td>
+                                        <div class='btn small info pressed' id='<?php echo $i ?>'>save</div>
+                                    </td>
+                                </tr>
+                  <?
+                            } //End if condition
+                        } //End foreach loop
                   ?> 
-            </tbody>  
-          </table>
+        </tbody>  
+    </table>
          <script type="application/javascript">  
              $(document).ready(function() {
            
@@ -66,8 +68,8 @@
                                 str        :   str,
                                 page       :   page,
                                 context    :   context,
-                                input      : input ,
-                                locale     : locale
+                                input      :   input ,
+                                locale     :   locale
                             },
                             success: function(data) { 
                                 alert('successfully save');

@@ -2,7 +2,7 @@
     $str        = $_POST['str'];
     $page       = $_POST['page'];
     $context    = $_POST['context'];
-    $translated = $_POST['input'];
+    $translationInput = $_POST['input'];
     $locale     = $_POST['locale'];
     $return["nothi"] = "nothing";
     
@@ -25,25 +25,15 @@
         else //Updating existing user
         {
             
-            $zh         =   $strExist['locale_zh_CN'];
-            $es         =   $strExist['locale_es_AR'];
-            
-            if ($locale == "locale_zh_CN")
-            {
-              $zh =   $translated;
-              $return["info"] = "Locale_zh_CN was affected";
-            }
-            else if ($locale == "locale_es_AR")
-            {
-                $es =   $translated;
-                $return["info"] = "Locale_es_AR was affected"; 
-            }
-                         
-            $return["zh"] = $zh ; 
+            $strTranslate  =   $strExist['translate'];
+            $display  =   $strExist['display'];
+
+            $strTranslate[$locale] = $translationInput;
+            $return["info"] = $locale ." was affected"; 
+
             $result     =   $strcol->update($strExist, array("str" => $str , "page" => $page , "context" => $context ,
-                                                                "locale_zh_CN" => $zh ,"locale_es_AR" => $es ));
-            /*
-            */
+                                                                "translate" => $strTranslate ,"display" => $display ));
+
         }
         
         echo json_encode($return);  

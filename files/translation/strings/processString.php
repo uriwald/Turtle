@@ -23,12 +23,14 @@
         $strQuery               = array('str' => $str);
         $strExist               = $strcol->findOne($strQuery);
         $resultcount            = $strcol->count($strQuery);
-
+        
+        $emptyTranslate         = array("locale_zh_CN" => false ,"locale_es_AR" => false ,"locale_he_IL" => false ,"locale_ru_RU" => false);
+        $display                = array("zh_CN" => true ,"es_AR" => true ,"he_IL" => true ,"ru_RU" => true);  
         //Case we need to add a new record to db
         if (!$resultcount > 0 ) 
         { 
-            $obj = array( "str" => $str , "page" => $page , "context" => $context ,"locale_zh_CN" => "" ,
-            "locale_es_AR" => "" );
+            $obj = array( "str" => $str , "page" => $page , "context" => $context ,"translate" => $emptyTranslate ,
+            "display" =>$display );
              $strcol->insert($obj);
              echo " String was successfully inserted";
         }
