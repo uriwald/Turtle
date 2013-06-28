@@ -1,0 +1,21 @@
+/* 
+    Document   : news_ltr
+    Created on : Jun 18, 2013, 12:08:55 PM
+    Author     : Lucio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#turtleNewsBody{
+    text-align: left;
+}
+#newsDate{
+    float : right;
+}
+#divScroll{
+    height: 100;
+} 

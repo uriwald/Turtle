@@ -39,10 +39,13 @@
         }
         else //Updating existing user
         {
-            $zh         =   $strExist['locale_zh_CN'];
-            $es         =   $strExist['locale_es_AR'];
-            $result     =   $strcol->update($strExist, array("str" => $str , "page" => $page , "context" => $context ,
-                                                                "locale_zh_CN" => $zh ,"locale_es_AR" => $es ));
+            
+            $headline_translate         =   $newsExist['headline_translate'];
+            $context_translate          =   $newsExist['context_translate'];
+            $approve                    =   $newsExist['approve'];
+            $result     =   $strcol->update($newsExist, array("headline" => $headline , "context" => $context , "itemid" => $itemid 
+                ,"headline_translate" => $headline_translate ,
+                "context_translate" => $context_translate , "approve" => $approve ,"date" => $date));
             echo " String was successfully Updated" ;
         }
     } 

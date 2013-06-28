@@ -1,0 +1,23 @@
+/* 
+    Document   : news
+    Created on : Jun 18, 2013, 10:05:06 AM
+    Author     : Lucio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#navbar-inner-id{
+    padding-left: 0px;
+    padding-right: 0px;
+       
+}
+#divScroll{
+    height: 100%;
+} 
+p{
+  /* white-space: pre; */
+}

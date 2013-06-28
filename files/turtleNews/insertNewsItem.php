@@ -16,7 +16,7 @@
         <h4>Translate strings</h4>
         <form action="processNewsItem.php" method="post"> 
             News Headline : <input name="headline" type="text" style="width:600px;" value="<?php if($edit) echo $cursor['headline']; ?>">  </input> </br>
-            News Content : <textarea name="context" rows="4" cols="60"><?php if($edit) echo $cursor['context']; ?></textarea> </br>
+            News Content : <textarea name="context" rows="6" cols="60"><?php if($edit) echo $cursor['context']; ?></textarea> </br>
             ItemId : <input name="itemid" type="text"  value="<?php if($edit) echo $cursor['itemid']; ?>"/> </br>
             <input type="submit" />
         </form>      

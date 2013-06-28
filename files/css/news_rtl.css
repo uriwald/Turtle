@@ -1,0 +1,27 @@
+/* 
+    Document   : news_rtl
+    Created on : Jun 18, 2013, 10:02:08 AM
+    Author     : Lucio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#newsBarBrand{
+    float : right;
+}
+.navbar .newsmenu{
+    float : right;
+}
+#turtleNewsBody{
+    text-align: right;
+}
+#newsDate{
+    float : left;
+}
+.scrollspy-example{
+    direction :rtl;
+}
