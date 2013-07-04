@@ -1,13 +1,17 @@
 <?php
 
 class topbarUtil {
+
     //TODO check precedence
     private $m;
     private $db;
     private $collection;
     public function printTopBar ($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay ,$language ,
-            $_SESSION)
+            $UseToBeSession)
     {
+        if(session_id() == '') 
+            session_start();
+        $urlRedirect = substr($_SESSION['locale'],0,2);
     ?>    
     
         <div class="topbar" id="topbarMainDiv"> 
@@ -27,7 +31,7 @@ class topbarUtil {
                                         }
                                         if ($topbarDisplay['playground'] == "true")
                                         {
-                                            echo "<li class='navli'><a class='nava' id='navac' href='".$rootDir."playground'>"; echo _("Playground"); echo "</a></li>";
+                                            echo "<li class='navli'><a class='nava' id='navac' href='".$rootDir."playground/" .$urlRedirect ."'>"; echo _("Playground"); echo "</a></li>";
                                         } 
                                         if ($topbarDisplay['news'] == "true")
                                         {

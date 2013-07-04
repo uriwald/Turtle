@@ -3,6 +3,14 @@
 <?php
     if(session_id() == '') 
         session_start();
+    
+    require_once("../environment.php");
+    require_once("../localization.php");
+    require_once("footer.php");
+    require_once("cssUtils.php");
+    require_once("utils/languageUtil.php");
+    require_once('utils/topbarUtil.php');
+    
     if ( !isset ($locale))
     {
         if (isset($_SESSION['locale']))
@@ -17,16 +25,13 @@
     {
         $_SESSION['locale'] =  $locale;  
     }
-    require_once("../environment.php");
-    require_once("../localization.php");
-    require_once("footer.php");
-    require_once("cssUtils.php");
-    require_once("utils/languageUtil.php");
+
+    
     $relPath    =   "bootstrap/twitter-bootstrap-sample-page-layouts-master/";
     $jqueryui   =   "/ajax/libs/jqueryui/1.10.0/";
 ?>
 <html>
-    <head>
+    <head> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>
         <?php
@@ -51,6 +56,9 @@
         <script type="application/javascript" src="files/compat.js"></script> <!-- ECMAScript 5 Functions -->
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
+        
+        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select --> 
+
         <?php
             $file_path = "../locale/".$locale."/LC_MESSAGES/messages.po"; 
             $po_file =  "<link   rel='gettext' type='application/x-po' href='../locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
@@ -61,7 +69,6 @@
                 var locale = "<?php echo $locale; ?>";
         </script>
         <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_plain.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/jqconsole.js"></script> <!-- Console -->
@@ -86,7 +93,6 @@
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
-
         </script>
         <style type="text/css">
             h1, h2, h3, h4, p { margin-bottom: 6pt; margin-top: 6pt; }
@@ -130,12 +136,29 @@
                 </iframe>  
 
         </div> 
+        <div id="main" style="margin-left: 100px;">
         <?php  
             $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
-            $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");    
+            $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");   
+            
+            $topbar = new topbarUtil();
+            $topbarDisplay['turtleacademy'] = true ;
+            $topbarDisplay['helpus']        = false ;
+            $topbarDisplay['playground']    = false ;
+            $topbarDisplay['forum']         = false ;
+            $topbarDisplay['news']          = false ;
+            $topbarDisplay['about']         = true ; 
+            $topbarDisplay['sample']        = false ;
+            $signUpDisplay                  = true ;
+            $languagesDisplay               = true ;
+            $language['en'] = "en";$language['ru'] = "ru";
+            $language['es'] = "es";$language['zh'] = "zh";$language['he'] = "he";
+                
+            $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay , $language ,
+                    $_SESSION); 
         ?>
-        <div id="main" style="margin-left: 100px;">
-            <!-- Should be different for log in user and for a guest -->
+        <!--
+        
             <div class="topbar" id="topbarMainDiv"> 
                 <div class="fill" id="topbarfill">
                     <div class="container span16" id="topbarContainer"> 
@@ -145,7 +168,7 @@
                               <li><a href="<?php echo $rootDir; ?>index.php" ><?php echo _("TurtleAcademy");?></a></li> 
                               <li><a href="<?php echo $rootDir; ?>needed.php" ><?php echo _("Help Us");?></a></li>
                               <li><a href="<?php echo $rootDir; ?>project/doc" ><?php echo _("About");?></a></li>
-                             <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> --> 
+                             <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> 
                         </ul> 
                             
                         <form class="<?php  
@@ -162,7 +185,7 @@
                             if (isset($_SESSION['username']))
                             {
                         ?>                       
-                              <!--  <p class="pull-right">Hello <a href="#"> -->
+                              <!--  <p class="pull-right">Hello <a href="#"> --
                                     <nav class="<?php echo $login ?>"  id="turtleHeaderLoggedUser">
                                         <ul class="nav nav-pills <?php echo $login ?>" id="loggedUserUl">
                                             
@@ -199,8 +222,16 @@
                 </div>            
             </div> <!-- End of Top menu --> 
             <div id="headerplain" class="page-header" >
-                <h1> Logo play ground 
-                <small>Do whatever you desire</small> </h1>
+                <?php
+                    echo "<h1>";
+                        echo _("Logo play ground");
+                        echo "  <small>";
+                            echo _("Do whatever you desire");
+                    echo "</small></h1>";
+                 ?>   
+                <!-- <h1> Logo play ground 
+                <small>Do whatever you desire</small> </h1> --> 
+                   
             </div>
             <div id="logoerplain"> 
                 <div id="displayplain"> 
@@ -224,7 +255,7 @@
                 <div id="console" class="ui-corner-all ui-widget-content"><!-- command box --></div>
              </div>
         </div>
-        <?php echo $footer ?>
+        <?php echo $footer ;?>
         
         <script>
             /*
@@ -239,26 +270,10 @@
             */
         // Select language in main page
       $(document).ready(function() {
-                    $('.dropdown-toggle').dropdown();
-                    $.Storage.set("locale","<?php echo $_SESSION['locale']; ?>");
-                    //Show selected lanugage from dropdown                   
-                    try { 
-                            var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
-                                    var val = data.value;
-                                    if(val!="")
-                                           window.location = "<?php echo $rootDir; ?>playground/" + val;  
-                            }}}).data("dd");
-                                                        var pagename    = document.location.pathname.toString(); 
-                            pagename        = pagename.split("/");
-                            var pageIndex   = pagename[pagename.length-1];
-                            if (pageIndex == "" || pageIndex == "playground.php" )
-                                 pageIndex   = "en";
-                            pages.setIndexByValue(pageIndex);
-                            //$("#ver").html(msBeautify.version.msDropdown);
-                    } catch(e) {
-                            //console.log(e);
-                    } 
-                    $('#btnSaveUsrLessonData').click(function() {
+                   
+                    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>playground/" , "playground.php" ,"<?php echo substr($_SESSION['locale'],0,2) ?>" );
+
+                    $('#btnSaveUsrLessonData').click(function() { 
                         var lclStorageValue = ""
                         var isAnyDataToSave = false;
                         for (var i=0;i<8;i++)
