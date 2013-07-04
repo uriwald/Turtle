@@ -53,12 +53,8 @@
              <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
              <?php
                 }
-                ?>
-
-        <!--<script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis v
-         
-        <script type="application/javascript" src="files/compat.js"></script> <!-- ECMAScript 5 Functions -->
-                                 
+              ?>
+        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select -->                         
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
         <script type="text/javascript" src="<?php echo $rootDir; ?>files/floodfill.js"></script>
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
@@ -116,15 +112,18 @@
             <?php
                 $topbar = new topbarUtil();
                 $topbarDisplay['turtleacademy'] = false ;
-                $topbarDisplay['helpus']        = true ;
+                $topbarDisplay['helpus']        = false ;
                 $topbarDisplay['playground']    = true ;
                 $topbarDisplay['forum']         = true ;
                 $topbarDisplay['news']          = true ;
                 $topbarDisplay['about']         = true ;
-                $topbarDisplay['sample']        = true ;
+                $topbarDisplay['sample']        = false ;
+                $signUpDisplay                  = true ;
                 $languagesDisplay               = true ;
+                $language['en'] = "en";$language['ru'] = "ru";
+                $language['es'] = "es";$language['zh'] = "zh";$language['he'] = "he";
                 
-                $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $_SESSION);
+                $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay ,$language, $_SESSION);
             ?>
 
             <div id="header" class="carousel slide menu" >
@@ -238,6 +237,8 @@
         <script>
         // Select language in main page
       $(document).ready(function() {
+          selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>lang/" , "index.php" ,"en" );
+          /*
                     $('.dropdown-toggle').dropdown();
                     $.Storage.set("locale","<?php echo $_SESSION['locale']; ?>");
                     //Show selected lanugage from dropdown                   
@@ -257,6 +258,7 @@
                     } catch(e) {
                             //console.log(e);	
                     } 
+                    */
                     $('#savePic').click(function() {
                          var canvas = document.getElementById("sandbox");
                          //document.getElementById("theimage").src = canvas.toDataURL();

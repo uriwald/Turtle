@@ -5,7 +5,8 @@ class topbarUtil {
     private $m;
     private $db;
     private $collection;
-    public function printTopBar ($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $_SESSION)
+    public function printTopBar ($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay ,$language ,
+            $_SESSION)
     {
     ?>    
     
@@ -18,35 +19,29 @@ class topbarUtil {
                                     <?php
                                         if ($topbarDisplay['turtleacademy'] == "true")
                                         {
-                                            echo "<li><a href='".$rootDir."index.php'>"; echo _("TurtleAcademy"); echo "</a></li>";
+                                            echo "<li class='navli'><a class='nava' id='navaa' href='".$rootDir."index.php'>"; echo _("TurtleAcademy"); echo "</a></li>";
                                         }
                                         if ($topbarDisplay['helpus'] == "true")
                                         {
-                                            echo "<li><a href='".$rootDir."needed.php'>"; echo _("Help Us"); echo "</a></li>";
+                                            echo "<li class='navli'><a class='nava' id='navab' href='".$rootDir."needed.php'>"; echo _("Help Us"); echo "</a></li>";
                                         }
                                         if ($topbarDisplay['playground'] == "true")
                                         {
-                                            echo "<li><a href='".$rootDir."playground'>"; echo _("Playground"); echo "</a></li>";
-                                        }
+                                            echo "<li class='navli'><a class='nava' id='navac' href='".$rootDir."playground'>"; echo _("Playground"); echo "</a></li>";
+                                        } 
                                         if ($topbarDisplay['news'] == "true")
                                         {
-                                            echo "<li><a href='".$rootDir."forum.php'>"; echo _("News"); echo "</a></li>";
+                                            echo "<li class='navli'><a class='nava' id='navad' href='".$rootDir."turtlenews.php'>"; echo _("News"); echo "</a></li>";
+                                        }
+                                        if ($topbarDisplay['forum'] == "true")
+                                        {
+                                            echo "<li class='navli'><a class='nava' id='navae' href='".$rootDir."forum.php'>"; echo _("Forums"); echo "</a></li>";
                                         }
                                         if ($topbarDisplay['about'] == "true")
                                         {
-                                            echo "<li><a href='".$rootDir."inturtlenewsdex.php'>"; echo  _("About"); echo "</a></li>";
+                                            echo "<li class='navli'><a class='nava' id='navaf' href='".$rootDir."project/doc'>"; echo  _("About"); echo "</a></li>";
                                         }
-
-   
                                     ?>
-                                    <!--
-                                    <li><a href="<?php echo $rootDir; ?>index.php" ><?php echo _("TurtleAcademy");?></a></li> 
-                                    <li><a href="<?php echo $rootDir; ?>needed.php" ><?php echo _("Help Us");?></a></li> 
-                                    <li><a href="<?php echo $rootDir; ?>playground" ><?php echo _("Playground");?></a></li>
-                                    <li><a href="<?php echo $rootDir; ?>forum.php" ><?php echo _("Forums");?></a></li>
-                                    <li><a href="<?php echo $rootDir; ?>turtlenews.php" ><?php echo _("News");?></a></li>
-                                    <li><a href="<?php echo $rootDir; ?>project/doc" ><?php echo _("About");?></a></li>
-                                  <li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
                                 </ul> 
                                 <?php
                                     if ($languagesDisplay == "true")
@@ -57,11 +52,11 @@ class topbarUtil {
                                                     echo $class . " form-inline";                                
                                             ?>" action="" id="turtleHeaderLanguage">  
                                     <select name="selectedLanguage" id="selectedLanguage" style="width:120px;"> 
-                                        <option value='en' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
-                                        <option value='es' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
-                                        <option value='he' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
-                                        <option value='zh' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
-                                        <option value='ru' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag ru" data-title="Russain">Русский</option>
+                                        <option value='<?php echo $language['en']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
+                                        <option value='<?php echo $language['es']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
+                                        <option value='<?php echo $language['he']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
+                                        <option value='<?php echo $language['zh']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
+                                        <option value='<?php echo $language['ru']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag ru" data-title="Russain">Русский</option>
                                     </select>
                                 </form>       
                                 <?php
@@ -99,13 +94,18 @@ class topbarUtil {
                                     }
                                     else
                                     {
+                                        //Only if need to display signup button
+                                        if($signUpDisplay == "true")
+                                        {
                                 ?>       
                                         <ul class="nav <?php echo $login ?>" id="turtleHeaderUl"> 
 
-                                            <li><a href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
-                                            <li><a class='btn primary large' href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li> 
+                                            <li><a class='nava' href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
+                                            <!--<button id="menuRegBtn"><?php echo _("Sign Up for free");?></button> -->
+                                           <li><a id="menuRegBtn" href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li>
                                         </ul>                         
                                 <?php
+                                        } //End of if condition ? show signUP
                                     }
                                 ?>
                             </div>
