@@ -20,7 +20,7 @@ and open the template in the editor.
     require_once ("files/utils/lessonsUtil.php");
     require_once("environment.php");
     if (isset( $_SESSION['locale']))
-        $locale =   $_SESSION['locale'];
+        $locale =   $_SESSION['locale']; 
     if (isset( $_GET['locale']))
         $locale =   $_GET['locale'];
     if (!isset($locale)) {

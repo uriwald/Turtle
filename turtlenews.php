@@ -18,9 +18,7 @@ require_once("environment.php");
 require_once("localization.php");
 require_once("files/footer.php");
 require_once("files/cssUtils.php");
-include_once("files/inc/dropdowndef.php");
-include_once("files/inc/jquerydef.php");
-include_once("files/inc/boostrapdef.php");
+require_once ('files/utils/topbarUtil.php');
   
 $m = new Mongo();
 $db = $m->turtleTestDb;
@@ -34,6 +32,11 @@ $newsItems = $newscol->find($newsQuery);
     <head> 
         <meta charset="utf-8"> 
         <title>TurtleAcademy news</title> 
+        <?php
+             include_once("files/inc/dropdowndef.php");
+             include_once("files/inc/jquerydef.php");
+             include_once("files/inc/boostrapdef.php");
+        ?>
         <meta name="description" content="Twitter Bootstrap ScrollSpy example. You may also learn usage of navbar and dropdown.">
         <link href="files/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet"> 
         <style type="text/css">
@@ -44,10 +47,8 @@ $newsItems = $newscol->find($newsQuery);
             }
         </style>
 
-
-        <!--<script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis v
-         
-        <script type="application/javascript" src="files/compat.js"></script> <!-- ECMAScript 5 Functions -->
+        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select --> 
+        
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
         <?php
@@ -92,56 +93,23 @@ $newsItems = $newscol->find($newsQuery);
         <?php
         $class = ($locale == "he_IL" ? "pull-right" : "pull-left");
         $login = ($locale != "he_IL" ? "pull-right" : "pull-left");
+        
+        $topbar = new topbarUtil();
+        $topbarDisplay['turtleacademy'] = true ;
+        $topbarDisplay['helpus']        = false ;
+        $topbarDisplay['playground']    = false ;
+        $topbarDisplay['forum']         = false ;
+        $topbarDisplay['news']          = false ;
+        $topbarDisplay['about']         = false ; 
+        $topbarDisplay['sample']        = false ;
+        $signUpDisplay                  = true ;
+        $languagesDisplay               = true ;
+        $language['en'] = "en_US";$language['ru'] = "ru_RU";
+        $language['es'] = "es_AR";$language['zh'] = "zh_CN";$language['he'] = "he_IL";
+        $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay ,
+               $language ,  $_SESSION);
         ?>
-        <div class="topbar" id="topbarMainDiv"> 
-            <div class="fill" id="topbarfill">
-                <div class="container span16" id="topbarContainer"> 
-                    <img class="brand" id="turtleimg" src="<?php echo $rootDir ?>files/turtles.png" alt="צב במשקפיים">
-
-                    <ul class="nav" id="turtleHeaderUl"> 
-                        <li><a href="<?php echo $rootDir . "lang/" . $localePage; ?>" style="color:gray;" ><?php echo _("TurtleAcademy"); echo " "; echo _("News"); ?></a></li> 
-                        <!--<li class="active"><a href="index.html"><?php echo _("Sample"); ?></a></li> -->
-                    </ul> 
-                    <?php
-                    if (isset($_SESSION['username'])) {
-                        ?>                       
-                                <!--  <p class="pull-right">Hello <a href="#"> -->
-                        <nav class="<?php echo $login ?>" style="width:200px;" id="turtleHeaderLoggedUser">
-                            <ul class="nav nav-pills <?php echo $login ?>" id="loggedUserUl">
-
-                                <li style="padding: 10px 10px 11px;"> <?php echo _("Hello"); ?></li>
-                                <li class="cc-button-group btn-group"> 
-                                    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:#ffffff; background-color: rgba(0, 0, 0, 0.5);" >
-                                        <?php
-                                        echo $_SESSION['username'];
-                                        ?>
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
-                                        <li><a tabindex="-1" href="/docs"   class="innerLink" id="help-nav"><?php echo _("My account"); ?></a></li>
-                                        <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help"); ?></a></li>
-                                        <li><a href="logout.php" class="innerLink"><?php echo _("Log out"); ?></a></li>
-                                    </ul>
-
-
-                                </li>
-                            </ul> 
-                        </nav>                                                                     
-                        </a>
-
-                        <?php
-                    } else {
-                        ?>       
-                        <ul class="nav <?php echo $login ?>" id="turtleHeaderUl"> 
-                            <li><a href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login"); ?></a></li> 
-                            <li><a class='btn primary large' href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free"); ?></a></li> 
-                        </ul>                         
-    <?php
-}
-?>
-                </div>
-            </div> <!-- Ending fill bar -->
-        </div> <!-- Ending top bar -->
+       
         <div id="turtleNewsBody" class="span16 columns" style="margin:0 auto;float:none;"> 
             <h2><?php echo _("The Turtle news"); ?></h2>
             <p><?php echo _("Here you will find updates about the turtle development"); ?></p>
@@ -205,8 +173,51 @@ foreach ($newsItems as $newsItem) {
 ?>
             <hr>
         </div>
+        <!--
         <script src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
         <script src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-dropdown.js"></script>
         <script src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-scrollspy.js"></script>
+        -->
     </body>
+    <script>
+        // Select language in main page
+       
+      $(document).ready(function() {
+           selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>turtlenews.php?locale=" , "turtlenews.php" ,"en_US" );
+           })
+          /*
+                    $('.dropdown-toggle').dropdown();
+                    $.Storage.set("locale","<?php echo $_SESSION['locale']; ?>");
+                    //Show selected lanugage from dropdown                   
+                    try { 
+                            var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
+                                    var val = data.value;
+                                    if(val!="")
+                                           window.location = "<?php echo $rootDir; ?>turtlenews.php?locale=" + val; 
+                            }}}).data("dd");
+                    var pagename    = document.location.pathname.toString();
+                            pagename        = pagename.split("/");
+                            var pageIndex   = pagename[pagename.length-1];
+                            if (pageIndex == "" || pageIndex == "turtlenews.php" )
+                                 pageIndex   = "en_US";
+                            pages.setIndexByValue(pageIndex);
+                            //$("#ver").html(msBeautify.version.msDropdown);
+                    } catch(e) {
+                            //console.log(e);	
+                    }
+                   
+
+                    //convert
+                    $("select").msDropdown();
+                    //createByJson();
+                    $("#tech").data("dd");             
+                    });
+                        function showValue(h) {
+                                    console.log(h.name, h.value);
+                            }
+                            $("#tech").change(function() {
+                                    console.log("by jquery: ", this.value);
+                            })
+                            */
+        </script>
 </html>

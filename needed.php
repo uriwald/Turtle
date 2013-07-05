@@ -10,7 +10,7 @@
     include_once("files/inc/boostrapdef.php");
  ?>
 <!DOCTYPE html>
-<html dir="ltr"> 
+<html dir="ltr">
     <head> 
         <title> <?php  echo _("Project Documentation"); ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
@@ -130,7 +130,7 @@
                         <div class='cleaner_h20'></div>
                         <p>
                             <?php
-                                echo _("TurtleAcademy aspires to be availabe for kids all around the world. ");
+                                echo _("TurtleAcademy aspires to be available for kids all around the world. ");
                                 echo _("if you wish to help translating the project please contact us.");
                             ?>
                         </p>    
@@ -141,11 +141,11 @@
                             ?> 
                         </h2>
                         <div class='cleaner_h20'></div>
-                        <p>
+                        <p> 
                             <?php
                                 echo _("Did you like the lessons and you feel you can contribute more knowledge. ");
                                 echo _("Please register and create more lesson in your own native language.");
-                                echo _("after adding the lessons they can be avialable for kids all around the world."); 
+                                echo _("after adding the lessons they can be available for kids all around the world.");  
                             ?>
                         </p>  
                         <h2>     

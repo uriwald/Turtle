@@ -1,4 +1,4 @@
-<?php error_reporting(E_ALL | E_STRICT);
+<?php error_reporting(E_ALL | E_STRICT); 
 /**
  * phpMoAdmin - built on a stripped-down version of the high-performance Vork Enterprise Framework
  *

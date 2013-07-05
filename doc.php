@@ -2,8 +2,10 @@
 <html dir="ltr">
     <head>
         <title> <?php  echo _("Project Documentation"); ?></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <?php
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+        <?php   
+            if (!isset ($rootDir))
+                $rootDir = "/";
             if (!isset($locale))
                 if (isset($_GET['locale']))
                     $locale = $_GET['locale'];
@@ -11,9 +13,11 @@
                      $locale = "en_US";
             require_once("localization.php");
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='locale/".$locale."/LC_MESSAGES/messages.po'"." />";           
+            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";             
             if ( file_exists($file_path))
-                echo $po_file;           
+                echo $po_file;   
+                  
+       
         ?>
     </head>
     <body>
@@ -51,7 +55,7 @@
                 ?>    
             <h3>       
                 <?php
-                    echo _("Who are we ?");
+                    echo _("Who we are ?"); 
                 ?>
             </h3>
             <?php

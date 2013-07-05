@@ -1,5 +1,5 @@
 <?php
-	//login.php
+	//login.php 
 	session_start(); //Start the session
 	if(isset($_SESSION['ERRMSG']) && is_array($_SESSION['ERRMSG']) && count($_SESSION['ERRMSG']) >0 ) { //If the error session exists
 		$err = "<table>"; //Start a table

@@ -1,5 +1,6 @@
 <?php
 
+
 $locale = "en_US";
 if (isset($_GET['locale']))
     $locale    = $_GET['locale'];

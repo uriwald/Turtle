@@ -8,9 +8,10 @@
     include_once("files/inc/dropdowndef.php");
     include_once("files/inc/jquerydef.php");
     include_once("files/inc/boostrapdef.php");
+    require_once ('files/utils/topbarUtil.php');
  ?>
 <!DOCTYPE html>
-<html dir="ltr"> 
+<html dir="ltr">
     <head> 
         <title> <?php  echo _("Project Documentation"); ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
@@ -60,60 +61,26 @@
     <body>
         <?php  
             $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
-            $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");    
+            $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");  
+              
+            $topbar = new topbarUtil();
+            $topbarDisplay['turtleacademy'] = true ;
+            $topbarDisplay['helpus']        = false ;
+            $topbarDisplay['playground']    = false ;
+            $topbarDisplay['forum']         = false ;
+            $topbarDisplay['news']          = false ;
+            $topbarDisplay['about']         = false ; 
+            $topbarDisplay['sample']        = false ;
+            $signUpDisplay                  = true ;
+            $languagesDisplay               = false ;
+            $language['en'] = "en";$language['ru'] = "ru";
+            $language['es'] = "es";$language['zh'] = "zh";$language['he'] = "he";
+                
+            $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay , $language ,
+                    $_SESSION); 
         ?> 
-        <div class="topbar" id="topbarMainDiv"> 
-            <div class="fill" id="topbarfill">
-                <div class="container span16" id="topbarContainer"> 
-                    <img class="brand" id="turtleimg" src="<?php echo $rootDir ?>files/turtles.png" alt="צב במשקפיים">
-
-                    <ul class="nav" id="turtleHeaderUl"> 
-                            <li><a href="<?php echo $rootDir."lang/".$localePage; ?>" style="color:gray;" ><?php echo _("TurtleAcademy");?></a></li> 
-                            <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
-                    </ul> 
-                    <?php
-                        if (isset($_SESSION['username']))
-                        {
-                    ?>                       
-                            <!--  <p class="pull-right">Hello <a href="#"> -->
-                                <nav class="<?php echo $login ?>" style="width:200px;" id="turtleHeaderLoggedUser">
-                                    <ul class="nav nav-pills <?php echo $login ?>" id="loggedUserUl">
-
-                                        <li style="padding: 10px 10px 11px;"> <?php echo _("Hello");?></li>
-                                        <li class="cc-button-group btn-group"> 
-                                            <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:#ffffff; background-color: rgba(0, 0, 0, 0.5);" >
-                                            <?php
-                                                echo $_SESSION['username'];
-                                            ?>
-                                                <b class="caret"></b>
-                                            </a>
-                                            <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
-                                                <li><a tabindex="-1" href="/docs"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
-                                                <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
-                                                <li><a href="logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
-                                            </ul>
-
-
-                                        </li>
-                                    </ul> 
-                                </nav>                                                                     
-                                </a>
-
-                        <?php
-                            }
-                            else
-                            {
-                        ?>       
-                                <ul class="nav <?php echo $login ?>" id="turtleHeaderUl"> 
-                                    <li><a href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
-                                    <li><a class='btn primary large' href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li> 
-                                </ul>                         
-                         <?php
-                            }
-                         ?>
-                </div>
-            </div> <!-- Ending fill barf -->
-        </div> <!-- Ending top bar -->
+        ?> 
+      
         <div class="container">
             <div class="content">
                 <div class="page-header"> 
@@ -135,7 +102,7 @@
                                 echo _("A new window will be open");
                             ?>
                         </p>    
-                        <a href="http://turtleacademy.forumtl.com/" target="_blank">Go to forums</a>
+                        <a href="http://turtleacademy.forumtl.com/" target="_blank"><?php  echo _("Enter forums"); ?> </a>
                    </div> <!-- end of span10 -->
               </div> <!-- end of row -->              
             </div> <!-- end of content -->

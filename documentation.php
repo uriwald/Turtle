@@ -1,6 +1,7 @@
 <?php
     if(session_id() == '') 
         session_start();
+    
     require_once("environment.php");
     require_once("localization.php");
     require_once("files/footer.php");
@@ -8,6 +9,7 @@
     include_once("files/inc/dropdowndef.php");
     include_once("files/inc/jquerydef.php");
     include_once("files/inc/boostrapdef.php");
+    require_once('files/utils/topbarUtil.php');
  ?>
 <!DOCTYPE html>
 <html dir="ltr"> 
@@ -18,6 +20,7 @@
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
+        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select --> 
 
         <?php   
         
@@ -61,170 +64,229 @@
         <?php  
             $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
             $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");    
+            
+            $topbar = new topbarUtil();
+            $topbarDisplay['turtleacademy'] = true ;
+            $topbarDisplay['helpus']        = false ;
+            $topbarDisplay['playground']    = false ;
+            $topbarDisplay['forum']         = false ;
+            $topbarDisplay['news']          = false ;
+            $topbarDisplay['about']         = false ; 
+            $topbarDisplay['sample']        = false ;
+            $signUpDisplay                  = true ;
+            $languagesDisplay               = false ;
+            $language['en'] = "en";$language['ru'] = "ru";
+            $language['es'] = "es";$language['zh'] = "zh";$language['he'] = "he";
+                
+            $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay , $language ,
+                    $_SESSION); 
         ?> 
-        <div class="topbar" id="topbarMainDiv"> 
-            <div class="fill" id="topbarfill">
-                <div class="container span16" id="topbarContainer"> 
-                    <img class="brand" id="turtleimg" src="<?php echo $rootDir ?>files/turtles.png" alt="צב במשקפיים">
+        
 
-                    <ul class="nav" id="turtleHeaderUl"> 
-                            <li><a href="<?php echo $rootDir."lang/".$localePage; ?>" style="color:gray;" ><?php echo _("TurtleAcademy");?></a></li> 
-                            <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
-                    </ul> 
-                    <?php
-                        if (isset($_SESSION['username']))
-                        {
-                    ?>                       
-                            <!--  <p class="pull-right">Hello <a href="#"> -->
-                                <nav class="<?php echo $login ?>" style="width:200px;" id="turtleHeaderLoggedUser">
-                                    <ul class="nav nav-pills <?php echo $login ?>" id="loggedUserUl">
-
-                                        <li style="padding: 10px 10px 11px;"> <?php echo _("Hello");?></li>
-                                        <li class="cc-button-group btn-group"> 
-                                            <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:#ffffff; background-color: rgba(0, 0, 0, 0.5);" >
-                                            <?php
-                                                echo $_SESSION['username'];
-                                            ?>
-                                                <b class="caret"></b>
-                                            </a>
-                                            <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
-                                                <li><a tabindex="-1" href="/docs"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
-                                                <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
-                                                <li><a href="logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
-                                            </ul>
+  <body id="docs" data-spy="scroll" data-target=".navbar" data-offset="50"> 
+  
+    
+<!-- Navbar
+================================================== -->
 
 
-                                        </li>
-                                    </ul> 
-                                </nav>                                                                     
-                                </a>
+      <!-- Content
+       ================================================== -->
+     <div class="container" role="docs">
+     
+      <div class="row">    
 
-                        <?php
-                            }
-                            else
-                            {
-                        ?>       
-                                <ul class="nav <?php echo $login ?>" id="turtleHeaderUl"> 
-                                    <li><a href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
-                                    <li><a class='btn primary large' href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li> 
-                                </ul>                         
-                         <?php
-                            }
-                         ?>
-                </div>
-            </div> <!-- Ending fill barf -->
-        </div> <!-- Ending top bar -->
-        <div class="container">
-            <div class="content">
-                <div class="page-header"> 
-                    <h1>
-                        <?php  echo _("About the project"); ?> 
-                    </h1>  
-                </div>
-                <div class="row">
-                    <div class="span10">
-                        <!-- <div id="logo1"></div> -->
-                        <h2>
-                            <?php  echo _("About the project"); ?>  
-                        </h2>
-                        <div class='cleaner_h20'></div>
-                        <p>
-                            <?php
-                                echo _("The project contains a client side learning environment and a compiler for the <a target='_bjlank' href='http://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%92%D7%95_(%D7%A9%D7%A4%D7%AA_%D7%AA%D7%9B%D7%A0%D7%95%D7%AA)'>Logo</a> Programming language.");
-                                echo _("The project enables to learn the Logo language and programming principles and can be used for programming logo");
-                            ?>
-                        </p>    
-                        <div id="logo2"></div>
-                        <h2>     
-                            <?php
-                                echo _("Why was it done");
-                            ?>
-                        </h2>
-                        <div class='cleaner_h20'></div>
-                        <p>
-                            <?php
-                                echo _("My brother has been volunteering in a primary school in Israel for the past few years.");
-                                echo _("He was trying to instill the basic programming skills in the children and he discovered that there are three main problems.");
-                                echo _("The first is the language barrier (all the programming languages are using English and the children's do not speak the language ),"); 
-                                echo _("the second issue is that currently there are not many online learning programs which address children.");
-                                echo _("The third issue is the installation requirement of an appropriate programming environment in order to be able to start programming.");
-                            ?>
-                        </p>
+                    <article class="span18 docs">
+			            <header class="page-header" id="page-header"><h1><?php echo _("About") ; ?></h1></header>
+                                    <div class="span5" id="doc_section"> 
+					<div class="well" style="padding: 8px 0;">
+						<ul class="nav nav-list" id="Doc">
+							<li class="nav-header" id="about"><?php echo _("About") ; ?></li>
+							<li style="width:100%;" class="active"><a class="innerLink" href="#about_the_project" data-toggle="tab"><i class="icon-heart innerIcon"></i> <?php  echo _("About the project"); ?> </a></li>
+                                                        <li style="width:100%;"><a class="innerLink" href="#why_was_it_done" data-toggle="tab"><i class="icon-leaf innerIcon"></i> <?php  echo _("Why was it done"); ?> </a></li>
+							<li style="width:100%;"><a class="innerLink" href="#who_are_we" data-toggle="tab"><i class="icon-fire innerIcon"></i>  <?php echo _("Who we are ?");?> </a></li>
+							<li style="width:100%;"><a class="innerLink" href="#tricks" data-toggle="tab"><i class=" icon-star innerIcon"></i> <?php echo _("Tricks"); ?></a></li>
+							<li style="width:100%;"><a class="innerLink" href="#credits" data-toggle="tab"><i class="icon-thumbs-up innerIcon"></i> <?php  echo _("Credits");?></a></li>
+                                                        <li style="width:100%;"><a class="innerLink" href="#contact_us" data-toggle="tab"><i class="icon-envelope innerIcon"></i> <?php echo _("Contact us"); ?></a></li>
+						</ul>
+					</div>
+                                        </div>
+				<div id="doc" class="span10">
+                                    <div class="tab-content">
+                                            <div class="tab-pane active" id="about_the_project">
+                                                <h2>
+                                                    <?php  echo _("About the project"); ?>  
+                                                </h2>
+                                                <div class='cleaner_h20'></div>
+                                                <p>
+                                                    <?php
+                                                        echo _("The project contains a client side learning environment and a compiler for the <a target='_bjlank' href='http://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%92%D7%95_(%D7%A9%D7%A4%D7%AA_%D7%AA%D7%9B%D7%A0%D7%95%D7%AA)'>Logo</a> Programming language.");
+                                                        echo _("The project enables to learn the Logo language and programming principles and can be used for programming logo");
+                                                    ?>
+                                                </p>    
+                                                <div id="logo2"></div>
+                                            </div><!-- / Config -->
+                                            <div class="tab-pane" id="why_was_it_done">
+					       <h2>     
+                                                    <?php  echo _("Why was it done"); ?>
+                                                </h2>
+                                                <div class='cleaner_h20'></div>
+                                                <p>
+                                                    <?php
+                                                        echo _("My brother has been volunteering in a primary school in Israel for the past few years.");
+                                                        echo _("He was trying to instill the basic programming skills in the children and he discovered that there are three main problems.");
+                                                        echo _("The first is the language barrier (all the programming languages are using English and the children's do not speak the language ),"); 
+                                                        echo _("the second issue is that currently there are not many online learning programs which address children.");
+                                                        echo _("The third issue is the installation requirement of an appropriate programming environment in order to be able to start programming.");
+                                                        echo _("For this reason we thought it would be a good idea to join forces and create TurtleAcademy");
+                                                        echo _("The inspiration for the project came from other projects like <a target='_blank' href='http://www.khanacademy.org/'> Khanacademy</a> And a javascript learning project named <a target='_blank' href='http://www.codecademy.com/'>Codecademy</a>");
+                                                    ?>
+                                                </p>
+                                                <div id="logo3"></div>            
+                                            </div><!--/ why was it done -->
+                                            <div class="tab-pane" id="who_are_we">
+                                                <h2>       
+                                                    <?php echo _("Who we are ?");?>
+                                                </h2>
+                                                <div class='cleaner_h20'></div>
+                                                <table class='zebra-striped' id='main-items'>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class='span2'></th>
+                                                            <th class='span2 whoarewe'><?php echo _("Name");?></th>
+                                                            <th class='span8 whoarewe' ><?php echo _("About");?></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class='mini-thumbnail'><img src='/Images/team/lucio.jpg' style='width:100px;height:80px;'/></td>
+                                                            <td class="whoarewe"><?php echo _("Lucio");?></td>
+                                                            <td class="whoarewe"><?php echo _("Webmaster  and  amateur ping pong player"); ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class='mini-thumbnail'><img src='/Images/team/ofer.JPG' style='width:100px;height:80px;'/></td>
+                                                            <td class="whoarewe"><?php echo _("Ofer");?></td>
+                                                            <td class="whoarewe"><?php echo _("Father of three , amateur entrepreneur") ; ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class='mini-thumbnail'><img src='/Images/team/amir.JPG' style='width:100px;height:80px;'/></td>
+                                                            <td class="whoarewe"><?php echo _("Amir");?></td>
+                                                            <td class="whoarewe"><?php echo  _("Colnect master , uncle of six"); ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class='mini-thumbnail'><img src='/Images/team/dana.JPG' style='width:100px;height:80px;'/></td>
+                                                            <td class="whoarewe"><?php echo _("Dana");?></td>
+                                                            <td class="whoarewe"><?php echo _("Tiger painter , likes to read lessons"); ; ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class='mini-thumbnail'><img src='/Images/team/andy.jpg' style='width:100px;height:80px;'/></td>
+                                                            <td class="whoarewe"><?php echo _("Andy");?></td>
+                                                            <td class="whoarewe"><?php echo _("Feeding the turtle , Spanish section"); ; ?></td>
+                                                        </tr>     
+                                                        <tr>
+                                                            <td class='mini-thumbnail'><img src='/Images/team/mona.JPG' style='width:100px;height:80px;'/></td>
+                                                            <td class="whoarewe"><?php echo _("Mona");?></td>
+                                                            <td class="whoarewe"><?php echo _("Yoga master , Chinese section"); ; ?></td>
+                                                        </tr>  
+                                                        <tr>
+                                                            <td class='mini-thumbnail'><img src='/Images/team/ayelet.JPG' style='width:100px;height:80px;'/></td>
+                                                            <td class="whoarewe"><?php echo _("Ayelet");?></td>
+                                                            <td class="whoarewe"><?php echo _("Full time mother"); ; ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class='mini-thumbnail'><img src='/Images/team/almog.jpg' style='width:100px;height:80px;'/></td>
+                                                            <td class="whoarewe"><?php echo _("Almog");?></td>
+                                                            <td class="whoarewe"><?php echo _("Blogger , made his first QA steps at the age of seven"); ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class='mini-thumbnail'><img src='/Images/team/inbar.jpg' style='width:100px;height:80px;'/></td>
+                                                            <td class="whoarewe"><?php echo _("Inbar");?></td>
+                                                            <td class="whoarewe"><?php echo _("Very talented Wii player"); ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class='mini-thumbnail'><img src='/Images/team/raz.jpg' style='width:100px;height:80px;'/></td>
+                                                            <td class="whoarewe"><?php echo _("Raz");?></td>
+                                                            <td class="whoarewe"><?php echo _("QA and vegetarian");  ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class='mini-thumbnail'><img src='/Images/team/yuval.jpg' style='width:100px;height:80px;'/></td>
+                                                            <td class="whoarewe"><?php echo _("Yuval");?></td>
+                                                            <td class="whoarewe"><?php  echo _("QA and future Messi");   ?></td>
+                                                        </tr>                                                        
+                                                    </tbody>
+                                                </table>
+                                                <p>
  
-                            <?php
-                                echo _("For this reason we thought it would be a good idea to join forces and create TurtleAcademy");
-                                echo _("The inspiration for the project came from other projects like <a target='_blank' href='http://www.khanacademy.org/'> Khanacademy</a> And a javascript learning project named <a target='_blank' href='http://www.codecademy.com/'>Codecademy</a>");
+                                                    <?php
+                                                        /*echo _("Lucio  - Webmaster  and  amateur ping pong player");  echo "</br>";          
+                                                        echo _("Ofer   - Father of three , amateur entrepreneur");    echo "</br>";             
+                                                        echo _("Amir   - Colnect master , uncle of six");             echo "</br>";             
+                                                        echo _("Dana   - Tiger painter , likes to read lessons");     echo "</br>";  
+                                                        echo _("Ayelet - Full time mother");                          echo "</br>";             
+                                                        echo _("Almog  - Blogger , made his first QA steps at the age of seven"); echo "</br>";        
+                                                        echo _("Inbar  - Very talented Wii player");                  echo "</br>";          
+                                                        echo _("Raz    - QA and vegetarian");                         echo "</br>";
+                                                        echo _("Yuval  - QA and future Messi");                       echo "</br>";
+                                                         * */
+                                                        
+                                                    ?>   
+                                                </p>
+                                                <div id="logo4"></div>
+                                            </div><!-- / Theme -->
 
-                            ?>   
-                        <div id="logo3"></div>
-                        <h2>       
-                            <?php
-                                echo _("Who are we ?");
-                            ?>
-                        </h2>
-                        <div class='cleaner_h20'></div>
-                        <p>
-                        
-                            <?php
-                                echo _("Lucio  - Webmaster  and  amateur ping pong player");  echo "</br>";          
-                                echo _("Ofer   - Father of three , amateur entrepreneur");    echo "</br>";             
-                                echo _("Amir   - Colnect master , uncle of six");             echo "</br>";             
-                                echo _("Dana   - Tiger painter , likes to read lessons");     echo "</br>";  
-                                echo _("Ayelet - Full time mother");                          echo "</br>";             
-                                echo _("Almog  - Blogger , made his first QA steps at the age of seven"); echo "</br>";        
-                                echo _("Inbar  - Very talented Wii player");                  echo "</br>";          
-                                echo _("Raz    - QA and vegetarian");                         echo "</br>";
-                                echo _("Yuval  - QA and future Messi");                       echo "</br>";
-                            ?>   
-                        </p>
-                        <div id="logo4"></div>
-                        <h2>  
-                            <?php
-                                echo _("Tricks");
-                            ?>
-                        </h2>
-                        <div class='cleaner_h20'></div>
-                        <p>
+                                            <div class="tab-pane" id="tricks">
+                                                <h2>  
+                                                    <?php echo _("Tricks"); ?>
+                                                </h2>
+                                                <div class='cleaner_h20'></div>
+                                                <p>
 
-                            <?php
-                            echo _("New commands that have been learned will be saved even after the browser restarts"); echo "</br>";
-                            echo _("The turtle remembers the student's progress over time, allowing the student to follow his own progress"); "</br>";
-                            echo _("The drawing that appear below actually show live logo programs !"); echo "</br>";
-                            ?>
-                        </p>
-                        <div id="logo5"></div>
-                            <h2>
-                                <?php
-                                    echo _("Credits");
-                                ?>
-                            </h2>
-                            <div class='cleaner_h20'></div>
-                            <p>
-                                <?php
-                                    echo _("A lot of written libraries facilitate the creation of the website"); echo "</br>";
-                                    echo _("<a target='_blank' href='http://www.calormen.com/Logo/'> Joshua Bell - wrote the logo component </a>"); echo "</br>";
-                                    echo _("<a target='_blank' href='https://github.com/replit/jq-console'> jsconsole- wrote the input element ( Console ) </a>"); echo "</br>";
-                                    echo _("<a target='_blank' href='http://jquery.com'> jquery - component which enabled easy java scripting </a>"); echo "</br>";
-                                    echo _("<a target='_blank' href='http://jqueryui.com/'> jqueryui - a collection of graphical components </a>"); echo "</br>";
-                                    echo _("<a target='_blank' href='http://api.jquery.com/category/plugins/templates/'> jquerytemplates - enable transmission of data to html </a>"); echo "</br>";
-                                ?>  
-                            </p>
-                            <div id="logo6"></div>
+                                                    <?php
+                                                    echo _("New commands that have been learned will be saved even after the browser restarts"); echo "</br>";
+                                                    echo _("The turtle remembers the student's progress over time, allowing the student to follow his own progress"); "</br>";
+                                                    echo _("The drawing that appear below actually show live logo programs !"); echo "</br>";
+                                                    ?>
+                                                </p>
+                                                <div id="logo5"></div>
+                                            </div><!-- / Tricks -->
 
-                            <h2> 
-                                <?php
-                                    echo _("Contact us");
-                                ?>
-                            </h2>
-                            <div class='cleaner_h20'></div>
-                            <p>
-                                <a href="mailto:support@turtleacademy.com" target="_blank"> <?php echo _("Send an email"); ?> </a>
-                            </p>
-                   </div> <!-- end of span10 -->
-              </div> <!-- end of row -->              
-            </div> <!-- end of content -->
-        </div> <!-- End of container --> 
-        <script>
+                                            <div class="tab-pane" id="credits">
+                                                <h2>
+                                                    <?php  echo _("Credits");?>
+                                                </h2>
+                                                <div class='cleaner_h20'></div>
+                                                <p>
+                                                    <?php
+                                                        echo _("A lot of written libraries facilitate the creation of the website"); echo "</br>";
+                                                        echo "<a target='_blank' href='http://www.calormen.com/Logo/'> "; echo _("Joshua Bell - wrote the logo component"); echo "</a>"; echo "</br>";
+                                                        echo "<a target='_blank' href='http://www.mathcats.com/gallery/15wordcontest.html'> " ; echo _("Math cats - Logo 15 word challange compitition"); echo "</a>"; echo "</br>";                                                
+                                                        echo "<a target='_blank' href='https://github.com/replit/jq-console'> "; echo ("jsconsole- wrote the input element ( Console )");echo "</a>"; echo "</br>";
+                                                        echo "<a target='_blank' href='http://jquery.com'> "; echo _("jquery - component which enabled easy java scripting"); echo "</a>"; echo "</br>";
+                                                        echo "<a target='_blank' href='http://jqueryui.com/'> "; echo _("jqueryui - a collection of graphical components"); echo "</a>"; echo "</br>";
+                                                        echo "<a target='_blank' href='http://api.jquery.com/category/plugins/templates/'> "; echo _("jquerytemplates - enable transmission of data to html") ; echo "</a>"; echo "</br>";
+                                                    ?>
+                                                </p>
+                                                <div id="logo6"></div>
+                                            </div><!-- / Credits -->
+                                            
+                                            <div class="tab-pane" id="contact_us">
+                                                <h2> 
+                                                    <?php echo _("Contact us"); ?>
+                                                </h2>
+                                                <div class='cleaner_h20'></div>
+                                                <p>
+                                                    <a href="mailto:support@turtleacademy.com" target="_blank"> <?php echo _("Send an email"); ?> </a>
+                                                </p>
+                                            </div><!-- / Contact Us -->
+              
+                                            
+                                    </div>
+				</div>
+             </article>
+      </div> <!--/row-->
+      
+     </div> <!--/end of container-->
+      <script>
             function do_logo(id ,cmd) {
                 $('#'+id).css('width', '100px').css('height', '100px').append('<canvas id="'+id+'c" width="100" height="100" style="position: absolute; z-index: 0;"></canvas>' +
                     '<canvas id="'+id+'t" width="100" height="100" style="position: absolute; z-index: 1;"></canvas>');
@@ -245,7 +307,7 @@
             do_logo ('logo5', 'window repeat 10 [fd 3 * repcount repeat 3 [fd 15 rt 360/3] rt 360/10] ht');
             do_logo ('logo6', 'window pu home repeat 20 [ setlabelheight 20-repcount fd repcount label "HTML5Fest bk repcount rt 18 ] ht');
         </script>
- <script>
+    <script>
         // Select language in main page
       $(document).ready(function() {
                     $('.dropdown-toggle').dropdown();
@@ -282,9 +344,19 @@
                                     console.log("by jquery: ", this.value);
                             })
         </script>
+     <!-- Footer
+     Footer was removed by me .. need to insert a reel turtle
+      ================================================== -->
+      
+  
+    <!-- Le javascript
+    ================================================== -->    
+    <script src="theme/bootstrap/assets/js/bootstrap.min.js?ver=2.0.4"></script>
+    <script src="theme/bootstrap/assets/js/application.min.js?ver=2.0.4"></script>
+    <!-- 
+    <div style="position: fixed; left: 0; top: 20%;"><span class='st_twitter_large'></span><br /><span class='st_facebook_large'></span><br /><span class='st_sharethis_large'></span><br /></div><script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'2da24328-c408-4eea-b984-11607777d3e1'});</script><script src="http://1clickedit.org/plugin/core/assets/js/jquery.slugify.js" type="text/javascript"></script>
+	<script src="http://1clickedit.org/plugin/core/assets/google-code-prettify/prettify.js"></script>
+	<script src="http://1clickedit.org/plugin/core/assets/js/core.min.js"></script><script src="plugin/core/assets/js/bbcode.js"></script><script src="plugin/core/assets/js/loadreply.js"></script><script src="plugin/core/assets/js/loadform.js"></script><script src="plugin/core/assets/js/imgzoom.js"></script>
+  -->  
     </body>
 </html>
-
-<?php
-
-?>

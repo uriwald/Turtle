@@ -11,7 +11,7 @@
         if (isset($_GET['lesson'])) {
             $lesson = new MongoId($_GET['lesson']);
             $bool = $_GET['pending'];
-            $collection = $lu->CollectionItemChangeAttribute($lesson,"pending",$bool == 'true'? true: false);
+            $collection = $lu->CollectionItemChangeAttributeVal($lesson,"pending",$bool == 'true'? true: false);
             header("location: lessons.php");
         }
 ?> 

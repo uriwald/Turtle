@@ -1,5 +1,5 @@
 <?php
-    /*
+    /* 
     $locale = "en_US.utf8";
     if (isSet($_GET["locale"])) 
         $locale = $_GET["locale"].".utf8";
@@ -10,6 +10,7 @@
     //echo $locale;
     if(session_id() == '') 
         session_start();
+    //$locale = "en_us";
     if (isset ($_SESSION["locale"]))
         $locale =   $_SESSION["locale"];
     if (isset ($_GET['l']))
@@ -26,6 +27,7 @@
      else {
        $localeEnv = $locale.".utf8" ; 
     } 
+    //echo " locale env is " . $localeEnv ;
     putenv("LC_ALL=$localeEnv");
     setlocale(LC_ALL, $localeEnv);
     //setlocale(LC_ALL, "sp_SP.utf8");

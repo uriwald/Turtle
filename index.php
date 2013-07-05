@@ -123,7 +123,8 @@
                 $language['en'] = "en";$language['ru'] = "ru";
                 $language['es'] = "es";$language['zh'] = "zh";$language['he'] = "he";
                 
-                $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay ,$language, $_SESSION);
+                $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay 
+                        , $signUpDisplay ,$language, $empty = "");
             ?>
 
             <div id="header" class="carousel slide menu" >

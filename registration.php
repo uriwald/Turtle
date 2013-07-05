@@ -14,6 +14,7 @@
     require_once ("localization.php");
     require_once ("files/cssUtils.php");
     require_once ('files/openid.php');
+    require_once ('files/utils/topbarUtil.php');
     
     if (isset ($_GET['l']))
     {
@@ -205,19 +206,10 @@
   <body>
     <?php  
 
-    $googleid = createOpenIdObject('https://www.google.com/accounts/o8/id' ,"loginopen.php" );
-    $yahooid =  createOpenIdObject('https://me.yahoo.com' ,"loginopen.php" );   
-    /*
-    $openid = new LightOpenID($sitePath);
-    $openid->identity = 'https://www.google.com/accounts/o8/id';
-    $openid->required = array(
-    'namePerson/first',
-    'namePerson/last',
-    'contact/email',
-    'pref/language',
-    );
-    $openid->returnUrl = $sitePath . "loginopen.php";// 'http://turtle.com/loginopen.php';
-    */
+    //$googleid = createOpenIdObject('https://www.google.com/accounts/o8/id' ,"loginopen.php" );
+    //$yahooid =  createOpenIdObject('https://me.yahoo.com' ,"loginopen.php" );  
+    
+   
     //setup some variables/arrays
     $action = array();
     $action['result'] = null;
@@ -248,6 +240,12 @@
                     $queryUsername          = array('username' => $username ,"confirm" => true);
                     $existUsername          = $users->count($queryUsername);
                     
+                    //String for checking Email and username validation
+                    $strEmailExist          = _("Email is being use by a registered user");
+                    $strForgotPass          = _("if you forgot your password please press reset password");
+                    $strUserNExist          = _("Username is already exist in the system");
+                    $strChooseNewUN         = _("please choose another username");
+                    
                     if ($isTestUser) //Case of testing we will insert to db
                     {
                        addUserToDb($username,$password,$email,$users,$db); 
@@ -255,12 +253,13 @@
                     else if ($existEmail > 0 ) //Check if email already exist
                     {
                         $action['result'] = 'error'; 
-                        array_push($text,'Email is already being used /n please enter a valid email');
+                        array_push($text,$strEmailExist . " " . $strForgotPass);
                     }
                     else if ($existUsername > 0 ) //Check if email already exist
                     {
                         $action['result'] = 'error'; 
-                        array_push($text,'Username is already being used');
+                        array_push($text,$strUserNExist . " " . $strChooseNewUN);
+                        
                     }
                     else {
                         addUserToDb($username,$password,$email,$users,$db);
@@ -362,10 +361,16 @@
                 $key = $username . $email ;
                 $key = md5($key);
                 $userStructure = array("userid" => $userid, "key" => $key, "email" => $email );
-                $userConfirmResult = $users->insert($userStructure, array('safe' => true));
+                $userConfirmResult = $users->insert($userStructure, array('safe' => true));               
+
+                //String for Password reset
+                $strContinueReset       = _("Please check your email to continue with password reset");
+                $strErrSendConfirmMail  = _("Error while sending confirm Email");
+                $strContactSupoort      = _("please contact the TurtleAcademy support");
                 if($userConfirmResult){
                         //include the swift class
                         include_once $phpDirPath .'swift/swift_required.php';
+
                         //put info into an array to send to the function
                         $info = array(
                                 'username' => $username,
@@ -374,16 +379,16 @@
                         //send the email
                         if(send_email($info , $sitePath , "resetpass_template")){
                             $action['result'] = 'success';
-                            array_push($text,'Please check your email to continue with password reset');  
+                            array_push($text,$strContinueReset);  
                         }else{
                              $action['result'] = 'error';
-                             array_push($text,'Could not send confirm email');
+                             array_push($text,$strErrSendConfirmMail . " " . $strContactSupoort);
 
                         }
                 }else{
 
                         $action['result'] = 'error';
-                        array_push($text,'Confirm row was not added to the database. Reason: ' );
+                        array_push($text,$strErrSendConfirmMail . " " . $strContactSupoort );
                 }
             }
             $action['text'] = $text; 
@@ -392,67 +397,28 @@
      }
  
             $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
-            $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");    
+            $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");  
+            
+            $topbar = new topbarUtil();
+            $topbarDisplay['turtleacademy'] = true ;
+            $topbarDisplay['helpus']        = false ;
+            $topbarDisplay['playground']    = false ;
+            $topbarDisplay['forum']         = false ;
+            $topbarDisplay['news']          = false ;
+            $topbarDisplay['about']         = false ; 
+            $topbarDisplay['sample']        = false ;
+            $signUpDisplay                  = false ;
+            $languagesDisplay               = true ;
+            $language['en'] = "en_US";$language['ru'] = "ru_RU";
+            $language['es'] = "es_AR";$language['zh'] = "zh_CN";$language['he'] = "he_IL";
+                
+            $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay , $language ,
+                    $_SESSION); 
+             
+             
    ?>
-        <div class="topbar" id="topbarMainDiv"> 
-            <div class="fill" id="topbarfill">
-                <div class="container span13" id="topbarContainer"> 
-                    <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
-
-                    <ul class="nav" id="turtleHeaderUl"> 
-                            <li><a href="<?php echo $rootDir; ?>index.php" style="color:gray;" ><?php echo _("TurtleAcademy");?></a></li> 
-                            <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
-                    </ul>
-
-                    <form class="<?php  
-                                        echo $class . " form-inline";                                
-                                    ?>" action="" id="turtleHeaderLanguage">  
-                        <select name="selectedLanguage" id="selectedLanguage" style="width:120px;">
-                            <option value='en_US' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
-                            <option value='es_AR' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
-                            <option value='he_IL' data-image="Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
-                            <option value='zh_CN' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
-                        </select>
-                    </form>       
-                    <?php
-                        if (isset($_SESSION['username']))
-                        {
-                    ?>                       
-                            <!--  <p class="pull-right">Hello <a href="#"> -->
-                                <nav class="<?php echo $login ?>" style="width:200px;" id="turtleHeaderLoggedUser">
-                                    <ul class="nav nav-pills <?php echo $login ?>" id="loggedUserUl">
-
-                                        <li style="padding: 10px 10px 11px;"> <?php echo _("Hello");?></li>
-                                        <li class="cc-button-group btn-group"> 
-                                            <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" style="color:#ffffff; background-color: rgba(0, 0, 0, 0.5);" >
-                                            <?php
-                                                echo $_SESSION['username'];
-                                            ?>
-                                                <b class="caret"></b>
-                                            </a>
-                                            <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
-                                                <li><a tabindex="-1" href="/docs"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
-                                                <li><a tabindex="-1" href="/docs" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
-                                                <li><a href="logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
-                                            </ul>
-
-
-                                        </li>
-                                    </ul> 
-                                </nav>                                                                     
-                                </a>
-
-                    <?php
-                        }
-                        else
-                        {
-
-                        }
-                        ?>
-                </div>
-            </div> <!-- Ending fill barf -->
-        </div> <!-- Ending top bar -->
-          
+       
+      
           
     <div class="container">
         <div class='row'>
@@ -564,10 +530,11 @@
 
                     <span class='switch' data-switch='forgot-password-form'><?php echo _("Forgot my password"); ?></span> </br></br></br>
                     
+                    <!--
                     <a href="<?php echo $googleid->authUrl() ?>" class="zocial google"><?php echo _("Sign In");echo " ";echo _("with google")?></a>
                     </br></br>
                     <a href="<?php echo $yahooid->authUrl() ?>" class="zocial yahoo"><?php echo _("Sign In");echo " ";echo _("with Yahoo")?></a>
-                    
+                    -->
 
                 </form>        
                 <form class='form-stacked hide' id='forgot-password-form' method='post'>

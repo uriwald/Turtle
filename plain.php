@@ -88,6 +88,34 @@
             })();
 
         </script>
+         <style type="text/css">
+            h1, h2, h3, h4, p { margin-bottom: 6pt; margin-top: 6pt; }
+            body, p, h1, h2, h3 { font-family: sans-serif; }
+            dl { margin-top: 6pt; }
+            p, dt, dd, ol, li { font-size: 8pt; }
+            code { font-family: monospace; }
+            body
+            {
+                width: 270px;
+                color: black;
+                background-color: white;
+            }
+            #guide{
+                position : absolute;
+                right: 10px;
+                top: 10px;
+                width: 400px;
+                padding: 5pt;
+                padding-top: 0px;
+                z-index: 10;
+                color: black;
+            }
+             #guide_body{
+                width: 400px;
+                height: 450px;
+                border: none;
+             }
+        </style> 
     </head>
     <body> 
         <?php  
@@ -165,7 +193,7 @@
             <div id="logoerplain"> 
                 <div id="displayplain"> 
                     <!-- <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content" style="position: absolute; z-index: 0;">-->
-                    <canvas id="sandbox" width="940" height="500px" class="ui-corner-all ui-widget-content">   
+                    <canvas id="sandbox" width="970" height="500px" class="ui-corner-all ui-widget-content">   
                             <span style="color: red; background-color: yellow; font-weight: bold;">
                             <?php
                                 echo _("TurtleAcademy learn programming for free");
@@ -176,8 +204,8 @@
                             </span> 
                     </canvas>
                     <!--<canvas id="turtle" width="660" height="350" style="position: absolute; z-index: 1;"> -->
-                    <canvas id="turtle" width="940" height="500px">   
-                        <!-- drawing box --> 
+                    <canvas id="turtle" width="970" height="500px">   
+                        <!-- drawing box -->
                     </canvas>
                 </div>
 
@@ -206,9 +234,9 @@
                             var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
                                     var val = data.value;
                                     if(val!="")
-                                           window.location = "<?php echo $rootDir; ?>plain/lang/" + val;  
+                                           window.location = "<?php echo $rootDir; ?>plain/" + val;  
                             }}}).data("dd");
-                                                        var pagename    = document.location.pathname.toString();
+                                                        var pagename    = document.location.pathname.toString(); 
                             pagename        = pagename.split("/");
                             var pageIndex   = pagename[pagename.length-1];
                             if (pageIndex == "" || pageIndex == "plain.php" )
@@ -216,7 +244,7 @@
                             pages.setIndexByValue(pageIndex);
                             //$("#ver").html(msBeautify.version.msDropdown);
                     } catch(e) {
-                            //console.log(e);	
+                            //console.log(e);
                     } 
                     $('#btnSaveUsrLessonData').click(function() {
                         var lclStorageValue = ""

@@ -34,7 +34,12 @@ foreach ($cursor as $lessonStructure) {
     unset($lessonStructure['_id']);
     $lessonForRegisterUserOnly  = false;
     if (isset($lessonStructure["register_only"]) ) 
-        $lessonForRegisterUserOnly  = $lessonStructure["register_only"];
+    {
+        if ($lessonStructure["register_only"] == "true" || $lessonStructure["register_only"] == true )
+            $lessonForRegisterUserOnly  = true;
+        else
+            $lessonForRegisterUserOnly  = false;
+    }
 
     //echo "isset?  ".$lessonStructure['locale_' . $_GET[$localPosted]];
     if (isset($lessonStructure['locale_' . $_GET[$localPosted]])) {
