@@ -1,22 +1,18 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-  "http://www.w3.org/TR/html4/strict.dtd">
-<?php
-    if(session_id() == '') 
+    "http://www.w3.org/TR/html4/strict.dtd">
+    <?php
+    if (session_id() == '')
         session_start();
-    if ( !isset ($locale))
-    {
+    if (!isset($locale)) {
         if (isset($_SESSION['locale']))
-           $locale = $_SESSION['locale']; 
-        else
-        {
+            $locale = $_SESSION['locale'];
+        else {
             $locale = "en_US";
             $_SESSION['locale'] = "en_US";
         }
-    } 
-    else
-    { 
-        $_SESSION['locale'] =  $locale;  
+    } else {
+        $_SESSION['locale'] = $locale;
     }
     require_once("environment.php");
     require_once("localization.php");
@@ -25,69 +21,59 @@
     require_once("files/utils/languageUtil.php");
     require_once ('files/openid.php');
     require_once ('files/utils/topbarUtil.php');
-    $relPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
-    $jqueryui   =   "ajax/libs/jqueryui/1.10.0/";
-?>
+    ?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>
-        <?php
-            echo _("Turtle Academy - learn logo programming in your browser");
-            echo _(" free programming materials for kids");
+<?php
+echo _("Turtle Academy - learn logo programming in your browser");
+echo _(" free programming materials for kids");
 //        אקדמיית הצב - למד תכנות לוגו היישר מתוך הדפדפן                
-            $currentFile = $_SERVER["PHP_SELF"];
-            $parts = Explode('/', $currentFile);
-            $currentPage = $parts[count($parts) - 1];
-           
-        ?>  
+$currentFile = $_SERVER["PHP_SELF"];
+$parts = Explode('/', $currentFile);
+$currentPage = $parts[count($parts) - 1];
+?>  
 
         </title>      
-        <?php
-             include_once("files/inc/dropdowndef.php");
-             include_once("files/inc/jquerydef.php");
-             include_once("files/inc/boostrapdef.php");
-             if (isset($_SESSION['username']))
-                { 
-        ?>   
-             <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
-             <?php
-                }
-              ?>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select -->                         
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="text/javascript" src="<?php echo $rootDir; ?>files/floodfill.js"></script>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
-        <script src="http://www.nihilogic.dk/labs/canvas2image/canvas2image.js"></script>
-        <?php
-            $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
-            if ( file_exists($file_path))
-                echo $po_file;            
-        ?>       
-        <script type="text/javascript">
-                var locale = "<?php echo $locale; ?>";
-        </script>
-        <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/jqconsole.js"></script> <!-- Console -->
-        
-        <!-- Adding new boostrap for crusel --> 
-       
+            <?php
+            include_once("files/inc/dropdowndef.php");
+            include_once("files/inc/jquerydef.php");
+            include_once("files/inc/boostrapdef.php");
+            if (isset($_SESSION['username'])) {
+                ?>   
+            <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
+            <?php
+        }
+        ?>
         <script src="<?php echo $rootDir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-carousel.js"></script>
         <link href="<?php echo $rootDir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">
+        
+        
+        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select -->                         
+        <?php
+        $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
+        $po_file = "<link   rel='gettext' type='application/x-po' href='" . $rootDir . "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
+        if (file_exists($file_path))
+            echo $po_file;
+        ?>       
+        <script type="text/javascript">
+            var locale = "<?php echo $locale; ?>";
+        </script>
+        <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
+        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
+
+        <!-- Adding new boostrap for crusel --> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/>
-       <?php
-             cssUtils::loadcss($locale, $rootDir . "files/css/interface");    
-             cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
-             cssUtils::loadcss($locale, $rootDir . "files/css/topbar"); 
+        <?php
+            cssUtils::loadcss($locale, $rootDir . "files/css/interface");
+            cssUtils::loadcss($locale, $rootDir . "files/css/doc");
+            cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
+            cssUtils::loadcss($locale, $rootDir . "files/css/index");
         ?>     
-        <!-- Disable script when working without internet -->
         <!-- Google Analytics Tracking --> 
         <script type="application/javascript"> 
             var _gaq = _gaq || [];
@@ -95,223 +81,126 @@
             _gaq.push(['_trackPageview']);
 
             (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
 
         </script>
     </head>
-    <body> 
-        <?php  
-            $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
-            $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");    
+    <div id="index-main">
+        <!-- Should be different for log in user and for a guest -->
+        <?php
+        $class = ($locale == "he_IL" ? "pull-right" : "pull-left");
+        $login = ($locale != "he_IL" ? "pull-right" : "pull-left");
+
+        $topbar = new topbarUtil();
+        $topbarDisplay['turtleacademy'] = false;
+        $topbarDisplay['helpus'] = false;
+        $topbarDisplay['playground'] = true;
+        $topbarDisplay['forum'] = true;
+        $topbarDisplay['news'] = true;
+        $topbarDisplay['about'] = true;
+        $topbarDisplay['sample'] = false;
+        $signUpDisplay = false;
+        $languagesDisplay = true;
+
+        $language['en'] = "en";
+        $language['ru'] = "ru";
+        $language['es'] = "es";
+        $language['zh'] = "zh";
+        $language['he'] = "he"; 
+
+        $topbar->printTopBar($rootDir, $class, $login, $topbarDisplay, $languagesDisplay
+                , $signUpDisplay, $language, $empty = "");
         ?>
-        <div id="main">
-            <!-- Should be different for log in user and for a guest -->
-            <?php
-                $topbar = new topbarUtil();
-                $topbarDisplay['turtleacademy'] = false ;
-                $topbarDisplay['helpus']        = false ;
-                $topbarDisplay['playground']    = true ;
-                $topbarDisplay['forum']         = true ;
-                $topbarDisplay['news']          = true ;
-                $topbarDisplay['about']         = true ;
-                $topbarDisplay['sample']        = false ;
-                $signUpDisplay                  = true ;
-                $languagesDisplay               = true ;
-                $language['en'] = "en";$language['ru'] = "ru";
-                $language['es'] = "es";$language['zh'] = "zh";$language['he'] = "he";
+        <div class="container">
+            <!-- Main hero unit for a primary marketing message or call to action -->
+            <div class="hero-unit" id="hero-top">
+                <!--
+                <div style="height:80px;"> <p style="float:left;"><img class='pull-right' src='files/turtles.png' alt=''/></p> </div>
+                -->
                 
-                $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay 
-                        , $signUpDisplay ,$language, $empty = "");
-            ?>
-
-            <div id="header" class="carousel slide menu" >
-                <div id="progress">
-                </div>
-                
-                
+                <h1><?php echo _("Turtle Academy") ; ?></h1>
+                <h2 id="h2top"> the easy way to learn programming</h2>
+                <p>Before People got board of start programming in Turtle academy you will see immidiate result for every action . </p>
+                <p>No need to download a software just follow the lesson and start enjoying programming</p>
+                <p><a class="btn primary large" href ="learn.php">Free Lessons </a> <a class="btn primary large">Sign In</a></p>
             </div>
-            <!-- 
-            <div id="slider" class="span16" style="height : 40px;">
-                <a class="carousel-control left" id="carousel-control-left" href="#myCarousel" data-slide="prev" style="position : relative; float:left;">&lsaquo;</a>
-                <a class="carousel-control right" id="carousel-control-right" href="#myCarousel" data-slide="next" style="position : relative; float:right;">&rsaquo;</a>
+            <div id="myCarousel" class="carousel slide">
+                <!--
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- Carousel items -->
+
+                <div class="carousel-inner">
+                    <div class="active item">
+                        <div class="carousel"> 
+                                <h1 id="h1quote"> "I got the passion for programming thanks to Turtle Academy"</h1>
+                                <h3> Jin Sin Lin - China</h3>   
+                        </div>        
+                    </div>
+                    <div class="item">
+                        <div class="carousel"> 
+                                <h1 id="h1quote"> "I want to do Mona"</h1>
+                                <h3> Lucio - Israel</h3> 
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="carousel"> 
+                                <h1 id="h1quote"> "Burburi change my life"</h1>
+                                <h3> Jin Sin Lin - China</h3>   
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="">
+                
             </div> 
-            --> 
-            <div id="logoer"> 
-                <div id="display"> 
-                    <!-- <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content" style="position: absolute; z-index: 0;">-->
-                    <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content">   
-                            <span style="color: red; background-color: yellow; font-weight: bold;">
-                            <?php
-                                echo _("TurtleAcademy learn programming for free");
-                                echo _("Your browser is not supporting canvas");
-                                echo _("We recoomnd you to use Chrome or Firefox browsers");
-                                //    הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יות                                
-                            ?>                                      
-                            </span>  
-                    </canvas>
-                    <!--<canvas id="turtle" width="660" height="350" style="position: absolute; z-index: 1;"> -->
-                    <canvas id="turtle" width="660" height="350">   
-                        <!-- drawing box -->
-                    </canvas>
-                    
+
+                
+            <!-- Example row of columns --> 
+            <div class="row"> 
+                <div class="span5">
+                    <h2>Project goal <!--<img src='images/sample/icon1.png' alt=''/> --></h2>
+                    <p>Our objective is teaching people around the world the programming basics in a fun way , everyone can start programming in his mother tongue </p>
                 </div>
-
-                <div id="console" class="ui-corner-all ui-widget-content"><!-- command box --></div>
-                <?php echo $footer; ?>
-             </div>
-            <div id="accorPlusNav">
-                <div id="accordion">
+                <div class="span5">
+                    <h2>Help needed <!--<img src='images/sample/icon2.png' alt=''/>--> </h2>
+                    <p>In order to let people around the world the opportunity to learn programming we need volunteers who are willing to translate the website to more languages</p>
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
                 </div>
-                <div id="lessonnav">
-                    <?php
-                        //should be change to all rtl lnaguages
-                        $lu = new languageUtil("turtleTestDb" , "rtlLanguages");
-                        $isRtlLocale = $lu->findIfLocaleExist($locale);
-                    // if($locale == 'he_IL')
-                        if ($isRtlLocale)
-                        {
-                    ?>  
+            </div>
 
-                        <button id="nextlesson" class="btn"> 
-                        <?php
-                            //should be change to all rtl lnaguages
-                        // echo ($locale == 'he_IL') ?  "&larr;" :  "&rarr;";     
-                            echo ($isRtlLocale) ?  "&larr;" :  "&rarr;"; 
-                            echo _("Next");                   
-                        ?> 
-                        </button>
-                        <button id="prevlesson" class="btn">
-                        <?php
-                        //echo ($locale == 'he_IL') ?  "&rarr;" :  "&larr;";  
-                        echo ($isRtlLocale) ?  "&rarr;" :  "&larr;";  
-                        echo _("Prev");                    
-                        ?>            
-                        </button>
-                    <?php
-                        }else{
-                    ?>     
-                        <button id="prevlesson" class="btn">
-                        <?php
-                        // echo ($locale == 'he_IL') ?  "&rarr;" :  "&larr;";  
-                            echo ($isRtlLocale) ?  "&rarr;" :  "&larr;";  
-                            echo _("Prev");                    
-                        ?>            
-                        </button>
-                        <button id="nextlesson" class="btn"> 
-                        <?php
-                            //should be change to all rtl lnaguages
-                            echo ($isRtlLocale) ?  "&larr;" :  "&rarr;";   
-                            //echo ($locale == 'he_IL') ?  "&larr;" :  "&rarr;"; 
-                            echo _("Next");                   
-                        ?> 
-                        </button>
 
-                    <?php
-                        } //ending else
-                    ?>
 
-                </div>
-            </div> <!-- End Accordion + nav -->
-        </div>
-        
-        <!--
-        <footer id="footer">
-            &copy; TurtleAcademy, <a id="doc" title="תעוד הפרוייקט" href="doc.html">
-            <?php
-                 echo _("project doc");
-            //        תעוד הפרוייקט                     
-             ?> 
-                                 
-            </a>
-            <div id="langicons">
-                <a href="<?php echo $currentPage ?>?locale=he_IL"><img src="Images/flags/il.png"  title="עברית" /></a>
-                <a href="<?php echo $currentPage ?>"> <img src="Images/flags/us.png"  title="English" /></a>              
-            </div>    
-        </footer>
-       
-        <div><button id="savePic">Draw to Image</button></div> --> 
-        
-        
-        <script>
-        // Select language in main page
-      $(document).ready(function() {
-          selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>lang/" , "index.php" ,"en" );
-          /*
-                    $('.dropdown-toggle').dropdown();
-                    $.Storage.set("locale","<?php echo $_SESSION['locale']; ?>");
-                    //Show selected lanugage from dropdown                   
-                    try { 
-                            var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
-                                    var val = data.value;
-                                    if(val!="")
-                                           window.location = "<?php echo $rootDir; ?>lang/" + val; 
-                            }}}).data("dd");
-                                                        var pagename    = document.location.pathname.toString();
-                            pagename        = pagename.split("/");
-                            var pageIndex   = pagename[pagename.length-1];
-                            if (pageIndex == "" || pageIndex == "index.php" )
-                                 pageIndex   = "en";
-                            pages.setIndexByValue(pageIndex);
-                            //$("#ver").html(msBeautify.version.msDropdown);
-                    } catch(e) {
-                            //console.log(e);	
-                    } 
-                    */
-                    $('#savePic').click(function() {
-                         var canvas = document.getElementById("sandbox");
-                         //document.getElementById("theimage").src = canvas.toDataURL();
-                         Canvas2Image.saveAsPNG(canvas);
-                    });
-                    
-                    $('#btnSaveUsrLessonData').click(function() {
-                        var lclStorageValue = ""
-                        var isAnyDataToSave = false;
-                        for (var i=0;i<8;i++)
-                             for (var j=1;j<9;j++)
-                            {
-                                if ($.Storage.get("q(" + i +  ")" + j + "1" ))
-                                {
-                                    alert ("q(" + i +  ")" + j + "1");
-                                    lclStorageValue += "q(" + i +  ")" + j + "1,";
-                                    isAnyDataToSave =   true;
-                                }
-                            }
-                        if (isAnyDataToSave)
-                        {
-                            $.ajax({
-                                type : 'POST',
-                                url : '/files/saveLocalStorage.php',
-                                dataType : 'json',
-                                data: {
-                                    lclStoragevalues  :   lclStorageValue
-                                },
-                                success: function(data) { 
-                                    var rdata;
-                                    var i = 1;
-                                } ,
-                                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                                    alert('en error occured');
-                                }
-                            });
-                        }
-                        //if $.Storage.get("q(" + activeLesson + ")" + ($index +1)) == "true"}
-                    });
-	
-                    //$("#ver").html(msBeautify.version.msDropdown);
-
-                    //convert
-                    $("select").msDropdown();
-                    //createByJson();
-                    $("#tech").data("dd");             
-                    });
-                        function showValue(h) {
-                                    console.log(h.name, h.value);
-                            }
-                            $("#tech").change(function() {
-                                    console.log("by jquery: ", this.value);
-                            })
+        </div> <!-- /container -->
+        <?php echo $footer; ?>
+    </div> <!-- /main -->
+    <script> 
+// Select language in main page
+    $(document).ready(function() {
+          selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>language/", "index.php" ,"en_US" ); 
+            $('.carousel').carousel({
+                 interval: 5000 
+            })
+            $("#myCarousel").carousel('cycle');
+            $('#myCarousel').hover(function () {   
+                 $(this).carousel('pause')
+                 $(this).carousel(0)
+            })
+            
+        });
+        function showValue(h) {
+                    console.log(h.name, h.value);
+            }
+            $("#tech").change(function() {
+                    console.log("by jquery: ", this.value);
+            })
+                            
         </script>
-    </body></html>
+</html> 
