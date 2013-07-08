@@ -19,8 +19,8 @@
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
     require_once("files/utils/languageUtil.php");
-    require_once ('files/openid.php');
-    require_once ('files/utils/topbarUtil.php');
+    require_once('files/openid.php');
+    require_once('files/utils/topbarUtil.php');
     ?>
 <html>
     <head>
@@ -125,37 +125,38 @@ $currentPage = $parts[count($parts) - 1];
                 -->
               
                 <h1 id="hero-main-title"><?php echo _("Turtle Academy") ; ?></h1> 
-                <h2 id="hero-secondary-title"> the easy way to learn programming</h2>
-                <p class="top">With Turtle Academy is really easy to start creating amazing shapes using LOGO language</p>
-                <p class="top">Here are some examples how programming can be easy and fun</p>
-                <div class='span14'>
-                    <div class="span4" >
-                        <p class="example-title"> Create a square </p>
+                <h2 id="hero-secondary-title"><?php echo _("the easy way to learn programming");?></h2>
+                <p class="top"><?php echo _("With Turtle Academy is really easy to start creating amazing shapes using LOGO language");?></p>
+                <p class="top"><?php echo _("Here are some examples how programming can be easy and fun");?></p>
+                <div class='span14 example-continer'> 
+                    <div class="span4 example" >
+                        <p class="example-title"> <?php echo _("Create a spiral");?></p>
                         <p class="example-code"> for [i 10 100 10]     [fd :i rt 90] </p>
                         <div id="logo2"></div>
                         
                         <h2> <!--<img src='images/sample/icon1.png' alt=''/> --></h2>
 
                     </div>
-                    <div class="span4" >
-                        <p class="example-title"> Cool flower </p>
+                    <div class="span4 example" >
+                        <p class="example-title"> <?php echo _("Cool flower");?></p>
                         <p class="example-code"> repeat 8 [rt 45 repeat 6 [repeat 90 [fd 1 rt 2] rt 90]] ht</p>
                         <div id="logo3"></div>
                         
                         <h2> <!--<img src='images/sample/icon1.png' alt=''/> --></h2>
 
                     </div>
-                    <div class="span4" >
-                        <p class="example-title""> Crazy octagon</p>
+                    <div class="span4 example" >
+                        <p class="example-title"> <?php echo _("Crazy octagon");?></p>
                         <p class="example-code"> cs repeat 36 [ rt 10 repeat 8 [ fd 25 lt 45]] ht</p>
                         <div id="logo4"></div>
                         
                         <h2> <!--<img src='images/sample/icon1.png' alt=''/> --></h2>
-
+                    </div>
+                    <div class="span2">
                     </div>
                 </div>
                 <div id="start-logo" align="center">
-                    <p class="top">Let's start having fun programming </p>
+                    <p class="top" id="start-logo-p"><?php echo _("Let's start having fun programming");?></p>
                     <div>
                         <p class="top"><a class="btn primary large" href ="learn.php">Free Lessons </a> <a class="btn primary large" href ="registration.php">Sign In</a></p>
 
@@ -199,25 +200,25 @@ $currentPage = $parts[count($parts) - 1];
                 
             <!-- Example row of columns --> 
             <div class="row span16" id="row-info"> 
-                <div class="span1" style="width:30px">
+                <div class="span1 row-info-div" style="width:30px">
                     <h2> <!--<img src='images/sample/icon1.png' alt=''/> --></h2>
                     <p></p>
                 </div>
-                <div class="span5">
+                <div class="span5 row-info-div">
                     <h2>Project goal <!--<img src='images/sample/icon1.png' alt=''/> --></h2>
                     <p>Our objective is to teach the programming principles in a fun and easy way and to bring programming to every kid in the world. </p>
                 </div>
-                <div class="span2">
+                <div class="span2 row-info-div">
                     <h2> <!--<img src='images/sample/icon1.png' alt=''/> --></h2>
                     <p></p>
                 </div>
-                <div class="span5">
+                <div class="span5 row-info-div">
                     <h2>Help needed <!--<img src='images/sample/icon2.png' alt=''/>--> </h2>
                     <p> In order to make programming approachable for more people  we need some volunteers who are willing to translate the site to their on native language</p>
                     <!--<p><a class="btn" href="#">View details &raquo;</a></p> -->
                 </div>
             </div>
-
+ 
  
 
         </div> <!-- /container -->
