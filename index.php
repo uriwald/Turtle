@@ -99,14 +99,15 @@ $currentPage = $parts[count($parts) - 1];
 
         $topbar = new topbarUtil();
         $topbarDisplay['turtleacademy'] = false;
-        $topbarDisplay['helpus'] = false;
-        $topbarDisplay['playground'] = true;
-        $topbarDisplay['forum'] = true;
-        $topbarDisplay['news'] = true;
-        $topbarDisplay['about'] = true;
-        $topbarDisplay['sample'] = false;
-        $signUpDisplay = false;
-        $languagesDisplay = true;
+        $topbarDisplay['exercise']      = false;
+        $topbarDisplay['helpus']        = false;
+        $topbarDisplay['playground']    = true;
+        $topbarDisplay['forum']         = true;
+        $topbarDisplay['news']          = true;
+        $topbarDisplay['about']         = true;
+        $topbarDisplay['sample']        = false;
+        $signUpDisplay                  = false;
+        $languagesDisplay               = true;
 
         $language['en'] = "en";
         $language['ru'] = "ru";

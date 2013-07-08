@@ -7,7 +7,7 @@ class topbarUtil {
     private $db;
     private $collection;
     public function printTopBar ($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay ,$language ,
-            $UseToBeSession)
+            $UseToBeSession , $showIcon = true)
     {
         if(session_id() == '') 
             session_start();
@@ -17,33 +17,43 @@ class topbarUtil {
         <div class="topbar" id="topbarMainDiv"> 
                         <div class="fill" id="topbarfill">
                             <div class="container span16" id="topbarContainer"> 
-                                <img class="brand" id="turtleimg" src="<?php echo $rootDir; ?>files/turtles.png" alt="צב במשקפיים">
-
+                                <?php
+                                    if ($showIcon)
+                                    {
+                                    ?>
+                                <a href="<?php echo $rootDir; ?>index.php" ><img class="brand" id="turtleimg" src="<?php echo $rootDir; ?>files/turtles.png" alt="Home page"/></a> 
+                                    <?php
+                                    }//Close show icon
+                                    ?>
                                 <ul class="nav" id="turtleHeaderUl"> 
                                     <?php
+                                        if (isset($topbarDisplay['exercise']) && $topbarDisplay['exercise'] == "true") 
+                                        {
+                                            echo "<li class='navli'><a class='nava' id='navaa' href='".$rootDir."learn.php'><b>"; echo _("Lessons"); echo "</b></a></li>";
+                                        }
                                         if ($topbarDisplay['turtleacademy'] == "true")
                                         {
-                                            echo "<li class='navli'><a class='nava' id='navaa' href='".$rootDir."index.php'>"; echo _("TurtleAcademy"); echo "</a></li>";
+                                            echo "<li class='navli'><a class='nava' id='navaa' href='".$rootDir."index.php'><b>"; echo _("TurtleAcademy"); echo "</b></a></li>";
                                         }
                                         if ($topbarDisplay['helpus'] == "true")
                                         {
-                                            echo "<li class='navli'><a class='nava' id='navab' href='".$rootDir."needed.php'>"; echo _("Help Us"); echo "</a></li>";
+                                            echo "<li class='navli'><a class='nava' id='navab' href='".$rootDir."needed.php'><b>"; echo _("Help Us"); echo "</b></a></li>";
                                         }
                                         if ($topbarDisplay['playground'] == "true")
                                         {
-                                            echo "<li class='navli'><a class='nava' id='navac' href='".$rootDir."playground/" .$urlRedirect ."'>"; echo _("Playground"); echo "</a></li>";
+                                            echo "<li class='navli'><a class='nava' id='navac' href='".$rootDir."playground/" .$urlRedirect ."'><b>"; echo _("Playground"); echo "</b></a></li>";
                                         } 
                                         if ($topbarDisplay['news'] == "true")
                                         {
-                                            echo "<li class='navli'><a class='nava' id='navad' href='".$rootDir."turtlenews.php'>"; echo _("News"); echo "</a></li>";
+                                            echo "<li class='navli'><a class='nava' id='navad' href='".$rootDir."turtlenews.php'><b>"; echo _("News"); echo "</b></a></li>";
                                         }
                                         if ($topbarDisplay['forum'] == "true")
                                         {
-                                            echo "<li class='navli'><a class='nava' id='navae' href='".$rootDir."forum.php'>"; echo _("Forums"); echo "</a></li>";
+                                            echo "<li class='navli'><a class='nava' id='navae' href='".$rootDir."forum.php'><b>"; echo _("Forums"); echo "</b></a></li>";
                                         }
                                         if ($topbarDisplay['about'] == "true")
                                         {
-                                            echo "<li class='navli'><a class='nava' id='navaf' href='".$rootDir."project/doc'>"; echo  _("About"); echo "</a></li>";
+                                            echo "<li class='navli'><a class='nava' id='navaf' href='".$rootDir."project/doc'><b>"; echo  _("About"); echo "</b></a></li>";
                                         }
                                     ?>
                                 </ul> 
@@ -104,9 +114,9 @@ class topbarUtil {
                                 ?>       
                                         <ul class="nav <?php echo $login ?>" id="turtleHeaderUl"> 
 
-                                            <li><a class='nava' href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
+                                            <li class="navli"> <a class='nava' href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><b><?php echo _("Login");?></b></a></li> 
                                             <!--<button id="menuRegBtn"><?php echo _("Sign Up for free");?></button> -->
-                                           <li><a id="menuRegBtn" href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li>
+                                           <li id="registrateBtn" ><a id="menuRegBtn" href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li>
                                         </ul>                         
                                 <?php
                                         } //End of if condition ? show signUP
