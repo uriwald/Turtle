@@ -1,0 +1,61 @@
+/* 
+    Document   : index
+    Created on : Jul 5, 2013, 6:05:55 PM
+    Author     : Lucio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+#hero-top{
+    background-color: #E8E8E6;
+    border-radius: 10px 10px 10px 10px;
+    padding-top: 20px;
+}
+#hero-secondary-title{
+    color : black;
+    padding-top: 10px;
+}
+#hero-main-title{
+   color : #00007A;
+}
+#running-quote{
+    color:purple;
+    padding-left: 60px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+#name-quote{
+    padding-left: 60px;
+    padding-right: 20px;
+}
+#index-main , #topbarMainDiv{
+    background-color: #B7F46E; 
+}
+p.top{
+    color:black;
+    margin-bottom: 3px;
+}
+#crousel-quote , #row-info  , #user-quote{
+    background-color: #E8E8E6; 
+}
+#crousel-quote{
+
+}
+#row-info{
+    margin-left: -1px;
+}
+#hero-top , #crousel-quote ,#row-info{
+    border-radius: 10px 10px 10px 10px;
+}
+.example-code{
+    height: 55px;
+}
+p.example-title{
+    height: 55px;
+    font-weight: bold;
+    font-size: 22px;
+    color: blue;
+}
