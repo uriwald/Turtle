@@ -92,7 +92,8 @@ $currentPage = $parts[count($parts) - 1];
         </script>
     </head>
     <div id="index-main">
-        <!-- Should be different for log in user and for a guest -->
+        <!-- <div id="index-main-wrapper"></div> 
+         Should be different for log in user and for a guest -->
         <?php
         $class = ($locale == "he_IL" ? "pull-right" : "pull-left");
         $login = ($locale != "he_IL" ? "pull-right" : "pull-left");
@@ -159,7 +160,7 @@ $currentPage = $parts[count($parts) - 1];
                 <div id="start-logo" align="center">
                     <p class="top" id="start-logo-p"><?php echo _("Let's start having fun programming");?></p>
                     <div>
-                        <p class="top"><a class="btn primary large" href ="learn.php">Free Lessons </a> <a class="btn primary large" href ="registration.php">Sign In</a></p>
+                        <p class="top"><a class="btn primary large" href ="learn.php"><?php  echo _("Free Lessons");?> </a> <a class="btn primary large" href ="registration.php"><?php  echo _("Sign In");?></a></p>
 
                     </div>
                 </div>
@@ -176,20 +177,26 @@ $currentPage = $parts[count($parts) - 1];
                 <div class="carousel-inner" id="crousel-quote">
                     <div class="active item">
                         <div class="carousel"> 
-                                <h1 id="running-quote"> "I got the passion for programming thanks to Turtle Academy"</h1>
-                                <h3 id="name-quote"> Jin Sin Lin - China</h3>   
+                            <div>
+                                <h1> "<?php echo _("I got the passion for programming thanks to Turtle Academy");?>"</h1>
+                            </div>
+                            <h3> Jin Sin Lin - China</h3>   
                         </div>        
                     </div>
                     <div class="item">
                         <div class="carousel"> 
-                                <h1 id="running-quote"> "I want to do Mona"</h1>
-                                <h3 id="name-quote"> Lucio - Israel</h3> 
+                            <div>
+                                <h1> "<?php echo _("Really easy to use")?>"</h1>
+                            </div>
+                                <h3> Lucio - Israel</h3> 
                         </div>
                     </div>
                     <div class="item">
                         <div class="carousel"> 
-                                <h1 id="running-quote"> "Burburi change my life"</h1>
-                                <h3 id="name-quote"> Jin Sin Lin - China</h3>   
+                            <div>
+                                <h1 id="running-quote"> "<?php echo _("My son is enjoying studying programming"); ?>"</h1>
+                            </div>
+                                <h3> Matt Hok - England</h3>   
                         </div>
                     </div>
                 </div>
@@ -206,7 +213,7 @@ $currentPage = $parts[count($parts) - 1];
                     <p></p>
                 </div>
                 <div class="span5 row-info-div">
-                    <h2>Project goal <!--<img src='images/sample/icon1.png' alt=''/> --></h2>
+                    <h2><?php echo _("Project goal"); ?> <!--<img src='images/sample/icon1.png' alt=''/> --></h2>
                     <p>Our objective is to teach the programming principles in a fun and easy way and to bring programming to every kid in the world. </p>
                 </div>
                 <div class="span2 row-info-div">
@@ -214,7 +221,7 @@ $currentPage = $parts[count($parts) - 1];
                     <p></p>
                 </div>
                 <div class="span5 row-info-div">
-                    <h2>Help needed <!--<img src='images/sample/icon2.png' alt=''/>--> </h2>
+                    <h2><?php echo _("Help needed"); ?> <!--<img src='images/sample/icon2.png' alt=''/>--> </h2>
                     <p> In order to make programming approachable for more people  we need some volunteers who are willing to translate the site to their on native language</p>
                     <!--<p><a class="btn" href="#">View details &raquo;</a></p> -->
                 </div>
@@ -224,11 +231,13 @@ $currentPage = $parts[count($parts) - 1];
 
         </div> <!-- /container -->
         <?php echo $footer; ?>
+
     </div> <!-- /main -->
+    <!-- style="position: absolute; z-index: 0; style="position: absolute; z-index: 1;"" -->
     <script> 
             function do_logo(id ,cmd) {
-                $('#'+id).css('width', '200px').css('height', '200px').append('<canvas id="'+id+'c" width="200" height="200" style="position: absolute; z-index: 0;"></canvas>' +
-                    '<canvas id="'+id+'t" width="200" height="200" style="position: absolute; z-index: 1;"></canvas>');
+                $('#'+id).css('width', '200px').css('height', '200px').append('<canvas id="'+id+'c" width="200" height="200" ></canvas>' +
+                    '<canvas id="'+id+'t" width="200" height="200" ></canvas>');
                 var canvas_element2 = document.getElementById(id+"c");
                 var turtle_element2 = document.getElementById(id+"t");
                 var turtle2 = new CanvasTurtle(

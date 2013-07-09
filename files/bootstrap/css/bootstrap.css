@@ -5796,9 +5796,9 @@ a.badge:hover {
   font-size: 60px;
   font-weight: 100;
   line-height: 30px;
-  color: #ffffff;
+  color: black;
   text-align: center;
-  background: #222222;
+  /* background: #222222; */
   border: 3px solid #ffffff;
   -webkit-border-radius: 23px;
      -moz-border-radius: 23px;
@@ -5846,11 +5846,12 @@ a.badge:hover {
 .hero-unit {
   padding: 60px;
   margin-bottom: 30px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
+  /*font-size: 18px;  font-weight: 200; line-height: 30px;*/
+  font-size: 1.5em;
+  font-weight: bold;
+  line-height: 150%;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #eeeeee; 
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
