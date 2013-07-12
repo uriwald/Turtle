@@ -108,3 +108,6 @@ p.example-title{
 #goto-buttons{
     margin-top: 10px;
 }
+.btn.large.indbtn{ 
+    font-size: 30px;
+}
