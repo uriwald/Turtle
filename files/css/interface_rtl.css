@@ -6,10 +6,11 @@
 */
 
 #carousel-control-left , #carousel-control-right{
-    position : relative; float:right; margin-top:0px;line-height: 20px;min-width:10px;
+    position : relative; float:right; margin-top:0px;line-height: 20px;min-width:10px;left:0px;
 }
 #carousel-control-right{
     margin-right:100;
+    float:left; 
 }
 .menu li {
     float:right;

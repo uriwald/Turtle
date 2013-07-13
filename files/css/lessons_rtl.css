@@ -16,7 +16,7 @@ root {
 div ul li.existing_step , #lessonStepUl{
     float : right;
 } 
-#lesson-fieldset{
+#lesson-fieldset{ 
     float : right ;
     margin-right: 10px;
 }

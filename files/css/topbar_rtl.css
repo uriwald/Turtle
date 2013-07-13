@@ -16,3 +16,12 @@ root {
 #loggedUserLI{
     float: right;
 }
+#turtleimg , #turtleHeaderTitle , #turtleHeaderUl , #turtleHeaderLanguage{
+    float:right;
+}
+#turtleHeaderLogin{
+    direction: rtl;
+}
+#turtleHeaderUl li{
+    float: right;
+}

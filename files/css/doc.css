@@ -9,4 +9,12 @@
 root { 
     display: block;
 }
-
+p{
+    font-size : 16px;
+    color : #7c7c7c;
+    font-family: sans-serif;
+}
+.logo-draw-example{
+    border: 1px solid;
+    background-color: whitesmoke;
+}

@@ -10,12 +10,13 @@ root {
 }
 #carousel-control-left , #carousel-control-right{
     position : relative; float:right; margin-top:0px;line-height: 20px;min-width:10px;
+    
 }
 #carousel-control-right{
    /* margin-right:100;*/
 }
 #myCarousel{
-    /*margin-right: 200px;*/
+  //  height: 45px;
 }
 .jqconsole {
     background-color: #EEE;
@@ -169,7 +170,7 @@ code { font-family: monospace; }
 #footer {
     margin: 10px auto;
     overflow: hidden;
-    width: 970px;
+    width: 660px;
     text-align: center;
 }
 
