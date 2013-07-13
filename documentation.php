@@ -67,6 +67,7 @@
             
             $topbar = new topbarUtil();
             $topbarDisplay['turtleacademy'] = true ;
+            $topbarDisplay['exercise']      = true ;  
             $topbarDisplay['helpus']        = false ;
             $topbarDisplay['playground']    = false ;
             $topbarDisplay['forum']         = false ;
@@ -97,13 +98,14 @@
       <div class="row">    
 
                     <article class="span18 docs">
-			            <header class="page-header" id="page-header"><h1><?php echo _("About") ; ?></h1></header>
+			            <header class="page-header" id="page-header"><h1><?php echo _("About") ; echo " ";  echo _("Turtle academy");?></h1></header>
                                     <div class="span5" id="doc_section"> 
 					<div class="well" style="padding: 8px 0;">
 						<ul class="nav nav-list" id="Doc">
 							<li class="nav-header" id="about"><?php echo _("About") ; ?></li>
 							<li style="width:100%;" class="active"><a class="innerLink" href="#about_the_project" data-toggle="tab"><i class="icon-heart innerIcon"></i> <?php  echo _("About the project"); ?> </a></li>
                                                         <li style="width:100%;"><a class="innerLink" href="#why_was_it_done" data-toggle="tab"><i class="icon-leaf innerIcon"></i> <?php  echo _("Why was it done"); ?> </a></li>
+                                                        <li style="width:100%;"><a class="innerLink" href="#why_to_register" data-toggle="tab"><i class="icon-bell innerIcon"></i>  <?php echo _("Why to register ?");?> </a></li> 
 							<li style="width:100%;"><a class="innerLink" href="#who_are_we" data-toggle="tab"><i class="icon-fire innerIcon"></i>  <?php echo _("Who we are ?");?> </a></li>
 							<li style="width:100%;"><a class="innerLink" href="#tricks" data-toggle="tab"><i class=" icon-star innerIcon"></i> <?php echo _("Tricks"); ?></a></li>
 							<li style="width:100%;"><a class="innerLink" href="#credits" data-toggle="tab"><i class="icon-thumbs-up innerIcon"></i> <?php  echo _("Credits");?></a></li>
@@ -124,13 +126,13 @@
                                                         echo _("The project enables to learn the Logo language and programming principles and can be used for programming logo");
                                                     ?>
                                                 </p>    
-                                                <div id="logo2"></div>
+                                                <div id="logo2" class="logo-draw-example"></div>
                                             </div><!-- / Config -->
                                             <div class="tab-pane" id="why_was_it_done">
 					       <h2>     
                                                     <?php  echo _("Why was it done"); ?>
                                                 </h2>
-                                                <div class='cleaner_h20'></div>
+                                                <div class='cleaner_h20'></div> 
                                                 <p>
                                                     <?php
                                                         echo _("My brother has been volunteering in a primary school in Israel for the past few years.");
@@ -142,8 +144,37 @@
                                                         echo _("The inspiration for the project came from other projects like <a target='_blank' href='http://www.khanacademy.org/'> Khanacademy</a> And a javascript learning project named <a target='_blank' href='http://www.codecademy.com/'>Codecademy</a>");
                                                     ?>
                                                 </p>
-                                                <div id="logo3"></div>            
+                                                <div id="logo3" class="logo-draw-example"></div>            
                                             </div><!--/ why was it done -->
+                                            <div class="tab-pane" id="why_to_register">
+					       <h2>     
+                                                    <?php  echo _("Why to register"); ?>
+                                                </h2>
+                                                <div class='cleaner_h20'></div>
+                                                <p>
+                                                <?php
+                                                    echo "<strong>";echo _("Save your progress") . "</strong> - " ; echo _("Your progress will be kept , and you will be able to see exactly which steps you have done before") . ".";
+                                                ?>
+                                                </p>
+                                                <p>
+                                                <?php
+                                                    echo "<strong>"; echo _("Remember your special commands") . "</strong> - " ; echo _("You can teach the turtle some new commands") . ". ";  echo _("See the lessons 'The turtle is learning'") . " , ";
+                                                    echo _("in order for the commands to be save in your next visit  you should be a register user");
+                                                ?>
+                                                </p>
+                                                <p>
+                                                <?php
+                                                   echo "<strong>"; echo _("Special lessons") . "</strong> - " ; echo _("There are special lessons available only for registered users") . ", ";
+                                                   echo _("cool lessons with cool features");
+                                                ?>
+                                                </p>
+                                                <p>
+                                                <?php
+                                                   echo "<strong>"; echo _("Its free") . "</strong> - " ; echo _("The registration is for free") . ".";
+                                                ?>
+                                                </p>
+                                                <div id="logo7" class="logo-draw-example"></div>            
+                                            </div><!--/ why to register -->
                                             <div class="tab-pane" id="who_are_we">
                                                 <h2>       
                                                     <?php echo _("Who we are ?");?>
@@ -215,23 +246,7 @@
                                                         </tr>                                                        
                                                     </tbody>
                                                 </table>
-                                                <p>
- 
-                                                    <?php
-                                                        /*echo _("Lucio  - Webmaster  and  amateur ping pong player");  echo "</br>";          
-                                                        echo _("Ofer   - Father of three , amateur entrepreneur");    echo "</br>";             
-                                                        echo _("Amir   - Colnect master , uncle of six");             echo "</br>";             
-                                                        echo _("Dana   - Tiger painter , likes to read lessons");     echo "</br>";  
-                                                        echo _("Ayelet - Full time mother");                          echo "</br>";             
-                                                        echo _("Almog  - Blogger , made his first QA steps at the age of seven"); echo "</br>";        
-                                                        echo _("Inbar  - Very talented Wii player");                  echo "</br>";          
-                                                        echo _("Raz    - QA and vegetarian");                         echo "</br>";
-                                                        echo _("Yuval  - QA and future Messi");                       echo "</br>";
-                                                         * */
-                                                        
-                                                    ?>   
-                                                </p>
-                                                <div id="logo4"></div>
+                                                <div id="logo4" class="logo-draw-example"></div>
                                             </div><!-- / Theme -->
 
                                             <div class="tab-pane" id="tricks">
@@ -247,7 +262,7 @@
                                                     echo _("The drawing that appear below actually show live logo programs !"); echo "</br>";
                                                     ?>
                                                 </p>
-                                                <div id="logo5"></div>
+                                                <div id="logo5" class="logo-draw-example"></div>
                                             </div><!-- / Tricks -->
 
                                             <div class="tab-pane" id="credits">
@@ -266,7 +281,7 @@
                                                         echo "<a target='_blank' href='http://api.jquery.com/category/plugins/templates/'> "; echo _("jquerytemplates - enable transmission of data to html") ; echo "</a>"; echo "</br>";
                                                     ?>
                                                 </p>
-                                                <div id="logo6"></div>
+                                                <div id="logo6" class="logo-draw-example"></div>
                                             </div><!-- / Credits -->
                                             
                                             <div class="tab-pane" id="contact_us">
@@ -274,6 +289,14 @@
                                                     <?php echo _("Contact us"); ?>
                                                 </h2>
                                                 <div class='cleaner_h20'></div>
+                                                <p>
+                                                <?php
+                                                    echo _("Turtle Academy") ." "; 
+                                                    echo _("is open to hear any ideas or suggestion")." ";
+                                                    echo _("or problems") . ".";
+                                                    echo _("Please contatct us.");
+                                                ?>
+                                                </p>
                                                 <p>
                                                     <a href="mailto:support@turtleacademy.com" target="_blank"> <?php echo _("Send an email"); ?> </a>
                                                 </p>
@@ -288,8 +311,8 @@
      </div> <!--/end of container-->
       <script>
             function do_logo(id ,cmd) {
-                $('#'+id).css('width', '100px').css('height', '100px').append('<canvas id="'+id+'c" width="100" height="100" style="position: absolute; z-index: 0;"></canvas>' +
-                    '<canvas id="'+id+'t" width="100" height="100" style="position: absolute; z-index: 1;"></canvas>');
+                $('#'+id).css('width', '300px').css('height', '200px').append('<canvas id="'+id+'c" width="300" height="200" style="position: absolute; z-index: 0;"></canvas>' +
+                    '<canvas id="'+id+'t" width="300" height="200" style="position: absolute; z-index: 1;"></canvas>');
                 var canvas_element2 = document.getElementById(id+"c");
                 var turtle_element2 = document.getElementById(id+"t");
                 var turtle2 = new CanvasTurtle(
@@ -301,11 +324,12 @@
                 g_logo2.run(cmd);
             } 
             //do_logo ('logo1', 'fd 20');
-            do_logo ('logo2', 'repeat 8 [fd 10 rt 360/8]');
-            do_logo ('logo3', 'repeat 10 [repeat 8 [fd 10 rt 360/8] rt 360/10]');
-            do_logo ('logo4', 'repeat 10 [fd repcount*8 rt 90] ht');
-            do_logo ('logo5', 'window repeat 10 [fd 3 * repcount repeat 3 [fd 15 rt 360/3] rt 360/10] ht');
+            do_logo ('logo2', 'cs pu setxy -40 -20 pd repeat 8 [fd 40 rt 360/8] ht');
+            do_logo ('logo3', 'repeat 10 [repeat 8 [fd 20 rt 360/8] rt 360/10] ht');
+            do_logo ('logo4', 'repeat 14 [fd repcount*8 rt 90] ht');
+            do_logo ('logo5', 'window repeat 10 [fd 5 * repcount repeat 3 [fd 18 rt 360/3] rt 360/10] ht');
             do_logo ('logo6', 'window pu home repeat 20 [ setlabelheight 20-repcount fd repcount label "HTML5Fest bk repcount rt 18 ] ht');
+            do_logo ('logo7', 'cs pu setxy -20 -20 pd repeat 8 [rt 45 repeat 4 [repeat 90 [fd 1 rt 2] rt 90]] htt');
         </script>
     <script>
         // Select language in main page

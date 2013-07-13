@@ -65,6 +65,7 @@
               
             $topbar = new topbarUtil();
             $topbarDisplay['turtleacademy'] = true ;
+            $topbarDisplay['exercise']      = true ; 
             $topbarDisplay['helpus']        = false ;
             $topbarDisplay['playground']    = false ;
             $topbarDisplay['forum']         = false ;
