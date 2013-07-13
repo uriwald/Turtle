@@ -108,7 +108,7 @@ function show_errors($action){
 			//loop out each error
 			foreach($action['text'] as $text){
 			
-				$error .= "<li><p>$text</p></li>"."\n";
+				$error .= "<li style='color:red;'><p>$text</p></li>"."\n";
 			
 			}	
 		

@@ -91,10 +91,10 @@ class collectionUtil {
 
     }
     
-    public function CollectionItemChangeAttributeVal ($mongoid , $attName , $attVal)
+    public function CollectionItemChangeAttributeVal ($mongoid , $attName , $attVal) 
     { 
         $criteria = $this->collection->findOne(array("_id" => $mongoid));
-        $cursor = $criteria;
+        $cursor = $criteria; 
         $cursor["$attName"] = $attVal ;
           $result = $this->collection->update($criteria,$cursor);
     }

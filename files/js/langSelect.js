@@ -14,7 +14,7 @@
                             if(val!="")
                                     window.location = dir + val; 
                     }}}).data("dd");
-                                                var pagename    = document.location.pathname.toString();
+                    var pagename    = document.location.pathname.toString();
                     pagename        = pagename.split("/");
                     var pageIndex   = pagename[pagename.length-1];
                     if (pageIndex == "" || pageIndex == indexPage || pageIndex == "playground")

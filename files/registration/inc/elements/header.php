@@ -1,10 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-
+    <?php
+        require_once("environment.php");
+    ?>
 	<head>
 
-		<title>Signup</title>
+		<title> <?php echo _("confirm registration"); ?></title>
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
 		<meta http-equiv="imagetoolbar" content="no" />
@@ -20,7 +22,7 @@
 
 	<body>
 
-		<div id="content">
-		
-		<h1>Thanks for registering TurtleAcademy!</h1>
+		<div id="content">	
+                    <h1><?php echo _("Thanks for registering") . " " . _("Turtle Academy"); ?></h1>
+
 		

@@ -25,6 +25,5 @@ class languageUtil {
         else
             return true;
     }
-
-}
+} 
 ?>
