@@ -96,6 +96,7 @@ $newsItems = $newscol->find($newsQuery);
         
         $topbar = new topbarUtil();
         $topbarDisplay['turtleacademy'] = true ;
+        $topbarDisplay['exercise']      = true ;  
         $topbarDisplay['helpus']        = false ;
         $topbarDisplay['playground']    = false ;
         $topbarDisplay['forum']         = false ;
@@ -184,40 +185,7 @@ foreach ($newsItems as $newsItem) {
        
       $(document).ready(function() {
            selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>turtlenews.php?locale=" , "turtlenews.php" ,"en_US" );
-           })
-          /*
-                    $('.dropdown-toggle').dropdown();
-                    $.Storage.set("locale","<?php echo $_SESSION['locale']; ?>");
-                    //Show selected lanugage from dropdown                   
-                    try { 
-                            var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
-                                    var val = data.value;
-                                    if(val!="")
-                                           window.location = "<?php echo $rootDir; ?>turtlenews.php?locale=" + val; 
-                            }}}).data("dd");
-                    var pagename    = document.location.pathname.toString();
-                            pagename        = pagename.split("/");
-                            var pageIndex   = pagename[pagename.length-1];
-                            if (pageIndex == "" || pageIndex == "turtlenews.php" )
-                                 pageIndex   = "en_US";
-                            pages.setIndexByValue(pageIndex);
-                            //$("#ver").html(msBeautify.version.msDropdown);
-                    } catch(e) {
-                            //console.log(e);	
-                    }
-                   
-
-                    //convert
-                    $("select").msDropdown();
-                    //createByJson();
-                    $("#tech").data("dd");             
-                    });
-                        function showValue(h) {
-                                    console.log(h.name, h.value);
-                            }
-                            $("#tech").change(function() {
-                                    console.log("by jquery: ", this.value);
-                            })
-                            */
+      })
+        
         </script>
 </html>

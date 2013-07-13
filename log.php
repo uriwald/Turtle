@@ -151,7 +151,7 @@
                 ?>
                 <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script> <!-- Clear storage from previoues use scripts -->
                 <?php
-                header("location: ".$rootDir."index.php" ); 
+                header("location: ".$rootDir."learn.php" ); 
             }
         }
         //Case registered user go to user page 

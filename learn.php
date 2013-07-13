@@ -112,7 +112,7 @@
             <?php
                 $topbar = new topbarUtil();
                 $topbarDisplay['turtleacademy'] = false ;
-                $topbarDisplay['exercise']      = true ;  
+                $topbarDisplay['exercise']      = false ;  
                 $topbarDisplay['helpus']        = false ;
                 $topbarDisplay['playground']    = true ;
                 $topbarDisplay['forum']         = true ;
@@ -221,7 +221,7 @@
         <script>
         // Select language in main page
       $(document).ready(function() { 
-          selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>lang/" , "index.php" ,"en" );
+          selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>lang/" , "learn.php" ,"en" );
 
                     $('#savePic').click(function() {
                          var canvas = document.getElementById("sandbox");

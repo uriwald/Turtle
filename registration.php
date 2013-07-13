@@ -241,7 +241,7 @@
                     $existUsername          = $users->count($queryUsername);
                     
                     //String for checking Email and username validation
-                    $strEmailExist          = _("Email is being use by a registered user");
+                    $strEmailExist          = _("Email is being used by a registered user");
                     $strForgotPass          = _("if you forgot your password please press reset password");
                     $strUserNExist          = _("Username is already exist in the system");
                     $strChooseNewUN         = _("please choose another username");
