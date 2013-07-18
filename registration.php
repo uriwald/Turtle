@@ -183,8 +183,10 @@
 
             var c = $(this).attr('data-switch');
             $('#sign-in-form').slideUp(300, function(){ $(this).addClass('hide'); });
-            $('#forgot-password-form').slideUp(300, function(){ $(this).addClass('hide'); });
-            $('#'+c).slideDown(300, function(){
+            $('#forgot-password-form').slideUp(300, function(){ 
+                $(this).addClass('hide'); 
+            });
+               $('#'+c).slideDown(300, function(){
                 $(this).removeClass('hide');
                 $('input:first', this).focus();
              });
@@ -367,6 +369,9 @@
                 $strContinueReset       = _("Please check your email to continue with password reset");
                 $strErrSendConfirmMail  = _("Error while sending confirm Email");
                 $strContactSupoort      = _("please contact the TurtleAcademy support");
+                                //In case the user properly inserted into the database
+                $strWelcomeMsg      = _("Welcome to TurtleAcademy");
+                $strResetMsg        = _("TurtleAcademy password reset"); 
                 if($userConfirmResult){
                         //include the swift class
                         include_once $phpDirPath .'swift/swift_required.php';
@@ -375,7 +380,10 @@
                         $info = array(
                                 'username' => $username,
                                 'email' => $email,
-                                'key' => $key);
+                                'key' => $key ,
+                                'locale'     => $locale,
+                                'msgWelcome' => $strWelcomeMsg,
+                                'msgReset'   => $strResetMsg);
                         //send the email
                         if(send_email($info , $sitePath , "resetpass_template")){
                             $action['result'] = 'success';
@@ -478,6 +486,20 @@
                 </form>
             </div>    
             <div class="well span5">
+                 <form class='form-stacked hide' id='forgot-password-form' method='post'> 
+                    <h2><?php echo _("Forgot Password"); ?></h2>
+                    <div class='cleaner_h20'></div>
+                    <div class="clearfix">
+                        <label for="email_pwd" id="forgotEmail"><?php echo _("Email"); ?></label>
+                        <div class="input">
+                            <input id="email_pwd" name="email_pwd" size="30" type="text"/>
+                            <div class='cleaner_h10'></div>
+                            <span class='switch' data-switch='sign-in-form'> <?php echo _("Never mind, I remember my password"); ?></span>
+                        </div>
+                    </div>           
+                    <div class='cleaner_h20'></div>
+                    <input type='submit' value='<?php echo _("Remind me"); ?>&raquo;' id='submit_pwd' name='submit_pwd' class="btn primary"/>
+                 </form>
                 <form class='form-stacked' id='sign-in-form' action='log.php' method='post'>
                     <h2><?php echo _("Sign In"); ?></h2>
                     <?php
@@ -498,11 +520,6 @@
                         <label for="username" id="signInUserNameLbl"><?php echo _("Username"); ?></label>
                         <div class="input">
                             <input id="username" name="username" size="30" type="text"/>
-                            <!--
-                            <span class="help-block">
-                            <span class='label important'>Warning</span> the username already exists
-                            </span>
-                            -->
                         </div>
                     </div>
                     <input id="comefrom" name="comefrom" size="30" type="text" value="registration.php" style="display:none;"/>        
@@ -510,11 +527,6 @@
                         <label for="password" id="signInPasswordLbl"><?php echo _("Password"); ?></label>
                         <div class="input">
                             <input id="password" name="password" size="30" type="password"/>
-                            <!--
-                            <span class="help-block">
-                            <span class='label important'>Warning</span> too easy - even I can guess it
-                        </span>
-                        -->
                         </div>
                     </div>           
                     <ul class="inputs-list">
@@ -534,10 +546,10 @@
                     <a href="<?php echo $googleid->authUrl() ?>" class="zocial google"><?php echo _("Sign In");echo " ";echo _("with google")?></a>
                     </br></br>
                     <a href="<?php echo $yahooid->authUrl() ?>" class="zocial yahoo"><?php echo _("Sign In");echo " ";echo _("with Yahoo")?></a>
-                    -->
+                   --> 
 
                 </form>        
-                <form class='form-stacked hide' id='forgot-password-form' method='post'>
+                <form class='form-stacked' id='forgot-password-form' method='post'> 
                     <h2><?php echo _("Forgot Password"); ?></h2>
                     <div class='cleaner_h20'></div>
                     <div class="clearfix">
@@ -550,7 +562,7 @@
                     </div>           
                     <div class='cleaner_h20'></div>
                     <input type='submit' value='<?php echo _("Remind me"); ?>&raquo;' id='submit_pwd' name='submit_pwd' class="btn primary"/>
-                </form>
+                 </form>
             </div>
         </div>
         <div class='cleaner'></div>
