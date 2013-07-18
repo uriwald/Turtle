@@ -3,11 +3,16 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<?php
-$boostrapPath = "files/bootstrap/";
-?>
+<?php 
+    if (!isset ($rootDir))
+        $rootDir = "/";
+    $boostrapPath =   $rootDir."files/bootstrap/";
+        ?>
+        <script type="application/javascript" src="<?php echo $boostrapPath ."js/bootstrap.js"; ?>"></script>
+        <script type="application/javascript" src="<?php echo $boostrapPath ."js/bootstrap.min.js"; ?>"></script>
+        <link href="<?php echo $boostrapPath ."css/bootstrap.all.css"; ?>" rel="stylesheet"> 
+        <!--
+        <link href="<?php echo $boostrapPath ."css/bootstrap.css"; ?>" rel="stylesheet"> 
+        <link href="<?php echo $boostrapPath ."twitter-bootstrap-sample-page-layouts-master/styles/bootstrap.min.css" ;?>" rel="stylesheet"> 
+        -->
 
-        <script type="application/javascript" src="files/bootstrap/js/bootstrap.js"></script> 
-        <script type="application/javascript" src="files/bootstrap/js/bootstrap.min.js"></script> 
-        <link href="files/bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="files/bootstrap/twitter-bootstrap-sample-page-layouts-master/styles/bootstrap.min.css" rel="stylesheet"> 

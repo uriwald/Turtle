@@ -4,9 +4,11 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <?php
-$ddPath = "files/test/dd/";
+    if (!isset ($rootDir))
+        $rootDir = "/";
+    $ddPath =  $rootDir . "files/test/dd/"; 
 ?>
-
+ 
         <!-- Starting the dropdown dd directory related -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="<?php echo $ddPath . 'js/jquery/jquery-1.8.2.min.js' ?>"></script> 
