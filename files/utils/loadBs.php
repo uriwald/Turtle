@@ -10,22 +10,26 @@
  *
  * @author Lucio
  */
-class loadBs {
-    private $root;
-    private $bp; 
-    public function __construct($root)  
+include_once 'loadFiles.php';
+class loadBs extends loadFiles{
+    public function __construct($root , $env ,$address = "files/bootstrap/")  
      {
-            $this->root = $root; 
-            $this->bp= $root."files/bootstrap/";
-
+            parent::__construct($root , $env ,$address ); 
      }  
-    public function loadFiles( $js = true , $js_min = true , $css = true , ){
+    public function loadFiles( $js = true , $js_min = true , $css = true  ){
         if ($js == "true")
-            echo "<script type='application/javascript' src='". $this->bp . "js/bootstrap.js' ></script>" ; 
+        {
+                echo "<script type='application/javascript' src='". $this->addr . "js/bootstrap.js' ></script>" ; 
+        }
         if ($js_min == "true")    
-             echo "<script type='application/javascript' src='". $this->bp . "js/bootstrap.min.js' ></script>" ; 
+        {
+            //if ($this->env == "local")
+                echo "<script type='application/javascript' src='". $this->addr . "js/bootstrap.min.js' ></script>" ; 
+            //else
+            //    echo "<script src='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.1/bootstrap.min.js'>";
+        }
         if ($css == "true")
-            echo "<link href='" . $this->bp . "css/bootstrap.all.css' rel='stylesheet' >" ; 
+            echo "<link href='" . $this->addr . "css/bootstrap.all.css' rel='stylesheet' >" ; 
         //will try to use to boostrap.all file instead of 2 diffrent files
         
         /*
