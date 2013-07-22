@@ -15,7 +15,7 @@
         }
     } 
     else
-    { 
+    {
         $_SESSION['locale'] =  $locale;  
     }
     require_once("environment.php");
@@ -44,9 +44,24 @@
 
         </title>      
         <?php
+        /*
              include_once("files/inc/dropdowndef.php");
              include_once("files/inc/jquerydef.php");
-             include_once("files/inc/boostrapdef.php");
+             include_once("files/inc/boostrapdef.php"); */
+            require_once("files/utils/loadDd.php");
+            require_once("files/utils/loadJq.php");
+            require_once("files/utils/loadBs.php");
+            require_once("files/utils/loadTurtle.php");
+            $dd = new loadDd($rootDir , $env , "files/test/dd/"); 
+            $jq = new loadJq($rootDir , $env );
+            $bs = new loadBs($rootDir , $env , "files/bootstrap/");
+            $lt = new loadTurtle($locale , $rootDir , $env  );
+            $dd->loadFiles(true, true, true, false, true); /* 182 min.js , dd.js , dd.css , skin2.css , flags.css*/
+            $jq->loadFiles(true, false, true, true, true, false , true); /* jquery-ui.min , alerts.js , tmpl.js , storage.js , custom.css */
+            $bs->loadFiles(false , true ,true , true); /*bs.js , bs_min.js ,bootstrap-carousel.js , bs_all.css */
+            $lt->loadFiles(); /*langSelect.js , logo.js , turtle.js , floodfill.js , canvas2image.js , readMongo , Gettext.js , interface.js , jqconsole.js */
+             
+            
              if (isset($_SESSION['username']))
                 { 
         ?>   
@@ -54,11 +69,6 @@
              <?php
                 }
               ?> 
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select -->                         
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="text/javascript" src="<?php echo $rootDir; ?>files/floodfill.js"></script>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
-        <script src="http://www.nihilogic.dk/labs/canvas2image/canvas2image.js"></script>
         <?php
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
             $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
@@ -68,20 +78,31 @@
         <script type="text/javascript">
                 var locale = "<?php echo $locale; ?>";
         </script>
-        <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
         <script type="application/javascript" src="<?php echo $rootDir; ?>readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
+     
+ <?php
+        /*
+            if (($env == "local"))
+            {
+          
+         ?>
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/jqconsole.js"></script> <!-- Console -->
+        <?php
+            }  else {
+               //Need to fix location problemm
+               echo "<script src='http:////cdnjs.cloudflare.com/ajax/libs/jq-console/2.7.7/jqconsole.min.js'>"; 
+           }
+         * */
+
+        ?>
         
         <!-- Adding new boostrap for crusel --> 
        
-        <script src="<?php echo $rootDir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-carousel.js"></script>
-        <link href="<?php echo $rootDir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">
+   
+         
+        <!-- End of adding boostrap for crusel -->
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/>
        <?php
              cssUtils::loadcss($locale, $rootDir . "files/css/interface");    
              cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
@@ -134,12 +155,7 @@
                 
                 
             </div>
-            <!-- 
-            <div id="slider" class="span16" style="height : 40px;">
-                <a class="carousel-control left" id="carousel-control-left" href="#myCarousel" data-slide="prev" style="position : relative; float:left;">&lsaquo;</a>
-                <a class="carousel-control right" id="carousel-control-right" href="#myCarousel" data-slide="next" style="position : relative; float:right;">&rsaquo;</a>
-            </div> 
-            --> 
+
             <div id="logoer"> 
                 <div id="display"> 
                     <!-- <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content" style="position: absolute; z-index: 0;">-->
@@ -265,7 +281,7 @@
 	
                     //$("#ver").html(msBeautify.version.msDropdown);
 
-                    //convert
+                    //convert 
                     $("select").msDropdown();
                     //createByJson();
                     $("#tech").data("dd");             
