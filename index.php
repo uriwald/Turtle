@@ -37,20 +37,28 @@ $currentPage = $parts[count($parts) - 1];
 
         </title>      
             <?php
-            include_once("files/inc/dropdowndef.php");
-            include_once("files/inc/jquerydef.php");
-            include_once("files/inc/boostrapdef.php");
+            require_once("files/utils/loadDd.php");
+            require_once("files/utils/loadJq.php");
+            require_once("files/utils/loadBs.php");
+            require_once("files/utils/loadTurtle.php");
+            $dd = new loadDd($rootDir , $env , "files/test/dd/"); 
+            $jq = new loadJq($rootDir , $env );
+            $bs = new loadBs($rootDir , $env , "files/bootstrap/");
+            $lt = new loadTurtle($locale , $rootDir , $env  );
+             $dd->loadFiles(true, true, true, false, true); /* 182 min.js , dd.js , dd.css , skin2.css , flags.css*/
+            $jq->loadFiles(false , false , false , true , false); /* jquery-ui.min.js , alerts.js , tmpl.js , storage.js , custom.css */
+            $bs->loadFiles(false , true , true , true); /* 1 bs.js ,2 bs_min.js ,3 bootstrap-carousel.js ,4 bs_all.css */
+            $lt->loadFiles(true,true,true,false,false,false,true ,false ,false); /* 1 langSelect.js ,2 logo.js ,3 turtle.js ,4 floodfill.js ,5 canvas2image.js ,6 readMongo ,7 Gettext.js ,8 interface.js ,9 jqconsole.js */
+             
             if (isset($_SESSION['username'])) {
                 ?>   
             <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
             <?php
         }
         ?>
-        <script src="<?php echo $rootDir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-carousel.js"></script>
-        <!--<link href="<?php echo $rootDir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet"> -->
+
         
         
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select -->                         
         <?php
         $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
         $po_file = "<link   rel='gettext' type='application/x-po' href='" . $rootDir . "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
@@ -60,20 +68,9 @@ $currentPage = $parts[count($parts) - 1];
         <script type="text/javascript">
             var locale = "<?php echo $locale; ?>";
         </script>
-        <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
 
-        <!-- Adding new boostrap for crusel --> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/>
-        
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
         <?php
-            cssUtils::loadcss($locale, $rootDir . "files/css/interface");
-            cssUtils::loadcss($locale, $rootDir . "files/css/doc");
+            //cssUtils::loadcss($locale, $rootDir . "files/css/doc");
             cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
             cssUtils::loadcss($locale, $rootDir . "files/css/index");
         ?>     
@@ -165,14 +162,6 @@ $currentPage = $parts[count($parts) - 1];
                 </div>
             </div>
             <div id="myCarousel" class="carousel slide">
-                <!--
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <!-- Carousel items -->
-
                 <div class="carousel-inner" id="crousel-quote">
                     <div class="active item">
                         <div class="carousel"> 
