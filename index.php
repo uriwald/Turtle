@@ -39,7 +39,7 @@ $currentPage = $parts[count($parts) - 1];
             <?php
             require_once("files/utils/loadDd.php");
             require_once("files/utils/loadJq.php");
-            require_once("files/utils/loadBs.php");
+            require_once("files/utils/loadBs.php"); 
             require_once("files/utils/loadTurtle.php");
             $dd = new loadDd($rootDir , $env , "files/test/dd/"); 
             $jq = new loadJq($rootDir , $env );
@@ -70,7 +70,6 @@ $currentPage = $parts[count($parts) - 1];
         </script>
 
         <?php
-            //cssUtils::loadcss($locale, $rootDir . "files/css/doc");
             cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
             cssUtils::loadcss($locale, $rootDir . "files/css/index");
         ?>     
@@ -206,10 +205,7 @@ $currentPage = $parts[count($parts) - 1];
                     <p><?php echo  _("In the (quite near) future everything we will do will require basic programming abilities, and therefore it is important to learn this skill and learn to like it");?></p>
                     <p><?php echo  _("Making programming visual provides very quick rewards for the efforts, making it perfect for young children who often have trouble setting long term goals")?> </p>
                 </div>
-                <div class="span1 row-info-div">
-                    <h2> <!--<img src='images/sample/icon1.png' alt=''/> --></h2>
-                    <p></p>
-                </div>
+
                 <div class="span5 row-info-div">
                     <h2><?php echo _("Want to help"); echo "?"; ?> <!--<img src='images/sample/icon2.png' alt=''/>--> </h2>
                     <p> <?php echo _("In order to make programming approachable for more people we need volunteers to translate the site to their own native languages");?>.</p>
