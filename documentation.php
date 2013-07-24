@@ -38,6 +38,7 @@
                     $locale = $_GET['locale'];
                 else
                      $locale = "en_US";
+            $lang       =  substr($locale, 0, 2);  
             $localePage =   substr($locale, 0, -3); 
             require_once("localization.php");
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
@@ -94,26 +95,24 @@
       <!-- Content
        ================================================== -->
      <div class="container" role="docs">
-     
-      <div class="row">    
-
+      <div class="row" lang="<?php echo $lang?>">    
                     <article class="span18 docs">
-			            <header class="page-header" id="page-header"><h1><?php echo _("About") ; echo " ";  echo _("Turtle academy");?></h1></header>
-                                    <div class="span5" id="doc_section"> 
+			            <header class="page-header" id="page-header" lang="<?php echo $lang?>"><h1><?php echo _("About") ; echo " ";  echo _("Turtle academy");?></h1></header>
+                                    <div class="span5" id="doc_section" lang="<?php echo $lang?>"> 
 					<div class="well" style="padding: 8px 0;">
-						<ul class="nav nav-list" id="Doc">
-							<li class="nav-header" id="about"><?php echo _("About") ; ?></li>
-							<li style="width:100%;" class="active"><a class="innerLink" href="#about_the_project" data-toggle="tab"><i class="icon-heart innerIcon"></i> <?php  echo _("About the project"); ?> </a></li>
-                                                        <li style="width:100%;"><a class="innerLink" href="#why_was_it_done" data-toggle="tab"><i class="icon-leaf innerIcon"></i> <?php  echo _("Why was it done"); ?> </a></li>
-                                                        <li style="width:100%;"><a class="innerLink" href="#why_to_register" data-toggle="tab"><i class="icon-bell innerIcon"></i>  <?php echo _("Why to register ?");?> </a></li> 
-							<li style="width:100%;"><a class="innerLink" href="#who_are_we" data-toggle="tab"><i class="icon-fire innerIcon"></i>  <?php echo _("Who we are ?");?> </a></li>
-							<li style="width:100%;"><a class="innerLink" href="#tricks" data-toggle="tab"><i class=" icon-star innerIcon"></i> <?php echo _("Tricks"); ?></a></li>
-							<li style="width:100%;"><a class="innerLink" href="#credits" data-toggle="tab"><i class="icon-thumbs-up innerIcon"></i> <?php  echo _("Credits");?></a></li>
-                                                        <li style="width:100%;"><a class="innerLink" href="#contact_us" data-toggle="tab"><i class="icon-envelope innerIcon"></i> <?php echo _("Contact us"); ?></a></li>
+						<ul class="nav nav-list" id="Doc" lang="<?php echo $lang?>">
+							<li class="nav-header" id="about" lang="<?php echo $lang?>"><?php echo _("About") ; ?></li>
+							<li style="width:100%;" class="active"><a class="innerLink" lang="<?php echo $lang?>" href="#about_the_project" data-toggle="tab"><i class="icon-heart innerIcon" lang="<?php echo $lang?>"></i> <?php  echo _("About the project"); ?> </a></li>
+                                                        <li style="width:100%;"><a class="innerLink" lang="<?php echo $lang?>" href="#why_was_it_done" data-toggle="tab"><i class="icon-leaf innerIcon" lang="<?php echo $lang?>"></i> <?php  echo _("Why was it done"); ?> </a></li>
+                                                        <li style="width:100%;"><a class="innerLink" lang="<?php echo $lang?>" href="#why_to_register" data-toggle="tab"><i class="icon-bell innerIcon" lang="<?php echo $lang?>"></i>  <?php echo _("Why to register ?");?> </a></li> 
+							<li style="width:100%;"><a class="innerLink" lang="<?php echo $lang?>" href="#who_are_we" data-toggle="tab"><i class="icon-fire innerIcon" lang="<?php echo $lang?>"></i>  <?php echo _("Who we are ?");?> </a></li>
+							<li style="width:100%;"><a class="innerLink" lang="<?php echo $lang?>" href="#tricks" data-toggle="tab"><i class=" icon-star innerIcon" lang="<?php echo $lang?>"></i> <?php echo _("Tricks"); ?></a></li>
+							<li style="width:100%;"><a class="innerLink" lang="<?php echo $lang?>" href="#credits" data-toggle="tab"><i class="icon-thumbs-up innerIcon" lang="<?php echo $lang?>"></i> <?php  echo _("Credits");?></a></li>
+                                                        <li style="width:100%;"><a class="innerLink" lang="<?php echo $lang?>" href="#contact_us" data-toggle="tab"><i class="icon-envelope innerIcon" lang="<?php echo $lang?>"></i> <?php echo _("Contact us"); ?></a></li>
 						</ul>
 					</div>
                                         </div>
-				<div id="doc" class="span10">
+				<div id="doc" class="span10" lang="<?php echo $lang?>">
                                     <div class="tab-content">
                                             <div class="tab-pane active" id="about_the_project">
                                                 <h2>
@@ -180,7 +179,7 @@
                                                     <?php echo _("Who we are ?");?>
                                                 </h2>
                                                 <div class='cleaner_h20'></div>
-                                                <table class='zebra-striped' id='main-items'>
+                                                <table class='zebra-striped' id='main-items' lang="<?php echo $lang?>">
                                                     <thead>
                                                         <tr>
                                                             <th class='span2'></th>
