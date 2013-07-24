@@ -5,7 +5,7 @@
     Description:
         Purpose of the stylesheet follows.
 */
-
+/*
 root { 
     display: block;
 }
@@ -15,19 +15,24 @@ root {
 .row{
     float:right;
 } 
+*/
 a.innerLink{
+    /*
     float :right;
     width: 100%;
     text-align: right;
-}
+    */
+} 
 i.innerIcon{
+    /*
     float :right;
     margin-top: 3px;
     margin-left: 5px;
+    */
 }
-
+/*
 #doc_section{
-    float:right;
+    float:right; 
 }
 #doc{
     direction:rtl;
@@ -42,3 +47,4 @@ i.innerIcon{
 td.whoarewe , th.whoarewe{
     text-align: right;
 }
+*/
