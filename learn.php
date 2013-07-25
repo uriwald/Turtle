@@ -66,8 +66,10 @@
                 { 
         ?>   
              <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
+             <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/>
+             <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/doc.css' type='text/css' media='all'/>
              <?php
-                }
+                } 
               ?> 
         <?php
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
@@ -105,8 +107,8 @@
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
        <?php
              cssUtils::loadcss($locale, $rootDir . "files/css/interface");    
-             cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
-             cssUtils::loadcss($locale, $rootDir . "files/css/topbar"); 
+             //cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
+             //cssUtils::loadcss($locale, $rootDir . "files/css/topbar"); 
         ?>     
         <!-- Disable script when working without internet -->
         <!-- Google Analytics Tracking --> 

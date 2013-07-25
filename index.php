@@ -14,6 +14,7 @@
     } else {
         $_SESSION['locale'] = $locale;
     }
+    $lang       =  substr($locale, 0, 2);
     require_once("environment.php");
     require_once("localization.php");
     require_once("files/footer.php");
@@ -57,9 +58,11 @@ $currentPage = $parts[count($parts) - 1];
         }
         ?>
 
-        
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/index.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/>
         
         <?php
+        
         $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
         $po_file = "<link   rel='gettext' type='application/x-po' href='" . $rootDir . "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
         if (file_exists($file_path))
@@ -70,8 +73,8 @@ $currentPage = $parts[count($parts) - 1];
         </script>
 
         <?php
-            cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
-            cssUtils::loadcss($locale, $rootDir . "files/css/index");
+            //cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
+            //cssUtils::loadcss($locale, $rootDir . "files/css/index");
         ?>     
         <!-- Google Analytics Tracking --> 
         <script type="application/javascript"> 
@@ -117,7 +120,7 @@ $currentPage = $parts[count($parts) - 1];
         ?>
         <div class="container">
             <!-- Main hero unit for a primary marketing message or call to action -->
-            <div class="hero-unit" id="hero-top">
+            <div class="hero-unit" id="hero-top" lang="<?php echo $lang?>">
                 <!--
                 <img class='pull-right' src='files/turtles.png' alt=''/>
                 -->
@@ -126,7 +129,7 @@ $currentPage = $parts[count($parts) - 1];
                 <h2 id="hero-secondary-title"><?php echo _("The easy way to learn programming");?></h2>
                 <p class="top"><?php echo _("Turtle Academy makes it surprisingly easy to start creating amazing shapes using the LOGO language");?></p>
                 <p class="top"><?php echo _("Here are some examples for easy and fun programming");?></p>
-                <div class='span14 example-continer'>
+                <div class='span14 example-continer' lang="<?php echo $lang?>">
                     <div class="span4 example" >
                         <p class="example-title"> <?php echo _("Create a Spiral");?></p>
                         <p class="example-code"> <?php echo _("for [i 10 100 10]     [fd :i rt 90] ht");?> </p>
@@ -155,13 +158,13 @@ $currentPage = $parts[count($parts) - 1];
                 <div id="start-logo" align="center">
                     <p class="top" id="start-logo-p"><strong><?php echo _("Let's start having fun programming");?></strong></p>
                     <div id="goto-buttons">
-                        <p class="top"><a class="btn primary large indbtn" href ="<?php echo $rootDir ;?>learn.php"><?php  echo _("Free Lessons");?> </a> <a class="btn primary large indbtn" href ="registration.php"><?php  echo _("Sign In");?></a></p>
+                        <p class="top"><a class="btn primary large indbtn" href ="<?php echo $rootDir ;?>learn.php"><?php  echo _("Free Lessons");?> </a> <a class="btn primary large indbtn" href ="<?php echo $rootDir ;?>registration.php"><?php  echo _("Sign In");?></a></p>
 
                     </div> 
                 </div>
             </div>
             <div id="myCarousel" class="carousel slide">
-                <div class="carousel-inner" id="crousel-quote">
+                <div class="carousel-inner" id="crousel-quote" lang="<?php echo $lang?>">
                     <div class="active item">
                         <div class="carousel"> 
                             <div>
@@ -194,7 +197,7 @@ $currentPage = $parts[count($parts) - 1];
 
                 
             <!-- Example row of columns --> 
-            <div class="row span16" id="row-info"> 
+            <div class="row span16" id="row-info" lang="<?php echo $lang?>"> 
                 <div class="span1 row-info-div" style="width:30px">
                     <h2> <!--<img src='images/sample/icon1.png' alt=''/> --></h2>
                     <p></p>

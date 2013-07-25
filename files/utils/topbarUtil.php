@@ -11,21 +11,25 @@ class topbarUtil {
     {
         if(session_id() == '') 
             session_start();
-        $urlRedirect = substr($_SESSION['locale'],0,2);
+        if (isset($_SESSION['locale']))
+            $urlRedirect = substr($_SESSION['locale'],0,2);
+        else 
+            $urlRedirect = "en";
+       $lang       =  $urlRedirect;     
     ?>    
     
-        <div class="topbar" id="topbarMainDiv"> 
+        <div class="topbar" id="topbarMainDiv" > 
                         <div class="fill" id="topbarfill">
                             <div class="container span16" id="topbarContainer"> 
                                 <?php
                                     if ($showIcon)
                                     {
                                     ?>
-                                <a href="<?php echo $rootDir; ?>index.php" alt="Home page"><img class="brand" id="turtleimg" src="<?php echo $rootDir; ?>files/turtles.png" /></a> 
+                                <a href="<?php echo $rootDir; ?>index.php" alt="Home page"><img class="brand" id="turtleimg" lang="<?php echo $lang?>" src="<?php echo $rootDir; ?>files/turtles.png" /></a> 
                                     <?php
                                     }//Close show icon
                                     ?>
-                                <ul class="nav" id="turtleHeaderUl"> 
+                                <ul class="nav" id="turtleHeaderUl" lang="<?php echo $lang?>"> 
                                     <?php
 
                                         if ($topbarDisplay['turtleacademy'] == "true")
@@ -65,7 +69,7 @@ class topbarUtil {
 
                                 <form class="<?php  
                                                     echo $class . " form-inline";                                
-                                            ?>" action="" id="turtleHeaderLanguage">  
+                                            ?>" action="" id="turtleHeaderLanguage" lang="<?php echo $lang?>">  
                                     <select name="selectedLanguage" id="selectedLanguage" style="width:120px;"> 
                                         <option value='<?php echo $language['en']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
                                         <option value='<?php echo $language['es']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
@@ -113,16 +117,15 @@ class topbarUtil {
                                         if($signUpDisplay == "true")
                                         {
                                 ?>       
-                                        <ul class="nav <?php echo $login ?>" id="turtleHeaderLogIn"> 
-
-                                            <li> <a class='nava' href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><strong><?php echo _("Login");?></strong></a></li> 
+                                        <ul class="nav <?php echo $login ?>" id="turtleHeaderLogIn" lang="<?php echo $lang?>"> 
+                                            <li> <a class='nava' href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin" lang="<?php echo $lang?>"><strong><?php echo _("Login");?></strong></a></li> 
                                             <!--<button id="menuRegBtn"><?php echo _("Sign Up for free");?></button> -->
                                             <li id="registrateBtn" ><a id="menuRegBtn" href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li>
                                         </ul>                         
                                 <?php
                                         } //End of if condition ? show signUP
                                     }
-                                ?>
+                                ?> 
                             </div> 
                         </div>            
                     </div> <!-- End of Top menu --> 

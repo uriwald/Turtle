@@ -26,6 +26,7 @@ root {
 #hero-main-title{
     /*color : #00007A;;*/ 
     color : #666;
+    margin-top: 0px;
 }
 .carousel > div >h1 , #running-quote{
     color:purple;
@@ -73,10 +74,16 @@ p.top{
 #row-info{
     margin-left: -1px;
 }
+
 #hero-top , #crousel-quote ,#row-info{
     border-radius: 10px 10px 10px 10px;
      border : 1px solid black ;
 }
+
+:lang(he)#hero-top, :lang(he)#crousel-quote ,:lang(he)#row-info{
+     direction: rtl; 
+}
+
 #row-info{
     background-color: #D6D6C2;
 }
@@ -98,8 +105,18 @@ p.example-title{
 .span4 {
     background:white; border-radius: 5px; text-align: center;
 }
+
 .example-continer{
     margin-top: 10px;
+}
+:lang(he).example-continer{
+    float: right;
+}
+:lang(he).example-continer > div{
+    float: right;
+}
+:lang(he)#row-info > div{
+    float: right;
 }
 .example{
     border : 1px solid black ;
@@ -111,3 +128,19 @@ p.example-title{
 .btn.large.indbtn{ 
     font-size: 30px;
 }
+
+/*
+#hero-top , #crousel-quote , #row-info{
+    direction: rtl;
+}
+
+.example{
+    float:right;
+}
+.example-continer{
+    float: right;
+}
+.row div.row-info-div{
+    float: right;
+}
+*/
