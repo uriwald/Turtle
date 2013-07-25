@@ -1,11 +1,14 @@
 <?php
 if (session_id() == '')
     session_start();
-
+require_once("environment.php");
+require_once("localization.php");
 //Setting the locale
 if (!isset($locale)) {
     if (isset($_SESSION['locale']))
+    {
         $locale = $_SESSION['locale'];
+    }
     else {
         $locale = "en_US";
         $_SESSION['locale'] = "en_US";
@@ -13,9 +16,9 @@ if (!isset($locale)) {
 } else {
     $_SESSION['locale'] = $locale;
 }
-  $localePage =   substr($locale, 0, -3); 
-require_once("environment.php");
-require_once("localization.php");
+  $lang       =  substr($locale, 0, 2);
+
+
 require_once("files/footer.php");
 require_once("files/cssUtils.php");
 require_once ('files/utils/topbarUtil.php');
@@ -33,48 +36,40 @@ $newsItems = $newscol->find($newsQuery);
         <meta charset="utf-8"> 
         <title>TurtleAcademy news</title> 
         <?php
-             include_once("files/inc/dropdowndef.php");
-             include_once("files/inc/jquerydef.php");
-             include_once("files/inc/boostrapdef.php");
+            require_once("files/utils/loadDd.php");
+            require_once("files/utils/loadJq.php");
+            require_once("files/utils/loadBs.php");
+            require_once("files/utils/loadTurtle.php");
+            $dd = new loadDd($rootDir , $env , "files/test/dd/"); 
+            $jq = new loadJq($rootDir , $env );
+            $bs = new loadBs($rootDir , $env , "files/bootstrap/");
+            $lt = new loadTurtle($locale , $rootDir , $env  );
+            $dd->loadFiles(true, true, true, false, true); /* 182 min.js , dd.js , dd.css , skin2.css , flags.css*/
+            $jq->loadFiles(true, false, true, true, true, false , true); /* jquery-ui.min , alerts.js , tmpl.js , storage.js , custom.css */
+            $bs->loadFiles(false , true ,true , true); /*bs.js , bs_min.js ,bootstrap-carousel.js , bs_all.css */
+            $lt->loadFiles(true,false,false,false,false,false,true,false,false); /*langSelect.js , logo.js , turtle.js , floodfill.js , canvas2image.js , readMongo , Gettext.js , interface.js , jqconsole.js */
+            
         ?>
-        <meta name="description" content="Twitter Bootstrap ScrollSpy example. You may also learn usage of navbar and dropdown.">
-        <link href="files/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet"> 
-        <style type="text/css">
-            .scrollspy-example {
-                height: 200px;
-                overflow: auto;
-                position: relative;
-            }
-        </style>
+        <meta name="description" content="Twitter Bootstrap ScrollSpy example. You may also learn usage of navbar and dropdown.">  
 
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select --> 
         
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
         <?php
         $file_path = "../locale/" . $locale . "/LC_MESSAGES/messages.po";
         $po_file = "<link   rel='gettext' type='application/x-po' href='../locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
-        if (file_exists($file_path))
+        if (file_exists($file_path)) 
             echo $po_file;
         ?>        
         <script type="text/javascript">
             var locale = "<?php echo $locale; ?>";
         </script>
         <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>readMongo.php?locale=<?php echo $locale ?>"></script> <!-- Lessons scripts -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
 
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/jqconsole.js"></script> <!-- Console -->
-
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
         <?php
         cssUtils::loadcss($locale, $rootDir . "files/css/interface");
-        cssUtils::loadcss($locale, $rootDir . "files/css/doc");
-        cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
-        cssUtils::loadcss($locale, $rootDir . "files/css/news");
-        ?>     
+        ?>    
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/doc.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/news.css' type='text/css' media='all'/>
         <!-- Disable script when working without internet -->
         <!-- Google Analytics Tracking --> 
         <script type="application/javascript"> 
@@ -105,20 +100,20 @@ $newsItems = $newscol->find($newsQuery);
         $topbarDisplay['sample']        = false ;
         $signUpDisplay                  = true ;
         $languagesDisplay               = true ;
-        $language['en'] = "en_US";$language['ru'] = "ru_RU";
-        $language['es'] = "es_AR";$language['zh'] = "zh_CN";$language['he'] = "he_IL";
+        $language['en'] = "en";$language['ru'] = "ru";
+        $language['es'] = "es";$language['zh'] = "zh";$language['he'] = "he";
         $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay ,
                $language ,  $_SESSION);
         ?>
        
-        <div id="turtleNewsBody" class="span16 columns" style="margin:0 auto;float:none;"> 
+        <div id="turtleNewsBody" class="span16 columns" lang="<?php echo $lang?>"> 
             <h2><?php echo _("The Turtle news"); ?></h2>
             <p><?php echo _("Here you will find updates about the turtle development"); ?></p>
 
-                <div id="navbarExample" class="navbar navbar-static">
+                <div id="navbarExample" class="navbar navbar-static" lang="<?php echo $lang?>">
                     <div class="navbar-inner" id="navbar-inner-id">
                         <div class="container" style="width: auto;">
-                            <a id="newsBarBrand" class="brand" href="#"><?php echo _('TurtleAcademy'); echo " "; echo _("news"); ?></a>
+                            <a id="newsBarBrand" class="brand" lang="<?php echo $lang?>" href="#"><?php echo _('TurtleAcademy'); echo " "; echo _("news"); ?></a>
                             <ul class="nav newsmenu">
                                 <?php
                                     $i = 1 ;
@@ -164,8 +159,8 @@ foreach ($newsItems as $newsItem) {
     if (strlen($headline) > 3) //Check if the header is valid for this language
     {
     ?> 
-                <div data-spy="scroll" id="divScroll" data-target="#navbarExample" data-offset="50" class="scrollspy-example">
-                    <h3 id="<?php echo $itemid ?>"> <span><?php echo $headline ?> </span> <span id="newsDate"><?php echo $date; ?> </span></h3>
+                <div data-spy="scroll" id="divScroll" data-target="#navbarExample" data-offset="50" class="scrollspy-example" lang="<?php echo $lang?>">
+                    <h3 id="<?php echo $itemid ?>"> <span><?php echo $headline ?> </span> <span id="newsDate" lang="<?php echo $lang?>"><?php echo $date; ?> </span></h3>
                     <p><?php echo $context; ?></p>
                 </div>
     <?php
@@ -184,7 +179,7 @@ foreach ($newsItems as $newsItem) {
         // Select language in main page
        
       $(document).ready(function() {
-           selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>turtlenews.php?locale=" , "turtlenews.php" ,"en_US" );
+           selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>news/" , "turtlenews.php" ,"en_US" );
       })
         
         </script>

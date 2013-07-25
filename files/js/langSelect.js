@@ -1,6 +1,5 @@
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Selecting the current language when choose language pressed
  */
 
  function selectLanguage (locale , dir , indexPage , indexLocale)

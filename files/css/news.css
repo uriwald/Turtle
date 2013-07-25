@@ -8,16 +8,61 @@
 
 root { 
     display: block;
-}
-
+} 
+.scrollspy-example {
+    height: 200px;
+    overflow: auto;
+    position: relative;
+} 
 #navbar-inner-id{
     padding-left: 0px;
     padding-right: 0px;
        
 }
+#turtleNewsBody{
+    text-align: left;
+}
+#newsDate{
+    float : right;
+}
 #divScroll{
     height: 100%;
 } 
-p{
-  /* white-space: pre; */
+#turtleNewsBody{
+   margin:0 auto;
+   float:none; 
 }
+:lang(he)#newsBarBrand{
+    float : right;
+}
+:lang(he)#turtleNewsBody{
+    text-align: right;
+}
+:lang(he)#newsDate{
+    float : left;
+}
+:lang(he)#navbarExample > div > div > ul
+{
+    text-align: right;
+}
+:lang(he)#divScroll{
+direction :rtl;
+}
+/*
+#newsBarBrand{
+    float : right;
+}
+.navbar .newsmenu{
+    float : right; 
+}
+#turtleNewsBody{
+    text-align: right;
+}
+#newsDate{
+    float : left;
+}
+.scrollspy-example{
+    direction :rtl;
+}
+
+*/
