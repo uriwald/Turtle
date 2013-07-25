@@ -29,6 +29,19 @@ RewriteRule ^lang/zh/?$   zh.php [NC,L]
 RewriteRule ^lang/he/?$   he.php [NC,L]
 RewriteRule ^lang/ru/?$   ru.php [NC,L]
 
+RewriteRule ^language/en/?$   indexen.php [NC,L]
+RewriteRule ^language/es/?$   indexes.php [NC,L]
+RewriteRule ^language/zh/?$   indexzh.php [NC,L]
+RewriteRule ^language/he/?$   indexhe.php [NC,L]
+RewriteRule ^language/ru/?$   indexru.php [NC,L]
+
+RewriteRule ^next/language/en/?$   next/indexen.php [NC,L]
+RewriteRule ^next/language/es/?$   next/indexes.php [NC,L]
+RewriteRule ^next/language/zh/?$   next/indexzh.php [NC,L]
+RewriteRule ^next/language/he/?$   next/indexhe.php [NC,L]
+RewriteRule ^next/language/ru/?$   next/indexru.php [NC,L]
+
+
  RewriteRule ^playground/he/?$     files/playground.php?locale=he_IL [NC,L]
  RewriteRule ^playground/es/?$     files/playground.php?locale=es_AR [NC,L]
  RewriteRule ^playground/zh/?$     files/playground.php?locale=zh_CN [NC,L]
@@ -47,5 +60,24 @@ RewriteRule ^plain/en/?$     enplain.php [NC,L]
 
 
 RewriteRule ^project/doc/?$       documentation.php [NC,L] 
+
+ RewriteRule ^next/news/he/?$     next/turtlenews.php?locale=he_IL [NC,L]
+ RewriteRule ^next/es/?$     next/turtlenews.php?locale=es_AR [NC,L]
+ RewriteRule ^next/zh/?$     next/turtlenews.php?locale=zh_CN [NC,L]
+ RewriteRule ^next/en/?$     next/turtlenews.php?locale=en_US [NC,L]
+ RewriteRule ^next/?$        next/turtlenews.php?locale=en_US [NC,L] 
+
+ RewriteRule ^news/he/?$     turtlenews.php?locale=he_IL [NC,L]
+ RewriteRule ^news/es/?$     turtlenews.php?locale=es_AR [NC,L]
+ RewriteRule ^news/zh/?$     turtlenews.php?locale=zh_CN [NC,L]
+ RewriteRule ^news/en/?$     turtlenews.php?locale=en_US [NC,L]
+ RewriteRule ^news/?$        turtlenews.php?locale=en_US [NC,L] 
+
+
+
+
+
+
+#RewriteRule    ^language/([A-Za-z0-9-]+)/?$    index.php?locale=$1    [NC,L]    # Process parrots
 
 # RewriteRule    ^plain/lang/([A-Za-z0-9-]+)/?$    plain.php?locale=$1    [NC,L]    # Process parrots
