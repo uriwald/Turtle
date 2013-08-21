@@ -1,23 +1,10 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-  "http://www.w3.org/TR/html4/strict.dtd">
-<?php
-    if(session_id() == '') 
+    "http://www.w3.org/TR/html4/strict.dtd">
+    <?php
+    if (session_id() == '')
         session_start();
-    if ( !isset ($locale))
-    {
-        if (isset($_SESSION['locale']))
-           $locale = $_SESSION['locale']; 
-        else
-        {
-            $locale = "en_US";
-            $_SESSION['locale'] = "en_US";
-        }
-    } 
-    else
-    {
-        $_SESSION['locale'] =  $locale;  
-    }
+
     require_once("environment.php");
     require_once("localization.php");
     require_once("files/footer.php");
@@ -25,92 +12,50 @@
     require_once("files/utils/languageUtil.php");
     require_once ('files/openid.php');
     require_once ('files/utils/topbarUtil.php');
-    $relPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
-    $jqueryui   =   "ajax/libs/jqueryui/1.10.0/";
-?>
+    ?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>
-        <?php
+            <?php
             echo _("Turtle Academy - learn logo programming in your browser");
             echo _(" free programming materials for kids");
-//        אקדמיית הצב - למד תכנות לוגו היישר מתוך הדפדפן                
-            $currentFile = $_SERVER["PHP_SELF"];
-            $parts = Explode('/', $currentFile);
-            $currentPage = $parts[count($parts) - 1];
-           
-        ?>  
-
-        </title>      
-        <?php
-        /*
-             include_once("files/inc/dropdowndef.php");
-             include_once("files/inc/jquerydef.php");
-             include_once("files/inc/boostrapdef.php"); */
-            require_once("files/utils/loadDd.php");
-            require_once("files/utils/loadJq.php");
-            require_once("files/utils/loadBs.php");
-            require_once("files/utils/loadTurtle.php");
-            $dd = new loadDd($rootDir , $env , "files/test/dd/"); 
-            $jq = new loadJq($rootDir , $env );
-            $bs = new loadBs($rootDir , $env , "files/bootstrap/");
-            $lt = new loadTurtle($locale , $rootDir , $env  );
-            $dd->loadFiles(true, true, true, false, true); /* 182 min.js , dd.js , dd.css , skin2.css , flags.css*/
-            $jq->loadFiles(true, false, true, true, true, false , true); /* jquery-ui.min , alerts.js , tmpl.js , storage.js , custom.css */
-            $bs->loadFiles(false , true ,true , true); /*bs.js , bs_min.js ,bootstrap-carousel.js , bs_all.css */
-            $lt->loadFiles(); /*langSelect.js , logo.js , turtle.js , floodfill.js , canvas2image.js , readMongo , Gettext.js , interface.js , jqconsole.js */
-             
-            
-             if (isset($_SESSION['username']))
-                { 
-        ?>   
-             <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
-             <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/>
-             <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/doc.css' type='text/css' media='all'/>
-             <?php
-                } 
-              ?> 
-        <?php
-            $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
-            if ( file_exists($file_path))
-                echo $po_file;            
-        ?>       
-        <script type="text/javascript">
-                var locale = "<?php echo $locale; ?>";
-        </script>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
-     
- <?php
-        /*
-            if (($env == "local"))
-            {
-          
-         ?>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/jqconsole.js"></script> <!-- Console -->
-        <?php
-            }  else {
-               //Need to fix location problemm
-               echo "<script src='http:////cdnjs.cloudflare.com/ajax/libs/jq-console/2.7.7/jqconsole.min.js'>"; 
-           }
-         * */
-
-        ?>
+            ?>  
+        </title> 
         
-        <!-- Adding new boostrap for crusel --> 
-       
-   
+        <?php
+        // Loading relevant js and css files
+        require_once("files/utils/includeCssAndJsFiles.php"); 
+        require_once("files/utils/loadCrousel.php");
+
+        // Case user logged in we will clear the storage data and load it from db
+        $isUserLoggedIn =   isset($_SESSION['username']);
+        if ($isUserLoggedIn) {
+            ?>   
+            <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
+        <?php
+        }
+        // Loading getText related files according to locale
+        $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
+        $po_file = "<link   rel='gettext' type='application/x-po' href='" . $rootDir . "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
+        if (file_exists($file_path))
+            echo $po_file;
+        ?>   
+        
+         <!--Error Apprantly without this line of code the readMongo and interface.js won't work as expected must find a solution-->   
+        <script type="text/javascript">
+            var locale = "<?php echo $locale; ?>";
+        </script>
          
-        <!-- End of adding boostrap for crusel -->
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <script type="application/javascript" src="/readMongo.php?locale=<?php echo $locale ?>"></script> <!-- Lessons scripts -->
+        <script type='application/javascript' src='/files/interface.js?locale=<?php echo $locale ?>' ></script>
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/doc.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
-       <?php
-             cssUtils::loadcss($locale, $rootDir . "files/css/interface");    
-             //cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
-             //cssUtils::loadcss($locale, $rootDir . "files/css/topbar"); 
-        ?>     
-        <!-- Disable script when working without internet -->
+        <?php
+        cssUtils::loadcss($locale, $rootDir . "files/css/interface");
+        ?>      
         <!-- Google Analytics Tracking --> 
         <script type="application/javascript"> 
             var _gaq = _gaq || [];
@@ -118,181 +63,178 @@
             _gaq.push(['_trackPageview']);
 
             (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
-
         </script>
+        <!-- End Google Analytics Tracking -->
     </head>
+    
     <body> 
-        <?php  
-            $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
-            $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");    
+        <?php
+        $class = ($locale == "he_IL" ? "pull-right" : "pull-left");
+        $login = ($locale != "he_IL" ? "pull-right" : "pull-left");
         ?>
         <div id="main">
             <!-- Should be different for log in user and for a guest -->
             <?php
-                $topbar = new topbarUtil();
-                $topbarDisplay['turtleacademy'] = false ;
-                $topbarDisplay['exercise']      = false ;  
-                $topbarDisplay['helpus']        = false ;
-                $topbarDisplay['playground']    = true ;
-                $topbarDisplay['forum']         = true ;
-                $topbarDisplay['news']          = true ;
-                $topbarDisplay['about']         = true ;
-                $topbarDisplay['sample']        = false ;
-                $signUpDisplay                  = true ;
-                $languagesDisplay               = true ;
-                $language['en'] = "en";$language['ru'] = "ru";
-                $language['es'] = "es";$language['zh'] = "zh";$language['he'] = "he";
-                
-                $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay 
-                        , $signUpDisplay ,$language, $empty = "");
+            $topbar = new topbarUtil();
+            //Topbar menu display items
+            $topbarDisplay = array (
+                "turtleacademy" => false,
+                "exercise" => false,
+                "helpus" => false,
+                "playground" => true,
+                "forum" => true,
+                "news" => true,
+                "about" => true,
+                "sample" => false
+            );
+
+            $signUpDisplay = true;
+            $languagesDisplay = true;
+
+            $language = array(
+                "en" => "en",
+                "ru" => "ru",
+                "es" => "es",
+                "zh" => "zh",
+                "he" => "he"
+            );
+
+            $topbar->printTopBar($rootDir, $class, $login, $topbarDisplay, $languagesDisplay
+                    , $signUpDisplay, $language, $empty = "");
             ?>
 
-            <div id="header" class="carousel slide menu" >
+            <div id="header" >
+                <div id="headprev"></div>
+                <div id="headcar"></div> <!--direction: rtl;-->
+                <div id="headnext"></div>
                 <div id="progress">
-                </div>
-                
-                
-            </div>
+                </div> 
+            </div> 
+
 
             <div id="logoer"> 
                 <div id="display"> 
-                    <!-- <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content" style="position: absolute; z-index: 0;">-->
                     <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content">   
-                            <span style="color: red; background-color: yellow; font-weight: bold;">
+                        <span style="color: red; background-color: yellow; font-weight: bold;">
                             <?php
-                                echo _("TurtleAcademy learn programming for free");
-                                echo _("Your browser is not supporting canvas");
-                                echo _("We recoomnd you to use Chrome or Firefox browsers");
-                                //    הדפדפן שלך אינו תומך בקנבס - מומלץ להשתמש בדפדפן עדכני יות                                
+                            echo _("TurtleAcademy learn programming for free");
+                            echo _("Your browser is not supporting canvas");
+                            echo _("We recoomnd you to use Chrome or Firefox browsers");
                             ?>                                      
-                            </span>  
+                        </span>  
                     </canvas>
-                    <!--<canvas id="turtle" width="660" height="350" style="position: absolute; z-index: 1;"> -->
                     <canvas id="turtle" width="660" height="350">   
                         <!-- drawing box -->
                     </canvas>
-                    
+
                 </div>
 
                 <div id="console" class="ui-corner-all ui-widget-content"><!-- command box --></div>
                 <?php echo $footer; ?>
-             </div>
+            </div>
+            <!-- Accordion div -->
             <div id="accorPlusNav">
                 <div id="accordion">
                 </div>
                 <div id="lessonnav">
                     <?php
-                        //should be change to all rtl lnaguages
-                        $lu = new languageUtil("turtleTestDb" , "rtlLanguages");
-                        $isRtlLocale = $lu->findIfLocaleExist($locale);
+                    //should be change to all rtl lnaguages
+                    $lu = new languageUtil("turtleTestDb", "rtlLanguages");
+                    $isRtlLocale = $lu->findIfLocaleExist($locale);
                     // if($locale == 'he_IL')
-                        if ($isRtlLocale)
-                        {
-                    ?>  
+                    if ($isRtlLocale) {
+                        ?>  
 
                         <button id="nextlesson" class="btn"> 
-                        <?php
+                            <?php
                             //should be change to all rtl lnaguages
-                        // echo ($locale == 'he_IL') ?  "&larr;" :  "&rarr;";     
-                            echo ($isRtlLocale) ?  "&larr;" :  "&rarr;"; 
-                            echo _("Next");                   
-                        ?> 
+                            echo ($isRtlLocale) ? "&larr;" : "&rarr;";
+                            echo _("Next");
+                            ?> 
                         </button>
                         <button id="prevlesson" class="btn">
-                        <?php
-                        //echo ($locale == 'he_IL') ?  "&rarr;" :  "&larr;";  
-                        echo ($isRtlLocale) ?  "&rarr;" :  "&larr;";  
-                        echo _("Prev");                    
-                        ?>            
+                            <?php
+                            echo ($isRtlLocale) ? "&rarr;" : "&larr;";
+                            echo _("Prev");
+                            ?>            
                         </button>
-                    <?php
-                        }else{
-                    ?>     
-                        <button id="prevlesson" class="btn">
                         <?php
-                        // echo ($locale == 'he_IL') ?  "&rarr;" :  "&larr;";  
-                            echo ($isRtlLocale) ?  "&rarr;" :  "&larr;";  
-                            echo _("Prev");                    
-                        ?>            
+                    } else {
+                        ?>     
+                        <button id="prevlesson" class="btn">
+                            <?php
+                            echo ($isRtlLocale) ? "&rarr;" : "&larr;";
+                            echo _("Prev");
+                            ?>            
                         </button>
                         <button id="nextlesson" class="btn"> 
-                        <?php
+                            <?php
                             //should be change to all rtl lnaguages
-                            echo ($isRtlLocale) ?  "&larr;" :  "&rarr;";   
-                            //echo ($locale == 'he_IL') ?  "&larr;" :  "&rarr;"; 
-                            echo _("Next");                   
-                        ?> 
+                            echo ($isRtlLocale) ? "&larr;" : "&rarr;";
+                            echo _("Next");
+                            ?> 
                         </button>
 
-                    <?php
-                        } //ending else
+                        <?php
+                    } //ending else
                     ?>
-
-                </div>
+                </div> <!-- End Lesson + nav -->
             </div> <!-- End Accordion + nav -->
         </div> <!-- End of main div -->
-                
+
         <script>
-        // Select language in main page
-      $(document).ready(function() { 
-          selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>lang/" , "learn.php" ,"en" );
-
-                    $('#savePic').click(function() {
-                         var canvas = document.getElementById("sandbox");
-                         //document.getElementById("theimage").src = canvas.toDataURL();
-                         Canvas2Image.saveAsPNG(canvas);
-                    });
+            // Select language in main page
+            $(document).ready(function() { 
+                
+                //Js for selecting the language in the topbar dropdown menu
+                selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>lang/" , "learn.php" ,"en" );
+                
+                //Enable saving canvas after drawing
+                $('#savePic').click(function() {
+                    var canvas = document.getElementById("sandbox"); 
+                    Canvas2Image.saveAsPNG(canvas);
+                });
                     
-                    $('#btnSaveUsrLessonData').click(function() {
-                        var lclStorageValue = ""
-                        var isAnyDataToSave = false;
-                        for (var i=0;i<8;i++)
-                             for (var j=1;j<9;j++)
-                            {
-                                if ($.Storage.get("q(" + i +  ")" + j + "1" ))
-                                {
-                                    alert ("q(" + i +  ")" + j + "1");
-                                    lclStorageValue += "q(" + i +  ")" + j + "1,";
-                                    isAnyDataToSave =   true;
-                                }
-                            }
-                        if (isAnyDataToSave)
+                $('#btnSaveUsrLessonData').click(function() {
+                    var lclStorageValue = ""
+                    var isAnyDataToSave = false;
+                    for (var i=0;i<8;i++)
+                        for (var j=1;j<9;j++)
+                    {
+                        if ($.Storage.get("q(" + i +  ")" + j + "1" ))
                         {
-                            $.ajax({
-                                type : 'POST',
-                                url : '/files/saveLocalStorage.php',
-                                dataType : 'json',
-                                data: {
-                                    lclStoragevalues  :   lclStorageValue
-                                },
-                                success: function(data) { 
-                                    var rdata;
-                                    var i = 1;
-                                } ,
-                                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                                    alert('en error occured');
-                                }
-                            });
+                            alert ("q(" + i +  ")" + j + "1");
+                            lclStorageValue += "q(" + i +  ")" + j + "1,";
+                            isAnyDataToSave =   true;
                         }
-                        //if $.Storage.get("q(" + activeLesson + ")" + ($index +1)) == "true"}
-                    });
-	
-                    //$("#ver").html(msBeautify.version.msDropdown);
-
-                    //convert 
-                    $("select").msDropdown();
-                    //createByJson();
-                    $("#tech").data("dd");             
-                    });
-                        function showValue(h) {
-                                    console.log(h.name, h.value);
+                    }
+                    if (isAnyDataToSave)
+                    {
+                        $.ajax({
+                            type : 'POST',
+                            url : '/files/saveLocalStorage.php',
+                            dataType : 'json',
+                            data: {
+                                lclStoragevalues  :   lclStorageValue
+                            },
+                            success: function(data) { 
+                                var rdata;
+                                var i = 1;
+                            } ,
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                alert('en error occured');
                             }
-                            $("#tech").change(function() {
-                                    console.log("by jquery: ", this.value);
-                            })
+                        });
+                    }
+                });
+                //convert 
+                $("select").msDropdown();
+                //createByJson();
+                $("#tech").data("dd");             
+            });
         </script>
     </body></html>
