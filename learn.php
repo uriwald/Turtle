@@ -13,16 +13,15 @@
     require_once ('files/openid.php');
     require_once ('files/utils/topbarUtil.php');
     ?>
-<html>
+<html dir="<?php echo $dir ?>" lang="<?php echo $locale ?>">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>
-            <?php
+        <?php
             echo _("Turtle Academy - learn logo programming in your browser");
             echo _(" free programming materials for kids");
-            ?>  
-        </title> 
-        
+        ?>  
+        </title>    
         <?php
         // Loading relevant js and css files
         require_once("files/utils/includeCssAndJsFiles.php"); 
@@ -35,47 +34,18 @@
             <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
         <?php
         }
-        // Loading getText related files according to locale
-        $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
-        $po_file = "<link   rel='gettext' type='application/x-po' href='" . $rootDir . "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
-        if (file_exists($file_path))
-            echo $po_file;
         ?>   
-        
-         <!--Error Apprantly without this line of code the readMongo and interface.js won't work as expected must find a solution-->   
-        <script type="text/javascript">
-            var locale = "<?php echo $locale; ?>";
-        </script>
          
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-        <script type="application/javascript" src="/readMongo.php?locale=<?php echo $locale ?>"></script> <!-- Lessons scripts -->
-        <script type='application/javascript' src='/files/interface.js?locale=<?php echo $locale ?>' ></script>
+        <script type='application/javascript' src='<?php echo $rootDir; ?>files/interface.js?locale=<?php echo $locale ?>'></script>
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/doc.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
         <?php
-        cssUtils::loadcss($locale, $rootDir . "files/css/interface");
+        cssUtils::loadcss($locale, $rootDir . "files/css/interface"); 
         ?>      
-        <!-- Google Analytics Tracking --> 
-        <script type="application/javascript"> 
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-26588530-1']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
-        <!-- End Google Analytics Tracking -->
-    </head>
-    
+    </head> 
     <body> 
-        <?php
-        $class = ($locale == "he_IL" ? "pull-right" : "pull-left");
-        $login = ($locale != "he_IL" ? "pull-right" : "pull-left");
-        ?>
         <div id="main">
             <!-- Should be different for log in user and for a guest -->
             <?php
@@ -103,8 +73,8 @@
                 "he" => "he"
             );
 
-            $topbar->printTopBar($rootDir, $class, $login, $topbarDisplay, $languagesDisplay
-                    , $signUpDisplay, $language, $empty = "");
+            $topbar->printTopBar($rootDir, $topbarDisplay, $languagesDisplay
+                    , $signUpDisplay, $language);
             ?>
 
             <div id="header" >

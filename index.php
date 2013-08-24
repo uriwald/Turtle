@@ -33,61 +33,36 @@
         <?php
         }
         ?>
-
-        <?php
-        //Loading string translation file
-        $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
-        $po_file = "<link   rel='gettext' type='application/x-po' href='" . $rootDir . "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
-        if (file_exists($file_path))
-            echo $po_file;
-        ?>       
-
-        <!-- Google Analytics Tracking --> 
-        <script type="application/javascript"> 
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-26588530-1']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-
-        </script>
     </head>
     <div id="index-main">
         <!--Should be different for log in user and for a guest -->
-<?php
-$class = ($locale == "he_IL" ? "pull-right" : "pull-left");
-$login = ($locale != "he_IL" ? "pull-right" : "pull-left");
+    <?php
 
-$topbar = new topbarUtil();
-$topbarDisplay = array (
-    "turtleacademy" => false,
-    "exercise" => true,
-    "helpus" => false,
-    "playground" => true,
-    "forum" => true,
-    "news" => true,
-    "about" => true,
-    "sample" => false
- );
+        $topbar = new topbarUtil();
+        $topbarDisplay = array (
+            "turtleacademy" => false,
+            "exercise" => true,
+            "helpus" => false,
+            "playground" => true,
+            "forum" => true,
+            "news" => true,
+            "about" => true,
+            "sample" => false
+        );
 
-$signUpDisplay = false;
-$languagesDisplay = true;
+        $signUpDisplay = false;
+        $languagesDisplay = true;
 
-$language = array(
-    "en" => "en",
-    "ru" => "ru",
-    "es" => "es",
-    "zh" => "zh",
-    "he" => "he"
-);
-
-$topbar->printTopBar($rootDir, $class, $login, $topbarDisplay, $languagesDisplay
-        , $signUpDisplay, $language, $empty = "");
-?>
+        $language = array(
+            "en" => "en",
+            "ru" => "ru",
+            "es" => "es",
+            "zh" => "zh",
+            "he" => "he"
+        );
+        $topbar->printTopBar($rootDir, $topbarDisplay, $languagesDisplay
+                , $signUpDisplay, $language);
+    ?>
         <div class="container">
             <!-- Main hero unit including welcoming messages and code samples -->
             <div class="hero-unit" id="hero-top" lang="<?php echo $lang ?>">
