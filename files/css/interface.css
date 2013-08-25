@@ -184,7 +184,6 @@ code { font-family: monospace; }
     z-index: 1;
 }
 #ddmenu{
-  width: 120px;
   text-align: left;
   color: rgb(0, 136, 204);
   background-color: white;
@@ -192,6 +191,9 @@ code { font-family: monospace; }
   position: absolute;
   padding-right: 20px;
   right: -1px;
+}
+.dropdown-menu > li > a{
+   /* width : 50px; */
 }
 .dropdown-menu li a.innerLink{
      color: rgb(0, 136, 204);
@@ -206,3 +208,62 @@ h3.ui-accordion-header{
 a.lucio{
     font-size: 13px;
 } 
+#carouselNextBtn{
+    float: right;
+}
+#headprev , #headnext
+{
+    width: 30px; 
+    float: left;
+}
+#headcar{
+    width: 910px; 
+    float: left; 
+}
+#accordionLessonTitle{
+-webkit-background-clip: border-box;
+-webkit-background-origin: padding-box;
+-webkit-background-size: auto;
+background-attachment: scroll;
+background-clip: border-box;
+background-color: rgb(255, 255, 255);
+
+background-origin: padding-box;
+background-size: auto;
+border-bottom-color: rgb(251, 216, 80);
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-left-color: rgb(251, 216, 80);
+border-left-style: solid;
+border-left-width: 1px;
+border-right-color: rgb(251, 216, 80);
+border-right-style: solid;
+border-right-width: 1px;
+border-top-color: rgb(251, 216, 80);
+border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+border-top-style: solid;
+border-top-width: 1px;
+color: black;
+cursor: pointer;
+display: block;
+font-family: 'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
+font-size: 13px;
+font-weight: bold;
+height: auto;
+line-height: 16px;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 2px;
+min-height: 0px;
+
+padding-bottom: 6.5px;
+padding-left: 28.59375px;
+padding-right: 6.5px;
+padding-top: 6.5px;
+
+position: relative;
+text-decoration: none;
+text-rendering: optimizelegibility;
+}

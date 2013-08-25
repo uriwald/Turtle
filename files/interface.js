@@ -13,20 +13,20 @@ var turtleid = 1 ;
 var lastLessonClick = null ;
 
 $.extend({
-  getUrlVars: function(){
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
-      hash = hashes[i].split('=');
-      vars.push(hash[0]);
-      vars[hash[0]] = hash[1];
+    getUrlVars: function(){
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    },
+    getUrlVar: function(name){
+        return $.getUrlVars()[name];
     }
-    return vars;
-  },
-  getUrlVar: function(name){
-    return $.getUrlVars()[name];
-  }
 });
 
 //////////////////////////////////////////////////////////////////////////////
@@ -35,14 +35,20 @@ $.extend({
 
 function loadLesson(lessonID)
 {
+    var gt = new Gettext({
+        'domain' : 'messages'
+    });
     //Set the activeLesson
     activeLesson = lessonID;
+    var lessonDisplayNum = lessonID +1;
+    var LessonTitleTranslated = gt.gettext("lesson");    
     //Clear the accordion
     $( "#accordion" ).replaceWith('<div id="accordion" style="color:#4aa329">');
 
     // Render the template with the lessons data
     $.tmpl( "lessonTemplate", lessons[lessonID], {}).appendTo( "#accordion" );
-
+    $( "#accordionLessonTitle" ).replaceWith('<div id="accordionLessonTitle">'+ LessonTitleTranslated +lessonDisplayNum+ ': ' +lessons[lessonID].title+ '</div>');
+    //$('<div id="accordionLessonTitle">' +lessons[lessonID].title+ '</div>').prependTo( "#accorPlusNav" );
     $( "#accordion" ).accordion({
         //      icons: icons,
         icons : true ,
@@ -57,7 +63,11 @@ function loadLesson(lessonID)
     //
     $('#prevlesson').show();
     $('#nextlesson').show();    
-    if (activeLesson == 0) $('#prevlesson').hide();
+    if (activeLesson == 0) 
+    {
+        $('#prevlesson').hide();
+        $("#carousel-control-left").hide();      
+    }
     if (activeLesson == (lessons.length -1)) $('#nextlesson').hide();
 
 }
@@ -92,165 +102,113 @@ $(function() {
     // Compile templates used later
     // The header template
     
-    var gt = new Gettext({'domain' : 'messages'});
-    //var locale = $.getUrlVar('locale'); 
-    var localeWithPrefix = 'locale_' + locale;
-    
-    var markup =
-   
-    '<div id="myCarousel" class="carousel-inner" align="center">'  
-    +'{{each lessons}}'
-    + '{{if $index == 0}}'
+    var gt = new Gettext({
+        'domain' : 'messages'
+    });
 
-        + '<div class="item active">'
-      + '{{else}}'
-            + '{{if $index %6 === 0 && $index !== 16 }}'
-                 + '<div class="item ">'
-            + '{{/if}}'
-    + '{{/if}}'
-    + '<div align="center">'
+    var markup =
+    '<div id="rs-carousel" class="rs-carousel">'     
+    +'<ul>'  /*style="width: 5500px; left: 0px;"*/
+    +'{{each lessons}}'
+    + '<li>' /* align="center" */
     + '<a href="#" data-lesson="${$index}" id="lucio${$index}" data-turtleid="${lesson_turtle_id}" name="lucio${$index}" class="lucio">'
     + '{{if $index == 0}}'
-        + '<span style="color:#eb8f00">'
+    + '<span style="color:#eb8f00">'
     + '{{else}}'
-        + '<span>'
-    + '{{/if}}'
-  //  + '<span>'
+    + '<span>'
+    + '{{/if}}' 
+    //  + '<span>'
     + '<b>${$index+1}. ${title}</b>'
     + '</a>'
     + '</span>'
-    + '</div>'
-    + '{{if $index == 5}}'
-        + '</div>'
-    + '{{/if}}'
-    + '{{if $index == 11}}'
-        + '</div>'
-    + '{{/if}}'
+    + '</li>' 
     + '{{/each}}'
-
-    + '</div>'  
-    + '<a class="carousel-control" id="carousel-control-left" href="#myCarousel" data-slide="prev" >&lsaquo;</a>'
-    + '<a class="carousel-control" id="carousel-control-right" href="#myCarousel" data-slide="next">&rsaquo;</a>';
-
-
+    +'</ul>' 
+    + '</div>'
     
-    $.template( "headTemplate", markup );
+    $.template( "headTemplate", markup ); 
  
     // The lesson template
     var ltr ='';
-    if (locale != "he_IL") 
+    if ($('html').attr('dir') != 'rtl') 
         ltr = ' style="margin-left: 250px; margin-top : -10px"';
     else
         ltr = ' style="margin-right: 260px; margin-top : -12px"';
     markup =
     '{{each steps}}' 
-     // + '{{if '+  localeWithPrefix + '}}'  
-          +  '<h3><a href="#"> ${$index}. ${title}'
-          +  '{{if $.Storage.get("q(" + turtleid + ")" + ($index +1)) == "true"}}'
-              +  '<span class="ui-icon ui-icon-check"'+ltr+'></span>'  
-          +  '{{/if}}'
-          + '</a></h3>'
-          + '<div data-sol="${solution}" data-qid="${$index +1}">'
-              + '<p>{{html explanation}}</p> '
-              + '<p>{{html action}}</p>'
-              + '{{if hint.length > 0}}'
-                  +  '<button class="btn">' + gt.gettext("hint") + '</button>' 
-                  +  '<p id="(${Id})" style="display: none;color:black;">{{html hint}}</p>' 
-              + '{{/if}}'
-              +  '<button class="btn">' + gt.gettext("Solution") + '</button>' 
-              + '<p id="(${Id})" style="display: none;color:black;">{{html solution}}</p>'
-              +'<p id="' + turtleid+'${$index +1}"> </p>'
+    // + '{{if '+  localeWithPrefix + '}}'  
+    +  '<h3><a href="#"> ${$index}. ${title}'
+    +  '{{if $.Storage.get("q(" + turtleid + ")" + ($index +1)) == "true"}}'
+    +  '<span class="ui-icon ui-icon-check"'+ltr+'></span>'  
+    +  '{{/if}}'
+    + '</a></h3>'
+    + '<div data-sol="${solution}" data-qid="${$index +1}">'
+    + '<p>{{html explanation}}</p> '
+    + '<p>{{html action}}</p>'
+    + '{{if hint.length > 0}}'
+    +  '<button class="btn">' + gt.gettext("hint") + '</button>' 
+    +  '<p id="(${Id})" style="display: none;color:black;">{{html hint}}</p>' 
+    + '{{/if}}'
+    +  '<button class="btn">' + gt.gettext("Solution") + '</button>' 
+    + '<p id="(${Id})" style="display: none;color:black;">{{html solution}}</p>'
+    +'<p id="' + turtleid+'${$index +1}"> </p>'
               
-          + '</div>'
+    + '</div>'
     + '{{/each}}'
     ;
 
     $.template( "lessonTemplate", markup );
 
     // Render the header with the lessons data
-    $.tmpl( "headTemplate", lessons[0],{} ).appendTo( "#header" );
+    $.tmpl( "headTemplate", lessons[0],{} ).appendTo( "#headcar" );
 
-    // Attach the loadlesson on click action
-    $("#header a.lucio").click(function() {
+    // Attach the loadlesson on click action 
+    $(".rs-carousel  a.lucio").click(function() {
        
-         $(this).children().css("color","#eb8f00");
-         //$( "#lucio" ).children().css("background","#00FF00")
-         if (lastLessonClick != null)
-         {
-             lastLessonClick.children().css("color","#1c94c4");
-         }
-         else
-         {
+        $(this).children().css("color","#eb8f00");
+        //$( "#lucio" ).children().css("background","#00FF00")
+        if (lastLessonClick != null)
+        {
+            lastLessonClick.children().css("color","#1c94c4");
+        }
+        else
+        {
             $( "#lucio0" ).children().css("color","#1c94c4");
-         }
+        }
         
-         turtleid = $(this).data('turtleid');
-         newval   = $(this).data('lesson');
-         setTitleFocus(activeLesson,newval);
-         //loadLesson($(this).data('lesson'));
-         lastLessonClick = $(this);
-         return false;
+        turtleid = $(this).data('turtleid');
+        newval   = $(this).data('lesson');
+        loadNewLessonSteps(activeLesson,newval);
+        //loadLesson($(this).data('lesson'));
+        lastLessonClick = $(this);
+        return false;
     });
+    
+    //Page 0 contain the first lessons active lesson will run fron 0 - numofActiveLesson -1
+    var numOfLessonPerPage = 4;
+    var numOfPages = Math.floor((numOfActiveLessons -1 ) / numOfLessonPerPage) ;  
     
     // attach the next/prev movement
     $("#nextlesson").click(function() {
-         // Unset the focus from current lesson and focus on the next
-         if (activeLesson ==5 )
-         {
-            $("#myCarousel").carousel('next'); 
-         }
-         else if(activeLesson ==11)
-         {
-             $("#myCarousel").carousel('next');
-             $("#carousel-control-right").hide();
-         }
-        
-            //$("#myCarousel").next();
-         setTitleFocus(activeLesson,activeLesson + 1);
-
-         /*
-         $( "#lucio" + activeLesson ).children().css("color","#1c94c4");
-         var newLessonVal = activeLesson +1;
-         $( "#lucio" + newLessonVal ).children().css("color","#eb8f00");
-          loadLesson(newLessonVal);
-        */
+        // Unset the focus from current lesson and focus on the next
+        if (activeLesson % numOfLessonPerPage == 3 )
+        {
+            $('.rs-carousel').carousel('next'); 
+        }
+        loadNewLessonSteps(activeLesson,activeLesson + 1);
     });
-        $("#prevlesson").click(function() {
-         // Unset the focus from current lesson and focus on the next
-         if (activeLesson ==6)
-            $("#myCarousel").carousel('prev');
-         else if (activeLesson ==12)
-         {
-              $("#myCarousel").carousel('prev');
-            $("#carousel-control-right").show();
-           
-         }
-         setTitleFocus(activeLesson,activeLesson -1);
+    $("#prevlesson").click(function() {
+        // Unset the focus from current lesson and focus on the next
+         
+        if (activeLesson % numOfLessonPerPage == 0 )
+        {
+            $('.rs-carousel').carousel('prev');
+        }
+        loadNewLessonSteps(activeLesson,activeLesson -1);
     });
     
-    $("#carousel-control-right").click(function() {
-         // Unset the focus from current lesson and focus on the privous  
-         if (activeLesson >=0 && activeLesson <= 5)
-            setTitleFocus(activeLesson,6);
-         else if (activeLesson >=6 && activeLesson <= 11)
-         {
-            setTitleFocus(activeLesson,12);
-            $("#carousel-control-right").hide();  
-             
-            //this.css("visibility","hidden");
-         }
-    })
-    $("#carousel-control-left").click(function() {
-         // Unset the focus from current lesson and focus on the privous  
-         if (activeLesson >=6 && activeLesson <= 11)
-            setTitleFocus(activeLesson,0);
-         else if (activeLesson >=12 && activeLesson <= 16)
-         {
-            setTitleFocus(activeLesson,6);
-             $("#carousel-control-right").show();  
-         }
-    })
-    function setTitleFocus(oldLessonVal,newLessonVal)
+    // Will set the focous on the new selected lesson elemnet and load the new lesson steps
+    function loadNewLessonSteps(oldLessonVal,newLessonVal)
     {
         $( "#lucio" + oldLessonVal ).children().css("color","#1c94c4");
         $( "#lucio" + newLessonVal ).children().css("color","#eb8f00");
@@ -259,63 +217,47 @@ $(function() {
     }
     // load DOC in dialog
     $('#doc').each(function() {
-            if (locale != "he_IL")
-		var $dialog = $('<div dir="ltr"></div>');
-            else
-                var $dialog = $('<div dir="rtl"></div>');
-		var $link = $(this).one('click', function() {
-			$dialog
-				.load($link.attr('href'))
-				.dialog({
-					title: $link.attr('title'),
-                                        width: 700
-                                      
-					//width: 500,
-					//height: 300
-				});
+        if ($('html').attr('dir') != 'rtl')
+            var $dialog = $('<div dir="ltr"></div>');
+        else
+            var $dialog = $('<div dir="rtl"></div>');
+        var $link = $(this).one('click', function() {
+            $dialog
+            .load($link.attr('href'))
+            .dialog({
+                title: $link.attr('title'),
+                width: 700
+            });
 
-			$link.click(function() {
-				$dialog.dialog('open');
+            $link.click(function() {
+                $dialog.dialog('open');
 
-				return false;
-			});
+                return false;
+            });
 
-			return false;
-		});
-	});
+            return false;
+        });
+    });
     // Render the first lesson
     loadLesson(0);
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Console ///////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////
 
     // Creating the console.
     var welcome = 'Hello\nWelcome to the world of the turtle\n';
     
     window.jqconsole = $('#console').jqconsole(gt.gettext("Hi") + "\n" + gt.gettext("Welcome to the Turtle world"), '> ');
-    //window.jqconsole = $('#console').jqconsole(gt.gettext("Hi \nWelcome to the Turtle world"), '> ');
-    //        window.jqconsole = $('#console').jqconsole(gt.gettext("welcome"), '> ');
-   
-   //This is more elegant code but still not working
-   /*
-   var ltrDirection ='';
-    if (locale == "he_IL") ltrDirection = ".css('direction','rtl')"; 
-     $('#console').find(".jqconsole").height('200px') + ltrDirection;   
-     */
     
-    if (locale == "he_IL") //Should be check comparing to array contaning all RTL languages
-        {
+    if ($('html').attr('dir') == 'rtl') //Should be check comparing to array contaning all RTL languages
+    {
         // chk
         $('#console').find(".jqconsole").height('200px').css('direction','rtl');
        
-            }
+    }
     else
-        {
-         $('#console').find(".jqconsole").height('200px');   
-        }
+    {
+        $('#console').find(".jqconsole").height('200px');   
+    }
  
-     $('#console').find(".jqconsole-cursor").css('position','relative');    
+    $('#console').find(".jqconsole-cursor").css('position','relative');    
     // Abort prompt on Ctrl+Z.
     jqconsole.RegisterShortcut('Z', function() {
         jqconsole.AbortPrompt();
@@ -329,7 +271,7 @@ $(function() {
     });
     
     jqconsole.RegisterShortcut('C', function() {
-          jqconsole.Reset();
+        jqconsole.Reset();
         handler();
     });
     // Move to line end Ctrl+E.
@@ -345,11 +287,11 @@ $(function() {
     // Load console history from localStorage for consistant console
     try {
         if ($.Storage.get("logo-history"))
-            {} //For now I don't really see a reason for loading the console history for the user cause
-            // More damage than benefit .. maybe in the future
-            //jqconsole.history = JSON.parse($.Storage.get("logo-history"));
+        {} //For now I don't really see a reason for loading the console history for the user cause
+    // More damage than benefit .. maybe in the future
+    //jqconsole.history = JSON.parse($.Storage.get("logo-history"));
     } catch (e) {
-                // Write the failure to our console
+        // Write the failure to our console
         jqconsole.Write(gt.gettext('Error Loading History') +': ' + e + '\n');
     }
     // Handle a command.
@@ -362,20 +304,20 @@ $(function() {
                 if (typeof jqconsole.history != 'undefined') 
                     $.Storage.set('logo-history',JSON.stringify(jqconsole.history.slice(jqconsole.history.length-10)));
                 //Saving the history to db
-                    $.ajax({
-                        type : 'POST',
-                        url : '/files/saveLocalStorage.php',
-                        dataType : 'json',
-                        data: {
-                            userHistory  :   $.Storage.get('logo-history')
-                        },
-                        success: function(data) { 
-                            var rdata;
-                        } ,
-                        error: function(XMLHttpRequest, textStatus, errorThrown) {
-                            alert('en error occured');
-                        }
-                    });
+                $.ajax({
+                    type : 'POST',
+                    url : '/files/saveLocalStorage.php',
+                    dataType : 'json',
+                    data: {
+                        userHistory  :   $.Storage.get('logo-history')
+                    },
+                    success: function(data) { 
+                        var rdata;
+                    } ,
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert('en error occured');
+                    }
+                });
                 
                 
                 // Now we evaluate the command against the one we were expecting
@@ -391,13 +333,13 @@ $(function() {
                     var lclStorageValue="";
                     for (var i=0;i<20;i++)
                         for (var j=1;j<12;j++)
+                        {
+                            if ($.Storage.get("q(" + i +  ")" + j + "1" ))
                             {
-                                if ($.Storage.get("q(" + i +  ")" + j + "1" ))
-                                {
-                                    //alert ("q(" + i +  ")" + j + "1");
-                                    lclStorageValue += "q(" + i +  ")" + j + "1,";
-                                }
+                                //alert ("q(" + i +  ")" + j + "1");
+                                lclStorageValue += "q(" + i +  ")" + j + "1,";
                             }
+                        }
                     $.ajax({
                         type : 'POST',
                         url : '/files/saveLocalStorage.php',
@@ -418,11 +360,11 @@ $(function() {
                 }
                 // if the command evaluation is not mathing the solution we will store it
                 else{ 
-                  var errorStep  = "q(" + turtleid + ")" + $(".ui-accordion-content-active").data('qid');  
-                  var errorString = command;
-                  $.ajax({
+                    var errorStep  = "q(" + turtleid + ")" + $(".ui-accordion-content-active").data('qid');  
+                    var errorString = command;
+                    $.ajax({
                         type : 'POST',
-                        url : '/files/saveUserError.php',
+                        url : '/files/saveUserError.php', 
                         dataType : 'json',
                         data: {
                             errorStep   :   errorStep,
@@ -436,7 +378,7 @@ $(function() {
                         }
                     });
                   
-                  //$.Storage.set("q(" + activeLesson + ")" + $(".ui-accordion-content-active").data('qid') + 'e', command);              
+                //$.Storage.set("q(" + activeLesson + ")" + $(".ui-accordion-content-active").data('qid') + 'e', command);              
                 }
             } catch (e) {
                 // Write the failure to our console
@@ -475,7 +417,7 @@ $(function() {
             }
         },
         clear: function() {
-            // TODO - maybe clear the console?
+        // TODO - maybe clear the console?
         }
     };
 
@@ -503,35 +445,88 @@ $(function() {
             if (i == 0)
                 toCmd = toCmd.substr(1,toCmd.length -1);
             if (toCmd == gt.gettext("to")) 
+            {
+                commandLen   = historyArray[i].length -1;
+                var startcmd = 1;
+                if (i == 0)
+                    startcmd = 2;
+                commandToRun = historyArray[i].substring(startcmd,commandLen);
+                try
                 {
-                    commandLen   = historyArray[i].length -1;
-                    var startcmd = 1;
-                    if (i == 0)
-                        startcmd = 2;
-                    commandToRun = historyArray[i].substring(startcmd,commandLen);
-                    try
-                    {
-                        g_logo.run(commandToRun);
-                    }catch (e) {
-                        // DO NOTHING FOR NOW
-                       // jqconsole.Write(gt.gettext('Error') +': ' + e + '\n');
-                    }
+                    g_logo.run(commandToRun);
+                }catch (e) {
+                // DO NOTHING FOR NOW
+                // jqconsole.Write(gt.gettext('Error') +': ' + e + '\n');
                 }
+            }
         }
     }
     
-                function do_logo(id ,cmd) {
-                $('#'+id).css('width', '50px').css('height', '50px').append('<canvas id="'+id+'c" width="50" height="50" style="position: absolute; z-index: 0;"></canvas>' +
-                    '<canvas id="'+id+'t" width="50" height="50" style="position: absolute; z-index: 1;"></canvas>'); 
-                var canvas_element2 = document.getElementById(id+"c");
-                var turtle_element2 = document.getElementById(id+"t"); 
-                var turtle2 = new CanvasTurtle(
-                canvas_element2.getContext('2d'),
-                turtle_element2.getContext('2d'),
-                canvas_element2.width, canvas_element2.height);
-                g_logo2 = new LogoInterpreter(turtle2, null); 
-                g_logo2.run(cmd);
-            }  
-            //do_logo ('011', 'hideturtle fd 50');
+    function do_logo(id ,cmd) {
+        $('#'+id).css('width', '50px').css('height', '50px').append('<canvas id="'+id+'c" width="50" height="50" style="position: absolute; z-index: 0;"></canvas>' +
+            '<canvas id="'+id+'t" width="50" height="50" style="position: absolute; z-index: 1;"></canvas>'); 
+        var canvas_element2 = document.getElementById(id+"c");
+        var turtle_element2 = document.getElementById(id+"t"); 
+        var turtle2 = new CanvasTurtle(
+            canvas_element2.getContext('2d'),
+            turtle_element2.getContext('2d'),
+            canvas_element2.width, canvas_element2.height);
+        g_logo2 = new LogoInterpreter(turtle2, null); 
+        g_logo2.run(cmd);
+    }  
 
+    // Defining all the properties for building the lesson carousel
+    var opts = {};
+    opts['autoScroll'] = false;
+    opts['continuous'] = false;
+    opts['easing'] = "swing";
+    opts['itemsPerPage'] = 4;
+    opts['itemsPerTransition'] = "auto";
+    opts['nextPrevActions'] = true;
+    if ($('html').attr('dir') == 'rtl'){
+        opts['insertNextAction'] =  function () {
+            return $('<a href="#" id="lessonCarouselNext" class="rs-carousel-action rs-carousel-action-prev"><i id="carouselNextBtn" class="icon-fixed-width icon-backward"></i></a>').appendTo("#headnext");
+        }
+        opts['insertPrevAction'] =  function () {
+            return $('<a href="#" id="lessonCarouselPrev" class="rs-carousel-action rs-carousel-action-prev"><i class="icon-fixed-width icon-forward"></i></a>').appendTo("#headprev");
+        }
+    }
+    else
+    {
+        opts['insertPrevAction'] =  function () {
+            return $('<a href="#" id="lessonCarouselPrev" class="rs-carousel-action rs-carousel-action-prev"><i class="icon-fixed-width icon-backward"></i></a>').appendTo("#headprev");
+        }
+        opts['insertNextAction'] =  function () {
+            return $('<a href="#" id="lessonCarouselNext" class="rs-carousel-action rs-carousel-action-next"><i id="carouselNextBtn" class="icon-fixed-width icon-forward"></i></a>').appendTo("#headnext");
+        }
+    }
+    opts['orientation'] = "horizontal";
+    opts['pagination'] = true;
+    opts['speed'] = "normal"; 
+ 
+    $('.rs-carousel').carousel(opts); 
+    
+    //Handling pressing back and forward on the lesson carousel
+    
+    $("#lessonCarouselPrev").click(function() { 
+        /*
+        if (activeLesson >= numOfLessonPerPage) //Only if we are not in the first page
+        {
+           var currentPage = Math.floor(activeLesson / numOfLessonPerPage ) ;
+           var newLessonToLoad = (currentPage - 1) * numOfLessonPerPage + (numOfLessonPerPage - 1);
+           loadNewLessonSteps(activeLesson,newLessonToLoad); 
+        }
+        */
+    });
+    $("#lessonCarouselNext").click(function() { 
+        /*
+        var currentPage = Math.floor(activeLesson / numOfLessonPerPage) ; 
+        if (currentPage < numOfPages) 
+        {
+           var newLessonToLoad = (currentPage + 1) * numOfLessonPerPage;
+           loadNewLessonSteps(activeLesson,newLessonToLoad); 
+        }
+        */
+    });
 });
+ 
