@@ -24,6 +24,7 @@
         </title>    
         <?php
         // Loading relevant js and css files
+
         require_once("files/utils/includeCssAndJsFiles.php"); 
         require_once("files/utils/loadCrousel.php");
 
@@ -108,6 +109,8 @@
             </div>
             <!-- Accordion div -->
             <div id="accorPlusNav">
+                <div id="accordionLessonTitle">
+                </div>
                 <div id="accordion">
                 </div>
                 <div id="lessonnav">

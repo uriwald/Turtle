@@ -22,9 +22,6 @@ root {
   margin-top: 28px;
   height: 14px;
 } 
-#turtleHeaderLogin{
-   margin-top: 32px;   
-}
 #dLabel{
     color:#ffffff; 
     background-color: rgba(0, 0, 0, 0.5);
@@ -57,12 +54,28 @@ root {
 #turtleHeaderUlLogin{
    color:black; 
 }
+#ddusermenu{
+    background-color: white;
+    width: 100px;
+}
+#ddusermenu > li {
+    color : white ;
+}
 #turtleHeaderLoggedUser{
     width:200px;
-    font-size: 13px;
+    font-size: 13px; 
+    margin-right: 50px;
+    
 }
 #selectedLanguage{
-    width : 120px;
+
+    width : 120px; 
+}
+#selectedLanguage_title{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    line-height: 20px;
+    height: 20px; 
 }
 #topbarContainer , #topbarfill{ 
    float : none ;
@@ -76,12 +89,15 @@ root {
     filter : none;
 }
 #menuRegBtn {
-    height: 12px;
+    margin-top: 1px; 
+    margin-left: 2px;
+    border-radius: 10px 10px 10px 10px;
+    height: 16px; 
     font-size:15px;line-height:normal;padding:5px 14px 9px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;
     color:white;background-color:blue;background-repeat:repeat-x;background-image:-khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));background-image:-moz-linear-gradient(top, #049cdb, #0064cd);background-image:-ms-linear-gradient(top, #049cdb, #0064cd);background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));background-image:-webkit-linear-gradient(top, #049cdb, #0064cd);background-image:-o-linear-gradient(top, #049cdb, #0064cd);background-image:linear-gradient(top, #049cdb, #0064cd);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#049cdb', endColorstr='#0064cd', GradientType=0);text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);border-color:#0064cd #0064cd #003f81;border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);}
 .btn.active,.btn:active{-webkit-box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.25),0 1px 2px rgba(0, 0, 0, 0.05);-moz-box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.25),0 1px 2px rgba(0, 0, 0, 0.05);box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.25),0 1px 2px rgba(0, 0, 0, 0.05);
 }
-#turtleHeaderUl > li  , #turtleHeaderLogIn >li:first-child ,  #turtleHeaderUl > li >a , #turtleHeaderLogIn >li:first-child > a{
+#turtleHeaderUl > li  , #turtleHeaderLogIn >li:first-child  {
     color:black;
     font-size: 15px;
    
@@ -90,14 +106,22 @@ root {
     border-bottom-right-radius: 6px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
+    border : solid 1px ;
+    border-color: #c3c3c3 ;
+}
+#turtleHeaderUl > li >a , #turtleHeaderLogIn >li:first-child > a
+{
+    
+    
 }
 #turtleHeaderLogIn >li:first-child > a ,  #turtleHeaderUl > li >a{
-    height : 8px;
+   height : 8px;
     
 }
 #turtleHeaderUl > li , #turtleHeaderLogIn > li:first-child{
      border-radius: 10px 10px 10px 10px;
-      height: 30px;
+      height: 30px; 
+      line-height: 30px;
       margin-top: 3px;
       margin-left: 2px;
 }
@@ -107,9 +131,11 @@ root {
  #turtleHeaderUl > li >a ,#turtleHeaderUlLogin{ 
     color:black;
     padding-top: 4px;
+    text-decoration: none;
 }
 #registrateBtn{
     margin-top: 3px;
+    height: 30px;
 }
 
 .flagIcon{
@@ -121,6 +147,7 @@ root {
     list-style: none;
     display: inline;
     background-color: ghostwhite;
+   
     border-style:solid;
     border-width:2px;
     
@@ -133,9 +160,11 @@ root {
 ul{
     list-style: disc; 
 }
- 
+.ddChild > ul {
+    direction : ltr;
+} 
 :lang(he)#turtleimg , :lang(he)#turtleHeaderUl ,:lang(he)#turtleHeaderTitle 
-, :lang(he)#turtleHeaderLanguage , :lang(he)#turtleHeaderUl li{
+, /*:lang(he)#turtleHeaderLanguage ,*/ :lang(he)#turtleHeaderUl li{
      float: right;
 }
 :lang(he)#turtleHeaderLogin{
