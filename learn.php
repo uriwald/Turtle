@@ -24,25 +24,19 @@
         </title>    
         <?php
         // Loading relevant js and css files
-
         require_once("files/utils/includeCssAndJsFiles.php"); 
         require_once("files/utils/loadCrousel.php");
 
         // Case user logged in we will clear the storage data and load it from db
         $isUserLoggedIn =   isset($_SESSION['username']);
         if ($isUserLoggedIn) {
-            ?>   
-            <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
-        <?php
+             echo "<script type='application/javascript' src='".$rootDir."clearStorageData.php' ></script>\n" ;   
         }
-        ?>   
-         
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-        <script type='application/javascript' src='<?php echo $rootDir; ?>files/interface.js?locale=<?php echo $locale ?>'></script>
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/doc.css' type='text/css' media='all'/>
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
-        <?php
+        echo "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css'/>\n" ; 
+        echo "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'/>\n" ; 
+        echo "<link rel='stylesheet' href='".$rootDir."files/css/doc.css' type='text/css' media='all'/>\n" ; 
+        echo "<link rel='stylesheet' href='".$rootDir."files/css/interface.css' type='text/css' media='all'/>\n" ; 
+
         cssUtils::loadcss($locale, $rootDir . "files/css/interface"); 
         ?>      
     </head> 
