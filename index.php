@@ -37,31 +37,9 @@
     <div id="index-main">
         <!--Should be different for log in user and for a guest -->
     <?php
-
+    //Printing the topbar menu
         $topbar = new topbarUtil();
-        $topbarDisplay = array (
-            "turtleacademy" => false,
-            "exercise" => true,
-            "helpus" => false,
-            "playground" => true,
-            "forum" => true,
-            "news" => true,
-            "about" => true,
-            "sample" => false
-        );
-
-        $signUpDisplay = false;
-        $languagesDisplay = true;
-
-        $language = array(
-            "en" => "en",
-            "ru" => "ru",
-            "es" => "es",
-            "zh" => "zh",
-            "he" => "he"
-        );
-        $topbar->printTopBar($rootDir, $topbarDisplay, $languagesDisplay
-                , $signUpDisplay, $language);
+        $topbar->printTopBar("index"); 
     ?>
         <div class="container">
             <!-- Main hero unit including welcoming messages and code samples -->

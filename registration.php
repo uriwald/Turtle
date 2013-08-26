@@ -349,32 +349,9 @@ if (isset($_POST['email_pwd'])) {
     }
     $action['text'] = $text;
 }
-$topbar = new topbarUtil();
-
-$topbarDisplay = array(
-    "turtleacademy" => false,
-    "exercise" => false,
-    "helpus" => false,
-    "playground" => false,
-    "forum" => false,
-    "news" => false,
-    "about" => false,
-    "sample" => true
-);
-
-$signUpDisplay = true;
-$languagesDisplay = true;
-
-$language = array(
-    "en" => "en_US",
-    "ru" => "ru_RU",
-    "es" => "es_AR",
-    "zh" => "zh_CN",
-    "he" => "he_IL"
-);
-
-
-$topbar->printTopBar($rootDir, $topbarDisplay, $languagesDisplay, $signUpDisplay, $language);
+        //Printing the topbar menu
+            $topbar = new topbarUtil();
+            $topbar->printTopBar("registration"); 
 ?>
 
 

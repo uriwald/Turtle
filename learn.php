@@ -26,7 +26,8 @@
         // Loading relevant js and css files
         require_once("files/utils/includeCssAndJsFiles.php"); 
         require_once("files/utils/loadCrousel.php");
-
+         echo "<script type='application/javascript' src='".$rootDir."files/jqconsole.js' ></script>\n" ;
+         echo "<script type='application/javascript' src='".$rootDir."files/interface.js?locale=".$locale."'></script>\n" ;
         // Case user logged in we will clear the storage data and load it from db
         $isUserLoggedIn =   isset($_SESSION['username']);
         if ($isUserLoggedIn) {
@@ -44,32 +45,9 @@
         <div id="main">
             <!-- Should be different for log in user and for a guest -->
             <?php
-            $topbar = new topbarUtil();
-            //Topbar menu display items
-            $topbarDisplay = array (
-                "turtleacademy" => false,
-                "exercise" => false,
-                "helpus" => false,
-                "playground" => true,
-                "forum" => true,
-                "news" => true,
-                "about" => true,
-                "sample" => false
-            );
-
-            $signUpDisplay = true;
-            $languagesDisplay = true;
-
-            $language = array(
-                "en" => "en",
-                "ru" => "ru",
-                "es" => "es",
-                "zh" => "zh",
-                "he" => "he"
-            );
-
-            $topbar->printTopBar($rootDir, $topbarDisplay, $languagesDisplay
-                    , $signUpDisplay, $language);
+            //Printing the topbar menu
+                $topbar = new topbarUtil();
+                $topbar->printTopBar("learn");
             ?>
 
             <div id="header" >

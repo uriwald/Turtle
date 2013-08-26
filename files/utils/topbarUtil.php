@@ -1,8 +1,71 @@
 <?php
 
 class topbarUtil {
+    public function printTopBar($topbarPage)
+    {
+        global $rootDir;
+           //Topbar menu display items
+            $topbarDisplay = array (
+                "turtleacademy" => false,
+                "exercise" => false,
+                "helpus" => false,
+                "playground" => false,
+                "forum" => false,
+                "news" => false,
+                "about" => false,
+                "sample" => false
+            );
 
-    public function printTopBar($rootDir, $topbarDisplay, $langDropDown, $signUpDisplay, $language, $showTurtleIcon = true) {
+            $signUpDisplay = true;
+            $languagesDisplay = true;
+
+            $language = array(
+                "en" => "en",
+                "ru" => "ru",
+                "es" => "es",
+                "zh" => "zh",
+                "he" => "he"
+                );
+            
+            switch ($topbarPage) {
+                case "learn":
+                     $topbarDisplay['playground'] = true ; 
+                     $topbarDisplay['news'] = true ; $topbarDisplay['about'] = true ; 
+                    break;
+                case "index":
+                    $signUpDisplay = false;
+                    $topbarDisplay['playground'] = true ; 
+                    $topbarDisplay['news'] = true ; $topbarDisplay['about'] = true ; 
+                    $topbarDisplay['exercise'] = true ;
+                    break;
+                case "playground":
+                    $topbarDisplay['about'] = true ; 
+                    $topbarDisplay['exercise'] = true ;
+                    break;
+                case "registration":
+                    $signUpDisplay = false;
+                    $topbarDisplay['about'] = true ; 
+                    $topbarDisplay['exercise'] = true ;
+                    $language['en'] = "en_US"; $language['ru'] = "ru_RU"; $language['he'] = "he_IL";
+                    $language['es'] = "es_AR"; $language['zh'] = "zh_CN"; 
+                    break;
+                case "news":
+                    $topbarDisplay['turtleacademy'] = true ; 
+                    $topbarDisplay['exercise'] = true ;
+                    break;
+                case "documentation":
+                    $topbarDisplay['turtleacademy'] = true ; 
+                    $topbarDisplay['exercise'] = true ;
+                    break;                
+                
+                
+            } 
+
+               
+            $this->printTopBarSelected($rootDir, $topbarDisplay, $languagesDisplay , $signUpDisplay, $language);
+    }
+     private function printTopBarSelected($rootDir, $topbarDisplay, $langDropDown, $signUpDisplay, $language, $showTurtleIcon = true) 
+    {
         global $cssleft, $cssright, $lang;
         ?>    
         <div class="topbar" id="topbarMainDiv" > 

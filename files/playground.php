@@ -30,6 +30,7 @@ require_once('utils/topbarUtil.php');
         $po_file = "<link   rel='gettext' type='application/x-po' href='../locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
         if (file_exists($file_path))
             echo $po_file;
+         echo "<script type='application/javascript' src='".$rootDir."files/jqconsole.js' ></script>\n" ;
         ?>        
         <script type="text/javascript">
             var locale = "<?php echo $locale; ?>";
@@ -98,30 +99,9 @@ require_once('utils/topbarUtil.php');
         </div> 
         <div id="main" style="margin-left: 100px;">
         <?php
+        //Printing the topbar menu
             $topbar = new topbarUtil();
-            $topbarDisplay = array 
-            (
-                "turtleacademy" => false,
-                "exercise" => true,
-                "helpus" => false,
-                "playground" => false,
-                "forum" => false,
-                "news" => false,
-                "about" => true,
-                "sample" => false
-            );
-
-            $signUpDisplay = true;
-            $languagesDisplay = true;
-
-            $language = array(
-                "en" => "en",
-                "ru" => "ru",
-                "es" => "es",
-                "zh" => "zh",
-                "he" => "he"
-            );
-            $topbar->printTopBar($rootDir, $topbarDisplay, $languagesDisplay, $signUpDisplay, $language);
+            $topbar->printTopBar("playground"); 
         ?>
             <div id="headerplain" class="page-header" >
             <?php
