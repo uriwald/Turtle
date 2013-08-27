@@ -35,27 +35,12 @@ if (file_exists($file_path))
         <?php
         cssUtils::loadcss($locale, $rootDir . "files/css/interface");
         ?>    
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/>
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/news.css' type='text/css' media='all'/>
-        <!-- Google Analytics Tracking --> 
-        <script type="application/javascript"> 
-            var _gaq = _gaq || []; 
-            _gaq.push(['_setAccount', 'UA-26588530-1']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
-        <!-- End of Google Analytics Tracking --> 
     </head>
     <body align="center"> 
     <?php
-    //Printing the topbar menu
-            $topbar = new topbarUtil();
-            $topbar->printTopBar("news"); 
+        //Printing the topbar menu
+        topbarUtil::printTopBar("news");
     ?>
 
         <div id="turtleNewsBody" class="span16 columns" lang="<?php echo $lang ?>"> 

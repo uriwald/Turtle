@@ -37,9 +37,8 @@
     <div id="index-main">
         <!--Should be different for log in user and for a guest -->
     <?php
-    //Printing the topbar menu
-        $topbar = new topbarUtil();
-        $topbar->printTopBar("index"); 
+        //Printing the topbar menu
+        topbarUtil::printTopBar("index"); 
     ?>
         <div class="container">
             <!-- Main hero unit including welcoming messages and code samples -->

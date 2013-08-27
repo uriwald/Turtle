@@ -1,9 +1,10 @@
 <?php
 
 class topbarUtil {
-    public function printTopBar($topbarPage)
+    public static function printTopBar($topbarPage)
     {
         global $rootDir;
+        $topbarSpanSize = 16;
            //Topbar menu display items
             $topbarDisplay = array (
                 "turtleacademy" => false,
@@ -48,6 +49,7 @@ class topbarUtil {
                     $topbarDisplay['exercise'] = true ;
                     $language['en'] = "en_US"; $language['ru'] = "ru_RU"; $language['he'] = "he_IL";
                     $language['es'] = "es_AR"; $language['zh'] = "zh_CN"; 
+                    $topbarSpanSize = 13;
                     break;
                 case "news":
                     $topbarDisplay['turtleacademy'] = true ; 
@@ -59,18 +61,16 @@ class topbarUtil {
                     break;                
                 
                 
-            } 
-
-               
-            $this->printTopBarSelected($rootDir, $topbarDisplay, $languagesDisplay , $signUpDisplay, $language);
+            }        
+            topbarUtil::printTopBarSelected($rootDir, $topbarDisplay, $languagesDisplay , $signUpDisplay, $language ,$topbarSpanSize);
     }
-     private function printTopBarSelected($rootDir, $topbarDisplay, $langDropDown, $signUpDisplay, $language, $showTurtleIcon = true) 
+     private static function printTopBarSelected($rootDir, $topbarDisplay, $langDropDown, $signUpDisplay, $language,$topbarSpanSize , $showTurtleIcon = true) 
     {
         global $cssleft, $cssright, $lang;
         ?>    
         <div class="topbar" id="topbarMainDiv" > 
             <div class="fill" id="topbarfill">
-                <div class="container span16" id="topbarContainer"> 
+                <div class="container span<?php echo $topbarSpanSize; ?>" id="topbarContainer"> 
                     <?php
                     if ($showTurtleIcon) {
                         ?>

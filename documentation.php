@@ -48,9 +48,8 @@ require_once('files/utils/topbarUtil.php');
     </head>
     <body>
         <?php
-        //Printing the topbar menu
-            $topbar = new topbarUtil();
-            $topbar->printTopBar("documentation"); 
+            //Printing the topbar menu
+            topbarUtil::printTopBar("documentation"); 
         ?> 
         <div class="container" role="docs">
             <div class="row" lang="<?php echo $lang ?>">    

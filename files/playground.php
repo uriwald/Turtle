@@ -37,25 +37,10 @@ require_once('utils/topbarUtil.php');
         </script>
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_plain.js?locale=<?php echo $locale ?>"></script> <!-- Interface scripts -->
 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
         <?php
             cssUtils::loadcss($locale, $rootDir . "files/css/interface");
-        ?>     
-        <!-- Google Analytics Tracking --> 
-        <script type="application/javascript"> 
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-26588530-1']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
-        <!-- End Google Analytics Tracking -->
-        
+        ?>             
         <style type="text/css">
             h1, h2, h3, h4, p { margin-bottom: 6pt; margin-top: 6pt; }
             body, p, h1, h2, h3 { font-family: sans-serif; }
@@ -99,9 +84,8 @@ require_once('utils/topbarUtil.php');
         </div> 
         <div id="main" style="margin-left: 100px;">
         <?php
-        //Printing the topbar menu
-            $topbar = new topbarUtil();
-            $topbar->printTopBar("playground"); 
+            //Printing the topbar menu
+            topbarUtil::printTopBar("playground");
         ?>
             <div id="headerplain" class="page-header" >
             <?php

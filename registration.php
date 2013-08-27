@@ -340,8 +340,7 @@ if (isset($_POST['email_pwd'])) {
     $action['text'] = $text;
 }
         //Printing the topbar menu
-            $topbar = new topbarUtil();
-            $topbar->printTopBar("registration"); 
+        topbarUtil::printTopBar("registration"); 
 ?>
 
 

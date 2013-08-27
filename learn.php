@@ -45,9 +45,8 @@
         <div id="main">
             <!-- Should be different for log in user and for a guest -->
             <?php
-            //Printing the topbar menu
-                $topbar = new topbarUtil();
-                $topbar->printTopBar("learn");
+                //Printing the topbar menu
+                topbarUtil::printTopBar("learn");
             ?>
 
             <div id="header" >
