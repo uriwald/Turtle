@@ -18,8 +18,8 @@ require_once ('files/utils/topbarUtil.php');
         <meta name="description" content="">
         <meta name="author" content="">
         <?php
-        if ($dir == "rtl")
-            echo "<link rel='stylesheet' type='text/css' href='files/css/registration_rtl.css' /> ";
+         echo "<link rel='stylesheet' type='text/css' href='" . $rootDir ."files/css/registration.css' /> ";
+
         require_once("files/utils/includeCssAndJsFiles.php");
         ?>     
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/>   
@@ -147,17 +147,7 @@ require_once ('files/utils/topbarUtil.php');
             });
 
         </script>
-        <!-- Le styles 
-        <link href="<?php echo $fullPath . 'styles/bootstrap.min.css'; ?>" rel="stylesheet">-->
-        <style type="text/css">
-            #submit_pwd{
-                margin-top: 10px;
-            }
-            .switch{
-                display:inline-block;
-                cursor:pointer;
-            }
-        </style>
+
     </head>
     <body>
 <?php
@@ -366,35 +356,35 @@ if (isset($_POST['email_pwd'])) {
         echo show_errors($action);
         ?>
                         <div class='cleaner_h20'></div>        
-                        <div class="clearfix">
+                        <div class="clearfix" lang="<?php echo $dir ?>">
                             <label for="email_up" id="signUpEmailLbl"><?php echo _("Email"); ?></label>
-                            <div class="input">
+                            <div class="input" lang="<?php echo $dir ?>">
                                 <input id="email" name="email" size="30" type="text" class='xlarge'/>
                             </div>
                         </div>        
-                        <div class="clearfix">
+                        <div class="clearfix" lang="<?php echo $dir ?>">
                             <label for="username_up" id="signUpUserNameLbl"><?php echo _("Username"); ?></label>
-                            <div class="input">
+                            <div class="input" lang="<?php echo $dir ?>">
                                 <input id="username" name="username" size="30" type="text" class='xlarge'/>
                                 </br>
                             </div>
                         </div>         
-                        <div class="clearfix">
+                        <div class="clearfix" lang="<?php echo $dir ?>">
                             <label for="pwd_up" id="signUpUserNameLPwdLbl"><?php echo _("Password"); ?></label>
-                            <div class="input">
+                            <div class="input" lang="<?php echo $dir ?>">
                                 <input id="password" name="password" size="30" type="password" class='xlarge'/>
                             </div>
                         </div>        
                         <div class='cleaner_h10'></div>           
                         <ul class="inputs-list">
                             <li>
-                                <label>
+                                <label class="checkCondition" lang="<?php echo $dir ?>">
                                     <input type="checkbox" name="terms_up" id='terms_up' value="yes" checked='true' />
                                     <span for='terms_up' id="signupAgreeToTerms"><?php echo _("Agree to"); ?> <a id="termsofuse" href='#'><?php echo _("Terms of Use"); ?></a></span>
                                 </label>
                             </li>
                         </ul>       
-                        <div class='cleaner_h20'></div>
+                        <div class='cleaner_h10'></div>
                         <input type='submit' value='<?php echo _("Sign Up"); ?>&raquo;' id='signup' name='signup' class="btn primary"/>
                     </form>
                 </div>    
@@ -402,54 +392,54 @@ if (isset($_POST['email_pwd'])) {
                     <form class='form-stacked hide' id='forgot-password-form' method='post'> 
                         <h2><?php echo _("Forgot Password"); ?></h2>
                         <div class='cleaner_h20'></div>
-                        <div class="clearfix">
+                        <div class="clearfix" lang="<?php echo $dir ?>">
                             <label for="email_pwd" id="forgotEmail"><?php echo _("Email"); ?></label>
-                            <div class="input">
+                            <div class="input" lang="<?php echo $dir ?>">
                                 <input id="email_pwd" name="email_pwd" size="30" type="text"/>
-                                <div class='cleaner_h10'></div>
-                                <span class='switch' data-switch='sign-in-form'> <?php echo _("Never mind, I remember my password"); ?></span>
+                                <div class='cleaner_h10'></div> 
+                                <span class='switch' data-switch='sign-in-form' id="neverMindSwitch"> <?php echo _("Never mind, I remember my password"); ?></span>
                             </div>
                         </div>           
-                        <div class='cleaner_h20'></div>
+                        <div class='cleaner_h10'></div>
                         <input type='submit' value='<?php echo _("Remind me"); ?>&raquo;' id='submit_pwd' name='submit_pwd' class="btn primary"/>
                     </form>
                     <form class='form-stacked' id='sign-in-form' action='log.php' method='post'>
                         <h2><?php echo _("Sign In"); ?></h2>
-<?php
-$err = "<span class='help-block'>";
-if (isset($_SESSION['err_login_msg'])) {
-    foreach ($_SESSION['err_login_msg'] as $msg) { //Get each error
-        $err .= "<span class='label important'>" . $msg . "</span>"; //Write them to a variable
-    }
-}
-$err .= "</span>";
-echo $err;
-if (isset($_SESSION['err_login_msg']))
-    unset($_SESSION['err_login_msg']);
-?>
+                        <?php
+                        $err = "<span class='help-block'>";
+                        if (isset($_SESSION['err_login_msg'])) {
+                            foreach ($_SESSION['err_login_msg'] as $msg) { //Get each error
+                                $err .= "<span class='label important'>" . $msg . "</span>"; //Write them to a variable
+                            }
+                        }
+                        $err .= "</span>";
+                        echo $err;
+                        if (isset($_SESSION['err_login_msg']))
+                            unset($_SESSION['err_login_msg']);
+                        ?>
                         <div class='cleaner_h20'></div>           
-                        <div class="clearfix">
+                        <div class="clearfix" lang="<?php echo $dir ?>">
                             <label for="username" id="signInUserNameLbl"><?php echo _("Username"); ?></label>
-                            <div class="input">
+                            <div class="input" lang="<?php echo $dir ?>">
                                 <input id="username" name="username" size="30" type="text"/>
                             </div>
                         </div>
                         <input id="comefrom" name="comefrom" size="30" type="text" value="registration.php" style="display:none;"/>        
-                        <div class="clearfix">
+                        <div class="clearfix" lang="<?php echo $dir ?>">
                             <label for="password" id="signInPasswordLbl"><?php echo _("Password"); ?></label>
-                            <div class="input">
+                            <div class="input" lang="<?php echo $dir ?>">
                                 <input id="password" name="password" size="30" type="password"/>
                             </div>
                         </div>           
                         <ul class="inputs-list">
                             <li>
-                                <label>
+                                <label class="checkCondition" lang="<?php echo $dir ?>">
                                     <input type="checkbox" name="remember_checkbox" id='remember_checkbox' value="yes" checked='true' />
                                     <span for='remember_in' id='remember_span'><?php echo _("Remember me"); ?></span>
                                 </label>
                             </li>
                         </ul>          
-                        <div class='cleaner_h20'></div>
+                        <div class='cleaner_h10'></div>
                         <input type='submit' value='<?php echo _("Sign In"); ?>&raquo;' id='submit_in' name='submit_in' class="btn primary"/>
 
                         <span class='switch' data-switch='forgot-password-form'><?php echo _("Forgot my password"); ?></span> </br></br></br>
@@ -468,15 +458,15 @@ if (isset($_SESSION['err_login_msg']))
                     <form class='form-stacked' id='forgot-password-form' method='post'> 
                         <h2><?php echo _("Forgot Password"); ?></h2>
                         <div class='cleaner_h20'></div>
-                        <div class="clearfix">
+                        <div class="clearfix" lang="<?php echo $dir ?>">
                             <label for="email_pwd" id="forgotEmail"><?php echo _("Email"); ?></label>
-                            <div class="input">
+                            <div class="input" lang="<?php echo $dir ?>">
                                 <input id="email_pwd" name="email_pwd" size="30" type="text"/>
                                 <div class='cleaner_h10'></div>
                                 <span class='switch' data-switch='sign-in-form'> <?php echo _("Never mind, I remember my password"); ?></span>
                             </div>
                         </div>           
-                        <div class='cleaner_h20'></div>
+                        <div class='cleaner_h10'></div>
                         <input type='submit' value='<?php echo _("Remind me"); ?>&raquo;' id='submit_pwd' name='submit_pwd' class="btn primary"/>
                     </form>
                 </div>

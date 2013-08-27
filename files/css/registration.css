@@ -1,0 +1,58 @@
+/* 
+    Document   : registration
+    Created on : Aug 27, 2013, 12:00:08 PM
+    Author     : Lucio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+
+.clearfix > label{
+    font-size: 13px;
+    color: #404040;
+    
+}
+#neverMindSwitch{
+    font-size: 16px;
+}
+input.xlarge, textarea.xlarge, select.xlarge {
+    /* width: 270px; */
+}
+#submit_pwd{
+    margin-top: 10px;
+}
+.switch{
+    display:inline-block;
+    cursor:pointer;
+}
+:lang(rtl).clearfix > label{
+    text-align: right;
+    width: 100%;
+    float: right;
+}
+:lang(rtl).checkCondition > input{
+    float: right;
+    margin-top: 3px;
+}
+:lang(rtl).checkCondition > span{
+    float: right;
+    margin-right: 5px;
+}
+:lang(rtl).input > label
+{
+    float: right;
+}
+
+/*
+#remember_span , #signupAgreeToTerms{
+    float : right ;
+    margin-right: 20px;
+}
+.form-stacked label.error{
+    float : right;
+}
+*/
