@@ -20,65 +20,39 @@
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
 
-        <?php   
-        
-            $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
-            if ( file_exists($file_path))
-                echo $po_file;            
-         
-            if (!isset ($rootDir))
-                $rootDir = "/";
-            if (isset($_SESSION['locale']))
-                $locale =   $_SESSION['locale'];
-            if (!isset($locale))
-                if (isset($_GET['locale']))
-                    $locale = $_GET['locale'];
-                else
-                     $locale = "en_US";
-            $localePage =   substr($locale, 0, -3); 
-            require_once("localization.php");
-            $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";             
-            if ( file_exists($file_path))
-                echo $po_file;      
+        <?php         
              cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
              cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
         ?>
-                <script type="application/javascript"> 
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-26588530-1']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-
-        </script>
     </head>
     <body>
         <?php  
-            $class = ($locale == "he_IL" ?  "pull-right" :  "pull-left");    
-            $login = ($locale != "he_IL" ?  "pull-right" :  "pull-left");  
-              
-            $topbar = new topbarUtil();
-            $topbarDisplay['turtleacademy'] = true ;
-            $topbarDisplay['exercise']      = true ; 
-            $topbarDisplay['helpus']        = false ;
-            $topbarDisplay['playground']    = false ;
-            $topbarDisplay['forum']         = false ;
-            $topbarDisplay['news']          = false ;
-            $topbarDisplay['about']         = false ; 
-            $topbarDisplay['sample']        = false ;
-            $signUpDisplay                  = true ;
-            $languagesDisplay               = false ;
-            $language['en'] = "en";$language['ru'] = "ru";
-            $language['es'] = "es";$language['zh'] = "zh";$language['he'] = "he";
+                        $topbar = new topbarUtil();
+            
+            $topbarDisplay = array (
+                "turtleacademy" => true,
+                "exercise" => true,
+                "helpus" => false,
+                "playground" => false,
+                "forum" => false,
+                "news" => false,
+                "about" => true,
+                "sample" => false
+            );
+ 
+            $signUpDisplay = true;
+            $languagesDisplay = false;
+
+            $language = array(
+                "en" => "en_US",
+                "ru" => "ru_RU",
+                "es" => "es_AR",
+                "zh" => "zh_CN",
+                "he" => "he_IL"
+            );
+ 
                 
-            $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay , $language ,
-                    $_SESSION); 
+            $topbar->printTopBar($rootDir , $topbarDisplay , $languagesDisplay , $signUpDisplay , $language ); 
         ?> 
         ?> 
       

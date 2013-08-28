@@ -22,10 +22,11 @@
     $fullLocalePath     =   "locale_".$locale;
     
     $m = new Mongo();
-    $db = $m->turtleTestDb;
-    $strcol = $db->lessons_translate_status;
+    $db                 = $m->turtleTestDb;
+    $strcol             = $db->lessons_translate_status;
     $lessons            = $strcol->find();
-    $lang = getLanguage($locale);
+    $lang               = getLanguage($locale);
+    
     echo "<div> <h1> Lesson translate to " . $lang . " report </h1></div>";
     foreach ($lessons as $lesson)
     {
@@ -91,8 +92,8 @@
         <span>
             <?php 
 
-                echo "<a href='../strings/showStrByLocale.php?locale=$locale' > <span class='lessonh'>Translate Strings</span> </a>";
-
+                echo "<span><a href='../strings/showStrByLocale.php?locale=$locale' > <span class='lessonh'>Translate Strings</span> </a></span><br/>";
+                echo "<span><a href='../../turtleNews/newsTrans.php?locale=$locale' > <span class='lessonh'>Translate News</span> </a></span>";
             ?>
         </span> 
     </div>
@@ -108,6 +109,8 @@
             $lang = "Spanish";
         else if ($locale == "zh_CN")
             $lang = "Chinese";
+        else if ($locale == "ar_JO")
+            $lang = "Arabic";
         return $lang;
     }
     ?>

@@ -69,7 +69,7 @@ class LightOpenID
         'contact/country/home'    => 'country',
         'pref/language'           => 'language',
         'pref/timezone'           => 'timezone',
-        );
+        ); 
 
     function __construct($host)
     {

@@ -23,13 +23,12 @@ $localPosted = "locale";
 $cursor = $lessons->find();
 $cursor->sort(array('precedence' => 1));
 $i = 0;
+$numberOfActiveLessons = 0;
 //$fullJsFile = "var lessons = [";
 echo "var lessons = [";
 $notRegisterUser    = !isset($_SESSION['username']);
 foreach ($cursor as $lessonStructure) {
     //  Unset the lesson ID
-    //   echo " some lessons found";
-    //print_r($lessonStructure);
     $lessonStructure['id']      = '' . $lessonStructure['_id'];
     unset($lessonStructure['_id']);
     $lessonForRegisterUserOnly  = false;
@@ -40,18 +39,12 @@ foreach ($cursor as $lessonStructure) {
         else
             $lessonForRegisterUserOnly  = false;
     }
-
-    //echo "isset?  ".$lessonStructure['locale_' . $_GET[$localPosted]];
     if (isset($lessonStructure['locale_' . $_GET[$localPosted]])) {
-        //  echo "isset ".$lessonStructure['locale_' . $_GET[$localPosted]];
         $lessonStructure = $lessonStructure['locale_' . $_GET[$localPosted]];
     }
     if (isset($lessonStructure["steps"])) {
-        // echo "is set steps";
         $lessonSteps = $lessonStructure["steps"];
     }
-    //echo " printing lesson steps ";
-    //print_r($lessonSteps);
     $showItem           = true;
     //If it's not a register user and the lesson should appear only for register users
     if ($notRegisterUser && $lessonForRegisterUserOnly )
@@ -61,15 +54,12 @@ foreach ($cursor as $lessonStructure) {
         }
     
     foreach ($lessonSteps as $key => $value) {
-        //"enterLessonSteps";
-        //echo "Key = " . $key ;
         // If we have locale for the current step we will set him
         if (isset($lessonSteps[$key]['locale_' . $_GET[$localPosted]])) {
             $lessonSteps[$key] = $lessonSteps[$key]['locale_' . $_GET[$localPosted]];
         } else {
             $showItem = false;
         }
-
         // unsetting the other locale values
         foreach ($value as $kkey => $vvalue) {
             //echo "Key = " . $kkey ;
@@ -90,7 +80,6 @@ foreach ($cursor as $lessonStructure) {
         }
     }
     $lessonStructure["title"] = $finalTitle;
-
     // cleanup extra locales
     foreach ($lessonStructure as $key => $value) {
         if (strpos($key, 'locale') === 0) {
@@ -98,26 +87,18 @@ foreach ($cursor as $lessonStructure) {
         }
     }
     if (($lessonStructure["pending"] == false) && ($showItem == true)) {
+        $numberOfActiveLessons++ ;
         echo json_encode($lessonStructure);
         echo ",";
     }
 
     $i++;
 }
-echo "]";
+echo "];"; 
+echo "var numOfActiveLessons =".$numberOfActiveLessons . ";";
 
 updateLoclaStorageForLoggedUser($m , $db);
-function writeToJsFile($lessonStructure) {
 
-
-    $ourFileName = "testFile.txt";
-    $ourFileHandle = fopen($ourFileName, 'w') or die("can't open file");
-    $stringData = "Bobby Bopper\n";
-    fwrite($ourFileHandle, $stringData);
-    $stringData = "Tracy Tanner\n";
-    fwrite($ourFileHandle, $stringData);
-    fclose($ourFileHandle);
-}
 function updateLoclaStorageForLoggedUser($m , $db)
 {
     if (isset ($_SESSION['username']))
@@ -129,12 +110,9 @@ function updateLoclaStorageForLoggedUser($m , $db)
         echo ";";
         if ($cursor != null && isset($cursor['stepCompleted']))
         {
-            $data = explode(",", $cursor['stepCompleted']); ;
-            //print_r($data);
-            
+            $data = explode(",", $cursor['stepCompleted']);         
             $datalen    = count($data);
             $value = "true";
-            //echo ";<script>";
             for ($i =0 ; $i < $datalen -1 ; $i++)
             {
                echo "localStorage.setItem('$data[$i]' ,'$value' );";
@@ -145,7 +123,6 @@ function updateLoclaStorageForLoggedUser($m , $db)
                 $historyVal     =   $cursor['userHistory'];
                 echo "localStorage.setItem('logo-history' ,'$historyVal' );";
             }
-            //echo "</script>";
         }
     }
 } 

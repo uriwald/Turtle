@@ -14,13 +14,10 @@
                   <tr>
                       <th class='span2'></th>
                       <th class='span2'>Title</th>
-                      <th class='span6'>In progress</th>
-                      <th class='span6'>Completed</th>
-                      <!--
-                      <th class='span2'>es</th>
-                      <th class='span2'>zh</th>
-                      <th class='span2'>ru</th>
-                      <th class='span2'>il</th> -->
+                      <th class='span5'>In progress</th>
+                      <th class='span5'>Completed</th>
+                      <th class='span6'>Comments</th>
+                      <th class='span2'>Action</th>
                   </tr>
                 </thead>
                   <?php
@@ -28,6 +25,12 @@
                         $i              = 0;
                         foreach ($lessons as $lesson)
                         {
+                            $i++;
+                            $comments = "";
+                            if (isset($lesson['comments']))
+                                $comments     = $lesson['comments'] ;
+                            $progress   =   $lesson['in_progress'];
+                            $completed  =   $lesson['completed'];
                             $lessonid    = $lesson['lesson_id'] ;
                             $lessonTitle = $lesson['title'] ;
                   ?>
@@ -36,20 +39,24 @@
                       <td></td>
                       <td> <?php echo $lessonTitle ?> </td>
                       <td>
-                            <div class="controls span8">
-                                    <input type="checkbox" value="option1" id="inlineCheckbox1"> ZH
-                                    <input type="checkbox" value="option2" id="inlineCheckbox2"> RU
-                                    <input type="checkbox" value="option3" id="inlineCheckbox3"> ES
-                                    <input type="checkbox" value="option3" id="inlineCheckbox3"> HE
+                            <div class="controls span5">
+                                    <input type="checkbox" value="option1" id="progress_zh<?php echo $i ?>" <?php if ($progress['locale_zh_CN'] == "true") echo "checked=true";?>> ZH
+                                    <input type="checkbox" value="option2" id="progress_ru<?php echo $i ?>" <?php if ($progress['locale_ru_RU'] == "true") echo "checked=true";?>> RU
+                                    <input type="checkbox" value="option3" id="progress_es<?php echo $i ?>" <?php if ($progress['locale_es_AR'] == "true") echo "checked=true";?>> ES
+                                    <input type="checkbox" value="option3" id="progress_he<?php echo $i ?>" <?php if ($progress['locale_he_IL'] == "true") echo "checked=true";?>> HE
                             </div>
                       </td>
                       <td>
-                            <div class="btn-group" data-toggle="buttons-checkbox">
-                                <button type="button" class="btn btn-primary" data-toggle="button">he</button>
-                                <button type="button" class="btn btn-primary" data-toggle="button">ru</button>
-                                <button type="button" class="btn btn-primary" data-toggle="button">es</button>
-                                <button type="button" class="btn btn-primary" data-toggle="button">zh</button>
+                            <div class="controls span5">
+                                    <input type="checkbox" value="option1" id="finish_zh<?php echo $i ?>" <?php if ($completed['locale_zh_CN'] == "true") echo "checked=true";?>> ZH
+                                    <input type="checkbox" value="option2" id="finish_ru<?php echo $i ?>" <?php if ($completed['locale_ru_RU'] == "true") echo "checked=true";?>> RU
+                                    <input type="checkbox" value="option3" id="finish_es<?php echo $i ?>" <?php if ($completed['locale_es_AR'] == "true") echo "checked=true";?>> ES
+                                    <input type="checkbox" value="option3" id="finish_he<?php echo $i ?>" <?php if ($completed['locale_he_IL'] == "true") echo "checked=true";?>> HE
                             </div>
+                      </td>
+                      <td><textarea type='text' id='comments<?php echo $i ?>' rows="3" value='<?php echo $comments; ?>'><?php echo $comments; ?></textarea></td>
+                      <td>
+                        <div class='btn small info pressed' id='<?php echo $i ?>' value="<?php echo $lessonid ?>">save</div>
                       </td>
                   </tr>
                   <?php
@@ -63,27 +70,35 @@
                     $().button('toggle');
                     $(".pressed").click(function() {
                         var id                      = $(this).attr('id');
-                        var headlinen               = "headline"+id;
-                        var headlinen_translate     = "headline_translate"+id;
-                        var contextn                = "context"+id;
-                        var contextn_translate      = "context_translate"+id;
-                        var headline                = $('#' + headlinen).text();
-                        var headline_translate      = $('#' + headlinen_translate).val();
-                        var context                 = $('#' + contextn).text();
-                        var context_translate       = $('#' + contextn_translate).val();
-                        var locale                  = '<?php echo "locale_" . $locale?>';
+                        var lessonId                = $(this).attr('value');
+                        var comments                = $('#' + 'comments' + id).val();    
+                        var progress_ru             = $('#' + 'progress_ru' + id).is(":checked");
+                        var progress_zh             = $('#' + 'progress_zh' + id).is(":checked");
+                        var progress_es             = $('#' + 'progress_es' + id).is(":checked");
+                        var progress_he             = $('#' + 'progress_he' + id).is(":checked");
+                        
+                        var finish_ru             = $('#' + 'finish_ru' + id).is(":checked");
+                        var finish_zh             = $('#' + 'finish_zh' + id).is(":checked");
+                        var finish_es             = $('#' + 'finish_es' + id).is(":checked");
+                        var finish_he             = $('#' + 'finish_he' + id).is(":checked");
+                        
                         //alert("hello--" + str + "--" + page + "--" + context + "----" + input);
                         $.ajax({
                             type : 'POST',
-                            url : 'saveNewsTranslation.php',
+                            url : 'saveLessonProgressStatus.php',
                             dataType : 'json',
                             data: {
-                                headline                : headline,
-                                headline_translate      : headline_translate,
-                                context                 : context,
-                                context_translate       : context_translate ,
-                                id                      : id,
-                                locale                  : locale
+                                progress_ru                : progress_ru,
+                                progress_zh                : progress_zh,
+                                progress_es                : progress_es,
+                                progress_he                : progress_he,
+                                finish_ru                  : finish_ru,
+                                finish_zh                  : finish_zh,
+                                finish_es                  : finish_es,
+                                finish_he                  : finish_he,
+                                comments                   : comments,
+                                lessonId                   : lessonId
+
                             },
                             success: function(data) { 
                                 alert('successfully save');

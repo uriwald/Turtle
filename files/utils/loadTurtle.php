@@ -10,53 +10,61 @@
  *
  * @author Lucio
  */
-class loadTurtle {
-    private $root;
-    private $env;
-    private $locale;
-    private $bp; 
-    public function __construct($root , $env) 
-     {
-            $this->root = $root; 
-            $this->env  = $env; 
-            $this->bp= $root."files/bootstrap/";
-
+include_once 'loadFiles.php';
+class loadTurtle extends loadFiles{
+    private $locale; 
+    
+    public function __construct($locale , $root , $env ,$address = "files/test/dd/" ) 
+    {
+         parent::__construct($root , $env ,$address); 
+         $this->locale  = $locale;
      }  
 
-    public function loadFiles( $js = true , $js_min = true , $css = true  ){
-        if ($js == "true")
-        {
-                echo "<script type='application/javascript' src='". $this->bp . "js/bootstrap.js' ></script>" ; 
-        }
-        if ($js_min == "true")    
-        {
-            //if ($this->env == "local")
-                echo "<script type='application/javascript' src='". $this->bp . "js/bootstrap.min.js' ></script>" ; 
-            //else
-            //    echo "<script src='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.1/bootstrap.min.js'>";
-        }
-        if ($css == "true")
-            echo "<link href='" . $this->bp . "css/bootstrap.all.css' rel='stylesheet' >" ; 
-        //will try to use to boostrap.all file instead of 2 diffrent files
+    public function loadFiles( $js_lang = true , $js_logo = true , $js_turtle = true , $js_fill = true ,
+            $js_canvas = true , $js_mongo = true , $js_getText = true , $js_interface = true , $js_console = true)
+    {
         
-        /*
-        if ($css == "true")
-            echo "<link href='" . $this->bp . "css/bootstrap.css' rel='stylesheet' >" ; 
-        if ($css_min == "true")
-            echo "<link href='" . $this->bp . "twitter-bootstrap-sample-page-layouts-master/styles/bootstrap.min.css' rel='stylesheet' >" ;
+        if ($js_lang == "true")
+        {
+                echo "<script type='application/javascript' src='". $this->root . "files/js/langSelect.js' ></script>" ; 
+        }
+        if ($js_logo == "true")
+        {
+                echo "<script type='application/javascript' src='". $this->root . "files/logo.js' ></script>" ; 
+        }
+        if ($js_turtle == "true")
+        {
+                echo "<script type='application/javascript' src='". $this->root . "files/turtle.js' ></script>" ; 
+        }
+        if ($js_fill == "true")
+        {
+                echo "<script type='application/javascript' src='". $this->root . "files/floodfill.js' ></script>" ; 
+        }
+        if ($js_canvas == "true")
+        {
+                echo "<script type='application/javascript' src='http://www.nihilogic.dk/labs/canvas2image/canvas2image.js'</script>" ; 
+        }       
+         if ($js_mongo == "true")
+        {
+               echo "<script type='application/javascript' src='". $this->root . "readMongo.php?locale=" . $this->locale ."' ></script>" ;  
+        }         
+        if ($js_getText == "true")
+        {
+                echo "<script type='application/javascript' src='". $this->root . "files/Gettext.js' ></script>" ; 
+        }  
+        if ($js_interface == "true")
+        {
+            echo "<script type='application/javascript' src='". $this->root . "files/interface.js?locale=" . $this->locale ."' ></script>" ;
+        }
+ 
+        if ($js_console == "true")
+        {
+                echo "<script type='application/javascript' src='". $this->root . "files/jqconsole.js' ></script>" ; 
+        }  
         
-         */ 
-
     }
 }
 
+
 ?>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select -->                         
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="text/javascript" src="<?php echo $rootDir; ?>files/floodfill.js"></script>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
-        <script src="http://www.nihilogic.dk/labs/canvas2image/canvas2image.js"></script>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/jqconsole.js"></script> 
+      

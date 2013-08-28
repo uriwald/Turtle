@@ -1,0 +1,738 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: TurtleAcademy\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-09 01:43+0530\n"
+"PO-Revision-Date: 2013-02-09 02:43+0530\n"
+"Last-Translator: \n"
+"Language-Team: Wald\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: c:\\gentoo\\share\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: he_IL\n"
+"X-Poedit-SearchPath-0: C:\\Users\\Lucio\\Documents\\NetBeansProjects\\Turtle\n"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:4
+msgid "Project Documentation"
+msgstr "项目文档"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:22
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:26
+msgid "About the project"
+msgstr "关于这个项目"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:29
+msgid "The project contains a client side learning environment and a compiler for the <a target='_bjlank' href='http://he.wikipedia.org/wiki/%D7%9C%D7%95%D7%92%D7%95_(%D7%A9%D7%A4%D7%AA_%D7%AA%D7%9B%D7%A0%D7%95%D7%AA)'>Logo</a> Programming language."
+msgstr "这个项目包含一个客户端学习环境和一个语言编程的编译器"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:30
+msgid "The project enables to learn the Logo language and programming principles and can be used for programming logo"
+msgstr "这个项目可用于学习Logo语言和编程原理，还可用于Logo编程"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:35
+msgid "Why was it done"
+msgstr "为什么要做这个项目"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:39
+msgid "My brother has been volunteering in a primary school in Israel for the past few years."
+msgstr "在过去的几年，我哥哥在以色列的一个小学做志愿者"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:40
+msgid "He was trying to instill the basic programming skills in the children and he discovered that there are three main problems."
+msgstr "他试图向孩子们灌输基本的编程技巧，他发现有3个问题"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:41
+msgid "The first is the language barrier (all the programming languages are using English and the children's do not speak the language ),"
+msgstr "第一个问题是语言障碍（现在所有的编程语言都是英文，但是孩子们都不会说英文）"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:42
+msgid "the second issue is that currently there are not many online learning programs which address children."
+msgstr "第二个问题是目前还没有太多的提供给孩子们的在线学习程序"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:43
+msgid "The third issue is the installation requirement of an appropriate programming environment in order to be able to start programming."
+msgstr "第三个问题是现在的编程都要求有合适的编程环境"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:48
+msgid "For this reason we thought it would be a good idea to join forces and create TurtleAcademy"
+msgstr "出于这些原因，我们认为联手创建这个海龟学院将是一个好主意"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:49
+msgid "The inspiration for the project came from other projects like <a target='_blank' href='http://www.khanacademy.org/'> Khanacademy</a> And a javascript learning project named <a target='_blank' href='http://www.codecademy.com/'>Codecademy</a>"
+msgstr "做这个项目的灵感来自于一些其它的项目，比如Khanacademy，和一个名叫Codecademy的JavaScript学习项目"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:54
+msgid "Who are we ?"
+msgstr "我们是谁"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:58
+msgid "Lucio  - Webmaster  and  amateur ping pong player"
+msgstr "Lucio  - 网站管理员，业余乒乓运动员"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:59
+msgid "Ofer   - Father of three , amateur entrepreneur"
+msgstr "Ofer   - 三个孩子的父亲，业余企业家"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:60
+msgid "Amir   - Collect master , uncle of six"
+msgstr "Amir   - 收集专家，6个孩子的叔叔"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:61
+msgid "Dana   - Tiger painter , likes to read lessons"
+msgstr "Dana   - 老虎画家，喜欢阅读"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:62
+msgid "Ayelet - Full time mother"
+msgstr "Ayelet - 全职妈妈"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:63
+msgid "Almog  - Blogger , made his first QA steps at the age of seven"
+msgstr "Almog  - 博客作家，7岁时第一次做QA"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:64
+msgid "Inbar  - Very talented Wii player"
+msgstr "Inbar  - 非常优秀的Wii玩家"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:65
+msgid "Raz    - QA and vegetarian"
+msgstr "Raz    -QA人员，素食主义者"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:66
+msgid "Yuval  - QA and future Messi"
+msgstr "Yuval  - QA人员，未来的梅西"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:67
+msgid "Mona - Chinese translator and Yoga enthusiasts"
+msgstr "Mona - 中文翻译，瑜伽爱好者"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:71
+msgid "Tricks"
+msgstr "窍门"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:76
+msgid "New commands that have been learned will be saved even after the browser restarts"
+msgstr "即使浏览器重新启动过，已经学到的新命令仍然会被保存下来"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:77
+msgid "The turtle remembers the student's progress over time, allowing the student to follow his own progress"
+msgstr "海龟记住了学生的每一个编程过程，学生可以按照自己的进度来编程"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:78
+msgid "The drawing that appear below actually show live logo programs !"
+msgstr "出现在下方的图像实际上向我们展示了现场logo程序设计"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:83
+msgid "Credits"
+msgstr "荣誉"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:87
+msgid "A lot of written libraries facilitate the creation of the website"
+msgstr "我们在许多书面资料库的帮助下创建了该网站"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:88
+msgid "<a target='_blank' href='http://www.calormen.com/Logo/'> Joshua Bell - wrote the logo component </a>"
+msgstr"<a target='_blank' href='http://www.calormen.com/Logo/'> Joshua Bell - 编写 logo 组件 </a>"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:89
+msgid "<a target='_blank' href='https://github.com/replit/jq-console'> jsconsole- wrote the input element ( Console ) </a>"
+msgstr  "<a target='_blank' href='https://github.com/replit/jq-console'> jsconsole- 编写输入元件 ( 控制台 ) </a>"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:90
+msgid "<a target='_blank' href='http://jquery.com'> jquery - component which enabled easy java scripting </a>"
+msgstr "<a target='_blank' href='http://jquery.com'> jquery -  兼容多浏览器的javascript库 </a>"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:91
+msgid "<a target='_blank' href='http://jqueryui.com/'> jqueryui - a collection of graphical components </a>"
+msgstr  "<a target='_blank' href='http://jqueryui.com/'> jqueryui - 开源 JavaScript 网页用户界面代码库 </a>"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:92
+msgid "<a target='_blank' href='http://api.jquery.com/category/plugins/templates/'> jquerytemplates - enable transmission of data to html </a>"
+msgstr  "<a target='_blank' href='http://api.jquery.com/category/plugins/templates/'> jquerytemplates - 打开到html jquery模版的数据传输 </a>"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:98
+msgid "Contact us"
+msgstr "联系我们"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:102
+msgid "Send an email"
+msgstr "发送邮件"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:3
+msgid "forward"
+msgstr "向前"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:3
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
+msgid "fd"
+msgstr "前"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:3
+msgid "Don't know how to"
+msgstr "不知道怎样"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:4
+msgid "back"
+msgstr "向后"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:4
+msgid "to"
+msgstr "到"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:4
+msgid "word"
+msgstr "词语"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:4
+msgid "list"
+msgstr "列表"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:5
+msgid "sentence"
+msgstr "句子"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:5
+msgid "combine"
+msgstr "组合"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:5
+msgid "reverse"
+msgstr "反转"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:6
+msgid "gensym"
+msgstr  "gensym"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:6
+msgid "first"
+msgstr "第一个"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:6
+msgid "last"
+msgstr "最后一个"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:7
+msgid "print"
+msgstr "打印"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:7
+msgid "sin"
+msgstr "sin"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:7
+msgid "cos"
+msgstr "cos"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:8
+msgid "tan"
+msgstr "tan"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "random"
+msgstr "随机"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "true"
+msgstr "真"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "false"
+msgstr "假"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "and"
+msgstr "和"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "or"
+msgstr "或"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "xor"
+msgstr "xor"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
+msgid "not"
+msgstr "否"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
+msgid "bk"
+msgstr "后"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
+msgid "lt"
+msgstr "左"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
+msgid "left"
+msgstr "向左"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
+msgid "rt"
+msgstr "右"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
+msgid "right"
+msgstr "向右"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
+msgid "home"
+msgstr "复位"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
+msgid "st"
+msgstr "显示海龟"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:15
+msgid "showturtle"
+msgstr "显示海龟"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:15
+msgid "ht"
+msgstr "隐藏海龟"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:15
+msgid "hideturtle"
+msgstr "隐藏海龟"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:15
+msgid "clean"
+msgstr "清除"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
+msgid "cs"
+msgstr "清屏"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
+msgid "clearscreen"
+msgstr "清屏"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
+msgid "label"
+msgstr "标签"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:17
+msgid "pendown"
+msgstr "放笔"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:17
+msgid "pu"
+msgstr "提笔"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:17
+msgid "penup"
+msgstr "提笔"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:17
+msgid "penpaint"
+msgstr "画"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:18
+msgid "setcolor"
+msgstr "设置颜色"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:18
+msgid "setpencolor"
+msgstr "设置画笔的颜色"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:18
+msgid "setwidth"
+msgstr "设置宽度"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:18
+msgid "setpensize"
+msgstr "设置画笔的尺寸"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:19
+msgid "pencolor"
+msgstr "画笔的颜色"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:19
+msgid "pensize"
+msgstr "画笔的尺寸"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:19
+msgid "repeat"
+msgstr "重复"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:19
+msgid "repcount"
+msgstr "重复次数"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:20
+msgid "if"
+msgstr "if"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:20
+msgid "ifelse"
+msgstr "ifelse"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:20
+msgid "iftrue"
+msgstr "iftrue"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:20
+msgid "iffalse"
+msgstr "iffalse"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:22
+msgid "for"
+msgstr "循环"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:22
+msgid "end"
+msgstr "结束"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:22
+msgid "Unexpected end of instructions"
+msgstr "意外结束指令"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:22
+msgid "Expected identifier"
+msgstr "预期的标识符"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:23
+msgid "Please don't try to override primitive functions"
+msgstr "请不要试图覆盖最初的功能"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:23
+msgid "Error"
+msgstr "错误"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:23
+msgid "hint"
+msgstr "提示"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:23
+msgid "sum"
+msgstr "合计"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:25
+msgid "minus"
+msgstr "减"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:25
+msgid "make"
+msgstr "定义"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:25
+msgid "pd"
+msgstr "放笔"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:25
+#, fuzzy
+msgid "stop"
+msgstr "停止"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:26
+msgid "Hi"
+msgstr "大家好"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:26
+msgid "Welcome to the Turtle world"
+msgstr "欢迎来到海龟世界"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:28
+msgid "Please enter your username"
+msgstr "请输入用户名"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:28
+msgid "Please enter your password"
+msgstr "请输入密码"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:29
+msgid "Your username must contain at least 4 characters"
+msgstr "你的用户名必须包含至少4个字符"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:29
+msgid "Your password must contain at least 5 characters"
+msgstr "你的密码必须包含至少5个字符"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:30
+msgid "Add lesson step"
+msgstr "添加课程步骤"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:30
+msgid "Are you sure you want to delete the lesson"
+msgstr "你确定要删除这个课程"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:30
+msgid "Your lessson has been deleted"
+msgstr "你的课程已被删除"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:31
+msgid "successfully deleted"
+msgstr "成功删除"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:31
+msgid "an error occured"
+msgstr "发生错误"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:31
+msgid "Lesson title should contain at least 2 caracters"
+msgstr "课程标题必须包含至少两个字符"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:32
+msgid "You must save the lesson before show lesson"
+msgstr "显示课程前你必须先保存课程"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:26
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index3.php:23
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:17
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:22
+msgid "Turtle Academy - learn logo programming in your browser"
+msgstr "海龟学院 - 学习用浏览器进行Logo编程"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:112
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:89
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:90
+#, fuzzy
+msgid "TurtleAcademy"
+msgstr "海龟学院"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:113
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:91
+msgid "Sample"
+msgstr "示例"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:134
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:110
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:112
+msgid "Hello"
+msgstr "您好"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:143
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:119
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:121
+msgid "My account"
+msgstr "我的账户"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:144
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:120
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:122
+msgid "Help"
+msgstr "帮助"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:145
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:121
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:123
+msgid "Log out"
+msgstr "注销"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:158
+msgid "Login"
+msgstr "登录"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:176
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:121
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:106
+msgid "Your browser does not support canvas - an updated browser is recommended"
+msgstr "您的浏览器不支持Canvas功能 - 建议更新浏览器"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:207
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:232
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:152
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:177
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:137
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:162
+msgid "Next"
+msgstr "下一步"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:214
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:224
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:159
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:169
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:144
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:154
+msgid "Prev"
+msgstr "上一步"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:247
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:192
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:177
+msgid "project doc"
+msgstr "项目文档"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/indexUnapproved.php:101
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index_2012.php:86
+msgid "Turtle Academy"
+msgstr "海龟学院"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:194
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:200
+msgid "Action"
+msgstr "行为"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:195
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:201
+msgid "Solution"
+msgstr "解决"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:196
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:202
+msgid "Hint"
+msgstr "提示"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:211
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:217
+msgid "Title"
+msgstr "标题"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:231
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:237
+msgid "Save Lesson"
+msgstr "保存课程"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:232
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:238
+msgid "Show Lesson"
+msgstr "显示课程"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:233
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:239
+msgid "Delete Lesson"
+msgstr "删除课程"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:247
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:253
+msgid "Explanation"
+msgstr "说明"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:253
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:259
+msgid "Show reserve words"
+msgstr "显示保存的字符"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:263
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:269
+msgid "lesson Steps"
+msgstr "课程步骤"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:265
+msgid "please choose step to edit"
+msgstr "请选择步骤进行编辑"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:273
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:279
+msgid "Remove lesson step"
+msgstr "删除课程步骤"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:281
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:282
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:287
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson_NotWorking.php:288
+msgid "Lesson Title"
+msgstr "课程标题"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:357
+msgid "Sign Up for Free"
+msgstr "免费注册"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:363
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:465
+msgid "Email"
+msgstr "邮件"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:374
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:427
+msgid "Username"
+msgstr "用户名"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:386
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:439
+#, fuzzy
+msgid "Password"
+msgstr "密码"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:401
+msgid "Agree to"
+msgstr "同意"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:401
+msgid "Terms of Use"
+msgstr "使用条款"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:406
+msgid "Sign Up"
+msgstr "注册"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:411
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:458
+msgid "Sign In"
+msgstr "登录"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:453
+msgid "Remember me"
+msgstr "记住我"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:459
+msgid "Forgot my password"
+msgstr "忘记我的密码"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:462
+msgid "Forgot Password"
+msgstr "忘记密码"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:474
+msgid "Never mind, I remember my password"
+msgstr "没关系，我记得我的密码"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:478
+msgid "Remind me"
+msgstr "提醒我"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:48
+msgid "Turtle Academy - Translate a lesson"
+msgstr "海龟学院 - 翻译课程"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:112
+msgid "Step"
+msgstr "步"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:182
+msgid "Messages"
+msgstr "消息"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:182
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:183
+msgid "coming soon"
+msgstr "即将到来"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:183
+msgid "Account Settings"
+msgstr "账户设置"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:184
+msgid "Add a new lesson"
+msgstr "添加一个新课程"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:189
+msgid "Your lessons"
+msgstr "您的课程"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:218
+msgid "Edit"
+msgstr "编辑"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:6
+#, fuzzy
+msgid "Project doc"
+msgstr "项目文档"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:7
+msgid "Create new Lesson"
+msgstr "创建新的课程"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:8
+msgid "Contact Us"
+msgstr "联系我们"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/signUp.php:19
+msgid "Turtle Academy - User Registration"
+msgstr "海龟学院 - 用户注册"
+
+#~ msgid "Turtle Academy - Create a lesson"
+#~ msgstr "海龟学院 - 创建课程"

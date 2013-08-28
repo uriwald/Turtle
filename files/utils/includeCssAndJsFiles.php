@@ -54,18 +54,18 @@
             echo $po_file;
         
         //End Loading translation file   
-        echo "<script type='application/javascript' src='".$rootDir."readMongo.php?locale=".$locale."' ></script>" ;  
-        echo "<script type='application/javascript' src='".$rootDir."files/js/langSelect.js' ></script>" ; 
-        echo "<script type='application/javascript' src='".$rootDir."files/logo.js' ></script>" ; 
-        echo "<script type='application/javascript' src='".$rootDir."files/turtle.js' ></script>" ; 
-        echo "<script type='application/javascript' src='".$rootDir."files/floodfill.js' ></script>" ; 
-        echo "<script type='application/javascript' src='http://www.nihilogic.dk/labs/canvas2image/canvas2image.js'</script>" ; 
-        echo "<script type='application/javascript' src='".$rootDir."files/interface.js?locale=".$locale."'></script>" ;
-        echo "<script type='application/javascript' src='".$rootDir."files/jqconsole.js' ></script>" ; 
+        echo "<script type='application/javascript' src='".$rootDir."readMongo.php?locale=".$locale."' ></script>\n" ;  
+        echo "<script type='application/javascript' src='".$rootDir."files/js/langSelect.js' ></script>\n" ; 
+        echo "<script type='application/javascript' src='".$rootDir."files/logo.js' ></script>\n" ; 
+        echo "<script type='application/javascript' src='".$rootDir."files/turtle.js' ></script>\n" ; 
+        echo "<script type='application/javascript' src='".$rootDir."files/floodfill.js' ></script>\n" ; 
+        
+        
         echo "<link rel='stylesheet' href='".$rootDir."files/css/topbar.css' type='text/css' media='all'/>"; 
 
      /* End loading some other files */ 
-        
+        //Will load the following only when the save image will be implemented
+        //echo "<script type='application/javascript' src='http://www.nihilogic.dk/labs/canvas2image/canvas2image.js'></script>\n" ; 
 
   ?> 
     <!-- Google Analytics Tracking --> 

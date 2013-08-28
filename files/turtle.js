@@ -1,4 +1,4 @@
-//
+ //
 // Turtle Graphics in Javascript
 //
 
@@ -21,13 +21,16 @@ function CanvasTurtle(canvas_ctx, turtle_ctx, width, height) {
   height = Number(height);
 
   function deg2rad(d) { return d / 180 * Math.PI; }
-  function rad2deg(r) { return r * 180 / Math.PI; }
+  function rad2deg(r) { return r * 180 / Math.PI; } 
 
   var self = this;
   function moveto(x, y) {
 
     function _go(x1, y1, x2, y2) {
-      if (self.down) {
+      if (self.filling) {
+        canvas_ctx.lineTo(x1, y1);
+        canvas_ctx.lineTo(x2, y2);
+      } else if (self.down) {
         canvas_ctx.beginPath();
         canvas_ctx.moveTo(x1, y1);
         canvas_ctx.lineTo(x2, y2);
@@ -251,23 +254,66 @@ function CanvasTurtle(canvas_ctx, turtle_ctx, width, height) {
     canvas_ctx.fillText(text, 0, 0);
     canvas_ctx.restore();
   };
+  this.filling = 0;
+  this.beginpath = function() {
+    ++this.filling;
+    canvas_ctx.beginPath();
+  };
 
+  this.fillpath = function(fillcolor) {
+    --this.filling;
+    if (this.filling === 0) {
+      canvas_ctx.closePath();
+      canvas_ctx.fillStyle = fillcolor;
+      canvas_ctx.fill();
+      canvas_ctx.fillStyle = this.color;
+      if (this.down)
+        canvas_ctx.stroke();
+      
+    }
+  };
+
+ this.fill = function() {
+    canvas_ctx.floodFill(this.x, this.y);
+  }; 
   this.arc = function(angle, radius) {
-    var self = this;
+    var self = this; 
     if (this.turtlemode == 'wrap') {
       [self.x, self.x + width, this.x - width].forEach(function(x) {
         [self.y, self.y + height, this.y - height].forEach(function(y) {
-          canvas_ctx.beginPath();
+          if (!this.filling)
+            canvas_ctx.beginPath();
           canvas_ctx.arc(x, y, radius, -self.r, -self.r + deg2rad(angle), false);
-          canvas_ctx.stroke();
+          if (!this.filling)
+            canvas_ctx.stroke();
         });
       });
     } else {
-      canvas_ctx.beginPath();
+      if (!this.filling)  
+        canvas_ctx.beginPath();
       canvas_ctx.arc(this.x, this.y, radius, -this.r, -this.r + deg2rad(angle), false);
-      canvas_ctx.stroke();
+      if (!this.filling)
+        canvas_ctx.stroke();
     }
   };
+  
+  this.saveimage = function() {
+    var canvasData = canvas_todataurl;
+    var xmlHttpReq = false;       
+    if (window.XMLHttpRequest) { 
+        ajax = new XMLHttpRequest();
+    }
+
+    else if (window.ActiveXObject) {
+        ajax = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+   ajax.open('POST', 'testSave.php', false);
+   ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+   ajax.onreadystatechange = function() {
+        console.log(ajax.responseText);
+    }
+   ajax.send("imgData="+canvasData);
+}
 
   this.begin = function() {
     // Erase turtle

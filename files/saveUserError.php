@@ -18,7 +18,7 @@
         exit();
     }
     $return['username'] = $user;
-    $storageData    = "";  
+    $stepsComletedData    = "";  
     $stepError  =   "dd";
     if (isset($_POST['errorStep']) && isset($_POST['errorString']))
     {

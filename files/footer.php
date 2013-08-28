@@ -12,7 +12,7 @@
             $locale = "en_US";
         $footer =
         "
-        <footer id='footer'>
+        <footer id='footer' style='margin-top:220px'>
             <div>
                 <ul>
                     &copy; TurtleAcademy 
@@ -24,13 +24,13 @@
                         </a>
                     </li>  
                     <li>
-                        <a href='users.php'>".$newLesson."</a>
+                        <a href='".$rootDir."users.php'>".$newLesson."</a>
                     </li>
                     <li>
                         <a href='mailto:support@turtleacademy.com'>".$contactUs."</a>
                     </li>
                 </ul>
- 
+             </div>   
         </footer>            
         "        
 ?>

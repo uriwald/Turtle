@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TurtleAcademy\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-17 19:11+0530\n"
-"PO-Revision-Date: 2013-03-22 10:46+0700\n"
+"PO-Revision-Date: 2013-03-22 15:44+0700\n"
 "Last-Translator: \n"
 "Language-Team: Wald\n"
 "MIME-Version: 1.0\n"
@@ -235,7 +235,7 @@ msgstr "ข้างหน้า"
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:3
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
 msgid "fd"
-msgstr "xxx"
+msgstr "ข้างหน้า"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:3
 msgid "Don't know how to"
@@ -327,11 +327,11 @@ msgstr "xx"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
 msgid "bk"
-msgstr "xxxx"
+msgstr "กลับ"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
 msgid "lt"
-msgstr "xxxxx"
+msgstr "ซ้าย"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
 msgid "left"
@@ -339,7 +339,7 @@ msgstr "ซ้าย"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
 msgid "rt"
-msgstr "xxx"
+msgstr "ขวา"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
 msgid "right"

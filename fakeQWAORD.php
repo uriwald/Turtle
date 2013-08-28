@@ -36,7 +36,7 @@
     //Accessing list lesson commands
     echo _("item"); echo _("pick"); echo _("butfirst"); echo _("bf"); echo _("butlast"); echo _("bl"); 
     
-    echo _("fill"); echo _("filled"); echo _("run"); 
+    echo _("fill"); echo _("filled"); echo _("run"); echo _("lesson");
      
 ?>
   

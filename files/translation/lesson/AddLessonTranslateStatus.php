@@ -1,4 +1,5 @@
 <?php
+    $rootDir = "../../../";
     $title       = $_POST['title'];
     $id          = $_POST['id'];
     
@@ -25,9 +26,12 @@
         //$date = date('Y-m-d H:i:s');
         //Here the record will be added in any case
         
-            $obj = array( "title" => $title , "lesson_id" => $id , "in_progress" => $emptyTranslate ,"completed" => $emptyTranslate);
+            $obj = array( "title" => $title , "lesson_id" => $id , "in_progress" => $emptyTranslate ,"completed" => $emptyTranslate
+                            , "comments" => "");
             $strcol->insert($obj);
             echo " NewsItem was successfully inserted";
+            $adminPage  =   $rootDir . "admin.php";
+            echo "<a href='" . $adminPage . "'> <span class='lessonh'> Go back to Admin page </span> </a>";
       
     } 
     

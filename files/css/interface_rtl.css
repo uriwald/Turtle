@@ -5,6 +5,7 @@
     Description: css for index of turtle academy.com
 */
 
+/*
 #carousel-control-left , #carousel-control-right{
     position : relative; float:right; margin-top:0px;line-height: 20px;min-width:10px;left:0px;
 }
@@ -38,6 +39,7 @@
     overflow: hidden;
     width: 970px;
 }
+*/
 #title h1 {direction: rtl;
            margin: 2px 20px;
 }
@@ -46,9 +48,10 @@
     float: left; 
     margin: 0px 3px;
 }
+
 #accordion {
     width: 300px;
-    /*height: 500px;*/
+ 
     float: left;
     direction: rtl;
 }
@@ -58,4 +61,40 @@
 }
 #accorPlusNav{
     float : right;
+}
+li > a.lucio
+{
+    float : right;
+    direction: rtl;
+    padding-right: 5px;
+    
+}
+.rs-carousel-pagination{
+    direction : rtl;
+    float : right;
+}
+.rs-carousel-pagination-link{
+    float : right;
+}
+/*
+.rs-carousel-mask{
+    direction: rtl;
+}
+*/
+.rs-carousel-item{
+    float: right !important;
+}
+.rs-carousel-runner
+{
+    float : right;
+    width : 4000px;
+}
+#headprev , #headnext
+{
+    width: 30px; 
+    float: right !important;
+}
+#headcar{
+    width: 910px; 
+    float: right !important; 
 }

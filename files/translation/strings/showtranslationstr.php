@@ -1,23 +1,21 @@
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <?php
     $rootDirectory ="../../";
     require_once($rootDirectory ."utils/translationUtil.php");
     include_once($rootDirectory ."inc/dropdowndef.php");
     include_once($rootDirectory ."inc/boostrapdef.php");
     include_once($rootDirectory ."inc/jquerydef.php");
-    $locale = "zh_CN";
-    if (isset ($_GET['locale']))
-        $locale =   $_GET['locale'];
 ?>
     <table>
         <tbody>
                 <thead>
                     <tr>
                         <th class='span2'></th>
-                        <th class='span2'>String</th>
-                        <th class='span2'>Appear in page</th>
-                        <th class='span2'>Context</th>
-                        <th class='span2'>Translation</th>
-                        <th class='span2'>Action</th>
+                        <th class='span3'>String</th>
+                        <th class='span3'>Chinese</th>
+                        <th class='span3'>Spanish</th>
+                        <th class='span3'>Russian</th>
+                        <th class='span5'>Display Lang</th>
                     </tr>
                 </thead>
                   <?php
@@ -26,21 +24,30 @@
                         foreach ($transString as $str)
                         {
                             $i++ ;
-                            if ($str["display"][$locale])
-                            {
+                            $ru         =   $str["translate"]["locale_ru_RU"];
+                            $zh         =   $str["translate"]["locale_zh_CN"];
+                            $es         =   $str["translate"]["locale_es_AR"];
+                            $displayArr =   $str["display"];
+
                   ?>           
                                 <tr>
                                     <td></td>
-                                    <td id='str<?php echo $i ?>'><?php echo $str['str'] ?></td>
-                                    <td id='page<?php echo $i ?>'><?php echo $str['page'] ?></td>
-                                    <td id='context<?php echo $i ?>'><?php echo $str['context'] ?></td>
-                                    <td><input type='text' id='input<?php echo $i ?>' value='<?php echo $str["translate"]["locale_" . $locale] ?>'></input></td>
+                                    <td id='str<?php echo $i ?>'><?php echo $str['str']; ?></td>
+                                    <td><?php echo $zh; ?></td>
+                                    <td><?php echo $es; ?></td>
+                                    <td><?php echo $ru; ?></td>
+                                    <td>
+                                        <div class="controls span5">
+                                                <input type="checkbox" value="option1" id="display_zh<?php echo $i ?>" <?php if ($displayArr['zh_CN'] == "true") echo "checked=true";?>> ZH
+                                                <input type="checkbox" value="option2" id="display_ru<?php echo $i ?>" <?php if ($displayArr['ru_RU'] == "true") echo "checked=true";?>> RU
+                                                <input type="checkbox" value="option3" id="display_es<?php echo $i ?>" <?php if ($displayArr['es_AR'] == "true") echo "checked=true";?>> ES
+                                        </div>
+                                    </td>
                                     <td>
                                         <div class='btn small info pressed' id='<?php echo $i ?>'>save</div>
                                     </td>
                                 </tr>
-                  <?
-                            } //End if condition
+                  <?php
                         } //End foreach loop
                   ?> 
         </tbody>  
@@ -51,25 +58,21 @@
                     $(".pressed").click(function() {
                         var id               = $(this).attr('id');
                         var thestring        = "str"+id;
-                        var thepage          = "page"+id;
-                        var thecontext       = "context"+id;
-                        var theinput         = "input"+id;
+                        var display_ru       = $('#' + 'display_ru' + id).is(":checked");  
+                        var display_zh       = $('#' + 'display_zh' + id).is(":checked");  
+                        var display_es       = $('#' + 'display_es' + id).is(":checked");  
                         var str              = $('#' + thestring).text();
-                        var page             = $('#' + thepage).text();
-                        var context          = $('#' + thecontext).text();
-                        var input            = $('#' + theinput).val();
-                        var locale           = '<?php echo "locale_" . $locale?>';
+
                         //alert("hello--" + str + "--" + page + "--" + context + "----" + input);
                         $.ajax({
                             type : 'POST',
-                            url : 'saveStrTranslation.php',
+                            url : 'saveStrDisplayStatus.php',
                             dataType : 'json',
                             data: {
                                 str        :   str,
-                                page       :   page,
-                                context    :   context,
-                                input      :   input ,
-                                locale     :   locale
+                                display_ru :   display_ru,
+                                display_zh :   display_zh,
+                                display_es :   display_es  
                             },
                             success: function(data) { 
                                 alert('successfully save');

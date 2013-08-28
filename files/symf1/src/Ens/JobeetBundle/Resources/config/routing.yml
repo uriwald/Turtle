@@ -1,3 +1,0 @@
-ens_jobeet_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: EnsJobeetBundle:Default:index }

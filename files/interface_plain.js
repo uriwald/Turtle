@@ -140,7 +140,11 @@ $(function() {
     jqconsole.RegisterMatching('[', ']', 'bracket');
 
     // Load console history from localStorage for consistant console
-    if ($.Storage.get("logo-history")) jqconsole.history = JSON.parse($.Storage.get("logo-history"));
+    if ($.Storage.get("logo-history")) 
+    {
+        if (JSON.parse($.Storage.get("logo-history")))
+            jqconsole.history = JSON.parse($.Storage.get("logo-history"));
+    }
 
     // Handle a command.
     var handler = function(command) {

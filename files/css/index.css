@@ -132,25 +132,14 @@ p.example-title{
     font-size: 30px;
 }
 
-/*
-#hero-top , #crousel-quote , #row-info{
-    direction: rtl;
-}
-
-.example{
-    float:right;
-}
-.example-continer{
-    float: right;
-}
-.row div.row-info-div{
-    float: right;
-}
-*/
-
 p {
 font-size: 16px;
 color: #7c7c7c;
 font-family: sans-serif;
 padding-top: 5px;
 }
+#project_goal_div{
+    padding-left: 60px;
+    margin-left: 0px;
+}
+

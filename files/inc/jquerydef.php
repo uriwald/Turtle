@@ -10,6 +10,7 @@ and open the template in the editor.
     $jqueryui = $rootDir."ajax/libs/jqueryui/1.10.0/";
     
 ?>
+        <script src="/files/dd/js/jquery/jquery-1.8.2.min.js"></script>
         <script  type="text/javascript" src="<?php echo $jqueryui . 'js/jquery-ui-1.10.0.custom.js'; ?>"></script> <!--- equal to googleapis -->
        
         <script  type="text/javascript" src="<?php echo $rootDir; ?>alerts/jquery.alerts.js"></script>

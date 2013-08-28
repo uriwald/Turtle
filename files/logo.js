@@ -1369,6 +1369,7 @@ function LogoInterpreter(turtle, stream)
   //
   // 6. Graphics
   //
+  self.routines["saveimage"] = function() { turtle.saveimage();};
   //----------------------------------------------------------------------
   // 6.1 Turtle Motion
 
@@ -1420,8 +1421,17 @@ function LogoInterpreter(turtle, stream)
   self.routines["window"] = function() { turtle.setturtlemode('window'); };
   self.routines["fence"] = function() { turtle.setturtlemode('fence'); };
 
-  // Not Supported: fill
-  // Not Supported: filled
+  self.routines["fill"] = function() { turtle.fill(); };
+  self.routines["filled"] = function(fillcolor, statements) { 
+    fillcolor = sexpr(fillcolor);
+    statements = reparse(lexpr(statements));
+    turtle.beginpath();
+    try {
+      self.execute(statements);
+    } finally {
+      turtle.fillpath(fillcolor);
+    } 
+  };
 
   self.routines["label"] = function(a) {
     var s = Array.prototype.map.call(arguments, stringify_nodecorate).join(" ");
