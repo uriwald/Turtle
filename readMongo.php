@@ -95,7 +95,7 @@ foreach ($cursor as $lessonStructure) {
     $i++;
 }
 echo "];"; 
-echo "var numOfActiveLessons =".$numberOfActiveLessons . ";";
+echo "var numOfActiveLessons =".$numberOfActiveLessons;
 
 updateLoclaStorageForLoggedUser($m , $db);
 
@@ -120,8 +120,9 @@ function updateLoclaStorageForLoggedUser($m , $db)
             }
             if (isset($cursor['userHistory']))
             {
-                $historyVal     =   $cursor['userHistory'];
-                echo "localStorage.setItem('logo-history' ,'$historyVal' );";
+                $historyVal                       =   $cursor['userHistory'];
+                $historyValNoSpecialCaracter      =   str_replace( "'", "" , $historyVal);
+                echo "localStorage.setItem('logo-history' ,'$historyValNoSpecialCaracter' );";
             }
         }
     }

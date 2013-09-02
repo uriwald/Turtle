@@ -41,23 +41,25 @@
     //Checking if the user already has some data
     $userQuery          = array('username' => $user);
     $userDataExist      = $userProgressCol->findOne($userQuery);
+    $date = date('Y-m-d H:i:s');
     $resultcount        = $userProgressCol->count($userQuery);
-    
+    $return['numberOfMathingUsers'] = $resultcount;
     //Case we need to add a new record to db
     if (!$resultcount > 0 ) 
     {
-        $structure = array("username" => $user, "stepCompleted" => $stepsComletedData , "userHistory" => $userHistory);
+        $return['isNewUser'] = true;
+        $structure = array("username" => $user, "stepCompleted" => $stepsComletedData , "userHistory" => $userHistory , "lastUpdate" => $date);
         $result = $userProgressCol->insert($structure, array('safe' => true));
     } 
     else //Updating existing user
     {
-        
+        $return['isNewUser'] = false;
         if ($isLessonStep)
             $userHistory = $userDataExist['userHistory'];
         if ($isHistory)
             $stepsComletedData = $userDataExist['stepCompleted'];      
             
-        $result = $userProgressCol->update($userDataExist, array("username" => $user, "stepCompleted" => $stepsComletedData , "userHistory" => $userHistory));
+        $result = $userProgressCol->update($userDataExist, array("username" => $user,  "lastUpdate" => $date , "stepCompleted" => $stepsComletedData , "userHistory" => $userHistory));
     }
     echo json_encode($return);
 ?>
