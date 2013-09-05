@@ -251,6 +251,9 @@ a:hover {
 .span22{width:1300px !important;}
 .span23{width:1360px !important;}
 .span24{width:1420px !important;} 
+.offset120 {
+  margin-left: 120px;
+}
 .offset12 {
   margin-left: 980px;
 }

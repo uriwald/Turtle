@@ -29,6 +29,10 @@ input.xlarge, textarea.xlarge, select.xlarge {
     display:inline-block;
     cursor:pointer;
 }
+#contact_us{
+    font-size: 16px;
+    color: #404040; 
+}
 :lang(rtl).clearfix > label{
     text-align: right;
     width: 100%;

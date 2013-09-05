@@ -18,7 +18,7 @@ require_once ('files/utils/topbarUtil.php');
         <meta name="description" content="">
         <meta name="author" content="">
         <?php
-         echo "<link rel='stylesheet' type='text/css' href='" . $rootDir ."files/css/registration.css' /> ";
+        echo "<link rel='stylesheet' type='text/css' href='" . $rootDir . "files/css/registration.css' /> ";
 
         require_once("files/utils/includeCssAndJsFiles.php");
         ?>     
@@ -150,198 +150,116 @@ require_once ('files/utils/topbarUtil.php');
 
     </head>
     <body>
-<?php
+        <?php
+        $googleid = createOpenIdObject('https://www.google.com/accounts/o8/id', "loginopen.php");
+        $yahooid = createOpenIdObject('https://me.yahoo.com', "loginopen.php");
 //setup some variables/arrays
-$action = array();
-$action['result'] = null;
+        $action = array();
+        $action['result'] = null;
 
-$text = array();
+        $text = array();
 
 //check if the form has been submitted
-if (isset($_POST['signup'])) {
-    $isTestUser = false;
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
-    //quick/simple validation
-    if (empty($username)) {
-        $action['result'] = 'error';
-        array_push($text, 'You forgot your username');
-    }
-    if (empty($password)) {
-        $action['result'] = 'error';
-        array_push($text, 'You forgot your password');
-    }
-    if (empty($email)) {
-        $action['result'] = 'error';
-        array_push($text, 'You forgot your email');
-    }
-    //print_r($action);
-    if ($action['result'] != 'error') {
-        $password = md5($password);
-        $m = new Mongo();
-        $db = $m->turtleTestDb;
-        $users = $db->users;
-
-        //Query if email already exist and approved
-        $queryEmail = array('email' => $email, "confirm" => true);
-        $existEmail = $users->count($queryEmail);
-        $queryUsername = array('username' => $username, "confirm" => true);
-        $existUsername = $users->count($queryUsername);
-
-        //String for checking Email and username validation
-        $strEmailExist = _("Email is being used by a registered user");
-        $strForgotPass = _("if you forgot your password please press reset password");
-        $strUserNExist = _("Username is already exist in the system");
-        $strChooseNewUN = _("please choose another username");
-
-        if ($isTestUser) { //Case of testing we will insert to db
-            addUserToDb($username, $password, $email, $users, $db);
-        } else if ($existEmail > 0) { //Check if email already exist
-            $action['result'] = 'error';
-            array_push($text, $strEmailExist . " " . $strForgotPass);
-        } else if ($existUsername > 0) { //Check if email already exist
-            $action['result'] = 'error';
-            array_push($text, $strUserNExist . " " . $strChooseNewUN);
-        } else {
-            addUserToDb($username, $password, $email, $users, $db);
-        }
-    }
-    $action['text'] = $text;
-}
-
-function createOpenIdObject($identity, $returnUrl) {
-    global $sitePath;
-    $openid = new LightOpenID($sitePath);
-    $openid->identity = $identity;
-    $openid->required = array(
-        'namePerson/first',
-        'namePerson/last',
-        'contact/email',
-        'pref/language',
-    );
-    $openid->returnUrl = $sitePath . $returnUrl; // 'http://turtle.com/loginopen.php';
-    return $openid;
-}
-
-function addUserToDb($username, $password, $email, $users, $db) {
-    global $phpDirPath, $sitePath, $text, $action;
-    $date = date('Y-m-d H:i:s');
-    $userStructure = array("username" => $username, "password" => $password, "email" => $email,
-        "confirm" => false, "date" => $date);
-    $userResult = $users->insert($userStructure, array('safe' => true));
-    $userid = $userStructure['_id'];
-    if ($userResult) {
-        //get the new user id
-        //$userid = mysql_insert_id();
-        $users = $db->users_waiting_approvment;
-        //create a random key
-        $key = $username . $email;
-        $key = md5($key);
-        //add confirm row
-        //$confirm = mysql_query("INSERT INTO `confirm` VALUES(NULL,'$userid','$key','$email')");	
-        $userStructure = array("userid" => $userid, "key" => $key, "email" => $email);
-        $userConfirmResult = $users->insert($userStructure, array('safe' => true));
-
-        //In case the user properly inserted into the database
-        $strWelcomeMsg = _("Welcome to TurtleAcademy");
-        $strResetMsg = _("TurtleAcademy password reset");
-        if ($userConfirmResult) {
-            //include the swift class
-            include_once $phpDirPath . 'swift/swift_required.php';
-            //put info into an array to send to the function
-            $locale = $_SESSION['locale'];
-            $info = array(
-                'username' => $username,
-                'email' => $email,
-                'key' => $key,
-                'locale' => $locale,
-                'msgWelcome' => $strWelcomeMsg,
-                'msgReset' => $strResetMsg);
-            //send the email
-            $templateType = "signup_template";
-            if ($locale != "en_US")
-                $templateType = $templateType . "_" . $locale;
-
-            if (send_email($info, $sitePath, $templateType)) {
-                $thanks = _("Thanks for signing up");
-                $checkEmail = _("Please check your email for confirmation");
-                $action['result'] = 'success';
-                array_push($text, $thanks . ". " . $checkEmail . "!!");
-
-                //header("location: files/registerok.php"); 
-            } else {
+        if (isset($_POST['signup'])) {
+            $isTestUser = false;
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $email = $_POST['email'];
+            //quick/simple validation
+            if (empty($username)) {
                 $action['result'] = 'error';
-                array_push($text, 'Could not send confirm email');
+                array_push($text, 'You forgot your username');
             }
-        } else {
-
-            $action['result'] = 'error';
-            //array_push($text,'Confirm row was not added to the database. Reason: ' . mysql_error());
-            array_push($text, 'Confirm row was not added to the database. Reason: ');
-        }
-    }
-}
-
-if (isset($_POST['email_pwd'])) {
-    //varifaction it's a mail will be done by js
-    $email = $_POST['email_pwd'];
-    //$password = md5($password);	
-    $m = new Mongo();
-    $db = $m->turtleTestDb;
-    $users = $db->users;
-    //Query if email already exist and approved
-    $queryEmail = array('email' => $email, "confirm" => true);
-    $existEmail = $users->count($queryEmail);
-    if ($existEmail > 0) { //Check if email already exist then we will continue
-        $curretnUser = $users->findOne($queryEmail);
-        $password = $curretnUser['password'];
-        $username = $curretnUser['username'];
-        $userid = $curretnUser['_id'];
-        $users = $db->users_remind_pass;
-        $key = $username . $email;
-        $key = md5($key);
-        $userStructure = array("userid" => $userid, "key" => $key, "email" => $email);
-        $userConfirmResult = $users->insert($userStructure, array('safe' => true));
-
-        //String for Password reset
-        $strContinueReset = _("Please check your email to continue with password reset");
-        $strErrSendConfirmMail = _("Error while sending confirm Email");
-        $strContactSupoort = _("please contact the TurtleAcademy support");
-        //In case the user properly inserted into the database
-        $strWelcomeMsg = _("Welcome to TurtleAcademy");
-        $strResetMsg = _("TurtleAcademy password reset");
-        if ($userConfirmResult) {
-            //include the swift class
-            include_once $phpDirPath . 'swift/swift_required.php';
-
-            //put info into an array to send to the function
-            $info = array(
-                'username' => $username,
-                'email' => $email,
-                'key' => $key,
-                'locale' => $locale,
-                'msgWelcome' => $strWelcomeMsg,
-                'msgReset' => $strResetMsg);
-            //send the email
-            if (send_email($info, $sitePath, "resetpass_template")) {
-                $action['result'] = 'success';
-                array_push($text, $strContinueReset);
-            } else {
+            if (empty($password)) {
                 $action['result'] = 'error';
-                array_push($text, $strErrSendConfirmMail . " " . $strContactSupoort);
+                array_push($text, 'You forgot your password');
             }
-        } else {
+            if (empty($email)) {
+                $action['result'] = 'error';
+                array_push($text, 'You forgot your email');
+            }
+            //print_r($action);
+            if ($action['result'] != 'error') {
+                $password = md5($password);
+                $m = new Mongo();
+                $db = $m->turtleTestDb;
+                $users = $db->users;
 
-            $action['result'] = 'error';
-            array_push($text, $strErrSendConfirmMail . " " . $strContactSupoort);
+                //Query if email already exist and approved
+                $queryEmail = array('email' => $email, "confirm" => true);
+                $existEmail = $users->count($queryEmail);
+                $queryUsername = array('username' => $username, "confirm" => true);
+                $existUsername = $users->count($queryUsername);
+
+
+                if ($isTestUser) { //Case of testing we will insert to db
+                    addUserToDb($username, $password, $email, $users, $db);
+                } else if ($existEmail > 0) { //Check if email already exist
+                    $action['result'] = 'error';
+                    array_push($text, $strEmailExist . " " . $strForgotPass);
+                } else if ($existUsername > 0) { //Check if email already exist
+                    $action['result'] = 'error';
+                    array_push($text, $strUserNExist . " " . $strChooseNewUN);
+                } else {
+                    addUserToDb($username, $password, $email, $users, $db);
+                }
+            }
+            $action['text'] = $text;
         }
-    }
-    $action['text'] = $text;
-}
+
+       
+        if (isset($_POST['email_pwd'])) {
+            //varifaction it's a mail will be done by js
+            $email = $_POST['email_pwd'];
+            //$password = md5($password);	
+            $m = new Mongo();
+            $db = $m->turtleTestDb;
+            $users = $db->users;
+            //Query if email already exist and approved
+            $queryEmail = array('email' => $email, "confirm" => true);
+            $existEmail = $users->count($queryEmail);
+            if ($existEmail > 0) { //Check if email already exist then we will continue
+                $curretnUser = $users->findOne($queryEmail);
+                $password = $curretnUser['password'];
+                $username = $curretnUser['username'];
+                $userid = $curretnUser['_id'];
+                $users = $db->users_remind_pass;
+                $key = $username . $email;
+                $key = md5($key);
+                $userStructure = array("userid" => $userid, "key" => $key, "email" => $email);
+                $userConfirmResult = $users->insert($userStructure, array('safe' => true));
+                
+                if ($userConfirmResult) {
+                    //include the swift class
+                    include_once $phpDirPath . 'swift/swift_required.php';
+
+                    //put info into an array to send to the function
+                    $info = array(
+                        'username' => $username,
+                        'email' => $email,
+                        'key' => $key,
+                        'locale' => $locale,
+                        'msgWelcome' => $strWelcomeMsg,
+                        'msgReset' => $strResetMsg);
+                    //send the email
+                    if (send_email($info, $sitePath, "resetpass_template")) {
+                        $action['result'] = 'success';
+                        array_push($text, $strContinueReset);
+                    } else {
+                        $action['result'] = 'error';
+                        array_push($text, $strErrSendConfirmMail . " " . $strContactSupoort);
+                    }
+                } else {
+
+                    $action['result'] = 'error';
+                    array_push($text, $strErrSendConfirmMail . " " . $strContactSupoort);
+                }
+            }
+            $action['text'] = $text;
+        }
         //Printing the topbar menu
-        topbarUtil::printTopBar("registration"); 
-?>
+        topbarUtil::printTopBar("registration");
+        ?>
 
 
 
@@ -351,9 +269,9 @@ if (isset($_POST['email_pwd'])) {
                 <div class="well span6 offset2">
                     <form class='form-stacked' id='sign-up-form' method="post" action="">
                         <h2><?php echo _("Sign Up for Free"); ?></h2>
-        <?php
-        echo show_errors($action);
-        ?>
+                        <?php
+                        echo show_errors($action);
+                        ?>
                         <div class='cleaner_h20'></div>        
                         <div class="clearfix" lang="<?php echo $dir ?>">
                             <label for="email_up" id="signUpEmailLbl"><?php echo _("Email"); ?></label>
@@ -441,35 +359,29 @@ if (isset($_POST['email_pwd'])) {
                         <div class='cleaner_h10'></div>
                         <input type='submit' value='<?php echo _("Sign In"); ?>&raquo;' id='submit_in' name='submit_in' class="btn primary"/>
 
-                        <span class='switch' data-switch='forgot-password-form'><?php echo _("Forgot my password"); ?></span> </br></br></br>
+                        <span class='switch' data-switch='forgot-password-form'><?php echo _("Forgot my password"); ?></span>
 
-                        <!--
-                        <a href="<?php echo $googleid->authUrl() ?>" class="zocial google"><?php echo _("Sign In");
-                        echo " ";
-                        echo _("with google") ?></a>
-                        </br></br>
-                        <a href="<?php echo $yahooid->authUrl() ?>" class="zocial yahoo"><?php echo _("Sign In");
-                        echo " ";
-                        echo _("with Yahoo") ?></a>
-                        --> 
-
-                    </form>        
-                    <form class='form-stacked' id='forgot-password-form' method='post'> 
-                        <h2><?php echo _("Forgot Password"); ?></h2>
-                        <div class='cleaner_h20'></div>
-                        <div class="clearfix" lang="<?php echo $dir ?>">
-                            <label for="email_pwd" id="forgotEmail"><?php echo _("Email"); ?></label>
-                            <div class="input" lang="<?php echo $dir ?>">
-                                <input id="email_pwd" name="email_pwd" size="30" type="text"/>
-                                <div class='cleaner_h10'></div>
-                                <span class='switch' data-switch='sign-in-form'> <?php echo _("Never mind, I remember my password"); ?></span>
-                            </div>
-                        </div>           
                         <div class='cleaner_h10'></div>
-                        <input type='submit' value='<?php echo _("Remind me"); ?>&raquo;' id='submit_pwd' name='submit_pwd' class="btn primary"/>
-                    </form>
+                        <a href="<?php echo $googleid->authUrl() ?>" class="zocial google">
+                        <?php
+                            echo _("Sign In"); echo " ";echo _("with google")
+                        ?>
+                        </a>
+                        <div class='cleaner_h5'></div> 
+                        <a href="<?php echo $yahooid->authUrl() ?>" class="zocial yahoo">
+                        <?php
+                            echo _("Sign In"); echo " ";echo _("with Yahoo")
+                        ?>
+                        </a>
+                    </form>        
                 </div>
             </div>
+            <div class='row span12 offset120'>
+                <p id='contact_us'>
+                    <?php echo _("Having some problems to register");echo "? " ;echo _("please"); ?>
+                    <a href="mailto:support@turtleacademy.com" target="_blank"> <?php echo _("Contact Us"); ?> </a>
+                </p> 
+            </div> 
             <div class='cleaner'></div>
 
             <footer style='text-align:center;'>
@@ -480,3 +392,93 @@ if (isset($_POST['email_pwd'])) {
 
     </body>
 </html>
+
+<?php
+
+//Strings for Password reset
+    $strContinueReset = _("Please check your email to continue with password reset");
+    $strErrSendConfirmMail = _("Error while sending confirm Email");
+    $strContactSupoort = _("please contact the TurtleAcademy support");
+//In case the user properly inserted into the database
+    $strWelcomeMsg   = _("Welcome to TurtleAcademy");
+    $strResetMsg    = _("TurtleAcademy password reset");
+//String for checking Email and username validation
+    $strEmailExist  = _("Email is being used by a registered user");
+    $strForgotPass  = _("if you forgot your password please press reset password");
+    $strUserNExist  = _("Username is already exist in the system");
+    $strChooseNewUN = _("please choose another username");
+    
+
+ function createOpenIdObject($identity, $returnUrl) {
+            global $sitePath;
+            $openid = new LightOpenID($sitePath);
+            $openid->identity = $identity;
+            $openid->required = array(
+                'namePerson/first',
+                'namePerson/last',
+                'contact/email',
+                'pref/language',
+            );
+            $openid->returnUrl = $sitePath . $returnUrl; // 'http://turtle.com/loginopen.php';
+            return $openid;
+        }
+
+        function addUserToDb($username, $password, $email, $users, $db) {
+            global $phpDirPath, $sitePath, $text, $action;
+            $date = date('Y-m-d H:i:s');
+            $userStructure = array("username" => $username, "password" => $password, "email" => $email,
+                "confirm" => false, "date" => $date);
+            $userResult = $users->insert($userStructure, array('safe' => true));
+            $userid = $userStructure['_id'];
+            if ($userResult) {
+                //get the new user id
+                //$userid = mysql_insert_id();
+                $users = $db->users_waiting_approvment;
+                //create a random key
+                $key = $username . $email;
+                $key = md5($key);
+                //add confirm row
+                //$confirm = mysql_query("INSERT INTO `confirm` VALUES(NULL,'$userid','$key','$email')");	
+                $userStructure = array("userid" => $userid, "key" => $key, "email" => $email);
+                $userConfirmResult = $users->insert($userStructure, array('safe' => true));
+
+                //In case the user properly inserted into the database
+                $strWelcomeMsg = _("Welcome to TurtleAcademy");
+                $strResetMsg = _("TurtleAcademy password reset");
+                if ($userConfirmResult) {
+                    //include the swift class
+                    include_once $phpDirPath . 'swift/swift_required.php';
+                    //put info into an array to send to the function
+                    $locale = $_SESSION['locale'];
+                    $info = array(
+                        'username' => $username,
+                        'email' => $email,
+                        'key' => $key,
+                        'locale' => $locale,
+                        'msgWelcome' => $strWelcomeMsg,
+                        'msgReset' => $strResetMsg);
+                    //send the email
+                    $templateType = "signup_template";
+                    if ($locale != "en_US")
+                        $templateType = $templateType . "_" . $locale;
+
+                    if (send_email($info, $sitePath, $templateType)) {
+                        $thanks = _("Thanks for signing up");
+                        $checkEmail = _("Please check your email for confirmation");
+                        $action['result'] = 'success';
+                        array_push($text, $thanks . ". " . $checkEmail . "!!");
+
+                        //header("location: files/registerok.php"); 
+                    } else {
+                        $action['result'] = 'error';
+                        array_push($text, 'Could not send confirm email');
+                    }
+                } else {
+
+                    $action['result'] = 'error';
+                    //array_push($text,'Confirm row was not added to the database. Reason: ' . mysql_error());
+                    array_push($text, 'Confirm row was not added to the database. Reason: ');
+                }
+            }
+        }
+?>
