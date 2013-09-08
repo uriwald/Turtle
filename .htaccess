@@ -44,6 +44,12 @@ RewriteRule ^next/language/zh/?$   next/index.php?locale=zh_CN [NC,L]
 RewriteRule ^next/language/he/?$   next/index.php?locale=he_IL [NC,L]
 RewriteRule ^next/language/ru/?$   next/index.php?locale=ru_RU [NC,L]
 
+RewriteRule ^users/en/?$   users.php?locale=en_US [NC,L]
+RewriteRule ^users/es/?$   users.php?locale=es_AR [NC,L]
+RewriteRule ^users/zh/?$   users.php?locale=zh_CN [NC,L]
+RewriteRule ^users/he/?$   users.php?locale=he_IL [NC,L]
+RewriteRule ^users/ru/?$   users.php?locale=ru_RU [NC,L]
+
 
  RewriteRule ^playground/he/?$     files/playground.php?locale=he_IL [NC,L]
  RewriteRule ^playground/es/?$     files/playground.php?locale=es_AR [NC,L]

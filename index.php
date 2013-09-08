@@ -5,14 +5,13 @@
     if (session_id() == '')
         session_start();
     require_once("environment.php");
-    require_once("localization.php");
+    require_once("localization.php"); 
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
     require_once("files/utils/languageUtil.php");
-    require_once('files/openid.php');
     require_once('files/utils/topbarUtil.php');
     ?>
-<html>
+<html dir="<?php echo $dir ?>" lang="<?php echo $lang ?>">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>

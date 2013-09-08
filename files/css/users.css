@@ -1,0 +1,45 @@
+/* 
+    Document   : users
+    Created on : Sep 8, 2013, 7:33:28 PM
+    Author     : Lucio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.row{
+    float:none;
+}
+#mainContainer{
+    float:none;
+}
+#topbarContainer{
+    float:none;
+}
+.sidebar.well.span4{
+    width: 180px;
+}
+.ads tbody tr td{
+    cursor:pointer !important;
+}
+.highlight td{
+    font-weight:bold;
+}
+td.mini-thumbnail img{
+    max-height:50px;
+    max-width:100px;
+}
+td.mini-thumbnail{
+    text-align:center;
+}
+
+:lang(he)#user_menu{
+        float : right;
+    direction: rtl;
+}
+:lang(he)#usrLessonDiv{ 
+    direction : rtl;
+    text-align: right;
+} 
+:lang(he)#my_lessons > thead > tr > th , :lang(he)#my_lessons > tbody > tr > td {  
+    text-align: right;
+}
