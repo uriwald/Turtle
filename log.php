@@ -77,6 +77,15 @@
             $validateUser = true;
             header("location: " .$lessonReportPage."?locale=es_AR");
         }
+        else if ( $username == "degerman" && $password = "degerman")
+        {
+            $_SESSION['translator'] = true ;
+            
+            $_SESSION['username'] = "translator";
+            $_SESSION['permision'] = 2;
+            $validateUser = true;
+            header("location: " .$lessonReportPage."?locale=de_DE");
+        }
         else if ( $username == "arjotr" && $password = "arjotr")
         {
             $_SESSION['translator'] = true ;

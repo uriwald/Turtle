@@ -29,10 +29,8 @@
          echo "<script type='application/javascript' src='".$rootDir."files/jqconsole.js' ></script>\n" ;
          echo "<script type='application/javascript' src='".$rootDir."files/interface.js?locale=".$locale."'></script>\n" ;
         // Case user logged in we will clear the storage data and load it from db
-        $isUserLoggedIn =   isset($_SESSION['username']);
-        if ($isUserLoggedIn) {
-             echo "<script type='application/javascript' src='".$rootDir."clearStorageData.php' ></script>\n" ;   
-        }
+        
+
         echo "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css'/>\n" ; 
         echo "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'/>\n" ; 
         echo "<link rel='stylesheet' href='".$rootDir."files/css/doc.css' type='text/css' media='all'/>\n" ; 

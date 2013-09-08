@@ -13,28 +13,16 @@ $newscol = $db->news;
 
 $newsQuery = array('approve' => true);
 $newsItems = $newscol->find($newsQuery);
+$newsItems->sort(array('date' => -1));
 ?>
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
-        <meta charset="utf-8"> 
-        <title>TurtleAcademy news</title> 
-<?php
-require_once("files/utils/includeCssAndJsFiles.php");
-?>
-        <meta name="description" content="Twitter Bootstrap ScrollSpy example. You may also learn usage of navbar and dropdown.">  
-
-
-<?php
-//Language translation file
-$file_path = "../locale/" . $locale . "/LC_MESSAGES/messages.po";
-$po_file = "<link   rel='gettext' type='application/x-po' href='../locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
-if (file_exists($file_path))
-    echo $po_file;
-?>        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title><?php echo _("TurtleAcademy news"); ?></title> 
         <?php
-        cssUtils::loadcss($locale, $rootDir . "files/css/interface");
-        ?>    
+        require_once("files/utils/includeCssAndJsFiles.php");
+        ?>
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/news.css' type='text/css' media='all'/>
     </head>
     <body align="center"> 
@@ -100,7 +88,7 @@ if (file_exists($file_path))
                     if (strlen($headline) > 3) { //Check if the header is valid for this language
                         ?> 
                         <div data-spy="scroll" id="divScroll" data-target="#navbarExample" data-offset="50" class="scrollspy-example" lang="<?php echo $lang ?>">
-                            <h3 id="<?php echo $itemid ?>"> <span><?php echo $headline ?> </span> <span id="newsDate" lang="<?php echo $lang ?>"><?php echo $date; ?> </span></h3>
+                            <h2 id="<?php echo $itemid ?>"> <span><?php echo $headline ?> </span> <span id="newsDate" lang="<?php echo $lang ?>"><?php echo $date; ?> </span></h2>
                             <p><?php echo $context; ?></p>
                         </div>
                         <?php

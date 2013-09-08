@@ -104,7 +104,7 @@
                             <div>
                                 <h1 id="running-quote"> "<?php echo _("My son is enjoying studying programming"); ?>"</h1>
                             </div>
-                            <h3> <?php echo _("Matt Hok - England<"); ?>/h3>   
+                            <h3> <?php echo _("Matt Hok - England"); ?>/h3>   
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 <?php
-
+    if (session_id() == '')
+        session_start();
 /* Including all .js and .css files for each webpage */
 //require_once("./environment.php");
 
@@ -54,6 +55,10 @@
             echo $po_file;
         
         //End Loading translation file   
+        $isUserLoggedIn =   isset($_SESSION['username']);
+        if ($isUserLoggedIn) {
+             echo "<script type='application/javascript' src='".$rootDir."clearStorageData.php' ></script>\n" ;   
+        } 
         echo "<script type='application/javascript' src='".$rootDir."readMongo.php?locale=".$locale."' ></script>\n" ;  
         echo "<script type='application/javascript' src='".$rootDir."files/js/langSelect.js' ></script>\n" ; 
         echo "<script type='application/javascript' src='".$rootDir."files/logo.js' ></script>\n" ; 

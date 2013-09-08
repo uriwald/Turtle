@@ -10,10 +10,12 @@ root {
     display: block;
 } 
 .scrollspy-example {
-    height: 200px;
     overflow: auto;
     position: relative;
 } 
+#topbarContainer{
+    text-align: left;
+}
 #navbar-inner-id{
     padding-left: 0px;
     padding-right: 0px;
@@ -26,7 +28,9 @@ root {
     float : right;
 }
 #divScroll{
-    height: 100%;
+    max-height: 200px;
+    padding-bottom: 15px;
+    /* height: 100%; */
 } 
 #turtleNewsBody{
    margin:0 auto;

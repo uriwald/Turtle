@@ -23,28 +23,6 @@ require_once('files/utils/topbarUtil.php');
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/doc.css' type='text/css' media='all'/>
-        
-        <?php
-            //Language translation file
-            $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
-            $po_file = "<link   rel='gettext' type='application/x-po' href='" . $rootDir . "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
-            if (file_exists($file_path))
-                echo $po_file;;
-        ?>
-        <!-- Google Analytics Tracking -->
-        <script type="application/javascript"> 
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-26588530-1']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-
-        </script>
-        <!-- End ofGoogle Analytics Tracking -->
     </head>
     <body>
         <?php
@@ -70,7 +48,7 @@ require_once('files/utils/topbarUtil.php');
                                 <li class="nav-header" id="about" lang="<?php echo $lang ?>"><?php echo _("About"); ?></li>
                                 <li style="width:100%;" class="active"><a class="innerLink" lang="<?php echo $lang ?>" href="#about_the_project" data-toggle="tab"><i class="icon-heart innerIcon" lang="<?php echo $lang ?>"></i> <?php echo _("About the project"); ?> </a></li>
                                 <li style="width:100%;"><a class="innerLink" lang="<?php echo $lang ?>" href="#why_was_it_done" data-toggle="tab"><i class="icon-leaf innerIcon" lang="<?php echo $lang ?>"></i> <?php echo _("Why was it done"); ?> </a></li>
-                                <li style="width:100%;"><a class="innerLink" lang="<?php echo $lang ?>" href="#why_to_register" data-toggle="tab"><i class="icon-bell innerIcon" lang="<?php echo $lang ?>"></i>  <?php echo _("Why to register ?"); ?> </a></li> 
+                                <li style="width:100%;"><a class="innerLink" lang="<?php echo $lang ?>" href="#why_to_register" data-toggle="tab"><i class="icon-bell innerIcon" lang="<?php echo $lang ?>"></i>  <?php echo _("Why to register"); echo" ?"; ?> </a></li> 
                                 <li style="width:100%;"><a class="innerLink" lang="<?php echo $lang ?>" href="#who_are_we" data-toggle="tab"><i class="icon-fire innerIcon" lang="<?php echo $lang ?>"></i>  <?php echo _("Who we are ?"); ?> </a></li>
                                 <li style="width:100%;"><a class="innerLink" lang="<?php echo $lang ?>" href="#tricks" data-toggle="tab"><i class=" icon-star innerIcon" lang="<?php echo $lang ?>"></i> <?php echo _("Tricks"); ?></a></li>
                                 <li style="width:100%;"><a class="innerLink" lang="<?php echo $lang ?>" href="#credits" data-toggle="tab"><i class="icon-thumbs-up innerIcon" lang="<?php echo $lang ?>"></i> <?php echo _("Credits"); ?></a></li>

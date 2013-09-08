@@ -111,6 +111,8 @@
             $lang = "Chinese";
         else if ($locale == "ar_JO")
             $lang = "Arabic";
+        else if ($locale == "de_DE")
+            $lang = "German";
         return $lang;
     }
     ?>

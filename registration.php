@@ -151,12 +151,25 @@ require_once ('files/utils/topbarUtil.php');
     </head>
     <body>
         <?php
+        //Strings for Password reset
+    $strContinueReset = _("Please check your email to continue with password reset");
+    $strErrSendConfirmMail = _("Error while sending confirm Email");
+    $strContactSupoort = _("please contact the TurtleAcademy support");
+//In case the user properly inserted into the database
+    $strWelcomeMsg   = _("Welcome to TurtleAcademy");
+    $strResetMsg    = _("TurtleAcademy password reset");
+//String for checking Email and username validation
+    $strEmailExist  = _("Email is being used by a registered user");
+    $strForgotPass  = _("if you forgot your password please press reset password");
+    $strUserNExist  = _("Username is already exist in the system");
+    $strChooseNewUN = _("please choose another username");
+
+        
         $googleid = createOpenIdObject('https://www.google.com/accounts/o8/id', "loginopen.php");
         $yahooid = createOpenIdObject('https://me.yahoo.com', "loginopen.php");
 //setup some variables/arrays
         $action = array();
         $action['result'] = null;
-
         $text = array();
 
 //check if the form has been submitted
@@ -178,7 +191,7 @@ require_once ('files/utils/topbarUtil.php');
                 $action['result'] = 'error';
                 array_push($text, 'You forgot your email');
             }
-            //print_r($action);
+
             if ($action['result'] != 'error') {
                 $password = md5($password);
                 $m = new Mongo();
@@ -206,8 +219,7 @@ require_once ('files/utils/topbarUtil.php');
             }
             $action['text'] = $text;
         }
-
-       
+      
         if (isset($_POST['email_pwd'])) {
             //varifaction it's a mail will be done by js
             $email = $_POST['email_pwd'];
@@ -395,18 +407,7 @@ require_once ('files/utils/topbarUtil.php');
 
 <?php
 
-//Strings for Password reset
-    $strContinueReset = _("Please check your email to continue with password reset");
-    $strErrSendConfirmMail = _("Error while sending confirm Email");
-    $strContactSupoort = _("please contact the TurtleAcademy support");
-//In case the user properly inserted into the database
-    $strWelcomeMsg   = _("Welcome to TurtleAcademy");
-    $strResetMsg    = _("TurtleAcademy password reset");
-//String for checking Email and username validation
-    $strEmailExist  = _("Email is being used by a registered user");
-    $strForgotPass  = _("if you forgot your password please press reset password");
-    $strUserNExist  = _("Username is already exist in the system");
-    $strChooseNewUN = _("please choose another username");
+
     
 
  function createOpenIdObject($identity, $returnUrl) {

@@ -25,7 +25,8 @@ class topbarUtil {
                 "ru" => "ru",
                 "es" => "es",
                 "zh" => "zh",
-                "he" => "he"
+                "he" => "he",
+                "de" => "de"
                 );
             
             switch ($topbarPage) {
@@ -48,7 +49,7 @@ class topbarUtil {
                     $topbarDisplay['about'] = true ; 
                     $topbarDisplay['exercise'] = true ;
                     $language['en'] = "en_US"; $language['ru'] = "ru_RU"; $language['he'] = "he_IL";
-                    $language['es'] = "es_AR"; $language['zh'] = "zh_CN"; 
+                    $language['es'] = "es_AR"; $language['zh'] = "zh_CN"; $language['de'] = "de_DE"; 
                     $topbarSpanSize = 13;
                     break;
                 case "news":
@@ -129,6 +130,7 @@ class topbarUtil {
                                 <option value='<?php echo $language['he']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
                                 <option value='<?php echo $language['zh']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
                                 <option value='<?php echo $language['ru']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag ru" data-title="Russain">Русский</option>
+                                <option value='<?php echo $language['de']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag de" data-title="German">German</option>
                             </select>
                         </form>       
             <?php 
