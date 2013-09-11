@@ -65,6 +65,22 @@
            //Case no user found
                return $results;
      }
+     /*
+      * Add user property
+      * will add new property the the user collection
+      */
+     public static function addPropertyToUserCol ($property , $val)
+     {
+           $m = new Mongo();
+           $db = $m->turtleTestDb;	
+           $users = $db->users;
+           $cursor = $users->find();
+            foreach ($cursor as $user) {
+                $userobj = $user;
+                $newdata = array('$set' => array($property => $val));
+                $users->update($user, $newdata);
+            } 
+     }
   
     }
 ?>
