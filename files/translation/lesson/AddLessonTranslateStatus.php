@@ -21,13 +21,13 @@
         $db = $m->turtleTestDb;
         $strcol = $db->lessons_translate_status;
         
-        $emptyTranslate         = array("locale_zh_CN" => false ,"locale_es_AR" => false ,"locale_he_IL" => false ,"locale_ru_RU" => false);
+        $emptyTranslate         = array("locale_zh_CN" => false ,"locale_es_AR" => false ,"locale_he_IL" => false ,"locale_ru_RU" => false , "locale_de_DE" => false);
         
-        //$date = date('Y-m-d H:i:s');
+        //$date = date('Y-m-d H:i:s'); 
         //Here the record will be added in any case
         
             $obj = array( "title" => $title , "lesson_id" => $id , "in_progress" => $emptyTranslate ,"completed" => $emptyTranslate
-                            , "comments" => "");
+                            , "comments" => "" , "precedence" => "9999");
             $strcol->insert($obj);
             echo " NewsItem was successfully inserted";
             $adminPage  =   $rootDir . "admin.php";

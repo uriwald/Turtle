@@ -1,4 +1,5 @@
 <?php
+/*
     $fileDirectory = "../../";
     require_once($fileDirectory."utils/translationUtil.php");
     include_once($fileDirectory."inc/dropdowndef.php");
@@ -7,6 +8,14 @@
     $locale = "zh_CN";
     if (isset ($_GET['locale']))
         $locale =   $_GET['locale'];
+ * 
+ */
+    if (session_id() == '')
+        session_start();
+    require_once("../../../environment.php");
+    require_once("../../../localization.php"); 
+    require_once("../../utils/translationUtil.php");
+    require_once("../../utils/includeCssAndJsFiles.php"); 
 ?>
     <table>
         <tbody>
