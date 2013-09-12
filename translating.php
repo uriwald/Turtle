@@ -358,6 +358,7 @@ and open the template in the editor.
                 </div>     
                 <div class="downButton">
                     <input type="button" id="btnSaveLessonTranslate" class="lessonInputButton" name="formSave" value="Save" />
+                    <a href="<?php echo $rootDir."files/translation/lesson/lessonsTransReportPage.php?locale=".$localetr?>" id="redirectLessonReportPage"> Back to admin page </a>
                 </div>
             </div>  
             <script type='text/javascript'>
