@@ -25,6 +25,8 @@
     $db                 = $m->turtleTestDb;
     $strcol             = $db->lessons_translate_status;
     $lessons            = $strcol->find();
+    //Should be sorted by precedence
+    $lessons->sort(array('precedence' => 1));
     $lang               = getLanguage($locale);
     
     echo "<div> <h1> Lesson translate to " . $lang . " report </h1></div>";

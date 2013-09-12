@@ -4,11 +4,15 @@
     $pzh        = $_POST['progress_zh'];
     $pes        = $_POST['progress_es'];
     $phe        = $_POST['progress_he'];
+    $pde        = $_POST['progress_de'];
     
     $fru        = $_POST['finish_ru'];
     $fzh        = $_POST['finish_zh'];
     $fes        = $_POST['finish_es'];
     $fhe        = $_POST['finish_he'];
+    $fde        = $_POST['finish_de'];
+    
+    $precedence = $_POST['precedence'];
    
     $comments   = $_POST['comments'];
     
@@ -44,14 +48,17 @@
             $progress['locale_es_AR'] = $pes;
             $progress['locale_ru_RU'] = $pru;
             $progress['locale_he_IL'] = $phe;
+            $progress['locale_de_DE'] = $pde;
             
             $completed['locale_zh_CN'] = $fzh;
             $completed['locale_es_AR'] = $fes;
             $completed['locale_ru_RU'] = $fru;
             $completed['locale_he_IL'] = $fhe;
+            $completed['locale_de_DE'] = $fde;
 
             $result     =   $strcol->update($lessonExist, array("title" => $title , "comments" => $comments , "lesson_id" => $lessonid ,
-                                                                "in_progress" => $progress ,"completed" => $completed ));
+                                                                "in_progress" => $progress ,"completed" => $completed , "precedence" => $precedence ));
+            
            
           
          }
