@@ -90,6 +90,17 @@ class collectionUtil {
         echo "done cloning " . $attOldName . " to " . $attNewName;
 
     }
+    public static function addPropertyToAllCollectionObjects($collectoinName ,$property , $val)
+    {
+           $m = new Mongo();
+           $db = $m->turtleTestDb;	
+           $collection = $db->$collectoinName;
+           $cursor = $collection->find();
+            foreach ($cursor as $collectionObj) {
+                $newdata = array('$set' => array($property => $val));
+                $collection->update($collectionObj, $newdata);
+            } 
+     }
     
     public function CollectionItemChangeAttributeVal ($mongoid , $attName , $attVal) 
     { 
