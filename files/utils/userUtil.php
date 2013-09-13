@@ -81,6 +81,77 @@
                 $users->update($user, $newdata);
             } 
      }
-  
+     /*
+      * Will copy privous collection object of userOpenId TO the Users collection
+      */ 
+    public static function copy_db_openid_user_to_users($username)
+     {
+         $m = new Mongo();
+         $db = $m->turtleTestDb;	
+         $usersOpenId = $db->user_open_id;
+         $users = $db->users;
+         //Check if user already exist in users db
+         $userQuery       = array('username' => $username , 'email'=> $username);
+         $resultcount     = $users->count($userQuery);
+         //if User already exist in db do nothing else copy info between collection
+         if ($resultcount > 0){
+            // do Nothing
+         }
+         else
+         {
+            $OpenIdUser = $usersOpenId->findOne(array('contact/email' => $username));       
+            //New user object definition
+            $email                  =   $OpenIdUser['contact/email'];      
+            $user['username']       =   $email;
+            $user['password']       =   md5($email);
+            $user['badges']         =   "";
+            $user['confirm']        =   true ;
+            $user['email']          =   $email;
+            $user['fullname']       =   $OpenIdUser['namePerson/first'] . " " . $OpenIdUser['namePerson/last'] ;
+            $user['pref/language']  =   $OpenIdUser['pref/language'];
+            
+            $result = $users->insert($user, array('safe' => true)); 
+         }
+     }
+     /*
+      * Will copy all open_id objects to users
+      */ 
+    public static function copy_db_all_openid_users_to_users()
+     {
+         $m = new Mongo();
+         $db = $m->turtleTestDb;	
+         $usersOpenIdCol = $db->user_open_id;
+         $users = $db->users;
+         
+         $OpenIdUsers     = $usersOpenIdCol->find();
+         $date = date('Y-m-d H:i:s');
+         foreach ($OpenIdUsers as $OpenIdUser) {
+                $email           =   $OpenIdUser['contact/email']; 
+                $userQuery       = array('username' => $email , 'email'=> $email);
+                $resultcount     = $users->count($userQuery);
+                //if User already exist in db do nothing else copy info between collection
+                if ($resultcount > 0){
+                    // do Nothing
+                }
+                else
+                {
+                    //New user object definition   
+                    $user['username']       =   $email;
+                    $user['password']       =   md5($email);
+                    $user['badges']         =   "";
+                    $user['confirm']        =   true ;
+                    $user['email']          =   $email;
+                    $user['fullname']       =   $OpenIdUser['namePerson/first'] . " " . $OpenIdUser['namePerson/last'] ;
+                    $user['pref/language']  =   $OpenIdUser['pref/language'];
+                    $user['date']           =   $date;
+
+                    $result = $users->insert($user, array('safe' => true)); 
+                }
+         } 
+         //Check if user already exist in users db
+         
+     }     
+     
+     
     }
 ?>

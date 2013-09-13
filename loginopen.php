@@ -10,18 +10,30 @@ if ($openid->mode) {
     if ($openid->mode == 'cancel') {
         echo "User has canceled authentication !";
     } elseif($openid->validate()) {
-        $data = $openid->getAttributes();
+        $data               =   $openid->getAttributes();
+        $email              =   $data['contact/email'];
+        $user['username']   =   $email;
+        $user['password']   =   md5($email);
+        $user['badges']     =   "";
+        $user['confirm']    =   true ;
+        $user['email']      =   $email;
+        $user['fullname']   =   $data['namePerson/first'] . " " . $data['namePerson/last'] ;
+        $user['pref/language'] = $data['pref/language'];
+        $date = date('Y-m-d H:i:s');
+        $user['date'] = $date;
         
+
+        
+        print_r($user);
+
         $m = new Mongo();
         $db = $m->turtleTestDb;
-        $userOI = $db->user_open_id;
-        //Search if user exist
-        $email = $data['contact/email'];
-        $first = $data['namePerson/first'];
-        $userExist = array('contact/email' => $email);
-        $resultcount = $userOI->count($userExist);
+        $usersOpenID = $db->user_open_id;
+
+        $userExist = array('email' => $email , 'username'=>$email);
+        $resultcount = $users->count($userExist);
         if ($resultcount == 0)      
-            $userOI->insert($data, array('safe' => true));
+            $users->insert($user, array('safe' => true));
         else
         {
             echo "Do nothing";
@@ -30,7 +42,7 @@ if ($openid->mode) {
          $_SESSION['username'] = $email;
          $_SESSION['isOpenID'] = true;
          
-         header( 'Location: index.php' ) ;
+        // header( 'Location: index.php' ) ;
     } else {
         echo "The user has not logged in";
     }
