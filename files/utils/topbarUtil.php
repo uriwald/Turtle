@@ -126,11 +126,11 @@ class topbarUtil {
                                     ?>" action="" id="turtleHeaderLanguage" lang="<?php echo $lang ?>">
                             <select name="selectedLanguage" id="selectedLanguage" > 
                                 <option value='<?php echo $language['en']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
+                                <option value='<?php echo $language['de']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag de" data-title="German">Deutsch</option>
                                 <option value='<?php echo $language['es']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
+                                <option value='<?php echo $language['ru']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag ru" data-title="Russain">Русский</option>
                                 <option value='<?php echo $language['he']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
                                 <option value='<?php echo $language['zh']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
-                                <option value='<?php echo $language['ru']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag ru" data-title="Russain">Русский</option>
-                                <option value='<?php echo $language['de']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag de" data-title="German">German</option>
                             </select>
                         </form>       
             <?php 
@@ -139,7 +139,7 @@ class topbarUtil {
         if (isset($_SESSION['username'])) {
             ?>                       
                         <nav class="<?php echo "pull-$cssright"; ?>"  id="turtleHeaderLoggedUser">
-                            <ul class="nav nav-pills <?php echo "pull-$cssright"; ?>" id="loggedUserUl">
+                            <ul class="nav nav-pills <?php echo "pull-$cssright"; ?>" id="loggedUserUl"> 
 
                                 <!--<li style="padding: 10px 10px 11px;"> <?php echo _("Hello"); ?></li> -->
                                 <li class="cc-button-group btn-group"> 
