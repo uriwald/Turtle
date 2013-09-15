@@ -2,23 +2,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
     "http://www.w3.org/TR/html4/strict.dtd">
     <?php
-
-    if (session_id() == '')
-    {
-        echo " creating secure session";
-        $session_name = 'sec_session_id'; // Set a custom session name
-        $secure = false; // Set to true if using https.
-        $httponly = true; // This stops javascript being able to access the session id. 
- 
-        ini_set('session.use_only_cookies', 1); // Forces sessions to only use cookies. 
-        $cookieParams = session_get_cookie_params(); // Gets current cookies params.
-        session_set_cookie_params($cookieParams["lifetime"], $cookieParams["path"], $cookieParams["domain"], $secure, $httponly); 
-        session_start(); // Start the php session
-        session_regenerate_id(); // regenerated the session, delete the old one.  
-    }
     require_once("environment.php");
     require_once("localization.php");
-
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
     require_once("files/utils/languageUtil.php");
@@ -34,7 +19,7 @@
             echo _("Turtle Academy - learn logo programming in your browser");
             echo _(" free programming materials for kids");
         ?>  
-        </title>    
+        </title> 
         <?php
         // Loading relevant js and css files
         require_once("files/utils/includeCssAndJsFiles.php"); 
