@@ -2,16 +2,29 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
     "http://www.w3.org/TR/html4/strict.dtd">
     <?php
-    if (session_id() == '')
-        session_start();
 
+    if (session_id() == '')
+    {
+        echo " creating secure session";
+        $session_name = 'sec_session_id'; // Set a custom session name
+        $secure = false; // Set to true if using https.
+        $httponly = true; // This stops javascript being able to access the session id. 
+ 
+        ini_set('session.use_only_cookies', 1); // Forces sessions to only use cookies. 
+        $cookieParams = session_get_cookie_params(); // Gets current cookies params.
+        session_set_cookie_params($cookieParams["lifetime"], $cookieParams["path"], $cookieParams["domain"], $secure, $httponly); 
+        session_start(); // Start the php session
+        session_regenerate_id(); // regenerated the session, delete the old one.  
+    }
     require_once("environment.php");
     require_once("localization.php");
+
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
     require_once("files/utils/languageUtil.php");
     require_once ('files/openid.php');
     require_once ('files/utils/topbarUtil.php');
+
     ?>
 <html dir="<?php echo $dir ?>" lang="<?php echo $locale ?>">
     <head>
@@ -26,6 +39,7 @@
         // Loading relevant js and css files
         require_once("files/utils/includeCssAndJsFiles.php"); 
         require_once("files/utils/loadCrousel.php");
+        
          echo "<script type='application/javascript' src='".$rootDir."files/jqconsole.js' ></script>\n" ;
          echo "<script type='application/javascript' src='".$rootDir."files/interface.js?locale=".$locale."'></script>\n" ;
         // Case user logged in we will clear the storage data and load it from db
@@ -33,6 +47,7 @@
 
         echo "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css'/>\n" ; 
         echo "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'/>\n" ; 
+        
         echo "<link rel='stylesheet' href='".$rootDir."files/css/doc.css' type='text/css' media='all'/>\n" ; 
         echo "<link rel='stylesheet' href='".$rootDir."files/css/interface.css' type='text/css' media='all'/>\n" ; 
 
@@ -74,7 +89,6 @@
                 </div>
 
                 <div id="console" class="ui-corner-all ui-widget-content"><!-- command box --></div>
-                <?php echo $footer; ?>
             </div>
             <!-- Accordion div -->
             <div id="accorPlusNav">

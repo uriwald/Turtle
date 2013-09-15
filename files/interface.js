@@ -70,7 +70,7 @@ function loadLesson(lessonID)
     }
     if (activeLesson == (lessons.length -1)) $('#nextlesson').hide();
 
-}
+} //End of load lesson function
 
 // TODO - doc
 function comparecommands (command, solution) {
@@ -138,11 +138,11 @@ $(function() {
     '{{each steps}}' 
     // + '{{if '+  localeWithPrefix + '}}'  
     +  '<h3><a href="#"> ${$index}. ${title}'
-    +  '{{if $.Storage.get("q(" + turtleid + ")" + ($index +1)) == "true"}}'
+    +  '{{if $.Storage.get("q(" + turtleid + ")" + ($index)) == "true"}}'
     +  '<span class="ui-icon ui-icon-check"'+ltr+'></span>'  
     +  '{{/if}}'
     + '</a></h3>'
-    + '<div data-sol="${solution}" data-qid="${$index +1}">'
+    + '<div data-sol="${solution}" data-qid="${$index}">'
     + '<p>{{html explanation}}</p> '
     + '<p>{{html action}}</p>'
     + '{{if hint.length > 0}}'
@@ -241,9 +241,7 @@ $(function() {
     // Render the first lesson
     loadLesson(0);
 
-    // Creating the console.
-    var welcome = 'Hello\nWelcome to the world of the turtle\n';
-    
+    // Creating the console.   
     window.jqconsole = $('#console').jqconsole(gt.gettext("Hi") + "\n" + gt.gettext("Welcome to the Turtle world"), '> ');
     
     if ($('html').attr('dir') == 'rtl') //Should be check comparing to array contaning all RTL languages
@@ -287,18 +285,17 @@ $(function() {
     // Load console history from localStorage for consistant console
     try {
         if ($.Storage.get("logo-history"))
-        {} //For now I don't really see a reason for loading the console history for the user cause
-    // More damage than benefit .. maybe in the future
+        {} //For now I don't really see a reason for loading the console history for the user cause More damage than benefit .. maybe in the future
     //jqconsole.history = JSON.parse($.Storage.get("logo-history"));
     } catch (e) {
         // Write the failure to our console
         jqconsole.Write(gt.gettext('Error Loading History') +': ' + e + '\n');
     }
-    // Handle a command.
+    
     var handler = function(command) {
         if (command) {
             try {
-                // Allow the logo vm to run the command
+                // Allow the logo vm to run the command 
                 g_logo.run(command);
                 // Assuming the command ran, we can store the history for later usage
                 if (typeof jqconsole.history != 'undefined') 
@@ -323,8 +320,7 @@ $(function() {
                 // Now we evaluate the command against the one we were expecting
                 if (comparecommands(command, $(".ui-accordion-content-active").data('sol')))
                 {
-                    // If this was correct, we add a checkmark and remember this for later, than progress to the next question of the lesson
-                    //Only if a not contain
+                    // If this was correct, we will add the V sign if not already exist
                     var selectorMatches = $('.ui-state-active a').is( ':has(span.ui-icon)');
                     if(selectorMatches == false) 
                         $(".ui-state-active a").append('<span class="ui-icon ui-icon-check"'+ltr+'></span>' );
@@ -334,10 +330,10 @@ $(function() {
                     for (var i=0;i<20;i++)
                         for (var j=1;j<12;j++)
                         {
-                            if ($.Storage.get("q(" + i +  ")" + j + "1" ))
+                            if ($.Storage.get("q(" + i +  ")" + j))
                             {
                                 //alert ("q(" + i +  ")" + j + "1");
-                                lclStorageValue += "q(" + i +  ")" + j + "1,";
+                                lclStorageValue += "q(" + i +  ")" + j + ",";
                             }
                         }
                     $.ajax({
