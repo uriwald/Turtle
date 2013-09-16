@@ -2,7 +2,8 @@
 	//include("sql.php"); //Connect to SQL
         require_once 'files/utils/userUtil.php';
 
-	if(!isset($_SESSION)){session_start();}
+	if(!isset($_SESSION))
+            session_start();
         //session_unset();
         require_once("environment.php");
         
@@ -85,6 +86,14 @@
             $_SESSION['permision'] = 2;
             $validateUser = true;
             header("location: " .$lessonReportPage."?locale=de_DE");
+        }
+        else if ( $username == "brroberto" && $password = "brroberto")
+        {
+            $_SESSION['translator'] = true ;          
+            $_SESSION['username'] = "Brazil";
+            $_SESSION['permision'] = 2;
+            $validateUser = true;
+            header("location: " .$lessonReportPage."?locale=pt_BR");
         }
         else if ( $username == "arjotr" && $password = "arjotr")
         {

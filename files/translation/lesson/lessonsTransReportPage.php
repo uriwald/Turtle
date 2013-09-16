@@ -115,6 +115,8 @@
             $lang = "Arabic";
         else if ($locale == "de_DE")
             $lang = "German";
+        else if ($locale == "pt_BR")
+            $lang = "Portuguese";
         return $lang;
     }
     ?>

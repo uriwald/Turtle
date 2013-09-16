@@ -26,7 +26,8 @@ class topbarUtil {
                 "es" => "es",
                 "zh" => "zh",
                 "he" => "he",
-                "de" => "de"
+                "de" => "de",
+                "pt" => "pt"
                 );
             
             switch ($topbarPage) {
@@ -49,7 +50,7 @@ class topbarUtil {
                     $topbarDisplay['about'] = true ; 
                     $topbarDisplay['exercise'] = true ;
                     $language['en'] = "en_US"; $language['ru'] = "ru_RU"; $language['he'] = "he_IL";
-                    $language['es'] = "es_AR"; $language['zh'] = "zh_CN"; $language['de'] = "de_DE"; 
+                    $language['es'] = "es_AR"; $language['zh'] = "zh_CN"; $language['de'] = "de_DE"; $language['pt'] = "pt_BR"; 
                     $topbarSpanSize = 13;
                     break;
                 case "news":
@@ -124,8 +125,9 @@ class topbarUtil {
                         <form class="<?php
                                         echo "pull-$cssleft form-inline";
                                     ?>" action="" id="turtleHeaderLanguage" lang="<?php echo $lang ?>">
-                            <select name="selectedLanguage" id="selectedLanguage" > 
+                            <select name="selectedLanguage" id="selectedLanguage"> 
                                 <option value='<?php echo $language['en']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
+                                <option value='<?php echo $language['pt']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag br" data-title="Po">Potrug</option>
                                 <option value='<?php echo $language['de']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag de" data-title="German">Deutsch</option>
                                 <option value='<?php echo $language['es']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
                                 <option value='<?php echo $language['ru']; ?>' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag ru" data-title="Russain">Русский</option>

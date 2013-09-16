@@ -6,5 +6,5 @@
  */
 require_once("../../utils/lessontranUtil.php");
 $ltu = new lessontranUtil();
-$ltu ->addNewLocale("locale_de_DE");
+$ltu ->addNewLocale("locale_pt_BR");
 ?>
