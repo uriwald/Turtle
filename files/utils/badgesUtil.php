@@ -48,14 +48,13 @@ class badgesUtil {
    public static function updateUserBadges($username)
    {
        //Getting the corrent user badges
-       $nuberOfBadges       =   1;
-       echo $username ;
+       $nuberOfBadges       =   2;
        $badges              =   self :: getUserBadges($username);
        $badgesArr           =   explode(",",$badges); 
        $numOfUserBadges     =   count($badgesArr) - 1;
         //If all user have all badges no need to further check
         if ($numOfUserBadges == $nuberOfBadges ){
-            echo " User has all badges";
+           // echo " User has all badges";
         }
         else
         {  
@@ -64,16 +63,18 @@ class badgesUtil {
             $db             = $m->turtleTestDb;	
             $userProgress   = $db->user_progress;
             $user           = $userProgress->findOne(array("username" => $username));
-
             if (isset($user['stepCompleted']))
             {
                 $stepsCompletedArr = explode(",", $user['stepCompleted']);
-                print_r($stepsCompletedArr);
+                //print_r($stepsCompletedArr);
                 $controllBadgeArr = array ("q(1)1","q(1)2","q(1)3","q(1)4","q(1)5","q(1)6","q(1)7");
                 $controllBadgeIterator = 0;
-
+                
+                $badgeone = false;
+                $badgetwo = false;
                 //Function for checking the badge for completing the first lesson
-                if (!in_array("1", $badgesArr)) {
+                if (!in_array("1", $badgesArr)) 
+                {
                     foreach ($stepsCompletedArr as $step=>$val)
                     {
 
@@ -87,7 +88,38 @@ class badgesUtil {
                     //If a badge should be added we will update db and the Session
                     if ($controllBadgeIterator == 7)
                     {
-                    badgesUtil :: addUserBadgeToDb("1,",$username);
+                        badgesUtil :: addUserBadgeToDb("1,",$username);
+                        $_SESSION['ubadges'] = "1,";
+                        $badgeone = true;
+                        
+                    }
+                } 
+                else
+                {
+                    $badgeone = true;
+                }
+                //// End of checking for badge number 1
+                //Check for second badge 
+                if (!in_array("2", $badgesArr) && $badgeone ) {
+                    $controllBadgeIterator = 0;
+                    $controllBadgeArr = array ("q(2)1","q(2)2","q(2)3","q(2)4","q(2)5","q(2)6","q(2)7","q(2)8");
+                    foreach ($stepsCompletedArr as $step=>$val)
+                    {
+                        if ($val == $controllBadgeArr[$controllBadgeIterator])
+                        {
+                       
+                            $controllBadgeIterator++;
+                            if ($controllBadgeIterator == 8)
+                                break;
+                        }             
+                    }
+                    //If a badge should be added we will update db and the Session
+                    if ($controllBadgeIterator == 8)
+                    {
+                        
+                        badgesUtil :: addUserBadgeToDb("2,",$username);
+                        $_SESSION['ubadges'] = "1,2,";
+                        
                     }
                 } // End of checking for badge number 1
             }   
