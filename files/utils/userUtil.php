@@ -135,6 +135,7 @@
                 }
                 else
                 {
+                    $user = null;
                     //New user object definition   
                     $user['username']       =   $email;
                     $user['password']       =   md5($email);
@@ -145,7 +146,7 @@
                     $user['pref/language']  =   $OpenIdUser['pref/language'];
                     $user['date']           =   $date;
 
-                    $result = $users->insert($user, array('safe' => true)); 
+                    $users->insert($user, array('safe' => true)); 
                 }
          } 
          //Check if user already exist in users db
