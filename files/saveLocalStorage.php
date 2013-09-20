@@ -1,5 +1,6 @@
 <?php
-
+    require_once 'utils/badgesUtil.php';
+    
     if (!isset($_SESSION)) {
         session_start();
     }
@@ -57,9 +58,16 @@
         if ($isLessonStep)
             $userHistory = $userDataExist['userHistory'];
         if ($isHistory)
-            $stepsComletedData = $userDataExist['stepCompleted'];      
-            
+            $stepsComletedData = $userDataExist['stepCompleted'];            
         $result = $userProgressCol->update($userDataExist, array("username" => $user,  "lastUpdate" => $date , "stepCompleted" => $stepsComletedData , "userHistory" => $userHistory));
     }
+     $return['badge'] = "no";
+    if (isset($_SESSION[$username]))
+    {
+        $return['badge']    =   badgesUtil :: updateUserBadges($user); 
+        $return['user']     =   $user;
+        
+    }
+
     echo json_encode($return);
 ?>

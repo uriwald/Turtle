@@ -35,7 +35,8 @@ class badgesUtil {
             //Check if email already exist then we will continue
             if ($existUsername > 0) { 
                     $curretnUser = $users->findOne($queryUsername);
-                    $badges = $curretnUser['badges'];
+                    if (isset($curretnUser['badges']))
+                        $badges = $curretnUser['badges'];
             }
             return $badges;
        }
@@ -52,6 +53,7 @@ class badgesUtil {
        $badges              =   self :: getUserBadges($username);
        $badgesArr           =   explode(",",$badges); 
        $numOfUserBadges     =   count($badgesArr) - 1;
+       $badgesWonStr = "";
         //If all user have all badges no need to further check
         if ($numOfUserBadges == $nuberOfBadges ){
            // echo " User has all badges";
@@ -63,6 +65,7 @@ class badgesUtil {
             $db             = $m->turtleTestDb;	
             $userProgress   = $db->user_progress;
             $user           = $userProgress->findOne(array("username" => $username));
+            
             if (isset($user['stepCompleted']))
             {
                 $stepsCompletedArr = explode(",", $user['stepCompleted']);
@@ -72,6 +75,7 @@ class badgesUtil {
                 
                 $badgeone = false;
                 $badgetwo = false;
+                
                 //Function for checking the badge for completing the first lesson
                 if (!in_array("1", $badgesArr)) 
                 {
@@ -91,7 +95,8 @@ class badgesUtil {
                         badgesUtil :: addUserBadgeToDb("1,",$username);
                         $_SESSION['ubadges'] = "1,";
                         $badgeone = true;
-                        
+                        $badgesWonStr = $badgesWonStr . "you won your first badge";
+
                     }
                 } 
                 else
@@ -119,11 +124,13 @@ class badgesUtil {
                         
                         badgesUtil :: addUserBadgeToDb("2,",$username);
                         $_SESSION['ubadges'] = "1,2,";
+                        $badgesWonStr = " you won your second badge";
                         
                     }
                 } // End of checking for badge number 1
             }   
         } // End of ifset stepCompleted
+        return $badgesWonStr;
    }
    private static function addUserBadgeToDb ($badgeName , $username)
    {
@@ -133,10 +140,14 @@ class badgesUtil {
         $user           = $users->findOne(array("username" => $username));
         
         $newuser = $user;
-        $badges  = $user['badges'];
-        if (strpos($badges,$badgeName) !== false) {
-            echo 'true';
-            exit;
+        $badges = "";
+        if (isset($user['badges']))
+        {
+            $badges  = $user['badges'];
+            if (strpos($badges,$badgeName) !== false) {
+                echo 'true';
+                exit;
+            }   
         }
         $badges = $badges . $badgeName;
         $newuser['badges'] = $badges;

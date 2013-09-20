@@ -309,6 +309,8 @@ $(function() {
                         userHistory  :   $.Storage.get('logo-history')
                     },
                     success: function(data) { 
+                        if(data.badge.length > 4)
+                            alert('New badge - ' + data.badge);
                         var rdata;
                     } ,
                     error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -344,6 +346,8 @@ $(function() {
                             lclStoragevalues  :   lclStorageValue
                         },
                         success: function(data) { 
+                            if(data.badge.length > 4)
+                                alert('New badge - ' + data.badge);
                             var rdata;
                         } ,
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
