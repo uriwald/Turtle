@@ -1,0 +1,39 @@
+/* 
+    Document   : badges
+    Created on : Sep 11, 2013, 11:02:07 PM
+    Author     : Lucio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.badgeImg{
+    display: block;
+    margin-left: 0px;
+    margin-right: 0px;
+    height : 50px; 
+    width: 100% ;
+}
+.badge
+{
+    margin-left: 10px;
+    margin-top: 10px;
+    padding-left: 6px;
+    padding-right : 6px;
+    padding-bottom : 6px;
+    margin-bottom: 10px;
+    background-color : #E0E0E0   ;
+    color : black;
+} 
+.badges
+{
+    background-color: #f5f5f5 ; /*#E8E8E8   ;*/
+}
+.badge >  p
+{
+    font-size: 18px;
+    font-weight: bold;
+} 
