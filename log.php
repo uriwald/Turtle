@@ -95,6 +95,14 @@
             $validateUser = true;
             header("location: " .$lessonReportPage."?locale=pt_BR");
         }
+        else if ( $username == "plorigin" && $password = "plorigin")
+        {
+            $_SESSION['translator'] = true ;          
+            $_SESSION['username'] = "Poland";
+            $_SESSION['permision'] = 2;
+            $validateUser = true;
+            header("location: " .$lessonReportPage."?locale=pl_PL");
+        }
         else if ( $username == "arjotr" && $password = "arjotr")
         {
             $_SESSION['translator'] = true ;
@@ -148,7 +156,6 @@
         //and put the info in users_login collection
         else if (!$errflag)
         {
-            echo "Error";
             $userExist  =   userUtil::varifyUser($username, $password);
             if (!$userExist)
             {
@@ -158,18 +165,22 @@
             //If there are input validations, redirect back to the registration form
             if($errflag) {
                     $_SESSION['ERRMSG'] = $errmsg; //Write errors
-                    //session_write_close(); //Close session
-                    //header("location: loginrn.php"); //Rediect
-                     $_SESSION['err_login_msg'] = $errmsg ;
-                     header("location: " . $comefrom); //Rediect
+                    $_SESSION['err_login_msg'] = $errmsg ;
+                    header("location: " . $comefrom); //Rediect
                     exit(); //Block scripts
             } 
             else { //Case User is valid
-                $_SESSION['username'] = $username;
-                ?>
-                <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script> <!-- Clear storage from previoues use scripts -->
-                <?php
-                header("location: ".$rootDir."learn.php" ); 
+                //Check if the user is an institute admin
+                    $db = $m->turtleTestDb;
+                    $usercol = $db->users;
+                    $user = $usercol->findOne(array('username' => $username ));
+                    $_SESSION['username'] = $username;                 
+                    if (isset($user['institute']))
+                        $_SESSION['username'] = $user['institute'];
+                    ?>
+                    <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script> <!-- Clear storage from previous use scripts -->
+                    <?php
+                    header("location: ".$rootDir."learn.php" ); 
             }
         }
         //Case registered user go to user page 
