@@ -171,12 +171,13 @@
             } 
             else { //Case User is valid
                 //Check if the user is an institute admin
+                    $m = new Mongo();
                     $db = $m->turtleTestDb;
                     $usercol = $db->users;
                     $user = $usercol->findOne(array('username' => $username ));
                     $_SESSION['username'] = $username;                 
                     if (isset($user['institute']))
-                        $_SESSION['username'] = $user['institute'];
+                        $_SESSION['institute'] = $user['institute'];
                     ?>
                     <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script> <!-- Clear storage from previous use scripts -->
                     <?php
