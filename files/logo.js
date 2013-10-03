@@ -164,11 +164,10 @@ function LogoInterpreter(turtle, stream)
     // Arabic  \u0600-\u06FF
     //    var regexIdentifier = /^(\.?[A-Za-zא-ת\u4E00-\u9FA5\u0400-\u04FF][A-Za-zא-ת\u4E00-\u9FA5\u0400-\u04FF0-9_.\?]*)(.*?)$/;
 
-
-    var regexIdentifier         = /^(\.?[A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF\u0E00-\u0E5B\u0600-\u06FF][A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF0u0E00-\u0E5B\u0600-\u06FF-9_.\?]*)(.*?)$/;
+    var regexIdentifier         = /^(\.?[A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF\u0E00-\u0E5B\u0600-\u06FF\u00F9-\u00FF][A-Za-zא-ת\u4E00-\u9FA5\u0100-\u04FF0u0E00-\u0E5B\u0600-\u06FF-9_.\?]*)(.*?)$/;
     var regexStringLiteral      = /^("[^ \[\]\(\)]*)(.*?)$/;
     var regexVariableLiteral    = /^(:[A-Za-zא-ת][A-Za-zא-ת0-9]*)(.*?)$/;
-    var regexNumberLiteral      = /^([0-9]*\.?[0-9]+(?:[eE]\s*[\-+]?\s*[0-9]+)?)(.*?)$/;
+    var regexNumberLiteral      = /^([0-9]*\.?[0-9]+(?:[eE]\s*[\-+]?\s*[0-9]+)?)(.*?)$/; 
     var regexListDelimiter      = /^(\[|\])(.*?)$/;
     var regexHasNumber          = /([0-9])$/;
     var regexOperator           = /^(\+|\-|\*|\/|%|\^|>=|<=|<>|=|<|>|\[|\]|\(|\))(.*?)$/;
@@ -845,7 +844,7 @@ function LogoInterpreter(turtle, stream)
       var atom = list.shift();
       // TurtleAcademy handling end command
       var parsedatom    = gt.gettext(atom);
-      if (Type(atom) === 'word' && (parsedatom.toUpperCase() === 'END' || parsedatom.toUpperCase() ===  gt.gettext("end"))) {
+      if (Type(atom) === 'word' && (parsedatom.toUpperCase() === 'END' || parsedatom.toUpperCase() ===  gt.gettext("end").toUpperCase())) {
         sawEnd = true;
         break;
       } else if (state_inputs && Type(atom) === 'word' && atom.charAt(0) === ':') {
