@@ -22,33 +22,35 @@ class topbarUtil {
 
             $language = array(
                 "en" => "en",
-                "ru" => "ru",
-                "es" => "es",
-                "zh" => "zh",
-                "he" => "he",
                 "de" => "de",
+                "es" => "es",
                 "pt" => "pt",
-                "pl" => "pl"
-            );
+                "pl" => "pl",
+                "ru" => "ru",
+                "he" => "he",              
+                "zh" => "zh"
+                );
+            //Will be sorted in the correct order 
             $displaylanguage = array(
                 "en" => true,
-                "ru" => true,
-                "es" => true,
-                "zh" => true,
-                "he" => true,
                 "de" => false,
+                "es" => true,
                 "pt" => false,
-                "pl" => false
+                "pl" => false,
+                "ru" => true,
+                "he" => true,
+                "zh" => true   
             );
             $countryFlagName = array(
                 "en" => "us",
-                "ru" => "ru",
-                "es" => "es",
-                "zh" => "cn",
-                "he" => "il",
                 "de" => "de",
+                "es" => "es",            
                 "pt" => "br",
-                "pl" => "pl"
+                "pl" => "pl",
+                "ru" => "ru",
+                "he" => "il",
+                "zh" => "cn"
+                     
             );
             $countryNativeName = array(
                 "en" => "English",
@@ -64,7 +66,7 @@ class topbarUtil {
                 case "learn": 
                      $topbarDisplay['playground'] = true ; 
                      $topbarDisplay['news'] = true ; $topbarDisplay['about'] = true ; 
-                     $displaylanguage['de'] = true ; $displaylanguage['pt'] = true; $displaylanguage['pl']=true; 
+                     $displaylanguage['de'] = true ;// $displaylanguage['pt'] = true; $displaylanguage['pl']=true; 
                     break;
                 case "index":
                     $signUpDisplay = false;
@@ -76,6 +78,9 @@ class topbarUtil {
                     $topbarDisplay['about'] = true ; 
                     $topbarDisplay['exercise'] = true ;
                     break;
+                case "institute":
+                    $signUpDisplay = true;
+                    $languagesDisplay = false;
                 case "users":
                     $topbarDisplay['about'] = true ; 
                     $topbarDisplay['exercise'] = true ;
@@ -168,7 +173,7 @@ class topbarUtil {
                                 foreach ($language as $langKey=>$langVal)
                                 {
                                     if ($displaylanguage[$langKey]) 
-                                        echo "<option value='$langVal' data-image='$blankImagePath' data-imagecss='flag $countryFlagName[$langKey]' data-title='$countryFlagName[$langKey]'> $countryNativeName[$langKey] </option> ";
+                                        echo "<option value='$langVal' data-image='$blankImagePath' data-imagecss='flag $countryFlagName[$langKey]' data-title='$countryNativeName[$langKey]'> $countryNativeName[$langKey] </option> ";
                                 }
                             ?> 
                                <!-- 
@@ -191,7 +196,6 @@ class topbarUtil {
                         <nav class="<?php echo "pull-$cssright"; ?>"  id="turtleHeaderLoggedUser">
                             <ul class="nav nav-pills <?php echo "pull-$cssright"; ?>" id="loggedUserUl"> 
 
-                                <!--<li style="padding: 10px 10px 11px;"> <?php echo _("Hello"); ?></li> -->
                                 <li class="cc-button-group btn-group"> 
                                     <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" >
                                         <?php

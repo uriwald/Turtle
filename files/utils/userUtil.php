@@ -66,8 +66,8 @@
                return $results;
      }
      /*
-      * Add user property
-      * will add new property the the user collection
+      * Obsolate 
+      * Can use the collectionUtil function CollectionItemAddAttribute
       */
      public static function addPropertyToUserCol ($property , $val)
      {
@@ -151,7 +151,22 @@
          } 
          //Check if user already exist in users db
          
-     }     
+     }   
+     
+     /*
+      * This function will get all the users of a specific institue
+      * @param email - the institute admin email
+      * @return - all the users matching the criteria
+      */
+     public static function getInstitiuteUsersByInstitueAdminEmail ($email)
+     {
+        $m = new Mongo();
+        $db = $m->turtleTestDb;	
+        $users = $db->users;
+        $userQuery       = array('institute_email' => $email);
+        $results     = $users->find($userQuery);
+        return $results;
+     }
      
      
     }

@@ -8,6 +8,7 @@
     // Getting form Post info
     $email          = $_POST['email'];
     $permission     = $_POST['permission'];
+    $name    = $_POST['name'];
     $description    = $_POST['desc'];
     
     //Check the institute email is in the users collection
@@ -23,6 +24,8 @@
        $userId  =   $userExist['_id'];
        $mycollection = new collectionUtil("turtleTestDb","users");
        $mycollection->CollectionItemAddAttribute($userId,"institute","1,"); 
+       $mycollection->CollectionItemAddAttribute($userId,"institute_description",$description);
+       $mycollection->CollectionItemAddAttribute($userId,"institute_name",$name);
     }
     else {   
         echo " User does not exist";

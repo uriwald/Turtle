@@ -20,7 +20,6 @@ require_once ('../utils/topbarUtil.php');
 
         require_once("../utils/includeCssAndJsFiles.php");
         ?>     
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/>   
         <script src="<?php echo $rootDir; ?>ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
         <script type='text/javascript'> 
             $(document).ready(function(){
@@ -122,7 +121,7 @@ function addUserToDb($username, $password, $users, $db) {
  if (!isset($_SESSION['institute_email']))
  {
      echo " You don't have institute admin permission Please contact site administrator" ;
- }
+ } 
  else
  {
         //Strings for Password reset
@@ -189,7 +188,7 @@ function addUserToDb($username, $password, $users, $db) {
                 <!-- Main hero unit for a primary marketing message or call to action -->
                 <div class="well span6 offset2">
                     <form class='form-stacked' id='sign-up-form' method="post" action="">
-                        <h2><?php echo _("Hello"); echo " " ; echo $_SESSION['institute_email']; ?></h2>
+                        <h2><?php echo _("Hello"); echo " " ; echo $_SESSION['institute_name']; ?></h2>
                         <h2><?php echo _("Add Student"); ?></h2>
                         <?php
                         echo show_errors($action);
@@ -218,6 +217,7 @@ function addUserToDb($username, $password, $users, $db) {
                         </ul>       
                         <div class='cleaner_h10'></div>
                         <input type='submit' value='<?php echo _("Add student"); ?>&raquo;' id='signup' name='signup' class="btn primary"/>
+                        <a href="viewStudentList.php"> <?php echo _("View student List"); ?> </a>
                     </form>
                 </div>    
               
@@ -232,6 +232,7 @@ function addUserToDb($username, $password, $users, $db) {
 
             <footer style='text-align:center;'>
                 <p>&copy; <?php echo _("TurtleAcademy"); ?></p>
+                 <p><a href='<?php echo $rootDir; ?>users.php'> <?php echo _("Back to my account"); ?> </a></p>
             </footer>
 
         </div> <!-- /container -->

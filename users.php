@@ -10,7 +10,7 @@
     require_once("files/cssUtils.php");
     require_once("files/utils/languageUtil.php");
     require_once('files/utils/topbarUtil.php');
-    require_once('files/utils/badgesUtil.php');
+    require_once('files/utils/badgesUtil.php'); 
     require_once('files/utils/userUtil.php');
     $displayUserName = $_SESSION['username'];
     // update the user badgse
@@ -21,6 +21,8 @@ $lessonsNamesArray = Array("", "Logo's turtle", "Controlling the Turtle and Pen"
     "Polygons", "The pen width", "The turtle is learning", "Colors and Printing", "Variables", "Procedure",
     "The for loop", "Recursion", "Lists", "Accessing the list");
 ?>
+
+
 <html dir="<?php echo $dir ?>" lang="<?php echo $lang ?>">
     <head>
         <meta charset="utf-8">
@@ -59,12 +61,24 @@ $lessonsNamesArray = Array("", "Logo's turtle", "Controlling the Turtle and Pen"
                         ?>
                         </a>
                     </p>
+                    <?php
+                    if (isset($_SESSION['institute']))
+                    {
+                    ?>
+                        <p>
+                            <a href='<?php echo $rootDir; ?>files/institute/addInstituteUser.php?l=<?php echo $locale; ?>'>
+                                <?php echo _("Add a new user"); ?>
+                            </a>
+                        </p>
+                    <?php
+                    }
+                    ?>
                     <p>
                         <a href='lesson.php?l=<?php echo $locale; ?>'>
                             <?php echo _("Add a new lesson"); ?>
                         </a>
                     </p>
-                    <p>
+                    <p> 
                         <a href='#myProgress'>
                             <?php echo _("My progress"); ?>
                         </a>
@@ -77,7 +91,7 @@ $lessonsNamesArray = Array("", "Logo's turtle", "Controlling the Turtle and Pen"
                 </div><!-- end of user_menu -->
                 <div class=" span10 tab-pane active" id="myProgress">
                     <h2>
-                        <?php echo _("My progress"); echo " ("; echo _("Badges are coming soon");echo ")"; ?>  
+                        <?php echo _("My progress");?>  
                     </h2>
                     <div class='cleaner_h20'></div>
                     <!-- Display User badges--->

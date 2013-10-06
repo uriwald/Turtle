@@ -177,7 +177,12 @@
                     $user = $usercol->findOne(array('username' => $username ));
                     $_SESSION['username'] = $username;                 
                     if (isset($user['institute']))
+                    {
                         $_SESSION['institute'] = $user['institute'];
+                        $_SESSION['institute_email'] = $user['email'];
+                        $_SESSION['institute_name'] = $user['institute_name'];
+                        $_SESSION['institute_description'] = $user['institute_description'];
+                    }
                     ?>
                     <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script> <!-- Clear storage from previous use scripts -->
                     <?php

@@ -25,7 +25,6 @@ class collectionUtil {
                 $thisdb = $m->$db; 
                 $this->collection = $thisdb->$collection;$this->db = $thisdb; 
                 $this->collection = $thisdb->$collection;
-                echo "Ddd";
      }  
     public function __get($property) {
         if (property_exists($this, $property)) {
@@ -53,15 +52,15 @@ class collectionUtil {
           $result = $this->collection->update($criteria,$cursor);
         print_r($cursor);
     }
-    
+    /*
+     * Add an attribute to a specific collection object
+     */
     public function CollectionItemAddAttribute ($mongoid , $attName , $attVal)
     {
         $criteria = $this->collection->findOne(array("_id" => $mongoid));
         $cursor = $criteria;
-        //print_r($cursor);
         $cursor[$attName] = $attVal ;
-          $result = $this->collection->update($criteria,$cursor);
-        //print_r($cursor);
+        $this->collection->update($criteria,$cursor);
     }
     public function cloneColumn ($mongoid , $attOldName , $attNewName)
     {
@@ -175,6 +174,21 @@ class collectionUtil {
              print_r ($criteria2[$steps][$stepnum][$locale]);
         $colTo->update($criteria2,$criteria2Copy);
     }
+    
+     /*
+      * getAllCollectionObjects
+      * @param - $colname
+      * @return - all $colname object
+      * 
+      */
+     public static function getAllCollectionObjects($colname) 
+     {
+           $m       = new Mongo();
+           $db      = $m->turtleTestDb;
+           $strings = $db->$colname;
+           $results = $strings->find();
+           return $results;
+     }
     
 }
 ?>

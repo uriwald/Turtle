@@ -16,6 +16,9 @@
         <h4>Add institute</h4>
         <form action="saveInstitute.php" method="post"> 
             <div>
+                <span> Institute name : </span> <span> <input name="name" type="text" /> </span>
+            </div>
+            <div>
                 <span> Institute email : </span> <span> <input name="email" type="text" /> </span>
             </div>
             <div>

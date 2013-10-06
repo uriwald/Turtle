@@ -1,0 +1,29 @@
+/* 
+    Document   : institute
+    Created on : Oct 3, 2013, 11:41:26 AM
+    Author     : Lucio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+div{
+    width :100%;
+}
+span{
+    width : 150px;
+} 
+input{
+    width : 200px;
+}
+.span16{
+    margin-left: 450px;
+}
+th.span4{
+    padding-left: 0px !important; 
+}
+tr>td{
+     padding-left: 0px !important; 
+}
