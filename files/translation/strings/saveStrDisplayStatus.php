@@ -3,7 +3,10 @@
     $display_ru       = $_POST['display_ru'];
     $display_zh       = $_POST['display_zh'];
     $display_es       = $_POST['display_es'];
-    
+    $display_pt       = $_POST['display_pt'];
+    $display_de       = $_POST['display_de'];
+    $pagecode         = $_POST['pagecode'];
+     
     $flag = true ;
     $return['data'] = "dsdd";
     if ($flag)
@@ -38,11 +41,13 @@
             $display["ru_RU"]   =   $display_ru;
             $display["zh_CN"]   =   $display_zh;
             $display["es_AR"]   =   $display_es;
+            $display["de_DE"]   =   $display_de;
+            $display["pt_BR"]   =   $display_pt;
             
 
             
             $result     =   $strcol->update($strExist, array("str" => $str , "page" => $page , "context" => $context ,
-                                                                "translate" => $strTranslate ,"display" => $display ));
+                                                                "translate" => $strTranslate ,"display" => $display , "pagecode" => $pagecode));
 
         }
           /*

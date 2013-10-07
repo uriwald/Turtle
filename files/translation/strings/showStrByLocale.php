@@ -1,12 +1,8 @@
 <?php
-    $rootDirectory ="../../";
-    require_once($rootDirectory ."utils/translationUtil.php");
-    include_once($rootDirectory ."inc/dropdowndef.php");
-    include_once($rootDirectory ."inc/boostrapdef.php");
-    include_once($rootDirectory ."inc/jquerydef.php");
-    $locale = "zh_CN";
-    if (isset ($_GET['locale']))
-        $locale =   $_GET['locale'];
+    require_once("../../../environment.php");
+    require_once("../../../localization.php"); 
+    require_once("../../utils/collectionUtil.php");
+    require_once("../../utils/includeCssAndJsFiles.php");
 ?>
     <table>
         <tbody>
@@ -21,7 +17,9 @@
                     </tr>
                 </thead>
                   <?php
-                        $transString    =   translationUtil::showColItemToTranslate("stringTranslation");
+                  
+                        $transString    =   collectionUtil::getAllCollectionObjects("stringTranslation");
+                        $transString->sort(array('pagecode' => 1));
                         $i              = 0;
                         foreach ($transString as $str)
                         {

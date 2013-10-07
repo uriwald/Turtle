@@ -6,5 +6,6 @@
  */
     require_once("../../utils/stringtranUtil.php");
     $stu = new stringtranUtil();
-    $stu ->addNewLocale("ar_JO");
+    $stu ->addNewLocale("de_DE");
+    $stu ->addNewLocale("pt_BR");
 ?>
