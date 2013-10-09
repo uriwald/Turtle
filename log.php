@@ -82,7 +82,7 @@
         {
             $_SESSION['translator'] = true ;
             
-            $_SESSION['username'] = "translator";
+            $_SESSION['username'] = "GerTrans";
             $_SESSION['permision'] = 2;
             $validateUser = true;
             header("location: " .$lessonReportPage."?locale=de_DE");
@@ -95,6 +95,14 @@
             $validateUser = true;
             header("location: " .$lessonReportPage."?locale=pt_BR");
         }
+        else if ( $username == "uksikaksi" && $password = "uksikaksi")
+        {
+            $_SESSION['translator'] = true ;          
+            $_SESSION['username'] = "Finland";
+            $_SESSION['permision'] = 2;
+            $validateUser = true;
+            header("location: " .$lessonReportPage."?locale=fi_FI");
+        }        
         else if ( $username == "plorigin" && $password = "plorigin")
         {
             $_SESSION['translator'] = true ;          

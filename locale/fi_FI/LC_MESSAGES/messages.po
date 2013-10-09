@@ -1,0 +1,1724 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: TurtleAcademy\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-09 14:49+0800\n"
+"PO-Revision-Date: 2013-10-09 15:13+0800\n"
+"Last-Translator: \n"
+"Language-Team: Wald\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: c:\\gentoo\\share\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SearchPath-0: C:\\Users\\Lucio\\Documents\\NetBeansProjects"
+"\\Turtle\n"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:30
+msgid "User has been confirmed"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:31
+msgid "Thank you"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:32
+msgid "Please"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:33
+msgid "We are missing email address or generated key"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:34
+msgid "Please double check your email"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:35
+msgid "The key or email doesn't appear in our database"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:42
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:87
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:199
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:199
+msgid "login"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirmHeader.php:6
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/registration/inc/elements/header.php:9
+msgid "confirm registration"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirmHeader.php:23
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/registration/inc/elements/header.php:26
+msgid "Thanks for registering"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirmHeader.php:23
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:294
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:42
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/showLesson.php:156
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/registration/inc/elements/header.php:26
+msgid "Turtle Academy"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:4
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:16
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/forum.php:16
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:15
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:15
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:15
+msgid "Project Documentation"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:26
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:30
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:49
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:66
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:121
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:128
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:137
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:150
+msgid "About the project"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:33
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:72
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:133
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:155
+msgid ""
+"The project contains a client side learning environment and a compiler for "
+"the <a target='_bjlank' href='http://he.wikipedia.org/wiki/%D7%9C"
+"%D7%95%D7%92%D7%95_(%D7%A9%D7%A4%D7%AA_%D7%AA%D7%9B"
+"%D7%A0%D7%95%D7%AA)'>Logo</a> Programming language."
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:34
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:73
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:134
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:156
+msgid ""
+"The project enables to learn the Logo language and programming principles "
+"and can be used for programming logo"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:39
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:50
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:80
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:139
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:138
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:163
+msgid "Why was it done"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:43
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:85
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:144
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:168
+msgid ""
+"My brother has been volunteering in a primary school in Israel for the past "
+"few years."
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:44
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:86
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:145
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:169
+msgid ""
+"He was trying to instill the basic programming skills in the children and he "
+"discovered that there are three main problems."
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:45
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:87
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:146
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:170
+msgid ""
+"The first is the language barrier (all the programming languages are using "
+"English and the children's do not speak the language ),"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:46
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:88
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:147
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:171
+msgid ""
+"the second issue is that currently there are not many online learning "
+"programs which address children."
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:47
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:89
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:148
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:172
+msgid ""
+"The third issue is the installation requirement of an appropriate "
+"programming environment in order to be able to start programming."
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:52
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:90
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:149
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:173
+msgid ""
+"For this reason we thought it would be a good idea to join forces and create "
+"TurtleAcademy"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:53
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:91
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:150
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:174
+msgid ""
+"The inspiration for the project came from other projects like <a "
+"target='_blank' href='http://www.khanacademy.org/'> Khanacademy</a> And a "
+"javascript learning project named <a target='_blank' href='http://www."
+"codecademy.com/'>Codecademy</a>"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:58
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:52
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:139
+msgid "Who we are ?"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:62
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:161
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:187
+msgid "Lucio  - Webmaster  and  amateur ping pong player"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:63
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:162
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:188
+msgid "Ofer   - Father of three , amateur entrepreneur"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:64
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:163
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:189
+msgid "Amir   - Colnect master , uncle of six"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:65
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:164
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:190
+msgid "Dana   - Tiger painter , likes to read lessons"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:66
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:165
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:191
+msgid "Ayelet - Full time mother"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:67
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:166
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:192
+msgid "Almog  - Blogger , made his first QA steps at the age of seven"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:68
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:167
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:193
+msgid "Inbar  - Very talented Wii player"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:69
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:168
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:194
+msgid "Raz    - QA and vegetarian"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:70
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:169
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:195
+msgid "Yuval  - QA and future Messi"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:75
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:53
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:228
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:174
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:140
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:203
+msgid "Tricks"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:80
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:234
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:180
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:209
+msgid ""
+"New commands that have been learned will be saved even after the browser "
+"restarts"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:81
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:236
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:181
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:210
+msgid ""
+"The turtle remembers the student's progress over time, allowing the student "
+"to follow his own progress"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:82
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:238
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:182
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:211
+msgid "The drawing that appear below actually show live logo programs !"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:87
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:54
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:248
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:187
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:141
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:219
+msgid "Credits"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:91
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:254
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:192
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:224
+msgid "A lot of written libraries facilitate the creation of the website"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:92
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:193
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:225
+msgid ""
+"<a target='_blank' href='http://www.calormen.com/Logo/'> Joshua Bell - wrote "
+"the logo component </a>"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:93
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:194
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:226
+msgid ""
+"<a target='_blank' href='https://github.com/replit/jq-console'> jsconsole- "
+"wrote the input element ( Console ) </a>"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:94
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:195
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:227
+msgid ""
+"<a target='_blank' href='http://jquery.com'> jquery - component which "
+"enabled easy java scripting </a>"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:95
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:196
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:228
+msgid ""
+"<a target='_blank' href='http://jqueryui.com/'> jqueryui - a collection of "
+"graphical components </a>"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:96
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:197
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:229
+msgid ""
+"<a target='_blank' href='http://api.jquery.com/category/plugins/templates/'> "
+"jquerytemplates - enable transmission of data to html </a>"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:102
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:55
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:288
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:203
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:142
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:237
+msgid "Contact us"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:106
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:301
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:207
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:241
+msgid "Send an email"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:38
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:48
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:148
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/utils/topbarUtil.php:159
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:126
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:119
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:170
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:177
+msgid "About"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:40
+msgid "Turtle academy"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:51
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:99
+msgid "Why to register"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:106
+msgid "Save your progress"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:107
+msgid ""
+"Your progress will be kept , and you will be able to see exactly which steps "
+"you have done before"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:113
+msgid "Remember your special commands"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:114
+msgid "You can teach the turtle some new commands"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:115
+msgid "See the lessons 'The turtle is learning'"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:116
+msgid ""
+"in order for the commands to be save in your next visit  you should be a "
+"register user"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:122
+msgid "Special lessons"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:123
+msgid "There are special lessons available only for registered users"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:124
+msgid "cool lessons with cool features"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:130
+msgid "Its free"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:131
+msgid "The registration is for free"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:147
+msgid "Name"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:154
+msgid "Lucio"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:155
+msgid "Webmaster  and  amateur ping pong player"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:159
+msgid "Ofer"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:160
+msgid "Father of three , amateur entrepreneur"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:164
+msgid "Amir"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:165
+msgid "Colnect master , uncle of six"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:170
+msgid "Andy"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:171
+msgid "Feeding the turtle , Spanish section"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:175
+msgid "Mona"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:176
+msgid "Yoga master , Chinese section"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:180
+msgid "Oliver"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:181
+msgid "Father of twins, German section"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:185
+msgid "Alexandre"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:186
+msgid "Decipher my fav things on the icons around me ; ) , Potruguese section"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:190
+msgid "Ayelet"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:191
+msgid "Full time mother"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:195
+msgid "Dana"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:196
+msgid "Tiger painter , likes to read lessons"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:201
+msgid "Almog"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:202
+msgid "Blogger , made his first QA steps at the age of seven"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:206
+msgid "Inbar"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:207
+msgid "Very talented Wii player"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:211
+msgid "Raz"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:212
+msgid "QA and vegetarian"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:216
+msgid "Yuval"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:217
+msgid "QA and future Messi"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:257
+msgid "Joshua Bell - wrote the logo component"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:261
+msgid "Math cats - Logo 15 word challange compitition"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:269
+msgid "jquery - component which enabled easy java scripting"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:273
+msgid "jqueryui - a collection of graphical components"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:277
+msgid "jquerytemplates - enable transmission of data to html"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:295
+msgid "is open to hear any ideas or suggestion"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:296
+msgid "or problems"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:297
+msgid "Please contatct us."
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:3
+msgid "forward"
+msgstr "eteenpäin"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:3
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
+msgid "fd"
+msgstr "et"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:3
+msgid "Don't know how to"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:4
+msgid "back"
+msgstr "taaksepäin"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:4
+msgid "to"
+msgstr "tee"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:4
+msgid "word"
+msgstr "sana"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:4
+msgid "list"
+msgstr "lista"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:5
+msgid "sentence"
+msgstr "lause"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:5
+msgid "combine"
+msgstr "yhdistä"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:5
+msgid "reverse"
+msgstr "käännä"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:6
+msgid "gensym"
+msgstr "luo"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:6
+msgid "first"
+msgstr "ensimmäinen"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:6
+msgid "last"
+msgstr "viimeinen"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:7
+msgid "print"
+msgstr "tulosta"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:7
+msgid "sin"
+msgstr "sin"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:7
+msgid "cos"
+msgstr "cos"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:8
+msgid "tan"
+msgstr "tan"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "random"
+msgstr "satunnainen"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "true"
+msgstr "true"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "false"
+msgstr "false"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "and"
+msgstr "and"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "or"
+msgstr "or"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:9
+msgid "xor"
+msgstr "xor"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
+msgid "not"
+msgstr "not"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
+msgid "bk"
+msgstr "ta"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
+msgid "lt"
+msgstr "va"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:10
+msgid "left"
+msgstr "vasempaan"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
+msgid "rt"
+msgstr "oi"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
+msgid "right"
+msgstr "oikeaan"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
+msgid "home"
+msgstr "kotiin"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:11
+msgid "st"
+msgstr "nä"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:15
+msgid "showturtle"
+msgstr "näytä"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:15
+msgid "ht"
+msgstr "pi"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:15
+msgid "hideturtle"
+msgstr "piilota"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:15
+msgid "clean"
+msgstr "tyhjennä"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
+msgid "cs"
+msgstr "ty"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
+msgid "clearscreen"
+msgstr "tyhjennäruutu"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:16
+msgid "label"
+msgstr "teksti"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:17
+msgid "pendown"
+msgstr "kynäalas"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:17
+msgid "pu"
+msgstr "ky"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:17
+msgid "penup"
+msgstr "kynäylös"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:17
+msgid "penpaint"
+msgstr "kynämaali"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:18
+msgid "setcolor"
+msgstr "asetaväri"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:18
+msgid "setpencolor"
+msgstr "asetakynäväri"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:18
+msgid "setwidth"
+msgstr "leveys"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:18
+msgid "setpensize"
+msgstr "asetakynäkoko"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:19
+msgid "pencolor"
+msgstr "kynäväri"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:19
+msgid "pensize"
+msgstr "kynäkoko"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:19
+msgid "repeat"
+msgstr "toista"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:19
+msgid "repcount"
+msgstr "toistomäärä"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:20
+msgid "if"
+msgstr "jos"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:20
+msgid "ifelse"
+msgstr "josmuutoin"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:20
+msgid "iftrue"
+msgstr "jostosi"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:20
+msgid "iffalse"
+msgstr "josepätosi"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:22
+msgid "for"
+msgstr "silmukka"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:22
+msgid "end"
+msgstr "loppu"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:22
+msgid "Unexpected end of instructions"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:22
+msgid "Expected identifier"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:23
+msgid "Please don't try to override primitive functions"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:23
+msgid "Error"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:23
+msgid "hint"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:23
+msgid "sum"
+msgstr "yhteenlaske"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:25
+msgid "minus"
+msgstr "vähennä"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:25
+msgid "make"
+msgstr "aseta"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:25
+msgid "pd"
+msgstr "ka"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:25
+msgid "stop"
+msgstr "lopeta"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:26
+msgid "Hi"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:26
+msgid "Welcome to the Turtle world"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:28
+msgid "Please enter your username"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:28
+msgid "Please enter your password"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:29
+msgid "Your username must contain at least 4 characters"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:29
+msgid "Your password must contain at least 5 characters"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:30
+msgid "Add lesson step"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:30
+msgid "Are you sure you want to delete the lesson"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:30
+msgid "Your lessson has been deleted"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:31
+msgid "successfully deleted"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:31
+msgid "an error occured"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:31
+msgid "Lesson title should contain at least 2 caracters"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:32
+msgid "You must save the lesson before show lesson"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:32
+msgid "Please enter a valid email address"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:33
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:395
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:227
+msgid "Having some problems to register"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:36
+msgid "setlabelheight"
+msgstr "asetakorkeus"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:36
+msgid "setheading"
+msgstr "asetasuunta"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:36
+msgid "seth"
+msgstr "asetas"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:36
+msgid "setxy"
+msgstr "asetaxy"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:36
+msgid "sety"
+msgstr "asetay"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:36
+msgid "setx"
+msgstr "asetax"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:36
+msgid "arc"
+msgstr "kaari"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:37
+msgid "pos"
+msgstr "kohta"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:37
+msgid "xcor"
+msgstr "xkoordinaatti"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:37
+msgid "ycor"
+msgstr "ykoordinaatti"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:37
+msgid "heading"
+msgstr "suunta"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:37
+msgid "towards"
+msgstr "kohti"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:39
+msgid "item"
+msgstr "jäsen"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:39
+msgid "pick"
+msgstr "poimi"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:39
+msgid "butfirst"
+msgstr "paitsiensimmäinen"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:39
+msgid "bf"
+msgstr "pe"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:39
+msgid "butlast"
+msgstr "paitsiviimeinen"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:39
+msgid "bl"
+msgstr "pv"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:41
+msgid "fill"
+msgstr "täytä"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:41
+msgid "filled"
+msgstr "täytettynä"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:41
+msgid "run"
+msgstr "aja"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:41
+msgid "lesson"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/fakeQWAORD.php:41
+msgid "difference"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/forum.php:63
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/utils/topbarUtil.php:154
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:124
+msgid "Forums"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/forum.php:70
+msgid "Forums now avialable only in english"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/forum.php:75
+msgid "Please press the following link in order to post on the forum."
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/forum.php:77
+msgid "A new window will be open"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/forum.php:80
+msgid "Enter forums"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/helpus.php:31
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:16
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/learn.php:19
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/showLesson.php:27
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/playground.php:19
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index130705.php:36
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:35
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_newCarousel_LTR.php:32
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_workingCarousel.php:36
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:17
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:38
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:44
+msgid "Turtle Academy - learn logo programming in your browser"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/helpus.php:32
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:17
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/learn.php:20
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/playground.php:20
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index130705.php:37
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:36
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_newCarousel_LTR.php:33
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_workingCarousel.php:37
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:18
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:39
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:45
+msgid " free programming materials for kids"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:43
+msgid "The easy way to learn programming"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:44
+msgid ""
+"Turtle Academy makes it surprisingly easy to start creating amazing shapes "
+"using the LOGO language"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:45
+msgid "Here are some examples for easy and fun programming"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:49
+msgid "Create a Spiral"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:50
+msgid "for [i 10 100 10]     [fd :i rt 90] ht"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:55
+msgid "Cool flower"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:56
+msgid "repeat 8 [rt 45 repeat 6 [repeat 90 [fd 1 rt 2] rt 90]] ht"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:62
+msgid "Crazy octagon"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:63
+msgid "cs repeat 36 [ rt 10 repeat 8 [ fd 25 lt 45]] ht"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:71
+msgid "Let's start having fun programming"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:73
+msgid "Free Lessons"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:73
+msgid "Sign In for free"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:85
+msgid "I got the passion for programming thanks to Turtle Academy"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:87
+msgid "Jin Sin Lin - China"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:93
+msgid "Really easy to use"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:95
+msgid "Lucio - Israel"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:101
+msgid "My son is enjoying studying programming"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:103
+msgid "Matt Hok - England"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:113
+msgid "Project goal"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:114
+msgid ""
+"Our objective is to teach programming principles in a fun and easy way "
+"making programming an accessible competancy to every child in the world"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:117
+msgid ""
+"In the (quite near) future everything we will do will require basic "
+"programming abilities, and therefore it is important to learn this skill and "
+"learn to like it"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:118
+msgid ""
+"Making programming visual provides very quick rewards for the efforts, "
+"making it perfect for young children who often have trouble setting long "
+"term goals"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:122
+msgid "Want to help"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:125
+msgid ""
+"In order to make programming approachable for more people we need volunteers "
+"to translate the site to their own native languages"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/learn.php:64
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/playground.php:105
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index130705.php:148
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:205
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_newCarousel_LTR.php:171
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_workingCarousel.php:167
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:183
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:242
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:249
+msgid "TurtleAcademy learn programming for free"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/learn.php:65
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/playground.php:106
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index130705.php:149
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:206
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_newCarousel_LTR.php:172
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_workingCarousel.php:168
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:184
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:243
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:250
+msgid "Your browser is not supporting canvas"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/learn.php:66
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/playground.php:107
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index130705.php:150
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:207
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_newCarousel_LTR.php:173
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_workingCarousel.php:169
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:185
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:244
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:251
+msgid "We recoomnd you to use Chrome or Firefox browsers"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/learn.php:97
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/learn.php:119
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/showLesson.php:193
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/showLesson.php:214
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index130705.php:183
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index130705.php:208
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:240
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:265
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_newCarousel_LTR.php:205
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_newCarousel_LTR.php:230
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_workingCarousel.php:202
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_workingCarousel.php:227
+msgid "Next"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/learn.php:103
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/learn.php:112
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/showLesson.php:199
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/showLesson.php:208
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index130705.php:190
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index130705.php:200
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:247
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:257
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_newCarousel_LTR.php:212
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_newCarousel_LTR.php:222
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_workingCarousel.php:209
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/learn_workingCarousel.php:219
+msgid "Prev"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:95
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:71
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:402
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:245
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:337
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/turtlenews.php:43
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:234
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/utils/topbarUtil.php:129
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/c.php:26
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:71
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:121
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/registration_topbar_backup.php:7
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:245
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:337
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:71
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:90
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:117
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:168
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:175
+msgid "TurtleAcademy"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:116
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:82
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:266
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:191
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:82
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:149
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/registration_topbar_backup.php:27
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:266
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:82
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:112
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:141
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:192
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:199
+msgid "Hello"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:131
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:91
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:275
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/utils/topbarUtil.php:211
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:91
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:163
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/registration_topbar_backup.php:36
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:275
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:91
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:121
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:150
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:201
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:208
+msgid "My account"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:132
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:92
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:276
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:88
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/utils/topbarUtil.php:212
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:92
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:164
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/registration_topbar_backup.php:37
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:276
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:92
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:122
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:151
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:202
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:209
+msgid "Help"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:133
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:93
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:277
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/utils/topbarUtil.php:213
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:93
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:165
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/registration_topbar_backup.php:38
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:277
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:93
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:123
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:152
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:203
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:210
+msgid "Log out"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:206
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:137
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:213
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:200
+msgid "Action"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:207
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:138
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:201
+msgid "Solution"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:208
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:139
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:202
+msgid "Hint"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:223
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:341
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:212
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:217
+msgid "Title"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:252
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:237
+msgid "Save Lesson"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:253
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:238
+msgid "Show Lesson"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:254
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:239
+msgid "Delete Lesson"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:268
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:352
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:253
+msgid "Explanation"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:274
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:259
+msgid "Show reserve words"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:284
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:269
+msgid "lesson Steps"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:286
+msgid "please choose step to edit"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:294
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:279
+msgid "Remove lesson step"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:302
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/lesson.php:303
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:287
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:288
+msgid "Lesson Title"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:72
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:246
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:72
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:127
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:246
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:72
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testGetText.php:16
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/lesson_NotWorking.php:91
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:120
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:171
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:178
+msgid "Sample"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:108
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/utils/topbarUtil.php:226
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:108
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:178
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:108
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:164
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:215
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:222
+msgid "Login"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:109
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/utils/topbarUtil.php:227
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:109
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:179
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:109
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:165
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:216
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:223
+msgid "Sign Up for free"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:121
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/utils/topbarUtil.php:139
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:122
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/plain.php:118
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:169
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:176
+msgid "Help Us"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:128
+msgid "Translate"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:133
+msgid "TurtleAcademy aspires to be available for kids all around the world. "
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:134
+msgid "if you wish to help translating the project please contact us."
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:140
+msgid "Add some content"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:146
+msgid ""
+"Did you like the lessons and you feel you can contribute more knowledge. "
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:147
+msgid "Please register and create more lesson in your own native language."
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:148
+msgid ""
+"after adding the lessons they can be available for kids all around the world."
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:155
+msgid "Please check your email to continue with password reset"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:156
+msgid "Error while sending confirm Email"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:157
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:128
+msgid "please contact the TurtleAcademy support"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:159
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:449
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:130
+msgid "Welcome to TurtleAcademy"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:160
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:450
+#, fuzzy
+msgid "TurtleAcademy password reset"
+msgstr "xx"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:162
+msgid "Email is being used by a registered user"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:163
+msgid "if you forgot your password please press reset password"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:164
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:133
+msgid "Username is already exist in the system"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:165
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:134
+msgid "please choose another username"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:283
+msgid "Sign Up for Free"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:289
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:325
+msgid "Email"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:295
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:351
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:197
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/viewStudentList.php:48
+msgid "Username"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:302
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:358
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:315
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:204
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:315
+msgid "Password"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:312
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:214
+msgid "Agree to"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:312
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:214
+msgid "Terms of Use"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:317
+msgid "Sign Up"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:322
+msgid "Forgot Password"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:329
+msgid "Never mind, I remember my password"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:333
+msgid "Remind me"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:336
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:372
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:380
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:386
+msgid "Sign In"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:367
+msgid "Remember me"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:374
+msgid "Forgot my password"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:380
+msgid "with google"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:386
+msgid "with Yahoo"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:395
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:227
+msgid "please"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:396
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:8
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:228
+msgid "Contact Us"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:469
+msgid "Thanks for signing up"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:470
+msgid "Please check your email for confirmation"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:300
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:300
+msgid "Reset your password"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:323
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:323
+msgid "Retype Password"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:330
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:330
+msgid "Reset"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/showLesson.php:170
+msgid ""
+"Your browser does not support canvas - an updated browser is recommended"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:48
+msgid "Turtle Academy - Translate a lesson"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/translating.php:115
+msgid "Step"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/turtlenews.php:22
+#, fuzzy
+msgid "TurtleAcademy news"
+msgstr "xx"
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/turtlenews.php:35
+msgid "The Turtle news"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/turtlenews.php:36
+msgid "Here you will find updates about the turtle development"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/turtlenews.php:45
+msgid "news"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:59
+msgid "Account Settings"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:60
+msgid "coming soon"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:70
+msgid "Add a new user"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:78
+msgid "Add a new lesson"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:83
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:94
+msgid "My progress"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:141
+msgid "Steps that I have done :) "
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:207
+msgid "Your lessons"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:234
+msgid "Edit"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:6
+msgid "Project doc"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/footer.php:7
+msgid "Create new Lesson"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/playground.php:93
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:227
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:234
+msgid "Logo play ground"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/playground.php:95
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:229
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:236
+msgid "Do whatever you desire"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/signUp.php:19
+msgid "Turtle Academy - User Registration"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:192
+msgid "Add Student"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:219
+msgid "Add student"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:220
+msgid "View student List"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:235
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/viewStudentList.php:68
+msgid "Back to my account"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/viewStudentList.php:43
+msgid "Student List"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/viewStudentList.php:49
+msgid "Join date"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/viewStudentList.php:67
+msgid "Back to add student page"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/utils/topbarUtil.php:134
+msgid "Lessons"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/utils/topbarUtil.php:144
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:123
+msgid "Playground"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/utils/topbarUtil.php:149
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:125
+msgid "News"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:155
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:139
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:181
+msgid "Who are we ?"
+msgstr ""
+
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index130705.php:224
+#: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/index_beforeChangingTopMenu.php:281
+msgid "project doc"
+msgstr ""

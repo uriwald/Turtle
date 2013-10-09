@@ -24,6 +24,7 @@ class topbarUtil {
                 "en" => "en",
                 "de" => "de",
                 "es" => "es",
+                "fi" => "fi",
                 "pt" => "pt",
                 "pl" => "pl",
                 "ru" => "ru",
@@ -37,6 +38,7 @@ class topbarUtil {
                 "es" => true,
                 "pt" => false,
                 "pl" => false,
+                "fi" => false,
                 "ru" => true,
                 "he" => true,
                 "zh" => true   
@@ -44,7 +46,8 @@ class topbarUtil {
             $countryFlagName = array(
                 "en" => "us",
                 "de" => "de",
-                "es" => "es",            
+                "es" => "es",
+                "fi" => "fi", 
                 "pt" => "br",
                 "pl" => "pl",
                 "ru" => "ru",
@@ -56,6 +59,7 @@ class topbarUtil {
                 "en" => "English",
                 "ru" => "Русский",
                 "es" => "Español",
+                "fi" => "Finnish",
                 "zh" => "中文",
                 "he" => "עברית",
                 "de" => "Deutsch",
@@ -66,7 +70,7 @@ class topbarUtil {
                 case "learn": 
                      $topbarDisplay['playground'] = true ; 
                      $topbarDisplay['news'] = true ; $topbarDisplay['about'] = true ; 
-                     $displaylanguage['de'] = true ;// $displaylanguage['pt'] = true; $displaylanguage['pl']=true; 
+                     $displaylanguage['de'] = true ; $displaylanguage['pt'] = true; $displaylanguage['pl']=true;$displaylanguage['fi']=true;
                     break;
                 case "index":
                     $signUpDisplay = false;

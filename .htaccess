@@ -1,6 +1,6 @@
 RewriteEngine on
 
-RewriteRule ^next/users/?$     next/users.php [NC,L]
+# RewriteRule ^next/users/?$     next/users.php [NC,L]
 RewriteRule ^next/forum/?$     next/forum.php [NC,L]
 RewriteRule ^next/lang/en/?$   next/en.php [NC,L]
 RewriteRule ^next/lang/es/?$   next/es.php [NC,L]
@@ -22,7 +22,7 @@ RewriteRule ^next/plain/lang/zh/?$     next/plain.php?locale=zh_CN [NC,L]
  RewriteRule ^next/playground/?$        next/files/playground.php?locale=en_US [NC,L]
 
 RewriteRule ^next/project/doc/?$       next/documentation.php [NC,L] 
-RewriteRule ^users/?$     users.php [NC,L]
+# RewriteRule ^users/?$     users.php [NC,L]
 RewriteRule ^forum/?$     forum.php [NC,L]
 RewriteRule ^registration/?$     registration.php [NC,L]
 
@@ -34,6 +34,16 @@ RewriteRule ^lang/ru/?$   learn.php?locale=ru_RU [NC,L]
 RewriteRule ^lang/de/?$   learn.php?locale=de_DE [NC,L]
 RewriteRule ^lang/pt/?$   learn.php?locale=pt_BR [NC,L]
 RewriteRule ^lang/pl/?$   learn.php?locale=pl_PL [NC,L]
+RewriteRule ^lang/fi/?$   learn.php?locale=fi_FI [NC,L]
+
+RewriteRule ^users/en/?$   users.php?locale=en_US [NC,L]
+RewriteRule ^users/es/?$   users.php?locale=es_AR [NC,L]
+RewriteRule ^users/zh/?$   users.php?locale=zh_CN [NC,L]
+RewriteRule ^users/he/?$   users.php?locale=he_IL [NC,L]
+RewriteRule ^users/ru/?$   users.php?locale=ru_RU [NC,L]
+RewriteRule ^users/de/?$   users.php?locale=de_DE [NC,L]
+RewriteRule ^users/pt/?$   users.php?locale=pt_BR [NC,L]
+RewriteRule ^users/pl/?$   users.php?locale=pl_PL [NC,L]
 
 RewriteRule ^language/en/?$   index.php?locale=en_US [NC,L]
 RewriteRule ^language/es/?$   index.php?locale=es_AR [NC,L]
@@ -61,6 +71,15 @@ RewriteRule ^users/ru/?$   users.php?locale=ru_RU [NC,L]
 RewriteRule ^users/de/?$   users.php?locale=de_DE [NC,L]
 RewriteRule ^users/pt/?$   users.php?locale=pt_BR [NC,L]
 RewriteRule ^users/pl/?$   users.php?locale=pl_PL [NC,L]
+
+RewriteRule ^next/users/en/?$   next/users.php?locale=en_US [NC,L]
+RewriteRule ^next/users/es/?$   next/users.php?locale=es_AR [NC,L]
+RewriteRule ^next/users/zh/?$   next/users.php?locale=zh_CN [NC,L]
+RewriteRule ^next/users/he/?$   next/users.php?locale=he_IL [NC,L]
+RewriteRule ^next/users/ru/?$   next/users.php?locale=ru_RU [NC,L]
+RewriteRule ^next/users/de/?$   next/users.php?locale=de_DE [NC,L]
+RewriteRule ^next/users/pt/?$   next/users.php?locale=pt_BR [NC,L]
+RewriteRule ^next/users/pl/?$   next/users.php?locale=pl_PL [NC,L]
 
 
  RewriteRule ^playground/he/?$     files/playground.php?locale=he_IL [NC,L]
