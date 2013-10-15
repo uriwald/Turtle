@@ -2,7 +2,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
     "http://www.w3.org/TR/html4/strict.dtd">
     <?php
-
     require_once("environment.php");
     require_once("localization.php"); 
     require_once("files/footer.php");
@@ -101,7 +100,7 @@
                             <div>
                                 <h1 id="running-quote"> "<?php echo _("My son is enjoying studying programming"); ?>"</h1>
                             </div>
-                            <h3> <?php echo _("Matt Hok - England"); ?>/h3>   
+                            <h3> <?php echo _("Matt Hok - England"); ?></h3>   
                         </div>
                     </div>
                 </div>
@@ -124,6 +123,10 @@
                         echo "?"; ?> <!--<img src='images/sample/icon2.png' alt=''/>--> 
                     </h2>
                     <p> <?php echo _("In order to make programming approachable for more people we need volunteers to translate the site to their own native languages"); ?>.</p>
+                    <p>
+                        <?php echo _("If you wish to help please"); echo " ";?>
+                        <a href="mailto:support@turtleacademy.com" target="_blank"> <?php echo _("Contact Us"); ?> </a>
+                    </p>
                 </div>
             </div>
         </div> <!-- /container -->
