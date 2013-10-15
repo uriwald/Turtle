@@ -8,4 +8,7 @@
     $stu = new stringtranUtil();
     $stu ->addNewLocale("de_DE");
     $stu ->addNewLocale("pt_BR");
-?>
+    $stu ->addNewLocale("pl_PL");
+    $stu ->addNewLocale("nl_NL");
+    $stu ->addNewLocale("fi_FI");
+?> 

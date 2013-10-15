@@ -5,6 +5,9 @@
     $display_es       = $_POST['display_es'];
     $display_pt       = $_POST['display_pt'];
     $display_de       = $_POST['display_de'];
+    $display_pl       = $_POST['display_pl'];
+    $display_nl       = $_POST['display_nl'];
+    $display_fi       = $_POST['display_fi'];
     $pagecode         = $_POST['pagecode'];
      
     $flag = true ;
@@ -37,12 +40,15 @@
             $page               =   $strExist['page']; 
             $str                =   $strExist['str']; 
             
-            //Changed values
+            //Changed values 
             $display["ru_RU"]   =   $display_ru;
             $display["zh_CN"]   =   $display_zh;
             $display["es_AR"]   =   $display_es;
             $display["de_DE"]   =   $display_de;
             $display["pt_BR"]   =   $display_pt;
+            $display["pl_PL"]   =   $display_pl;
+            $display["nl_NL"]   =   $display_nl;
+            $display["fi_FI"]   =   $display_fi;
             
 
             

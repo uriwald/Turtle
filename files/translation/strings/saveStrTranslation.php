@@ -25,13 +25,14 @@
         else //Updating existing user
         {
             
-            $strTranslate  =   $strExist['translate'];
-            $display  =   $strExist['display'];
+            $strTranslate   =   $strExist['translate'];
+            $display        =   $strExist['display'];
+            $pagecode       =   $strExist['pagecode'];
 
             $strTranslate[$locale] = $translationInput;
             $return["info"] = $locale ." was affected"; 
 
-            $result     =   $strcol->update($strExist, array("str" => $str , "page" => $page , "context" => $context ,
+            $result     =   $strcol->update($strExist, array("str" => $str , "page" => $page ,"pagecode" => $pagecode , "context" => $context ,
                                                                 "translate" => $strTranslate ,"display" => $display ));
 
         }
