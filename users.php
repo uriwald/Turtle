@@ -116,6 +116,13 @@ $lessonsNamesArray = Array("", "Logo's turtle", "Controlling the Turtle and Pen"
                                 echo "<img class='badgeImg' id='turtleimg' src='./Images/badges/brownshield.jpg' />";
                             echo "</div>";
                         }
+                        if (in_array("3", $badgesArr)) 
+                        { 
+                            echo "<div class='badge' title='Familar with the Turtle World' >";                       
+                                echo "<p> Gold shield </p>";
+                                echo "<img class='badgeImg' id='turtleimg' src='./Images/badges/goldenshield.jpg' />";
+                            echo "</div>";
+                        }
 
                         /*
                         echo "<div class='badge' title='completed recurssion' >";

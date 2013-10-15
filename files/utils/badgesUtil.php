@@ -49,7 +49,7 @@ class badgesUtil {
    public static function updateUserBadges($username)
    {
        //Getting the corrent user badges
-       $nuberOfBadges       =   2;
+       $nuberOfBadges       =   3;
        $badges              =   self :: getUserBadges($username);
        $badgesArr           =   explode(",",$badges); 
        $numOfUserBadges     =   count($badgesArr) - 1;
@@ -98,9 +98,8 @@ class badgesUtil {
                         $badgesWonStr = $badgesWonStr . "you won your first badge";
 
                     }
-                } 
-                else
-                {
+                }
+                else {
                     $badgeone = true;
                 }
                 //// End of checking for badge number 1
@@ -124,10 +123,40 @@ class badgesUtil {
                         
                         badgesUtil :: addUserBadgeToDb("2,",$username);
                         $_SESSION['ubadges'] = "1,2,";
+                        $badgetwo = true;
                         $badgesWonStr = " you won your second badge";
                         
                     }
-                } // End of checking for badge number 1
+                } // End of checking for badge number 2
+                else {
+                    $badgetwo = true;
+                }
+                if (!in_array("3", $badgesArr)) {
+                    $controllBadgeIterator = 0;
+                    $controllBadgeArr = array ("q(3)1","q(3)2","q(3)3","q(3)4","q(3)5","q(3)6","q(3)7","q(3)8","q(3)9","q(3)10",
+                                                "q(4)1","q(4)2","q(4)3","q(4)4","q(4)5","q(4)6"); 
+                    foreach ($stepsCompletedArr as $step=>$val)
+                    {
+                        if ($val == $controllBadgeArr[$controllBadgeIterator])
+                        {
+                       
+                            $controllBadgeIterator++;
+                            if ($controllBadgeIterator == 16)
+                                break;
+                        }             
+                    }
+                    //If a badge should be added we will update db and the Session
+                    if ($controllBadgeIterator == 16)
+                    {
+                        
+                        badgesUtil :: addUserBadgeToDb("3,",$username);
+                        $_SESSION['ubadges'] = "1,2,3,";
+                        $badgesWonStr = " you won your Third badge";
+                        
+                    }
+                    else
+                        $badgesWonStr = $controllBadgeIterator;
+                } // End of checking for badge number 2
             }   
         } // End of ifset stepCompleted
         return $badgesWonStr;
