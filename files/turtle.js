@@ -23,6 +23,8 @@ function CanvasTurtle(canvas_ctx, turtle_ctx, width, height) {
   function deg2rad(d) { return d / 180 * Math.PI; }
   function rad2deg(r) { return r * 180 / Math.PI; } 
 
+  var gt = new Gettext({'domain' : 'messages'});   
+  
   var self = this;
   function moveto(x, y) {
 
@@ -167,7 +169,19 @@ function CanvasTurtle(canvas_ctx, turtle_ctx, width, height) {
     if (STANDARD_COLORS[color] !== undefined) {
       this.color = STANDARD_COLORS[color];
     } else {
-      this.color = color;
+        //turtle academy
+      var tran_color = false;
+      for (var i = 0; i < 16; i++) {
+        if (color == gt.gettext(STANDARD_COLORS[i]))
+            {
+                tran_color = true;
+                this.color = STANDARD_COLORS[i];
+                break;
+            }
+        
+      }
+      if (!tran_color)
+        this.color = gt.gettext(color);
     }
     canvas_ctx.strokeStyle = this.color;
     canvas_ctx.fillStyle = this.color;
