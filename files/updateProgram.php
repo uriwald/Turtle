@@ -51,6 +51,9 @@ require_once('utils/topbarUtil.php');
 </head>
 <body>
     <?php
+    //Printing the topbar menu
+    topbarUtil::printTopBar("program"); 
+            
     $programId = $_GET['programid'];
     $m = new Mongo();
     $db = $m->turtleTestDb;
@@ -329,5 +332,10 @@ echo _("We recoomnd you to use Chrome or Firefox browsers");
         
     editor.setValue('<?php echo $bodytag; ?>'); 
     var programid = '<?php echo $programId ?>' ;
-  
+    <?php
+        if (isset($_SESSION['username']))
+            echo "var username = '" . $_SESSION['username'] . "';";
+        else
+            echo "var username = null;";
+    ?> 
 </script> 

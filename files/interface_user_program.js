@@ -45,9 +45,7 @@ $.extend({
     };
 $(function() {
     // Compile templates used later
-    // The header template
-     
-    
+ 
     var gt = new Gettext({
         'domain' : 'messages'
     });
@@ -81,7 +79,9 @@ $(function() {
         });
     }); 
     
-    
+    $("#btn_delete").click(function() {    
+        deleteprogram();
+    });
     $("#btn_update_program").click(function() {    
         saveprogram(true , false);
     });  
@@ -94,15 +94,51 @@ $(function() {
     
     // Initiate the first prompt.
     handler();
+    //Will delete user program
+    function deleteprogram()
+    {
+        jConfirm('Are you sure you want to delete program?'  , 'DeleteProgram program', function(r) {
+            if (r)
+            {
+                $.ajax({
+                    type : 'POST',
+                    url : 'delUserProgram.php',
+                    dataType : 'json',
+                    data: {
+                        programid       :   programid,
+                        username : username
+                    },
+
+                    success : function(data){
+                       
+                                location.href = sitePath + "/files/newProgram.php";
+                                        
+                    },       
+                    error : function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert('fail');  
+                    }
+                });
+            }
+            else
+            {
+                location.href = sitePath + "/files/newProgram.php";
+            } 
+        });
+
+
+        
+    }
     function saveprogram(isSave , isRedirect)
     {
-        var programname     =   $("#program-info-header").text();
-        var programtitle    =   prompt("Your program name is ",programname);
+        var programname     =   $("#program-info-header").text();     
         var programCode     =   editor.getValue();
-        var username        =   $.Storage.get('username');
         var update          =   !isRedirect;
         if (typeof username == 'undefined')
-            username = "TestUser" ;
+        {
+            alert("Only register user can save their programs , you must log-in");
+            return;
+        }
+        var programtitle    =   prompt("Your program name is ",programname);
         
         if (programtitle!=null){
         var x="Hello " + programtitle + "! How are you today?";
@@ -182,5 +218,11 @@ $(function() {
       }
       return str;
     }
+                    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>playground/" , "playground.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
+                //convert
+                $("select").msDropdown();
+                //createByJson();
+                $("#tech").data("dd");  
+
   });
  

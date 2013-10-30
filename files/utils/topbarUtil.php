@@ -25,6 +25,7 @@ class topbarUtil {
                 "de" => "de",
                 "es" => "es",
                 "fi" => "fi",
+                "nl" => "nl",
                 "pt" => "pt",
                 "pl" => "pl",
                 "ru" => "ru",
@@ -35,8 +36,8 @@ class topbarUtil {
             $displaylanguage = array(
                 "en" => true,
                 "de" => false,
-                "es" => true,
-                "pt" => false,
+                "nl" => true,
+                "pt" => true,
                 "pl" => false,
                 "fi" => false,
                 "ru" => true,
@@ -51,6 +52,7 @@ class topbarUtil {
                 "pt" => "br",
                 "pl" => "pl",
                 "ru" => "ru",
+                "nl" => "nl",
                 "he" => "il",
                 "zh" => "cn"
                      
@@ -63,14 +65,16 @@ class topbarUtil {
                 "zh" => "中文",
                 "he" => "עברית",
                 "de" => "Deutsch",
-                "pt" => "br",
+                "nl" => "Dutch",
+                "pt" => "Português",
                 "pl" => "polish"
             );
             switch ($topbarPage) {
                 case "learn": 
                      $topbarDisplay['playground'] = true ; 
                      $topbarDisplay['news'] = true ; $topbarDisplay['about'] = true ; 
-                     $displaylanguage['de'] = true ; $displaylanguage['pt'] = true; $displaylanguage['pl']=true;$displaylanguage['fi']=true;
+                     $displaylanguage['de'] = true ;  $displaylanguage['pl']=true;$displaylanguage['fi']=true;
+                     $displaylanguage['nl']=true;
                     break;
                 case "index":
                     $signUpDisplay = false;
@@ -82,6 +86,12 @@ class topbarUtil {
                     $topbarDisplay['about'] = true ; 
                     $topbarDisplay['exercise'] = true ;
                     break;
+                case "program":
+                    $topbarDisplay['about'] = true ; 
+                    $topbarDisplay['exercise'] = true ;
+                    $topbarSpanSize = 21;
+                    $languagesDisplay = false;
+                    break;       
                 case "institute":
                     $signUpDisplay = true;
                     $languagesDisplay = false;
@@ -114,52 +124,52 @@ class topbarUtil {
      private static function printTopBarSelected($rootDir, $topbarDisplay, $langDropDown, $signUpDisplay,
              $language,$topbarSpanSize ,$displaylanguage , $countryNativeName , $countryFlagName , $showTurtleIcon = true) 
     {
-        global $cssleft, $cssright, $lang;
+        global $cssleft, $cssright, $lang , $sitePath;
         ?>    
         <div class="topbar" id="topbarMainDiv" > 
             <div class="fill" id="topbarfill">
-                <div class="container span<?php echo $topbarSpanSize; ?>" id="topbarContainer"> 
+                <div class="container span<?php echo $topbarSpanSize; ?>" id="topbarContainer">
                     <?php
                     if ($showTurtleIcon) {
                         ?>
-                        <a href="<?php echo $rootDir; ?>index.php" alt="Home page"><img class="brand" id="turtleimg" lang="<?php echo $lang ?>" src="<?php echo $rootDir; ?>files/turtles.png" /></a> 
+                        <a href="<?php echo $sitePath."/language/".$lang; ?>" alt="Home page"><img class="brand" id="turtleimg" lang="<?php echo $lang ?>" src="<?php echo $rootDir; ?>files/turtles.png" /></a> 
                         <?php
                     }//Close show icon
                     ?>
                     <ul class="nav" id="turtleHeaderUl" lang="<?php echo $lang ?>"> 
                         <?php
                         if ($topbarDisplay['turtleacademy'] == "true") {
-                            echo "<li><a href='" . $rootDir . "index.php'>";
+                            echo "<li><a href='" . $sitePath . "/language/$lang'>";
                             echo _("TurtleAcademy");
                             echo "</a></li>";
                         }
                         if (isset($topbarDisplay['exercise']) && $topbarDisplay['exercise'] == "true") {
-                            echo "<li><a href='" . $rootDir . "learn.php'>";
+                            echo "<li><a href='" . $sitePath . "/lang/$lang'>";
                             echo _("Lessons");
                             echo "</a></li>";
                         }
                         if ($topbarDisplay['helpus'] == "true") {
-                            echo "<li><a href='" . $rootDir . "needed.php'>";
+                            echo "<li><a href='" . $sitePath . "needed.php'>";
                             echo _("Help Us");
                             echo "</a></li>";
                         }
                         if ($topbarDisplay['playground'] == "true") {
-                            echo "<li><a href='" . $rootDir . "playground/" . $lang . "'>";
+                            echo "<li><a href='" . $sitePath . "playground/" . $lang . "'>";
                             echo _("Playground");
                             echo "</a></li>";
                         }
                         if ($topbarDisplay['news'] == "true") {
-                            echo "<li><a href='" . $rootDir . "turtlenews.php'>";
+                            echo "<li><a href='" . $sitePath . "news/$lang'>";
                             echo _("News");
                             echo "</a></li>";
                         }
                         if ($topbarDisplay['forum'] == "true") {
-                            echo "<li><a href='" . $rootDir . "forum.php'>";
+                            echo "<li><a href='" . $sitePath . "forum.php'>";
                             echo _("Forums");
                             echo "</a></li>";
                         }
                         if ($topbarDisplay['about'] == "true") {
-                            echo "<li><a href='" . $rootDir . "project/doc'>";
+                            echo "<li><a href='" . $sitePath . "project/doc/$lang'>";
                             echo _("About");
                             echo "</a></li>";
                         }

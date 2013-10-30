@@ -9,6 +9,7 @@ require_once("../localization.php");
 require_once("cssUtils.php");
 require_once("utils/languageUtil.php");
 require_once('utils/topbarUtil.php');
+
 ?>    
 <head> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -50,6 +51,11 @@ require_once('utils/topbarUtil.php');
     <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
 </head>
 <body>
+        <?php
+            //Printing the topbar menu
+            topbarUtil::printTopBar("program"); 
+            
+        ?>
     <div class="container" style="width:1200px;">
         <h2 id="program-info-header">Your program name</h2>
             <!-- <textarea class='input-xlarge' type='text'  id='program-title-txt' placeholder='Enter  your program title...'></textarea> -->
@@ -306,10 +312,17 @@ require_once('utils/topbarUtil.php');
 
 </body>
 <script>
+ 
     var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         styleActiveLine: true,
         lineNumbers: true,
         lineWrapping: true
     });
     var programid = null; 
-</script> 
+    <?php
+        if (isset($_SESSION['username']))
+            echo "var username = '" . $_SESSION['username'] . "';";
+        else
+            echo "var username = null;";
+    ?> 
+</script>
