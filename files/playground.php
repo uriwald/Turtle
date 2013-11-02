@@ -23,8 +23,8 @@ require_once('utils/topbarUtil.php');
         <?php
             require_once("utils/includeCssAndJsFiles.php"); 
         ?>   
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select --> 
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/doc.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/playground.css' type='text/css' media='all'/>
         <?php
         $file_path = "../locale/" . $locale . "/LC_MESSAGES/messages.po";
         $po_file = "<link   rel='gettext' type='application/x-po' href='../locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
@@ -36,42 +36,11 @@ require_once('utils/topbarUtil.php');
             var locale = "<?php echo $locale; ?>";
         </script>
         <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_plain.js?locale=<?php echo $locale ?>"></script> <!-- Interface scripts -->
-
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
         <?php
             cssUtils::loadcss($locale, $rootDir . "files/css/interface");
         ?>             
-        <style type="text/css">
-            h1, h2, h3, h4, p { margin-bottom: 6pt; margin-top: 6pt; }
-            body, p, h1, h2, h3 { font-family: sans-serif; }
-            dl { margin-top: 6pt; }
-            p, dt, dd, ol, li { font-size: 8pt; }
-            code { font-family: monospace; }
-            body
-            {
-                width: 270px;
-                color: black;
-                background-color: white;
-            }
-            #guide{
-                position : absolute;
-                right: 10px;
-                top: 10px;
-                width: 400px;
-                padding: 5pt;
-                padding-top: 0px;
-                z-index: 10;
-                color: black;
-            }
-            #guide_body{
-                width: 400px;
-                height: 450px;
-                border: none;
-            }
-            .jqconsole {
-                width: 950px;
-            }
-        </style>
+        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/playground.css' type='text/css' media='all'/>
+
     </head>
     <body> 
         <div id="guide">
@@ -79,7 +48,7 @@ require_once('utils/topbarUtil.php');
                 this.innerHTML = show ? 'hide' : 'show'; return false;">hide
             </a>
             <!-- Including all the Logo language menual -->
-            <iframe frameborder="0" src="../files/lang.html" id="guide_body" style="">
+            <iframe frameborder="0" src="<?php echo $rootDir; ?>files/lang.html" id="guide_body" style="">
             </iframe>  
         </div> 
         <div id="main" style="margin-left: 100px;">
@@ -98,7 +67,6 @@ require_once('utils/topbarUtil.php');
             </div>
             <div id="logoerplain"> 
                 <div id="displayplain"> 
-                    <!-- <canvas id="sandbox" width="660" height="350" class="ui-corner-all ui-widget-content" style="position: absolute; z-index: 0;">-->
                     <canvas id="sandbox" width="970" height="500px" class="ui-corner-all ui-widget-content">   
                         <span style="color: red; background-color: yellow; font-weight: bold;">
                         <?php
@@ -115,7 +83,6 @@ require_once('utils/topbarUtil.php');
                 <div id="console" class="ui-corner-all ui-widget-content"><!-- command box --></div>
             </div>
         </div> <!-- End of main div -->
-        <?php echo $footer; ?>
         <script>
             // Select language in main page
             $(document).ready(function() {                 

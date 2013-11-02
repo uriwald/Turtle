@@ -164,11 +164,7 @@ require_once('files/utils/topbarUtil.php');
                                             <td class="whoarewe"><?php echo _("Amir"); ?></td>
                                             <td class="whoarewe"><?php echo _("Colnect master , uncle of six"); ?></td>
                                         </tr>
-                                        <tr>
-                                            <td class='mini-thumbnail'><img src='/Images/team/dana.JPG' style='width:100px;height:80px;'/></td>
-                                            <td class="whoarewe"><?php echo _("Dana"); ?></td>
-                                            <td class="whoarewe"><?php echo _("Tiger painter , likes to read lessons");?></td>
-                                        </tr>
+
                                         <tr>
                                             <td class='mini-thumbnail'><img src='/Images/team/andy.jpg' style='width:100px;height:80px;'/></td>
                                             <td class="whoarewe"><?php echo _("Andy"); ?></td>
@@ -178,12 +174,28 @@ require_once('files/utils/topbarUtil.php');
                                             <td class='mini-thumbnail'><img src='/Images/team/mona.JPG' style='width:100px;height:80px;'/></td>
                                             <td class="whoarewe"><?php echo _("Mona"); ?></td>
                                             <td class="whoarewe"><?php echo _("Yoga master , Chinese section"); ?></td>
+                                        </tr> 
+                                        <tr>
+                                            <td class='mini-thumbnail'><img src='/Images/team/oliver.jpg' style='width:100px;height:80px;'/></td>
+                                            <td class="whoarewe"><?php echo _("Oliver"); ?></td>
+                                            <td class="whoarewe"><?php echo _("Father of twins, German section"); ?></td>
+                                        </tr>  
+                                        <tr>
+                                            <td class='mini-thumbnail'><img src='/Images/team/alexandre.jpg' style='width:100px;height:80px;'/></td>
+                                            <td class="whoarewe"><?php echo _("Alexandre"); ?></td>
+                                            <td class="whoarewe"><?php echo _("Decipher my fav things on the icons around me ; ) , Potruguese section"); ?></td>
                                         </tr>  
                                         <tr>
                                             <td class='mini-thumbnail'><img src='/Images/team/ayelet.JPG' style='width:100px;height:80px;'/></td>
                                             <td class="whoarewe"><?php echo _("Ayelet"); ?></td>
                                             <td class="whoarewe"><?php echo _("Full time mother"); ?></td>
                                         </tr>
+                                        <tr>
+                                            <td class='mini-thumbnail'><img src='/Images/team/dana.JPG' style='width:100px;height:80px;'/></td>
+                                            <td class="whoarewe"><?php echo _("Dana"); ?></td>
+                                            <td class="whoarewe"><?php echo _("Tiger painter , likes to read lessons");?></td>
+                                        </tr>
+                                        <!--
                                         <tr>
                                             <td class='mini-thumbnail'><img src='/Images/team/almog.jpg' style='width:100px;height:80px;'/></td>
                                             <td class="whoarewe"><?php echo _("Almog"); ?></td>
@@ -203,7 +215,8 @@ require_once('files/utils/topbarUtil.php');
                                             <td class='mini-thumbnail'><img src='/Images/team/yuval.jpg' style='width:100px;height:80px;'/></td>
                                             <td class="whoarewe"><?php echo _("Yuval"); ?></td>
                                             <td class="whoarewe"><?php echo _("QA and future Messi"); ?></td>
-                                        </tr>                                                        
+                                        </tr>  
+                                        -->
                                     </tbody>
                                 </table>
                                 <div id="logo4" class="logo-draw-example"></div>

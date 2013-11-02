@@ -52,8 +52,8 @@ $newsItems->sort(array('date' => -1));
                                 $context = $newsItem['context'];
                                 $itemid = $newsItem['itemid'];
                                 $date = $newsItem['date'];
-                                if ($locale != "en_US") {
-                                    $localestr = "locale_" . $locale;
+                                if ($localeDomain != "en_US") {
+                                    $localestr = "locale_" . $localeDomain;
                                     if (isset($newsItem['headline_translate'][$localestr]))
                                         $headline = $newsItem['headline_translate'][$localestr];
                                     if (isset($newsItem['context_translate'][$localestr]))
@@ -77,8 +77,10 @@ $newsItems->sort(array('date' => -1));
                     $context = $newsItem['context'];
                     $itemid = $newsItem['itemid'];
                     $date = $newsItem['date'];
-                    if ($locale != "en_US") {
-                        $localestr = "locale_" . $locale;
+                    $dateTime = new DateTime($date);
+                    $newdate    =    date_format($dateTime, 'Y-m-d');
+                    if ($localeDomain != "en_US") {
+                        $localestr = "locale_" . $localeDomain;
                         if (isset($newsItem['headline_translate'][$localestr]))
                             $headline = $newsItem['headline_translate'][$localestr];
                         if (isset($newsItem['context_translate'][$localestr]))
@@ -88,7 +90,7 @@ $newsItems->sort(array('date' => -1));
                     if (strlen($headline) > 3) { //Check if the header is valid for this language
                         ?> 
                         <div data-spy="scroll" id="divScroll" data-target="#navbarExample" data-offset="50" class="scrollspy-example" lang="<?php echo $lang ?>">
-                            <h2 id="<?php echo $itemid ?>"> <span><?php echo $headline ?> </span> <span id="newsDate" lang="<?php echo $lang ?>"><?php echo $date; ?> </span></h2>
+                            <h2 class="newsItemTitle" id="<?php echo $itemid ?>"> <span><?php echo $headline ?> </span> <span id="newsDate" lang="<?php echo $lang ?>"><?php echo $newdate; ?> </span></h2>
                             <p><?php echo $context; ?></p>
                         </div>
                         <?php

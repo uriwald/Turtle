@@ -49,8 +49,8 @@ require_once('utils/topbarUtil.php');
     ?>   
 
     <?php
-    $file_path = $sitePath. "locale/" . $locale . "/LC_MESSAGES/messages.po'";
-    $po_file = "<link   rel='gettext' type='application/x-po' href='".$sitePath. "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
+    $file_path = $sitePath. "locale/" . $localeDomain . "/LC_MESSAGES/messages.po'";
+    $po_file = "<link   rel='gettext' type='application/x-po' href='".$sitePath. "locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
     if (file_exists($file_path))
         echo $po_file;
     else
@@ -60,7 +60,7 @@ require_once('utils/topbarUtil.php');
     echo "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
     echo "<link   href='".$rootDir."files/codemirror/mode/logo/logo.css' rel='stylesheet'></link>";
     ?>        
-    <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_user_program.js?locale=<?php echo $locale ?>"></script> <!-- Interface scripts -->
+    <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_user_program.js?locale=<?php echo $localeDomain ?>"></script> <!-- Interface scripts -->
 
     <!-- <link rel="stylesheet" href="codemirror/mode/logo/logo.css"> -->
 </head>

@@ -19,7 +19,7 @@
             echo _("Turtle Academy - learn logo programming in your browser");
             echo _(" free programming materials for kids");
         ?>  
-        </title> 
+        </title>
         <?php
         // Loading relevant js and css files
         require_once("files/utils/includeCssAndJsFiles.php"); 

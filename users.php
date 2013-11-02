@@ -125,21 +125,21 @@
                         if (in_array("1", $badgesArr)) 
                         { 
                             echo "<div class='badge' title='finish lesson number 1' >";                       
-                                echo "<img class='badgeImg' id='turtleimg' src='./Images/badges/lightshield.jpg' />";
+                                echo "<img class='badgeImg' id='turtleimg' src='".$sitePath ."/Images/badges/lightshield.jpg' />";
                             echo "</div>";
                         }
                         if (in_array("2", $badgesArr)) 
                         { 
                             echo "<div class='badge' title='Finish the first 2 lessons' >";                       
                                 echo "<p> Brown shield </p>";
-                                echo "<img class='badgeImg' id='turtleimg' src='./Images/badges/brownshield.jpg' />";
+                                echo "<img class='badgeImg' id='turtleimg' src='".$sitePath ."/Images/badges/brownshield.jpg' />";
                             echo "</div>";
                         }
                         if (in_array("3", $badgesArr)) 
                         { 
                             echo "<div class='badge' title='Familar with the Turtle World' >";                       
                                 echo "<p> Gold shield </p>";
-                                echo "<img class='badgeImg' id='turtleimg' src='./Images/badges/goldenshield.jpg' />";
+                                echo "<img class='badgeImg' id='turtleimg' src='".$sitePath ."/Images/badges/goldenshield.jpg' />";
                             echo "</div>";
                         }
 

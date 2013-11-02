@@ -38,14 +38,14 @@ require_once('utils/topbarUtil.php');
     ?>   
 
     <?php
-    $file_path = "../locale/" . $locale . "/LC_MESSAGES/messages.po";
-    $po_file = "<link   rel='gettext' type='application/x-po' href='../locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
+    $file_path = "../locale/" . $localeDomain . "/LC_MESSAGES/messages.po";
+    $po_file = "<link   rel='gettext' type='application/x-po' href='../locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
     if (file_exists($file_path))
         echo $po_file;
     echo "<script type='application/javascript' src='" . $rootDir . "files/jqconsole.js' ></script>\n";
     echo "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
     ?>        
-    <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_user_program.js?locale=<?php echo $locale ?>"></script> <!-- Interface scripts -->
+    <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_user_program.js?locale=<?php echo $localeDomain ?>"></script> <!-- Interface scripts -->
 
     <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
 </head>
