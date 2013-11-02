@@ -69,6 +69,15 @@
             $validateUser = true;
             header("location: " .$lessonReportPage."?locale=zh_CN");
         }
+        else if ( $username == "nedutch" && $password = "nedutch")
+        {
+            $_SESSION['translator'] = true ;
+            
+            $_SESSION['username'] = "Neterland";
+            $_SESSION['permision'] = 2;
+            $validateUser = true; 
+            header("location: " .$lessonReportPage."?locale=nl_NL");
+        }
         else if ( $username == "eseditor" && $password = "eseditor")
         {
             $_SESSION['translator'] = true ;
@@ -194,15 +203,18 @@
                     ?>
                     <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script> <!-- Clear storage from previous use scripts -->
                     <?php
-                    header("location: ".$rootDir."learn.php" ); 
+                    if (isset($_SESSION['redirectBack']))
+                         header("location: ".$rootDir.$_SESSION['redirectBack'] );
+                    else
+                         header("location: ".$rootDir."lang/en" ); 
             }
         }
         //Case registered user go to user page 
         else {
            $_SESSION['username'] = $username;
-           header("location: ".$rootDir."users.php"); 
+           header("location: ".$rootDir."users.php");
         }
-        if ($validateUser)
+        if ($validateUser) 
         {
             $m = new Mongo();
             $db = $m->$dbName;

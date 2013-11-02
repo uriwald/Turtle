@@ -52,7 +52,7 @@ require_once('utils/topbarUtil.php');
 <body>
     <?php
     //Printing the topbar menu
-    topbarUtil::printTopBar("program"); 
+    topbarUtil::printTopBar("programUpdate"); 
             
     $programId = $_GET['programid'];
     $m = new Mongo();
@@ -338,4 +338,6 @@ echo _("We recoomnd you to use Chrome or Firefox browsers");
         else
             echo "var username = null;";
     ?> 
+    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>program/lang/" , "newProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
+
 </script> 

@@ -4,7 +4,16 @@
   <?php
     if (session_id() == '')
         session_start();
+    //If the user is not logged in yet redirect
     require_once("environment.php");
+    if (!isset($_SESSION['username']))
+    {
+        $_SESSION['redirectBack'] = "users.php";
+      //  header('Location: '.$sitePath . "registration.php");
+         header('refresh:3; url='.$sitePath . "registration.php");
+        echo "<center><h1 id='redirect'> You will be redirected in order to log in </h1></center>";
+    }
+    
     require_once("localization.php");
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
@@ -12,14 +21,17 @@
     require_once('files/utils/topbarUtil.php');
     require_once('files/utils/badgesUtil.php'); 
     require_once('files/utils/userUtil.php');
-    $displayUserName = $_SESSION['username'];
-    // update the user badgse
-     badgesUtil :: updateUserBadges($displayUserName);
-    // get the new user badges
+    if (isset ($_SESSION['username']))
+    {
+        $displayUserName = $_SESSION['username'];   
+        // update the user badgse
+        badgesUtil :: updateUserBadges($displayUserName);
+        // get the new user badges
 
-$lessonsNamesArray = Array("", "Logo's turtle", "Controlling the Turtle and Pen", "Turtle world", "The turtle answer", "Cool labels", "Loops",
-    "Polygons", "The pen width", "The turtle is learning", "Colors and Printing", "Variables", "Procedure",
-    "The for loop", "Recursion", "Lists", "Accessing the list");
+        $lessonsNamesArray = Array("", "Logo's turtle", "Controlling the Turtle and Pen", "Turtle world", "The turtle answer", "Cool labels", "Loops",
+            "Polygons", "The pen width", "The turtle is learning", "Colors and Printing", "Variables", "Procedure",
+            "The for loop", "Recursion", "Lists", "Accessing the list");
+    }
 ?>
 
 
@@ -39,6 +51,9 @@ $lessonsNamesArray = Array("", "Logo's turtle", "Controlling the Turtle and Pen"
     </head>
     <body>
         <?php
+        //Will display the page only if user is register ,, if not will be redirected
+            if (isset($_SESSION['username']))
+            {
             //Printing the topbar menu
             topbarUtil::printTopBar("users"); 
             
@@ -74,6 +89,11 @@ $lessonsNamesArray = Array("", "Logo's turtle", "Controlling the Turtle and Pen"
                     }
                     ?>
                     <p>
+                        <a href='<?php echo $rootDir; ?>files/newProgram.php?l=<?php echo $locale; ?>'>
+                            <?php echo _("Create a new program"); ?>
+                        </a>
+                    </p>
+                    <p>
                         <a href='lesson.php?l=<?php echo $locale; ?>'>
                             <?php echo _("Add a new lesson"); ?>
                         </a>
@@ -105,7 +125,6 @@ $lessonsNamesArray = Array("", "Logo's turtle", "Controlling the Turtle and Pen"
                         if (in_array("1", $badgesArr)) 
                         { 
                             echo "<div class='badge' title='finish lesson number 1' >";                       
-                                echo "<p> Light shield </p>";
                                 echo "<img class='badgeImg' id='turtleimg' src='./Images/badges/lightshield.jpg' />";
                             echo "</div>";
                         }
@@ -211,31 +230,31 @@ $lessonsNamesArray = Array("", "Logo's turtle", "Controlling the Turtle and Pen"
                     -->
                 </div>
                 <div class='span16'id="usrLessonDiv" lang="<?php echo $lang ?>"> 
-                    <h2><?php echo _("Your lessons"); ?></h2>
+                    <h2><?php echo _("Your Programs"); ?></h2>
                     <table class='zebra-striped ads' id="my_lessons" lang="<?php echo $lang ?>">
                         <thead>
                             <tr>
-                                <th class='span2'></th>
-                                <th class='span4'><?php echo _("Title"); ?></th>
-                                <th class='span4'><?php echo _("Action"); ?></th>
+                                <th class='span4'><?php echo _("Name"); ?></th>
+                                <th class='span4'><?php echo _("Date Created"); ?></th>
+                                <th class='span4'><?php echo _("Last updated"); ?></th>
+                                <th class='span4'><?php echo _("Actions"); ?></th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php
-                            $userLessons = userUtil::showUserLessons($username);
-                            foreach ($userLessons as $lesson) {
+                            $userPrograms = userUtil::findUserPrograms($username);
+                            foreach ($userPrograms as $program) {
                         ?>
                                 <tr>
-                                    <td class='mini-thumbnail'></td>
-                                    <td><?php echo $lesson['title']['locale_en_US'] ?></td>
+                                    <td><?php echo $program['programName'] ?></td>
+                                    <td><?php echo $program['dateCreated'] ?></td>
+                                    <td><?php echo $program['lastUpdated'] ?></td>
                                     <td>
-                                        <!--<div class='btn small success disabled'>Renewed</div> -->
-                                        <a class='btn small info' href="lesson.php?lesson=<?php
-                                            echo $lesson['_id'] . "&locale=";
-                                            $lessonLocale = "en_US";
-                                            if (isset($lesson['localeCreated']))
-                                                $lessonLocale = $lesson['localeCreated'];
-                                            echo $lessonLocale;
+                                        <!--<div class='btn small success disabled'>Renewed</div> 
+                                        ?programid=527115cea51ffb9d25000000&username=lucio-->
+                                        <a class='btn small info' href="<?php echo $rootDir . "files/updateProgram.php?programid=";
+                                            echo $program['_id'] . "&username=";
+                                            echo $username;
                                         ?> 
 
                                            ">  <?php echo _("Edit"); ?></a>
@@ -259,5 +278,8 @@ $lessonsNamesArray = Array("", "Logo's turtle", "Controlling the Turtle and Pen"
             selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>users/", "users.php" ,"en" ); 
         });
     </script>
+        <?php
+            } // End of rull Checking for session.username exists
+        ?>
     </body>
 </html>

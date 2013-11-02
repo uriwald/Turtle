@@ -35,8 +35,9 @@ class topbarUtil {
             //Will be sorted in the correct order 
             $displaylanguage = array(
                 "en" => true,
-                "de" => false,
-                "nl" => true,
+                "es" => true,
+                "de" => true,
+                "nl" => false,
                 "pt" => true,
                 "pl" => false,
                 "fi" => false,
@@ -90,14 +91,22 @@ class topbarUtil {
                     $topbarDisplay['about'] = true ; 
                     $topbarDisplay['exercise'] = true ;
                     $topbarSpanSize = 21;
-                    $languagesDisplay = false;
+                    //$languagesDisplay = false;
                     break;       
+                case "programUpdate":
+                    $topbarDisplay['about'] = true ; 
+                    $topbarDisplay['exercise'] = true ;
+                    $topbarSpanSize = 21;
+                    $languagesDisplay = false;
+                    break;  
                 case "institute":
                     $signUpDisplay = true;
                     $languagesDisplay = false;
+                    break;
                 case "users":
                     $topbarDisplay['about'] = true ; 
                     $topbarDisplay['exercise'] = true ;
+                    break;
                 case "registration":
                     $signUpDisplay = false;
                     $topbarDisplay['about'] = true ; 

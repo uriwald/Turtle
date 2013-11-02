@@ -19,36 +19,50 @@ require_once('utils/topbarUtil.php');
         echo _(" free programming materials for kids");
         ?>  
     </title>     
-
+    <?php
+        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/lib/codemirror.js' ></script>\n";
+        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/runmode/runmode.js' ></script>\n";
+        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/edit/closebrackets.js' ></script>\n";
+        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/edit/matchbrackets.js' ></script>\n";
+        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/display/placeholder.js' ></script>\n";
+        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/selection/active-line.js' ></script>\n";
+        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/mode/logo/logo.js' ></script>\n";
+        
+        echo "<link   href='".$rootDir."files/codemirror/mode/logo/logo.css' rel='stylesheet' >";
+        echo "<link   href='".$rootDir."files/codemirror/lib/codemirror_turtle.css' rel='stylesheet' >";
+    ?>
+    <!--
     <script src="codemirror/lib/codemirror.js"></script>
 
     <script src="codemirror/addon/runmode/runmode.js"></script>
     <script src="codemirror/addon/edit/closebrackets.js"></script>
     <script src="codemirror/addon/edit/matchbrackets.js"></script>
     <script src="codemirror/addon/display/placeholder.js"></script> 
-
     <script src="codemirror/addon/selection/active-line.js"></script>
-
-
     <script src="codemirror/mode/logo/logo.js"></script>    
     <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
     <link rel="stylesheet" href="codemirror/lib/codemirror_turtle.css">
+    -->
     <?php
     require_once("utils/includeCssAndJsFiles.php");
     echo "<script type='application/javascript' src='" . $rootDir . "files/jquery.Storage.js' ></script>";
     ?>   
 
     <?php
-    $file_path = "../locale/" . $locale . "/LC_MESSAGES/messages.po";
-    $po_file = "<link   rel='gettext' type='application/x-po' href='../locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
+    $file_path = $sitePath. "locale/" . $locale . "/LC_MESSAGES/messages.po'";
+    $po_file = "<link   rel='gettext' type='application/x-po' href='".$sitePath. "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
     if (file_exists($file_path))
         echo $po_file;
+    else
+        echo $po_file;
+    
     echo "<script type='application/javascript' src='" . $rootDir . "files/jqconsole.js' ></script>\n";
     echo "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
+    echo "<link   href='".$rootDir."files/codemirror/mode/logo/logo.css' rel='stylesheet'></link>";
     ?>        
     <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_user_program.js?locale=<?php echo $locale ?>"></script> <!-- Interface scripts -->
 
-    <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
+    <!-- <link rel="stylesheet" href="codemirror/mode/logo/logo.css"> -->
 </head>
 <body>
         <?php
@@ -57,7 +71,7 @@ require_once('utils/topbarUtil.php');
             
         ?>
     <div class="container" style="width:1200px;">
-        <h2 id="program-info-header">Your program name</h2>
+        <h2 id="program-info-header">Program 1</h2>
             <!-- <textarea class='input-xlarge' type='text'  id='program-title-txt' placeholder='Enter  your program title...'></textarea> -->
         <div id="command-to-draw">
             <div id="cm-side">          
@@ -86,10 +100,9 @@ require_once('utils/topbarUtil.php');
             </div>
             <div id="action-buttons" > 
                 <form> 
-                    <input id="btn_save_program" type="button" value="Save" class="btn small info pressed"></input>
-                    <input id="btn_clear" type="button" value="Clear" class="btn small info pressed"></input>
-                    <input id="a" type="button" value="Nothing" class="btn small info pressed"></input>
-                    <input id="runbtn" type="button" value="Run" class="btn small info pressed"></input>
+                    <input id="btn_save_program" type="button" value="<?php echo _("Save");?>" class="btn small info pressed"></input>
+                    <input id="btn_clear" type="button" value="<?php echo _("Clear");?>" class="btn small info pressed"></input>
+                    <input id="runbtn" type="button" value="<?php echo _("Run");?>" class="btn small info pressed"></input>
                 </form>
             </div>
             <div id ="tab-row">
@@ -325,4 +338,6 @@ require_once('utils/topbarUtil.php');
         else
             echo "var username = null;";
     ?> 
+    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>program/lang/" , "newProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
+
 </script>
