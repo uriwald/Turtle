@@ -57,6 +57,7 @@
 }
 
 #lessonnav {
+    direction : ltr;
     float: left;
 }
 #accorPlusNav{

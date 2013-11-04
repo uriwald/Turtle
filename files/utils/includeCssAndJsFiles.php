@@ -45,12 +45,12 @@
     /* END loading boostraps files */
     
     /* loading some other files */
-        if (!isset($locale))
-            $locale = "en_US";
+        if (!isset($localeDomain))
+            $localeDomain = "en_US";
         echo "<script type='application/javascript' src='".$rootDir."files/Gettext.js' ></script>" ; 
         // Loading getText related files according to locale
-        $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
-        $po_file = "<link   rel='gettext' type='application/x-po' href='" . $rootDir . "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
+        $file_path = "locale/" . $localeDomain . "/LC_MESSAGES/messages.po";
+        $po_file = "<link   rel='gettext' type='application/x-po' href='" . $rootDir . "locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
         if (file_exists($file_path))
             echo $po_file;
         
@@ -59,7 +59,7 @@
         if ($isUserLoggedIn) {
              echo "<script type='application/javascript' src='".$rootDir."clearStorageData.php' ></script>\n" ;   
         } 
-        echo "<script type='application/javascript' src='".$rootDir."readMongo.php?locale=".$locale."' ></script>\n" ;  
+        echo "<script type='application/javascript' src='".$rootDir."readMongo.php?locale=".$localeDomain."' ></script>\n" ;  
         echo "<script type='application/javascript' src='".$rootDir."files/js/langSelect.js' ></script>\n" ; 
         echo "<script type='application/javascript' src='".$rootDir."files/logo.js' ></script>\n" ; 
         echo "<script type='application/javascript' src='".$rootDir."files/turtle.js' ></script>\n" ; 

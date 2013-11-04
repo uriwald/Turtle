@@ -399,7 +399,9 @@ $(function() {
             return false;
         });
     };
-
+    $("#runbtn").click(function() {                                
+        handler(editor.getValue());
+    });  
     // Initiate the first prompt.
     handler();
 

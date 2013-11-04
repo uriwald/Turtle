@@ -20,7 +20,7 @@
 ?>
 <!-- carousel core -->
 
-        <script type="text/javascript" src="<?php echo $crouselDir; ?>dist/js/jquery.rs.carousel.js?locale=<?php echo $locale ?>"></script>
+        <script type="text/javascript" src="<?php echo $crouselDir; ?>dist/js/jquery.rs.carousel.js?locale=<?php echo $localeDomain ?>"></script>
 
 <!-- carousel extensions (optional) -->
 <script type="text/javascript" src="<?php echo $crouselDir; ?>dist/js/jquery.rs.carousel-autoscroll.js"></script> 

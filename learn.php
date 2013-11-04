@@ -11,14 +11,14 @@
     require_once ('files/utils/topbarUtil.php');
 
     ?>
-<html dir="<?php echo $dir ?>" lang="<?php echo $locale ?>">
+<html dir="<?php echo $dir ?>" lang="<?php echo $localeDomain ?>">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>
         <?php
             echo _("Turtle Academy - learn logo programming in your browser");
             echo _(" free programming materials for kids");
-        ?>  
+        ?> 
         </title>
         <?php
         // Loading relevant js and css files
@@ -26,7 +26,7 @@
         require_once("files/utils/loadCrousel.php");
         
          echo "<script type='application/javascript' src='".$rootDir."files/jqconsole.js' ></script>\n" ;
-         echo "<script type='application/javascript' src='".$rootDir."files/interface.js?locale=".$locale."'></script>\n" ;
+         echo "<script type='application/javascript' src='".$rootDir."files/interface.js?locale=".$localeDomain."'></script>\n" ;
         // Case user logged in we will clear the storage data and load it from db
         
 
@@ -36,7 +36,7 @@
         echo "<link rel='stylesheet' href='".$rootDir."files/css/doc.css' type='text/css' media='all'/>\n" ; 
         echo "<link rel='stylesheet' href='".$rootDir."files/css/interface.css' type='text/css' media='all'/>\n" ; 
 
-        cssUtils::loadcss($locale, $rootDir . "files/css/interface"); 
+        cssUtils::loadcss($localeDomain, $rootDir . "files/css/interface"); 
         ?>      
     </head> 
     <body> 
@@ -85,7 +85,7 @@
                     <?php
                     //should be change to all rtl lnaguages
                     $lu = new languageUtil("turtleTestDb", "rtlLanguages");
-                    $isRtlLocale = $lu->findIfLocaleExist($locale);
+                    $isRtlLocale = $lu->findIfLocaleExist($localeDomain);
                     // if($locale == 'he_IL')
                     if ($isRtlLocale) {
                         ?>  
