@@ -165,14 +165,14 @@ require_once ('files/utils/topbarUtil.php');
     $strChooseNewUN = _("please choose another username");
 
         
-        $googleid = createOpenIdObject('https://www.google.com/accounts/o8/id', "loginopen.php");
-        $yahooid = createOpenIdObject('https://me.yahoo.com', "loginopen.php");
+   //     $googleid = createOpenIdObject('https://www.google.com/accounts/o8/id', "loginopen.php");
+   //     $yahooid = createOpenIdObject('https://me.yahoo.com', "loginopen.php");
 //setup some variables/arrays
         $action = array();
         $action['result'] = null;
         $text = array();
 
-//check if the form has been submitted
+        //If a new user is want to signup
         if (isset($_POST['signup'])) {
             $isTestUser = false;
             $username = $_POST['username'];
@@ -374,9 +374,10 @@ require_once ('files/utils/topbarUtil.php');
                         <span class='switch' data-switch='forgot-password-form'><?php echo _("Forgot my password"); ?></span>
 
                         <div class='cleaner_h10'></div>
+                        <!--
                         <a href="<?php echo $googleid->authUrl() ?>" class="zocial google">
                         <?php
-                            echo _("Sign In"); echo " ";echo _("with google")
+                            echo _("Sign In"); echo " ";echo _("with Google")
                         ?>
                         </a>
                         <div class='cleaner_h5'></div> 
@@ -384,6 +385,7 @@ require_once ('files/utils/topbarUtil.php');
                         <?php
                             echo _("Sign In"); echo " ";echo _("with Yahoo")
                         ?>
+                        -->
                         </a>
                     </form>        
                 </div>
@@ -427,7 +429,7 @@ require_once ('files/utils/topbarUtil.php');
         function addUserToDb($username, $password, $email, $users, $db) {
             global $phpDirPath, $sitePath, $text, $action;
             $date = date('Y-m-d H:i:s');
-            $userStructure = array("username" => $username, "password" => $password, "email" => $email,
+            $userStructure = array("username" => $username, "password" => $password,"badges" => "", "email" => $email,
                 "confirm" => false, "date" => $date);
             $userResult = $users->insert($userStructure, array('safe' => true));
             $userid = $userStructure['_id'];

@@ -396,18 +396,6 @@ else {
 
     <?php
     printLessonSteps();
-    /*
-    echo "<div id='lessonStep'>";
-    //    echo "<lable id='lessonStepLabel'> Lesson Step Title </lable>";
-    echo "<div id='stepNev'>";
-    echo "<lable class='lessonHeader'>lesson Steps </lable>";
-    echo "<ul id='lessonStepUl'>";
-    echo "</ul>";
-    echo "</div>";
-    //Inserting the step div
-    echo "</div>";
-    echo "</div>";
-     */
     ?>
                 <div class="leftLessonElem translationdiv"> 
                     <lable class='lesson-label translating-label' > Title :  </lable> 

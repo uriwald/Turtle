@@ -123,7 +123,10 @@ if (empty($_POST['steps'])) {
             }
             $return['originLanguageStepsArrAfterSet'] = $originLanguageStepsArr;
             $lessonsTitle = $originalTitle;
-            $lessonsTitle["$localefullpath"] = $_POST['lessonTitle'];
+            $postLessonTitle = "";
+            if (isset($_POST['lessonTitle']))
+                $postLessonTitle = $_POST['lessonTitle'];
+            $lessonsTitle["$localefullpath"] = $postLessonTitle;
             //$return['finalArrAfterTranslation'] = $finalArrAfterTranslation;
             $result = $lessons->update($criteria, array('$set' => array("steps" => $originLanguageStepsArr, "title" => $lessonsTitle, "precedence" => $precedence, "username" => $user , "lesson_turtle_id" => $turtleId)));
             $return['isExistingLesson'] = "If We got Any result";
