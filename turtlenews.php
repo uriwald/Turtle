@@ -26,7 +26,7 @@ $newsItems->sort(array('date' => -1));
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/news.css' type='text/css' media='all'/>
     </head>
     <body align="center"> 
-    <?php
+    <?php 
         //Printing the topbar menu
         topbarUtil::printTopBar("news");
     ?>
