@@ -1,5 +1,5 @@
 <?php
-     
+
     function sec_session_start() {
         $session_name = 'sec_session_id'; // Set a custom session name
         $secure = false; // Set to true if using https.
@@ -28,26 +28,29 @@
         "zh" => "zh_CN"   
     );
     
-    //$locale = "en_us";
-    if (isset ($_SESSION["locale"]))
-        $locale =   $_SESSION["locale"];
-    if (isset ($_GET['l']))
-        $locale =   $_GET['l'];
     if (isset ($_GET['locale']))
         $locale =   $_GET['locale'];
+    elseif (isset ($_GET['l']))
+        $locale =   $_GET['l'];
+    elseif(isset ($_SESSION["locale"]))
+        $locale =   $_SESSION["locale"];;
+    
+
     if ( !isset ($locale))
     {
+        $localeEnv      = "en_US.utf8";
+        $locale         = "en_US";
+        $localeDomain   = $locale;
         if (isSet($_GET["ltranslate"])) 
         {
-            $localeEnv = $_GET["ltranslate"].".utf8";
-            if (isset($LocaleVal[$localeEnv])) 
+            $locale     = $_GET["ltranslate"];
+            $localeEnv  = $locale.".utf8";
+            if (isset($LocaleVal[$locale])) 
                 $localeDomain   =   $LocaleVal[$localeEnv];
         }
         else
-        {
-            $localeEnv  = "en_US.utf8";
-            $locale     = "en_US";
-            $localeDomain = $locale;
+        {            
+                //
         }
     }
     else {
@@ -57,23 +60,34 @@
             $localeDomain   =   $locale;
        $localeEnv = $localeDomain.".utf8" ; 
     } 
-
-    $_SESSION['locale'] = $locale;
+    
+    $_SESSION['locale'] = $localeDomain;
     $lang               =  substr($locale, 0, 2);
-    $dir = ($locale == 'he_IL') ? 'rtl' : 'ltr';
+    $dir = ($localeDomain == 'he_IL') ? 'rtl' : 'ltr';
     $cssright = ($dir == 'ltr') ? 'right' : 'left';
     $cssleft = ($dir == 'ltr') ? 'left' : 'right';
     //echo " locale env is " . $localeEnv ;
+    
     putenv("LC_ALL=$localeEnv");
     setlocale(LC_ALL, $localeEnv);
     //setlocale(LC_ALL, "sp_SP.utf8");
     bindtextdomain("messages", "./locale");
     textdomain("messages");
     
+    
+    /*
+     *     if (isset ($_SESSION["locale"]))
+        $locale =   $_SESSION["locale"];
+    if (isset ($_GET['l']))
+        $locale =   $_GET['l'];
+    if (isset ($_GET['locale']))
+        $locale =   $_GET['locale'];
+     */
+    
 ?>
     <!-- In order to infrom js files on which locale are we right now -->
     <script type="text/javascript">
-            var locale   = "<?php echo $locale; ?>";
+            var locale   = "<?php echo $localeDomain; ?>";
             var rootDir  = "<?php echo $rootDir; ?>";
             var sitePath =   "<?php echo $sitePath; ?>";
 

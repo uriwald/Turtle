@@ -24,25 +24,25 @@ if ($openid->mode) {
         
 
         
-        print_r($user);
+        //print_r($user);
 
         $m = new Mongo();
         $db = $m->turtleTestDb;
-        $usersOpenID = $db->user_open_id;
+        $users = $db->users;
 
         $userExist = array('email' => $email , 'username'=>$email);
         $resultcount = $users->count($userExist);
         if ($resultcount == 0)      
-            $users->insert($user, array('safe' => true));
+            $users->insert($user, array('safe' => true)); 
         else
         {
-            echo "Do nothing";
+            //echo "Do nothing";
         }
 
          $_SESSION['username'] = $email;
          $_SESSION['isOpenID'] = true;
          
-        // header( 'Location: index.php' ) ;
+         header( 'Location: index.php' ) ; 
     } else {
         echo "The user has not logged in";
     }

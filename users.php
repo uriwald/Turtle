@@ -81,7 +81,7 @@
                     {
                     ?>
                         <p>
-                            <a href='<?php echo $rootDir; ?>files/institute/addInstituteUser.php?l=<?php echo $locale; ?>'>
+                            <a href='<?php echo $rootDir; ?>files/institute/addInstituteUser.php?l=<?php echo $localeDomain; ?>'>
                                 <?php echo _("Add a new user"); ?>
                             </a>
                         </p>
@@ -89,12 +89,12 @@
                     }
                     ?>
                     <p>
-                        <a href='<?php echo $rootDir; ?>files/newProgram.php?l=<?php echo $locale; ?>'>
+                        <a href='<?php echo $rootDir; ?>files/newProgram.php?l=<?php echo $localeDomain; ?>'>
                             <?php echo _("Create a new program"); ?>
                         </a>
                     </p>
                     <p>
-                        <a href='lesson.php?l=<?php echo $locale; ?>'>
+                        <a href='lesson.php?l=<?php echo $localeDomain; ?>'>
                             <?php echo _("Add a new lesson"); ?>
                         </a>
                     </p>

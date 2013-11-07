@@ -19,29 +19,19 @@ RewriteRule  ^language/([A-Za-z0-9-]+)/?$    index.php?locale=$1    [NC,L]    # 
 RewriteRule  ^next/language/([A-Za-z0-9-]+)/?$    next/index.php?locale=$1    [NC,L]    # Process index
 RewriteRule  ^users/([A-Za-z0-9-]+)/?$    users.php?locale=$1    [NC,L]    # Process user page
 RewriteRule  ^next/users/([A-Za-z0-9-]+)/?$    next/users.php?locale=$1    [NC,L]    # Process user page
-RewriteRule  ^playground/([A-Za-z0-9-]+)/?$    files/playground.php?locale=$1    [NC,L]    # Process playground
+RewriteRule  ^playground/([A-Za-z0-9-]+)/?$    playground.php?locale=$1    [NC,L]    # Process playground
 RewriteRule  ^next/playground/([A-Za-z0-9-]+)/?$    next/files/playground.php?locale=$1    [NC,L]    # Process playground
-RewriteRule  ^plain/([A-Za-z0-9-]+)/?$    plain.php?locale=$1    [NC,L]       # Process undefined
+RewriteRule  ^plain/([A-Za-z0-9-]+)/?$    plain.php?locale=$1    [NC,L]       # Process undefined 
 RewriteRule  ^plain/lang/([A-Za-z0-9-]+)/?$    plain.php?locale=$1    [NC,L]    # Process undefined
 RewriteRule  ^project/doc/([A-Za-z0-9-]+)/?$    documentation.php?locale=$1 [NC,L] #process doc
 RewriteRule  ^next/project/doc/?$       next/documentation.php [NC,L]              #process doc
 RewriteRule  ^news/([A-Za-z0-9-]+)/?$    turtlenews.php?locale=$1  [NC,L]                 #process news  
 RewriteRule  ^next/news/([A-Za-z0-9-]+)/?$    next/turtlenews.php?locale=$1 [NC,L]       #process news  
 
-#RewriteRule ^lang/he/?$   learn.php?locale=he_IL [NC,L]
+
 RewriteRule  ^lang/([A-Za-z0-9-]+)/?$    learn.php?locale=$1    [NC,L]    # Process lessons
 RewriteRule  ^next/lang/([A-Za-z0-9-]+)/?$    next/learn.php?locale=$1    [NC,L]    # Process lessons
 
-#RewriteRule ^lang/en/?$   learn.php?locale=en_US  [NC,L]
-#RewriteRule ^lang/es/?$   learn.php?locale=es_AR [NC,L]
-#RewriteRule ^lang/zh/?$   learn.php?locale=zh_CN [NC,L]
+
+
 RewriteRule ^lang/he/?$   learn.php?locale=he_IL [NC,L]
-#RewriteRule ^lang/ru/?$   learn.php?locale=ru_RU [NC,L] 
-#RewriteRule ^lang/de/?$   learn.php?locale=de_DE [NC,L]
-#RewriteRule ^lang/pt/?$   learn.php?locale=pt_BR [NC,L]
-#RewriteRule ^lang/pl/?$   learn.php?locale=pl_PL [NC,L]
-#RewriteRule ^lang/fi/?$   learn.php?locale=fi_FI [NC,L]
-#RewriteRule ^lang/nl/?$   learn.php?locale=nl_NL [NC,L]
-
-
-

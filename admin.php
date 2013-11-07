@@ -65,33 +65,35 @@
     {
 
         $locale = "en_US"; // Setting default
-        $localePrefix = "locale_";
         $localeGetVar = 'locale';
         if (isset($_GET[$localeGetVar]))
             $locale = $_GET[$localeGetVar];
         cssUtils::loadcss($locale, "./files/css/lessons");
         echo "<div> <span class='title'> <b> Lessons </b> 
-                <a href='lessons.php'> <span class='lessonh'> Go to lessons page </span> </a>
+                <a href='".$rootDir ."lessons.php'> <span class='lessonh'> Go to lessons page </span> </a>
              </div>";
         echo "<div> <span class='title'> <b> News </b>
-                <a href='files/turtleNews/insertNewsItem.php'> <span class='lessonh'> Insert News Item </span> </a>
-                <a href='files/turtleNews/newsTrans.php'> <span class='lessonh'> News Translation</span> </a>
-                <a href='files/turtleNews/news.php'> <span class='lessonh'> News management </span> </a>
+                <a href='".$rootDir ."files/turtleNews/insertNewsItem.php'> <span class='lessonh'> Insert News Item </span> </a>
+                <a href='".$rootDir ."files/turtleNews/newsTrans.php'> <span class='lessonh'> News Translation</span> </a>
+                <a href='".$rootDir ."files/turtleNews/news.php'> <span class='lessonh'> News management </span> </a>
              </div>";
         echo "<div> <span class='title'> <b> String Translation </b>
-                <a href='files/translation/strings/showtranslationstr.php'> <span class='lessonh'> Show translated strings </span> </a>
-                <a href='files/translation/strings/insertString.php'> <span class='lessonh'> Add string </span> </a>
+                <a href='".$rootDir ."files/translation/strings/showtranslationstr.php'> <span class='lessonh'> Show translated strings </span> </a>
+                <a href='".$rootDir ."files/translation/strings/insertString.php'> <span class='lessonh'> Add string </span> </a>
              </div>";
         echo "<div> <span class='title'> <b> Lesson Status</b>
-                <a href='files/translation/lesson/insertLessonInfo.php'> <span class='lessonh'> Insert new lesson </span> </a>
-                <a href='files/translation/lesson/LessonsStatus.php'> <span class='lessonh'> Edit lesson Status </span> </a>
-                <a href='files/translation/lesson/lessonsTransReportPage.php'> <span class='lessonh'> Lessons report page </span> </a>
+                <a href='".$rootDir ."files/translation/lesson/insertLessonInfo.php'> <span class='lessonh'> Insert new lesson </span> </a>
+                <a href='".$rootDir ."files/translation/lesson/LessonsStatus.php'> <span class='lessonh'> Edit lesson Status </span> </a>
+                <a href='".$rootDir ."files/translation/lesson/lessonsTransReportPage.php'> <span class='lessonh'> Lessons report page </span> </a>
              </div>";
+        echo "<div> <span class='title'> <b> Super User </b>
+                <a href='".$rootDir ."files/institute/addInstitute.php'> <span class='lessonh'> Add institute</span> </a>
+              </div>";
+        
     }
     else
     {
         echo " User is not register ";
     }
-        
-        
+               
 ?>
