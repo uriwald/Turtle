@@ -25,9 +25,10 @@
         $resultcount            = $strcol->count($strQuery);
         
         $emptyTranslate         = array("locale_zh_CN" => false ,"locale_es_AR" => false ,
-            "locale_he_IL" => false ,"locale_ru_RU" => false , "locale_pt_BR" => false , "locale_de_DE" => false ,"locale_pl_PL"=>false  );
+            "locale_he_IL" => false ,"locale_ru_RU" => false , "locale_pt_BR" => false , "locale_de_DE" => false ,"locale_pl_PL"=>false ,
+           "locale_nl_NL" => false );
         $display                = array("zh_CN" => true ,"es_AR" => true ,"he_IL" => true ,"ru_RU" => true,
-                                            "pt_BR" => true ,"pl_PL" => true ,"de_DE" => true);  
+                                            "pt_BR" => true ,"pl_PL" => true ,"de_DE" => true , "nl_NL" => true);  
         //Case we need to add a new record to db
         if (!$resultcount > 0 ) 
         { 
@@ -56,6 +57,5 @@
                                                                     "locale_pt_BR" => $pt ,"locale_pl_PL" => $pl , "locale_nl_NL" => $nl , "locale_fi_FI" => $fi ));
             echo " String was successfully Updated" ;
         }
-    } 
-    
+    }  
 ?>

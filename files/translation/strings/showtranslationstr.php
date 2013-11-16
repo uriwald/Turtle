@@ -52,8 +52,9 @@
                                     <td><?php echo $de; ?></td>
                                     <td><?php echo $pt; ?></td>
                                     <td><?php echo $pl; ?></td>
-                                    <td><?php echo $nl; ?></td>
                                     <td><?php echo $fi; ?></td>
+                                    <td><?php echo $nl; ?></td>
+                                    
                                     <td>
                                         <div class="controls span5">
                                                 <input type="checkbox" value="option1" id="display_zh<?php echo $i ?>" <?php if ($displayArr['zh_CN'] == "true") echo "checked=true";?>> ZH
@@ -62,8 +63,8 @@
                                                 <input type="checkbox" value="option4" id="display_de<?php echo $i ?>" <?php if ($displayArr['de_DE'] == "true") echo "checked=true";?>> DE
                                                 <input type="checkbox" value="option5" id="display_pt<?php echo $i ?>" <?php if ($displayArr['pt_BR'] == "true") echo "checked=true";?>> PT
                                                 <input type="checkbox" value="option6" id="display_pl<?php echo $i ?>" <?php if ($displayArr['pl_PL'] == "true") echo "checked=true";?>> PL
-                                                <input type="checkbox" value="option6" id="display_nl<?php echo $i ?>" <?php if ($displayArr['nl_NL'] == "true") echo "checked=true";?>> NL
                                                 <input type="checkbox" value="option6" id="display_fi<?php echo $i ?>" <?php if ($displayArr['fi_FI'] == "true") echo "checked=true";?>> FI
+                                                <input type="checkbox" value="option6" id="display_nl<?php echo $i ?>" <?php if ($displayArr['nl_NL'] == "true") echo "checked=true";?>> NL
 
                                       </div>
                                     </td>
