@@ -96,8 +96,10 @@ class collectionUtil {
            $collection = $db->$collectoinName;
            $cursor = $collection->find();
             foreach ($cursor as $collectionObj) {
-                $newdata = array('$set' => array($property => $val));
-                $collection->update($collectionObj, $newdata);
+                if (!isset($collectionObj[$property])) {
+                    $newdata = array('$set' => array($property => $val));
+                    $collection->update($collectionObj, $newdata);
+                }
             } 
      }
     
