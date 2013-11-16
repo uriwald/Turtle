@@ -117,6 +117,10 @@
             $lang = "German";
         else if ($locale == "pt_BR")
             $lang = "Portuguese";
+        else if ($locale == "pl_PL")
+            $lang = "Polish";
+        else if ($locale == "nl_NL")
+            $lang = "Duetch";
         return $lang;
     }
     ?>
