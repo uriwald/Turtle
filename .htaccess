@@ -14,6 +14,8 @@ RewriteRule ^forum/?$     forum.php [NC,L]
 RewriteRule ^registration/?$     registration.php [NC,L]
 
 
+RewriteRule  ^articles/([A-Za-z0-9-]+)/?$    files/faq/faqItem.php?faqItem=$1    [NC,L]    # Process index
+RewriteRule  ^faqEditItem/([A-Za-z0-9-]+)/?$    files/faq/faqEditItem.php?faqItem=$1    [NC,L]    # Process index 
 
 RewriteRule  ^language/([A-Za-z0-9-]+)/?$    index.php?locale=$1    [NC,L]    # Process index
 RewriteRule  ^next/language/([A-Za-z0-9-]+)/?$    next/index.php?locale=$1    [NC,L]    # Process index
