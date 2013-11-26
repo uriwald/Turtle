@@ -180,8 +180,10 @@ class badgesUtil {
         }
         $badges = $badges . $badgeName;
         $newuser['badges'] = $badges;
-        $users->update($user , $newuser);
-        
+        if ($user != null)
+        {
+            $users->update($user , $newuser);
+        }
         
         
    }
