@@ -35,22 +35,23 @@ and open the template in the editor.
         ?>
                 <div class="faqItem">
                     <lable class="lessonHeader"> Faq question: </lable> 
-                    <input type="text" name="lessonTitle"  id="faqQuestion" class="lessonInput" placeholder="Faq question" 
+                    <input type="text" name="faqQuestion"  id="faqQuestion" class="lessonInput" placeholder="Faq question" 
                        value ="<?php echo $faqItem['question'][$locale] ;?>"/>
                 </div>
                 <div class="faqItem">
                     <lable class="lessonHeader"> Faq answer: </lable> 
-                    <input type="text" name="lessonTitle"  id="faqAnswer" class="lessonInput" placeholder="Faq question" 
-                       value ="<?php echo $faqItem['answer'][$locale] ;?>"/>
+                    <textarea type="text" name="faqAnswer"  id="faqAnswer" class="lessonInput" placeholder="Faq question" col="4" > <?php echo $faqItem['answer'][$locale] ;?> </textarea> </br>
+                  <!--  <input type="text" name="lessonTitle"  id="faqAnswer" class="lessonInput" placeholder="Faq question" 
+                       value ="<?php echo $faqItem['answer'][$locale] ;?>"/> -->
                 </div>
                 <div class="faqItem">
                     <lable class="lessonHeader"> Faq Type: </lable> 
-                    <input type="text" name="lessonTitle"  id="faqType" class="lessonInput" placeholder="Faq question" 
+                    <input type="text" name="faqType"  id="faqType" class="lessonInput" placeholder="Faq question" 
                        value ="<?php echo $faqItem['type'];?>"/>
                 </div>
                 <div class="faqItem">
                     <lable class="lessonHeader"> Precedence </lable> 
-                    <input type="text" name="lessonTitle"  id="faqPrecedence" class="lessonInput" placeholder="Faq question" 
+                    <input type="text" name="faqPrecedence"  id="faqPrecedence" class="lessonInput" placeholder="Faq question" 
                        value ="<?php echo $faqItem['precedence'];?>"/>
                 </div>
                 <div id="actionbtn">

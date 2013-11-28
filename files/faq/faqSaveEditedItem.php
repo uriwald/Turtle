@@ -8,8 +8,8 @@
     $locale         = $_POST['locale'];
     
     //If the item is Edited Item
-    if (!$_POST['isTrnaslate'])
-    {
+    if ($_POST['isTrnaslate'] == "false")
+    { 
         $type           = $_POST['type'];         
         $precedence     = $_POST['precedence'];
     }
@@ -25,7 +25,7 @@
     
     if ($resultcount > 0)
     {
-        if($_POST['isTrnaslate'])
+        if($_POST['isTrnaslate'] == "true")
         {
             $type           = $faqExist['type'];  
             $precedence     = $faqExist['precedence'];

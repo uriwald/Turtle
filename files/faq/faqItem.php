@@ -37,20 +37,39 @@ and open the template in the editor.
         
         //3 . If faq was found than 
         $faqItem = $faqs->findOne(array("id" => $faqItemnumber));
+        
+        //Type question or answer
+        //If no item will use default
+        function printfaqItem($faqItem , $type){
+            $lcl = $GLOBALS['locale'];
+            if ($lcl != "en_US")
+            {
+                  if ($faqItem[$type][$lcl] == "")
+                      echo $faqItem[$type]["en_US"];
+                  else
+                      echo $faqItem[$type][$lcl];
+            }
+            else { // Locale en_US
+                echo $faqItem[$type][$lcl];
+            }
+                
+        }
         if ($faqItem != null)
             // Load it into text
             // Provide the possibility to change edited lessons
         {
         ?>
     <div id="faq-main">
-        <div id="faq-content" class="span16">
+        <div id="faq-content" class="span12">
             <div id="faq-title">
-                <h3> <?php echo $faqItem['question'][$locale] ;?> </h3>
+                <h2> <?php printfaqItem($faqItem , "question") ;?> </h2>
             </div>
             <div id="faq-answer">
-                 <h3> <?php echo $faqItem['answer'][$locale] ;?> </h3>
+                 <p> <?php printfaqItem($faqItem , "answer") ;?> </p>
             </div>
-
+            <div id="faqFooter">
+                <a href='<?php echo $rootDir;?>faq.php'> Back to FAQ page </a>
+            </div>
         </div> <!-- End faq content -->
 
     </div>
