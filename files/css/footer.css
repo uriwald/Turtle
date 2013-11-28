@@ -13,19 +13,46 @@ root {
 .flagIcon{
     height: 50px;
 }
+#footer{
+    float:none;
+    margin-left: auto;
+    margin-right:auto;
+    width : 940px;
+    /* background-color : #F7F7F7; */
+}
 #footer li {
     list-style: none;
     display: inline;
     background-color: ghostwhite;
-    border-style:solid;
-    border-width:2px;
+    border : none;
+    
+    width : 250px;
+    font-weight: bold;
+    font:15px arial,sans-serif;
+
     
 } 
+#footer_elem{
+    height: 20px;
+}
+:lang(he)#footer_elem li{
+    float : right;
+}
+#footer_elem li{
+    float : left;
+}
+
 #footer li a {
-    text-decoration:none; 
-    color : #3333ff;
+    font-weight: bold;
     font:15px arial,sans-serif;
+    width : 250px;
 } 
+#turtleAt{
+    float : none;
+}
+#footer > div {
+    width : 940px;
+}
 ul{
     list-style: disc; 
 }
