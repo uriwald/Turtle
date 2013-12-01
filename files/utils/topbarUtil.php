@@ -17,7 +17,7 @@ class topbarUtil {
                 "sample" => false
             );
 
-            $signUpDisplay = true;
+            $signUpDisplay = true; 
             $languagesDisplay = true;
 
             $language = array(
@@ -26,6 +26,7 @@ class topbarUtil {
                 "es" => "es",
                 "fi" => "fi",
                 "nl" => "nl",
+                "it" => "it",
                 "pt" => "pt",
                 "pl" => "pl",
                 "ru" => "ru",
@@ -38,6 +39,7 @@ class topbarUtil {
                 "es" => true,
                 "de" => true,
                 "nl" => false,
+                "it" => false,
                 "pt" => true,
                 "pl" => false,
                 "fi" => false,
@@ -51,6 +53,7 @@ class topbarUtil {
                 "es" => "es",
                 "fi" => "fi", 
                 "pt" => "br",
+                "it" => "it",
                 "pl" => "pl",
                 "ru" => "ru",
                 "nl" => "nl",
@@ -64,6 +67,7 @@ class topbarUtil {
                 "es" => "Español",
                 "fi" => "Finnish",
                 "zh" => "中文",
+                "it" => "italian",
                 "he" => "עברית",
                 "de" => "Deutsch",
                 "nl" => "Dutch",
@@ -75,7 +79,14 @@ class topbarUtil {
                      $topbarDisplay['playground'] = true ; 
                      $topbarDisplay['news'] = true ; $topbarDisplay['about'] = true ; 
                      $displaylanguage['de'] = true ;  $displaylanguage['pl']=true;$displaylanguage['fi']=true;
-                     $displaylanguage['nl']=true;
+                     $displaylanguage['nl']=true;$displaylanguage['it']=true;
+                    break;
+                case "faq":
+                    $signUpDisplay = false;
+                    $languagesDisplay = false;
+                    $topbarSpanSize = 20;
+                    $topbarDisplay['playground'] = true ;  $topbarDisplay['news'] = true ; $topbarDisplay['about'] = true ; 
+                    $topbarDisplay['exercise'] = true ;
                     break;
                 case "index":
                     $signUpDisplay = false;
@@ -222,17 +233,17 @@ class topbarUtil {
                                 <li class="cc-button-group btn-group"> 
                                     <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" >
                                         <?php
-                                        $displayUserName = $_SESSION['username'];
-                                        if (isset($_SESSION['isOpenID'])) {
-                                            $emailDetails = explode('@', $_SESSION['username']);
-                                            $displayUserName = $emailDetails[0];
-                                        }
-                                        echo $displayUserName;
-                                        ?>                                               
+                                            $displayUserName = $_SESSION['username'];
+                                            if (isset($_SESSION['isOpenID'])) {
+                                                $emailDetails = explode('@', $_SESSION['username']);
+                                                $displayUserName = $emailDetails[0];
+                                            }
+                                            echo $displayUserName;
+                                        ?>                          
                                     </a>
                                     <ul class="dropdown-menu" id="ddusermenu"role="menu" aria-labelledby="dLabel">
-                                        <li><a tabindex="-1" href="<?php echo $rootDir; ?>users.php"   class="innerLink" id="help-nav"><?php echo _("My account"); ?></a></li>
-                                        <li><a tabindex="-1" href="<?php echo $rootDir; ?>project/doc" class="innerLink" id="hel-nav"><?php echo _("Help"); ?></a></li>
+                                        <li><a tabindex="-1" href="<?php echo $rootDir . "users/" . $lang ; ?>"   class="innerLink" id="help-nav"><?php echo _("My account"); ?></a></li>
+                                        <li><a tabindex="-1" href="<?php echo $rootDir."project/doc/".$lang; ?>" class="innerLink" id="hel-nav"><?php echo _("Help"); ?></a></li>
                                         <li><a href="<?php echo $rootDir; ?>logout.php" class="innerLink"><?php echo _("Log out"); ?></a></li>
                                     </ul>
                                 </li>
