@@ -18,7 +18,8 @@
             ?>  
         </title>     
         <?php
-        require_once("../utils/includeCssAndJsFiles.php");
+        require_once("../utils/includeCssAndJsFiles.php"); 
+            includeCssAndJsFiles::includePageFiles("faqadmin"); 
         echo "<link rel='stylesheet' href='../css/index.css' type='text/css' media='all'/>";
 
         // Case user logged in we will clear the storage data and load it from db
@@ -29,7 +30,7 @@
             <?php
         }
         ?>
-            <link rel='stylesheet' href='../css/faq.css' type='text/css' media='all'/>
+           <!-- <link rel='stylesheet' href='../css/faq.css' type='text/css' media='all'/> -->
     </head>
     <body>      
             <?php
@@ -48,7 +49,7 @@
                     echo "<div>";
                         echo "<span>";
                         ?>
-                            <a href="/faqEditItem/<?php echo $faq['id']; ?>"><?php echo  $faq['question']['en_US']; ?></a>
+                            <a href="<?php echo $rootDir; ?>faqEditItem/<?php echo $faq['id']; ?>"><?php echo  $faq['question']['en_US']; ?></a>
                         <?php
                         echo "</span>";    
                     echo "</div>";

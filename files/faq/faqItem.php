@@ -12,10 +12,11 @@ and open the template in the editor.
     require_once("../utils/collectionUtil.php");
     require_once('../utils/topbarUtil.php');
     require_once("../utils/includeCssAndJsFiles.php"); 
+    includeCssAndJsFiles::includePageFiles("faqadmin"); 
 ?>
 <html dir="<?php echo $dir ?>" lang="<?php echo $lang ?>"> 
     <head>
-        <link rel='stylesheet' href='../../files/css/faq.css' type='text/css' media='all'/>
+        <!--<link rel='stylesheet' href='../../files/css/faq.css' type='text/css' media='all'/> -->
         
     </head>
 

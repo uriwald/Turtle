@@ -11,8 +11,9 @@ and open the template in the editor.
     require_once("../../localization.php"); 
     require_once("../utils/collectionUtil.php");
     require_once("../utils/includeCssAndJsFiles.php"); 
+    includeCssAndJsFiles::includePageFiles("faqadmin"); 
 ?>
-<link rel='stylesheet' href='../../files/css/faq.css' type='text/css' media='all'/>
+    <!-- <link rel='stylesheet' href='../../files/css/faq.css' type='text/css' media='all'/> -->
 <html>
 
     <body>      

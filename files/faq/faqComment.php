@@ -18,13 +18,16 @@ require_once("faqSideNav.php");
         <meta name="description" content="">
         <meta name="author" content="">
         <?php
-        echo "<link rel='stylesheet' type='text/css' href='" . $rootDir . "files/css/registration.css' /> ";
+        //echo "<link rel='stylesheet' type='text/css' href='" . $rootDir . "files/css/registration.css' /> ";
 
-        require_once("../utils/includeCssAndJsFiles.php");
+         require_once("../utils/includeCssAndJsFiles.php"); 
+        includeCssAndJsFiles::includePageFiles("faqadmin");         
         ?>     
+        <!--
         <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='../css/faq.css' type='text/css' media='all'/>
         <script src="<?php echo $rootDir; ?>ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
+        --> 
         <script type='text/javascript'> 
             $(document).ready(function(){
                 var gt = new Gettext({'domain' : 'messages'});
