@@ -1,10 +1,60 @@
 <?php
-    if (session_id() == '')
-        session_start();
-/* Including all .js and .css files for each webpage */
-//require_once("./environment.php");
+class includeCssAndJsFiles {
+    //Static function to load pages according to page type
+    public static function includePageFiles($pageName) 
+    {
+        $additionalFiles = "";
+        global $_SESSION , $rootDir , $localeDomain;
+        switch ($pageName) {
+            case "index":
+                $additionalFiles = "<link rel='stylesheet' href='".$rootDir."files/css/index.css' type='text/css' media='all'/>";
+            break;
+        
+            case "learn":
+                $additionalFiles = $additionalFiles . "<script type='application/javascript' src='".$rootDir."files/jqconsole.js' ></script>\n";
+                $additionalFiles = $additionalFiles . "<script type='application/javascript' src='".$rootDir."files/interface.js?locale=".$localeDomain."'></script>\n";
+                $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css'/>\n" ; 
+                $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'/>\n" ; 
+                $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='".$rootDir."files/css/doc.css' type='text/css' media='all'/>\n" ; 
+                $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='".$rootDir."files/css/interface.css' type='text/css' media='all'/>\n" ;
+                break;
+           case "news":
+                $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='".$rootDir."files/css/news.css' type='text/css' media='all'/>\n" ;
+               break;
+           case "registration":
+               $additionalFiles = $additionalFiles . "<link rel='stylesheet' type='text/css' href='" . $rootDir . "files/css/registration.css' /> ";
+               $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='".$rootDir."files/css/zocial.css' type='text/css' media='all'/>\n" ;
+               $additionalFiles = $additionalFiles . "<script type='application/javascript' src='".$rootDir."ajax/libs/jquery/validator/dist/jquery.validate.js'></script>\n";
+               break;
+           case "doc":
+               $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='".$rootDir."files/css/doc.css' type='text/css' media='all'/>\n" ;
+               break;           
+           case "users":
+               $additionalFiles = $additionalFiles ."<link rel='stylesheet' type='text/css' href='".$rootDir."files/css/users.css'/> "; 
+               $additionalFiles = $additionalFiles ."<link rel='stylesheet' type='text/css' href='".$rootDir."files/css/badges.css'/> "; 
+               break;
+            case "faq":
+               $additionalFiles = $additionalFiles ."<link rel='stylesheet' type='text/css' href='".$rootDir."files/css/index.css'/> "; 
+               $additionalFiles = $additionalFiles ."<link rel='stylesheet' type='text/css' href='".$rootDir."files/css/faq.css'/> "; 
+               break;
+           case "faqadmin":
+               $additionalFiles = $additionalFiles . "<link rel='stylesheet' type='text/css' href='" . $rootDir . "files/css/registration.css' /> ";
+               $additionalFiles = $additionalFiles . "<link rel='stylesheet' type='text/css' href='" . $rootDir . "files/css/zocial.css' /> ";
+               $additionalFiles = $additionalFiles . "<link rel='stylesheet' type='text/css' href='" . $rootDir . "files/css/faq.css' /> ";
+               $additionalFiles = $additionalFiles . "<script type='application/javascript' src='".$rootDir."ajax/libs/jquery/validator/dist/jquery.validate.js'></script>\n";
 
-    /* Load JQuery files */
+               break;
+           case "create-program":
+               
+               break;
+        }
+
+    includeCssAndJsFiles::includingFiles($additionalFiles);
+    }
+    private static function includingFiles($additionalFiles)
+    {
+        global $rootDir,$env , $localeDomain;
+        /* Load JQuery files */
         if ($env== "local"){ 
             echo "<script type='application/javascript' src='".$rootDir."files/dd/js/jquery/jquery-1.8.2.min.js' ></script>";
         }else{ 
@@ -40,9 +90,7 @@
         //    echo "<script src='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.1/bootstrap.min.js'>";
         echo "<script type='application/javascript' src='".$rootDir."twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-carousel.js' ></script>" ; 
         echo "<link href='".$rootDir."files/bootstrap/css/bootstrap.all.css' rel='stylesheet' >" ;
-         
-         
-    /* END loading boostraps files */
+
     
     /* loading some other files */
         if (!isset($localeDomain))
@@ -67,11 +115,7 @@
         
         
         echo "<link rel='stylesheet' href='".$rootDir."files/css/topbar.css' type='text/css' media='all'/>"; 
-
-     /* End loading some other files */ 
-        //Will load the following only when the save image will be implemented
-        //echo "<script type='application/javascript' src='http://www.nihilogic.dk/labs/canvas2image/canvas2image.js'></script>\n" ; 
-
+        echo "<link rel='stylesheet' href='".$rootDir."files/css/footer.css' type='text/css' media='all'/>"; 
   ?> 
     <!-- Google Analytics Tracking --> 
     <script type="application/javascript"> 
@@ -85,5 +129,12 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
-    <!-- End of Google Analytics Tracking --> 
+    <!-- End of Google Analytics Tracking -->  
+    <?php
+    echo $additionalFiles;
+    }
+    
+}
 
+
+?>

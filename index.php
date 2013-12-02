@@ -6,7 +6,6 @@
     require_once("localization.php"); 
     require_once("files/footer.php");
     require_once('files/utils/topbarUtil.php');
-
     ?>
 <html dir="<?php echo $dir ?>" lang="<?php echo $lang ?>"> 
     <head>
@@ -16,18 +15,14 @@
             echo _("Turtle Academy - learn logo programming in your browser");
             echo _(" free programming materials for kids");
             ?>  
-        </title>      
+        </title>     
         <?php
         require_once("files/utils/includeCssAndJsFiles.php"); 
-        echo "<link rel='stylesheet' href='/files/css/index.css' type='text/css' media='all'/>";
+        includeCssAndJsFiles::includePageFiles("index"); 
         
         // Case user logged in we will clear the storage data and load it from db
         $isUserLoggedIn =   isset($_SESSION['username']);
-        if ($isUserLoggedIn) {
-            ?>   
-            <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
-        <?php
-        }
+
         ?>
     </head>
     <div id="index-main">
@@ -130,10 +125,10 @@
                 </div>
             </div>
         </div> <!-- /container -->
-        <?php //echo $footer; ?>
+        <?php echo $footer; ?>
 
     </div> <!-- End of main index-->
-    
+   
     <script> 
         //Function to create a logo drawing on a new canvas
         function do_logo(id ,cmd) {

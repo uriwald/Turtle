@@ -21,9 +21,10 @@ $newsItems->sort(array('date' => -1));
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><?php echo _("TurtleAcademy news"); ?></title> 
         <?php
-        require_once("files/utils/includeCssAndJsFiles.php");
+            require_once("files/utils/includeCssAndJsFiles.php"); 
+            includeCssAndJsFiles::includePageFiles("news");
         ?>
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/news.css' type='text/css' media='all'/>
+        
     </head>
     <body align="center"> 
     <?php 
@@ -81,10 +82,17 @@ $newsItems->sort(array('date' => -1));
                     $newdate    =    date_format($dateTime, 'Y-m-d');
                     if ($localeDomain != "en_US") {
                         $localestr = "locale_" . $localeDomain;
-                        if (isset($newsItem['headline_translate'][$localestr]))
-                            $headline = $newsItem['headline_translate'][$localestr];
-                        if (isset($newsItem['context_translate'][$localestr]))
+                        if (isset($newsItem['headline_translate'][$localestr]) )
+                        {
+                            if (strlen($newsItem['headline_translate'][$localestr]) > 3)
+                                $headline = $newsItem['headline_translate'][$localestr];
+                            else
+                                $headline = $headline . " <span class='nottranslated'>(Hasn't been translated yet)</span>";
+                        }
+                        if (isset($newsItem['context_translate'][$localestr]) && strlen($newsItem['context_translate'][$localestr]) > 3)
+                        {
                             $context = $newsItem['context_translate'][$localestr];
+                        }
                         //echo $headline . $context;
                     }
                     if (strlen($headline) > 3) { //Check if the header is valid for this language
@@ -97,6 +105,10 @@ $newsItems->sort(array('date' => -1));
                     } //End of checking if headline is really exist
                 }
             ?>
+        <?php
+            if (isset($footer))
+                echo $footer;
+        ?> 
         </div>
     </body>
     <script>

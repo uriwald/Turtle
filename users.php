@@ -42,10 +42,8 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <?php  
-        require_once("files/utils/includeCssAndJsFiles.php"); 
-        echo "<link rel='stylesheet' type='text/css' href='".$rootDir."files/css/users.css'/> "; 
-        echo "<link rel='stylesheet' type='text/css' href='".$rootDir."files/css/badges.css'/> "; 
-        echo "<link rel='stylesheet' type='text/css' href='".$rootDir."files/css/topbar.css'/> "; 
+            require_once("files/utils/includeCssAndJsFiles.php"); 
+            includeCssAndJsFiles::includePageFiles("users");
         ?>
 
     </head>
@@ -93,18 +91,20 @@
                             <?php echo _("Create a new program"); ?>
                         </a>
                     </p>
+                    <!--
                     <p>
                         <a href='lesson.php?l=<?php echo $localeDomain; ?>'>
                             <?php echo _("Add a new lesson"); ?>
                         </a>
                     </p>
+                    -->
                     <p> 
                         <a href='#myProgress'>
                             <?php echo _("My progress"); ?>
                         </a>
                     </p>
                     <p>
-                        <a href='#'>
+                        <a href='<?php  echo $rootDir."project/doc/".$lang; ?>'>
                             <?php echo _("Help"); ?>
                         </a>
                     </p>
@@ -124,7 +124,8 @@
                         $badgesArr           =   explode(",",$badges);
                         if (in_array("1", $badgesArr)) 
                         { 
-                            echo "<div class='badge' title='finish lesson number 1' >";                       
+                            echo "<div class='badge' title='finish lesson number 1' >";      
+                                echo "<p> Green shield </p>";
                                 echo "<img class='badgeImg' id='turtleimg' src='".$sitePath ."/Images/badges/lightshield.jpg' />";
                             echo "</div>";
                         }
@@ -268,10 +269,10 @@
                     </table>
                 </div><!-- end of center content -->
             </div>
-                                       <?php
-                                       if (isset($footer))
-                                           echo $footer;
-                                       ?>
+            <?php
+                if (isset($footer))
+                    echo $footer;
+            ?>
         </div>
     <script> 
           $(document).ready(function() {

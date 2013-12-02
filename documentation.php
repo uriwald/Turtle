@@ -13,16 +13,15 @@ require_once('files/utils/topbarUtil.php');
 <!DOCTYPE html>
 <html dir="ltr"> 
     <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <title> <?php echo _("Project Documentation"); ?></title>
         <?php
-            require_once("files/utils/includeCssAndJsFiles.php");
+             require_once("files/utils/includeCssAndJsFiles.php"); 
+            includeCssAndJsFiles::includePageFiles("doc");
         ?>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/doc.css' type='text/css' media='all'/>
+         
+
+        
     </head>
     <body>
         <?php
@@ -305,6 +304,10 @@ require_once('files/utils/topbarUtil.php');
                     </div> <!-- Middle div information -->
                 </article>
             </div> <!--/row-->
+        <?php
+            if (isset($footer))
+                echo $footer;
+        ?> 
         </div> <!--/end of container-->
         <!-- Creating logo symbols -->
         <script>

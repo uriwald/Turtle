@@ -23,18 +23,9 @@
         <?php
         // Loading relevant js and css files
         require_once("files/utils/includeCssAndJsFiles.php"); 
+        includeCssAndJsFiles::includePageFiles("learn");
         require_once("files/utils/loadCrousel.php");
         
-         echo "<script type='application/javascript' src='".$rootDir."files/jqconsole.js' ></script>\n" ;
-         echo "<script type='application/javascript' src='".$rootDir."files/interface.js?locale=".$localeDomain."'></script>\n" ;
-        // Case user logged in we will clear the storage data and load it from db
-        
-
-        echo "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css'/>\n" ; 
-        echo "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'/>\n" ; 
-        
-        echo "<link rel='stylesheet' href='".$rootDir."files/css/doc.css' type='text/css' media='all'/>\n" ; 
-        echo "<link rel='stylesheet' href='".$rootDir."files/css/interface.css' type='text/css' media='all'/>\n" ; 
 
         cssUtils::loadcss($localeDomain, $rootDir . "files/css/interface"); 
         ?>      
@@ -125,7 +116,9 @@
                     ?>
                 </div> <!-- End Lesson + nav -->
             </div> <!-- End Accordion + nav -->
+           
         </div> <!-- End of main div -->
+         <?php echo $footer; ?>
 
         <script>
             // Select language in main page
