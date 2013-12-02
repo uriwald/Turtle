@@ -33,7 +33,8 @@ require_once('utils/topbarUtil.php');
     <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
     <link rel="stylesheet" href="codemirror/lib/codemirror_turtle.css">
     <?php
-    require_once("utils/includeCssAndJsFiles.php");
+    require_once("utils/includeCssAndJsFiles.php"); 
+    includeCssAndJsFiles::includePageFiles("user-program"); 
     echo "<script type='application/javascript' src='" . $rootDir . "files/jquery.Storage.js' ></script>";
     ?>   
 

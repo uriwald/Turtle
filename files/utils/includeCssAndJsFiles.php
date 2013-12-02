@@ -44,8 +44,22 @@ class includeCssAndJsFiles {
                $additionalFiles = $additionalFiles . "<script type='application/javascript' src='".$rootDir."ajax/libs/jquery/validator/dist/jquery.validate.js'></script>\n";
 
                break;
-           case "create-program":
+           case "user-program":
+               $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/codemirror/lib/codemirror.js' ></script>\n";
+               $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/runmode/runmode.js' ></script>\n";
+               $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/edit/closebrackets.js' ></script>\n";
+               $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/edit/matchbrackets.js' ></script>\n";
+               $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/display/placeholder.js' ></script>\n";
+               $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/selection/active-line.js' ></script>\n";
+               $additionalFiles = $additionalFiles ."<script type='application/javascript' src='" . $rootDir . "files/codemirror/mode/logo/logo.js' ></script>\n";
+        
+               $additionalFiles = $additionalFiles . "<link   href='".$rootDir."files/codemirror/mode/logo/logo.css' rel='stylesheet' >";
                
+               $additionalFiles = $additionalFiles . "<link   href='".$rootDir."files/codemirror/lib/codemirror_turtle.css' rel='stylesheet' >";
+               $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/jqconsole.js' ></script>\n";
+               $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
+               $additionalFiles = $additionalFiles . "<link   href='".$rootDir."files/codemirror/mode/logo/logo.css' rel='stylesheet'></link>";
+               $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/interface_user_program.js?locale=" . $localeDomain."'></script>";
                break;
         }
 

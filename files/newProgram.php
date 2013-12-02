@@ -20,6 +20,7 @@ require_once('utils/topbarUtil.php');
         ?>  
     </title>     
     <?php
+    /*
         echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/lib/codemirror.js' ></script>\n";
         echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/runmode/runmode.js' ></script>\n";
         echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/edit/closebrackets.js' ></script>\n";
@@ -30,21 +31,13 @@ require_once('utils/topbarUtil.php');
         
         echo "<link   href='".$rootDir."files/codemirror/mode/logo/logo.css' rel='stylesheet' >";
         echo "<link   href='".$rootDir."files/codemirror/lib/codemirror_turtle.css' rel='stylesheet' >";
+     * 
+     */
     ?>
-    <!--
-    <script src="codemirror/lib/codemirror.js"></script>
 
-    <script src="codemirror/addon/runmode/runmode.js"></script>
-    <script src="codemirror/addon/edit/closebrackets.js"></script>
-    <script src="codemirror/addon/edit/matchbrackets.js"></script>
-    <script src="codemirror/addon/display/placeholder.js"></script> 
-    <script src="codemirror/addon/selection/active-line.js"></script>
-    <script src="codemirror/mode/logo/logo.js"></script>    
-    <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
-    <link rel="stylesheet" href="codemirror/lib/codemirror_turtle.css">
-    -->
     <?php
-    require_once("utils/includeCssAndJsFiles.php");
+    require_once("utils/includeCssAndJsFiles.php"); 
+    includeCssAndJsFiles::includePageFiles("user-program"); 
     echo "<script type='application/javascript' src='" . $rootDir . "files/jquery.Storage.js' ></script>";
     ?>   
 
@@ -55,14 +48,16 @@ require_once('utils/topbarUtil.php');
         echo $po_file;
     else
         echo $po_file;
-    
+    /*
     echo "<script type='application/javascript' src='" . $rootDir . "files/jqconsole.js' ></script>\n";
     echo "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
     echo "<link   href='".$rootDir."files/codemirror/mode/logo/logo.css' rel='stylesheet'></link>";
+     * 
+     */
     ?>        
-    <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_user_program.js?locale=<?php echo $localeDomain ?>"></script> <!-- Interface scripts -->
+     <!-- <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_user_program.js?locale=<?php echo $localeDomain ?>"></script> <!-- Interface scripts -->
 
-    <!-- <link rel="stylesheet" href="codemirror/mode/logo/logo.css"> -->
+    <!--<link rel="stylesheet" href="codemirror/mode/logo/logo.css"> -->
 </head>
 <body>
         <?php
