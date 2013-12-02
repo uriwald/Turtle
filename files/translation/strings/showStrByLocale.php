@@ -3,7 +3,8 @@
     require_once("../../../environment.php");
     require_once("../../../localization.php"); 
     require_once("../../utils/collectionUtil.php");
-    require_once("../../utils/includeCssAndJsFiles.php");
+    require_once("../../utils/includeCssAndJsFiles.php"); 
+    includeCssAndJsFiles::includePageFiles("string-translate"); 
 ?>
     <table>
         <tbody>

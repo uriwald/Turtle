@@ -1,21 +1,11 @@
 <?php
-/*
-    $fileDirectory = "../../";
-    require_once($fileDirectory."utils/translationUtil.php");
-    include_once($fileDirectory."inc/dropdowndef.php");
-    include_once($fileDirectory."inc/boostrapdef.php");
-    include_once($fileDirectory."inc/jquerydef.php");
-    $locale = "zh_CN";
-    if (isset ($_GET['locale']))
-        $locale =   $_GET['locale'];
- * 
- */
     if (session_id() == '')
         session_start();
     require_once("../../../environment.php");
     require_once("../../../localization.php"); 
-    require_once("../../utils/translationUtil.php");
+    require_once("../../utils/collectionUtil.php");
     require_once("../../utils/includeCssAndJsFiles.php"); 
+    includeCssAndJsFiles::includePageFiles("lesson-translate"); 
 ?>
     <table>
         <tbody>
@@ -31,7 +21,7 @@
                   </tr>
                 </thead>
                   <?php
-                        $lessons    =   translationUtil::showColItemToTranslate("lessons_translate_status");
+                        $lessons    =   collectionUtil::getAllCollectionObjects("lessons_translate_status");
                         $i          = 0;
                         foreach ($lessons as $lesson)
                         {
@@ -57,6 +47,10 @@
                                     <input type="checkbox" value="option3" id="progress_es<?php echo $i ?>" <?php if ($progress['locale_es_AR'] == "true") echo "checked=true";?>> ES
                                     <input type="checkbox" value="option4" id="progress_he<?php echo $i ?>" <?php if ($progress['locale_he_IL'] == "true") echo "checked=true";?>> HE
                                     <input type="checkbox" value="option5" id="progress_de<?php echo $i ?>" <?php if ($progress['locale_de_DE'] == "true") echo "checked=true";?>> DE
+                                    <input type="checkbox" value="option6" id="progress_pt<?php echo $i ?>" <?php if ($progress['locale_pt_BR'] == "true") echo "checked=true";?>> PT
+                                    <input type="checkbox" value="option7" id="progress_pl<?php echo $i ?>" <?php if ($progress['locale_pl_PL'] == "true") echo "checked=true";?>> PL
+                                    <input type="checkbox" value="option8" id="progress_nl<?php echo $i ?>" <?php if ($progress['locale_nl_NL'] == "true") echo "checked=true";?>> NL
+                                    <input type="checkbox" value="option9" id="progress_fi<?php echo $i ?>" <?php if ($progress['locale_fi_FI'] == "true") echo "checked=true";?>> FI
 
                             </div>
                       </td>
@@ -66,7 +60,11 @@
                                     <input type="checkbox" value="option2" id="finish_ru<?php echo $i ?>" <?php if ($completed['locale_ru_RU'] == "true") echo "checked=true";?>> RU
                                     <input type="checkbox" value="option3" id="finish_es<?php echo $i ?>" <?php if ($completed['locale_es_AR'] == "true") echo "checked=true";?>> ES
                                     <input type="checkbox" value="option4" id="finish_he<?php echo $i ?>" <?php if ($completed['locale_he_IL'] == "true") echo "checked=true";?>> HE
-                                    <input type="checkbox" value="option4" id="finish_de<?php echo $i ?>" <?php if ($completed['locale_de_DE'] == "true") echo "checked=true";?>> DE
+                                    <input type="checkbox" value="option5" id="finish_de<?php echo $i ?>" <?php if ($completed['locale_de_DE'] == "true") echo "checked=true";?>> DE
+                                    <input type="checkbox" value="option6" id="finish_pt<?php echo $i ?>" <?php if ($completed['locale_pt_BR'] == "true") echo "checked=true";?>> PT
+                                    <input type="checkbox" value="option7" id="finish_pl<?php echo $i ?>" <?php if ($completed['locale_pl_PL'] == "true") echo "checked=true";?>> Pl
+                                    <input type="checkbox" value="option8" id="finish_nl<?php echo $i ?>" <?php if ($completed['locale_nl_NL'] == "true") echo "checked=true";?>> NL
+                                    <input type="checkbox" value="option9" id="finish_fi<?php echo $i ?>" <?php if ($completed['locale_fi_FI'] == "true") echo "checked=true";?>> FI                                    
                             </div>
                       </td>
                       <td><textarea type='text' id='comments<?php echo $i ?>' rows="3" value='<?php echo $comments; ?>'><?php echo $comments; ?></textarea></td>
@@ -93,12 +91,20 @@
                         var progress_es             = $('#' + 'progress_es' + id).is(":checked");
                         var progress_he             = $('#' + 'progress_he' + id).is(":checked");
                         var progress_de             = $('#' + 'progress_de' + id).is(":checked");
+                        var progress_pt             = $('#' + 'progress_pt' + id).is(":checked");
+                        var progress_pl             = $('#' + 'progress_pl' + id).is(":checked");
+                        var progress_fi             = $('#' + 'progress_fi' + id).is(":checked");
+                        var progress_nl             = $('#' + 'progress_nl' + id).is(":checked");
                         
                         var finish_ru             = $('#' + 'finish_ru' + id).is(":checked");
                         var finish_zh             = $('#' + 'finish_zh' + id).is(":checked");
                         var finish_es             = $('#' + 'finish_es' + id).is(":checked");
                         var finish_he             = $('#' + 'finish_he' + id).is(":checked");
                         var finish_de             = $('#' + 'finish_de' + id).is(":checked");
+                        var finish_pt             = $('#' + 'finish_pt' + id).is(":checked");
+                        var finish_pl             = $('#' + 'finish_pl' + id).is(":checked");
+                        var finish_fi             = $('#' + 'finish_fi' + id).is(":checked");
+                        var finish_nl             = $('#' + 'finish_nl' + id).is(":checked");
                         
                         //alert("hello--" + str + "--" + page + "--" + context + "----" + input);
                         $.ajax({
@@ -111,11 +117,19 @@
                                 progress_es                : progress_es,
                                 progress_he                : progress_he,
                                 progress_de                : progress_de,
+                                progress_pt                : progress_pt,
+                                progress_pl                : progress_pl,
+                                progress_fi                : progress_fi,
+                                progress_nl                : progress_nl,
                                 finish_ru                  : finish_ru,
                                 finish_zh                  : finish_zh,
                                 finish_es                  : finish_es,
                                 finish_he                  : finish_he,
                                 finish_de                  : finish_de,
+                                finish_pt                  : finish_pt,
+                                finish_pl                  : finish_pl,
+                                finish_fi                  : finish_fi,
+                                finish_nl                  : finish_nl,
                                 comments                   : comments,
                                 precedence                 : precedence,
                                 lessonId                   : lessonId
