@@ -150,7 +150,7 @@
         do_logo ('logo4', 'cs pu setxy 10 0 pd repeat 36 [ rt 10 repeat 8 [ fd 25 lt 45]] ht');
         
         $(document).ready(function() {
-            selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>language/", "index.php" ,"en" ); 
+            selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>index/", "index.php" ,"en" ); 
             // Definition for people opinion carousel
             $('.carousel').carousel({
                 interval: 15000 

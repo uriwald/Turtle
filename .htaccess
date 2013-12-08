@@ -12,14 +12,18 @@ RewriteRule  ^next/program/lang/([A-Za-z0-9-]+)/?$    next/files/newProgram.php?
 
 RewriteRule ^forum/?$     forum.php [NC,L]
 RewriteRule ^registration/?$     registration.php [NC,L]
+RewriteRule ^partner/brainpop/?$     brainPOP.php [NC,L]
 
 
-RewriteRule  ^articles/([A-Za-z0-9-]+)/?$    files/faq/faqItem.php?faqItem=$1    [NC,L]    # Process index
-RewriteRule  ^faqEditItem/([A-Za-z0-9-]+)/?$    files/faq/faqEditItem.php?faqItem=$1    [NC,L]    # Process index 
+RewriteRule  ^articles/([A-Za-z0-9-]+)/?$            files/faq/faqItem.php?faqItem=$1    [NC,L]    # Process faq
+RewriteRule  ^faqEditItem/([A-Za-z0-9-]+)/?$         files/faq/faqEditItem.php?faqItem=$1    [NC,L]    # Process faq 
+RewriteRule  ^next/articles/([A-Za-z0-9-]+)/?$       next/files/faq/faqItem.php?faqItem=$1    [NC,L]    # Process faq
+RewriteRule  ^next/faqEditItem/([A-Za-z0-9-]+)/?$    next/files/faq/faqEditItem.php?faqItem=$1    [NC,L]    # Process faq 
 
-RewriteRule  ^language/([A-Za-z0-9-]+)/?$    index.php?locale=$1    [NC,L]    # Process index
-RewriteRule  ^next/language/([A-Za-z0-9-]+)/?$    next/index.php?locale=$1    [NC,L]    # Process index
-RewriteRule  ^users/([A-Za-z0-9-]+)/?$    users.php?locale=$1    [NC,L]    # Process user page
+RewriteRule  ^index/([A-Za-z0-9-]+)/?$    index.php?locale=$1    [NC,L]    # Process index
+RewriteRule  ^next/index/([A-Za-z0-9-]+)/?$    next/index.php?locale=$1    [NC,L]    # Process index
+#RewriteRule  ^users/([A-Za-z0-9-]+)/?$    users.php?locale=$1    [NC,L]    # Process user page
+RewriteRule  ^users/([A-Za-z0-9-]+)/?$    users.php?username=$1    [NC,L]    # Process user page
 RewriteRule  ^next/users/([A-Za-z0-9-]+)/?$    next/users.php?locale=$1    [NC,L]    # Process user page
 RewriteRule  ^playground/([A-Za-z0-9-]+)/?$    playground.php?locale=$1    [NC,L]    # Process playground
 RewriteRule  ^next/playground/([A-Za-z0-9-]+)/?$    next/files/playground.php?locale=$1    [NC,L]    # Process playground
@@ -31,8 +35,15 @@ RewriteRule  ^news/([A-Za-z0-9-]+)/?$    turtlenews.php?locale=$1  [NC,L]       
 RewriteRule  ^next/news/([A-Za-z0-9-]+)/?$    next/turtlenews.php?locale=$1 [NC,L]       #process news  
 
 
-RewriteRule  ^lang/([A-Za-z0-9-]+)/?$    learn.php?locale=$1    [NC,L]    # Process lessons
-RewriteRule  ^next/lang/([A-Za-z0-9-]+)/?$    next/learn.php?locale=$1    [NC,L]    # Process lessons
+RewriteRule  ^lessons/([A-Za-z0-9-]+)/?$    learn.php?locale=$1    [NC,L]    # Process lessons
+RewriteRule  ^next/lessons/([A-Za-z0-9-]+)/?$    next/learn.php?locale=$1    [NC,L]    # Process lessons
+
+
+
+RewriteRule  ^users/programs/([A-Za-z0-9-]+)/?$   files/viewProgram.php?programid=$1 [NC,L]  #programs
+
+
+
 
 
 

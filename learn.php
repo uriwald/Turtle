@@ -125,7 +125,7 @@
             $(document).ready(function() { 
                 
                 //Js for selecting the language in the topbar dropdown menu
-                selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>lang/" , "learn.php" ,"en" );
+                selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>lessons/" , "learn.php" ,"en" );
                 
                 //Enable saving canvas after drawing
                 $('#savePic').click(function() {
