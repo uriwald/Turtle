@@ -5,11 +5,23 @@ class includeCssAndJsFiles {
     {
         $additionalFiles = "";
         global $_SESSION , $rootDir , $localeDomain;
+        $hasNavigator   = false;
+        $hasConsole     = false;
+        $hasLessons     = false;
+        $hasAlerts      = false;
+        $hasCommandLine = false;
         switch ($pageName) {
             case "index":
-                $additionalFiles = "<link rel='stylesheet' href='".$rootDir."files/css/index.css' type='text/css' media='all'/>";
+                $additionalFiles    = "<link rel='stylesheet' href='".$rootDir."files/css/index.css' type='text/css' media='all'/>";
+                
             break;
-        
+            case "brainpop":
+                $hasNavigator       = true;
+                $hasConsole         = true;
+                $hasLessons         = true;
+                $hasCommandLine     = true;
+               $additionalFiles = $additionalFiles . "<link href='".$rootDir."files/bootstrap/css/jquery-ui.css' rel='stylesheet' >" ;
+                break;
             case "learn":
                 $additionalFiles = $additionalFiles . "<script type='application/javascript' src='".$rootDir."files/jqconsole.js' ></script>\n";
                 $additionalFiles = $additionalFiles . "<script type='application/javascript' src='".$rootDir."files/interface.js?locale=".$localeDomain."'></script>\n";
@@ -17,6 +29,11 @@ class includeCssAndJsFiles {
                 $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'/>\n" ; 
                 $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='".$rootDir."files/css/doc.css' type='text/css' media='all'/>\n" ; 
                 $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='".$rootDir."files/css/interface.css' type='text/css' media='all'/>\n" ;
+                $additionalFiles = $additionalFiles . "<link href='".$rootDir."files/bootstrap/css/jquery-ui.css' rel='stylesheet' >" ;
+                $hasNavigator       = true;
+                $hasConsole         = true;
+                $hasLessons         = true;
+                $hasCommandLine     = true;
                 break;
            case "news":
                 $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='".$rootDir."files/css/news.css' type='text/css' media='all'/>\n" ;
@@ -44,6 +61,13 @@ class includeCssAndJsFiles {
                $additionalFiles = $additionalFiles . "<script type='application/javascript' src='".$rootDir."ajax/libs/jquery/validator/dist/jquery.validate.js'></script>\n";
 
                break;
+           case "playground":
+               $additionalFiles = $additionalFiles ."<link rel='stylesheet' type='text/css' href='".$rootDir."files/css/doc.css'/> "; 
+               $additionalFiles = $additionalFiles ."<link rel='stylesheet' type='text/css' href='".$rootDir."files/css/playground.css'/> "; 
+               $additionalFiles = $additionalFiles . "<link href='".$rootDir."files/bootstrap/css/jquery-ui.css' rel='stylesheet' >" ;
+               $hasConsole         = true;
+               $hasCommandLine     = true;
+               break;
            case "user-program":
                $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/codemirror/lib/codemirror.js' ></script>\n";
                $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/runmode/runmode.js' ></script>\n";
@@ -60,12 +84,14 @@ class includeCssAndJsFiles {
                $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
                $additionalFiles = $additionalFiles . "<link   href='".$rootDir."files/codemirror/mode/logo/logo.css' rel='stylesheet'></link>";
                $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/interface_user_program.js?locale=" . $localeDomain."'></script>";
+               $hasCommandLine      = true;
+               $hasAlerts           = true;
                break;
         }
 
-    includeCssAndJsFiles::includingFiles($additionalFiles);
+    includeCssAndJsFiles::includingFiles($additionalFiles , $hasNavigator ,  $hasConsole ,$hasLessons , $hasAlerts , $hasCommandLine);
     }
-    private static function includingFiles($additionalFiles)
+    private static function includingFiles($additionalFiles , $hasNavigator ,  $hasConsole ,$hasLessons , $hasAlerts , $hasCommandLine)
     {
         global $rootDir,$env , $localeDomain;
         /* Load JQuery files */
@@ -74,23 +100,35 @@ class includeCssAndJsFiles {
         }else{ 
             echo "<script type='application/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js'></script>";
         }
-        if ($env == "local")
-            echo "<script type='application/javascript' src='".$rootDir."ajax/libs/jqueryui/1.10.0/js/jquery-ui-1.10.0.custom.js' ></script>";
-        else
-            echo "<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js'></script>";
-        echo "<script type='application/javascript' src='".$rootDir."alerts/jquery.alerts.js' ></script>";
-        echo "<script type='application/javascript' src='".$rootDir."files/jquery.tmpl.js' ></script>";
+        if ($hasLessons)
+        {
+            if ($env == "local")
+                echo "<script type='application/javascript' src='".$rootDir."ajax/libs/jqueryui/1.10.0/js/jquery-ui-1.10.0.custom.js' ></script>";
+            else
+                echo "<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js'></script>";
+         }
+        if ($hasAlerts)
+        {
+            echo "<script type='application/javascript' src='".$rootDir."alerts/jquery.alerts.js' ></script>";
+            echo "<link   href='".$rootDir."alerts/jquery.alerts.css' rel='stylesheet' >";
+        }
+        if ($hasNavigator)
+        {
+            echo "<script type='application/javascript' src='".$rootDir."files/jquery.tmpl.js' ></script>";
+        }
         echo "<script type='application/javascript' src='".$rootDir."files/jquery.Storage.js' ></script>";
-        echo "<link   href='".$rootDir."alerts/jquery.alerts.css' rel='stylesheet' >";
-        echo "<link   href='".$rootDir."ajax/libs/jqueryui/1.10.0//css/ui-lightness/jquery-ui-1.10.0.custom.css' rel='stylesheet' >";
+        
+        //echo "<link   href='".$rootDir."ajax/libs/jqueryui/1.10.0//css/ui-lightness/jquery-ui-1.10.0.custom.css' rel='stylesheet' >";
     /* End load Jquery files */
     
     /* Starat DropDown files */
         
         echo "<script type='application/javascript' src='".$rootDir."files/dd/js/msdropdown/jquery.dd.min.js' ></script>";
-        echo "<link href='".$rootDir."files/dd/css/msdropdown/dd.css' rel='stylesheet' >";
-        //echo "<link href='/files/dd/css/msdropdown/skin2.css' rel='stylesheet' >";
-        echo "<link href='".$rootDir."files/dd/css/msdropdown/flags.css' rel='stylesheet' >";
+        
+        //One css file that contain the flags and dropdown definitions
+        echo "<link href='".$rootDir."files/dd/css/msdropdown/dd-all.css' rel='stylesheet' >";
+        //echo "<link href='".$rootDir."files/dd/css/msdropdown/dd.css' rel='stylesheet' >";
+        //echo "<link href='".$rootDir."files/dd/css/msdropdown/flags.css' rel='stylesheet' >";
          
          
     /* End drop down files */
@@ -98,11 +136,14 @@ class includeCssAndJsFiles {
 
     /* Load boostraps files */
         
-        echo "<script type='application/javascript' src='".$rootDir."files/bootstrap/js/bootstrap.js' ></script>" ; 
+        //echo "<script type='application/javascript' src='".$rootDir."files/bootstrap/js/bootstrap.js' ></script>" ; 
         echo "<script type='application/javascript' src='".$rootDir."files/bootstrap/js/bootstrap.min.js' ></script>" ; 
         // else
         //    echo "<script src='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.1/bootstrap.min.js'>";
-        echo "<script type='application/javascript' src='".$rootDir."twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-carousel.js' ></script>" ; 
+        if ($hasNavigator)
+        {    
+            echo "<script type='application/javascript' src='".$rootDir."twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-carousel.js' ></script>" ; 
+        }
         echo "<link href='".$rootDir."files/bootstrap/css/bootstrap.all.css' rel='stylesheet' >" ;
 
     
@@ -121,15 +162,21 @@ class includeCssAndJsFiles {
         if ($isUserLoggedIn) {
              echo "<script type='application/javascript' src='".$rootDir."clearStorageData.php' ></script>\n" ;   
         } 
-        echo "<script type='application/javascript' src='".$rootDir."readMongo.php?locale=".$localeDomain."' ></script>\n" ;  
+        if ($hasLessons)
+        {
+            echo "<script type='application/javascript' src='".$rootDir."readMongo.php?locale=".$localeDomain."' ></script>\n" ;  
+        }
         echo "<script type='application/javascript' src='".$rootDir."files/js/langSelect.js' ></script>\n" ; 
         echo "<script type='application/javascript' src='".$rootDir."files/logo.js' ></script>\n" ; 
         echo "<script type='application/javascript' src='".$rootDir."files/turtle.js' ></script>\n" ; 
-        echo "<script type='application/javascript' src='".$rootDir."files/floodfill.js' ></script>\n" ; 
+        if ($hasCommandLine)
+        {
+            echo "<script type='application/javascript' src='".$rootDir."files/floodfill.js' ></script>\n" ; 
+        }
         
         
         echo "<link rel='stylesheet' href='".$rootDir."files/css/topbar.css' type='text/css' media='all'/>"; 
-        echo "<link rel='stylesheet' href='".$rootDir."files/css/footer.css' type='text/css' media='all'/>"; 
+        echo "<link rel='stylesheet' href='".$rootDir."files/css/footer.css' type='text/css' media='all'/>";
   ?> 
     <!-- Google Analytics Tracking --> 
     <script type="application/javascript"> 

@@ -79,7 +79,7 @@ class topbarUtil {
                      $topbarDisplay['playground'] = true ; 
                      $topbarDisplay['news'] = true ; $topbarDisplay['about'] = true ; 
                      $displaylanguage['de'] = true ;  $displaylanguage['pl']=true;$displaylanguage['fi']=true;
-                     $displaylanguage['nl']=true;$displaylanguage['it']=true;
+                     $displaylanguage['nl']=true;$displaylanguage['it']=false;
                     break;
                 case "faq":
                     $signUpDisplay = false;
@@ -152,19 +152,19 @@ class topbarUtil {
                     <?php
                     if ($showTurtleIcon) {
                         ?>
-                        <a href="<?php echo $sitePath."/language/".$lang; ?>" alt="Home page"><img class="brand" id="turtleimg" lang="<?php echo $lang ?>" src="<?php echo $rootDir; ?>files/turtles.png" /></a> 
+                        <a href="<?php echo $sitePath."/index/".$lang; ?>" alt="Home page"><img class="brand" id="turtleimg" lang="<?php echo $lang ?>" src="<?php echo $rootDir; ?>files/turtles.png" /></a> 
                         <?php
                     }//Close show icon
                     ?>
                     <ul class="nav" id="turtleHeaderUl" lang="<?php echo $lang ?>"> 
                         <?php
                         if ($topbarDisplay['turtleacademy'] == "true") {
-                            echo "<li><a href='" . $sitePath . "/language/$lang'>";
+                            echo "<li><a href='" . $sitePath . "/index/$lang'>";
                             echo _("TurtleAcademy");
                             echo "</a></li>";
                         }
                         if (isset($topbarDisplay['exercise']) && $topbarDisplay['exercise'] == "true") {
-                            echo "<li><a href='" . $sitePath . "/lang/$lang'>";
+                            echo "<li><a href='" . $sitePath . "/lessons/$lang'>";
                             echo _("Lessons");
                             echo "</a></li>";
                         }
@@ -242,7 +242,7 @@ class topbarUtil {
                                         ?>                          
                                     </a>
                                     <ul class="dropdown-menu" id="ddusermenu"role="menu" aria-labelledby="dLabel">
-                                        <li><a tabindex="-1" href="<?php echo $rootDir . "users/" . $lang ; ?>"   class="innerLink" id="help-nav"><?php echo _("My account"); ?></a></li>
+                                        <li><a tabindex="-1" href="<?php echo $rootDir . "users.php" ; ?>"   class="innerLink" id="help-nav"><?php echo _("My account"); ?></a></li>
                                         <li><a tabindex="-1" href="<?php echo $rootDir."project/doc/".$lang; ?>" class="innerLink" id="hel-nav"><?php echo _("Help"); ?></a></li>
                                         <li><a href="<?php echo $rootDir; ?>logout.php" class="innerLink"><?php echo _("Log out"); ?></a></li>
                                     </ul>
