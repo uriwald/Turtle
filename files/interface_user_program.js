@@ -83,7 +83,8 @@ $(function() {
         deleteprogram();
     });
     $("#btn_update_program").click(function() {    
-        saveprogram(true , false);
+        saveprogram(false , false);
+        alert('Program was successfully Updated');
     });  
     $("#btn_save_program").click(function() {    
         saveprogram(true,true);
@@ -100,9 +101,10 @@ $(function() {
         jConfirm('Are you sure you want to delete program?'  , 'DeleteProgram program', function(r) {
             if (r)
             {
+                var delProgramUrl  = sitePath + "files/delUserProgram.php";
                 $.ajax({
                     type : 'POST',
-                    url : 'delUserProgram.php',
+                    url : delProgramUrl,
                     dataType : 'json',
                     data: {
                         programid       :   programid,
@@ -132,19 +134,22 @@ $(function() {
     {
         var programname     =   $("#program-info-header").text();     
         var programCode     =   editor.getValue();
-        var update          =   !isRedirect;
+        var update          =   !isSave;
+        var saveProgramUrl  = sitePath + "files/saveUserProgram.php";
         if (typeof username == 'undefined')
         {
             alert("Only register user can save their programs , you must log-in");
             return;
         }
-        var programtitle    =   prompt("Your program name is ",programname);
+        if (programname == "Program 1")
+            var programtitle    =   prompt("Your program name is ",programname);
+        else
+            var programtitle = programname;
         
         if (programtitle!=null){
-        var x="Hello " + programtitle + "! How are you today?";
                 $.ajax({
                 type : 'POST',
-                url : 'saveUserProgram.php',
+                url : saveProgramUrl,
                 dataType : 'json',
                 data: {
                     programtitle    :   programtitle ,
@@ -218,8 +223,7 @@ $(function() {
       }
       return str;
     }
-                    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>playground/" , "playground.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
-                //convert
+                //convert 
                 $("select").msDropdown();
                 //createByJson();
                 $("#tech").data("dd");  
