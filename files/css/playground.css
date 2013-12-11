@@ -1,0 +1,32 @@
+            h1, h2, h3, h4, p { margin-bottom: 6pt; margin-top: 6pt; }
+            body, p, h1, h2, h3 { font-family: sans-serif; }
+            dl { margin-top: 6pt; }
+            p, dt, dd, ol, li { font-size: 8pt; }
+            code { font-family: monospace; }
+            body
+            {
+                width: 270px;
+                color: black;
+                background-color: white;
+            }
+            #guide{
+                position : absolute;
+                right: 10px;
+                top: 10px;
+                width: 400px;
+                padding: 5pt;
+                padding-top: 0px;
+                z-index: 10;
+                color: black;
+            }
+            #guide_body{
+                width: 400px;
+                height: 450px;
+                border: none;
+            }
+            .jqconsole {
+                width: 950px;
+            }
+            #create-program{
+                margin-top: 23px;
+            }

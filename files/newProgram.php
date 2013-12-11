@@ -3,9 +3,17 @@
 <?php
 if (session_id() == '')
     session_start();
-
 require_once("../environment.php");
 require_once("../localization.php");
+
+if (!isset($_SESSION['username']))
+{
+    $_SESSION['redirectBack'] = "files/newProgram.php";
+         header('Location: '.$sitePath . "registration.php");
+     //   header('refresh:3; url='.$sitePath . "registration.php");
+    echo "<center><h1 id='redirect'> You will be redirected in order to log in </h1></center>";
+}
+
 require_once("cssUtils.php");
 require_once("utils/languageUtil.php");
 require_once('utils/topbarUtil.php');
@@ -19,21 +27,6 @@ require_once('utils/topbarUtil.php');
         echo _(" free programming materials for kids");
         ?>  
     </title>     
-    <?php
-    /*
-        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/lib/codemirror.js' ></script>\n";
-        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/runmode/runmode.js' ></script>\n";
-        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/edit/closebrackets.js' ></script>\n";
-        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/edit/matchbrackets.js' ></script>\n";
-        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/display/placeholder.js' ></script>\n";
-        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/selection/active-line.js' ></script>\n";
-        echo "<script type='application/javascript' src='" . $rootDir . "files/codemirror/mode/logo/logo.js' ></script>\n";
-        
-        echo "<link   href='".$rootDir."files/codemirror/mode/logo/logo.css' rel='stylesheet' >";
-        echo "<link   href='".$rootDir."files/codemirror/lib/codemirror_turtle.css' rel='stylesheet' >";
-     * 
-     */
-    ?>
 
     <?php
     require_once("utils/includeCssAndJsFiles.php"); 
