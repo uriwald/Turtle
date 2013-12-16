@@ -98,12 +98,12 @@ class badgesUtil {
                         $badgesWonStr = $badgesWonStr . "you won your first badge";
 
                     }
-                }
-                else {
+                }else {
                     $badgeone = true;
                 }
                 //// End of checking for badge number 1
                 //Check for second badge 
+                //If we didn't yet win the second badge but we did win the first badge
                 if (!in_array("2", $badgesArr) && $badgeone ) {
                     $controllBadgeIterator = 0;
                     $controllBadgeArr = array ("q(2)1","q(2)2","q(2)3","q(2)4","q(2)5","q(2)6","q(2)7","q(2)8");
@@ -128,10 +128,12 @@ class badgesUtil {
                         
                     }
                 } // End of checking for badge number 2
-                else {
+                // Only if the badge number 2 was in the array and also badge 1
+                else if ($badgeone) {
                     $badgetwo = true;
                 }
-                if (!in_array("3", $badgesArr)) {
+                //If we didn't won badge number 3 yet but we won number 1 and 2
+                if (!in_array("3", $badgesArr) && $badgeone && $badgetwo) {
                     $controllBadgeIterator = 0;
                     $controllBadgeArr = array ("q(3)1","q(3)2","q(3)3","q(3)4","q(3)5","q(3)6","q(3)7","q(3)8","q(3)9","q(3)10",
                                                 "q(4)1","q(4)2","q(4)3","q(4)4","q(4)5","q(4)6"); 
