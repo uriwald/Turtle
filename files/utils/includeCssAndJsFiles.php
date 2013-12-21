@@ -15,6 +15,9 @@ class includeCssAndJsFiles {
                 $additionalFiles    = "<link rel='stylesheet' href='".$rootDir."files/css/index.css' type='text/css' media='all'/>";
                 
             break;
+            case "donate":
+                $additionalFiles    = "<link rel='stylesheet' href='".$rootDir."files/css/donation.css' type='text/css' media='all'/>";
+            break;
             case "brainpop":
                 $hasNavigator       = true;
                 $hasConsole         = true;
@@ -120,7 +123,7 @@ class includeCssAndJsFiles {
         
         //echo "<link   href='".$rootDir."ajax/libs/jqueryui/1.10.0//css/ui-lightness/jquery-ui-1.10.0.custom.css' rel='stylesheet' >";
     /* End load Jquery files */
-    
+        echo "<script type='application/javascript' src='".$rootDir."loadUsrDataToStorage.php?locale=".$localeDomain."' ></script>\n" ;
     /* Starat DropDown files */
         
         echo "<script type='application/javascript' src='".$rootDir."files/dd/js/msdropdown/jquery.dd.min.js' ></script>";
