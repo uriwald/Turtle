@@ -31,34 +31,6 @@ $.extend({
 // Load selected lesson into accordion ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-function loadLesson(lessonID)
-{
-    //Set the activeLesson
-    activeLesson = lessonID;
-    //Clear the accordion
-    $( "#accordion" ).replaceWith('<div id="accordion" style="color:#4aa329">');
-
-    // Render the template with the lessons data
-    $.tmpl( "lessonTemplate", lessons[lessonID], {}).appendTo( "#accordion" );
-
-    $( "#accordion" ).accordion({
-        //      icons: icons,
-        icons : true ,
-        autoHeight: false,
-        heightStyle: "content"
-    });
-    
-    $('button').click(function () {
-        $(this).next().show('slow');
-    });
-
-    //
-    $('#prevlesson').show();
-    $('#nextlesson').show();    
-    if (activeLesson == 0) $('#prevlesson').hide();
-    if (activeLesson == (lessons.length -1)) $('#nextlesson').hide();
-
-}
 
 // TODO - doc
 function comparecommands (command, solution) {
@@ -115,7 +87,7 @@ $(function() {
         {
          $('#console').find(".jqconsole").height('200px');   
         }
- 
+     $('#console').find(".jqconsole").width('950px');   
      $('#console').find(".jqconsole-cursor").css('position','relative');    
     // Abort prompt on Ctrl+Z.
     jqconsole.RegisterShortcut('Z', function() {
@@ -152,7 +124,26 @@ $(function() {
             try {
                 // Allow the logo vm to run the command
                 g_logo.run(command);
-                // Assuming the command ran, we can store the history for later usage                
+                // Assuming the command ran, we can store the history for later usage      
+                
+                if (typeof jqconsole.history != 'undefined') 
+                    $.Storage.set('logo-history',JSON.stringify(jqconsole.history.slice(jqconsole.history.length-10)));
+                //Saving the user history commands
+                $.ajax({
+                    type : 'POST',
+                    url : '/files/saveLocalStorage.php',
+                    dataType : 'json',
+                    data: {
+                        userHistory  :   $.Storage.get('logo-history'),
+                        command      : command
+                    },
+                    success: function(data) { 
+                        var rdata;
+                    } ,
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert('en error occured');
+                    }
+                });
             } catch (e) {
                 // Write the failure to our console
                 jqconsole.Write(gt.gettext('Error') +': ' + e + '\n');

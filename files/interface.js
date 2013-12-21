@@ -298,6 +298,7 @@ $(function() {
                 // Allow the logo vm to run the command 
                 g_logo.run(command);
                 // Assuming the command ran, we can store the history for later usage
+                // Futher use will be to save the TO command and run it in when user re enter
                 if (typeof jqconsole.history != 'undefined') 
                     $.Storage.set('logo-history',JSON.stringify(jqconsole.history.slice(jqconsole.history.length-10)));
                 //Saving the history to db
@@ -306,7 +307,8 @@ $(function() {
                     url : '/files/saveLocalStorage.php',
                     dataType : 'json',
                     data: {
-                        userHistory  :   $.Storage.get('logo-history')
+                        userHistory  :   $.Storage.get('logo-history'),
+                        command      : command
                     },
                     success: function(data) { 
                         if(data.badge.length > 4)
@@ -431,7 +433,35 @@ $(function() {
         canvas_element.width, canvas_element.height);
 
     g_logo = new LogoInterpreter(turtle, stream);
-    //Runing the TO commands
+    //Loading and running the TO commands
+    if ($.Storage.get("tocmd"))
+    {
+        var history = $.Storage.get('tocmd'); 
+        toCommandArr = history.split(','); 
+        var numOfCommands  =   toCommandArr.length ;
+        var commandLen = 0; 
+        var commandToRun ;
+        for(var i = 0; i < numOfCommands; i++)  
+        {
+/*
+            var commandParts = toCommandArr[i].split(' ');
+            var toCmd        = commandParts[0].substr(1, commandParts[0].length);
+           
+                commandLen   = toCommandArr[i].length -1;
+                var startcmd = 1;
+            */
+                commandToRun = toCommandArr[i];
+                try
+                {
+                    g_logo.run(commandToRun);
+                }catch (e) {
+                // DO NOTHING FOR NOW
+                // jqconsole.Write(gt.gettext('Error') +': ' + e + '\n');
+                }
+            
+        }
+    }
+    /*
     if ($.Storage.get("logo-history"))
     {
         var history = $.Storage.get('logo-history'); 
@@ -463,7 +493,7 @@ $(function() {
             }
         }
     }
-    
+    */
     function do_logo(id ,cmd) {
         $('#'+id).css('width', '50px').css('height', '50px').append('<canvas id="'+id+'c" width="50" height="50" style="position: absolute; z-index: 0;"></canvas>' +
             '<canvas id="'+id+'t" width="50" height="50" style="position: absolute; z-index: 1;"></canvas>'); 
