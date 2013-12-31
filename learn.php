@@ -54,9 +54,9 @@
                             <?php
                             echo _("TurtleAcademy learn programming for free");
                             echo _("Your browser is not supporting canvas");
-                            echo _("We recoomnd you to use Chrome or Firefox browsers");
+                            echo _("We recomand you to use Chrome or Firefox browsers");
                             ?>                                      
-                        </span>  
+                        </span> 
                     </canvas>
                     <canvas id="turtle" width="660" height="350">   
                         <!-- drawing box -->

@@ -293,7 +293,7 @@ require_once('files/utils/topbarUtil.php');
                                     echo _("Turtle Academy") . " ";
                                     echo _("is open to hear any ideas or suggestion") . " ";
                                     echo _("or problems") . ".";
-                                    echo _("Please contatct us.");
+                                    echo _("Please contact us.");
                                 ?>
                                 </p>
                                 <p>
