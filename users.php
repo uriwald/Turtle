@@ -6,11 +6,17 @@
         session_start();
     //If the user is not logged in yet redirect
     require_once("environment.php");
-    if (!isset($_SESSION['username']))
+    $isPublicUserPage = false ;
+    if (isset($_GET['username']))
+        $isPublicUserPage = true ;
+    $displayPage = true;
+    //Will be redirected only if is not log in and didn't try to get to public page
+    if (!isset($_SESSION['username']) && (!$isPublicUserPage))
     {
         $_SESSION['redirectBack'] = "users.php";
       //  header('Location: '.$sitePath . "registration.php");
          header('refresh:3; url='.$sitePath . "registration.php");
+        $displayPage = false;
         echo "<center><h1 id='redirect'> You will be redirected in order to log in </h1></center>";
     }
     
@@ -21,6 +27,20 @@
     require_once('files/utils/topbarUtil.php');
     require_once('files/utils/badgesUtil.php'); 
     require_once('files/utils/userUtil.php');
+    if (isset($_SESSION['username'])) 
+    {
+        $username           = $_SESSION['username'];
+        $displayUserName    =   $username;
+    }
+    else if ($isPublicUserPage)
+    {
+        $username = $_GET['username'];
+        $displayUserName        =   $username;
+    }
+    else {
+        $displayUserName        =   "";
+    }
+    
     if (isset ($_SESSION['username']))
     {
         $displayUserName = $_SESSION['username'];   
@@ -50,13 +70,19 @@
     <body>
         <?php
         //Will display the page only if user is register ,, if not will be redirected
-            if (isset($_SESSION['username']))
+            if ($displayPage)
             {
             //Printing the topbar menu
             topbarUtil::printTopBar("users"); 
             
         ?>
         <div class="container span16" id="mainContainer">
+            <?php 
+                if ($isPublicUserPage) {
+                    ?>
+                
+            <div> <h2> <?php echo $displayUserName . " Public Page"; ?></h2> </div>
+            <?php }; //Close div condition ?>
             <div class='cleaner_h40'></div>
 
             <div class='row'>
@@ -67,6 +93,10 @@
                     ?>
                     </h4>
                     <div class='cleaner_h10'></div>
+                    <?php
+                    if (!$isPublicUserPage)
+                    {
+                    ?>
                     <p>
                         <a href='#'>
                         <?php echo _("Account Settings");
@@ -75,6 +105,7 @@
                         </a>
                     </p>
                     <?php
+                    }
                     if (isset($_SESSION['institute']))
                     {
                     ?>
@@ -84,7 +115,10 @@
                             </a>
                         </p>
                     <?php
+                    
                     }
+                    if (!$isPublicUserPage)
+                    {
                     ?>
                     <p>
                         <a href='<?php echo $rootDir; ?>files/newProgram.php?l=<?php echo $localeDomain; ?>'>
@@ -98,9 +132,28 @@
                         </a>
                     </p>
                     -->
+                    <?php
+                    }
+                    ?>
                     <p> 
                         <a href='#myProgress'>
-                            <?php echo _("My progress"); ?>
+                            <?php 
+                                if ($isPublicUserPage)
+                                    echo _("User progress");
+                                else
+                                    echo _("My progress"); 
+                            ?>
+                        </a>
+                    </p>
+                    <p> 
+                        <a href='<?php  echo $rootDir."users/".$displayUserName; ?>'>
+                            <?php 
+                             if ($isPublicUserPage)
+                                     echo _("User Public Profile"); 
+                                else
+                                     echo _("My Public Profile"); 
+                           
+                            ?>
                         </a>
                     </p>
                     <p>
@@ -111,14 +164,19 @@
                 </div><!-- end of user_menu -->
                 <div class=" span10 tab-pane active" id="myProgress">
                     <h2>
-                        <?php echo _("My progress");?>  
+                        <?php 
+                                if ($isPublicUserPage)
+                                    echo _("User progress");
+                                else
+                                    echo _("My progress"); 
+                        ?>  
                     </h2>
                     <div class='cleaner_h20'></div>
                     <!-- Display User badges--->
                     <div class="badges">
                     <?php
-                        
-                        $badges = badgesUtil::getUserBadges($_SESSION['username']);
+
+                        $badges = badgesUtil::getUserBadges($username);
                         // Should use foreatch loop for all badges
                         //echo $badges;
                         $badgesArr           =   explode(",",$badges);
@@ -144,21 +202,6 @@
                             echo "</div>";
                         }
 
-                        /*
-                        echo "<div class='badge' title='completed recurssion' >";
-                        echo "<p> recursive turtle </p>";
-                        echo "<img class='badgeImg' id='turtleimg' src='/Images/badges/oriented.png' />";
-                        echo "</div>";
-                        
-                        
-                        echo "<div class='badge' title='Completed first 8 lessons' >";
-                        echo "<p> fighter turtle </p>";
-                        echo "<img class='badgeImg' id='turtleimg' src='/Images/badges/oriented.png' />";
-                         * 
-                         
-                        echo "</div>";
-                         */
-                         
                     ?>
                     </div> 
                     
@@ -166,8 +209,8 @@
                     <p>
                         <?php
                         echo _("Steps that I have done :) ");
-                        if (isset($_SESSION['username'])) {
-                            $username = $_SESSION['username'];
+
+
                             $m = new Mongo();
                             $db = $m->turtleTestDb;
                             $userProgress = $db->user_progress;
@@ -225,13 +268,20 @@
                             else {  //No progress was detected by user
                                 echo " No Pregress was made yet";
                             }
-                        }
+                        
                         ?>
                     </p>    
                     -->
                 </div>
                 <div class='span16'id="usrLessonDiv" lang="<?php echo $lang ?>"> 
-                    <h2><?php echo _("Your Programs"); ?></h2>
+
+                    <h2><?php 
+                            if ($isPublicUserPage)
+                                echo _("User Programs");
+                            else
+                                echo _("Your Programs"); 
+                        ?>
+                    </h2>
                     <table class='zebra-striped ads' id="my_lessons" lang="<?php echo $lang ?>">
                         <thead>
                             <tr>
@@ -253,12 +303,26 @@
                                     <td>
                                         <!--<div class='btn small success disabled'>Renewed</div> 
                                         ?programid=527115cea51ffb9d25000000&username=lucio-->
-                                        <a class='btn small info' href="<?php echo $rootDir . "files/updateProgram.php?programid=";
-                                            echo $program['_id'] . "&username=";
-                                            echo $username;
+                                        <a class='btn small info' href="<?php
+                                            if ($isPublicUserPage)
+                                               echo $rootDir . "users/programs/"; 
+                                            else   
+                                                echo $rootDir . "files/updateProgram.php?programid=";
+                                            echo $program['_id'];
+                                            if (!$isPublicUserPage)
+                                            {
+                                                echo"&username="; 
+                                                echo $username;
+                                            }
                                         ?> 
 
-                                           ">  <?php echo _("Edit"); ?></a>
+                                           ">  <?php 
+                                                    if ($isPublicUserPage)
+                                                        echo _("View");
+                                                    else
+                                                        echo _("Edit"); 
+                                                ?>
+                                        </a>
                                         <!--<div class='btn small danger'>Remove</div> -->
                                     </td>
                                 </tr>
