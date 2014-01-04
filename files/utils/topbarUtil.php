@@ -31,7 +31,8 @@ class topbarUtil {
                 "pl" => "pl",
                 "ru" => "ru",
                 "he" => "he",              
-                "zh" => "zh"
+                "zh" => "zh",
+                "hr" => "hr"
                 );
             //Will be sorted in the correct order 
             $displaylanguage = array(
@@ -45,13 +46,15 @@ class topbarUtil {
                 "fi" => false,
                 "ru" => true,
                 "he" => true,
-                "zh" => true   
+                "zh" => true ,
+                "hr" => false
             );
             $countryFlagName = array(
                 "en" => "us",
                 "de" => "de",
                 "es" => "es",
                 "fi" => "fi", 
+                "hr" => "hr",
                 "pt" => "br",
                 "it" => "it",
                 "pl" => "pl",
@@ -72,14 +75,15 @@ class topbarUtil {
                 "de" => "Deutsch",
                 "nl" => "Dutch",
                 "pt" => "Português",
-                "pl" => "polish"
+                "pl" => "polish",
+                "hr" => "Croatian"
             );
             switch ($topbarPage) {
                 case "learn": 
                      $topbarDisplay['playground'] = true ; 
                      $topbarDisplay['news'] = true ; $topbarDisplay['about'] = true ; 
                      $displaylanguage['de'] = true ;  $displaylanguage['pl']=true;$displaylanguage['fi']=true;
-                     $displaylanguage['nl']=true;$displaylanguage['it']=false;
+                     $displaylanguage['nl']=true;$displaylanguage['it']=false;$displaylanguage['hr']=true;
                     break;
                 case "faq":
                     $signUpDisplay = false;
@@ -239,6 +243,15 @@ class topbarUtil {
                                                 $displayUserName = $emailDetails[0];
                                             }
                                             echo $displayUserName;
+                                            if (isset($_SESSION['nmsg']))
+                                            {
+                                                if ($_SESSION['nmsg'])
+                                                {
+                                                ?>
+                                                <i class="icon-envelope innerIcon" lang="en"></i>
+                                                <?php
+                                                }
+                                            }
                                         ?>                          
                                     </a>
                                     <ul class="dropdown-menu" id="ddusermenu"role="menu" aria-labelledby="dLabel">

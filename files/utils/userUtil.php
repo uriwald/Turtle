@@ -20,7 +20,7 @@
                return true;
            }
      }
-     /*
+     /* 
       * Putting user login info
       */
      private static function user_login_log($username , $db)
@@ -66,6 +66,23 @@
                return $results;
      }
      /*
+      * Will find all the programs created by the user
+      */
+     
+    public static function findUserPrograms($username) 
+     {
+           $m = new Mongo();
+           $db = $m->turtleTestDb;	
+           $programs = $db->programs;
+
+
+           $userProgramQuery       =  array('username' => $username);
+           $results     = $programs->find($userProgramQuery);
+           return $results;
+           //Case no user found
+               
+     }
+     /*
       * Obsolate 
       * Can use the collectionUtil function CollectionItemAddAttribute
       */
@@ -84,7 +101,7 @@
      /*
       * Will copy privous collection object of userOpenId TO the Users collection
       */ 
-    public static function copy_db_openid_user_to_users($username)
+     public static function copy_db_openid_user_to_users($username)
      {
          $m = new Mongo();
          $db = $m->turtleTestDb;	
@@ -112,6 +129,18 @@
             
             $result = $users->insert($user, array('safe' => true)); 
          }
+     }
+     public static function get_user_new_messages_indication($username)
+     {
+            $m = new Mongo(); 
+            $db = $m->turtleTestDb;
+            $strcol = $db->messages;
+            $newMessagesQuery     = array ('sendto' => $username , 'read' => false);
+            $numOfNewMsg    = $strcol->count($newMessagesQuery);
+            if ($numOfNewMsg > 0)
+                return true;
+            else 
+                return false;
      }
      /*
       * Will copy all open_id objects to users
@@ -166,6 +195,20 @@
         $userQuery       = array('institute_email' => $email);
         $results     = $users->find($userQuery);
         return $results;
+     }
+     
+    public static function getNumOfVerifiedUsers() 
+     {
+           $m = new Mongo();
+           $db = $m->turtleTestDb;	
+           $users = $db->users;
+           
+           $userQuery       = array('confirm' => true);
+           $resultcount     = $users->count($userQuery);
+           //Case no user found
+          
+               return $resultcount;
+           
      }
      
      
