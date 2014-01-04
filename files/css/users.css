@@ -43,3 +43,20 @@ td.mini-thumbnail{
 :lang(he)#my_lessons > thead > tr > th , :lang(he)#my_lessons > tbody > tr > td {  
     text-align: right;
 }
+#myMessages{
+    height: 300px;
+    overflow : scroll ;
+        
+}
+.read {
+    color : black;
+}
+.ui-dialog-titlebar{
+    color: blue !important;
+    background: white !important;
+}
+.ui-dialog-content
+{
+        color: blue !important;
+    background: aliceblue !important;
+}
