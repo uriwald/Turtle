@@ -133,7 +133,7 @@ includeCssAndJsFiles::includePageFiles("users");
                         $messageSentQuery = array('sendfrom' => $username);
                         //$messagesRecieve = $strcol->find($messagesRecieveQuery);
                         $messagesRecieve = $strcol->find($allMessages);
-                        
+                        $messagesRecieve->sort(array('date' => -1));
                         $messagesSent = $strcol->findOne($messageSentQuery);
                         $msgRecieveCount = $strcol->count($messagesRecieveQuery);
                         $numOfNewMsg    = $strcol->count($newMessagesQuery);
@@ -325,28 +325,23 @@ includeCssAndJsFiles::includePageFiles("users");
                     $('.openMessage').each(function() {
                         var id = $(this).attr('id');
                         var title = $(this).attr('title');
-                        var $dialog = $('<div></div>');
+                        var $dialog = $('<p></p>');
                         var $link = $(this).live('click', function() {
                             var locale      = $.Storage.get('locale');
                       
-                            if (window.isLessonSaved == false)
-                                alert(gt.gettext("You must save the lesson before show lesson"));
-                            else
-                            {  
+
                                 $dialog                           
                                 .load('message.php?id=' + id ) /* When opening the message will sign it as read message*/
                                 .dialog({
                                     title: $link.attr('title'),
-                                    width: 700 ,
-                                    height : 300
+                                    width: 500 
                                 }); 
                                 $link.click(function() {
                                     $dialog.dialog('open');
-                                    dialogCreatedOnce = true;
                                     return false;
                                 });
                                 return false;
-                            }
+                            
                         });                                           
                     });
                     

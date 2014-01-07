@@ -1,4 +1,3 @@
-<div>
 <?php
     //print_r($_GET);
     if (isset($_GET['id']))
@@ -10,10 +9,9 @@
             $message                 = $strcol->findOne(array("_id" => $theObjId));
         
             $newMessage = $message;
-            $newMessage['read'] = true;
+            if ($newMessage['sendto'] != 'all')
+                $newMessage['read'] = true;
             $strcol->update($message , $newMessage);
-
-            echo    $message['content'];         
+            echo $message['content']  ;         
     }
-?>
-</div>
+?> 
