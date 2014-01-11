@@ -46,8 +46,6 @@ require_once('utils/topbarUtil.php');
     echo "<script type='application/javascript' src='" . $rootDir . "files/jqconsole.js' ></script>\n";
     echo "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
     ?>        
-    <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_user_program.js?locale=<?php echo $localeDomain ?>"></script> <!-- Interface scripts -->
-
     <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
 </head>
 <body>
@@ -101,8 +99,9 @@ echo _("We recoomnd you to use Chrome or Firefox browsers");
                     <input id="btn_update_program" type="button" value="Update" class="btn small info pressed"></input>
                     <input id="btn_clear" type="button" value="Clear" class="btn small info pressed"></input>
                     <input id="btn_delete" type="button" value="Delete Program" class="btn small info pressed"></input>
-                    <input id="btn_create" type="button" value="Create a mew Program" class="btn small info pressed"></input>
+                    <input id="btn_create" type="button" value="Create a new Program" class="btn small info pressed"></input>
                     <input id="runbtn" type="button" value="Run" class="btn small info pressed"></input>
+                    <input id="btn_public_page" type="button" value="Program Public page" class="btn small info pressed"></input>
                 </form>
             </div>
             <div id ="tab-row">
@@ -340,5 +339,17 @@ echo _("We recoomnd you to use Chrome or Firefox browsers");
             echo "var username = null;";
     ?> 
     selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>program/lang/" , "newProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
-
+    
+    $("#btn_public_page").click(function() {    
+        jConfirm('Do you wnat to go to your public page?'  , 'Public Page', function(r) {
+            if (r)
+            {
+                location.href = "<?php echo $sitePath; ?>" + "/users/programs/" + "<?php  echo $_GET['programid'];?>";           
+            }
+            else
+            {
+                location.href = sitePath + "/files/newProgram.php";
+            } 
+        });
+    });
 </script> 
