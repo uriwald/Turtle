@@ -19,19 +19,17 @@ require_once('utils/topbarUtil.php');
         ?>  
     </title>     
 
-    <script src="codemirror/lib/codemirror.js"></script>
+    <script src="<?php echo $sitePath; ?>/files/codemirror/lib/codemirror.js"></script>
 
-    <script src="codemirror/addon/runmode/runmode.js"></script>
-    <script src="codemirror/addon/edit/closebrackets.js"></script>
-    <script src="codemirror/addon/edit/matchbrackets.js"></script>
-    <script src="codemirror/addon/display/placeholder.js"></script> 
+    <script src="<?php echo $sitePath; ?>/files/codemirror/addon/runmode/runmode.js"></script>
+    <script src="<?php echo $sitePath; ?>/files/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="<?php echo $sitePath; ?>/files/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="<?php echo $sitePath; ?>/files/codemirror/addon/display/placeholder.js"></script> 
 
-    <script src="codemirror/addon/selection/active-line.js"></script>
-
-
-    <script src="codemirror/mode/logo/logo.js"></script>    
-    <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
-    <link rel="stylesheet" href="codemirror/lib/codemirror_turtle.css">
+    <script src="<?php echo $sitePath; ?>/files/codemirror/addon/selection/active-line.js"></script>
+    <script src="<?php echo $sitePath; ?>/files/codemirror/mode/logo/logo.js"></script>    
+    <link rel="stylesheet" href="<?php echo $sitePath; ?>/files/codemirror/mode/logo/logo.css">
+    <link rel="stylesheet" href="<?php echo $sitePath; ?>/files/codemirror/lib/codemirror_turtle.css">
     <?php
     require_once("utils/includeCssAndJsFiles.php"); 
     includeCssAndJsFiles::includePageFiles("user-program"); 
@@ -39,14 +37,15 @@ require_once('utils/topbarUtil.php');
     ?>   
 
     <?php
-    $file_path = "../locale/" . $localeDomain . "/LC_MESSAGES/messages.po";
+    $file_path = $rootDir . $localeDomain . "/LC_MESSAGES/messages.po";
     $po_file = "<link   rel='gettext' type='application/x-po' href='../locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
     if (file_exists($file_path))
         echo $po_file;
     echo "<script type='application/javascript' src='" . $rootDir . "files/jqconsole.js' ></script>\n";
     echo "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
     ?>        
-    <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
+
+    <link rel="stylesheet" href="<?php echo $sitePath; ?>/files/codemirror/mode/logo/logo.css">
 </head>
 <body>
     <?php
@@ -96,15 +95,19 @@ echo _("We recoomnd you to use Chrome or Firefox browsers");
             </div>
             <div id="action-buttons" > 
                 <form> 
-                    <input id="btn_update_program" type="button" value="Update" class="btn small info pressed"></input>
-                    <input id="btn_clear" type="button" value="Clear" class="btn small info pressed"></input>
-                    <input id="btn_delete" type="button" value="Delete Program" class="btn small info pressed"></input>
-                    <input id="btn_create" type="button" value="Create a new Program" class="btn small info pressed"></input>
                     <input id="runbtn" type="button" value="Run" class="btn small info pressed"></input>
-                    <input id="btn_public_page" type="button" value="Program Public page" class="btn small info pressed"></input>
                 </form>
             </div>
-            <div id ="tab-row">
+            <div id="comments">
+                <div id="comment-in">
+                     <form> 
+                        <textarea id="comment" name="comment" placeholder="entercomment"> </textarea>
+                        <input id="btncomment" type="button" value="send" class="btn small info pressed"></input>
+                    </form>
+                </div>
+                <div id ="user-comments">
+                   dsdfdsfsd
+                </div>
             </div>
             <div id="documentation">
                 <div id="doc-container" class ="span21">
@@ -332,6 +335,7 @@ echo _("We recoomnd you to use Chrome or Firefox browsers");
         
     editor.setValue('<?php echo $bodytag; ?>'); 
     var programid = '<?php echo $programId ?>' ;
+    
     <?php
         if (isset($_SESSION['username']))
             echo "var username = '" . $_SESSION['username'] . "';";
@@ -339,17 +343,26 @@ echo _("We recoomnd you to use Chrome or Firefox browsers");
             echo "var username = null;";
     ?> 
     selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>program/lang/" , "newProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
-    
-    $("#btn_public_page").click(function() {    
-        jConfirm('Do you wnat to go to your public page?'  , 'Public Page', function(r) {
-            if (r)
-            {
-                location.href = "<?php echo $sitePath; ?>" + "/users/programs/" + "<?php  echo $_GET['programid'];?>";           
+    $("#btncomment").click(function() {  
+        //programid username
+        var saveCommentUrl  = sitePath + "files/saveProgramComment.php";
+        var cmt = $("#comment").val();
+        $.ajax({
+            type : 'POST',
+            url : saveCommentUrl,
+            dataType : 'json',
+            data: {
+                comment         : cmt,
+                programid       :   programid,
+                username        : username
+            },
+
+            success : function(data){
+                alert('success');
+            },       
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                alert('fail');  
             }
-            else
-            {
-                location.href = sitePath + "/program/lang" + "<?php echo substr($_SESSION['locale'], 0, 2) ?>";
-            } 
         });
-    });
+    });  
 </script> 

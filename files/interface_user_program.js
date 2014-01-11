@@ -12,6 +12,7 @@ var turtleid = 1 ;
 
 var lastLessonClick = null ;
 
+/*
 $.extend({
     getUrlVars: function(){
         var vars = [], hash;
@@ -28,6 +29,7 @@ $.extend({
         return $.getUrlVars()[name];
     }
 });
+*/
 
     var handler = function(command) {
         if (command) {
@@ -54,6 +56,8 @@ $(function() {
         $("#err-msg").val('');
         handler(editor.getValue());
     });  
+    
+    
     $("#btn_clear").click(function() {    
         jConfirm('Clear will clean will arase your code line and draweing  '  , 'Are you sure ?', function(r) {
             if (r)
@@ -74,10 +78,11 @@ $(function() {
             }
             else
             {
-                location.href = sitePath + "/files/newProgram.php";
+                location.href = sitePath + "/program/lang" + localShort;
             } 
         });
     }); 
+    
     
     $("#btn_delete").click(function() {    
         deleteprogram();
@@ -113,7 +118,7 @@ $(function() {
 
                     success : function(data){
                        
-                                location.href = sitePath + "/files/newProgram.php";
+                                location.href = sitePath + "/program/lang/"  + localShort;
                                         
                     },       
                     error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -123,7 +128,7 @@ $(function() {
             }
             else
             {
-                location.href = sitePath + "/files/newProgram.php";
+                location.href = sitePath + "/program/lang/" + locale;
             } 
         });
 
@@ -169,7 +174,7 @@ $(function() {
                                 location.href = temppath + "?programid=" + data.programId.$id + "&username=" + data.username ;
                             }
                         else
-                            location.href = sitePath + "/files/newProgram.php";
+                            location.href = sitePath + "/program/lang/" + localShort;
                     }                 
                 },       
                 error : function(XMLHttpRequest, textStatus, errorThrown) {

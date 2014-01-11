@@ -28,17 +28,17 @@
     if (isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
         $displayUserName = $username;
-    } else if ($isPublicUserPage) {
+    }
+    if ($isPublicUserPage) {
         $username = $_GET['username'];
         $displayUserName = $username;
     } else {
         $displayUserName = "";
-    }
-
-    if (isset($_SESSION['username'])) {
-        $displayUserName = $_SESSION['username'];
-        // update the user badgse
-        badgesUtil :: updateUserBadges($displayUserName);
+        if (isset($_SESSION['username'])) {
+            $displayUserName = $_SESSION['username'];
+            // update the user badgse
+            badgesUtil :: updateUserBadges($displayUserName);
+        }
     }
     ?>
 
@@ -46,13 +46,13 @@
 <html dir="<?php echo $dir ?>" lang="<?php echo $lang ?>">
     <head>
         <meta charset="utf-8">
-        <title>Account 1</title>
+        <title> <?php $displayUserName ?></title>
         <meta name="description" content="">
         <meta name="author" content="">
-<?php
-require_once("files/utils/includeCssAndJsFiles.php");
-includeCssAndJsFiles::includePageFiles("users");
-?>
+        <?php
+        require_once("files/utils/includeCssAndJsFiles.php");
+        includeCssAndJsFiles::includePageFiles("users");
+        ?>
     </head>
     <body>
         <?php
@@ -67,119 +67,130 @@ includeCssAndJsFiles::includePageFiles("users");
                 ?>
 
                     <div> <h2> <?php echo $displayUserName . " Public Page"; ?></h2> </div>
-            <?php }; //Close div condition ?>
+                <?php }; //Close div condition ?>
                 <div class='cleaner_h40'></div>
 
                 <div class='row'>
                     <div class="well span4 sidebar" id="user_menu" lang="<?php echo $lang ?>">
                         <h4>
-                <?php
-                echo $displayUserName;
-                ?>
+                        <?php
+                            echo $displayUserName;
+                        ?>
                         </h4>
                         <div class='cleaner_h10'></div>
-    <?php
-    if (!$isPublicUserPage) {
-        ?>
+                            <?php
+                            if (!$isPublicUserPage) {
+                                ?>
                             <p>
                                 <a href='#'>
-                                <?php
-                                echo _("Account Settings");
-                                echo "(";
-                                echo _("coming soon");
-                                echo ")";
-                                ?>
-                                </a>
-                            </p>
-        <?php
-    }
-    if (isset($_SESSION['institute'])) {
-        ?>
-                            <p>
-                                <a href='<?php echo $rootDir; ?>files/institute/addInstituteUser.php?l=<?php echo $localeDomain; ?>'>
-                            <?php echo _("Add a new user"); ?>
+                            <?php
+                            echo _("Account Settings");
+                            echo "(";
+                            echo _("coming soon");
+                            echo ")";
+                            ?>
                                 </a>
                             </p>
                             <?php
-                        }
-                        if (!$isPublicUserPage) {
+                            } // End $isPublicUserPage
+                            if (isset($_SESSION['institute'])) {
+                            ?>
+                                <?php
+                                if ($isPublicUserPage) {
+                                    ?>
+                                    <p>
+                                        <a href='<?php echo $rootDir; ?>files/institute/addInstituteUser.php?l=<?php echo $localeDomain; ?>'>
+                                    <?php echo _("Add a new user"); ?>
+                                        </a>
+                                    </p>
+
+                                <?php
+                                } // End Add user <p>
+                            }
+                            if (!$isPublicUserPage) {
                             ?>
                             <p>
-                                <a href='<?php echo $rootDir; ?>files/newProgram.php?l=<?php echo $localeDomain; ?>'>
-        <?php echo _("Create a new program"); ?>
+                                <a href='<?php echo $rootDir; ?>program/lang/<?php echo  substr($localeDomain, 0, 2); ?>'>
+                                    <?php echo _("Create a new program"); ?>
                                 </a>
                             </p>
                             <!--
                             <p>
                                 <a href='lesson.php?l=<?php echo $localeDomain; ?>'>
-                            <?php echo _("Add a new lesson"); ?>
+                                 <?php echo _("Add a new lesson"); ?>
                                 </a>
                             </p>
                             -->
-                                    <?php
-                                }
-                                ?>
-                        <p> 
-                        <?php
-        
-                        $m = new Mongo();
-                        $db = $m->turtleTestDb;
-                        $strcol = $db->messages;
-                        $messagesRecieveQuery = array('sendto' => $username);
-                        $messagesGeneral = array('sendto' => 'all');
-                        $allMessages = array('$or' => array( array('sendto' => $username), array('sendto' => 'all')));
-                        
-                        $newMessagesQuery     = array ('sendto' => $username , 'read' => false);
-                        $messageSentQuery = array('sendfrom' => $username);
-                        //$messagesRecieve = $strcol->find($messagesRecieveQuery);
-                        $messagesRecieve = $strcol->find($allMessages);
-                        $messagesRecieve->sort(array('date' => -1));
-                        $messagesSent = $strcol->findOne($messageSentQuery);
-                        $msgRecieveCount = $strcol->count($messagesRecieveQuery);
-                        $numOfNewMsg    = $strcol->count($newMessagesQuery);
-                     
-                        ?>
-                            <a href='#myMessages' id="myMessageslink">
-                                <?php 
-                                    echo _("My Messages"); 
-                                    if ($numOfNewMsg >0)
-                                    {
-                                ?>
-                                <i class="icon-envelope innerIcon" lang="en"></i>
-                                <?php 
-                                    echo $numOfNewMsg; 
-                                } // End if numofMsg >0
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if (!$isPublicUserPage) {
+                            ?>
+                            <p> 
+                            <?php
+                                $m = new Mongo();
+                                $db = $m->turtleTestDb;
+                                $strcol = $db->messages;
+                                $messagesRecieveQuery = array('sendto' => $username);
+                                $messagesGeneral = array('sendto' => 'all');
+                                $allMessages = array('$or' => array(array('sendto' => $username), array('sendto' => 'all')));
 
-                        ?>
-                            </a>
-   
-                        </p>
-                        <p> 
-                            <a href='#myProgress' id="myProgresslink">
-                                
-    <?php
-    if ($isPublicUserPage)
-        echo _("User progress");
-    else
-        echo _("My progress");
-    ?>
-                            </a>
-                        </p>
-                        <p> 
-                            <a href='<?php echo $rootDir . "users/" . $displayUserName; ?>'>
+                                $newMessagesQuery = array('sendto' => $username, 'read' => false);
+                                $messageSentQuery = array('sendfrom' => $username);
+                                //$messagesRecieve = $strcol->find($messagesRecieveQuery);
+                                $messagesRecieve = $strcol->find($allMessages);
+                                $messagesRecieve->sort(array('date' => -1));
+                                $messagesSent = $strcol->findOne($messageSentQuery);
+                                $msgRecieveCount = $strcol->count($messagesRecieveQuery);
+                                $numOfNewMsg = $strcol->count($allMessages);
+                            ?>
+                                <a href='#myMessages' id="myMessageslink">
+                                <?php
+                                echo _("My Messages");
+                                if ($numOfNewMsg > 0) {
+                                    ?>
+                                        <i class="icon-envelope innerIcon" lang="en"></i>
+                                        <?php
+                                        echo $numOfNewMsg;
+                                    } // End if numofMsg >0
+                                    ?>
+                                </a>
+
+                            </p>
+                            <?php
+                            } // End of if (!$isPublicUserPage) {
+                            ?>
+                            <p> 
+                                <a href='#myProgress' id="myProgresslink">
                                 <?php
                                 if ($isPublicUserPage)
-                                    echo _("User Public Profile");
+                                    echo _("User progress");
                                 else
-                                    echo _("My Public Profile");
+                                    echo _("My progress");
                                 ?>
-                            </a>
-                        </p>
-                        <p>
-                            <a href='<?php echo $rootDir . "project/doc/" . $lang; ?>'>
+                                </a>
+                            </p>
+                            <p> 
+                            <?php
+                            if ($isPublicUserPage) {
+                                if (isset ($_SESSION['username']))
+                                {
+                                    echo "<a href='$rootDir" . "users/" . $_SESSION['username'] . "'" . ">";
+                                    echo _("My private profile");
+                                }
+                            } else {
+                                echo "<a href='$rootDir" . "users/profile/" . $displayUserName . "'" . ">";
+                                echo _("My public profile");
+                            }
+                            ?>
+                                </a>
+                            </p>
+                            <p>
+                                <a href='<?php echo $rootDir . "project/doc/" . $lang; ?>'>
                                 <?php echo _("Help"); ?>
-                            </a>
-                        </p>
+                                </a>
+                            </p>
                     </div><!-- end of user_menu -->
                     <div class=" span10 tab-pane " id="myMessages" >
                         <h2>
@@ -195,64 +206,63 @@ includeCssAndJsFiles::includePageFiles("users");
                                 </tr>
                             </thead>
                             <tbody>
-                        <?php
-
-                        foreach ($messagesRecieve as $message) {
-                            $class = '';
-                            if ($message['read'])
-                                $class = "read";
+                            <?php
+                            foreach ($messagesRecieve as $message) {
+                                $class = '';
+                                if ($message['read'])
+                                    $class = "read";
                             ?>
-                                    <tr>
-                                        <td> <?php echo $message['sendfrom'] ?></td>
-                                        <td> <?php echo $message['date'] ?></td>
-                                        <td> <a id ="<?php echo $message['_id']; ?>"  title ="<?php echo $message['subject']; ?>" class="openMessage <?php echo $class;?>"> <?php echo $message['subject'] ?> </a></td>
-                                    </tr>
-                                    <?php
-                                }
-                                ?>
+                                <tr>
+                                    <td> <?php echo $message['sendfrom'] ?></td>
+                                    <td> <?php echo $message['date'] ?></td>
+                                    <td> <a id ="<?php echo $message['_id']; ?>"  title ="<?php echo $message['subject']; ?>" class="openMessage <?php echo $class; ?>"> <?php echo $message['subject'] ?> </a></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                             </tbody>
                         </table>
                     </div>    
 
                     <div class=" span10 tab-pane active" id="myProgress">
                         <h2>
-    <?php
-    if ($isPublicUserPage)
-        echo _("User progress");
-    else
-        echo _("My progress");
-    ?>  
+                        <?php
+                        if ($isPublicUserPage)
+                            echo _("User progress");
+                        else
+                            echo _("My progress");
+                        ?>  
                         </h2>
                         <div class='cleaner_h20'></div>
                         <!-- Display User badges--->
                         <div class="badges">
-    <?php
-    $badges = badgesUtil::getUserBadges($username);
-    // Should use foreatch loop for all badges
-    //echo $badges;
-    $badgesArr = explode(",", $badges);
-    if (in_array("1", $badgesArr)) {
-        echo "<div class='badge' title='finish lesson number 1' >";
-        echo "<p> Green shield </p>";
-        echo "<img class='badgeImg' id='turtleimg' src='" . $sitePath . "/Images/badges/lightshield.jpg' />";
-        echo "</div>";
-    }
-    if (in_array("2", $badgesArr)) {
-        echo "<div class='badge' title='Finish the first 2 lessons' >";
-        echo "<p> Brown shield </p>";
-        echo "<img class='badgeImg' id='turtleimg' src='" . $sitePath . "/Images/badges/brownshield.jpg' />";
-        echo "</div>";
-    }
-    if (in_array("3", $badgesArr)) {
-        echo "<div class='badge' title='Familar with the Turtle World' >";
-        echo "<p> Gold shield </p>";
-        echo "<img class='badgeImg' id='turtleimg' src='" . $sitePath . "/Images/badges/goldenshield.jpg' />";
-        echo "</div>";
-    }
-    ?>
+                            <?php
+                            $badges = badgesUtil::getUserBadges($username);
+                            // Should use foreatch loop for all badges
+                            //echo $badges;
+                            $badgesArr = explode(",", $badges);
+                            if (in_array("1", $badgesArr)) {
+                                echo "<div class='badge' title='finish lesson number 1' >";
+                                echo "<p> Green shield </p>";
+                                echo "<img class='badgeImg' id='turtleimg' src='" . $sitePath . "/Images/badges/lightshield.jpg'  />";
+                                echo "</div>";
+                            }
+                            if (in_array("2", $badgesArr)) {
+                                echo "<div class='badge' title='Finish the first 2 lessons' >";
+                                echo "<p> Brown shield </p>";
+                                echo "<img class='badgeImg' id='turtleimg' src='" . $sitePath . "/Images/badges/brownshield.jpg' />";
+                                echo "</div>";
+                            }
+                            if (in_array("3", $badgesArr)) {
+                                echo "<div class='badge' title='Familar with the Turtle World' >";
+                                echo "<p> Gold shield </p>";
+                                echo "<img class='badgeImg' id='turtleimg' src='" . $sitePath . "/Images/badges/goldenshield.jpg' />";
+                                echo "</div>";
+                            }
+                            ?>
                         </div> 
 
-                    </div>
+                    </div> <!-- End of myProgress div -->
                     <div class='span16'id="usrLessonDiv" lang="<?php echo $lang ?>"> 
 
                         <h2><?php
@@ -260,7 +270,7 @@ includeCssAndJsFiles::includePageFiles("users");
                             echo _("User Programs");
                         else
                             echo _("Your Programs");
-    ?>
+                            ?>
                         </h2>
                         <table class='zebra-striped ads' id="my_lessons" lang="<?php echo $lang ?>">
                             <thead>
@@ -275,77 +285,71 @@ includeCssAndJsFiles::includePageFiles("users");
                             <?php
                             $userPrograms = userUtil::findUserPrograms($username);
                             foreach ($userPrograms as $program) {
-                                ?>
-                                    <tr>
-                                        <td><?php echo $program['programName'] ?></td>
-                                        <td><?php echo $program['dateCreated'] ?></td>
-                                        <td><?php echo $program['lastUpdated'] ?></td>
-                                        <td>
-                                            <!--<div class='btn small success disabled'>Renewed</div> 
-                                            ?programid=527115cea51ffb9d25000000&username=lucio-->
-                                            <a class='btn small info' href="<?php
-                        if ($isPublicUserPage)
-                            echo $rootDir . "users/programs/";
-                        else
-                            echo $rootDir . "files/updateProgram.php?programid=";
-                        echo $program['_id'];
-                        if (!$isPublicUserPage) {
-                            echo"&username=";
-                            echo $username;
-                        }
-                        ?> 
-
-                                               ">  <?php
-                        if ($isPublicUserPage)
-                            echo _("View");
-                        else
-                            echo _("Edit");
-                        ?>
-                                            </a>
-                                            <!--<div class='btn small danger'>Remove</div> -->
-                                        </td>
-                                    </tr>
-                                               <?php
-                                           } // End of foreach loop
-                                           ?> 
+                            ?>
+                                <tr>
+                                    <td><?php echo $program['programName'] ?></td>
+                                    <td><?php echo $program['dateCreated'] ?></td>
+                                    <td><?php echo $program['lastUpdated'] ?></td>
+                                    <td>
+                                        <a class='btn small info' href="<?php
+                                            if ($isPublicUserPage)
+                                                echo $rootDir . "users/programs/";
+                                            else
+                                                echo $rootDir . "files/updateProgram.php?programid=";
+                                            echo $program['_id'];
+                                            if (!$isPublicUserPage) {
+                                                echo"&username=";
+                                                echo $username;
+                                            }
+                                            ?> 
+                                        ">  <?php
+                                            if ($isPublicUserPage)
+                                                echo _("View");
+                                            else
+                                                echo _("Edit");
+                                            ?>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php
+                            } // End of foreach loop
+                            ?> 
                             </tbody>  
                         </table>
                     </div><!-- end of center content -->
                 </div>
-    <?php
-    if (isset($footer))
-        echo $footer;
-    ?>
+            <?php
+            if (isset($footer))
+                echo $footer;
+            ?>
             </div>
-        
+
             <script> 
                 $(document).ready(function() {
-                  
-                  
                     $('.openMessage').each(function() {
                         var id = $(this).attr('id');
                         var title = $(this).attr('title');
                         var $dialog = $('<p></p>');
                         var $link = $(this).live('click', function() {
                             var locale      = $.Storage.get('locale');
-                      
+                          
 
-                                $dialog                           
-                                .load('message.php?id=' + id ) /* When opening the message will sign it as read message*/
-                                .dialog({
-                                    title: $link.attr('title'),
-                                    width: 500 
-                                }); 
-                                $link.click(function() {
-                                    $dialog.dialog('open');
-                                    return false;
-                                });
+                            $dialog                           
+                            .load('message.php?id=' + id ) /* When opening the message will sign it as read message*/
+                            .dialog({
+                                title: $link.attr('title'),
+                                width: 500 
+                            }); 
+                            $link.click(function() {
+                                $dialog.dialog('open');
                                 return false;
-                            
+                            });
+                            return false;
+                                
                         });                                           
                     });
-                    
-                    selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>users/", "users.php" ,"en" ); 
+                        
+                    selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>users/<?php if ($isPublicUserPage) echo "profile" . "/" . $username; ?>/", "users.php" ,"en" ); 
                     $('#myMessages').hide();
                     $('#myMessageslink').click(function() {
                         $('#myProgress').hide();
@@ -354,10 +358,10 @@ includeCssAndJsFiles::includePageFiles("users");
                     $('#myProgresslink').click(function() {
                         $('#myMessages').hide();
                         $('#myProgress').show();
-                    
-                    });
-                
                         
+                    });
+                    
+                            
                 });
             </script>
     <?php

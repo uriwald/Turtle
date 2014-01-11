@@ -22,10 +22,12 @@
         "nl" => "nl_NL",
         "pt" => "pt_BR",
         "pl" => "pl_PL",
+        "it" => "it_IT",
         "fi" => "fi_FI",
         "ru" => "ru_RU",
         "he" => "he_IL",
-        "zh" => "zh_CN"   
+        "zh" => "zh_CN",
+        "hr" => "hr_HR"
     );
     
     if (isset ($_GET['locale']))
@@ -88,7 +90,8 @@
     <!-- In order to infrom js files on which locale are we right now -->
     <script type="text/javascript">
             var locale   = "<?php echo $localeDomain; ?>";
+            var localShort      =    locale.substr(0,2)
             var rootDir  = "<?php echo $rootDir; ?>";
-            var sitePath =   "<?php echo $sitePath; ?>";
+            var sitePath = "<?php echo $sitePath; ?>";
 
     </script>
