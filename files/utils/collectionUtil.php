@@ -110,6 +110,17 @@ class collectionUtil {
         $cursor["$attName"] = $attVal ;
           $result = $this->collection->update($criteria,$cursor);
     }
+    public static function CollectionItemChangeAttVal ($db,$collection ,$mongoid , $attName , $attVal) 
+    { 
+        $m                          =   new Mongo();
+        $thisdb                     =   $m->$db;
+        $colname                    =   $collection;
+        $collection            =   $thisdb->$colname;
+        $criteria = $collection->findOne(array("_id" => $mongoid));
+        $cursor = $criteria; 
+        $cursor["$attName"] = $attVal ;
+          $result = $collection->update($criteria,$cursor);
+    }
     
     public function CollectionItemsAddAttribute($attName , $attVal) {      
 

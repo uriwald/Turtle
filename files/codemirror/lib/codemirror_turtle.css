@@ -338,6 +338,7 @@ body, p {
 }
 #action-buttons{
     float : left;
+    width: 50%;
 }
 #action-buttons > form {
     margin-bottom: 10px;
@@ -350,4 +351,35 @@ body, p {
 }
 #program-info{
     margin-left: 25px;
+}
+#comments{
+    margin-left: 29px;
+    width : 510px;
+}
+#commentTxtArea{
+    width : 500px;
+}
+.comment-title{
+    /*background-color: rgb(205, 205, 236);*/
+    margin-top: 15px;
+    height: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.comment-content{
+    margin-top: 5px;
+}
+#numOfComments{
+       height: 24px;
+    font-size: 22px; 
+    font-weight: bold;
+}
+.comment-contain{
+    /*border : 1px solid #ddd;*/
+}
+.comment-content p{
+    white-space: pre;
+}
+.title-time{
+    float: right;
 }

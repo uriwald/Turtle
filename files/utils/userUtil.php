@@ -82,6 +82,19 @@
            //Case no user found
                
      }
+     
+     public static function findPublicPrograms() 
+     {
+           $m = new Mongo();
+           $db = $m->turtleTestDb;	
+           $programs = $db->programs;
+
+
+           $userProgramQuery       =  array('displayInProgramPage' => true);
+           $results     = $programs->find($userProgramQuery);
+           return $results;
+           //Case no user found          
+     }
      /*
       * Obsolate 
       * Can use the collectionUtil function CollectionItemAddAttribute
@@ -136,7 +149,9 @@
             $db = $m->turtleTestDb;
             $strcol = $db->messages;
             $newMessagesQuery     = array ('sendto' => $username , 'read' => false);
-            $numOfNewMsg    = $strcol->count($newMessagesQuery);
+            $newMessagesQueryAll     = array ('sendto' => 'all'     , 'read' => false);
+            $numOfNewMsg    = $strcol->count($newMessagesQuery) + $strcol->count($newMessagesQueryAll) ;
+            
             if ($numOfNewMsg > 0)
                 return true;
             else 

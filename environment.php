@@ -9,6 +9,6 @@
     $homePage            =   "index.php";
     $lessonPage          =   "learn.php";  
     $env                 =   "local";
-    $rootDir             =   "/";  
+    $rootDir             =   "/"; 
     //$rootDir             = "/next/";
 ?>  

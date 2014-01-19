@@ -17,6 +17,8 @@
         $displayPage = false;
         echo "<center><h1 id='redirect'> You will be redirected in order to log in </h1></center>";
     }
+    if(strlen ($_SESSION['locale']) < 3)
+        $_SESSION['locale'] = "en_us";
     require_once("localization.php");
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
@@ -132,18 +134,21 @@
                                 $m = new Mongo();
                                 $db = $m->turtleTestDb;
                                 $strcol = $db->messages;
+                                $username = trim($username);
                                 $messagesRecieveQuery = array('sendto' => $username);
                                 $messagesGeneral = array('sendto' => 'all');
-                                $allMessages = array('$or' => array(array('sendto' => $username), array('sendto' => 'all')));
+                                
+                                $allMessages = array('$or' => array(array('sendto' => $username ), array('sendto' => 'all')));
 
-                                $newMessagesQuery = array('sendto' => $username, 'read' => false);
+                                $newMessagesQuery =  array('$or' => array(array('sendto' => $username , 'read'=>false ), array('sendto' => 'all', 'read'=>false)));
                                 $messageSentQuery = array('sendfrom' => $username);
                                 //$messagesRecieve = $strcol->find($messagesRecieveQuery);
                                 $messagesRecieve = $strcol->find($allMessages);
                                 $messagesRecieve->sort(array('date' => -1));
                                 $messagesSent = $strcol->findOne($messageSentQuery);
                                 $msgRecieveCount = $strcol->count($messagesRecieveQuery);
-                                $numOfNewMsg = $strcol->count($allMessages);
+                                $numOfNewMsg = $strcol->count($newMessagesQuery);
+                                
                             ?>
                                 <a href='#myMessages' id="myMessageslink">
                                 <?php
@@ -207,7 +212,9 @@
                             </thead>
                             <tbody>
                             <?php
+                            
                             foreach ($messagesRecieve as $message) {
+                            //foreach ($messagesRecieveQuery as $message) {
                                 $class = '';
                                 if ($message['read'])
                                     $class = "read";
@@ -335,7 +342,7 @@
                           
 
                             $dialog                           
-                            .load('message.php?id=' + id ) /* When opening the message will sign it as read message*/
+                            .load(sitePath + 'message.php?id=' + id ) /* When opening the message will sign it as read message*/
                             .dialog({
                                 title: $link.attr('title'),
                                 width: 500 

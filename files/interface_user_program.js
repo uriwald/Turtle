@@ -12,25 +12,6 @@ var turtleid = 1 ;
 
 var lastLessonClick = null ;
 
-/*
-$.extend({
-    getUrlVars: function(){
-        var vars = [], hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for(var i = 0; i < hashes.length; i++)
-        {
-            hash = hashes[i].split('=');
-            vars.push(hash[0]);
-            vars[hash[0]] = hash[1];
-        }
-        return vars; 
-    },
-    getUrlVar: function(name){
-        return $.getUrlVars()[name];
-    }
-});
-*/
-
     var handler = function(command) {
         if (command) {
             try {
@@ -45,9 +26,57 @@ $.extend({
             }
         }
     };
+    $("#btn_comment").click(function() {  
+        //programid username
+        if (username != null)
+            {
+                var saveCommentUrl  = sitePath + "files/saveProgramComment.php";
+                var updateMsgUrl    = sitePath + "files/messages/saveNesMessage.php";
+                var cmt = $("#commentTxtArea").val();
+                $.ajax({
+                    type : 'POST',
+                    url : saveCommentUrl,
+                    dataType : 'json',
+                    data: {
+                        comment         : cmt,
+                        programid       : programid,
+                        username        : username
+                    },
+
+                    success : function(data){
+                        alert('success');
+                        $("#comments").load(sitePath + 'files/comments.php?programid=' + programid);
+                    },       
+                    error : function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert('fail');  
+                    }
+                });
+                $.ajax({
+                    type : 'POST',
+                    url : updateMsgUrl,
+                    dataType : 'json',
+                    data: {
+                        programid       : programid,
+                        username        : username,
+                        programCreator  : programCreator
+                    },
+
+                    success : function(data){
+                        alert('success');
+                        $("#comments").load(sitePath + 'files/comments.php?programid=' + programid);
+                    },       
+                    error : function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert('fail');  
+                    }
+                });
+            }
+         else{
+             alert('Only register users can comment');
+         }
+    });
 $(function() {
     // Compile templates used later
- 
+    $("#comments").load(sitePath + 'files/comments.php?programid=' + programid);
     var gt = new Gettext({
         'domain' : 'messages'
     });
@@ -82,6 +111,8 @@ $(function() {
             } 
         });
     }); 
+
+  
     
     
     $("#btn_delete").click(function() {    

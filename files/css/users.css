@@ -58,7 +58,6 @@ td.mini-thumbnail{
 .ui-dialog-content
 {
     color: black !important;
-    background: aliceblue !important;
     display: block;
     margin: 0 0 10px;
     font-size: 16px;
@@ -67,4 +66,14 @@ td.mini-thumbnail{
     word-wrap: break-word;
     white-space: pre-wrap;
 
+}
+.ui-widget-content a {
+    color: #0088cc !important; 
+}
+.ui-dialog , .ui-dialog-content{
+    background-color: white !important;
+}
+.ui-dialog-title{
+    font-size: 18px;
+    height: 20px;
 }

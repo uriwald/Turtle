@@ -84,7 +84,7 @@ class topbarUtil {
                      $topbarDisplay['news'] = true ; $topbarDisplay['about'] = true ; 
                      $displaylanguage['de'] = true ;  $displaylanguage['pl']=true;$displaylanguage['fi']=true;
                      $displaylanguage['nl']=true;$displaylanguage['it']=false;$displaylanguage['hr']=true;
-                    break;
+                    break; 
                 case "faq":
                     $signUpDisplay = false;
                     $languagesDisplay = false;

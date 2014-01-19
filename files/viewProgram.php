@@ -9,6 +9,7 @@ require_once("../localization.php");
 require_once("cssUtils.php");
 require_once("utils/languageUtil.php");
 require_once('utils/topbarUtil.php');
+require_once('utils/programUtil.php');
 ?>    
 <head> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -77,11 +78,11 @@ require_once('utils/topbarUtil.php');
                 <div id="displayplain"> 
                     <canvas id="sandbox" width="600" height="400px" class="ui-corner-all ui-widget-content">   
                         <span style="color: red; background-color: yellow; font-weight: bold;">
-<?php
-echo _("TurtleAcademy learn programming for free");
-echo _("Your browser is not supporting canvas");
-echo _("We recoomnd you to use Chrome or Firefox browsers");
-?>                                      
+                        <?php
+                        echo _("TurtleAcademy learn programming for free");
+                        echo _("Your browser is not supporting canvas");
+                        echo _("We recoomnd you to use Chrome or Firefox browsers");
+                        ?>                                      
                         </span> 
                     </canvas>
                     <canvas id="turtle" width="600" height="400px" >    
@@ -98,16 +99,49 @@ echo _("We recoomnd you to use Chrome or Firefox browsers");
                     <input id="runbtn" type="button" value="Run" class="btn small info pressed"></input>
                 </form>
             </div>
+            
             <div id="comments">
+                <!--
                 <div id="comment-in">
                      <form> 
-                        <textarea id="comment" name="comment" placeholder="entercomment"> </textarea>
-                        <input id="btncomment" type="button" value="send" class="btn small info pressed"></input>
+                        <textarea id="commentTxtArea" placeholder="Add comment to the program.."></textarea>
+                        <input id="btn_comment" type="button" value="submit comment" class="btn small info pressed"></input>
                     </form>
                 </div>
-                <div id ="user-comments">
-                   dsdfdsfsd
+                <div id="numOfComments">
+                    <?php echo $criteria['numOfComments']; echo " " ; echo "Comments"?>
                 </div>
+                <div id ="user-comments">
+                   <?php
+                        $comments = programUtil::findProgramComments($theObjId);
+                        //print_r($comments); 
+                        if (is_array($comments) )
+                        {
+                            foreach ($comments as $comment)
+                            {
+                                echo "<div class='comment-contain'>";
+                                    echo "<div class='comment-title'>"; 
+                                    ?>
+                                    <a class='' href="<?php
+                                            echo $rootDir . "users/profile/";
+                                            echo $comment['user'];
+                                            ?>"> 
+                                            <?php echo $program['username'];?>  
+                                    </a>
+                                    <?php
+                                        
+                                    echo "</div>";
+                                    echo "<div class='comment-content'>"; 
+                                        echo "<p>";
+                                            echo $comment['comment'];
+                                        echo "</p>";
+                                    echo "</div>";
+                                echo "</div>";  // Closing of comment-contain
+                            }
+                        }
+                   ?>
+                </div>
+                -->
             </div>
             <div id="documentation">
                 <div id="doc-container" class ="span21">
@@ -335,7 +369,7 @@ echo _("We recoomnd you to use Chrome or Firefox browsers");
         
     editor.setValue('<?php echo $bodytag; ?>'); 
     var programid = '<?php echo $programId ?>' ;
-    
+    var programCreator = '<?php echo $criteria['username'] ;?>';
     <?php
         if (isset($_SESSION['username']))
             echo "var username = '" . $_SESSION['username'] . "';";
@@ -343,26 +377,5 @@ echo _("We recoomnd you to use Chrome or Firefox browsers");
             echo "var username = null;";
     ?> 
     selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>program/lang/" , "newProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
-    $("#btncomment").click(function() {  
-        //programid username
-        var saveCommentUrl  = sitePath + "files/saveProgramComment.php";
-        var cmt = $("#comment").val();
-        $.ajax({
-            type : 'POST',
-            url : saveCommentUrl,
-            dataType : 'json',
-            data: {
-                comment         : cmt,
-                programid       :   programid,
-                username        : username
-            },
 
-            success : function(data){
-                alert('success');
-            },       
-            error : function(XMLHttpRequest, textStatus, errorThrown) {
-                alert('fail');  
-            }
-        });
-    });  
 </script> 
