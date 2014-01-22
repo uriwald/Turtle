@@ -16,6 +16,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+var ratio = 1; 
 //----------------------------------------------------------------------
 function LogoInterpreter(turtle, stream)
 //----------------------------------------------------------------------
@@ -561,7 +562,7 @@ function LogoInterpreter(turtle, stream)
     var procedure = self.routines[name.toLowerCase()];
     if (!procedure) { 
         if (name.match(regexHasNumber))
-            throw new Error(format(__("Command and number should be seperate by space e.g forward 50 and not forward50"), { name: name.toUpperCase() })); 
+            throw new Error(format(__(gt.gettext("Command and number should be seperate by space e.g forward 50 and not forward50")), { name: name.toUpperCase() })); 
         else    
             throw new Error(format(__("Don't know how to {name}"), { name: name.toUpperCase() })); 
     
@@ -686,12 +687,43 @@ function LogoInterpreter(turtle, stream)
   //----------------------------------------------------------------------
   // Execute a sequence of statements
   //----------------------------------------------------------------------
+      self.waitexecute = function () {
+        self.wait = false;
+
+        self.execute(self.queue);
+        if (self.turtle) {
+            self.turtle.begin();
+            self.turtle.end();
+        }
+      }
   self.execute = function(statements, options) {
     options = Object(options);
     // Operate on a copy so the original is not destroyed
     statements = statements.slice();
-
+    
     var result;
+    
+    
+        if (self.wait) {
+            self.queue = self.queue.concat(statements);
+            return;
+        };
+        while (statements.length) {
+            if (statements[0] == 'wait') {
+                statements.shift();
+                self.queue = statements.slice();
+                self.wait = true;
+                setTimeout(function() {
+                    self.waitexecute()
+                    },300);
+                return result;
+            }
+            result = self.evaluateExpression(statements);
+            if (result !== (void 0) && !options.returnResult) {
+                throw new Error(format(__("Don't know what to do with {result}"), {result: result}));
+      }
+        }
+        /*
     while (statements.length) {
       result = self.evaluateExpression(statements);
 
@@ -699,12 +731,15 @@ function LogoInterpreter(turtle, stream)
         throw new Error(format(__("Don't know what to do with {result}"), {result: result}));
       }
     }
+        */
 
     // Return last result
     return result;
 
   };
-
+  self.setRatio =  function(rate){
+      ratio = rate;
+  }
 
   self.run = function(string, options) {
     options = Object(options);
@@ -1372,19 +1407,19 @@ function LogoInterpreter(turtle, stream)
   //----------------------------------------------------------------------
   // 6.1 Turtle Motion
 
-  self.routines["forward"] = self.routines["fd"] = function(a) { turtle.move(aexpr(a)); };
-  self.routines["back"] = self.routines["bk"] = function(a) { turtle.move(-aexpr(a)); };
-  self.routines["left"] = self.routines["lt"] = function(a) { turtle.turn(-aexpr(a)); };
-  self.routines["right"] = self.routines["rt"] = function(a) { turtle.turn(aexpr(a)); };
+  self.routines["forward"] = self.routines["fd"] = function(a) { turtle.move(aexpr(a * ratio)); };
+  self.routines["back"] = self.routines["bk"] = function(a) { turtle.move(-aexpr(a * ratio)); };
+  self.routines["left"] = self.routines["lt"] = function(a) { turtle.turn(-aexpr(a * ratio)); };
+  self.routines["right"] = self.routines["rt"] = function(a) { turtle.turn(aexpr(a * ratio)); };
 
   self.routines["setpos"] = function(l) {
     l = lexpr(l);
     if (l.length !== 2) { throw new Error(__("Expected list of length 2")); }
     turtle.setposition(aexpr(l[0]), aexpr(l[1]));
   };
-  self.routines["setxy"] = function(x, y) { turtle.setposition(aexpr(x), aexpr(y)); };
-  self.routines["setx"] = function(x) { turtle.setposition(aexpr(x), (void 0)); }; // TODO: Replace with ...?
-  self.routines["sety"] = function(y) { turtle.setposition((void 0), aexpr(y)); };
+  self.routines["setxy"] = function(x, y) { turtle.setposition(aexpr(x * ratio), aexpr(y * ratio)); };
+  self.routines["setx"] = function(x) { turtle.setposition(aexpr(x * ratio), (void 0)); }; // TODO: Replace with ...?
+  self.routines["sety"] = function(y) { turtle.setposition((void 0), aexpr(y * ratio)); };
   self.routines["setheading"] = self.routines["seth"] = function(a) { turtle.setheading(aexpr(a)); };
 
   self.routines["home"] = function() { turtle.home(); };
@@ -1437,7 +1472,7 @@ function LogoInterpreter(turtle, stream)
     turtle.drawtext(s);
   };
 
-  self.routines["setlabelheight"] = function(a) { turtle.setfontsize(aexpr(a)); };
+  self.routines["setlabelheight"] = function(a) { turtle.setfontsize(aexpr(a * ratio)); }; 
 
   // Not Supported: textscreen
   // Not Supported: fullscreen

@@ -36,7 +36,25 @@
     }
     ?>
 
-
+            <script> 
+                $(document).ready(function() {
+                     selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>users/<?php if ($isPublicUserPage) echo "profile" . "/" . $username; ?>/", "users.php" ,"en" );                     
+                 });
+                 function do_logo(id ,cmd) {
+                $('#'+id).css('width', '50px').css('height', '50px').append('<canvas id="'+id+'c" width="50" height="50" style="position: absolute; z-index: 0;"></canvas>' +
+                    '<canvas id="'+id+'t" width="50" height="50" style="position: absolute; z-index: 1;"></canvas>');
+                var canvas_element2 = document.getElementById(id+"c");
+                var turtle_element2 = document.getElementById(id+"t");
+                var turtle2 = new CanvasTurtle(
+                canvas_element2.getContext('2d'),
+                turtle_element2.getContext('2d'),
+                canvas_element2.width, canvas_element2.height);
+                var rate = 0.1;
+                g_logo2 = new LogoInterpreter(turtle2, null );
+                g_logo2.setRatio(rate);
+                g_logo2.run(cmd);
+            } 
+            </script>
 <html dir="<?php echo $dir ?>" lang="<?php echo $lang ?>">
     <head>
         <meta charset="utf-8">
@@ -76,7 +94,8 @@
                         <table class='zebra-striped ads' id="my_lessons" lang="<?php echo $lang ?>">
                             <thead>
                                 <tr>
-                                    <th class='span4'><?php echo _("num"); ?></th>
+                                    <th class='span1'><?php echo _("num"); ?></th>
+                                    <th class='span1'><?php echo _("pic"); ?></th>
                                     <th class='span4'><?php echo _("creator"); ?></th>
                                     <th class='span4'><?php echo _("program name"); ?></th>
                                     <th class='span4'><?php echo _("Date Created"); ?></th>
@@ -204,7 +223,8 @@
                                 {
                             ?>
                                 <tr>
-                                    <td><?php echo $i;?></td>
+                                    <td class="span1"><?php echo $i;?></td>
+                                    <td id="logo<?php echo $i;?>"></td>
                                     <td>
                                         <a class='' href="<?php
                                             echo $rootDir . "users/profile/";
@@ -220,8 +240,11 @@
                                                 echo "_email";
                                             ?>"> 
                                             <?php
-
                                                 echo $programCreator;
+                                                $code = $program['code'];
+                                              
+                                                $newstr = str_replace("\n", " ", $code);
+                                         
                                             ?>  
                                         </a>
                                     </td>
@@ -240,7 +263,11 @@
                                         </a>
                                     </td>
                                 </tr>
+                                <script>
+                                    do_logo ('<?php echo "logo" . $i;?> ', '<?php echo $newstr; ?>');
+                             </script>
                             <?php
+
                                 }// End if it's a program we need to display in this page
                             } // End of foreach loop
                             ?> 
@@ -249,17 +276,18 @@
                         <?php echo $pagination; ?>
                     </div><!-- end of center content -->
                 </div>
+                 <div id="logo1"></div>
             <?php
             if (isset($footer))
                 echo $footer;
             ?>
             </div>
+        <script>
+                    do_logo ('logo1', 'penup setxy -180 40 rt 90 setlabelheight 110 setcolor 1 label "Weiyun setxy -100 -120 label "Hua ht');
 
-            <script> 
-                $(document).ready(function() {
-                     selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>users/<?php if ($isPublicUserPage) echo "profile" . "/" . $username; ?>/", "users.php" ,"en" );                     
-                 });
-            </script>
+        </script>
+
+
     <?php
 } // End of rull Checking for session.username exists
 ?>
