@@ -30,14 +30,37 @@
     if (isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
         $displayUserName = $username;
+        if (strpos($displayUserName, '@') !== false) {
+            $nameBeforeMailAdd = explode('@', $displayUserName);
+            $displayUserName = $nameBeforeMailAdd[0];
+            $emailAdd   =   $nameBeforeMailAdd[1]; 
+            $_SESSION['completeEmail'] = "@" . $emailAdd;
+        }
     }
     if ($isPublicUserPage) {
-        $username = $_GET['username'];
+        $username       = $_GET['username'];
+        $isMailUser     = false;
+        if (strpos($username, '_email') !== false)
+            $isMailUser     = true;
+        if ($isMailUser)
+        {
+            $username = userUtil :: find_mail_user($username , "_email");
+        }
+        //echo $username;
         $displayUserName = $username;
+        if (strpos($displayUserName, '@') !== false) {
+            $nameBeforeMailAdd = explode('@', $displayUserName);
+            $displayUserName = $nameBeforeMailAdd[0];
+            $emailAdd   =   $nameBeforeMailAdd[1]; 
+        }
     } else {
         $displayUserName = "";
         if (isset($_SESSION['username'])) {
             $displayUserName = $_SESSION['username'];
+            if (strpos($displayUserName, '@') !== false) {
+                $nameBeforeMailAdd = explode('@', $displayUserName);
+                $displayUserName = $nameBeforeMailAdd[0];
+             }
             // update the user badgse
             badgesUtil :: updateUserBadges($displayUserName);
         }
@@ -68,8 +91,12 @@
             if ($isPublicUserPage) {
                 ?>
 
-                    <div> <h2> <?php echo $displayUserName . " Public Page"; ?></h2> </div>
-                <?php }; //Close div condition ?>
+                    <div> <h2> <?php echo $displayUserName . " Public Page" ; ?></h2> </div>
+                    
+                <?php 
+                //echo $emailAdd;
+                }; //Close div condition 
+                ?>
                 <div class='cleaner_h40'></div>
 
                 <div class='row'>
@@ -181,7 +208,12 @@
                             if ($isPublicUserPage) {
                                 if (isset ($_SESSION['username']))
                                 {
-                                    echo "<a href='$rootDir" . "users/" . $_SESSION['username'] . "'" . ">";
+                                    $privateUserName =  $_SESSION['username'];
+                                    if (strpos($privateUserName, '@') !== false) {
+                                        $nameBeforeMailAdd = explode('@', $privateUserName);
+                                        $privateUserName = $nameBeforeMailAdd[0];
+                                    }
+                                    echo "<a href='$rootDir" . "users/" . $privateUserName. "'" . ">";
                                     echo _("My private profile");
                                 }
                             } else {
@@ -290,6 +322,9 @@
                             </thead>
                             <tbody>
                             <?php
+                            if (isset($_SESSION['isOpenID'])) {
+                                $username = $displayUserName . $_SESSION['completeEmail'];
+                            }
                             $userPrograms = userUtil::findUserPrograms($username);
                             foreach ($userPrograms as $program) {
                             ?>

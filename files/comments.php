@@ -10,7 +10,14 @@ require_once('utils/programUtil.php');
 ?>
 <link rel="stylesheet" href="<?php echo $sitePath; ?>/files/codemirror/lib/codemirror_turtle.css">
 <?php
-    $sendTo = $_SESSION['username'];
+    $logged_in_user = false;
+    $sendTo = "";
+    if (isset($_SESSION['username']))
+    {
+        $logged_in_user = true;
+        $sendTo = $_SESSION['username'];
+    }
+    $sendTo = "";
     $programId = $_GET['programid'];
     $m = new Mongo();
     $db = $m->turtleTestDb;
@@ -21,10 +28,22 @@ require_once('utils/programUtil.php');
     $programName = $criteria['programName'];
     $bodytag = str_replace("\n", "↵", $criteria['code']);                    
 ?>
-                <form> 
+                <?php
+                    if ($logged_in_user)
+                    {
+                ?>
+                <form id="add_comment_form"> 
                         <textarea id="commentTxtArea" placeholder="Add comment to the program.."></textarea>
                         <input id="btn_comment" type="button" value="submit comment" class="btn small info pressed"></input>
                 </form>
+                <?php
+                    }
+                    else{
+                ?>
+<div><span> You must <a href="<?php echo $rootDir . "registration.php";?>">login</a> to comment</span></div>
+                <?php
+                    }
+                 ?> 
                 </div>
                 <div id="numOfComments">
                     <?php echo $criteria['numOfComments']; echo " " ; echo "Comments"?>
