@@ -3,7 +3,7 @@
 <?php
 if (session_id() == '')
     session_start();
-
+$_SESSION['comefrom'] = $_SERVER['PHP_SELF']; 
 require_once("../environment.php");
 require_once("../localization.php");
 require_once("cssUtils.php");
@@ -376,6 +376,6 @@ require_once('utils/programUtil.php');
         else
             echo "var username = null;";
     ?> 
-    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>program/lang/" , "newProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
+    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>users/programs/<?php echo $programId; ?>/" , "viewProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
 
 </script> 

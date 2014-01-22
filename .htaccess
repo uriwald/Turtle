@@ -14,7 +14,7 @@ RewriteRule ^forum/?$     forum.php [NC,L]
 RewriteRule ^registration/?$     registration.php [NC,L]
 RewriteRule ^partner/brainpop/?$     brainPOP.php [NC,L]
 
-
+RewriteRule  ^programs/([A-Za-z0-9-_]+)/?$            userPrograms.php?locale=$1    [NC,L]    # Process user page
 RewriteRule  ^articles/([A-Za-z0-9-_]+)/([A-Za-z0-9-]+)/?$            files/faq/faqItem.php?faqItem=$1&&l=$2    [NC,L]    # Process faq
 RewriteRule  ^faqEditItem/([A-Za-z0-9-_]+)/?$         files/faq/faqEditItem.php?faqItem=$1    [NC,L]    # Process faq 
 RewriteRule  ^next/articles/([A-Za-z0-9-_]+)/?$       next/files/faq/faqItem.php?faqItem=$1    [NC,L]    # Process faq
@@ -27,13 +27,15 @@ RewriteRule  ^donate/([A-Za-z0-9-_]+)/?$    donate.php?locale=$1    [NC,L]    # 
 RewriteRule  ^next/index/([A-Za-z0-9-]+)/?$      next/index.php?locale=$1    [NC,L]    # Process index
 RewriteRule  ^donate/index/([A-Za-z0-9-]+)/?$    next/donate.php?locale=$1    [NC,L]    # Process index
 
+RewriteRule  ^users/([A-Za-z0-9-_\040]+)/?$    users.php?locale=$1    [NC,L]    # Process user page
 
-RewriteRule  ^users/([A-Za-z0-9-_]+)/?$    users.php?locale=$1    [NC,L]    # Process user page
-RewriteRule  ^users/profile/([A-Za-z0-9-_]+)/([A-Za-z0-9-]+)/?$   users.php?username=$1&&l=$2    [NC,L]    # Process user page
-RewriteRule  ^users/profile/([A-Za-z0-9-_]+)/?$   users.php?username=$1    [NC,L]    # Process user page
 
-RewriteRule  ^next/users/([A-Za-z0-9-_]+)/?$    next/users.php?locale=$1    [NC,L]    # Process user page
-RewriteRule  ^next/users/profile/([A-Za-z0-9-_]+)/([A-Za-z0-9-]+)/?$   next/users.php?username=$1&&l=$2    [NC,L]    # Process user page
+
+RewriteRule  ^users/profile/([A-Za-z0-9-_\040]+)/([A-Za-z0-9-\040]+)/?$   users.php?username=$1&&l=$2    [NC,L]    # Process user page
+RewriteRule  ^users/profile/([A-Za-z0-9-_\040]+)/?$   users.php?username=$1    [NC,L]    # Process user page
+
+RewriteRule  ^next/users/([A-Za-z0-9-_\040]+)/?$    next/users.php?locale=$1    [NC,L]    # Process user page
+RewriteRule  ^next/users/profile/([A-Za-z0-9-_\040]+)/([A-Za-z0-9-\040]+)/?$   next/users.php?username=$1&&l=$2    [NC,L]    # Process user page
 RewriteRule  ^next/users/profile/([A-Za-z0-9-_]+)/?$   next/users.php?username=$1    [NC,L]    # Process user page
 
 RewriteRule  ^playground/([A-Za-z0-9-_]+)/?$    playground.php?locale=$1    [NC,L]    # Process playground
@@ -52,6 +54,7 @@ RewriteRule  ^next/lessons/([A-Za-z0-9-_]+)/?$    next/learn.php?locale=$1    [N
 
 
 RewriteRule  ^users/programs/([A-Za-z0-9-]+)/?$   files/viewProgram.php?programid=$1 [NC,L]  #programs
+RewriteRule  ^users/programs/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$   files/viewProgram.php?programid=$1&&l=$2  [NC,L]  #programs
 
 
 
