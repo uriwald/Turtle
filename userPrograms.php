@@ -37,12 +37,10 @@
     ?>
 
             <script> 
-                $(document).ready(function() {
-                     selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>users/<?php if ($isPublicUserPage) echo "profile" . "/" . $username; ?>/", "users.php" ,"en" );                     
-                 });
+                var program_images = "" ;
                  function do_logo(id ,cmd) {
-                $('#'+id).css('width', '50px').css('height', '50px').append('<canvas id="'+id+'c" width="50" height="50" style="position: absolute; z-index: 0;"></canvas>' +
-                    '<canvas id="'+id+'t" width="50" height="50" style="position: absolute; z-index: 1;"></canvas>');
+                $('#'+id).css('width', '60px').css('height', '40px').append('<canvas id="'+id+'c" width="60" height="40" style="position: absolute; z-index: 0;"></canvas>' +
+                    '<canvas id="'+id+'t" width="60" height="40" style="position: absolute; z-index: 1;"></canvas>');
                 var canvas_element2 = document.getElementById(id+"c");
                 var turtle_element2 = document.getElementById(id+"t");
                 var turtle2 = new CanvasTurtle(
@@ -52,6 +50,7 @@
                 var rate = 0.1;
                 g_logo2 = new LogoInterpreter(turtle2, null );
                 g_logo2.setRatio(rate);
+                cmd = cmd + " ht";
                 g_logo2.run(cmd);
             } 
             </script>
@@ -65,6 +64,7 @@
         require_once("files/utils/includeCssAndJsFiles.php");
         includeCssAndJsFiles::includePageFiles("users");
         echo "<link rel='stylesheet' href='".$rootDir."files/css/pagination.css' type='text/css' media='all'/>"; 
+        echo "<script type='application/javascript' src='".$rootDir."files/floodfill.js' ></script>\n" ; 
         ?>
     </head>
     <body>
@@ -79,7 +79,7 @@
             if ($isPublicUserPage) {
                 ?>
 
-                    <div> <h2> <?php echo $displayUserName . " Public Page"; ?></h2> </div>
+                <div> <h2> <?php echo $displayUserName . " Public Page"; ?></h2> </div>
                 <?php }; //Close div condition ?>
                 <div class='cleaner_h40'></div>
 
@@ -95,7 +95,7 @@
                             <thead>
                                 <tr>
                                     <th class='span1'><?php echo _("num"); ?></th>
-                                    <th class='span1'><?php echo _("pic"); ?></th>
+                                    <th class='span2'><?php echo _("pic"); ?></th>
                                     <th class='span4'><?php echo _("creator"); ?></th>
                                     <th class='span4'><?php echo _("program name"); ?></th>
                                     <th class='span4'><?php echo _("Date Created"); ?></th>
@@ -212,6 +212,8 @@
                             
                             $i = 0;
                             $display_program_in_page = false;
+
+                            $programImage = "";
                             foreach ($allPrograms as $program) {
                                 
                                 $i++;
@@ -224,7 +226,21 @@
                             ?>
                                 <tr>
                                     <td class="span1"><?php echo $i;?></td>
-                                    <td id="logo<?php echo $i;?>"></td>
+                                    <?php
+                                       if (strlen($program['img']) > 20)
+                                       {
+                                    ?>
+                                       <td id="logo<?php echo $i;?>" style="background : url(<?php echo $program['img'] ?>);"> 
+                                    <?php
+                                       } 
+                                       else{
+                                   ?>
+                                           <td id="logo<?php echo $i;?>" > 
+                                   <?php
+                                       }
+                                       ?>
+                                    
+                                    </td>
                                     <td>
                                         <a class='' href="<?php
                                             echo $rootDir . "users/profile/";
@@ -258,14 +274,14 @@
                                             ?>">
                                             <?php
                                                 echo _("View");
-                       
+                                                if (strlen($program['img']) < 20 )
+                                                    $programImage = $programImage . "do_logo('logo" .$i ."','" . $newstr . "');** " ;
+      
                                             ?>
                                         </a>
                                     </td>
                                 </tr>
-                                <script>
-                                    do_logo ('<?php echo "logo" . $i;?> ', '<?php echo $newstr; ?>');
-                             </script>
+
                             <?php
 
                                 }// End if it's a program we need to display in this page
@@ -283,13 +299,99 @@
             ?>
             </div>
         <script>
-                    do_logo ('logo1', 'penup setxy -180 40 rt 90 setlabelheight 110 setcolor 1 label "Weiyun setxy -100 -120 label "Hua ht');
+                    $(document).ready(function() {
+                     selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>programs/", "users.php" ,"en" );         
+                    
+                    function saveProgramImage(programtitle  , programid , username , canvasid)
+                    {
+                        var canvas_element = document.getElementById(canvasid);
+                        var dataURL = canvas_element.toDataURL(); 
+                        var ispublic = true;
+                        var saveProgramUrl  = sitePath + "files/saveUserProgram.php";
+                       
 
+                        if (programtitle!=null){
+                                $.ajax({
+                                type : 'POST',
+                                url : saveProgramUrl,
+                                dataType : 'json',
+                                data: {
+                                    programtitle    :   programtitle ,
+                                    update          :   true ,
+                                    programid       :   programid,
+                                    ispublic        :   ispublic,
+                                    imgBase64       :   dataURL,
+                                    username        : username
+                                },
+
+                                success : function(data){
+                                                   
+                                },       
+                                error : function(XMLHttpRequest, textStatus, errorThrown) {
+                                    alert('fail');  
+                                }
+                            });
+                        }
+                    }
+                      <?php
+                        $images = explode("**", $programImage);
+                        foreach ($images as $image)
+                        {
+                            ?>
+                                    
+                            try
+                            {
+                                <?php 
+                                    //For now ignoring the problem when User programs contains '' " signs
+                                    if ( substr_count($image, "'")  == 4 )
+                                    {
+                                    echo $image; echo "\n"; 
+                                    
+                                    }
+                                  ?>
+                            }
+                            catch(err)
+                            {
+                            //Handle errors here
+                            }
+                                
+                        <?php
+                        }
+                        $i = 0;
+                        foreach ($allPrograms as $program) {                              
+                                $i++;
+                                if ($i == $start)
+                                    $display_program_in_page = true;
+                                if ($i == $start + $limit )
+                                    $display_program_in_page = false;
+                                if ($display_program_in_page)
+                                {
+                                    //(programname  , programCode , programid , username ,canvasid)
+                                    $progTitle = $program['programName'];
+                                    $progCodeBeforeEdit  = $program['code'];
+                                    $progCode = str_replace("\n", " ", $progCodeBeforeEdit);
+                                    $progId    = $program['_id'];
+                                    $username  = $program['username'];
+                                    $progImg   = $program['img'];
+                                    $canvasid  = "logo" .$i ."c";
+                                   
+                                    if (strlen($progImg) < 20 )
+                                    { 
+                                       echo "try{ ";
+                                        echo "saveProgramImage(\"$progTitle\"  , '$progId' , '$username' , '$canvasid'); ";
+                                        echo " } catch(err) {} ; \n";
+                                    }
+                                     
+                                }// End if it's a program we need to $progCode in this page
+                            } // End of foreach loop
+                     ?>
+                             
+                 });
         </script>
 
 
     <?php
 } // End of rull Checking for session.username exists
-?>
+?> 
     </body>
 </html>

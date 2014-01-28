@@ -85,8 +85,28 @@ $(function() {
         $("#err-msg").val('');
         handler(editor.getValue());
     });  
-    
-    
+     $("#btn_save_canvas").click(function() {  
+        var canvas_element = document.getElementById("sandbox");
+        var dataURL = canvas_element.toDataURL();  
+        var saveProgramUrl  = sitePath + "files/saveProgramImg.php";
+        $.ajax({
+                type : 'POST',
+                url : saveProgramUrl,
+                dataType : 'json',
+                data: {
+                    imgBase64: dataURL
+                },
+
+                success : function(data){
+                    
+                    alert('dd');               
+                },       
+                error : function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert('fail');  
+                }
+            });
+    });    
+ 
     $("#btn_clear").click(function() {    
         jConfirm('Clear will clean will arase your code line and draweing  '  , 'Are you sure ?', function(r) {
             if (r)
@@ -168,7 +188,14 @@ $(function() {
     }
     function saveprogram(isSave , isRedirect)
     {
-        var programname     =   $("#program-info-header").text();     
+        var canvas_element = document.getElementById("sandbox");
+        var dataURL = canvas_element.toDataURL(); 
+        var programname     =   $("#program-info-header").text();
+        var ispublic = true;
+        if (!isSave)
+        {
+             ispublic        =   $("#publicProgramsCheckbox").is(':checked');
+        }
         var programCode     =   editor.getValue();
         var update          =   !isSave;
         var saveProgramUrl  = sitePath + "files/saveUserProgram.php";
@@ -192,7 +219,9 @@ $(function() {
                     programCode     :   programCode , 
                     update          :   update ,
                     programid       :   programid,
-                    username : username
+                    ispublic        :   ispublic,
+                    imgBase64       :   dataURL,
+                    username        : username
                 },
 
                 success : function(data){

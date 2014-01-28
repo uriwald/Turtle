@@ -1409,8 +1409,8 @@ function LogoInterpreter(turtle, stream)
 
   self.routines["forward"] = self.routines["fd"] = function(a) { turtle.move(aexpr(a * ratio)); };
   self.routines["back"] = self.routines["bk"] = function(a) { turtle.move(-aexpr(a * ratio)); };
-  self.routines["left"] = self.routines["lt"] = function(a) { turtle.turn(-aexpr(a * ratio)); };
-  self.routines["right"] = self.routines["rt"] = function(a) { turtle.turn(aexpr(a * ratio)); };
+  self.routines["left"] = self.routines["lt"] = function(a) { turtle.turn(-aexpr(a)); };
+  self.routines["right"] = self.routines["rt"] = function(a) { turtle.turn(aexpr(a)); };
 
   self.routines["setpos"] = function(l) {
     l = lexpr(l);
