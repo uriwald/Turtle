@@ -19,6 +19,7 @@ require_once ('../utils/topbarUtil.php');
         <?php
 
         require_once("../utils/includeCssAndJsFiles.php");
+        includeCssAndJsFiles::includePageFiles("institute");
         ?>     
         <script src="<?php echo $rootDir; ?>ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
         <script type='text/javascript'> 

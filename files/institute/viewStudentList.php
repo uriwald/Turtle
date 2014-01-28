@@ -17,7 +17,8 @@ require_once ('../utils/userUtil.php');
         <meta name="description" content="">
         <meta name="author" content="">
         <?php
-         require_once("../utils/includeCssAndJsFiles.php");
+            require_once("../utils/includeCssAndJsFiles.php");
+            includeCssAndJsFiles::includePageFiles("institute");
          echo "<link rel='stylesheet' href='../css/institute.css' type='text/css' media='all'/>";
          
         ?>     
