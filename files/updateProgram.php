@@ -20,19 +20,19 @@ require_once('progdoc.php');
         ?>  
     </title>     
 
-    <script src="codemirror/lib/codemirror.js"></script>
+    <script src="<?php echo $sitePath ;?>/files/codemirror/lib/codemirror.js"></script>
 
-    <script src="codemirror/addon/runmode/runmode.js"></script>
-    <script src="codemirror/addon/edit/closebrackets.js"></script>
-    <script src="codemirror/addon/edit/matchbrackets.js"></script>
-    <script src="codemirror/addon/display/placeholder.js"></script> 
+    <script src="<?php echo $sitePath ;?>/files/codemirror/addon/runmode/runmode.js"></script>
+    <script src="<?php echo $sitePath ;?>/files/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="<?php echo $sitePath ;?>/files/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="<?php echo $sitePath ;?>/files/codemirror/addon/display/placeholder.js"></script> 
 
-    <script src="codemirror/addon/selection/active-line.js"></script>
+    <script src="<?php echo $sitePath ;?>/files/codemirror/addon/selection/active-line.js"></script>
 
 
-    <script src="codemirror/mode/logo/logo.js"></script>    
-    <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
-    <link rel="stylesheet" href="codemirror/lib/codemirror_turtle.css">
+    <script src="<?php echo $sitePath ;?>/files/codemirror/mode/logo/logo.js"></script>    
+    <link rel="stylesheet" href="<?php echo $sitePath ;?>/files/codemirror/mode/logo/logo.css">
+    <link rel="stylesheet" href="<?php echo $sitePath ;?>/files/codemirror/lib/codemirror_turtle.css">
     <?php
     require_once("utils/includeCssAndJsFiles.php"); 
     includeCssAndJsFiles::includePageFiles("user-program"); 
@@ -41,13 +41,17 @@ require_once('progdoc.php');
 
     <?php
     $file_path = "../locale/" . $localeDomain . "/LC_MESSAGES/messages.po";
-    $po_file = "<link   rel='gettext' type='application/x-po' href='../locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
+    $po_file = "<link   rel='gettext' type='application/x-po' href='$sitePath/locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
     if (file_exists($file_path))
         echo $po_file;
+    else {
+        echo "<script> var empty = 5; </script>";
+        
+      }
     echo "<script type='application/javascript' src='" . $rootDir . "files/jqconsole.js' ></script>\n";
     echo "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
     ?>        
-    <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
+    <link rel="stylesheet" href="<?php echo $sitePath ;?>/files/codemirror/mode/logo/logo.css">
 </head>
 <body>
     <?php
@@ -130,7 +134,7 @@ echo _("We recoomnd you to use Chrome or Firefox browsers");
         else
             echo "var username = null;";
     ?> 
-    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>program/lang/" , "newProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
+    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>program/update/<?php  echo $_GET['programid'];?>/" , "updateProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
     
     $("#btn_public_page").click(function() {    
         jConfirm('Are you sure you want to go to your public page?'  , 'Public Page', function(r) {

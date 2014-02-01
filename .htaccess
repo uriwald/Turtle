@@ -15,6 +15,9 @@ RewriteRule ^registration/?$     registration.php [NC,L]
 RewriteRule ^partner/brainpop/?$     brainPOP.php [NC,L]
 
 RewriteRule  ^programs/([A-Za-z0-9-_]+)/?$            userPrograms.php?locale=$1    [NC,L]    # Process user page
+RewriteRule  ^next/programs/([A-Za-z0-9-_]+)/?$            next/userPrograms.php?locale=$1    [NC,L]    # Process user page
+RewriteRule  ^program/update/([A-Za-z0-9-_\040]+)/([A-Za-z0-9-\040]+)/?$   files/updateProgram.php?programid=$1&&l=$2 
+
 RewriteRule  ^articles/([A-Za-z0-9-_]+)/([A-Za-z0-9-]+)/?$            files/faq/faqItem.php?faqItem=$1&&l=$2    [NC,L]    # Process faq
 RewriteRule  ^faqEditItem/([A-Za-z0-9-_]+)/?$         files/faq/faqEditItem.php?faqItem=$1    [NC,L]    # Process faq 
 RewriteRule  ^next/articles/([A-Za-z0-9-_]+)/?$       next/files/faq/faqItem.php?faqItem=$1    [NC,L]    # Process faq
