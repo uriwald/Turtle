@@ -20,6 +20,22 @@
                return true;
            }
      }
+     public static function find_mail_user($username,$reg) //username_email
+     {
+           $m = new Mongo();
+           $db = $m->turtleTestDb;	
+           $users = $db->users;
+           //echo "user name is " . $username . " reg is " . $reg;
+           $usernameArr = explode($reg, $username);
+           $displayUserName = $usernameArr[0];
+           //echo $displayUserName;
+
+// Case Sensitive
+
+            $where = array('username' => array('$regex' => new MongoRegex("/^$displayUserName/")));
+            $cursor = $users->findone($where);
+            return $cursor['username'];
+     }
      /* 
       * Putting user login info
       */
@@ -82,6 +98,19 @@
            //Case no user found
                
      }
+         public static function findUserPublicPrograms($username) 
+     {
+           $m = new Mongo();
+           $db = $m->turtleTestDb;	
+           $programs = $db->programs;
+
+
+           $userProgramQuery       =  array('$or' => array(array('username' => $username , 'displayInProgramPage' => true), array('username' => $username , 'displayInProgramPage' => 'true')));
+           $results     = $programs->find($userProgramQuery);
+           return $results;
+           //Case no user found
+               
+     }
      
      public static function findPublicPrograms() 
      {
@@ -90,7 +119,7 @@
            $programs = $db->programs;
 
 
-           $userProgramQuery       =  array('displayInProgramPage' => true);
+           $userProgramQuery       =  array('$or' => array(array('displayInProgramPage' => true), array('displayInProgramPage' => 'true')));
            $results     = $programs->find($userProgramQuery);
            return $results;
            //Case no user found          

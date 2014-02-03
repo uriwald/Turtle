@@ -29,12 +29,13 @@ require_once('utils/programUtil.php');
     $bodytag = str_replace("\n", "↵", $criteria['code']);                    
 ?>
                 <?php
+                    $comment_place_holder = _('Add comment to the program') . "..";
                     if ($logged_in_user)
                     {
                 ?>
                 <form id="add_comment_form"> 
-                        <textarea id="commentTxtArea" placeholder="Add comment to the program.."></textarea>
-                        <input id="btn_comment" type="button" value="submit comment" class="btn small info pressed"></input>
+                        <textarea id="commentTxtArea" placeholder="<?php echo $comment_place_holder;?>"></textarea>
+                        <input id="btn_comment" type="button" value="<?php echo _('submit comment'); ?>" class="btn small info pressed"></input>
                 </form>
                 <?php
                     }

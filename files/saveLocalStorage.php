@@ -19,6 +19,8 @@
         echo "";
         exit();
     }
+    
+    //If we tought the turtle a new TO command it will be save seperately 
     $cmd         = "";
     $tocmd       = "";
     $addNewToCmd = false; // If we will have to save a new user TO command
@@ -26,14 +28,11 @@
     {
         $cmd = $_POST['command'];
         $trimmedcmd = trim($cmd);
-        if (strcasecmp(substr($trimmedcmd, 0, 2), "to") == 0) 
+        if (strcasecmp(_(substr($trimmedcmd, 0, 2)), "to") == 0) //Case the TO command learned in other language
         {
             $tocmd = $trimmedcmd;
             $addNewToCmd = true;
         }
-        //else
-        //    echo"unhapoyp";
-
     }
     $return['username']     = $user;
     $stepsComletedData      = "";  

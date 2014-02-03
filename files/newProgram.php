@@ -35,12 +35,14 @@ require_once('utils/topbarUtil.php');
     ?>   
 
     <?php
-    $file_path = $sitePath. "locale/" . $localeDomain . "/LC_MESSAGES/messages.po'";
-    $po_file = "<link   rel='gettext' type='application/x-po' href='".$sitePath. "locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
+        $file_path = "../locale/" . $localeDomain . "/LC_MESSAGES/messages.po";
+    $po_file = "<link   rel='gettext' type='application/x-po' href='$sitePath/locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
+    
     if (file_exists($file_path))
-        echo $po_file;
-    else
-        echo $po_file;
+       echo $po_file;
+    else {
+        echo "<script> var translationNotLoaded = 5; </script>";      
+      } 
     /*
     echo "<script type='application/javascript' src='" . $rootDir . "files/jqconsole.js' ></script>\n";
     echo "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
@@ -52,6 +54,7 @@ require_once('utils/topbarUtil.php');
 
     <!--<link rel="stylesheet" href="codemirror/mode/logo/logo.css"> -->
 </head>
+<html dir="<?php echo $dir ?>" lang="<?php echo $lang ?>">
 <body>
         <?php
             //Printing the topbar menu
@@ -329,3 +332,4 @@ require_once('utils/topbarUtil.php');
     selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>program/lang/" , "newProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
 
 </script>
+    </html>

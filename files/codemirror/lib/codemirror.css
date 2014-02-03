@@ -168,9 +168,9 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   *display:inline;
 }
 .CodeMirror-gutter-elt {
-  position: absolute;
+ /* position: absolute;
   cursor: default;
-  z-index: 4;
+  z-index: 4;*/
 }
 
 .CodeMirror-lines {
@@ -240,6 +240,22 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   border-right: none;
   width: 0;
 }
+
+ /* Right to left text */
+ .CodeMirror-rtl {
+   direction: rtl;
+ }
+ 
+ .CodeMirror-rtl .CodeMirror-gutters {
+   right: 0 !important;
+   left: auto !important;
+   border-left: 1px solid #ddd;
+ }
+ 
+ .CodeMirror-rtl .CodeMirror-linenumber {
+   padding: 0 5px 0 3px;
+   text-align: left;
+ }
 .CodeMirror-focused div.CodeMirror-cursor {
   visibility: visible;
 }

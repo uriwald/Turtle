@@ -125,7 +125,7 @@
                             if (isset($_SESSION['institute'])) {
                             ?>
                                 <?php
-                                if ($isPublicUserPage) {
+                                if (!$isPublicUserPage) {
                                     ?>
                                     <p>
                                         <a href='<?php echo $rootDir; ?>files/institute/addInstituteUser.php?l=<?php echo $localeDomain; ?>'>
@@ -325,7 +325,12 @@
                             if (isset($_SESSION['isOpenID'])) {
                                 $username = $displayUserName . $_SESSION['completeEmail'];
                             }
-                            $userPrograms = userUtil::findUserPrograms($username);
+                            if ($isPublicUserPage)
+                                $userPrograms = userUtil::findUserPublicPrograms($username);
+                            else
+                                $userPrograms = userUtil::findUserPrograms($username);
+                            
+                            
                             foreach ($userPrograms as $program) {
                             ?>
                                 <tr>

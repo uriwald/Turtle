@@ -10,6 +10,7 @@ class topbarUtil {
                 "turtleacademy" => false,
                 "exercise" => false,
                 "helpus" => false,
+                "publicPrograms" => true ,
                 "playground" => false,
                 "forum" => false,
                 "news" => false,
@@ -19,6 +20,7 @@ class topbarUtil {
 
             $signUpDisplay = true; 
             $languagesDisplay = true;
+           
 
             $language = array(
                 "en" => "en",
@@ -39,7 +41,7 @@ class topbarUtil {
                 "en" => true,
                 "es" => true,
                 "de" => true,
-                "nl" => false,
+                "nl" => true,
                 "it" => false,
                 "pt" => true,
                 "pl" => false,
@@ -103,16 +105,19 @@ class topbarUtil {
                     $topbarDisplay['exercise'] = true ;
                     break;
                 case "program":
+                    $topbarDisplay['playground'] = true ; 
                     $topbarDisplay['about'] = true ; 
                     $topbarDisplay['exercise'] = true ;
                     $topbarSpanSize = 21;
                     //$languagesDisplay = false;
                     break;       
                 case "programUpdate":
+                    $topbarDisplay['playground'] = true ; 
                     $topbarDisplay['about'] = true ; 
                     $topbarDisplay['exercise'] = true ;
+                    $topbarDisplay['publicPrograms'] = false; 
                     $topbarSpanSize = 21;
-                    $languagesDisplay = false;
+                    $languagesDisplay = true;
                     break;  
                 case "institute":
                     $signUpDisplay = true;
@@ -142,7 +147,7 @@ class topbarUtil {
                 
                 
             }        
-            topbarUtil::printTopBarSelected($rootDir, $topbarDisplay, $languagesDisplay , $signUpDisplay, 
+            topbarUtil::printTopBarSelected($rootDir, $topbarDisplay, $languagesDisplay , $signUpDisplay,
                     $language ,$topbarSpanSize , $displaylanguage , $countryNativeName , $countryFlagName);
     }
      private static function printTopBarSelected($rootDir, $topbarDisplay, $langDropDown, $signUpDisplay,
@@ -172,6 +177,12 @@ class topbarUtil {
                             echo _("Lessons");
                             echo "</a></li>";
                         }
+                        if (isset($topbarDisplay['publicPrograms'])) {
+                            echo "<li><a href='" . $sitePath . "/programs/$lang'>";
+                            echo _("User programs");
+                            echo "</a></li>";
+                        }
+                        
                         if ($topbarDisplay['helpus'] == "true") {
                             echo "<li><a href='" . $sitePath . "needed.php'>";
                             echo _("Help Us");

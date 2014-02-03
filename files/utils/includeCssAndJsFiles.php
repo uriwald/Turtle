@@ -4,7 +4,7 @@ class includeCssAndJsFiles {
     public static function includePageFiles($pageName) 
     {
         $additionalFiles = "";
-        global $_SESSION , $rootDir , $localeDomain;
+        global $_SESSION , $rootDir , $localeDomain , $sitePath; 
         $hasNavigator   = false;
         $hasConsole     = false;
         $hasLessons     = false;
@@ -48,10 +48,13 @@ class includeCssAndJsFiles {
                break;
            case "doc":
                $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='".$rootDir."files/css/doc.css' type='text/css' media='all'/>\n" ;
+               $additionalFiles = $additionalFiles .  "<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js'></script>"; //Because of the messeging dialog
                break;           
            case "users":
                $additionalFiles = $additionalFiles ."<link rel='stylesheet' type='text/css' href='".$rootDir."files/css/users.css'/> "; 
                $additionalFiles = $additionalFiles ."<link rel='stylesheet' type='text/css' href='".$rootDir."files/css/badges.css'/> "; 
+               $additionalFiles = $additionalFiles . "<link href='".$rootDir."files/bootstrap/css/jquery-ui.css' rel='stylesheet' >" ;
+               $hasLessons = true; // Because of messeging dialog
                break;
             case "faq":
                $additionalFiles = $additionalFiles ."<link rel='stylesheet' type='text/css' href='".$rootDir."files/css/index.css'/> "; 
@@ -79,7 +82,8 @@ class includeCssAndJsFiles {
                $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/display/placeholder.js' ></script>\n";
                $additionalFiles = $additionalFiles . "<script type='application/javascript' src='" . $rootDir . "files/codemirror/addon/selection/active-line.js' ></script>\n";
                $additionalFiles = $additionalFiles ."<script type='application/javascript' src='" . $rootDir . "files/codemirror/mode/logo/logo.js' ></script>\n";
-        
+                $additionalFiles = $additionalFiles . "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'/>\n" ; 
+
                $additionalFiles = $additionalFiles . "<link   href='".$rootDir."files/codemirror/mode/logo/logo.css' rel='stylesheet' >";
                
                $additionalFiles = $additionalFiles . "<link   href='".$rootDir."files/codemirror/lib/codemirror_turtle.css' rel='stylesheet' >";
@@ -96,7 +100,7 @@ class includeCssAndJsFiles {
     }
     private static function includingFiles($additionalFiles , $hasNavigator ,  $hasConsole ,$hasLessons , $hasAlerts , $hasCommandLine)
     {
-        global $rootDir,$env , $localeDomain;
+        global $rootDir,$env , $localeDomain,$sitePath;
         /* Load JQuery files */
         if ($env== "local"){ 
             echo "<script type='application/javascript' src='".$rootDir."files/dd/js/jquery/jquery-1.8.2.min.js' ></script>";
@@ -152,11 +156,11 @@ class includeCssAndJsFiles {
     
     /* loading some other files */
         if (!isset($localeDomain))
-            $localeDomain = "en_US";
-        echo "<script type='application/javascript' src='".$rootDir."files/Gettext.js' ></script>" ; 
+            $localeDomain = "en_US"; 
+        echo "<script type='application/javascript' src='".$sitePath."files/Gettext.js' ></script>" ; 
         // Loading getText related files according to locale
         $file_path = "locale/" . $localeDomain . "/LC_MESSAGES/messages.po";
-        $po_file = "<link   rel='gettext' type='application/x-po' href='" . $rootDir . "locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
+        $po_file = "<link   rel='gettext' type='application/x-po' href='$sitePath/locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
         if (file_exists($file_path))
             echo $po_file;
         

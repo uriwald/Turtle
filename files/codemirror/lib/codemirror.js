@@ -66,7 +66,10 @@ window.CodeMirror = (function() {
     themeChanged(this);
     if (options.lineWrapping)
       this.display.wrapper.className += " CodeMirror-wrap";
-
+    // Enable right to left support if requested
+    if (options.direction == "rtl")
+      this.display.wrapper.className += " CodeMirror-rtl";
+  
     var doc = options.value;
     if (typeof doc == "string") doc = new Doc(options.value, options.mode);
     operation(this, attachDoc)(this, doc);
@@ -459,8 +462,13 @@ window.CodeMirror = (function() {
 
     if (maybeUpdateLineNumberWidth(cm))
       changes = [{from: doc.first, to: doc.first + doc.size}];
-    var gutterW = display.sizer.style.marginLeft = display.gutters.offsetWidth + "px";
-    display.scrollbarH.style.left = cm.options.fixedGutter ? gutterW : "0";
+    //var gutterW = display.sizer.style.marginLeft = display.gutters.offsetWidth + "px"; 
+     var sizerStyle = cm.options.direction == "rtl" ? "marginRight" : "marginLeft",
+     scrollbarStyle = cm.options.direction == "rtl" ? "right" : "left";
+     
+     display.sizer.style[sizerStyle] = display.scrollbarH.style[scrollbarStyle] = display.gutters.offsetWidth + "px";
+     
+   // display.scrollbarH.style.left = cm.options.fixedGutter ? gutterW : "0";
 
     // Used to determine which lines need their line numbers updated
     var positionsChangedFrom = Infinity;
@@ -713,11 +721,16 @@ window.CodeMirror = (function() {
     if (bgClass)
       wrap.insertBefore(elt("div", null, bgClass + " CodeMirror-linebackground"), wrap.firstChild);
     if (cm.options.lineNumbers || markers) {
-      var gutterWrap = wrap.insertBefore(elt("div", null, null, "position: absolute; left: " +
-                                             (cm.options.fixedGutter ? dims.fixedPos : -dims.gutterTotalWidth) + "px"),
-                                         wrap.firstChild);
+      //var gutterWrap = wrap.insertBefore(elt("div", null, null, "position: absolute; left: " +
+      //                                       (cm.options.fixedGutter ? dims.fixedPos : -dims.gutterTotalWidth) + "px"),
+      //                                   wrap.firstChild);
+      var wrapSide = cm.options.direction == "rtl" ? "right" : "left";
+      var gutterWrap = wrap.insertBefore(elt("div", null, null, "position: absolute; " + wrapSide + ": " +
+                                              (cm.options.fixedGutter ? dims.fixedPos : -dims.gutterTotalWidth) + "px"),
+                                       wrap.firstChild);
+                                      
       if (cm.options.fixedGutter) (wrap.alignable || (wrap.alignable = [])).push(gutterWrap);
-      if (cm.options.lineNumbers && (!markers || !markers["CodeMirror-linenumbers"]))
+      if (cm.options.lineNumbers && (!markers || !markers["CodeMirror-linenumbers"])) 
         wrap.lineNumber = gutterWrap.appendChild(
           elt("div", lineNumberFor(cm.options, lineNo),
               "CodeMirror-linenumber CodeMirror-gutter-elt",
@@ -1830,6 +1843,10 @@ window.CodeMirror = (function() {
     try { var mX = e.clientX, mY = e.clientY; }
     catch(e) { return false; }
     if (mX >= Math.floor(getRect(cm.display.gutters).right)) return false;
+    if (cm.options.direction == "rtl")
+        {
+            if (mX <= Math.floor(getRect(cm.display.gutters).right)) return false;
+        }
     if (prevent) e_preventDefault(e);
 
     var display = cm.display;

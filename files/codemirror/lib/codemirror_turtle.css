@@ -177,7 +177,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 }
 
 .CodeMirror-lines {
-  cursor: text;
+  cursor: text; 
 }
 .CodeMirror pre {
   /* Reset some styles that the rest of the page might have set */
@@ -308,7 +308,7 @@ body, p {
 #instructions{
     width : 1200px;
     height: 70px;
-    margin-top: 420px;
+    /* margin-top: 420px; */
     position: absolute;
 }
 #err-msg{
@@ -373,6 +373,7 @@ body, p {
        height: 24px;
     font-size: 22px; 
     font-weight: bold;
+    margin-top: 10px;
 }
 .comment-contain{
     /*border : 1px solid #ddd;*/
@@ -382,4 +383,11 @@ body, p {
 }
 .title-time{
     float: right;
+}
+#logoerplain{
+    height: 420px;
+    width: 600px;
+}
+:lang(he)#cm-side{
+    float : right;
 }
