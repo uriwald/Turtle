@@ -38,7 +38,14 @@ if ($openid->mode) {
         {
             //echo "Do nothing";
         }
-
+        $currentUser    =   $users->findOne($userExist);
+        if (isset($currentUser['institute']))
+        {
+            $_SESSION['institute'] = $currentUser['institute'];
+            $_SESSION['institute_email'] = $currentUser['email'];
+            $_SESSION['institute_name'] = $currentUser['institute_name'];
+            $_SESSION['institute_description'] = $currentUser['institute_description'];
+        }
          $_SESSION['username'] = $email;
          $_SESSION['isOpenID'] = true;
          

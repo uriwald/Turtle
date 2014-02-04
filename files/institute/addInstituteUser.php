@@ -28,7 +28,7 @@ require_once ('../utils/topbarUtil.php');
                 $('#topbar').dropdown();
                 $('#username_in').focus();
                 
-                $("#sign-up-form").validate({
+                $("#sign-up-new-student-form").validate({
                     rules: {
                         username: {
                             required: true,
@@ -97,8 +97,8 @@ require_once ('../utils/topbarUtil.php');
             $(document).delegate('.switch', 'click', function(){
 
                 var c = $(this).attr('data-switch');
-                $('#sign-in-form').slideUp(300, function(){ $(this).addClass('hide'); });
-                $('#forgot-password-form').slideUp(300, function(){ 
+                $('#sign-up-new-student-form').slideUp(300, function(){ $(this).addClass('hide'); });
+                $('#add-existing-user-form').slideUp(300, function(){ 
                     $(this).addClass('hide'); 
                 });
                 $('#'+c).slideDown(300, function(){
@@ -125,7 +125,7 @@ function addUserToDb($username, $password, $users, $db) {
  } 
  else
  {
-        //Strings for Password reset
+//Strings for Password reset
     $strContactSupoort = _("please contact the TurtleAcademy support");
 //In case the user properly inserted into the database
     $strWelcomeMsg   = _("Welcome to TurtleAcademy");
@@ -135,49 +135,79 @@ function addUserToDb($username, $password, $users, $db) {
     $strChooseNewUN = _("please choose another username");
 
 //setup some variables/arrays
+    $action = array();
+    $action['result'] = null;
+    $text = array();
+
+    //If a new user is want to signup
+    if (isset($_POST['signup'])) {
+        $isTestUser = false;
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        //quick/simple validation
+        if (empty($username)) {
+            $action['result'] = 'error';
+            array_push($text, 'You forgot your username');
+        }
+        if (empty($password)) {
+            $action['result'] = 'error';
+            array_push($text, 'You forgot your password');
+        }
+
+        if ($action['result'] != 'error') {
+            $password = md5($password);
+            $m = new Mongo();
+            $db = $m->turtleTestDb; 
+            $users = $db->users;
+
+            //Check if username is already taken
+            $queryUsername = array('username' => $username);
+            $existUsername = $users->count($queryUsername);
+
+
+            if ($isTestUser) { //Case of testing we will insert to db
+                addUserToDb($username, $password, $users, $db);
+            } else if ($existUsername > 0) { //Check if email already exist
+                $action['result'] = 'error';
+                array_push($text, $strUserNExist . " " . $strChooseNewUN);
+            } else {
+                addUserToDb($username, $password, $users, $db);
+                $action['result'] = 'info';
+                array_push($text, "New User - " . $username . " has been added" );
+            }
+        }
+        $action['text'] = $text;
+    }
+    if (isset($_POST['reg_exist_user']))
+    {
+    //setup some variables/arrays
         $action = array();
         $action['result'] = null;
         $text = array();
-
-        //If a new user is want to signup
-        if (isset($_POST['signup'])) {
-            $isTestUser = false;
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            //quick/simple validation
-            if (empty($username)) {
-                $action['result'] = 'error';
-                array_push($text, 'You forgot your username');
-            }
-            if (empty($password)) {
-                $action['result'] = 'error';
-                array_push($text, 'You forgot your password');
-            }
-
-            if ($action['result'] != 'error') {
-                $password = md5($password);
-                $m = new Mongo();
-                $db = $m->turtleTestDb; 
-                $users = $db->users;
-
-                //Check if username is already taken
-                $queryUsername = array('username' => $username);
-                $existUsername = $users->count($queryUsername);
-
-
-                if ($isTestUser) { //Case of testing we will insert to db
-                    addUserToDb($username, $password, $users, $db);
-                } else if ($existUsername > 0) { //Check if email already exist
-                    $action['result'] = 'error';
-                    array_push($text, $strUserNExist . " " . $strChooseNewUN);
-                } else {
-                    addUserToDb($username, $password, $users, $db);
-                    $action['result'] = 'info';
-                    array_push($text, "New User - " . $username . " has been added" );
-                }
-            }
-            $action['text'] = $text;
+        
+        $email = $_POST['email'];
+        $m = new Mongo();
+        $db = $m->turtleTestDb; 
+        $users = $db->users;
+        //Check if the user exists
+        $queryEmail = array('email' => $email);
+        $existEmail = $users->count($queryEmail);
+        if ($existEmail == 1)
+        {
+            $user = $users->findone($queryEmail);
+            $cursor = $user;
+            $cursor["institute_email"] = $_SESSION['institute_email']  ;
+            $users->update($user,$cursor);
+            $action['result'] = 'info';
+            array_push($text, "Existing User - " . $email . " has been updated" );
         }
+        else{
+            $action['result'] = 'error';
+            array_push($text, 'Problem with email address');
+        }
+         $action['text'] = $text;
+
+    }
         //Printing the topbar menu
         topbarUtil::printTopBar("registration");
         ?>
@@ -188,7 +218,7 @@ function addUserToDb($username, $password, $users, $db) {
             <div class='row'>
                 <!-- Main hero unit for a primary marketing message or call to action -->
                 <div class="well span6 offset2">
-                    <form class='form-stacked' id='sign-up-form' method="post" action="">
+                    <form class='form-stacked' id='sign-up-new-student-form' method="post" action="">
                         <h2><?php echo _("Hello"); echo " " ; echo $_SESSION['institute_name']; ?></h2>
                         <h2><?php echo _("Add Student"); ?></h2>
                         <?php
@@ -218,7 +248,29 @@ function addUserToDb($username, $password, $users, $db) {
                         </ul>       
                         <div class='cleaner_h10'></div>
                         <input type='submit' value='<?php echo _("Add student"); ?>&raquo;' id='signup' name='signup' class="btn primary"/>
-                        <a href="viewStudentList.php"> <?php echo _("View student List"); ?> </a>
+                        <span class='switch' data-switch='add-existing-user-form'><?php echo _("Add existing User"); ?></span>
+                        <div class="cleaner_h10"></div>
+                        <div id="view_student_link">
+                            <a href="viewStudentList.php"> <?php echo _("View student List"); ?> </a> 
+                        </div>
+                        <div class="cleaner_h10"></div>
+                        <div id="view_student_link">
+                            <a href="userPrograms.php"> <?php echo _("View student programs"); ?> </a> 
+                        </div>
+                    </form>
+                    <form class='form-stacked hide' id='add-existing-user-form' method='post'> 
+                        <h2><?php echo _("Add existing student"); ?></h2>
+                        <div class='cleaner_h20'></div>
+                        <div class="clearfix" lang="<?php echo $dir ?>">
+                            <label for="email" id="forgotEmail"><?php echo _("Email"); ?></label>
+                            <div class="input" lang="<?php echo $dir ?>">
+                                <input id="email" name="email" size="30" type="text"/>
+                                <div class='cleaner_h10'></div> 
+                                <span class='switch' data-switch='sign-up-new-student-form' id="neverMindSwitch"> <?php echo _("Back to add non existing user"); ?></span>
+                            </div>
+                        </div>           
+                        <div class='cleaner_h10'></div>
+                        <input type='submit' value='<?php echo _("Add to students"); ?>&raquo;' id='reg_exist_user' name='reg_exist_user' class="btn primary"/>
                     </form>
                 </div>    
               

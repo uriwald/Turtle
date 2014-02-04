@@ -129,7 +129,7 @@
                                     ?>
                                     <p>
                                         <a href='<?php echo $rootDir; ?>files/institute/addInstituteUser.php?l=<?php echo $localeDomain; ?>'>
-                                    <?php echo _("Add a new user"); ?>
+                                    <?php echo _("Manage my users"); ?>
                                         </a>
                                     </p>
 

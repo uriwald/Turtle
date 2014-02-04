@@ -5,17 +5,17 @@
     if (session_id() == '')
         session_start();
     //If the user is not logged in yet redirect
-    require_once("environment.php");
+    require_once("../../environment.php");
 
     $displayPage = true;
-    require_once("localization.php");
-    require_once("files/footer.php");
-    require_once("files/cssUtils.php");
-    require_once("files/utils/languageUtil.php");
-    require_once('files/utils/topbarUtil.php');
-    require_once('files/utils/badgesUtil.php');
-    require_once('files/utils/userUtil.php');
-    require_once('files/utils/pagination.php');
+    require_once("../../localization.php");
+    require_once("../footer.php");
+    require_once("../cssUtils.php");
+    require_once("../utils/languageUtil.php");
+    require_once('../utils/topbarUtil.php');
+    require_once('../utils/badgesUtil.php');
+    require_once('../utils/userUtil.php');
+    require_once('../utils/pagination.php');
 
 
     ?>
@@ -46,7 +46,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <?php
-        require_once("files/utils/includeCssAndJsFiles.php");
+        require_once("../utils/includeCssAndJsFiles.php");
         includeCssAndJsFiles::includePageFiles("users");
         echo "<link rel='stylesheet' href='".$rootDir."files/css/pagination.css' type='text/css' media='all'/>"; 
         echo "<script type='application/javascript' src='".$rootDir."files/floodfill.js' ></script>\n" ; 
@@ -111,7 +111,10 @@
                             </thead>
                             <tbody>
                             <?php
-                            $allPrograms = userUtil::findPublicPrograms();
+                            if (isset ($_SESSION['institute_email']))
+                                $allPrograms = userUtil::getInstitiuteUserPrograms($_SESSION['institute_email']);
+                            else
+                                echo " U r not logged in as a maneger";
                             // Here we will determine how to sort the user programs
                             $sortColumn = 'precedence';
                             $sortDirection = 1;

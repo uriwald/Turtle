@@ -57,8 +57,18 @@ require_once ('../utils/userUtil.php');
                         
                         ?>
                         <tr>
-                            <td><?php echo $student['username']; ?></td>
-                            <td><?php echo $student['date']; ?></td>
+                            <td>
+                            <a class='' href="<?php
+                                            echo $rootDir . "users/profile/";
+                                            $username    = $student['username'];
+                                            echo $username; 
+                                            ?>"> 
+                                            <?php
+                                                echo $username;
+                                            ?>  
+                                        </a>
+                            </td>
+                            <td><?php if (isset($student['date'])) echo $student['date']; ?></td>
                         </tr>
                         <?php
                     } // End of foreach loop
