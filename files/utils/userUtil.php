@@ -98,7 +98,32 @@
            //Case no user found
                
      }
-         public static function findUserPublicPrograms($username) 
+     /*
+      * Find the user public programs can also get a criteria to get specific group programs
+      */
+     public static function getInstitiuteUserPrograms($email)
+     {
+        $m                  = new Mongo();
+        $db                 = $m->turtleTestDb;	
+        $users              = $db->users;
+        $programs           = $db->programs;
+        $userQuery          = array('institute_email' => $email);
+        $instituteUsers     = $users->find($userQuery);
+        
+        $getInstituteNames  = array();
+        foreach ($instituteUsers as $insUser)
+        {
+            $tempUsername = $insUser['username'];
+            $getInstituteNames[] = array('username' => $tempUsername);
+        }
+        $institutePrograms  = null;
+        $ddd = array('$or' => $getInstituteNames);
+        $results     = $programs->find($ddd);
+        //$count      =  $programs->count($ddd); 
+        //$count2 = $programs->count(array('$or' => array(array('username' => 'testo33') , array('username' => 'test1000') , array('username' => 'test1001') , array('username' => 'test1002') , array('username' => 'Testo1') , array('username' => 'student5') )));
+        return $results;
+     }
+     public static function findUserPublicPrograms($username) 
      {
            $m = new Mongo();
            $db = $m->turtleTestDb;	
