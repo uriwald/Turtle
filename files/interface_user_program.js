@@ -17,6 +17,8 @@ var lastLessonClick = null ;
             try {
                 // Allow the logo vm to run the command 
                 g_logo.run("cs");
+                g_logo.run("pd");
+                g_logo.run("setcolor 0");
                 g_logo.run(command);
             } catch (e) {
                 // Write the failure to our console
