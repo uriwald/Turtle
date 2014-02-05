@@ -257,6 +257,10 @@ function addUserToDb($username, $password, $users, $db) {
                         <div id="view_student_link">
                             <a href="userPrograms.php"> <?php echo _("View student programs"); ?> </a> 
                         </div>
+                        <div class="cleaner_h10"></div>
+                        <div id="view_student_link">
+                            <a href="userClassPrograms.php"> <?php echo _("Let student watch class programs"); ?> </a> 
+                        </div>
                     </form>
                     <form class='form-stacked hide' id='add-existing-user-form' method='post'> 
                         <h2><?php echo _("Add existing student"); ?></h2>
