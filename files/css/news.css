@@ -36,6 +36,14 @@ root {
    margin:0 auto;
    float:none; 
 }
+.nottranslated{
+    color : red;
+}
+.newsItemTitle
+{
+    background-color: #afeeee;
+    color : black;
+}
 :lang(he)#newsBarBrand{
     float : right;
 }

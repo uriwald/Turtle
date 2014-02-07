@@ -48,39 +48,39 @@ $currentPage = $parts[count($parts) - 1];
             require_once("files/utils/loadJq.php");
             require_once("files/utils/loadBs.php");
             require_once("files/utils/loadTurtle.php");
-            $dd = new loadDd($rootDir, $env, "files/test/dd/");
-            $jq = new loadJq($rootDir, $env);
-            $bs = new loadBs($rootDir, $env, "files/bootstrap/");
-            $lt = new loadTurtle($locale, $rootDir, $env);
-            $dd->loadFiles(true, true, true, false, true); /* 182 min.js , dd.js , dd.css , skin2.css , flags.css */
+            $dd = new loadDd($root_dir, $env, "files/test/dd/");
+            $jq = new loadJq($root_dir, $env);
+            $bs = new loadBs($root_dir, $env, "files/bootstrap/");
+            $lt = new loadTurtle($locale, $root_dir, $env);
+            $dd->load_files(true, true, true, false, true); /* 182 min.js , dd.js , dd.css , skin2.css , flags.css */
             $jq->loadFiles(true, false, true, true, true, false, true); /* jquery-ui.min , alerts.js , tmpl.js , storage.js , custom.css */
-            $bs->loadFiles(false, true, true, true); /* bs.js , bs_min.js ,bootstrap-carousel.js , bs_all.css */
-            $lt->loadFiles(); /* langSelect.js , logo.js , turtle.js , floodfill.js , canvas2image.js , readMongo , Gettext.js , interface.js , jqconsole.js */
+            $bs->load_fiels(false, true, true, true); /* bs.js , bs_min.js ,bootstrap-carousel.js , bs_all.css */
+            $lt->load_files(); /* langSelect.js , logo.js , turtle.js , floodfill.js , canvas2image.js , readMongo , Gettext.js , interface.js , jqconsole.js */
             include_once("files/utils/loadCrousel.php");
 
 
             if (isset($_SESSION['username'])) {
                 ?>   
-            <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
+            <script type="application/javascript" src="<?php echo $root_dir; ?>clearStorageData.php"></script>
 
             <?php
         }
         ?> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/>
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/doc.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/topbar.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/doc.css' type='text/css' media='all'/> 
         
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         <?php
         $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
-        $po_file = "<link   rel='gettext' type='application/x-po' href='" . $rootDir . "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
+        $po_file = "<link   rel='gettext' type='application/x-po' href='" . $root_dir . "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
         if (file_exists($file_path))
             echo $po_file;
         ?>       
         <script type="text/javascript">
             var locale = "<?php echo $locale; ?>";
         </script>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>readMongo.php?locale=<?php echo $locale ?>"></script> <!-- Lessons scripts -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>readMongo.php?locale=<?php echo $locale ?>"></script> <!-- Lessons scripts -->
 
         <?php
         /*
@@ -102,10 +102,10 @@ $currentPage = $parts[count($parts) - 1];
 
 
         <!-- End of adding boostrap for crusel -->
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/interface.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/topbar.css' type='text/css' media='all'/> 
 <?php
-cssUtils::loadcss($locale, $rootDir . "files/css/interface");
+cssUtils::loadcss($locale, $root_dir . "files/css/interface");
 //cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
 //cssUtils::loadcss($locale, $rootDir . "files/css/topbar"); 
 ?>     
@@ -153,7 +153,7 @@ $login = ($locale != "he_IL" ? "pull-right" : "pull-left");
         $language['zh'] = "zh";
         $language['he'] = "he";
 
-        $topbar->printTopBar($rootDir, $class, $login, $topbarDisplay, $languagesDisplay
+        $topbar->printTopBar($root_dir, $class, $login, $topbarDisplay, $languagesDisplay
                 , $signUpDisplay, $language, $empty = "");
         ?>
 
@@ -243,7 +243,7 @@ $login = ($locale != "he_IL" ? "pull-right" : "pull-left");
                 // Select language in main page
                 $(document).ready(function() { 
                                      
-                    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>lang/" , "learn.php" ,"en" );
+                    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $root_dir; ?>lang/" , "learn.php" ,"en" );
 
                 $('#savePic').click(function() {
                     var canvas = document.getElementById("sandbox"); 

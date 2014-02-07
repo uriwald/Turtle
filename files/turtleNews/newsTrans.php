@@ -1,8 +1,12 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <?php
-    require_once("../utils/translationUtil.php");
-    include_once("../inc/dropdowndef.php");
-    include_once("../inc/boostrapdef.php");
-    include_once("../inc/jquerydef.php");
+    $fileDirectory = "../";
+    require_once("../../environment.php");
+    require_once("../../localization.php"); 
+    require_once($fileDirectory."utils/translationUtil.php");
+    include_once($fileDirectory."utils/includeCssAndJsFiles.php");
+    includeCssAndJsFiles::include_all_page_files("news");
+
     $locale = "zh_CN";
     if (isset ($_GET['locale']))
         $locale =   $_GET['locale'];
@@ -20,7 +24,7 @@
                   </tr>
                 </thead>
                   <?php
-                        $newsItems    =   translationUtil::showColItemToTranslate("news");
+                        $newsItems    =   translationUtil::show_collection_item_to_translate("news");
                         $i              = 0;
                         foreach ($newsItems as $newsItem)
                         {

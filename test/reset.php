@@ -4,7 +4,7 @@ if (session_id() == '')
     session_start();
 //$fullPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";  
 $phpDirPath = "files/registration/inc/php/";
-$incDirPath = "files/registration/inc/";
+$inc_dir_path = "files/registration/inc/";
 //$relPath    =   "files/bootstrap/twitter-bootstrap-sample-page-layouts-master/";
 $ddPath = "files/test/dd/";
 $jqueryui = "ajax/libs/jqueryui/1.10.0/";
@@ -48,7 +48,7 @@ include_once("files/inc/jquerydef.php");
         <script type="application/javascript" src="files/turtle.js"></script> <!-- Canvas turtle -->
         <link rel='stylesheet' href='files/css/topbar.css' type='text/css' media='all'/>
         <?php
-        cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
+        cssUtils::loadcss($locale, $root_dir . "files/css/topbar");
         $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
         $po_file = "<link   rel='gettext' type='application/x-po' href='locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
         if (file_exists($file_path))
@@ -178,13 +178,13 @@ if (isset($_POST['password'])) {
     $uesrid = $check_key['userid'];
     $confirmid = $check_key['_id'];
     
-    $theObjId = new MongoId($uesrid);
-    $criteria = $users->findOne(array("_id" => $theObjId));
+    $the_object_id = new MongoId($uesrid);
+    $criteria = $users->findOne(array("_id" => $the_object_id));
      
     $pass   =   md5($_POST['password']);
-    $criteriaUpdate = $criteria;
-    $criteriaUpdate['password'] = $pass;
-    $update_users = $users->update($criteria, $criteriaUpdate);
+    $criteria_update = $criteria;
+    $criteria_update['password'] = $pass;
+    $update_users = $users->update($criteria, $criteria_update);
     //2. Need to remove user from user_remind_password 
     $result = $usersRemindPass->remove(array('email' => $email), array("safe" => true));
     echo "Congratulation you have change yoru password succeessfully." ." ";
@@ -196,7 +196,7 @@ $showResetForm = false;
 if (empty($_GET['email']) || empty($_GET['key'])) {
     if ($istest) {
         $action['result'] = 'success';
-        $action['text'] = "User has been confirmed. Thank-You! please <a href='" . $rootDir . "registration.php'>" . _('login') . "</a>";
+        $action['text'] = "User has been confirmed. Thank-You! please <a href='" . $root_dir . "registration.php'>" . _('login') . "</a>";
         ?> 
                 <?php
             } else {
@@ -225,7 +225,7 @@ if (empty($_GET['email']) || empty($_GET['key'])) {
             // }
             $uesrid = $check_key['userid'];
             $remindid = $check_key['_id'];
-            $confirmidMongo = new MongoId($remindid);
+            $confirm_id_mongo = new MongoId($remindid);
             if ($resultcount != 0) {
                 $showResetForm = true;
             }
@@ -242,7 +242,7 @@ if (empty($_GET['email']) || empty($_GET['key'])) {
                         <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
 
                         <ul class="nav" id="turtleHeaderUl"> 
-                            <li><a href="<?php echo $rootDir; ?>index.php" style="color:gray;" ><?php echo _("TurtleAcademy"); ?></a></li> 
+                            <li><a href="<?php echo $root_dir; ?>index.php" style="color:gray;" ><?php echo _("TurtleAcademy"); ?></a></li> 
                             <!--<li class="active"><a href="index.html"><?php echo _("Sample"); ?></a></li> -->
                         </ul>
 
@@ -344,6 +344,6 @@ if (empty($_GET['email']) || empty($_GET['key'])) {
             <?php echo show_errors($action); ?>
         
             <?php
-            include $incDirPath . 'elements/footer.php';
+            include $inc_dir_path . 'elements/footer.php';
         } // End of showing form
         ?>

@@ -18,11 +18,11 @@ require_once ('../utils/userUtil.php');
         <meta name="author" content="">
         <?php
             require_once("../utils/includeCssAndJsFiles.php");
-            includeCssAndJsFiles::includePageFiles("institute");
+            includeCssAndJsFiles::include_all_page_files("institute");
          echo "<link rel='stylesheet' href='../css/institute.css' type='text/css' media='all'/>";
          
         ?>     
-                <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/>   
+                <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/zocial.css' type='text/css' media='all'/>   
  
         <script>
         $(document).ready(function(){
@@ -32,7 +32,7 @@ require_once ('../utils/userUtil.php');
     </head>
     <body>
     <?php
-    topbarUtil::printTopBar("institute");
+    topbarUtil::print_topbar("institute");
     if (!isset($_SESSION['institute_email']))
         {
             echo " You don't have institute admin permission Please contact site administrator" ;
@@ -52,14 +52,14 @@ require_once ('../utils/userUtil.php');
                 </thead>
                 <tbody>
                     <?php
-                    $instituteStudents = userUtil::getInstitiuteUsersByInstitueAdminEmail($_SESSION['institute_email']);
+                    $instituteStudents = userUtil::get_institiute_users_by_institue_admin_email($_SESSION['institute_email']);
                     foreach ($instituteStudents as $student) {
                         
                         ?>
                         <tr>
                             <td>
                             <a class='' href="<?php
-                                            echo $rootDir . "users/profile/";
+                                            echo $root_dir . "users/profile/";
                                             $username    = $student['username'];
                                             echo $username; 
                                             ?>"> 
@@ -76,7 +76,7 @@ require_once ('../utils/userUtil.php');
                 </tbody>  
             </table>
             <p><a href="addInstituteUser.php"> <?php echo _("Back to add student page"); ?> </a></p>
-            <p><a href='<?php echo $rootDir; ?>users.php'> <?php echo _("Back to my account"); ?> </a></p>
+            <p><a href='<?php echo $root_dir; ?>users.php'> <?php echo _("Back to my account"); ?> </a></p>
         </div><!-- end of center content -->
         <?php
             }

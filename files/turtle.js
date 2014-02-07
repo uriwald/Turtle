@@ -249,9 +249,9 @@ function CanvasTurtle(canvas_ctx, turtle_ctx, width, height) {
       while (heading > 360 || heading < 0)
         {
             if (heading > 360)
-                heading = heading - 360;
+                heading = parseFloat(heading) - 360;
             else
-                heading = heading + 360;
+                heading = parseFloat(heading) + 360;
         }
     
     return heading;

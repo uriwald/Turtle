@@ -4,7 +4,7 @@
     
     $locale = "he_IL";
     $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-    $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
+    $po_file =  "<link   rel='gettext' type='application/x-po' href='".$root_dir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
      if ( file_exists($file_path))
         echo $po_file; 
      //require_once("localization.php");

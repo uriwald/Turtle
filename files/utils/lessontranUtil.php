@@ -6,7 +6,7 @@
  */
 class lessontranUtil {
 
-    public function addNewLocale($localeName) {
+    public function add_new_locale($locale_name) {
         $m                  = new Mongo();
         $db                 = $m->turtleTestDb;
         $strcol             = $db->lessons_translate_status;
@@ -19,12 +19,13 @@ class lessontranUtil {
             $title                  =   $lesson['title'];
             $comments               =   $lesson['comments'];
             $lessonId               =   $lesson['lesson_id']; 
-            if (!isset($progress[$localeName]))
-                $progress[$localeName]  =   "";
-            if (!isset($completed[$localeName]))
-                $completed[$localeName]  =   "";
+            $precedence             =   $lesson['precedence'];
+            if (!isset($progress[$locale_name]))
+                $progress[$locale_name]  =   "";
+            if (!isset($completed[$locale_name]))
+                $completed[$locale_name]  =   "";
             $result     =   $strcol->update($lesson, array("title" => $title , "comments" => $comments , "lesson_id" => $lessonId ,
-                                                    "in_progress" => $progress ,"completed" => $completed ));
+                                                    "in_progress" => $progress ,"completed" => $completed , "precedence"=> $precedence ));
 
         }
     }

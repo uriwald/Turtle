@@ -7,13 +7,13 @@ if (session_id() == '')
 require_once("environment.php");
 
 $m = new Mongo();
-$db = $m->$dbName;
+$db = $m->$db_name;
 
 // select a collection (analogous to a relational database's table)
 if (isset($_GET["dab"])) {
-    $dbLessonCollection = $_GET["dab"];
+    $db_lesson_collection = $_GET["dab"];
 }
-$lessons = $db->$dbLessonCollection;
+$lessons = $db->$db_lesson_collection;
 //echo $dbLessonCollection;
 $lessonTitle = "title";
 $lessonSteps = "steps";

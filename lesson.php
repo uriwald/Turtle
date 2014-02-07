@@ -117,13 +117,13 @@ and open the template in the editor.
                                         <li class="cc-button-group btn-group"> 
                                             <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" >
                                                 <?php
-                                                    $displayUserName    = $_SESSION['username'];  
+                                                    $display_username    = $_SESSION['username'];  
                                                     if (isset($_SESSION['isOpenID']))
                                                     {
                                                         $emailDetails = explode('@',$_SESSION['username']);
-                                                        $displayUserName = $emailDetails[0];
+                                                        $display_username = $emailDetails[0];
                                                     }
-                                                        echo $displayUserName;
+                                                        echo $display_username;
                                                 ?> 
                                                 <!-- <b class="caret"></b>  -->
                                             </a>
@@ -152,12 +152,12 @@ and open the template in the editor.
                     //session_start();
                     $m = new Mongo();
 // select a database
-                    $db = $m->$dbName;
+                    $db = $m->$db_name;
 // select a collection (analogous to a relational database's table)
                     if ($show == false)
-                    $dbLessonCollection = "lessons_created_by_guest";
+                    $db_lesson_collection = "lessons_created_by_guest";
                     //echo $dbLessonCollection;
-                    $lessons            = $db->$dbLessonCollection;
+                    $lessons            = $db->$db_lesson_collection;
                     $locale             = "en_US";
                     $languageGet        = "l";
                     $localePrefix       = "locale_";
@@ -170,14 +170,14 @@ and open the template in the editor.
 //If we are in existing lesson we will enter editing mode 
                     if (isset($_GET['lesson'])) {
                         $lu = new lessonsUtil($locale, "locale_", $lessons, $_GET['lesson']);
-                        $theObjId = new MongoId($_GET['lesson']);
-                        $cursor = $lessons->findOne(array("_id" => $theObjId));
+                        $the_object_id = new MongoId($_GET['lesson']);
+                        $cursor = $lessons->findOne(array("_id" => $the_object_id));
                         if (isset ($cursor['localeCreated']))
                              $localeCreated = $cursor['localeCreated'];
-                        $localSteps = $lu->getStepsByLocale($localePrefix . $localeCreated);
-                        $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $localeCreated);                        
-                        $lessonPrecedence = $lu->getPrecedence();
-                        $lessonTurtleId  = $lu->getTurtleId();
+                        $localSteps = $lu->get_steps_by_locale($localePrefix . $localeCreated);
+                        $lessonFinalTitle = $lu->get_title_by_locale($localePrefix . $localeCreated);                        
+                        $lessonPrecedence = $lu->get_precedence();
+                        $lessonTurtleId  = $lu->get_turtle_id();
                         if (strlen($lessonFinalTitle) <= 1)
                             $lessonFinalTitle = "No Title"; 
                     }
@@ -344,7 +344,7 @@ and open the template in the editor.
             $.Storage.set('lessonStepsValues',JSON.stringify(lessonStepValuesStorage, null, 2))
             $.Storage.set("active-step" , "lesson_step1");
             $.Storage.set("lesson-total-number-of-steps" ,"0");
-            $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
+            $.Storage.set("collection-name" ,"<?php echo $db_lesson_collection ?>");
             $.Storage.set("locale" ,"<?php echo $localeCreated ?>");
             $.Storage.set("username" ,"<?php echo $username; ?>");
             $.Storage.set("turtleId",   "<?php echo intval($lessonTurtleId)?>");
@@ -411,7 +411,7 @@ else { //Starting case of creating a new lesson
             $.Storage.remove("active-step");
             $.Storage.remove("username");
             $.Storage.remove("turtleId");
-            $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
+            $.Storage.set("collection-name" ,"<?php echo $db_lesson_collection ?>");
             $.Storage.set("lessonTitle" ,lessonTitle);
             $.Storage.set("active-step" , "lesson_step1");
             $.Storage.set("username" ,"<?php echo $username ?>");

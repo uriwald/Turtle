@@ -3,5 +3,5 @@
     $locale = "ru_RU";
     $_SESSION['locale'] = "ru_RU";
     require_once("environment.php");
-    require_once($homePage);
+    require_once($home_page);
 ?>

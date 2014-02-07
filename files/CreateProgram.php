@@ -10,9 +10,9 @@ require_once("cssUtils.php");
 require_once("utils/languageUtil.php");
 require_once('utils/topbarUtil.php');
 if (isset($_SESSION['username']))
-    $displayUserName = $_SESSION['username'];
+    $display_username = $_SESSION['username'];
 else
-    $displayUserName = null;
+    $display_username = null;
 ?>    
 <head> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,37 +23,42 @@ else
         ?>  
     </title>     
 
-    <script src="codemirror/lib/codemirror.js"></script>
+     <script src="<?php echo $site_path; ?>/files/codemirror/lib/codemirror.js"></script>
 
-    <script src="codemirror/addon/runmode/runmode.js"></script>
-    <script src="codemirror/addon/edit/closebrackets.js"></script>
-    <script src="codemirror/addon/edit/matchbrackets.js"></script>
-    <script src="codemirror/addon/display/placeholder.js"></script> 
+    <script src="<?php echo $site_path; ?>/files/codemirror/addon/runmode/runmode.js"></script>
+    <script src="<?php echo $site_path; ?>/files/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="<?php echo $site_path; ?>/files/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="<?php echo $site_path; ?>/files/codemirror/addon/display/placeholder.js"></script> 
 
-    <script src="codemirror/addon/selection/active-line.js"></script>
-
-
-    <script src="codemirror/mode/logo/logo.js"></script>    
-    <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
-    <link rel="stylesheet" href="codemirror/lib/codemirror_turtle.css">
+    <script src="<?php echo $site_path; ?>/files/codemirror/addon/selection/active-line.js"></script>
+    <script src="<?php echo $site_path; ?>/files/codemirror/mode/logo/logo.js"></script>    
+    <link rel="stylesheet" href="<?php echo $site_path; ?>/files/codemirror/mode/logo/logo.css">
+    <link rel="stylesheet" href="<?php echo $site_path; ?>/files/codemirror/lib/codemirror_turtle.css">
+    <link rel="stylesheet" href="<?php echo $site_path ;?>/files/codemirror/lib/codemirror.css">
+     
     <?php
     require_once("utils/includeCssAndJsFiles.php"); 
-    includeCssAndJsFiles::includePageFiles("create-"); 
-    echo "<script type='application/javascript' src='" . $rootDir . "files/jquery.Storage.js' ></script>";
+    includeCssAndJsFiles::include_all_page_files("user-program"); 
+    echo "<script type='application/javascript' src='" . $root_dir . "files/jquery.Storage.js' ></script>";
     ?>   
 
     <?php
-    $file_path = "../locale/" . $locale . "/LC_MESSAGES/messages.po";
-    $po_file = "<link   rel='gettext' type='application/x-po' href='../locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
+    $file_path = "../locale/" . $locale_domain . "/LC_MESSAGES/messages.po";
+    $po_file = "<link   rel='gettext' type='application/x-po' href='$site_path/locale/" . $locale_domain . "/LC_MESSAGES/messages.po'" . " />";
+    
     if (file_exists($file_path))
-        echo $po_file;
-    echo "<script type='application/javascript' src='" . $rootDir . "files/jqconsole.js' ></script>\n";
-    echo "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
+       echo $po_file;
+    else {
+        echo "<script> var translationNotLoaded = 5; </script>";      
+      } 
+    echo "<script type='application/javascript' src='" . $root_dir . "files/jqconsole.js' ></script>\n";
+    echo "<script type='application/javascript' src='" . $root_dir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
     ?>        
-    <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_user_program.js?locale=<?php echo $locale ?>"></script> <!-- Interface scripts -->
+    <script type="application/javascript" src="<?php echo $root_dir; ?>files/interface_user_program.js?locale=<?php echo $locale ?>"></script> <!-- Interface scripts -->
 
-    <link rel="stylesheet" href="codemirror/mode/logo/logo.css">
+    <link rel="stylesheet" href="<?php echo $site_path; ?>/files/codemirror/mode/logo/logo.css">
 </head>
+<html dir="<?php echo $dir ?>" lang="<?php echo $lang ?>">
 <body>
     <div class="container" style="width:1200px;">
         <h2 id="program-info-header">Your program name</h2>
@@ -319,3 +324,4 @@ else
     var programid = null; 
 
 </script> 
+    </html>

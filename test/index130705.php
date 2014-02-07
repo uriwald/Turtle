@@ -50,18 +50,18 @@
              if (isset($_SESSION['username']))
                 { 
         ?>   
-             <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
+             <script type="application/javascript" src="<?php echo $root_dir; ?>clearStorageData.php"></script>
              <?php
                 }
               ?>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select -->                         
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="text/javascript" src="<?php echo $rootDir; ?>files/floodfill.js"></script>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/js/langSelect.js"></script> <!-- Language select -->                         
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/logo.js"></script> <!-- Logo interpreter -->
+        <script type="text/javascript" src="<?php echo $root_dir; ?>files/floodfill.js"></script>
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
         <script src="http://www.nihilogic.dk/labs/canvas2image/canvas2image.js"></script>
         <?php
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
+            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$root_dir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
             if ( file_exists($file_path))
                 echo $po_file;            
         ?>       
@@ -69,23 +69,23 @@
                 var locale = "<?php echo $locale; ?>";
         </script>
         <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/jqconsole.js"></script> <!-- Console -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/jqconsole.js"></script> <!-- Console -->
         
         <!-- Adding new boostrap for crusel --> 
        
-        <script src="<?php echo $rootDir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-carousel.js"></script>
-        <link href="<?php echo $rootDir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/>
+        <script src="<?php echo $root_dir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-carousel.js"></script>
+        <link href="<?php echo $root_dir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/interface.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/topbar.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/footer.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/zocial.css' type='text/css' media='all'/>
        <?php
-             cssUtils::loadcss($locale, $rootDir . "files/css/interface");    
-             cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
-             cssUtils::loadcss($locale, $rootDir . "files/css/topbar"); 
+             cssUtils::loadcss($locale, $root_dir . "files/css/interface");    
+             cssUtils::loadcss($locale, $root_dir . "files/css/doc"); 
+             cssUtils::loadcss($locale, $root_dir . "files/css/topbar"); 
         ?>     
         <!-- Disable script when working without internet -->
         <!-- Google Analytics Tracking --> 
@@ -123,7 +123,7 @@
                 $language['en'] = "en";$language['ru'] = "ru";
                 $language['es'] = "es";$language['zh'] = "zh";$language['he'] = "he";
                 
-                $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay 
+                $topbar->printTopBar($root_dir , $class , $login , $topbarDisplay , $languagesDisplay 
                         , $signUpDisplay ,$language, $empty = "");
             ?>
 
@@ -238,7 +238,7 @@
         <script>
         // Select language in main page
       $(document).ready(function() {
-          selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>lang/" , "index.php" ,"en" );
+          selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $root_dir; ?>lang/" , "index.php" ,"en" );
           /*
                     $('.dropdown-toggle').dropdown();
                     $.Storage.set("locale","<?php echo $_SESSION['locale']; ?>");
@@ -247,7 +247,7 @@
                             var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
                                     var val = data.value;
                                     if(val!="")
-                                           window.location = "<?php echo $rootDir; ?>lang/" + val; 
+                                           window.location = "<?php echo $root_dir; ?>lang/" + val; 
                             }}}).data("dd");
                                                         var pagename    = document.location.pathname.toString();
                             pagename        = pagename.split("/");

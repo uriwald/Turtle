@@ -311,8 +311,11 @@ $(function() {
                         command      : command
                     },
                     success: function(data) { 
-                        if(data.badge.length > 4)
-                            alert('New badge - ' + data.badge);
+                        if (data != null)
+                        {
+                            if(data.badge.length > 4)
+                                alert('New badge - ' + data.badge);
+                        }
                         var rdata;
                     } ,
                     error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -348,8 +351,11 @@ $(function() {
                             lclStoragevalues  :   lclStorageValue
                         },
                         success: function(data) { 
-                            if(data.badge.length > 4)
-                                alert('New badge - ' + data.badge);
+                            if (data != null)
+                            {
+                                if(data.badge.length > 4)
+                                    alert('New badge - ' + data.badge);
+                            }
                             var rdata;
                         } ,
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -443,13 +449,6 @@ $(function() {
         var commandToRun ;
         for(var i = 0; i < numOfCommands; i++)  
         {
-/*
-            var commandParts = toCommandArr[i].split(' ');
-            var toCmd        = commandParts[0].substr(1, commandParts[0].length);
-           
-                commandLen   = toCommandArr[i].length -1;
-                var startcmd = 1;
-            */
                 commandToRun = toCommandArr[i];
                 try
                 {
@@ -461,39 +460,7 @@ $(function() {
             
         }
     }
-    /*
-    if ($.Storage.get("logo-history"))
-    {
-        var history = $.Storage.get('logo-history'); 
-        historyArray = history.split(','); 
-        var historyLen  =   historyArray.length ;
-        var commandLen = 0; 
-        var commandToRun ;
-        for(var i = 0; i < historyLen; i++)  
-        {
 
-            var commandParts = historyArray[i].split(' ');
-            var toCmd        = commandParts[0].substr(1, commandParts[0].length);
-            if (i == 0)
-                toCmd = toCmd.substr(1,toCmd.length -1);
-            if (toCmd == gt.gettext("to")) 
-            {
-                commandLen   = historyArray[i].length -1;
-                var startcmd = 1;
-                if (i == 0)
-                    startcmd = 2;
-                commandToRun = historyArray[i].substring(startcmd,commandLen);
-                try
-                {
-                    g_logo.run(commandToRun);
-                }catch (e) {
-                // DO NOTHING FOR NOW
-                // jqconsole.Write(gt.gettext('Error') +': ' + e + '\n');
-                }
-            }
-        }
-    }
-    */
     function do_logo(id ,cmd) {
         $('#'+id).css('width', '50px').css('height', '50px').append('<canvas id="'+id+'c" width="50" height="50" style="position: absolute; z-index: 0;"></canvas>' +
             '<canvas id="'+id+'t" width="50" height="50" style="position: absolute; z-index: 1;"></canvas>'); 

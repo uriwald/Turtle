@@ -19,8 +19,9 @@ root {
     margin-top: 25px; 
 } 
 #turtleHeaderLanguage{
+  width : 140px;  
   margin-top: 28px;
-  height: 14px;
+  height: 14px; 
 } 
 #dLabel{
     color:#ffffff; 
@@ -38,7 +39,7 @@ root {
     left:-1px;
 }
 #ddmenu{
-  width: 120px;
+  width: 160px;
   text-align: left;
   color: rgb(0, 136, 204);
   background-color: white;
@@ -69,7 +70,7 @@ root {
 }
 #selectedLanguage{
 
-    width : 120px; 
+    width : 140px; 
 }
 #selectedLanguage_title{
     padding-top: 5px;
@@ -142,21 +143,6 @@ root {
     height: 50px;
 }
 
-
-#footer li {
-    list-style: none;
-    display: inline;
-    background-color: ghostwhite;
-   
-    border-style:solid;
-    border-width:2px;
-    
-} 
-#footer li a {
-    text-decoration:none; 
-    color : #3333ff;
-    font:15px arial,sans-serif;
-} 
 ul{
     list-style: disc; 
 }

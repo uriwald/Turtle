@@ -11,7 +11,7 @@
     require_once ('files/utils/topbarUtil.php');
 
     ?>
-<html dir="<?php echo $dir ?>" lang="<?php echo $localeDomain ?>">
+<html dir="<?php echo $dir ?>" lang="<?php echo $locale_domain ?>">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>
@@ -23,11 +23,11 @@
         <?php
         // Loading relevant js and css files
         require_once("files/utils/includeCssAndJsFiles.php"); 
-        includeCssAndJsFiles::includePageFiles("learn");
+        includeCssAndJsFiles::include_all_page_files("learn");
         require_once("files/utils/loadCrousel.php");
         
 
-        cssUtils::loadcss($localeDomain, $rootDir . "files/css/interface"); 
+        cssUtils::loadcss($locale_domain, $root_dir . "files/css/interface"); 
         ?>      
     </head> 
     <body> 
@@ -35,7 +35,7 @@
             <!-- Should be different for log in user and for a guest -->
             <?php
                 //Printing the topbar menu
-                topbarUtil::printTopBar("learn");
+                topbarUtil::print_topbar("learn");
             ?>
 
             <div id="header" >
@@ -76,7 +76,7 @@
                     <?php
                     //should be change to all rtl lnaguages
                     $lu = new languageUtil("turtleTestDb", "rtlLanguages");
-                    $isRtlLocale = $lu->findIfLocaleExist($localeDomain);
+                    $isRtlLocale = $lu->findIfLocaleExist($locale_domain);
                     // if($locale == 'he_IL')
                     if ($isRtlLocale) {
                         ?>  
@@ -125,7 +125,7 @@
             $(document).ready(function() { 
                 
                 //Js for selecting the language in the topbar dropdown menu
-                selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>lessons/" , "learn.php" ,"en" );
+                selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $root_dir; ?>lessons/" , "learn.php" ,"en" );
                 
                 //Enable saving canvas after drawing
                 $('#savePic').click(function() {

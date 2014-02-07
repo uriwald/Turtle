@@ -1,14 +1,14 @@
 <?php
     // including some data to change between environments
-    $dbName              =   "turtleTestDb";
-    $dbLessonCollection=   "lessons";
+    $db_name              =   "turtleTestDb";
+    $db_lesson_collection =   "lessons";
     //$dbLessonCollection  =   "lessons_translate";
-    //$sitePath            =   "http://turtleacademy.com/next";
-    //$sitePath          =   "http://turtleacademy.com/";
-    $sitePath            =   "http://turtle.com/";
-    $homePage            =   "index.php";
-    $lessonPage          =   "learn.php";  
-    $env                 =   "local";
-    $rootDir             =   "/"; 
+    //$site_path            =   "http://turtleacademy.com/next";
+    //$site_path          =   "http://turtleacademy.com/";
+    $site_path            =   "http://turtle.com/";
+    $home_page            =   "index.php";
+    $lesson_page          =   "learn.php";  
+    $env                  =   "local";
+    $root_dir             =   "/"; 
     //$rootDir             = "/next/";
 ?>  

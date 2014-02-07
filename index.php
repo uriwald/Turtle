@@ -18,10 +18,9 @@
         </title>     
         <?php
         require_once("files/utils/includeCssAndJsFiles.php"); 
-        includeCssAndJsFiles::includePageFiles("index"); 
-        
+        includeCssAndJsFiles::include_all_page_files("index"); 
         // Case user logged in we will clear the storage data and load it from db
-        $isUserLoggedIn =   isset($_SESSION['username']);
+        $is_user_log_in =   isset($_SESSION['username']);
 
         ?>
     </head>
@@ -29,7 +28,7 @@
         <!--Should be different for log in user and for a guest -->
     <?php
         //Printing the topbar menu
-        topbarUtil::printTopBar("index"); 
+        topbarUtil::print_topbar("index"); 
     ?>
         <div class="container">
             <!-- Main hero unit including welcoming messages and code samples -->
@@ -65,7 +64,7 @@
                 <div id="start-logo" align="center">
                     <p class="top" id="start-logo-p"><strong><?php echo _("Let's start having fun programming"); ?></strong></p>
                     <div id="goto-buttons">
-                        <p class="top"><a class="btn primary large indbtn" href ="<?php echo $rootDir; ?>learn.php"><?php echo _("Free Lessons"); ?> </a> <a class="btn primary large indbtn" href ="<?php echo $rootDir; ?>registration.php"><?php echo _("Sign In for free"); ?></a></p>
+                        <p class="top"><a class="btn primary large indbtn" href ="<?php echo $root_dir; ?>learn.php"><?php echo _("Free Lessons"); ?> </a> <a class="btn primary large indbtn" href ="<?php echo $root_dir; ?>registration.php"><?php echo _("Sign In for free"); ?></a></p>
 
                     </div> 
                 </div>
@@ -150,7 +149,7 @@
         do_logo ('logo4', 'cs pu setxy 10 0 pd repeat 36 [ rt 10 repeat 8 [ fd 25 lt 45]] ht');
         
         $(document).ready(function() {
-            selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>index/", "index.php" ,"en" ); 
+            selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $root_dir; ?>index/", "index.php" ,"en" ); 
             // Definition for people opinion carousel
             $('.carousel').carousel({
                 interval: 15000 

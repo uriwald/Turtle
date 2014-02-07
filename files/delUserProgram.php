@@ -1,16 +1,16 @@
 <?php
     $username                   =   $_POST['username'];
-    $programId                  =   $_POST['programid'];
+    $program_id                  =   $_POST['programid'];
     
-    $return['programId']        =   $programId;
+    $return['programId']        =   $program_id;
     $return['username']         =   $username; 
 
     
     $m                          =   new Mongo();
     $db                         =   $m->turtleTestDb;
-    $userPrograms               =   "programs";
-    $userProgramsCollection     =   $db->$userPrograms;
-    $theObjId                   =   new MongoId($programId);
-    $userProgramsCollection->remove(array("_id" => $theObjId), array("username" => $username));
+    $user_programs               =   "programs";
+    $userProgramsCollection     =   $db->$user_programs;
+    $the_object_id                   =   new MongoId($program_id);
+    $userProgramsCollection->remove(array("_id" => $the_object_id), array("username" => $username));
     echo json_encode($return);
 ?>

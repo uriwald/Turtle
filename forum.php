@@ -15,14 +15,14 @@
     <head> 
         <title> <?php  echo _("Project Documentation"); ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/logo.js"></script> <!-- Logo interpreter -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/topbar.css' type='text/css' media='all'/> 
 
         <?php         
-             cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
-             cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
+             cssUtils::loadcss($locale, $root_dir . "files/css/doc"); 
+             cssUtils::loadcss($locale, $root_dir . "files/css/topbar");
         ?>
     </head>
     <body>
@@ -52,7 +52,7 @@
             );
  
                 
-            $topbar->printTopBar($rootDir , $topbarDisplay , $languagesDisplay , $signUpDisplay , $language ); 
+            $topbar->printTopBar($root_dir , $topbarDisplay , $languagesDisplay , $signUpDisplay , $language ); 
         ?> 
         ?> 
       
@@ -92,7 +92,7 @@
                             var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
                                     var val = data.value;
                                     if(val!="")
-                                           window.location = "<?php echo $rootDir; ?>lang/" + val; 
+                                           window.location = "<?php echo $root_dir; ?>lang/" + val; 
                             }}}).data("dd");
                                                         var pagename    = document.location.pathname.toString();
                             pagename        = pagename.split("/");

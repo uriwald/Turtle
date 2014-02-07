@@ -45,7 +45,7 @@ if (empty($_POST['steps'])) {
     
     $m = new Mongo();
     // select a database
-    $db = $m->$dbName;
+    $db = $m->$db_name;
     // select a collection (analogous to a relational database's table)
     $precedence = $_POST['precedence'];
     $turtleId = $_POST['turtleId'];
@@ -79,15 +79,15 @@ if (empty($_POST['steps'])) {
         $return['objID'] = $_POST["ObjId"];
         $return['isExistingLesson'] = "true";
 
-        $theObjId = new MongoId($_POST['ObjId']);
-        $criteria = $lessons->findOne(array("_id" => $theObjId));
+        $the_object_id = new MongoId($_POST['ObjId']);
+        $criteria = $lessons->findOne(array("_id" => $the_object_id));
         
         $isStepRemove = $_POST["isStepRemove"];
         $stepToRemove = $_POST["stepToRemove"];
 
         //Case we want to remove object 
         if (isset($_POST["formDelete"])) {
-            $result = $lessons->remove(array('_id' => $theObjId), true);
+            $result = $lessons->remove(array('_id' => $the_object_id), true);
             
         } else { //Case we don't want to remove object but updating existing one
             

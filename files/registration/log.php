@@ -35,7 +35,7 @@
         if (!$errflag)
         {
             echo "sdds";
-            $userExist  =   userUtil::varifyUser($username, $password);
+            $userExist  =   userUtil::varify_user($username, $password);
             if (!$userExist)
                // $_SESSION['username'] = $username;
           //  else
@@ -112,7 +112,7 @@
         if ($validateUser)
         {
             $m = new Mongo();
-            $db = $m->$dbName;
+            $db = $m->$db_name;
             $loginLog = $db->login_volunteers;
             date_default_timezone_set('America/Los_Angeles');
             $date = date('Y-m-d H:i:s');

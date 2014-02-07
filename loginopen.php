@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 }
 require_once 'files/openid.php';
 require_once("environment.php");
-$openid = new LightOpenID($sitePath);
+$openid = new LightOpenID($site_path);
  
 if ($openid->mode) {
     if ($openid->mode == 'cancel') {

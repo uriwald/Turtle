@@ -73,6 +73,7 @@ root {
     min-height: 1px;
     clear: both;
     margin: 3px 0px;
+    height: 200px;
 }      
 
 body, p {
@@ -167,12 +168,7 @@ code { font-family: monospace; }
        width: 500px; 
        font-size: 1.7em; 
 }
-#footer {
-    margin: 10px auto;
-    overflow: hidden;
-    width: 660px;
-    text-align: center;
-}
+
 
 #sandbox{
     position: absolute;
@@ -266,4 +262,16 @@ padding-top: 6.5px;
 position: relative;
 text-decoration: none;
 text-rendering: optimizelegibility;
+}
+#cmdline{
+    position: absolute;
+    width : 100%;
+    margin-top: 220px;
+    
+}
+#btnExecuteCommand{
+    margin-bottom: 10px;
+}
+#txtExecuteCommand{
+    width : 440px;
 }

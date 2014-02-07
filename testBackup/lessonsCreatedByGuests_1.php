@@ -39,15 +39,15 @@
     if (!isset( $_SESSION['user']) || $_SESSION['user'] != "admin")
                 session_unset();
     if (isset ($_SESSION['permision']))
-        $permissionNum            =   $_SESSION['permision'] ;
+        $permission_num            =   $_SESSION['permision'] ;
     else
-    $permissionNum            = 1 ;
-    $permForEditLesson        = array(1,100);
-    $permTraChinese           = array(2);
-    $permTraSpanish           = array(2);
-    $permTraGerman            = array(103);
-    $permTraRussain           = array(107);
-    $permAprvLesson           = array(1);
+    $permission_num            = 1 ;
+    $permission_for_edit_lesson        = array(1,100);
+    $permmision_translate_chinese           = array(2);
+    $permission_translte_spanish           = array(2);
+    $permission_translte_german            = array(103);
+    $permission_translte_russain           = array(107);
+    $permission_approve_lesson           = array(1);
     //echo "PermissionNumberIs".$permissionNum;
     /*
     if (isset($_SESSION['Admin']) && $_SESSION['Admin'] == true)
@@ -75,9 +75,9 @@
 
         $locale = "en_US"; // Setting default
         $localePrefix = "locale_";
-        $localeGetVar = 'locale';
-        if (isset($_GET[$localeGetVar]))
-            $locale = $_GET[$localeGetVar];
+        $locale_get = 'locale';
+        if (isset($_GET[$locale_get]))
+            $locale = $_GET[$locale_get];
 
         $finalLocale =  $localePrefix . $locale   ; 
         //echo $finalLocale;
@@ -88,7 +88,7 @@
         $m = new Mongo();
 
         // select a database
-        $db = $m->$dbName;
+        $db = $m->$db_name;
 
         // select a collection (analogous to a relational database's table)
         $lessons = $db->lessons_created_by_guest;
@@ -136,21 +136,21 @@
                 $approveLesson = "<a href='approveLesson.php?lesson=$objID&pending=true&col=lessons_created_by_guest' > <span class='lessonh'> Unapprove (lesson won't appear in main page) </span> </a>";
             }
             echo "<div style='display:inline;height:60px;'>";     
-            if (in_array($permissionNum , $permForEditLesson)) 
+            if (in_array($permission_num , $permission_for_edit_lesson)) 
             {
                     echo $editLessonHref;
             }
-            if (in_array($permissionNum , $permTraChinese )) 
+            if (in_array($permission_num , $permmision_translate_chinese )) 
                     echo $translateLessonToChinese;
-            if (in_array($permissionNum , $permTraSpanish)) 
+            if (in_array($permission_num , $permission_translte_spanish)) 
                     echo $translateLessonToSpanish;
-            if (in_array($permissionNum , $permTraGerman)) 
+            if (in_array($permission_num , $permission_translte_german)) 
                     echo $translateLessonToGerman;
-            if (in_array($permissionNum , $permTraRussain)) 
+            if (in_array($permission_num , $permission_translte_russain)) 
                     echo $translateLessonToRussain;
             
             
-            if (in_array($permissionNum , $permAprvLesson)) 
+            if (in_array($permission_num , $permission_approve_lesson)) 
                     echo $approveLesson;
              echo   "</div>";   
             echo "</br>"; 

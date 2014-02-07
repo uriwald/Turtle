@@ -4,7 +4,7 @@
     var_dump($_POST);
     
     $mongoid        =   new MongoId($_POST['mongoid']);
-    $dbName         =   "turtleTestDb";
+    $db_name         =   "turtleTestDb";
     $colFromName    =   $_POST['copyfrom'];
     $colToName      =   $_POST['copyto'];
     $locale         =   $_POST['selectedLanguage'];
@@ -13,5 +13,5 @@
     //echo $colFromName ;
     //echo $colToName ;
     
-    collectionUtil::copyLocaleLessonBetweenCollections($mongoid ,$dbName,$colFromName , $colToName , $locale , $stepnum);
+    collectionUtil::copy_locale_lesson_between_collections($mongoid ,$db_name,$colFromName , $colToName , $locale , $stepnum);
 ?>

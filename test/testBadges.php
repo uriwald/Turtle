@@ -1,4 +1,5 @@
 <?php
         require_once '../files/utils/badgesUtil.php';
-        badgesUtil :: updateUserBadges("lucio");
+        $blue = badgesUtil :: update_user_badges("lucios");
+        echo $blue;
 ?>

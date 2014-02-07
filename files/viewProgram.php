@@ -21,58 +21,58 @@ require_once('progdoc.php');
         ?>  
     </title>     
 
-    <script src="<?php echo $sitePath; ?>/files/codemirror/lib/codemirror.js"></script>
+    <script src="<?php echo $site_path; ?>/files/codemirror/lib/codemirror.js"></script>
 
-    <script src="<?php echo $sitePath; ?>/files/codemirror/addon/runmode/runmode.js"></script>
-    <script src="<?php echo $sitePath; ?>/files/codemirror/addon/edit/closebrackets.js"></script>
-    <script src="<?php echo $sitePath; ?>/files/codemirror/addon/edit/matchbrackets.js"></script>
-    <script src="<?php echo $sitePath; ?>/files/codemirror/addon/display/placeholder.js"></script> 
+    <script src="<?php echo $site_path; ?>/files/codemirror/addon/runmode/runmode.js"></script>
+    <script src="<?php echo $site_path; ?>/files/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="<?php echo $site_path; ?>/files/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="<?php echo $site_path; ?>/files/codemirror/addon/display/placeholder.js"></script> 
 
-    <script src="<?php echo $sitePath; ?>/files/codemirror/addon/selection/active-line.js"></script>
-    <script src="<?php echo $sitePath; ?>/files/codemirror/mode/logo/logo.js"></script>    
-    <link rel="stylesheet" href="<?php echo $sitePath; ?>/files/codemirror/mode/logo/logo.css">
-    <link rel="stylesheet" href="<?php echo $sitePath; ?>/files/codemirror/lib/codemirror_turtle.css">
-     <link rel="stylesheet" href="<?php echo $sitePath ;?>/files/codemirror/lib/codemirror.css">
+    <script src="<?php echo $site_path; ?>/files/codemirror/addon/selection/active-line.js"></script>
+    <script src="<?php echo $site_path; ?>/files/codemirror/mode/logo/logo.js"></script>    
+    <link rel="stylesheet" href="<?php echo $site_path; ?>/files/codemirror/mode/logo/logo.css">
+    <link rel="stylesheet" href="<?php echo $site_path; ?>/files/codemirror/lib/codemirror_turtle.css">
+     <link rel="stylesheet" href="<?php echo $site_path ;?>/files/codemirror/lib/codemirror.css">
     <?php
     require_once("utils/includeCssAndJsFiles.php"); 
-    includeCssAndJsFiles::includePageFiles("user-program"); 
-    echo "<script type='application/javascript' src='" . $rootDir . "files/jquery.Storage.js' ></script>";
+    includeCssAndJsFiles::include_all_page_files("user-program"); 
+    echo "<script type='application/javascript' src='" . $root_dir . "files/jquery.Storage.js' ></script>";
     ?>   
 
     <?php
-    $file_path = "../locale/" . $localeDomain . "/LC_MESSAGES/messages.po";
-    $po_file = "<link   rel='gettext' type='application/x-po' href='$sitePath/locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
+    $file_path = "../locale/" . $locale_domain . "/LC_MESSAGES/messages.po";
+    $po_file = "<link   rel='gettext' type='application/x-po' href='$site_path/locale/" . $locale_domain . "/LC_MESSAGES/messages.po'" . " />";
     
     if (file_exists($file_path))
        echo $po_file;
     else {
         echo "<script> var translationNotLoaded = 5; </script>";      
       } 
-    echo "<script type='application/javascript' src='" . $rootDir . "files/jqconsole.js' ></script>\n";
-    echo "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
+    echo "<script type='application/javascript' src='" . $root_dir . "files/jqconsole.js' ></script>\n";
+    echo "<script type='application/javascript' src='" . $root_dir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
     ?>        
 
-    <link rel="stylesheet" href="<?php echo $sitePath; ?>/files/codemirror/mode/logo/logo.css">
+    <link rel="stylesheet" href="<?php echo $site_path; ?>/files/codemirror/mode/logo/logo.css">
 </head>
 <html dir="<?php echo $dir ?>" lang="<?php echo $lang ?>">
 <body>
     <?php
     //Printing the topbar menu
-    topbarUtil::printTopBar("programUpdate"); 
+    topbarUtil::print_topbar("programUpdate"); 
             
-    $programId = $_GET['programid'];
+    $program_id = $_GET['programid'];
     $m = new Mongo();
     $db = $m->turtleTestDb;
     $programs = "programs";
-    $programsCollection = $db->$programs;
-    $theObjId = new MongoId($programId);
-    $criteria = $programsCollection->findOne(array("_id" => $theObjId));
-    $programName = $criteria['programName'];
+    $programs_collection = $db->$programs;
+    $the_object_id = new MongoId($program_id);
+    $criteria = $programs_collection->findOne(array("_id" => $the_object_id));
+    $program_name = $criteria['programName'];
     $bodytag = str_replace("\n", "↵", $criteria['code']);
     ?>
     <div class="container" style="width:1200px;">
         <div id="program-info">
-            <h2 id="program-info-header"><?php echo $programName; ?></h2>
+            <h2 id="program-info-header"><?php echo $program_name; ?></h2>
                 <!-- <textarea class='input-xlarge' type='text'  id='program-title-txt' placeholder='Enter  your program title...'></textarea> -->
         </div>
         <div id="command-to-draw">
@@ -120,7 +120,7 @@ require_once('progdoc.php');
                 </div>
                 <div id ="user-comments">
                    <?php
-                        $comments = programUtil::findProgramComments($theObjId);
+                        $comments = programUtil::find_program_comments($the_object_id);
                         //print_r($comments); 
                         if (is_array($comments) )
                         {
@@ -130,7 +130,7 @@ require_once('progdoc.php');
                                     echo "<div class='comment-title'>"; 
                                     ?>
                                     <a class='' href="<?php
-                                            echo $rootDir . "users/profile/";
+                                            echo $root_dir . "users/profile/";
                                             echo $comment['user'];
                                             ?>"> 
                                             <?php echo $program['username'];?>  
@@ -151,7 +151,7 @@ require_once('progdoc.php');
                 -->
             </div>
             <?php
-                echo $programDoc;
+                echo $program_documentation;
             ?>
         </div> <!-- Closing of container -->
 
@@ -165,7 +165,7 @@ require_once('progdoc.php');
     });
         
     editor.setValue('<?php echo $bodytag; ?>'); 
-    var programid = '<?php echo $programId ?>' ;
+    var programid = '<?php echo $program_id ?>' ;
     var programCreator = '<?php echo $criteria['username'] ;?>';
     <?php
         if (isset($_SESSION['username']))
@@ -173,7 +173,7 @@ require_once('progdoc.php');
         else
             echo "var username = null;";
     ?> 
-    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>users/programs/<?php echo $programId; ?>/" , "viewProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
+    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $root_dir; ?>users/programs/<?php echo $program_id; ?>/" , "viewProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
 
 </script> 
  </html>

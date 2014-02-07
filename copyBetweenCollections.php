@@ -13,10 +13,10 @@
                 $m = new Mongo();
 
                 // select a database
-                $db = $m->$dbName;
+                $db = $m->$db_name;
 
                 // select a collection (analogous to a relational database's table)
-                $lessons = $db->$dbLessonCollection;
+                $lessons = $db->$db_lesson_collection;
 
                 // find everything in the collection
                 $cursor = $lessons->find();

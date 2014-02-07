@@ -1,6 +1,7 @@
 /* 
     Document   : footer
     Created on : Oct 3, 2012, 2:05:31 PM
+    Update     : Dec 2 , 2013
     Author     : Lucio
     Description:
         Purpose of the stylesheet follows.
@@ -26,7 +27,7 @@ root {
     background-color: ghostwhite;
     border : none;
     
-    width : 250px;
+    width : 200px;
     font-weight: bold;
     font:15px arial,sans-serif;
 
@@ -56,4 +57,3 @@ root {
 ul{
     list-style: disc; 
 }
- 

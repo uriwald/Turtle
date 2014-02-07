@@ -28,7 +28,7 @@ class translationUtil extends lessonsUtil {
       * @param type $colname - which collection should we bring the data from
       * @return type 
       */
-     public static function showColItemToTranslate($colname) 
+     public static function show_collection_item_to_translate($colname) 
      {
            $m       = new Mongo();
            $db      = $m->turtleTestDb;	
@@ -36,6 +36,34 @@ class translationUtil extends lessonsUtil {
            $results = $strings->find();
            return $results;
      }
+     
+     public static  function get_language($locale)
+    {
+        $lang = "English";
+        if ($locale == "he_IL")
+            $lang = "Hebrew";
+        else if ($locale == "ru_RU")
+            $lang = "Russian";
+        else if ($locale == "es_AR")
+            $lang = "Spanish";
+        else if ($locale == "zh_CN")
+            $lang = "Chinese";
+        else if ($locale == "ar_JO")
+            $lang = "Arabic";
+        else if ($locale == "de_DE")
+            $lang = "German";
+        else if ($locale == "pt_BR")
+            $lang = "Portuguese";
+        else if ($locale == "pl_PL")
+            $lang = "Polish";
+        else if ($locale == "nl_NL")
+            $lang = "Duetch";
+        else if ($locale == "it_IT")
+            $lang = "Italian";
+        else if ($locale == "hr_HR")
+            $lang = "Croatian";
+        return $lang;
+    }
    
 }
 

@@ -13,13 +13,13 @@
      * Testing coping between collections
      */
     $mongoid        =   new MongoId($_POST['mongoid']);
-    $dbName         =   "turtleTestDb";
+    $db_name         =   "turtleTestDb";
     $colFromName    =   $_POST['copyfrom'];
     $colToName      =   $_POST['copyto'];
     
     //echo $_POST['mongoid'] ;
     //echo $colFromName ;
     //echo $colToName ;
-    collectionUtil::copyFullLessonBetweenCollections($mongoid, $dbName, $colFromName, $colToName);
+    collectionUtil::copy_full_lesson_between_collections($mongoid, $db_name, $colFromName, $colToName);
 
 ?>

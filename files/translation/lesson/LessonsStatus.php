@@ -5,7 +5,7 @@
     require_once("../../../localization.php"); 
     require_once("../../utils/collectionUtil.php");
     require_once("../../utils/includeCssAndJsFiles.php"); 
-    includeCssAndJsFiles::includePageFiles("lesson-translate"); 
+    includeCssAndJsFiles::include_all_page_files("lesson-translate"); 
 ?>
     <table>
         <tbody>
@@ -21,7 +21,7 @@
                   </tr>
                 </thead>
                   <?php
-                        $lessons    =   collectionUtil::getAllCollectionObjects("lessons_translate_status");
+                        $lessons    =   collectionUtil::get_all_collection_objects("lessons_translate_status");
                         $i          = 0;
                         foreach ($lessons as $lesson)
                         {

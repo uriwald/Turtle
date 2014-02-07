@@ -149,12 +149,12 @@ if (!isset($locale)) {
 
                     $m = new Mongo();
 // select a database
-                    $db = $m->$dbName;
+                    $db = $m->$db_name;
 // select a collection (analogous to a relational database's table)
                     if ($show == false)
-                        $dbLessonCollection = "lessons_created_by_guest";
+                        $db_lesson_collection = "lessons_created_by_guest";
                     //echo $dbLessonCollection;
-                    $lessons = $db->$dbLessonCollection;
+                    $lessons = $db->$db_lesson_collection;
                     $locale = "en_US";
                     $languageGet = "l";
                     $localePrefix = "locale_";
@@ -165,11 +165,11 @@ if (!isset($locale)) {
 //If we are in existing lesson we will enter editing mode 
                     if (isset($_GET['lesson'])) {
                         $lu = new lessonsUtil($locale, "locale_", $lessons, $_GET['lesson']);
-                        $theObjId = new MongoId($_GET['lesson']);
-                        $cursor = $lessons->findOne(array("_id" => $theObjId));
-                        $localSteps = $lu->getStepsByLocale($localePrefix . $locale);
-                        $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $locale);
-                        $lessonPrecedence = $lu->getPrecedence();
+                        $the_object_id = new MongoId($_GET['lesson']);
+                        $cursor = $lessons->findOne(array("_id" => $the_object_id));
+                        $localSteps = $lu->get_steps_by_locale($localePrefix . $locale);
+                        $lessonFinalTitle = $lu->get_title_by_locale($localePrefix . $locale);
+                        $lessonPrecedence = $lu->get_precedence();
                         if (strlen($lessonFinalTitle) <= 1)
                             $lessonFinalTitle = "No Title";
                         //echo $lessonPrecedence;
@@ -328,7 +328,7 @@ if (!isset($locale)) {
             $.Storage.set('lessonStepsValues',JSON.stringify(lessonStepValuesStorage, null, 2))
             $.Storage.set("active-step" , "lesson_step1");
             $.Storage.set("lesson-total-number-of-steps" ,"0");
-            $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
+            $.Storage.set("collection-name" ,"<?php echo $db_lesson_collection ?>");
             $.Storage.set("locale" ,"<?php echo $locale ?>");
             $.Storage.set("username" ,"<?php echo $username; ?>");
             </script>
@@ -402,7 +402,7 @@ else { //Starting case of creating a new lesson
             $.Storage.remove("lessonTitle");
             $.Storage.remove("active-step");
             $.Storage.remove("username");
-            $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
+            $.Storage.set("collection-name" ,"<?php echo $db_lesson_collection ?>");
             $.Storage.set("lessonTitle" ,lessonTitle);
             $.Storage.set("active-step" , "lesson_step1");
             $.Storage.set("username" ,"<?php echo $username ?>");

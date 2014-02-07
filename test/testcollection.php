@@ -3,7 +3,7 @@
     
     //$lu = new collectionUtil("turtleTestDb" , "lessons_translate");
     $lu = new collectionUtil("turtleTestDb" , "lessons_translate");
-    $lu->CollectionItemsAddAttribute("register_only", false);
+    $lu->collection_items_add_attribute("register_only", false);
     //$singelItemId = new MongoId("510b6df9f458590a73000000");
     //$collection = $lu->cloneColumn($singelItemId,"data","stepCompleted"); 
     //$lu->cloneColumnrs("data","stepCompleted"); 

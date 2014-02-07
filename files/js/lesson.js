@@ -710,7 +710,6 @@
                                 var $dialog = $('<div dir="ltr"></div>'); 
                             else
                                 var $dialog = $('<div dir="rtl"></div>');
-                            var $link = $(this).live('click', function() {
                                     var locale      = $.Storage.get('locale');
                                     var objid       = $.Storage.get('ObjId');
                                     if (window.isLessonSaved == false)
@@ -729,8 +728,7 @@
                                                     return false;
                                             });
                                     return false;
-                                    }
-                            });                                           
+                                    }                                          
                     });
 
                 $('#btnDel').attr('disabled','disabled');

@@ -18,23 +18,23 @@
 </html>
 <?php
     require_once("environment.php");
+    require_once("localization.php");
     require_once("files/footer.php");
     require_once("files/cssUtils.php");
     $show = false ;
-    session_start();
-    $permissionNum            = 1;
+    $permission_num            = 1;
     if (isset ($_SESSION['permision']))
-        $permissionNum            =   $_SESSION['permision'] ;
+        $permission_num            =   $_SESSION['permision'] ;
     //echo $permissionNum;
     
-    $permForEditLesson        = array(1,100);
-    $permTraChinese           = array(1,2);
-    $permTraSpanish           = array(1,2);
-    $permTraGerman            = array(1,103);
-    $permTraRussain           = array(1,107);
-    $permTraArb               = array(1,108);
-    $permTraThai              = array(1,109);
-    $permAprvLesson           = array(1); 
+    $permission_for_edit_lesson        = array(1,100);
+    $permmision_translate_chinese           = array(1,2);
+    $permission_translte_spanish           = array(1,2);
+    $permission_translte_german            = array(1,103);
+    $permission_translte_russain           = array(1,107);
+    $permission_translte_arbic               = array(1,108);
+    $permission_translte_thai              = array(1,109);
+    $permission_approve_lesson           = array(1); 
     //echo "PermissionNumberIs".$permissionNum;
 
     /*
@@ -65,9 +65,9 @@
 
         $locale = "en_US"; // Setting default
         $localePrefix = "locale_";
-        $localeGetVar = 'locale';
-        if (isset($_GET[$localeGetVar]))
-            $locale = $_GET[$localeGetVar];
+        $locale_get = 'locale';
+        if (isset($_GET[$locale_get]))
+            $locale = $_GET[$locale_get];
 
         $finalLocale =  $localePrefix . $locale   ; 
         //echo $finalLocale;
@@ -78,10 +78,10 @@
         $m = new Mongo();
 
         // select a database
-        $db = $m->$dbName;
+        $db = $m->$db_name;
 
         // select a collection (analogous to a relational database's table)
-        $lessons = $db->$dbLessonCollection;
+        $lessons = $db->$db_lesson_collection;
 
         $lessonTitle = "title";
         $lessonSteps = "steps";
@@ -118,24 +118,24 @@
                 $approveLesson = "<a href='approveLesson.php?lesson=$objID&pending=true' > <span class='lessonh'> Unapprove (lesson won't appear in main page) </span> </a>";
             }
             echo "<div style='display:inline;height:60px;'>";     
-            if (in_array($permissionNum , $permForEditLesson)) 
+            if (in_array($permission_num , $permission_for_edit_lesson)) 
             {
                     echo $editLessonHref;
             }
-            if (in_array($permissionNum , $permTraChinese )) 
+            if (in_array($permission_num , $permmision_translate_chinese )) 
                     echo $translateLessonToChinese;
-            if (in_array($permissionNum , $permTraSpanish)) 
+            if (in_array($permission_num , $permission_translte_spanish)) 
                     echo $translateLessonToSpanish;
-            if (in_array($permissionNum , $permTraGerman)) 
+            if (in_array($permission_num , $permission_translte_german)) 
                     echo $translateLessonToGerman;
-            if (in_array($permissionNum , $permTraRussain)) 
+            if (in_array($permission_num , $permission_translte_russain)) 
                     echo $translateLessonToRussain;
-            if (in_array($permissionNum , $permTraArb)) 
+            if (in_array($permission_num , $permission_translte_arbic)) 
                     echo $translateLessonToArb;           
-            if (in_array($permissionNum , $permTraThai)) 
+            if (in_array($permission_num , $permission_translte_thai)) 
                     echo $translateLessonToThai;  
             
-            if (in_array($permissionNum , $permAprvLesson)) 
+            if (in_array($permission_num , $permission_approve_lesson)) 
                     echo $approveLesson;
              echo   "</div>";   
             echo "</br>"; 

@@ -25,7 +25,7 @@ if(empty($_GET['email']) || empty($_GET['key'])){
 if($action['result'] != 'error'){
         $m = new Mongo();
         $db = $m->turtleTestDb;
-        $usersconfirmation = $db->users_waiting_approvment;
+        $users_confirmation = $db->users_waiting_approvment;
         $users             = $db->users;
 	//cleanup the variables
 	//$email = mysql_real_escape_string($_GET['email']);
@@ -36,8 +36,8 @@ if($action['result'] != 'error'){
 	//check if the key is in the database
 	//$check_key = mysql_query("SELECT * FROM `confirm` WHERE `email` = '$email' AND `key` = '$key' LIMIT 1") or die(mysql_error());
 	   $userQuery       = array('email' => $email , 'key' => $key );
-           $check_key       = $usersconfirmation->findOne($userQuery);
-           $resultcount     = $usersconfirmation->count($userQuery);
+           $check_key       = $users_confirmation->findOne($userQuery);
+           $resultcount     = $users_confirmation->count($userQuery);
            
            //$uesrid; 
            //foreach ($check_key as $doc) {
@@ -45,7 +45,7 @@ if($action['result'] != 'error'){
            // }
            $uesrid          =   $check_key['userid'];
            $confirmid       =   $check_key['_id'];
-           $confirmidMongo  = new MongoId($confirmid);
+           $confirm_id_mongo  = new MongoId($confirmid);
            //echo " confirm Id is ,, " . $confirmid;
             //echo $uesrid;
           // if(mysql_num_rows($check_key) != 0){
@@ -56,19 +56,19 @@ if($action['result'] != 'error'){
                  
 		//confirm the email and update the users database
 		//$update_users = mysql_query("UPDATE `users` SET `active` = 1 WHERE `id` = '$confirm_info[userid]' LIMIT 1") or die(mysql_error());
-                 $theObjId = new MongoId($uesrid); 
-                 $criteria = $users->findOne(array("_id" => $theObjId)); 
-                 $criteriaUpdate = $criteria;
-                 $criteriaUpdate['confirm'] = true ;
+                 $the_object_id = new MongoId($uesrid); 
+                 $criteria = $users->findOne(array("_id" => $the_object_id)); 
+                 $criteria_update = $criteria;
+                 $criteria_update['confirm'] = true ;
                  echo " Criteria is : " ;
                  var_dump($criteria);
-                 echo "Criteria update confirm = " . $criteriaUpdate["confirm"];
-                 $update_users = $users->update($criteria,$criteriaUpdate);
+                 echo "Criteria update confirm = " . $criteria_update["confirm"];
+                 $update_users = $users->update($criteria,$criteria_update);
                 //
 		//delete the confirm row
 		//$delete = mysql_query("DELETE FROM `confirm` WHERE `id` = '$confirm_info[id]' LIMIT 1") or die(mysql_error());
 		
-                $result = $usersconfirmation->remove(array('_id' => $confirmidMongo), true);
+                $result = $users_confirmation->remove(array('_id' => $confirm_id_mongo), true);
 		if($update_users){			
                         $action['result'] = 'success';
 			$action['text'] = 'User has been confirmed. Thank-You!';

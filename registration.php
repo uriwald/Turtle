@@ -21,10 +21,10 @@ require_once ('files/utils/topbarUtil.php');
         //echo "<link rel='stylesheet' type='text/css' href='" . $rootDir . "files/css/registration.css' /> ";
 
         require_once("files/utils/includeCssAndJsFiles.php"); 
-        includeCssAndJsFiles::includePageFiles("registration");
+        includeCssAndJsFiles::include_all_page_files("registration");
         ?>     
         <!--
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/>   
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/zocial.css' type='text/css' media='all'/>   
         <script src="ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
         -->
         <script type='text/javascript'> 
@@ -168,8 +168,8 @@ require_once ('files/utils/topbarUtil.php');
     $strChooseNewUN = _("please choose another username");
 
         
-   //     $googleid = createOpenIdObject('https://www.google.com/accounts/o8/id', "loginopen.php");
-   //     $yahooid = createOpenIdObject('https://me.yahoo.com', "loginopen.php");
+    $googleid = createOpenIdObject('https://www.google.com/accounts/o8/id', "loginopen.php");
+    $yahooid = createOpenIdObject('https://me.yahoo.com', "loginopen.php");
 //setup some variables/arrays
         $action = array();
         $action['result'] = null;
@@ -257,7 +257,7 @@ require_once ('files/utils/topbarUtil.php');
                         'msgWelcome' => $strWelcomeMsg,
                         'msgReset' => $strResetMsg);
                     //send the email
-                    if (send_email($info, $sitePath, "resetpass_template")) {
+                    if (send_email($info, $site_path, "resetpass_template")) {
                         $action['result'] = 'success';
                         array_push($text, $strContinueReset);
                     } else {
@@ -273,7 +273,7 @@ require_once ('files/utils/topbarUtil.php');
             $action['text'] = $text;
         }
         //Printing the topbar menu
-        topbarUtil::printTopBar("registration");
+        topbarUtil::print_topbar("registration");
         ?>
 
 
@@ -377,7 +377,7 @@ require_once ('files/utils/topbarUtil.php');
                         <span class='switch' data-switch='forgot-password-form'><?php echo _("Forgot my password"); ?></span>
 
                         <div class='cleaner_h10'></div>
-                        <!--
+                        
                         <a href="<?php echo $googleid->authUrl() ?>" class="zocial google">
                         <?php
                             echo _("Sign In"); echo " ";echo _("with Google")
@@ -388,7 +388,7 @@ require_once ('files/utils/topbarUtil.php');
                         <?php
                             echo _("Sign In"); echo " ";echo _("with Yahoo")
                         ?>
-                        -->
+                        
                         </a>
                     </form>        
                 </div>
@@ -416,8 +416,8 @@ require_once ('files/utils/topbarUtil.php');
     
 
  function createOpenIdObject($identity, $returnUrl) {
-            global $sitePath;
-            $openid = new LightOpenID($sitePath);
+            global $site_path;
+            $openid = new LightOpenID($site_path);
             $openid->identity = $identity;
             $openid->required = array(
                 'namePerson/first',
@@ -425,12 +425,12 @@ require_once ('files/utils/topbarUtil.php');
                 'contact/email',
                 'pref/language',
             );
-            $openid->returnUrl = $sitePath . $returnUrl; // 'http://turtle.com/loginopen.php';
+            $openid->returnUrl = $site_path . $returnUrl; // 'http://turtle.com/loginopen.php';
             return $openid;
         }
 
         function addUserToDb($username, $password, $email, $users, $db) {
-            global $phpDirPath, $sitePath, $text, $action;
+            global $phpDirPath, $site_path, $text, $action;
             $date = date('Y-m-d H:i:s');
             $userStructure = array("username" => $username, "password" => $password,"badges" => "", "email" => $email,
                 "confirm" => false, "date" => $date);
@@ -468,7 +468,7 @@ require_once ('files/utils/topbarUtil.php');
                     if ($locale != "en_US")
                         $templateType = $templateType . "_" . $locale;
 
-                    if (send_email($info, $sitePath, $templateType)) {
+                    if (send_email($info, $site_path, $templateType)) {
                         $thanks = _("Thanks for signing up");
                         $checkEmail = _("Please check your email for confirmation");
                         $action['result'] = 'success';

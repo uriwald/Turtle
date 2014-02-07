@@ -3,7 +3,7 @@
     require_once("environment.php");
     
         $m = new Mongo();
-        $db = $m->$dbName;
+        $db = $m->$db_name;
         $confirmation = $db->users;
         
         $userQuery = array('email' => 'uriwald@walla.com' , 'username' => 'buri' ,'password' => 'd2f2297d6e829cd3493aa7de4416a18f');

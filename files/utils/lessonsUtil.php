@@ -47,7 +47,7 @@ class lessonsUtil {
         return $this;
     }
 
-    public function setLessonStepsAndTitles() {
+    public function set_lesson_steps_and_titles() {
         $theObjId           = new MongoId($this->lessonObjId);
         $cursor             = $this->db->findOne(array("_id" => $theObjId));
         $this->titles       = $cursor["title"];
@@ -62,11 +62,11 @@ class lessonsUtil {
         }
     }
 
-    public function printSteps() {
+    public function print_steps() {
         print_r($this->steps);
     }
     
-    public function getStepsByLocale($locale) {
+    public function get_steps_by_locale($locale) {
         // Here i put default value
         // I don't think it's the best practise better return null for translation issues
         $localeSteps = null;
@@ -82,7 +82,7 @@ class lessonsUtil {
         return $localeSteps;
     }
     
-    public function getStepsByCreatedLocale($locale) {
+    public function get_steps_by_created_locale($locale) {
         // Here i put default value
         // I don't think it's the best practise better return null for translation issues
         $localeSteps = null;
@@ -98,22 +98,22 @@ class lessonsUtil {
         return $localeSteps;
     }
     
-    public function getPrecedence(){
+    public function get_precedence(){
         return $this->precedence;
     }
-    public function getTurtleId(){
+    public function get_turtle_id(){
         return $this->turtleId;
     }
 
-    public function getTitleByLocale($locale) {
-        $titleByLocale = "";
+    public function get_title_by_locale($locale) {
+        $title_by_locale = "";
         if(isset($this->titles))
         {
             foreach ($this->titles as $key => $value) {
                 if (isset($this->titles[$key])) 
                 {
                     if ($key == $locale) {
-                        $titleByLocale = $value;
+                        $title_by_locale = $value;
                     }
                 } 
                 else 
@@ -122,7 +122,7 @@ class lessonsUtil {
                 }
             }
         }
-        return $titleByLocale;
+        return $title_by_locale;
     }
 }
 

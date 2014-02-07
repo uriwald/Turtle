@@ -20,7 +20,7 @@
                   </tr>
                 </thead>
                   <?php
-                        $lessons    =   collectionUtil::getAllCollectionObjects("lessons_translate_status");
+                        $lessons    =   collectionUtil::get_all_collection_objects("lessons_translate_status");
                         $i          = 0;
                         foreach ($lessons as $lesson)
                         {

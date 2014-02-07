@@ -42,29 +42,29 @@
         require_once("files/utils/loadJq.php");
         require_once("files/utils/loadBs.php");
         require_once("files/utils/loadTurtle.php");
-        $dd = new loadDd($rootDir, $env, "files/test/dd/");
-        $jq = new loadJq($rootDir, $env);
-        $bs = new loadBs($rootDir, $env, "files/bootstrap/");
-        $lt = new loadTurtle($locale, $rootDir, $env);
-        $dd->loadFiles(true, true, true, false, true); /* 182 min.js , dd.js , dd.css , skin2.css , flags.css */
+        $dd = new loadDd($root_dir, $env, "files/test/dd/");
+        $jq = new loadJq($root_dir, $env);
+        $bs = new loadBs($root_dir, $env, "files/bootstrap/");
+        $lt = new loadTurtle($locale, $root_dir, $env);
+        $dd->load_files(true, true, true, false, true); /* 182 min.js , dd.js , dd.css , skin2.css , flags.css */
         $jq->loadFiles(false, false, false, true, false, false); /* jquery-ui.min.js , alerts.js , tmpl.js , storage.js , custom.css */
-        $bs->loadFiles(false, true, false, true); /* 1 bs.js ,2 bs_min.js ,3 bootstrap-carousel.js ,4 bs_all.css */
-        $lt->loadFiles(true, false, false, false, false, false, true, false, false); /* 1 langSelect.js ,2 logo.js ,3 turtle.js ,4 floodfill.js ,5 canvas2image.js ,6 readMongo ,7 Gettext.js ,8 interface.js ,9 jqconsole.js */
+        $bs->load_fiels(false, true, false, true); /* 1 bs.js ,2 bs_min.js ,3 bootstrap-carousel.js ,4 bs_all.css */
+        $lt->load_files(true, false, false, false, false, false, true, false, false); /* 1 langSelect.js ,2 logo.js ,3 turtle.js ,4 floodfill.js ,5 canvas2image.js ,6 readMongo ,7 Gettext.js ,8 interface.js ,9 jqconsole.js */
 
         if (isset($_SESSION['username'])) {
             ?>   
-            <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
+            <script type="application/javascript" src="<?php echo $root_dir; ?>clearStorageData.php"></script>
             <?php
         }
         ?>
 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/index.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/index.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/topbar.css' type='text/css' media='all'/>
 
         <?php
         // Loading getText related files
         $file_path = "locale/" . $locale . "/LC_MESSAGES/messages.po";
-        $po_file = "<link   rel='gettext' type='application/x-po' href='" . $rootDir . "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
+        $po_file = "<link   rel='gettext' type='application/x-po' href='" . $root_dir . "locale/" . $locale . "/LC_MESSAGES/messages.po'" . " />";
         if (file_exists($file_path))
             echo $po_file;
         ?>       
@@ -111,7 +111,7 @@
         $language['zh'] = "zh";
         $language['he'] = "he";
 
-        $topbar->printTopBar($rootDir, $class, $login, $topbarDisplay, $languagesDisplay
+        $topbar->printTopBar($root_dir, $class, $login, $topbarDisplay, $languagesDisplay
                 , $signUpDisplay, $language, $empty = "");
         ?>
         <div class="container">
@@ -187,7 +187,7 @@
         <script> 
             // Select language in main page
             $(document).ready(function() {
-                selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>language/", "index.php" ,"en" ); 
+                selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $root_dir; ?>language/", "index.php" ,"en" ); 
                 $('.carousel').carousel({
                     interval: 15000 
                 })

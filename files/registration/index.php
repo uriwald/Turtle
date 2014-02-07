@@ -134,7 +134,7 @@ if(isset($_POST['signup'])){
 					'key' => $key);
 			
 				//send the email
-				if(send_email($info , $sitePath)){
+				if(send_email($info , $site_path)){
                                 
 				//if(send_email_test($info)){				
 					$action['result'] = 'success';

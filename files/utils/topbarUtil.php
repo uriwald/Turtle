@@ -1,9 +1,9 @@
 <?php
 
 class topbarUtil {
-    public static function printTopBar($topbarPage)
+    public static function print_topbar($topbarPage)
     {
-        global $rootDir;
+        global $root_dir;
         $topbarSpanSize = 16;
            //Topbar menu display items
             $topbarDisplay = array (
@@ -147,13 +147,13 @@ class topbarUtil {
                 
                 
             }        
-            topbarUtil::printTopBarSelected($rootDir, $topbarDisplay, $languagesDisplay , $signUpDisplay,
+            topbarUtil::print_topbar_selected($root_dir, $topbarDisplay, $languagesDisplay , $signUpDisplay,
                     $language ,$topbarSpanSize , $displaylanguage , $countryNativeName , $countryFlagName);
     }
-     private static function printTopBarSelected($rootDir, $topbarDisplay, $langDropDown, $signUpDisplay,
+     private static function print_topbar_selected($rootDir, $topbarDisplay, $langDropDown, $signUpDisplay,
              $language,$topbarSpanSize ,$displaylanguage , $countryNativeName , $countryFlagName , $showTurtleIcon = true) 
     {
-        global $cssleft, $cssright, $lang , $sitePath;
+        global $cssleft, $cssright, $lang , $site_path;
         ?>    
         <div class="topbar" id="topbarMainDiv" > 
             <div class="fill" id="topbarfill">
@@ -161,50 +161,50 @@ class topbarUtil {
                     <?php
                     if ($showTurtleIcon) {
                         ?>
-                        <a href="<?php echo $sitePath."/index/".$lang; ?>" alt="Home page"><img class="brand" id="turtleimg" lang="<?php echo $lang ?>" src="<?php echo $rootDir; ?>files/turtles.png" /></a> 
+                        <a href="<?php echo $site_path."/index/".$lang; ?>" alt="Home page"><img class="brand" id="turtleimg" lang="<?php echo $lang ?>" src="<?php echo $rootDir; ?>files/turtles.png" /></a> 
                         <?php
                     }//Close show icon
                     ?>
                     <ul class="nav" id="turtleHeaderUl" lang="<?php echo $lang ?>"> 
                         <?php
                         if ($topbarDisplay['turtleacademy'] == "true") {
-                            echo "<li><a href='" . $sitePath . "/index/$lang'>";
+                            echo "<li><a href='" . $site_path . "/index/$lang'>";
                             echo _("TurtleAcademy");
                             echo "</a></li>";
                         }
                         if (isset($topbarDisplay['exercise']) && $topbarDisplay['exercise'] == "true") {
-                            echo "<li><a href='" . $sitePath . "/lessons/$lang'>";
+                            echo "<li><a href='" . $site_path . "/lessons/$lang'>";
                             echo _("Lessons");
                             echo "</a></li>";
                         }
                         if (isset($topbarDisplay['publicPrograms'])) {
-                            echo "<li><a href='" . $sitePath . "/programs/$lang'>";
+                            echo "<li><a href='" . $site_path . "/programs/$lang'>";
                             echo _("User programs");
                             echo "</a></li>";
                         }
                         
                         if ($topbarDisplay['helpus'] == "true") {
-                            echo "<li><a href='" . $sitePath . "needed.php'>";
+                            echo "<li><a href='" . $site_path . "needed.php'>";
                             echo _("Help Us");
                             echo "</a></li>";
                         }
                         if ($topbarDisplay['playground'] == "true") {
-                            echo "<li><a href='" . $sitePath . "playground/" . $lang . "'>";
+                            echo "<li><a href='" . $site_path . "playground/" . $lang . "'>";
                             echo _("Playground");
                             echo "</a></li>";
                         }
                         if ($topbarDisplay['news'] == "true") {
-                            echo "<li><a href='" . $sitePath . "news/$lang'>";
+                            echo "<li><a href='" . $site_path . "news/$lang'>";
                             echo _("News");
                             echo "</a></li>";
                         }
                         if ($topbarDisplay['forum'] == "true") {
-                            echo "<li><a href='" . $sitePath . "forum.php'>";
+                            echo "<li><a href='" . $site_path . "forum.php'>";
                             echo _("Forums");
                             echo "</a></li>";
                         }
                         if ($topbarDisplay['about'] == "true") {
-                            echo "<li><a href='" . $sitePath . "project/doc/$lang'>";
+                            echo "<li><a href='" . $site_path . "project/doc/$lang'>";
                             echo _("About");
                             echo "</a></li>";
                         }

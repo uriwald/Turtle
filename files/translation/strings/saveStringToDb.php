@@ -24,10 +24,10 @@
         $strExist               = $strcol->findOne($strQuery);
         $resultcount            = $strcol->count($strQuery);
         
-        $emptyTranslate         = array("locale_zh_CN" => false ,"locale_es_AR" => false ,
+        $emptyTranslate         = array("locale_zh_CN" => false ,"locale_es_AR" => false ,"locale_fi_FI" => false ,
             "locale_he_IL" => false ,"locale_ru_RU" => false , "locale_pt_BR" => false , "locale_de_DE" => false ,"locale_pl_PL"=>false ,
            "locale_nl_NL" => false );
-        $display                = array("zh_CN" => true ,"es_AR" => true ,"he_IL" => true ,"ru_RU" => true,
+        $display                = array("zh_CN" => true ,"es_AR" => true ,"he_IL" => true ,"ru_RU" => true, "fi_FI" => true,
                                             "pt_BR" => true ,"pl_PL" => true ,"de_DE" => true , "nl_NL" => true);  
         //Case we need to add a new record to db
         if (!$resultcount > 0 ) 

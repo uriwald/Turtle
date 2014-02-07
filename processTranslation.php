@@ -34,8 +34,8 @@ $db = $m->turtleTestDb;
 $lessons = $db->lessons;
 $buri = $lessons->find();
 
-$theObjId = new MongoId($_POST['ObjId']);
-$criteria = $lessons->findOne(array("_id" => $theObjId));
+$the_object_id = new MongoId($_POST['ObjId']);
+$criteria = $lessons->findOne(array("_id" => $the_object_id));
 
 
 

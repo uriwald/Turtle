@@ -1,5 +1,5 @@
 <?php
-    $rootDir = "../../../";
+    $root_dir = "../../../";
     $title       = $_POST['title'];
     $id          = $_POST['id'];
     
@@ -30,7 +30,7 @@
                             , "comments" => "" , "precedence" => "9999");
             $strcol->insert($obj);
             echo " NewsItem was successfully inserted";
-            $adminPage  =   $rootDir . "admin.php";
+            $adminPage  =   $root_dir . "admin.php";
             echo "<a href='" . $adminPage . "'> <span class='lessonh'> Go back to Admin page </span> </a>";
       
     } 

@@ -3,5 +3,5 @@
     $locale             = "he_IL";
     $_SESSION['locale'] = "he_IL";
     require_once("environment.php");
-    require_once($lessonPage);
+    require_once($lesson_page);
 ?>

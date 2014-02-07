@@ -34,12 +34,12 @@ if (!isset($_POST["ObjId"]) OR $_POST["ObjId"] == null OR strlen($_POST["ObjId"]
     $structure = array("steps" => $lessonSteps, "title" => $titles);
     $result = $lessons->insert($structure, array('safe' => true));
 } else { //updating existing lesson
-    $theObjId = new MongoId($_POST['ObjId']);
-    $criteria = $lessons->findOne(array("_id" => $theObjId));
+    $the_object_id = new MongoId($_POST['ObjId']);
+    $criteria = $lessons->findOne(array("_id" => $the_object_id));
 
     //Case we want to remove object 
     if (isset($_POST["formDelete"])) {
-        $result = $lessons->remove(array('_id' => $theObjId), true);
+        $result = $lessons->remove(array('_id' => $the_object_id), true);
     } else {
         $originLanguageStepsArr = $criteria["steps"];
         $originalTitle = $criteria["title"];

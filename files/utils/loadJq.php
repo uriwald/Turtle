@@ -12,7 +12,7 @@
  */
 include_once 'loadFiles.php';
 
-class loadJq extends loadFiles {
+class loadJq extends load_files {
 
     public function __construct($root, $env, $address = "ajax/libs/jqueryui/1.10.0/") {
         parent::__construct($root, $env, $address);

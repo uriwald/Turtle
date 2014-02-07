@@ -4,9 +4,9 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <?php 
-    if (!isset ($rootDir))
-        $rootDir = "/";
-    $boostrapPath =   $rootDir."files/bootstrap/";
+    if (!isset ($root_dir))
+        $root_dir = "/";
+    $boostrapPath =   $root_dir."files/bootstrap/";
         ?>
         <script type="application/javascript" src="<?php echo $boostrapPath ."js/bootstrap.js"; ?>"></script>
         <script type="application/javascript" src="<?php echo $boostrapPath ."js/bootstrap.min.js"; ?>"></script>

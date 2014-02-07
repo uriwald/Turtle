@@ -1,4 +1,4 @@
 <?php
 require_once '../files/utils/userUtil.php';
-userUtil :: addPropertyToUserCol("badges" , ""); 
+userUtil :: add_property_to_user_collection("badges" , ""); 
 ?>

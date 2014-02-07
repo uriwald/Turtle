@@ -71,13 +71,13 @@ include_once("files/inc/dropdowndef.php");
         <?php  
             $m              = new Mongo();
             // select a database
-            $db             = $m->$dbName;
+            $db             = $m->$db_name;
             $lessons        =   $db->lessons_created_by_guest;
             //TODO if not editing mode and lesson was just created Get won't help need to take from local storage
             
-            $theObjId       =   new MongoId($_GET['objid']);
+            $the_object_id       =   new MongoId($_GET['objid']);
             $localPosted    =   $_GET['locale'];
-            $cursor = $lessons->find(array("_id" => $theObjId));
+            $cursor = $lessons->find(array("_id" => $the_object_id));
             echo "var lessons = [";
                 foreach ($cursor as $lessonStructure) {
                     //echo "cursorexist";

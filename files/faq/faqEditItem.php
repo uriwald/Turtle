@@ -11,7 +11,7 @@ and open the template in the editor.
     require_once("../../localization.php"); 
     require_once("../utils/collectionUtil.php");  
     require_once("../utils/includeCssAndJsFiles.php"); 
-    includeCssAndJsFiles::includePageFiles("faqadmin");   
+    includeCssAndJsFiles::include_all_page_files("faqadmin");   
 ?>
 <!-- <link rel='stylesheet' href='../../files/css/faq.css' type='text/css' media='all'/> -->
 <html>
@@ -24,9 +24,9 @@ and open the template in the editor.
             $faqItemnumber =   $_GET['faqItem'];
         //2 . should connect the faq db
         $m                  = new Mongo();
-        $db                 = $m->$dbName;
-        $dbLessonCollection = "faq";
-        $faqs               = $db->$dbLessonCollection;
+        $db                 = $m->$db_name;
+        $db_lesson_collection = "faq";
+        $faqs               = $db->$db_lesson_collection;
         //3 . If faq was found than 
         $faqItem = $faqs->findOne(array("id" => $faqItemnumber));
         if ($faqItem != null)
@@ -86,7 +86,7 @@ and open the template in the editor.
               
               $.ajax({
                         type : 'POST',
-                        url : '<?php echo $rootDir?>files/faq/faqSaveEditedItem.php', 
+                        url : '<?php echo $root_dir?>files/faq/faqSaveEditedItem.php', 
                         dataType : 'json',
                         data: {
                             faqQ   :   question,

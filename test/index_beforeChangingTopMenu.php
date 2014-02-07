@@ -49,7 +49,7 @@
              if (isset($_SESSION['username']))
                 { 
         ?>   
-             <script type="application/javascript" src="<?php echo $rootDir; ?>clearStorageData.php"></script>
+             <script type="application/javascript" src="<?php echo $root_dir; ?>clearStorageData.php"></script>
              <?php
                 }
                 ?>
@@ -58,13 +58,13 @@
          
         <script type="application/javascript" src="files/compat.js"></script> <!-- ECMAScript 5 Functions -->
                                  
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="text/javascript" src="<?php echo $rootDir; ?>files/floodfill.js"></script>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/logo.js"></script> <!-- Logo interpreter -->
+        <script type="text/javascript" src="<?php echo $root_dir; ?>files/floodfill.js"></script>
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
         <script src="http://www.nihilogic.dk/labs/canvas2image/canvas2image.js"></script>
         <?php
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
+            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$root_dir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
             if ( file_exists($file_path))
                 echo $po_file;            
         ?>       
@@ -72,23 +72,23 @@
                 var locale = "<?php echo $locale; ?>";
         </script>
         <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/jqconsole.js"></script> <!-- Console -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>readMongo.php?locale=<?php echo $locale?>"></script> <!-- Lessons scripts -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/interface.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/jqconsole.js"></script> <!-- Console -->
         
         <!-- Adding new boostrap for crusel --> 
        
-        <script src="<?php echo $rootDir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-carousel.js"></script>
-        <link href="<?php echo $rootDir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/>
+        <script src="<?php echo $root_dir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-carousel.js"></script>
+        <link href="<?php echo $root_dir; ?>twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/interface.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/topbar.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/footer.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/zocial.css' type='text/css' media='all'/>
        <?php
-             cssUtils::loadcss($locale, $rootDir . "files/css/interface");    
-             cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
-             cssUtils::loadcss($locale, $rootDir . "files/css/topbar"); 
+             cssUtils::loadcss($locale, $root_dir . "files/css/interface");    
+             cssUtils::loadcss($locale, $root_dir . "files/css/doc"); 
+             cssUtils::loadcss($locale, $root_dir . "files/css/topbar"); 
         ?>     
         <!-- Disable script when working without internet -->
         <!-- Google Analytics Tracking --> 
@@ -115,15 +115,15 @@
             <div class="topbar" id="topbarMainDiv"> 
                 <div class="fill" id="topbarfill">
                     <div class="container span16" id="topbarContainer"> 
-                        <img class="brand" id="turtleimg" src="<?php echo $rootDir; ?>files/turtles.png" alt="צב במשקפיים">
+                        <img class="brand" id="turtleimg" src="<?php echo $root_dir; ?>files/turtles.png" alt="צב במשקפיים">
                         
                         <ul class="nav" id="turtleHeaderUl"> 
-                              <!--<li><a href="<?php echo $rootDir; ?>index.php" ><?php echo _("TurtleAcademy");?></a></li> 
-                              <!--<li><a href="<?php echo $rootDir; ?>needed.php" ><?php echo _("Help Us");?></a></li> -->
-                              <li><a href="<?php echo $rootDir; ?>playground" ><?php echo _("Playground");?></a></li>
-                              <li><a href="<?php echo $rootDir; ?>forum.php" ><?php echo _("Forums");?></a></li>
-                              <li><a href="<?php echo $rootDir; ?>turtlenews.php" ><?php echo _("News");?></a></li>
-                              <li><a href="<?php echo $rootDir; ?>project/doc" ><?php echo _("About");?></a></li>
+                              <!--<li><a href="<?php echo $root_dir; ?>index.php" ><?php echo _("TurtleAcademy");?></a></li> 
+                              <!--<li><a href="<?php echo $root_dir; ?>needed.php" ><?php echo _("Help Us");?></a></li> -->
+                              <li><a href="<?php echo $root_dir; ?>playground" ><?php echo _("Playground");?></a></li>
+                              <li><a href="<?php echo $root_dir; ?>forum.php" ><?php echo _("Forums");?></a></li>
+                              <li><a href="<?php echo $root_dir; ?>turtlenews.php" ><?php echo _("News");?></a></li>
+                              <li><a href="<?php echo $root_dir; ?>project/doc" ><?php echo _("About");?></a></li>
                              <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> --> 
                         </ul> 
                             
@@ -131,11 +131,11 @@
                                             echo $class . " form-inline";                                
                                      ?>" action="" id="turtleHeaderLanguage">  
                             <select name="selectedLanguage" id="selectedLanguage" style="width:120px;"> 
-                                <option value='en' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
-                                <option value='es' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
-                                <option value='he' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
-                                <option value='zh' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
-                                <option value='ru' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag ru" data-title="Russain">Русский</option>
+                                <option value='en' data-image="<?php echo $root_dir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
+                                <option value='es' data-image="<?php echo $root_dir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
+                                <option value='he' data-image="<?php echo $root_dir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
+                                <option value='zh' data-image="<?php echo $root_dir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
+                                <option value='ru' data-image="<?php echo $root_dir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag ru" data-title="Russain">Русский</option>
                             </select>
                         </form>       
                         <?php
@@ -150,19 +150,19 @@
                                             <li class="cc-button-group btn-group"> 
                                                 <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" >
                                                 <?php
-                                                    $displayUserName    = $_SESSION['username'];  
+                                                    $display_username    = $_SESSION['username'];  
                                                     if (isset($_SESSION['isOpenID']))
                                                     {
                                                         $emailDetails = explode('@',$_SESSION['username']);
-                                                        $displayUserName = $emailDetails[0];
+                                                        $display_username = $emailDetails[0];
                                                     }
-                                                        echo $displayUserName;
+                                                        echo $display_username;
                                                 ?>                                               
                                                 </a>
                                                 <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
                                                     <li><a tabindex="-1" href="/users.php"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
                                                     <li><a tabindex="-1" href="/project/doc" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
-                                                    <li><a href="<?php echo $rootDir; ?>logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
+                                                    <li><a href="<?php echo $root_dir; ?>logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
                                                 </ul>
                                             </li>
                                         </ul> 
@@ -175,8 +175,8 @@
                         ?>       
                                 <ul class="nav <?php echo $login ?>" id="turtleHeaderUl"> 
                                    
-                                    <li><a href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
-                                    <li><a class='btn primary large' href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li> 
+                                    <li><a href="<?php echo $root_dir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
+                                    <li><a class='btn primary large' href="<?php echo $root_dir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li> 
                                 </ul>                         
                          <?php
                             }
@@ -302,7 +302,7 @@
                             var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
                                     var val = data.value;
                                     if(val!="")
-                                           window.location = "<?php echo $rootDir; ?>lang/" + val; 
+                                           window.location = "<?php echo $root_dir; ?>lang/" + val; 
                             }}}).data("dd");
                                                         var pagename    = document.location.pathname.toString();
                             pagename        = pagename.split("/");

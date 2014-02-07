@@ -23,23 +23,28 @@ require_once('utils/topbarUtil.php');
         <?php
             require_once("utils/includeCssAndJsFiles.php"); 
         ?>   
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/doc.css' type='text/css' media='all'/>
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/playground.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/doc.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/playground.css' type='text/css' media='all'/>
         <?php
-        $file_path = "../locale/" . $localeDomain . "/LC_MESSAGES/messages.po";
-        $po_file = "<link   rel='gettext' type='application/x-po' href='../locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
-        if (file_exists($file_path))
-            echo $po_file;
-         echo "<script type='application/javascript' src='".$rootDir."files/jqconsole.js' ></script>\n" ;
+            bindtextdomain("messages", "../locale");
+            textdomain("messages");
+            $file_path = $site_path . "/locale/" . $locale_domain . "/LC_MESSAGES/messages.po";
+            $po_file = "<link   rel='gettext' type='application/x-po' href='" . $file_path . "'" . " />";
+            if (file_exists($file_path))
+            {
+                echo "<script> alert('$file_path')</script>\n" ;
+            } 
+            echo "<script type='application/javascript' src='".$root_dir."files/jqconsole.js' ></script>\n" ;
+         
         ?>        
         <script type="text/javascript">
-            var locale = "<?php echo $localeDomain; ?>";
+            var locale = "<?php echo $locale_domain; ?>"; 
         </script>
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_plain.js?locale=<?php echo $localeDomain ?>"></script> <!-- Interface scripts -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/interface_plain.js?locale=<?php echo $locale_domain ?>"></script> <!-- Interface scripts -->
         <?php
-            cssUtils::loadcss($localeDomain, $rootDir . "files/css/interface");
+            cssUtils::loadcss($locale_domain, $root_dir . "files/css/interface");
         ?>             
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/playground.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/playground.css' type='text/css' media='all'/>
 
     </head>
     <body> 
@@ -48,17 +53,17 @@ require_once('utils/topbarUtil.php');
                 this.innerHTML = show ? 'hide' : 'show'; return false;">hide
             </a>
             <!-- Including all the Logo language menual -->
-            <iframe frameborder="0" src="<?php echo $rootDir; ?>files/lang.html" id="guide_body" style="">
+            <iframe frameborder="0" src="<?php echo $root_dir; ?>files/lang.html" id="guide_body" style="">
             </iframe>  
         </div> 
         <div id="main" style="margin-left: 100px;">
         <?php
             //Printing the topbar menu
-            topbarUtil::printTopBar("playground");
+            topbarUtil::print_topbar("playground");
         ?>
             <div id="headerplain" class="page-header" >
             <?php
-                echo "<h1>";
+                echo "<h1 dir=' $dir'>";
                 echo _("Logo play ground");
                 echo "  <small>";
                 echo _("Do whatever you desire");
@@ -86,7 +91,7 @@ require_once('utils/topbarUtil.php');
         <script>
             // Select language in main page
             $(document).ready(function() {                 
-                selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>playground/" , "playground.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
+                selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $root_dir; ?>playground/" , "playground.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
                 //convert
                 $("select").msDropdown();
                 //createByJson();

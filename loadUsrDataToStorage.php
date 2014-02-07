@@ -7,7 +7,7 @@ if (session_id() == '')
 require_once("environment.php");
 
 $m = new Mongo();
-$db = $m->$dbName;
+$db = $m->$db_name;
 
 
 //updateLoclaStorageForLoggedUser($m , $db);

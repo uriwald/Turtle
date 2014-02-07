@@ -1292,6 +1292,10 @@ window.CodeMirror = (function() {
 
     if (x > toX) return PosWithInfo(lineNo, to, toOutside, 1);
     // Do a binary search between these bounds.
+    if (cm.options.direction == "rtl")
+    {
+        return pos;
+    }
     for (;;) {
       if (bidi ? to == from || to == moveVisually(lineObj, from, 1) : to - from <= 1) {
         var ch = x < fromX || x - fromX <= toX - x ? from : to;
@@ -5711,7 +5715,6 @@ window.CodeMirror = (function() {
     if (!bidi) return moveLogically(line, start, dir, byUnit);
     var pos = getBidiPartAt(bidi, start), part = bidi[pos];
     var target = moveInLine(line, start, part.level % 2 ? -dir : dir, byUnit);
-
     for (;;) {
       if (target > part.from && target < part.to) return target;
       if (target == part.from || target == part.to) {
@@ -5727,6 +5730,7 @@ window.CodeMirror = (function() {
           target = moveInLine(line, part.from, 1, byUnit);
       }
     }
+    
   }
 
   function moveLogically(line, start, dir, byUnit) {

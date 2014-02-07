@@ -18,14 +18,14 @@ require_once("faqSideNav.php");
         <meta name="description" content="">
         <meta name="author" content="">
         <?php
-            echo "<link rel='stylesheet' type='text/css' href='" . $rootDir . "files/css/registration.css' /> ";
+            echo "<link rel='stylesheet' type='text/css' href='" . $root_dir . "files/css/registration.css' /> ";
             require_once("../utils/includeCssAndJsFiles.php"); 
-            includeCssAndJsFiles::includePageFiles("faqadmin"); 
+            includeCssAndJsFiles::include_all_page_files("faqadmin"); 
         ?>     
         <!--
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/zocial.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='../css/faq.css' type='text/css' media='all'/>
-        <script src="<?php echo $rootDir; ?>ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
+        <script src="<?php echo $root_dir; ?>ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
         -->
         <script type='text/javascript'> 
             $(document).ready(function(){
@@ -67,7 +67,7 @@ require_once("faqSideNav.php");
     </head>
     <body>
         <?php
-            topbarUtil::printTopBar("faq");
+            topbarUtil::print_topbar("faq");
         ?>
         <div id="main" >
             <div id="container">

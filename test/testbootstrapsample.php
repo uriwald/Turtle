@@ -14,20 +14,20 @@
     <head> 
         <title> <?php  echo _("Project Documentation"); ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/logo.js"></script> <!-- Logo interpreter -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/topbar.css' type='text/css' media='all'/> 
 
         <?php   
         
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
+            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$root_dir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
             if ( file_exists($file_path))
                 echo $po_file;            
          
-            if (!isset ($rootDir))
-                $rootDir = "/";
+            if (!isset ($root_dir))
+                $root_dir = "/";
             if (isset($_SESSION['locale']))
                 $locale =   $_SESSION['locale'];
             if (!isset($locale))
@@ -38,11 +38,11 @@
             $localePage =   substr($locale, 0, -3); 
             require_once("localization.php");
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";             
+            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$root_dir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";             
             if ( file_exists($file_path))
                 echo $po_file;      
-             cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
-             cssUtils::loadcss($locale, $rootDir . "files/css/topbar");
+             cssUtils::loadcss($locale, $root_dir . "files/css/doc"); 
+             cssUtils::loadcss($locale, $root_dir . "files/css/topbar");
         ?>
                 <script type="application/javascript"> 
             var _gaq = _gaq || [];
@@ -65,10 +65,10 @@
         <div class="topbar" id="topbarMainDiv"> 
             <div class="fill" id="topbarfill">
                 <div class="container span16" id="topbarContainer"> 
-                    <img class="brand" id="turtleimg" src="<?php echo $rootDir ?>files/turtles.png" alt="צב במשקפיים">
+                    <img class="brand" id="turtleimg" src="<?php echo $root_dir ?>files/turtles.png" alt="צב במשקפיים">
 
                     <ul class="nav" id="turtleHeaderUl"> 
-                            <li><a href="<?php echo $rootDir."lang/".$localePage; ?>" style="color:gray;" ><?php echo _("TurtleAcademy");?></a></li> 
+                            <li><a href="<?php echo $root_dir."lang/".$localePage; ?>" style="color:gray;" ><?php echo _("TurtleAcademy");?></a></li> 
                             <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> -->
                     </ul> 
                     <?php
@@ -105,8 +105,8 @@
                             {
                         ?>       
                                 <ul class="nav <?php echo $login ?>" id="turtleHeaderUl"> 
-                                    <li><a href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
-                                    <li><a class='btn primary large' href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li> 
+                                    <li><a href="<?php echo $root_dir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
+                                    <li><a class='btn primary large' href="<?php echo $root_dir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li> 
                                 </ul>                         
                          <?php
                             }
@@ -280,7 +280,7 @@
                             var pages = $("#selectedLanguage").msDropdown({on:{change:function(data, ui) {
                                     var val = data.value;
                                     if(val!="")
-                                           window.location = "<?php echo $rootDir; ?>lang/" + val; 
+                                           window.location = "<?php echo $root_dir; ?>lang/" + val; 
                             }}}).data("dd");
                                                         var pagename    = document.location.pathname.toString();
                             pagename        = pagename.split("/");

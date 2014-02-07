@@ -6,15 +6,15 @@
         session_start();
     //If the user is not logged in yet redirect
     require_once("environment.php");
-    $isPublicUserPage = false;
+    $is_public_user_page = false;
     if (isset($_GET['username']))
-        $isPublicUserPage = true;
-    $displayPage = true;
+        $is_public_user_page = true;
+    $display_page = true;
     //Will be redirected only if is not log in and didn't try to get to public page
-    if (!isset($_SESSION['username']) && (!$isPublicUserPage)) {
+    if (!isset($_SESSION['username']) && (!$is_public_user_page)) {
         $_SESSION['redirectBack'] = "users.php";
-        header('refresh:3; url=' . $sitePath . "registration.php");
-        $displayPage = false;
+        header('refresh:3; url=' . $site_path . "registration.php");
+        $display_page = false;
         echo "<center><h1 id='redirect'> You will be redirected in order to log in </h1></center>";
     }
     if(strlen ($_SESSION['locale']) < 3)
@@ -29,40 +29,40 @@
 
     if (isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
-        $displayUserName = $username;
-        if (strpos($displayUserName, '@') !== false) {
-            $nameBeforeMailAdd = explode('@', $displayUserName);
-            $displayUserName = $nameBeforeMailAdd[0];
-            $emailAdd   =   $nameBeforeMailAdd[1]; 
-            $_SESSION['completeEmail'] = "@" . $emailAdd;
+        $display_username = $username;
+        if (strpos($display_username, '@') !== false) {
+            $name_before_adding_mail_address = explode('@', $display_username);
+            $display_username = $name_before_adding_mail_address[0];
+            $email_server   =   $name_before_adding_mail_address[1]; 
+            $_SESSION['completeEmail'] = "@" . $email_server;
         }
     }
-    if ($isPublicUserPage) {
+    if ($is_public_user_page) {
         $username       = $_GET['username'];
-        $isMailUser     = false;
+        $is_mail_user     = false;
         if (strpos($username, '_email') !== false)
-            $isMailUser     = true;
-        if ($isMailUser)
+            $is_mail_user     = true;
+        if ($is_mail_user)
         {
             $username = userUtil :: find_mail_user($username , "_email");
         }
         //echo $username;
-        $displayUserName = $username;
-        if (strpos($displayUserName, '@') !== false) {
-            $nameBeforeMailAdd = explode('@', $displayUserName);
-            $displayUserName = $nameBeforeMailAdd[0];
-            $emailAdd   =   $nameBeforeMailAdd[1]; 
+        $display_username = $username;
+        if (strpos($display_username, '@') !== false) {
+            $name_before_adding_mail_address = explode('@', $display_username);
+            $display_username = $name_before_adding_mail_address[0];
+            $email_server   =   $name_before_adding_mail_address[1]; 
         }
     } else {
-        $displayUserName = "";
+        $display_username = "";
         if (isset($_SESSION['username'])) {
-            $displayUserName = $_SESSION['username'];
-            if (strpos($displayUserName, '@') !== false) {
-                $nameBeforeMailAdd = explode('@', $displayUserName);
-                $displayUserName = $nameBeforeMailAdd[0];
+            $display_username = $_SESSION['username'];
+            if (strpos($display_username, '@') !== false) {
+                $name_before_adding_mail_address = explode('@', $display_username);
+                $display_username = $name_before_adding_mail_address[0];
              }
             // update the user badgse
-            badgesUtil :: updateUserBadges($displayUserName);
+            badgesUtil :: update_user_badges($display_username);
         }
     }
     ?>
@@ -71,27 +71,27 @@
 <html dir="<?php echo $dir ?>" lang="<?php echo $lang ?>">
     <head>
         <meta charset="utf-8">
-        <title> <?php $displayUserName ?></title>
+        <title> <?php $display_username ?></title>
         <meta name="description" content="">
         <meta name="author" content="">
         <?php
         require_once("files/utils/includeCssAndJsFiles.php");
-        includeCssAndJsFiles::includePageFiles("users");
+        includeCssAndJsFiles::include_all_page_files("users");
         ?>
     </head>
     <body>
         <?php
         //Will display the page only if user is register ,, if not will be redirected
-        if ($displayPage) {
+        if ($display_page) {
             //Printing the topbar menu
-            topbarUtil::printTopBar("users");
+            topbarUtil::print_topbar("users");
             ?>
             <div class="container span16" id="mainContainer">
             <?php
-            if ($isPublicUserPage) {
+            if ($is_public_user_page) {
                 ?>
 
-                    <div> <h2> <?php echo $displayUserName . " Public Page" ; ?></h2> </div>
+                    <div> <h2> <?php echo $display_username . " Public Page" ; ?></h2> </div>
                     
                 <?php 
                 //echo $emailAdd;
@@ -103,12 +103,12 @@
                     <div class="well span4 sidebar" id="user_menu" lang="<?php echo $lang ?>">
                         <h4>
                         <?php
-                            echo $displayUserName;
+                            echo $display_username;
                         ?>
                         </h4>
                         <div class='cleaner_h10'></div>
                             <?php
-                            if (!$isPublicUserPage) {
+                            if (!$is_public_user_page) {
                                 ?>
                             <p>
                                 <a href='#'>
@@ -125,10 +125,10 @@
                             if (isset($_SESSION['institute'])) {
                             ?>
                                 <?php
-                                if (!$isPublicUserPage) {
+                                if (!$is_public_user_page) {
                                     ?>
                                     <p>
-                                        <a href='<?php echo $rootDir; ?>files/institute/addInstituteUser.php?l=<?php echo $localeDomain; ?>'>
+                                        <a href='<?php echo $root_dir; ?>files/institute/addInstituteUser.php?l=<?php echo $locale_domain; ?>'>
                                     <?php echo _("Manage my users"); ?>
                                         </a>
                                     </p>
@@ -136,16 +136,16 @@
                                 <?php
                                 } // End Add user <p>
                             }
-                            if (!$isPublicUserPage) {
+                            if (!$is_public_user_page) {
                             ?>
                             <p>
-                                <a href='<?php echo $rootDir; ?>program/lang/<?php echo  substr($localeDomain, 0, 2); ?>'>
+                                <a href='<?php echo $root_dir; ?>program/lang/<?php echo  substr($locale_domain, 0, 2); ?>'>
                                     <?php echo _("Create a new program"); ?>
                                 </a>
                             </p>
                             <!--
                             <p>
-                                <a href='lesson.php?l=<?php echo $localeDomain; ?>'>
+                                <a href='lesson.php?l=<?php echo $locale_domain; ?>'>
                                  <?php echo _("Add a new lesson"); ?>
                                 </a>
                             </p>
@@ -154,7 +154,7 @@
                             }
                             ?>
                             <?php
-                            if (!$isPublicUserPage) {
+                            if (!$is_public_user_page) {
                             ?>
                             <p> 
                             <?php
@@ -162,29 +162,29 @@
                                 $db = $m->turtleTestDb;
                                 $strcol = $db->messages;
                                 $username = trim($username);
-                                $messagesRecieveQuery = array('sendto' => $username);
-                                $messagesGeneral = array('sendto' => 'all');
+                                $messages_recieve_query = array('sendto' => $username);
+                                $messages_general = array('sendto' => 'all');
                                 
-                                $allMessages = array('$or' => array(array('sendto' => $username ), array('sendto' => 'all')));
+                                $messages_all = array('$or' => array(array('sendto' => $username ), array('sendto' => 'all')));
 
-                                $newMessagesQuery =  array('$or' => array(array('sendto' => $username , 'read'=>false ), array('sendto' => 'all', 'read'=>false)));
-                                $messageSentQuery = array('sendfrom' => $username);
+                                $new_messages_query =  array('$or' => array(array('sendto' => $username , 'read'=>false ), array('sendto' => 'all', 'read'=>false)));
+                                $message_sent_query = array('sendfrom' => $username);
                                 //$messagesRecieve = $strcol->find($messagesRecieveQuery);
-                                $messagesRecieve = $strcol->find($allMessages);
-                                $messagesRecieve->sort(array('date' => -1));
-                                $messagesSent = $strcol->findOne($messageSentQuery);
-                                $msgRecieveCount = $strcol->count($messagesRecieveQuery);
-                                $numOfNewMsg = $strcol->count($newMessagesQuery);
+                                $messages_recieve = $strcol->find($messages_all);
+                                $messages_recieve->sort(array('date' => -1));
+                                $messages_sent = $strcol->findOne($message_sent_query);
+                                $msg_recieve_count = $strcol->count($messages_recieve_query);
+                                $num_of_new_msg = $strcol->count($new_messages_query);
                                 
                             ?>
                                 <a href='#myMessages' id="myMessageslink">
                                 <?php
                                 echo _("My Messages");
-                                if ($numOfNewMsg > 0) {
+                                if ($num_of_new_msg > 0) {
                                     ?>
                                         <i class="icon-envelope innerIcon" lang="en"></i>
                                         <?php
-                                        echo $numOfNewMsg;
+                                        echo $num_of_new_msg;
                                     } // End if numofMsg >0
                                     ?>
                                 </a>
@@ -196,7 +196,7 @@
                             <p> 
                                 <a href='#myProgress' id="myProgresslink">
                                 <?php
-                                if ($isPublicUserPage)
+                                if ($is_public_user_page)
                                     echo _("User progress");
                                 else
                                     echo _("My progress");
@@ -205,26 +205,26 @@
                             </p>
                             <p> 
                             <?php
-                            if ($isPublicUserPage) {
+                            if ($is_public_user_page) {
                                 if (isset ($_SESSION['username']))
                                 {
-                                    $privateUserName =  $_SESSION['username'];
-                                    if (strpos($privateUserName, '@') !== false) {
-                                        $nameBeforeMailAdd = explode('@', $privateUserName);
-                                        $privateUserName = $nameBeforeMailAdd[0];
+                                    $private_user_name =  $_SESSION['username'];
+                                    if (strpos($private_user_name, '@') !== false) {
+                                        $name_before_adding_mail_address = explode('@', $private_user_name);
+                                        $private_user_name = $name_before_adding_mail_address[0];
                                     }
-                                    echo "<a href='$rootDir" . "users/" . $privateUserName. "'" . ">";
+                                    echo "<a href='$root_dir" . "users/" . $private_user_name. "'" . ">";
                                     echo _("My private profile");
                                 }
                             } else {
-                                echo "<a href='$rootDir" . "users/profile/" . $displayUserName . "'" . ">";
+                                echo "<a href='$root_dir" . "users/profile/" . $display_username . "'" . ">";
                                 echo _("My public profile");
                             }
                             ?>
                                 </a>
                             </p>
                             <p>
-                                <a href='<?php echo $rootDir . "project/doc/" . $lang; ?>'>
+                                <a href='<?php echo $root_dir . "project/doc/" . $lang; ?>'>
                                 <?php echo _("Help"); ?>
                                 </a>
                             </p>
@@ -245,7 +245,7 @@
                             <tbody>
                             <?php
                             
-                            foreach ($messagesRecieve as $message) {
+                            foreach ($messages_recieve as $message) {
                             //foreach ($messagesRecieveQuery as $message) {
                                 $class = '';
                                 if ($message['read'])
@@ -266,7 +266,7 @@
                     <div class=" span10 tab-pane active" id="myProgress">
                         <h2>
                         <?php
-                        if ($isPublicUserPage)
+                        if ($is_public_user_page)
                             echo _("User progress");
                         else
                             echo _("My progress");
@@ -276,26 +276,26 @@
                         <!-- Display User badges--->
                         <div class="badges">
                             <?php
-                            $badges = badgesUtil::getUserBadges($username);
+                            $badges = badgesUtil::get_user_badges($username);
                             // Should use foreatch loop for all badges
                             //echo $badges;
                             $badgesArr = explode(",", $badges);
                             if (in_array("1", $badgesArr)) {
                                 echo "<div class='badge' title='finish lesson number 1' >";
                                 echo "<p> Green shield </p>";
-                                echo "<img class='badgeImg' id='turtleimg' src='" . $sitePath . "/Images/badges/lightshield.jpg'  />";
+                                echo "<img class='badgeImg' id='turtleimg' src='" . $site_path . "/Images/badges/lightshield.jpg'  />";
                                 echo "</div>";
                             }
                             if (in_array("2", $badgesArr)) {
                                 echo "<div class='badge' title='Finish the first 2 lessons' >";
                                 echo "<p> Brown shield </p>";
-                                echo "<img class='badgeImg' id='turtleimg' src='" . $sitePath . "/Images/badges/brownshield.jpg' />";
+                                echo "<img class='badgeImg' id='turtleimg' src='" . $site_path . "/Images/badges/brownshield.jpg' />";
                                 echo "</div>";
                             }
                             if (in_array("3", $badgesArr)) {
                                 echo "<div class='badge' title='Familar with the Turtle World' >";
                                 echo "<p> Gold shield </p>";
-                                echo "<img class='badgeImg' id='turtleimg' src='" . $sitePath . "/Images/badges/goldenshield.jpg' />";
+                                echo "<img class='badgeImg' id='turtleimg' src='" . $site_path . "/Images/badges/goldenshield.jpg' />";
                                 echo "</div>";
                             }
                             ?>
@@ -305,7 +305,7 @@
                     <div class='span16'id="usrLessonDiv" lang="<?php echo $lang ?>"> 
 
                         <h2><?php
-                        if ($isPublicUserPage)
+                        if ($is_public_user_page)
                             echo _("User Programs");
                         else
                             echo _("Your Programs");
@@ -323,15 +323,15 @@
                             <tbody>
                             <?php
                             if (isset($_SESSION['isOpenID'])) {
-                                $username = $displayUserName . $_SESSION['completeEmail'];
+                                $username = $display_username . $_SESSION['completeEmail'];
                             }
-                            if ($isPublicUserPage)
-                                $userPrograms = userUtil::findUserPublicPrograms($username);
+                            if ($is_public_user_page)
+                                $user_programs = userUtil::find_user_public_programs($username);
                             else
-                                $userPrograms = userUtil::findUserPrograms($username);
+                                $user_programs = userUtil::find_user_programs($username);
                             
                             
-                            foreach ($userPrograms as $program) {
+                            foreach ($user_programs as $program) {
                             ?>
                                 <tr>
                                     <td><?php echo $program['programName'] ?></td>
@@ -339,18 +339,18 @@
                                     <td><?php echo $program['lastUpdated'] ?></td>
                                     <td>
                                         <a class='btn small info' href="<?php
-                                            if ($isPublicUserPage)
-                                                echo $rootDir . "users/programs/";
+                                            if ($is_public_user_page)
+                                                echo $root_dir . "users/programs/";
                                             else
-                                                echo $rootDir . "files/updateProgram.php?programid=";
+                                                echo $root_dir . "files/updateProgram.php?programid=";
                                             echo $program['_id'];
-                                            if (!$isPublicUserPage) {
+                                            if (!$is_public_user_page) {
                                                 echo"&username=";
                                                 echo $username;
                                             }
                                             ?> 
                                         ">  <?php
-                                            if ($isPublicUserPage)
+                                            if ($is_public_user_page)
                                                 echo _("View");
                                             else
                                                 echo _("Edit");
@@ -396,7 +396,7 @@
                         });                                           
                     });
                         
-                    selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>users/<?php if ($isPublicUserPage) echo "profile" . "/" . $username; ?>/", "users.php" ,"en" ); 
+                    selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $root_dir; ?>users/<?php if ($is_public_user_page) echo "profile" . "/" . $username; ?>/", "users.php" ,"en" ); 
                     $('#myMessages').hide();
                     $('#myMessageslink').click(function() {
                         $('#myProgress').hide();

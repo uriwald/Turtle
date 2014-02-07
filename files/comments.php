@@ -8,7 +8,7 @@ require_once("utils/languageUtil.php");
 require_once('utils/topbarUtil.php');
 require_once('utils/programUtil.php');
 ?>
-<link rel="stylesheet" href="<?php echo $sitePath; ?>/files/codemirror/lib/codemirror_turtle.css">
+<link rel="stylesheet" href="<?php echo $site_path; ?>/files/codemirror/lib/codemirror_turtle.css">
 <?php
     $logged_in_user = false;
     $sendTo = "";
@@ -18,14 +18,14 @@ require_once('utils/programUtil.php');
         $sendTo = $_SESSION['username'];
     }
     $sendTo = "";
-    $programId = $_GET['programid'];
+    $program_id = $_GET['programid'];
     $m = new Mongo();
     $db = $m->turtleTestDb;
     $programs = "programs";
-    $programsCollection = $db->$programs;
-    $theObjId = new MongoId($programId);
-    $criteria = $programsCollection->findOne(array("_id" => $theObjId));
-    $programName = $criteria['programName'];
+    $programs_collection = $db->$programs;
+    $the_object_id = new MongoId($program_id);
+    $criteria = $programs_collection->findOne(array("_id" => $the_object_id));
+    $program_name = $criteria['programName'];
     $bodytag = str_replace("\n", "↵", $criteria['code']);                    
 ?>
                 <?php
@@ -41,7 +41,7 @@ require_once('utils/programUtil.php');
                     }
                     else{
                 ?>
-<div><span> You must <a href="<?php echo $rootDir . "registration.php";?>">login</a> to comment</span></div>
+<div><span> You must <a href="<?php echo $root_dir . "registration.php";?>">login</a> to comment</span></div>
                 <?php
                     }
                  ?> 
@@ -51,7 +51,7 @@ require_once('utils/programUtil.php');
                 </div>
                 <div id ="user-comments">
                    <?php
-                        $comments = programUtil::findProgramComments($theObjId);
+                        $comments = programUtil::find_program_comments($the_object_id);
                         //print_r($comments); 
                         if (is_array($comments) )
                         {
@@ -62,7 +62,7 @@ require_once('utils/programUtil.php');
                                          echo "<span>";
                                          ?>
                                          <a class='' href="<?php
-                                                echo $rootDir . "users/profile/";
+                                                echo $root_dir . "users/profile/";
                                                 echo $comment['user'];
                                                 ?>"> 
                                                  <?php echo $comment['user']; ?>

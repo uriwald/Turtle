@@ -6,7 +6,7 @@
  */
 class stringtranUtil {
 
-    public function addNewLocale($localeName) {
+    public function add_new_locale($localeName) {
         $m                  = new Mongo();
         $db                 = $m->turtleTestDb;
         $strcol             = $db->stringTranslation;
@@ -14,7 +14,11 @@ class stringtranUtil {
         
         foreach ($strings as $string)
         {
-            $page                   =   $string['page'];
+            if (isset($string['pagecode']))     
+                $page                   =   $string['pagecode'];
+            else {
+                $page = "8";
+            }
             $context                =   $string['context'];
             $str                    =   $string['str'];
             $translate              =   $string['translate'];
@@ -23,7 +27,7 @@ class stringtranUtil {
                 $translate["locale_" . $localeName]  =   "";
             if (!isset($display[$localeName]))
                 $display[$localeName]  =   true;
-            $result     =   $strcol->update($string, array("page" => $page , "context" => $context , "str" => $str ,
+            $result     =   $strcol->update($string, array("pagecode" => $page , "context" => $context , "str" => $str ,
                                                     "translate" => $translate ,"display" => $display  ));
 
         }

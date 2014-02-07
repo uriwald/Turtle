@@ -1,6 +1,6 @@
 <?php
     require_once 'files/utils/userUtil.php';
-    $userLessons    =   userUtil::showUserLessons("lucio");
+    $userLessons    =   userUtil::show_user_lessons("lucio");
     print_r($userLessons);
     foreach ($userLessons as $lesson){
         print_r($lesson);

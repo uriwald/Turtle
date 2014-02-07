@@ -55,9 +55,9 @@ and open the template in the editor.
         require_once ("files/utils/lessonsUtil.php");
         $m = new Mongo();
 // select a database
-        $db = $m->$dbName;
+        $db = $m->$db_name;
 // select a collection (analogous to a relational database's table)
-        $lessons = $db->$dbLessonCollection;
+        $lessons = $db->$db_lesson_collection;
         $locale = "en_US";
         $localeFullName = "";
         $localeTranslate = "";
@@ -83,18 +83,18 @@ and open the template in the editor.
 //If we are in existing lesson we will enter editing mode 
         if (isset($_GET['lesson'])) {
             $lu = new lessonsUtil($locale, "locale_", $lessons, $_GET['lesson']);
-            $theObjId = new MongoId($_GET['lesson']);
-            $cursor = $lessons->findOne(array("_id" => $theObjId));
-            $localSteps = $lu->getStepsByLocale($localePrefix . $locale);
-            $lessonFinalTitle = $lu->getTitleByLocale($localePrefix . $locale);
+            $the_object_id = new MongoId($_GET['lesson']);
+            $cursor = $lessons->findOne(array("_id" => $the_object_id));
+            $localSteps = $lu->get_steps_by_locale($localePrefix . $locale);
+            $lessonFinalTitle = $lu->get_title_by_locale($localePrefix . $locale);
             $lessonPrecedence    = 75;
             $lessonTurtleId      = 80; //Default value 
             if ($doTranslate) {
-                $localStepsTranslate = $lu->getStepsByLocale($localePrefix . $localeTranslate);
-                $lessonFinalTitleTranslate = $lu->getTitleByLocale($localePrefix . $localeTranslate);
+                $localStepsTranslate = $lu->get_steps_by_locale($localePrefix . $localeTranslate);
+                $lessonFinalTitleTranslate = $lu->get_title_by_locale($localePrefix . $localeTranslate);
             }
-            $lessonPrecedence   = $lu->getPrecedence();
-            $lessonTurtleId     = $lu->getTurtleId();
+            $lessonPrecedence   = $lu->get_precedence();
+            $lessonTurtleId     = $lu->get_turtle_id();
             
         }
 
@@ -185,7 +185,7 @@ and open the template in the editor.
                 $.Storage.set("lesson-total-number-of-steps" ,"0");
                 $.Storage.set("precedence", "<?php echo intval($lessonPrecedence)?>");
                 $.Storage.set("turtleId",   "<?php echo intval($lessonTurtleId)?>");
-                $.Storage.set("collection-name" ,"<?php echo $dbLessonCollection ?>");
+                $.Storage.set("collection-name" ,"<?php echo $db_lesson_collection ?>");
             </script>
     <?php
     foreach ($localSteps as $step) {
@@ -358,7 +358,7 @@ and open the template in the editor.
                 </div>     
                 <div class="downButton">
                     <input type="button" id="btnSaveLessonTranslate" class="lessonInputButton" name="formSave" value="Save" />
-                    <a href="<?php echo $rootDir."files/translation/lesson/lessonsTransReportPage.php?locale=".$localetr?>" id="redirectLessonReportPage"> Back to admin page </a>
+                    <a href="<?php echo $root_dir."files/translation/lesson/lessonsTransReportPage.php?locale=".$localetr?>" id="redirectLessonReportPage"> Back to admin page </a>
                 </div>
             </div>  
             <script type='text/javascript'>

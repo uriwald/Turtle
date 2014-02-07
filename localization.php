@@ -42,13 +42,13 @@
     {
         $localeEnv      = "en_US.utf8";
         $locale         = "en_US";
-        $localeDomain   = $locale;
+        $locale_domain   = $locale;
         if (isSet($_GET["ltranslate"])) 
         {
             $locale     = $_GET["ltranslate"];
             $localeEnv  = $locale.".utf8";
             if (isset($LocaleVal[$locale])) 
-                $localeDomain   =   $LocaleVal[$localeEnv];
+                $locale_domain   =   $LocaleVal[$localeEnv];
         }
         else
         {            
@@ -57,15 +57,15 @@
     }
     else {
         if (isset($LocaleVal[$locale])) 
-            $localeDomain   =   $LocaleVal[$locale];
+            $locale_domain   =   $LocaleVal[$locale];
         else
-            $localeDomain   =   $locale;
-       $localeEnv = $localeDomain.".utf8" ; 
+            $locale_domain   =   $locale;
+       $localeEnv = $locale_domain.".utf8" ; 
     } 
     
-    $_SESSION['locale'] = $localeDomain;
+    $_SESSION['locale'] = $locale_domain;
     $lang               =  substr($locale, 0, 2);
-    $dir = ($localeDomain == 'he_IL') ? 'rtl' : 'ltr';
+    $dir = ($locale_domain == 'he_IL') ? 'rtl' : 'ltr';
     $cssright = ($dir == 'ltr') ? 'right' : 'left';
     $cssleft = ($dir == 'ltr') ? 'left' : 'right';
     //echo " locale env is " . $localeEnv ;
@@ -89,9 +89,9 @@
 ?>
     <!-- In order to infrom js files on which locale are we right now -->
     <script type="text/javascript">
-            var locale   = "<?php echo $localeDomain; ?>";
+            var locale   = "<?php echo $locale_domain; ?>";
             var localShort      =    locale.substr(0,2)
-            var rootDir  = "<?php echo $rootDir; ?>";
-            var sitePath = "<?php echo $sitePath; ?>";
+            var rootDir  = "<?php echo $root_dir; ?>";
+            var sitePath = "<?php echo $site_path; ?>";
 
     </script>

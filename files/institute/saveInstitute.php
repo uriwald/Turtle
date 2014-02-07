@@ -23,9 +23,9 @@
        echo $userExist['_id'];
        $userId  =   $userExist['_id'];
        $mycollection = new collectionUtil("turtleTestDb","users");
-       $mycollection->CollectionItemAddAttribute($userId,"institute","1,"); 
-       $mycollection->CollectionItemAddAttribute($userId,"institute_description",$description);
-       $mycollection->CollectionItemAddAttribute($userId,"institute_name",$name);
+       $mycollection->collection_item_add_attribute($userId,"institute","1,"); 
+       $mycollection->collection_item_add_attribute($userId,"institute_description",$description);
+       $mycollection->collection_item_add_attribute($userId,"institute_name",$name);
     }
     else {   
         echo " User does not exist";

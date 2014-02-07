@@ -17,7 +17,7 @@ require_once('files/utils/topbarUtil.php');
         <title> <?php echo _("Project Documentation"); ?></title>
         <?php
              require_once("files/utils/includeCssAndJsFiles.php"); 
-            includeCssAndJsFiles::includePageFiles("doc");
+            includeCssAndJsFiles::include_all_page_files("doc");
         ?>
          
 
@@ -26,7 +26,7 @@ require_once('files/utils/topbarUtil.php');
     <body>
         <?php
             //Printing the topbar menu
-            topbarUtil::printTopBar("documentation"); 
+            topbarUtil::print_topbar("documentation"); 
         ?> 
         <div class="container" role="docs">
             <div class="row" lang="<?php echo $lang ?>">    
@@ -312,7 +312,7 @@ require_once('files/utils/topbarUtil.php');
         <!-- Creating logo symbols -->
         <script>
         $(document).ready(function() {
-            selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>project/doc/" , "documentation.php" ,"en_US" );
+            selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $root_dir; ?>project/doc/" , "documentation.php" ,"en_US" );
         })
             function do_logo(id ,cmd) {
                 $('#'+id).css('width', '300px').css('height', '200px').append('<canvas id="'+id+'c" width="300" height="200" style="position: absolute; z-index: 0;"></canvas>' +

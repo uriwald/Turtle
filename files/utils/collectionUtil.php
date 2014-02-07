@@ -33,7 +33,7 @@ class collectionUtil {
     }
 
 
-    public function printCollectionItems() {      
+    public function print_collection_items() {      
 
         $cursor = $this->collection->find();
         echo "xx";
@@ -42,7 +42,7 @@ class collectionUtil {
     }
     
     
-    public function printCollectionItem ($mongoid)
+    public function print_collection_item ($mongoid)
     {
         $criteria = $this->collection->findOne(array("_id" => $mongoid));
         $cursor = $criteria;
@@ -55,14 +55,14 @@ class collectionUtil {
     /*
      * Add an attribute to a specific collection object
      */
-    public function CollectionItemAddAttribute ($mongoid , $attName , $attVal)
+    public function collection_item_add_attribute ($mongoid , $attName , $attVal)
     {
         $criteria = $this->collection->findOne(array("_id" => $mongoid));
         $cursor = $criteria;
         $cursor[$attName] = $attVal ;
         $this->collection->update($criteria,$cursor);
     }
-    public function cloneColumn ($mongoid , $attOldName , $attNewName)
+    public function clone_column ($mongoid , $attOldName , $attNewName)
     {
         $criteria           = $this->collection->findOne(array("_id" => $mongoid));
         $cursor             = $criteria;
@@ -74,7 +74,7 @@ class collectionUtil {
     }
     
         
-    public function cloneColumns($attOldName , $attNewName) {      
+    public function clone_columns($attOldName , $attNewName) {      
 
         $cursor = $this->collection->find();
         foreach ($cursor as $user_object) {
@@ -89,7 +89,7 @@ class collectionUtil {
         echo "done cloning " . $attOldName . " to " . $attNewName;
 
     }
-    public static function addPropertyToAllCollectionObjects($collectoinName ,$property , $val)
+    public static function add_property_to_all_collection_objects($collectoinName ,$property , $val)
     {
            $m = new Mongo();
            $db = $m->turtleTestDb;	
@@ -102,15 +102,26 @@ class collectionUtil {
                 }
             } 
      }
+    public static function change_all_collection_objects_property ($collectoinName ,$property , $val)
+    {
+           $m = new Mongo();
+           $db = $m->turtleTestDb;	
+           $collection = $db->$collectoinName;
+           $cursor = $collection->find();
+            foreach ($cursor as $collectionObj) {
+                    $newdata = array('$set' => array($property => $val));
+                    $collection->update($collectionObj, $newdata);             
+            } 
+     }
     
-    public function CollectionItemChangeAttributeVal ($mongoid , $attName , $attVal) 
+    public function collection_item_change_attribute_val ($mongoid , $attName , $attVal) 
     { 
         $criteria = $this->collection->findOne(array("_id" => $mongoid));
         $cursor = $criteria; 
         $cursor["$attName"] = $attVal ;
           $result = $this->collection->update($criteria,$cursor);
     }
-    public static function CollectionItemChangeAttVal ($db,$collection ,$mongoid , $attName , $attVal) 
+    public static function collection_item_change_attrivute_val ($db,$collection ,$mongoid , $attName , $attVal) 
     { 
         $m                          =   new Mongo();
         $thisdb                     =   $m->$db;
@@ -122,13 +133,13 @@ class collectionUtil {
           $result = $collection->update($criteria,$cursor);
     }
     
-    public function CollectionItemsAddAttribute($attName , $attVal) {      
+    public function collection_items_add_attribute($attName , $attVal) {      
 
         $cursor = $this->collection->find();
         $this->collection->update($cursor , array('$set' => array($attName => $attVal)),array("multiple" => true)) ; 
 
     }
-    public function getStepsByLocale($locale) {
+    public function get_steps_by_locale($locale) {
 
         $localeSteps = $this->steps;
         foreach ($this->steps as $key => $value) {
@@ -143,7 +154,7 @@ class collectionUtil {
      * We assusme the the same MongoID is exist in both of the collection
      * good for example to move data from lessons to lessons_translate
      */
-    public static function copyFullLessonBetweenCollections($mongoid ,$dbName,$colFromName , $colToName) {
+    public static function copy_full_lesson_between_collections($mongoid ,$dbName,$colFromName , $colToName) {
         $mo = new Mongo();
         // select a database
         $dbb = $mo->$dbName;
@@ -169,15 +180,15 @@ class collectionUtil {
             
         }
     }
-    public static function copyLocaleLessonBetweenCollections($mongoid ,$dbName,$colFromName , $colToName , $locale , $stepnum) {
+    public static function copy_locale_lesson_between_collections($mongoid ,$dbName,$col_from_name , $col_to_name , $locale , $stepnum) {
         $mo = new Mongo();
         // select a database
         $dbb = $mo->$dbName;
         // select a collection (analogous to a relational database's table)
-        $colFrom    = $dbb->$colFromName;
+        $colFrom    = $dbb->$col_from_name;
         // print_r($colFrom);
         $steps              = "steps";
-        $colTo              = $dbb->$colToName;
+        $colTo              = $dbb->$col_to_name;
         $criteria1          = $colFrom->findOne(array("_id" => $mongoid));
         print_r ($criteria1[$steps][$stepnum][$locale]);
         $criteria2          = $colTo->findOne(array("_id" => $mongoid));
@@ -194,7 +205,7 @@ class collectionUtil {
       * @return - all $colname object
       * 
       */
-     public static function getAllCollectionObjects($colname) 
+     public static function get_all_collection_objects($colname) 
      {
            $m       = new Mongo();
            $db      = $m->turtleTestDb;

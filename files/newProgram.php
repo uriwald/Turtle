@@ -9,7 +9,7 @@ require_once("../localization.php");
 if (!isset($_SESSION['username']))
 {
     $_SESSION['redirectBack'] = "files/newProgram.php";
-         header('Location: '.$sitePath . "registration.php");
+         header('Location: '.$site_path . "registration.php");
      //   header('refresh:3; url='.$sitePath . "registration.php");
     echo "<center><h1 id='redirect'> You will be redirected in order to log in </h1></center>";
 }
@@ -30,13 +30,13 @@ require_once('utils/topbarUtil.php');
 
     <?php
     require_once("utils/includeCssAndJsFiles.php"); 
-    includeCssAndJsFiles::includePageFiles("user-program"); 
-    echo "<script type='application/javascript' src='" . $rootDir . "files/jquery.Storage.js' ></script>";
+    includeCssAndJsFiles::include_all_page_files("user-program"); 
+    echo "<script type='application/javascript' src='" . $root_dir . "files/jquery.Storage.js' ></script>";
     ?>   
 
     <?php
-        $file_path = "../locale/" . $localeDomain . "/LC_MESSAGES/messages.po";
-    $po_file = "<link   rel='gettext' type='application/x-po' href='$sitePath/locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
+        $file_path = "../locale/" . $locale_domain . "/LC_MESSAGES/messages.po";
+    $po_file = "<link   rel='gettext' type='application/x-po' href='$site_path/locale/" . $locale_domain . "/LC_MESSAGES/messages.po'" . " />";
     
     if (file_exists($file_path))
        echo $po_file;
@@ -50,7 +50,7 @@ require_once('utils/topbarUtil.php');
      * 
      */
     ?>        
-     <!-- <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_user_program.js?locale=<?php echo $localeDomain ?>"></script> <!-- Interface scripts -->
+     <!-- <script type="application/javascript" src="<?php echo $root_dir; ?>files/interface_user_program.js?locale=<?php echo $locale_domain ?>"></script> <!-- Interface scripts -->
 
     <!--<link rel="stylesheet" href="codemirror/mode/logo/logo.css"> -->
 </head>
@@ -58,7 +58,7 @@ require_once('utils/topbarUtil.php');
 <body>
         <?php
             //Printing the topbar menu
-            topbarUtil::printTopBar("program"); 
+            topbarUtil::print_topbar("program"); 
             
         ?>
     <div class="container" style="width:1200px;">
@@ -329,7 +329,7 @@ require_once('utils/topbarUtil.php');
         else
             echo "var username = null;";
     ?> 
-    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>program/lang/" , "newProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
+    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $root_dir; ?>program/lang/" , "newProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
 
 </script>
     </html>

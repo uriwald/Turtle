@@ -4,7 +4,7 @@
             <img class="brand" id="turtleimg" src="files/turtles.png" alt="צב במשקפיים">
 
             <ul class="nav" id="turtleHeaderUl"> 
-                <li><a href="<?php echo $rootDir; ?>index.php" style="color:gray;" ><?php echo _("TurtleAcademy"); ?></a></li> 
+                <li><a href="<?php echo $root_dir; ?>index.php" style="color:gray;" ><?php echo _("TurtleAcademy"); ?></a></li> 
             </ul>
 
             <form class="<?php

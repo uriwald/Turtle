@@ -113,7 +113,7 @@
      $return['badge'] = "no";
     if (isset($_SESSION[$username]))
     {
-        $return['badge']    =   badgesUtil :: updateUserBadges($user); 
+        $return['badge']    =   badgesUtil :: update_user_badges($user); 
         $return['user']     =   $user;
         
     }

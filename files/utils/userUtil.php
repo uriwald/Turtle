@@ -1,7 +1,7 @@
 <?php
      class userUtil {
          
-     public static function varifyUser($username , $password) 
+     public static function varify_user($username , $password) 
      {
            $password = md5($password); 
            $m = new Mongo();
@@ -19,6 +19,16 @@
                
                return true;
            }
+     }
+     public static function get_user_institute_email($username)
+     {
+         $m = new Mongo();
+         $db = $m->turtleTestDb;	
+         $users = $db->users;
+         $userQuery       = array('username' => $username );
+         $cursor = $users->findone($userQuery);
+         return $cursor['institute_email'];
+         
      }
      public static function find_mail_user($username,$reg) //username_email
      {
@@ -65,7 +75,7 @@
       * Getting the username
       * if the username equal to Admin then show all lessons
       */
-     public static function showUserLessons($username) 
+     public static function show_user_lessons($username) 
      {
            $m = new Mongo();
            $db = $m->turtleTestDb;	
@@ -85,7 +95,7 @@
       * Will find all the programs created by the user
       */
      
-    public static function findUserPrograms($username) 
+    public static function find_user_programs($username) 
      {
            $m = new Mongo();
            $db = $m->turtleTestDb;	
@@ -101,7 +111,7 @@
      /*
       * Find the user public programs can also get a criteria to get specific group programs
       */
-     public static function getInstitiuteUserPrograms($email)
+     public static function get_institiute_user_programs($email)
      {
         $m                  = new Mongo();
         $db                 = $m->turtleTestDb;	
@@ -123,7 +133,7 @@
         //$count2 = $programs->count(array('$or' => array(array('username' => 'testo33') , array('username' => 'test1000') , array('username' => 'test1001') , array('username' => 'test1002') , array('username' => 'Testo1') , array('username' => 'student5') )));
         return $results;
      }
-     public static function findUserPublicPrograms($username) 
+     public static function find_user_public_programs($username) 
      {
            $m = new Mongo();
            $db = $m->turtleTestDb;	
@@ -137,7 +147,7 @@
                
      }
      
-     public static function findPublicPrograms() 
+     public static function find_public_programs() 
      {
            $m = new Mongo();
            $db = $m->turtleTestDb;	
@@ -153,7 +163,7 @@
       * Obsolate 
       * Can use the collectionUtil function CollectionItemAddAttribute
       */
-     public static function addPropertyToUserCol ($property , $val)
+     public static function add_property_to_user_collection ($property , $val)
      {
            $m = new Mongo();
            $db = $m->turtleTestDb;	
@@ -183,16 +193,16 @@
          }
          else
          {
-            $OpenIdUser = $usersOpenId->findOne(array('contact/email' => $username));       
+            $openid_user = $usersOpenId->findOne(array('contact/email' => $username));       
             //New user object definition
-            $email                  =   $OpenIdUser['contact/email'];      
+            $email                  =   $openid_user['contact/email'];      
             $user['username']       =   $email;
             $user['password']       =   md5($email);
             $user['badges']         =   "";
             $user['confirm']        =   true ;
             $user['email']          =   $email;
-            $user['fullname']       =   $OpenIdUser['namePerson/first'] . " " . $OpenIdUser['namePerson/last'] ;
-            $user['pref/language']  =   $OpenIdUser['pref/language'];
+            $user['fullname']       =   $openid_user['namePerson/first'] . " " . $openid_user['namePerson/last'] ;
+            $user['pref/language']  =   $openid_user['pref/language'];
             
             $result = $users->insert($user, array('safe' => true)); 
          }
@@ -203,8 +213,8 @@
             $db = $m->turtleTestDb;
             $strcol = $db->messages;
             $newMessagesQuery     = array ('sendto' => $username , 'read' => false);
-            $newMessagesQueryAll     = array ('sendto' => 'all'     , 'read' => false);
-            $numOfNewMsg    = $strcol->count($newMessagesQuery) + $strcol->count($newMessagesQueryAll) ;
+            $new_messages_query_all     = array ('sendto' => 'all'     , 'read' => false);
+            $numOfNewMsg    = $strcol->count($newMessagesQuery) + $strcol->count($new_messages_query_all) ;
             
             if ($numOfNewMsg > 0)
                 return true;
@@ -218,12 +228,12 @@
      {
          $m = new Mongo();
          $db = $m->turtleTestDb;	
-         $usersOpenIdCol = $db->user_open_id;
+         $users_open_id_col = $db->user_open_id;
          $users = $db->users;
          
-         $OpenIdUsers     = $usersOpenIdCol->find();
+         $open_id_users     = $users_open_id_col->find();
          $date = date('Y-m-d H:i:s');
-         foreach ($OpenIdUsers as $OpenIdUser) {
+         foreach ($open_id_users as $OpenIdUser) {
                 $email           =   $OpenIdUser['contact/email']; 
                 $userQuery       = array('username' => $email , 'email'=> $email);
                 $resultcount     = $users->count($userQuery);
@@ -256,7 +266,7 @@
       * @param email - the institute admin email
       * @return - all the users matching the criteria
       */
-     public static function getInstitiuteUsersByInstitueAdminEmail ($email)
+     public static function get_institiute_users_by_institue_admin_email ($email)
      {
         $m = new Mongo();
         $db = $m->turtleTestDb;	
@@ -266,14 +276,14 @@
         return $results;
      }
      
-    public static function getNumOfVerifiedUsers() 
+    public static function get_num_of_varified_users() 
      {
            $m = new Mongo();
            $db = $m->turtleTestDb;	
            $users = $db->users;
            
-           $userQuery       = array('confirm' => true);
-           $resultcount     = $users->count($userQuery);
+           $user_query       = array('confirm' => true);
+           $resultcount     = $users->count($user_query);
            //Case no user found
           
                return $resultcount;

@@ -1,7 +1,7 @@
 <?php
-    $incDirPath = "files/registration/inc/";
-    include_once $incDirPath . 'php/config.php';
-    include_once $incDirPath . 'php/functions.php';
+    $inc_dir_path = "files/registration/inc/";
+    include_once $inc_dir_path . 'php/config.php';
+    include_once $inc_dir_path . 'php/functions.php';
     //include_once $incDirPath . 'elements/confirmHeader.php';
     
     require_once("localization.php");
@@ -13,7 +13,7 @@
         $locale = $_GET['locale'];
 
     $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-    $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
+    $po_file =  "<link   rel='gettext' type='application/x-po' href='".$root_dir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";       
     if ( file_exists($file_path))
         echo $po_file;            
     include_once 'confirmHeader.php';
@@ -27,26 +27,26 @@ $istest =   false;
 //check if the $_GET variables are present
 //quick/simple validation 
 //String to be translated
-$strUserConfrim         = _("User has been confirmed");
-$strThankU              = _("Thank you");
-$strPlease              = _("Please");
-$strMissing             = _("We are missing email address or generated key");
-$strDoubleCheck         = _("Please double check your email");
-$strKeyEmailNotAppear   = _("The key or email doesn't appear in our database");
+$str_user_confrim         = _("User has been confirmed");
+$str_thanks              = _("Thank you");
+$str_please              = _("Please");
+$str_missing             = _("We are missing email address or generated key");
+$str_double_check         = _("Please double check your email");
+$str_email_key_not_appear   = _("The key or email doesn't appear in our database");
 
 if (empty($_GET['email']) || empty($_GET['key'])) {
     if ($istest)
     {
         $action['result']   = 'success';
 
-        $action['text']     = $strUserConfrim .". ".$strThankU ."! ".$strPlease . "<a href='". $rootDir . "registration.php'>" .  _('login')  . "</a>";
+        $action['text']     = $str_user_confrim .". ".$str_thanks ."! ".$str_please . "<a href='". $root_dir . "registration.php'>" .  _('login')  . "</a>";
         //"User has been confirmed. Thank-You! please <a href='" . $rootDir . "registration.php'>" .  _('login')  . "</a>" ; ?> 
             <?php
     }
     else
     {
         $action['result']       = 'error';
-        $action['text']         = $strMissing . ". " .$strDoubleCheck .".";
+        $action['text']         = $str_missing . ". " .$str_double_check .".";
                 //We are missing email address or generated key. Please double check your email.';
     }
 }
@@ -54,7 +54,7 @@ if (empty($_GET['email']) || empty($_GET['key'])) {
 if ($action['result'] != 'error' && !$istest) {
     $m = new Mongo();
     $db = $m->turtleTestDb;
-    $usersconfirmation = $db->users_waiting_approvment;
+    $users_confirmation = $db->users_waiting_approvment;
     $users = $db->users;
     //cleanup the variables
     $email = $_GET['email'];
@@ -63,8 +63,8 @@ if ($action['result'] != 'error' && !$istest) {
     //check if the key is in the database
     //$check_key = mysql_query("SELECT * FROM `confirm` WHERE `email` = '$email' AND `key` = '$key' LIMIT 1") or die(mysql_error());
     $userQuery = array('email' => $email, 'key' => $key);
-    $check_key = $usersconfirmation->findOne($userQuery);
-    $resultcount = $usersconfirmation->count($userQuery);
+    $check_key = $users_confirmation->findOne($userQuery);
+    $resultcount = $users_confirmation->count($userQuery);
 
     //$uesrid; 
     //foreach ($check_key as $doc) {
@@ -72,26 +72,26 @@ if ($action['result'] != 'error' && !$istest) {
     // 
     $uesrid = $check_key['userid'];
     $confirmid = $check_key['_id'];
-    $confirmidMongo = new MongoId($confirmid);
+    $confirm_id_mongo = new MongoId($confirmid);
     if ($resultcount != 0) {
         //get the confirm info
-        $theObjId = new MongoId($uesrid);
-        $criteria = $users->findOne(array("_id" => $theObjId));
-        $criteriaUpdate = $criteria;
-        $criteriaUpdate['confirm'] = true;
+        $the_object_id = new MongoId($uesrid);
+        $criteria = $users->findOne(array("_id" => $the_object_id));
+        $criteria_update = $criteria;
+        $criteria_update['confirm'] = true;
 
-        $update_users = $users->update($criteria, $criteriaUpdate);
-        $result = $usersconfirmation->remove(array('_id' => $confirmidMongo), array("justOne" => true));
+        $update_users = $users->update($criteria, $criteria_update);
+        $result = $users_confirmation->remove(array('_id' => $confirm_id_mongo), array("justOne" => true));
         if ($update_users) {
             $action['result'] = 'success';
-            $action['text']     = $strUserConfrim .". ".$strThankU ."! ".$strPlease . "<a href='". $rootDir . "registration.php'>" .  _('login')  . "</a>";
+            $action['text']     = $str_user_confrim .". ".$str_thanks ."! ".$str_please . "<a href='". $root_dir . "registration.php'>" .  _('login')  . "</a>";
         } else {
             $action['result'] = 'error';
             $action['text'] = 'The user could not be updated Reason: ';
         }
     } else {
         $action['result'] = 'error';
-        $action['text'] = $strKeyEmailNotAppear;
+        $action['text'] = $str_email_key_not_appear;
     }
 }
 ?>
@@ -100,5 +100,5 @@ if ($action['result'] != 'error' && !$istest) {
 
 <?php
 
-include $incDirPath . 'elements/footer.php';
+include $inc_dir_path . 'elements/footer.php';
 ?>

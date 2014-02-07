@@ -19,9 +19,9 @@ require_once ('../utils/topbarUtil.php');
         <?php
 
         require_once("../utils/includeCssAndJsFiles.php");
-        includeCssAndJsFiles::includePageFiles("institute");
+        includeCssAndJsFiles::include_all_page_files("institute");
         ?>     
-        <script src="<?php echo $rootDir; ?>ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
+        <script src="<?php echo $root_dir; ?>ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
         <script type='text/javascript'> 
             $(document).ready(function(){
                 var gt = new Gettext({'domain' : 'messages'});
@@ -209,7 +209,7 @@ function addUserToDb($username, $password, $users, $db) {
 
     }
         //Printing the topbar menu
-        topbarUtil::printTopBar("registration");
+        topbarUtil::print_topbar("registration");
         ?>
 
 
@@ -289,7 +289,7 @@ function addUserToDb($username, $password, $users, $db) {
 
             <footer style='text-align:center;'>
                 <p>&copy; <?php echo _("TurtleAcademy"); ?></p>
-                 <p><a href='<?php echo $rootDir; ?>users.php'> <?php echo _("Back to my account"); ?> </a></p>
+                 <p><a href='<?php echo $root_dir; ?>users.php'> <?php echo _("Back to my account"); ?> </a></p>
             </footer>
 
         </div> <!-- /container -->

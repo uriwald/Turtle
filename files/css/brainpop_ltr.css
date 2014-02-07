@@ -1,0 +1,68 @@
+#carousel-control-left , #carousel-control-right{
+    position : relative; float:left; margin-top:0px;line-height: 20px;min-width:10px;left:0px;
+}
+#carousel-control-right{
+    float:right;
+}
+.menu li { 
+    float:left;
+    min-width:100px;
+}
+.menu a {
+    position:relative;
+    display:block; 
+    text-decoration:none; 
+    min-width:100px; 
+    float:left; 
+}
+.menu a:hover em {
+    display:block; 
+    overflow:hidden; 
+    border:6px solid #06a; 
+    border-color:#06a #fff; 
+    border-width:6px 6px 0 6px; 
+    position:absolute; 
+    left:50%; 
+    margin-left:-6px;
+}
+
+#carousel-control-right{
+    margin-left:100;
+}
+#header {
+   /* direction: rtl; */ 
+    overflow: hidden;
+    width: 860px;
+    height: 30px;
+}
+ 
+
+#title h1 { /* direction: rtl; */
+           margin: 2px 20px;
+}
+#myCarousel{
+   /* margin-left: 170px; */ 
+}
+#logoer {
+    width: 560px;
+    float: right; 
+    margin: 0px 3px;
+}
+#logoerplain {
+    width: 880px;
+    /*height: 600px;
+     float: right; 
+    margin: 0px 3px; */
+}
+#accordion {
+    width: 300px;
+    /*height: 500px;*/
+    max-height: 560px;
+    float: left;
+     direction: ltr; 
+    overflow: scroll;
+}
+#lessonnav {
+    float: right;
+}
+

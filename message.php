@@ -5,8 +5,8 @@
             $m                       = new Mongo();
             $db                      = $m->turtleTestDb;
             $strcol                  = $db->messages;
-            $theObjId                = new MongoId($_GET['id']);
-            $message                 = $strcol->findOne(array("_id" => $theObjId));
+            $the_object_id                = new MongoId($_GET['id']);
+            $message                 = $strcol->findOne(array("_id" => $the_object_id));
         
             $newMessage = $message;
             if ($newMessage['sendto'] != 'all')

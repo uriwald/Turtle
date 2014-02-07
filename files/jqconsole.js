@@ -444,7 +444,7 @@ var locale      = $.Storage.get('locale');
             if (char_code === 13 || char_code === 9) {
                 return false;
             }
-            if ($.browser.mozilla) {
+            if ($.browser.mozilla ) { //Before was only $.browser.mozilla
                 if (event.keyCode || event.metaKey || event.ctrlKey || event.altKey) {
                     return true;
                 }
@@ -454,7 +454,7 @@ var locale      = $.Storage.get('locale');
                     return true;
                 }
             }
-            if (event.metaKey || event.ctrlKey || event.altKey) {
+            if ( (event.metaKey || event.ctrlKey || event.altKey) && (!(char_code === 91 || char_code === 93))) { 
                 return false;
             }
             this.$prompt_left.text(this.$prompt_left.text() + String.fromCharCode(char_code));

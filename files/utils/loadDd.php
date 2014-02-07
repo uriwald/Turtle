@@ -12,12 +12,12 @@
  */
 include_once 'loadFiles.php';
 
-class loadDd extends loadFiles {
+class loadDd extends load_files {
 
     public function __construct($root, $env, $address = "files/test/dd/") {
         parent::__construct($root, $env, $address);
     }
-    public function loadFiles($js_dd_min = true, $css_dd = true, $css_skin = true, $css_flags = true) {
+    public function load_files($js_dd_min = true, $css_dd = true, $css_skin = true, $css_flags = true) {
 
         if ($js_dd_min)
             echo "<script type='application/javascript' src='" . $this->addr . "js/msdropdown/jquery.dd.min.js' ></script>";

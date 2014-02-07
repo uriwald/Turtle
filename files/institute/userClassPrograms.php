@@ -7,7 +7,7 @@
     //If the user is not logged in yet redirect
     require_once("../../environment.php");
 
-    $displayPage = true;
+    $display_page = true;
     require_once("../../localization.php");
     require_once("../footer.php");
     require_once("../cssUtils.php");
@@ -42,14 +42,14 @@
 <html dir="<?php echo $dir ?>" lang="<?php echo $lang ?>">
     <head>
         <meta charset="utf-8">
-        <title> <?php $displayUserName ?></title>
+        <title> <?php $display_username ?></title>
         <meta name="description" content="">
         <meta name="author" content="">
         <?php
         require_once("../utils/includeCssAndJsFiles.php");
-        includeCssAndJsFiles::includePageFiles("users");
-        echo "<link rel='stylesheet' href='".$rootDir."files/css/pagination.css' type='text/css' media='all'/>"; 
-        echo "<script type='application/javascript' src='".$rootDir."files/floodfill.js' ></script>\n" ; 
+        includeCssAndJsFiles::include_all_page_files("users");
+        echo "<link rel='stylesheet' href='".$root_dir."files/css/pagination.css' type='text/css' media='all'/>"; 
+        echo "<script type='application/javascript' src='".$root_dir."files/floodfill.js' ></script>\n" ; 
         ?>
     </head>
     
@@ -68,9 +68,9 @@
             return $pageURL;
         }
         //Will display the page only if user is register ,, if not will be redirected
-        if ($displayPage) {
+        if ($display_page) {
             //Printing the topbar menu
-            topbarUtil::printTopBar("users");
+            topbarUtil::print_topbar("users");
         ?>
         <div class="container span16" id="mainContainer">
             <div class='cleaner_h40'></div>
@@ -89,21 +89,21 @@
                                     <th class='span2'><?php echo _("pic"); ?></th>
                                     <th class='span4'>
                                         <?php echo _("creator"); 
-                                            echo  "<span class='arrow' style='width:20px;float:left'><a href=\"$sitePath/programs/$lang/asc/username/1\"><i class='icon-fixed-width icon-chevron-up'></i></a></span>"; 
-                                            echo  "<span style='width:20px;float:left'><a href=\"$sitePath/programs/$lang/desc/username/1\"><i class='icon-fixed-width icon-chevron-down'></i></a></span>"; 
+                                            echo  "<span class='arrow' style='width:20px;float:left'><a href=\"$site_path/programs/$lang/asc/username/1\"><i class='icon-fixed-width icon-chevron-up'></i></a></span>"; 
+                                            echo  "<span style='width:20px;float:left'><a href=\"$site_path/programs/$lang/desc/username/1\"><i class='icon-fixed-width icon-chevron-down'></i></a></span>"; 
                                          ?>    
                                     </th>
                                     <th class='span5'>
                                         <?php echo _("program name"); 
-                                            echo  "<span class='arrow' style='width:20px;float:left'><a href=\"$sitePath/programs/$lang/asc/programName/1\"><i class='icon-fixed-width icon-chevron-up'></i></a></span>"; 
-                                            echo  "<span style='width:20px;float:left'><a href=\"$sitePath/programs/$lang/desc/programName/1\"><i class='icon-fixed-width icon-chevron-down'></i></a></span>"; 
+                                            echo  "<span class='arrow' style='width:20px;float:left'><a href=\"$site_path/programs/$lang/asc/programName/1\"><i class='icon-fixed-width icon-chevron-up'></i></a></span>"; 
+                                            echo  "<span style='width:20px;float:left'><a href=\"$site_path/programs/$lang/desc/programName/1\"><i class='icon-fixed-width icon-chevron-down'></i></a></span>"; 
                                          ?>    
                                     </th>
                                     <th class='span4'><?php echo _("Date Created"); ?></th>
                                     <th class='span5'>
                                         <?php echo _("Last updated"); 
-                                            echo  "<span class='arrow' style='width:20px;float:left'><a href=\"$sitePath/programs/$lang/asc/lastUpdated/1\"><i class='icon-fixed-width icon-chevron-up'></i></a></span>"; 
-                                            echo  "<span style='width:20px;float:left'><a href=\"$sitePath/programs/$lang/desc/lastUpdated/1\"><i class='icon-fixed-width icon-chevron-down'></i></a></span>"; 
+                                            echo  "<span class='arrow' style='width:20px;float:left'><a href=\"$site_path/programs/$lang/asc/lastUpdated/1\"><i class='icon-fixed-width icon-chevron-up'></i></a></span>"; 
+                                            echo  "<span style='width:20px;float:left'><a href=\"$site_path/programs/$lang/desc/lastUpdated/1\"><i class='icon-fixed-width icon-chevron-down'></i></a></span>"; 
                                          ?>    
                                     </th>
                                     <th class='span4'><?php echo _("Actions"); ?></th>
@@ -121,7 +121,7 @@
                                 $insEmail           =    userUtil::get_user_institute_email($_SESSION['username']);
                             }
                             
-                                $allPrograms = userUtil::getInstitiuteUserPrograms($insEmail);
+                                $allPrograms = userUtil::get_institiute_user_programs($insEmail);
                            
                             // Here we will determine how to sort the user programs
                             $sortColumn = 'precedence';
@@ -202,13 +202,13 @@
                                     </td>
                                     <td>
                                         <a class='' href="<?php
-                                            echo $rootDir . "users/profile/";
+                                            echo $root_dir . "users/profile/";
                                             $programCreator    = $program['username'];
                                             $hasMail = false;
                                             if (strpos($programCreator, '@') !== false) {
                                                 $hasMail            =   true;
-                                                $nameBeforeMailAdd  = explode('@', $programCreator);
-                                                $programCreator     = $nameBeforeMailAdd[0];
+                                                $name_before_adding_mail_address  = explode('@', $programCreator);
+                                                $programCreator     = $name_before_adding_mail_address[0];
                                             }
                                             echo $programCreator;
                                             if ($hasMail)
@@ -228,7 +228,7 @@
                                     <td><?php echo $program['lastUpdated'] ?></td>
                                     <td>
                                         <a class='btn small info' href="<?php
-                                            echo $rootDir . "users/programs/";
+                                            echo $root_dir . "users/programs/";
                                             echo $program['_id'];
                                             ?>">
                                             <?php
@@ -260,7 +260,7 @@
             </div>
         <script>
                     $(document).ready(function() {
-                     selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $rootDir; ?>programs/", "users.php" ,"en" );         
+                     selectLanguage("<?php echo $_SESSION['locale']; ?>" ,  "<?php echo $root_dir; ?>programs/", "users.php" ,"en" );         
                     
                     function saveProgramImage(programtitle  , programid , username , canvasid)
                     {

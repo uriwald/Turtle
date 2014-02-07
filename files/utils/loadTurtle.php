@@ -11,7 +11,7 @@
  * @author Lucio
  */
 include_once 'loadFiles.php';
-class loadTurtle extends loadFiles{
+class loadTurtle extends load_files{
     private $locale; 
     
     public function __construct($locale , $root , $env ,$address = "files/test/dd/" ) 
@@ -20,7 +20,7 @@ class loadTurtle extends loadFiles{
          $this->locale  = $locale;
      }  
 
-    public function loadFiles( $js_lang = true , $js_logo = true , $js_turtle = true , $js_fill = true ,
+    public function load_files( $js_lang = true , $js_logo = true , $js_turtle = true , $js_fill = true ,
             $js_canvas = true , $js_mongo = true , $js_getText = true , $js_interface = true , $js_console = true)
     {
         

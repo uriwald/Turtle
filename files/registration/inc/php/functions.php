@@ -102,13 +102,15 @@ function show_errors($action){
 
 	if(!empty($action['result'])){
 		$error = "<ul class=\"alert $action[result]\">"."\n";
-
+                if ($action['result'] == "info")
+                    $listyle    =   "<li style='color:green;'>";
+                else
+                    $listyle    =   "<li style='color:red;'>";
 		if(is_array($action['text'])){
 	
 			//loop out each error
 			foreach($action['text'] as $text){
-			
-				$error .= "<li style='color:red;'><p>$text</p></li>"."\n";
+				$error .= "$listyle<p>$text</p></li>"."\n";
 			
 			}	
 		

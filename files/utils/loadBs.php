@@ -11,13 +11,13 @@
  * @author Lucio
  */
 include_once 'loadFiles.php';
-class loadBs extends loadFiles{
+class loadBs extends load_files{
     public function __construct($root , $env ,$address = "/files/bootstrap/")  
      {
             parent::__construct($root , $env ,$address ); 
      }  
      
-    public function loadFiles( $js = true , $js_min = true , $js_carosel = true , $css = true  ){
+    public function load_fiels( $js = true , $js_min = true , $js_carosel = true , $css = true  ){
         if ($js == "true")
         {
                 echo "<script type='application/javascript' src='". $this->addr . "js/bootstrap.js' ></script>" ; 

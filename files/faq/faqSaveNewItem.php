@@ -1,5 +1,5 @@
 <?php
-    $rootDir         = "../../";
+    $root_dir         = "../../";
     //Getting Post parameter for FAQ item
     $question       = $_POST['faqQ'];
     $answer         = $_POST['faqA'];
@@ -44,7 +44,7 @@
                             , "id" => $id, "precedence" => "9999");
             $strcol->insert($obj);
             echo " NewsItem was successfully inserted";
-            $adminPage  =   $rootDir . "admin.php";
+            $adminPage  =   $root_dir . "admin.php";
             echo "<a href='" . $adminPage . "'> <span class='lessonh'> Go back to Admin page </span> </a>";
 
       

@@ -38,7 +38,14 @@
     //Accessing list lesson commands
     echo _("item"); echo _("pick"); echo _("butfirst"); echo _("bf"); echo _("butlast"); echo _("bl"); 
     
-    echo _("fill"); echo _("filled"); echo _("run"); echo _("lesson");
+    echo _("fill"); echo _("filled"); echo _("run"); echo _("lesson");echo _("difference");
+    echo _("Command and number should be seperate by space e.g forward 50 and not forward50");
+    
+    echo _("black"); echo _("blue"); echo _("lime"); echo _("cyan");
+    echo _("red"); echo _("magenta");echo _("yellow");echo _("white");echo _("brown");
+    echo _("tan"); echo _("green");echo _("aquamarine");
+    echo _("salmon");echo _("purple");echo _("orange");echo _("gray");
+    
      
 ?>
   

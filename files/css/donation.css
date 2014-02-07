@@ -1,0 +1,21 @@
+/* 
+    Document   : donation
+    Created on : Dec 17, 2013, 5:56:53 PM
+    Author     : Lucio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#donation_title{
+    height: auto;
+    width : 100%;
+} 
+#donation_main{
+    float : none;
+    margin-left: auto;
+    margin-right: auto;
+}

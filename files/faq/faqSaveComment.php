@@ -18,15 +18,15 @@ require_once("faqSideNav.php");
         <meta name="description" content="">
         <meta name="author" content="">
         <?php
-        echo "<link rel='stylesheet' type='text/css' href='" . $rootDir . "files/css/registration.css' /> ";
+        echo "<link rel='stylesheet' type='text/css' href='" . $root_dir . "files/css/registration.css' /> ";
 
             require_once("../utils/includeCssAndJsFiles.php"); 
-            includeCssAndJsFiles::includePageFiles("faqadmin"); 
+            includeCssAndJsFiles::include_all_page_files("faqadmin"); 
         ?>    
         <!--
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/zocial.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/zocial.css' type='text/css' media='all'/> 
         <link rel='stylesheet' href='../css/faq.css' type='text/css' media='all'/>
-        <script src="<?php echo $rootDir; ?>ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
+        <script src="<?php echo $root_dir; ?>ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
         -->
     </head>
    <?php 
@@ -38,7 +38,7 @@ require_once("faqSideNav.php");
         $collectionName = "problemReport";
         $thankMSG       = "Thanks for your problem reporting";
         $linkAction     = "Report another Problem";
-        $linkUrl        = $sitePath . "/files/faq/faqReportProblem.php" ;
+        $linkUrl        = $site_path . "/files/faq/faqReportProblem.php" ;
         $problem        = $_POST['problem'];
     }
     else if (isset ($_POST['feature'])){
@@ -46,7 +46,7 @@ require_once("faqSideNav.php");
         $collectionName = "featureSuggest";
         $thankMSG       = "Thanks for suggesting a new feature";
         $linkAction     = "Suggest another feature";
-        $linkUrl        = $sitePath . "/files/faq/faqSuggestionFeature.php" ;
+        $linkUrl        = $site_path . "/files/faq/faqSuggestionFeature.php" ;
         $feature        = $_POST['feature'];
     }
     else
@@ -55,7 +55,7 @@ require_once("faqSideNav.php");
         $collectionName = "comments";
         $thankMSG       = "Thanks for your comment ";
         $linkAction     = "Add another comment";
-        $linkUrl        = $sitePath . "/files/faq/faqComment.php" ;
+        $linkUrl        = $site_path . "/files/faq/faqComment.php" ;
         $rname              = $_POST['reportername'];
         $subject            = $_POST['subject'];
         $comment            = $_POST['comment'];
@@ -85,7 +85,7 @@ require_once("faqSideNav.php");
 ?>
     <body>
         <?php
-            topbarUtil::printTopBar("faq");
+            topbarUtil::print_topbar("faq");
         ?>
     <div id="faq-main">
         <div id="faq-content" class="span12">
@@ -106,7 +106,7 @@ require_once("faqSideNav.php");
                  <a href='<?php echo $linkUrl;?>'> <?php echo $linkAction ; ?></a>
             </div>
             <div class="faq-comment-link">
-                <a href='<?php echo $sitePath;?>faq.php'> Back to FAQ page </a>
+                <a href='<?php echo $site_path;?>faq.php'> Back to FAQ page </a>
             </div>
         </div> <!-- End faq content -->
     </div>

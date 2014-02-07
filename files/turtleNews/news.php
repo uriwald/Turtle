@@ -18,23 +18,24 @@
 </html>
 <?php
     require_once("../../environment.php");
+    require_once("../../localization.php");
+    
     require_once("../footer.php");
     require_once("../cssUtils.php");
     $show = true ;
-    session_start();
-    $permissionNum            = 1;
+    $permission_num            = 1;
     if (isset ($_SESSION['permision']))
-        $permissionNum            =   $_SESSION['permision'] ;
+        $permission_num            =   $_SESSION['permision'] ;
     //echo $permissionNum;
     
-    $permForEditLesson        = array(1,100);
-    $permTraChinese           = array(1,2);
-    $permTraSpanish           = array(1,2);
-    $permTraGerman            = array(1,103);
-    $permTraRussain           = array(1,107);
-    $permTraArb               = array(1,108);
-    $permTraThai              = array(1,109);
-    $permAprvLesson           = array(1); 
+    $permission_for_edit_lesson        = array(1,100);
+    $permmision_translate_chinese           = array(1,2);
+    $permission_translte_spanish           = array(1,2);
+    $permission_translte_german            = array(1,103);
+    $permission_translte_russain           = array(1,107);
+    $permission_translte_arbic               = array(1,108);
+    $permission_translte_thai              = array(1,109);
+    $permission_approve_lesson           = array(1); 
 
     if (isset($_SESSION['username']))
     {
@@ -53,12 +54,9 @@
 
         $locale = "en_US"; // Setting default
         $localePrefix = "locale_";
-        $localeGetVar = 'locale';
-        if (isset($_GET[$localeGetVar]))
-            $locale = $_GET[$localeGetVar];
-
-        $finalLocale =  $localePrefix . $locale   ; 
-        //echo $finalLocale;
+        $locale_get = 'locale';
+        if (isset($_GET[$locale_get]))
+            $locale = $_GET[$locale_get];
 
 
         cssUtils::loadcss($locale, "../css/lessons");
@@ -66,13 +64,9 @@
         $m = new Mongo();
 
         // select a database
-        $db = $m->$dbName;
+        $db = $m->$db_name;
         // select a collection (analogous to a relational database's table)
         $news = $db->news;
-
-        $lessonTitle = "title";
-        $lessonSteps = "steps";
-
 
         // find everything in the collection
         $cursor = $news->find();
@@ -110,7 +104,7 @@
             }
 
             echo "<div style='display:inline;height:60px;'>";    
-            if (in_array($permissionNum , $permAprvLesson)) 
+            if (in_array($permission_num , $permission_approve_lesson)) 
                     echo $approveLesson;
                 echo "<a href='insertNewsItem.php?itemid=$objID'> Edit </a>"; 
             echo   "</div>";   

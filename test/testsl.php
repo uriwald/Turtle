@@ -2,12 +2,12 @@
             require_once("environment.php"); 
             $m              = new Mongo();
             // select a database
-            $db             = $m->$dbName;
+            $db             = $m->$db_name;
             $lessons        =   $db->lessons_created_by_guest;
             $localPosted    =   "he_IL";
             echo $lessons;
-            $theObjId = new MongoId($_GET['objid']);
-            $cursor = $lessons->find(array("_id" => $theObjId));
+            $the_object_id = new MongoId($_GET['objid']);
+            $cursor = $lessons->find(array("_id" => $the_object_id));
             echo "var lessons = [";
                 foreach ($cursor as $lessonStructure) {                    
                     //  Unset the lesson ID

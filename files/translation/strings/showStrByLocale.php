@@ -4,7 +4,7 @@
     require_once("../../../localization.php"); 
     require_once("../../utils/collectionUtil.php");
     require_once("../../utils/includeCssAndJsFiles.php"); 
-    includeCssAndJsFiles::includePageFiles("string-translate"); 
+    includeCssAndJsFiles::include_all_page_files("string-translate"); 
 ?>
     <table>
         <tbody>
@@ -20,7 +20,7 @@
                 </thead>
                   <?php
                   
-                        $transString    =   collectionUtil::getAllCollectionObjects("stringTranslation");
+                        $transString    =   collectionUtil::get_all_collection_objects("stringTranslation");
                         $transString->sort(array('pagecode' => 1));
                         $i              = 0;
                         foreach ($transString as $str)

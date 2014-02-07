@@ -22,11 +22,11 @@ require_once('files/utils/topbarUtil.php');
         </title>      
         <?php
             require_once("files/utils/includeCssAndJsFiles.php"); 
-            includeCssAndJsFiles::includePageFiles("playground");  
+            includeCssAndJsFiles::include_all_page_files("playground");  
         ?> 
         <!--
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/doc.css' type='text/css' media='all'/>
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/playground.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/doc.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/playground.css' type='text/css' media='all'/>
         -->
         <?php
         /*
@@ -38,18 +38,18 @@ require_once('files/utils/topbarUtil.php');
             } 
          * 
          */
-            echo "<script type='application/javascript' src='".$rootDir."files/jqconsole.js' ></script>\n" ;
+            echo "<script type='application/javascript' src='".$root_dir."files/jqconsole.js' ></script>\n" ;
          
         ?>        
         <script type="text/javascript">
-            var locale = "<?php echo $localeDomain; ?>"; 
+            var locale = "<?php echo $locale_domain; ?>"; 
         </script>
         <?php
-            cssUtils::loadcss($localeDomain, $rootDir . "files/css/interface");
+            cssUtils::loadcss($locale_domain, $root_dir . "files/css/interface");
         ?>             
-                <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_plain.js?locale=<?php echo $localeDomain ?>"></script> <!-- Interface scripts -->
+                <script type="application/javascript" src="<?php echo $root_dir; ?>files/interface_plain.js?locale=<?php echo $locale_domain ?>"></script> <!-- Interface scripts -->
 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/playground.css' type='text/css' media='all'/>
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/playground.css' type='text/css' media='all'/>
 
     </head>
     <body> 
@@ -58,13 +58,13 @@ require_once('files/utils/topbarUtil.php');
                 this.innerHTML = show ? 'hide' : 'show'; return false;">hide
             </a>
             <!-- Including all the Logo language menual -->
-            <iframe frameborder="0" src="<?php echo $rootDir; ?>files/lang.html" id="guide_body" style="">
+            <iframe frameborder="0" src="<?php echo $root_dir; ?>files/lang.html" id="guide_body" style="">
             </iframe>  
         </div> 
         <div id="main" style="margin-left: 100px;">
         <?php
             //Printing the topbar menu
-            topbarUtil::printTopBar("playground");
+            topbarUtil::print_topbar("playground");
         ?>
             <div id="headerplain" class="page-header" >
             <?php
@@ -94,8 +94,8 @@ require_once('files/utils/topbarUtil.php');
             </div>
             <div id="create-program">
                 <p>
-                    <?php echo _("Register users can create save and share their own programs"); ?>   
-                    <a href='<?php echo $rootDir; ?>files/newProgram.php?l=<?php echo $localeDomain; ?>'> here</a>
+                    <?php echo _("Register users can create , save and share their own programs"); ?>    
+                    <a href='<?php echo $root_dir; ?>files/newProgram.php?l=<?php echo $locale_domain; ?>'> here</a>
                 </p>
             </div>  
             <?php
@@ -107,7 +107,7 @@ require_once('files/utils/topbarUtil.php');
         <script>
             // Select language in main page
             $(document).ready(function() {                 
-                selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>playground/" , "playground.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
+                selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $root_dir; ?>playground/" , "playground.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
                 //convert
                 $("select").msDropdown();
                 //createByJson();

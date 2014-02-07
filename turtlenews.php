@@ -22,14 +22,14 @@ $newsItems->sort(array('date' => -1));
         <title><?php echo _("TurtleAcademy news"); ?></title> 
         <?php
             require_once("files/utils/includeCssAndJsFiles.php"); 
-            includeCssAndJsFiles::includePageFiles("news");
+            includeCssAndJsFiles::include_all_page_files("news");
         ?>
         
     </head>
     <body align="center"> 
     <?php 
         //Printing the topbar menu
-        topbarUtil::printTopBar("news");
+        topbarUtil::print_topbar("news");
     ?>
 
         <div id="turtleNewsBody" class="span16 columns" lang="<?php echo $lang ?>"> 
@@ -53,8 +53,8 @@ $newsItems->sort(array('date' => -1));
                                 $context = $newsItem['context'];
                                 $itemid = $newsItem['itemid'];
                                 $date = $newsItem['date'];
-                                if ($localeDomain != "en_US") {
-                                    $localestr = "locale_" . $localeDomain;
+                                if ($locale_domain != "en_US") {
+                                    $localestr = "locale_" . $locale_domain;
                                     if (isset($newsItem['headline_translate'][$localestr]))
                                         $headline = $newsItem['headline_translate'][$localestr];
                                     if (isset($newsItem['context_translate'][$localestr]))
@@ -80,8 +80,8 @@ $newsItems->sort(array('date' => -1));
                     $date = $newsItem['date'];
                     $dateTime = new DateTime($date);
                     $newdate    =    date_format($dateTime, 'Y-m-d');
-                    if ($localeDomain != "en_US") {
-                        $localestr = "locale_" . $localeDomain;
+                    if ($locale_domain != "en_US") {
+                        $localestr = "locale_" . $locale_domain;
                         if (isset($newsItem['headline_translate'][$localestr]) )
                         {
                             if (strlen($newsItem['headline_translate'][$localestr]) > 3)
@@ -114,7 +114,7 @@ $newsItems->sort(array('date' => -1));
     <script>
         // Select language in main page
         $(document).ready(function() {
-            selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>news/" , "turtlenews.php" ,"en_US" );
+            selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $root_dir; ?>news/" , "turtlenews.php" ,"en_US" );
         })
         
     </script>

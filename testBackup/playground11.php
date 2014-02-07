@@ -54,10 +54,10 @@
         <!--<script  type="text/javascript" src="ajax/libs/jquery/jquery.min.js"></script> <!--- equal to googleapis v
          
         <script type="application/javascript" src="files/compat.js"></script> <!-- ECMAScript 5 Functions -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/logo.js"></script> <!-- Logo interpreter -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/logo.js"></script> <!-- Logo interpreter -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/turtle.js"></script> <!-- Canvas turtle -->
         
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/js/langSelect.js"></script> <!-- Language select --> 
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/js/langSelect.js"></script> <!-- Language select --> 
 
         <?php
             $file_path = "../locale/".$locale."/LC_MESSAGES/messages.po"; 
@@ -69,17 +69,17 @@
                 var locale = "<?php echo $locale; ?>";
         </script>
         <!--<link   rel="gettext" type="application/x-po" href="locale/he_IL/LC_MESSAGES/messages.po" /> <!-- Static Loading hebrew definition -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/interface_plain.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
-        <script type="application/javascript" src="<?php echo $rootDir; ?>files/jqconsole.js"></script> <!-- Console -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/Gettext.js"></script> <!-- Using JS GetText -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/interface_plain.js?locale=<?php echo $locale?>"></script> <!-- Interface scripts -->
+        <script type="application/javascript" src="<?php echo $root_dir; ?>files/jqconsole.js"></script> <!-- Console -->
 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/interface.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/topbar.css' type='text/css' media='all'/> 
-        <link rel='stylesheet' href='<?php echo $rootDir; ?>files/css/footer.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/interface.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/topbar.css' type='text/css' media='all'/> 
+        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/footer.css' type='text/css' media='all'/> 
        <?php
-             cssUtils::loadcss($locale, $rootDir . "files/css/interface");    
-             cssUtils::loadcss($locale, $rootDir . "files/css/doc"); 
-             cssUtils::loadcss($locale, $rootDir . "files/css/topbar"); 
+             cssUtils::loadcss($locale, $root_dir . "files/css/interface");    
+             cssUtils::loadcss($locale, $root_dir . "files/css/doc"); 
+             cssUtils::loadcss($locale, $root_dir . "files/css/topbar"); 
         ?>     
         <!-- Disable script when working without internet -->
         <!-- Google Analytics Tracking --> 
@@ -154,7 +154,7 @@
             $language['en'] = "en";$language['ru'] = "ru";
             $language['es'] = "es";$language['zh'] = "zh";$language['he'] = "he";
                 
-            $topbar->printTopBar($rootDir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay , $language ,
+            $topbar->printTopBar($root_dir , $class , $login , $topbarDisplay , $languagesDisplay , $signUpDisplay , $language ,
                     $_SESSION); 
         ?>
         <!--
@@ -162,12 +162,12 @@
             <div class="topbar" id="topbarMainDiv"> 
                 <div class="fill" id="topbarfill">
                     <div class="container span16" id="topbarContainer"> 
-                        <img class="brand" id="turtleimg" src="<?php echo $rootDir; ?>files/turtles.png" alt="צב במשקפיים">
+                        <img class="brand" id="turtleimg" src="<?php echo $root_dir; ?>files/turtles.png" alt="צב במשקפיים">
                         
                         <ul class="nav" id="turtleHeaderUl"> 
-                              <li><a href="<?php echo $rootDir; ?>index.php" ><?php echo _("TurtleAcademy");?></a></li> 
-                              <li><a href="<?php echo $rootDir; ?>needed.php" ><?php echo _("Help Us");?></a></li>
-                              <li><a href="<?php echo $rootDir; ?>project/doc" ><?php echo _("About");?></a></li>
+                              <li><a href="<?php echo $root_dir; ?>index.php" ><?php echo _("TurtleAcademy");?></a></li> 
+                              <li><a href="<?php echo $root_dir; ?>needed.php" ><?php echo _("Help Us");?></a></li>
+                              <li><a href="<?php echo $root_dir; ?>project/doc" ><?php echo _("About");?></a></li>
                              <!--<li class="active"><a href="index.html"><?php echo _("Sample");?></a></li> 
                         </ul> 
                             
@@ -175,10 +175,10 @@
                                             echo $class . " form-inline";                                
                                      ?>" action="" id="turtleHeaderLanguage">  
                             <select name="selectedLanguage" id="selectedLanguage" style="width:120px;"> 
-                                <option value='en' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
-                                <option value='es' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
-                                <option value='he' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
-                                <option value='zh' data-image="<?php echo $rootDir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
+                                <option value='en' data-image="<?php echo $root_dir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag us" data-title="United States">English</option>
+                                <option value='es' data-image="<?php echo $root_dir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag es" data-title="Spain">Español</option>
+                                <option value='he' data-image="<?php echo $root_dir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag il" data-title="Israel">עברית</option>
+                                <option value='zh' data-image="<?php echo $root_dir; ?>Images/msdropdown/icons/blank.gif" data-imagecss="flag cn" data-title="China">中文</option>
                             </select>
                         </form>       
                         <?php
@@ -200,7 +200,7 @@
                                                 <ul class="dropdown-menu" id="ddmenu"role="menu" aria-labelledby="dLabel">
                                                     <li><a tabindex="-1" href="/users.php"   class="innerLink" id="help-nav"><?php echo _("My account");?></a></li>
                                                     <li><a tabindex="-1" href="/project/doc" class="innerLink" id="hel-nav"><?php echo _("Help");?></a></li>
-                                                    <li><a href="<?php echo $rootDir; ?>logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
+                                                    <li><a href="<?php echo $root_dir; ?>logout.php" class="innerLink"><?php echo _("Log out");?></a></li>
                                                 </ul>
                                             </li>
                                         </ul> 
@@ -212,8 +212,8 @@
                             {
                         ?>       
                                 <ul class="nav <?php echo $login ?>" id="turtleHeaderUl"> 
-                                    <li><a href="<?php echo $rootDir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
-                                    <li><a class='btn primary large' href="<?php echo $rootDir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li> 
+                                    <li><a href="<?php echo $root_dir; ?>registration.php" id="turtleHeaderUlLogin"><?php echo _("Login");?></a></li> 
+                                    <li><a class='btn primary large' href="<?php echo $root_dir; ?>registration.php" ><?php echo _("Sign Up for free");?></a></li> 
                                 </ul>                         
                          <?php
                             }
@@ -271,7 +271,7 @@
         // Select language in main page
       $(document).ready(function() {
                    
-                    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>playground/" , "playground.php" ,"<?php echo substr($_SESSION['locale'],0,2) ?>" );
+                    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $root_dir; ?>playground/" , "playground.php" ,"<?php echo substr($_SESSION['locale'],0,2) ?>" );
 
                     $('#btnSaveUsrLessonData').click(function() { 
                         var lclStorageValue = ""

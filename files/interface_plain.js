@@ -191,6 +191,7 @@ $(function() {
         canvas_element.getContext('2d'),
         turtle_element.getContext('2d'),
         canvas_element.width, canvas_element.height);
+        
 
     g_logo = new LogoInterpreter(turtle, stream);
                 function do_logo(id ,cmd) {
@@ -205,6 +206,27 @@ $(function() {
 
                 g_logo2 = new LogoInterpreter(turtle2, null); 
                 g_logo2.run(cmd);
-            }  
+            }
+                 //Running the user define procedure   
+    if ($.Storage.get("tocmd"))
+    {
+        var history = $.Storage.get('tocmd'); 
+        toCommandArr = history.split(','); 
+        var numOfCommands  =   toCommandArr.length ;
+        var commandLen = 0; 
+        var commandToRun ;
+        for(var i = 0; i < numOfCommands; i++)  
+        {
+                commandToRun = toCommandArr[i];
+                try
+                {
+                    g_logo.run(commandToRun);
+                }catch (e) {
+                // DO NOTHING FOR NOW
+                // jqconsole.Write(gt.gettext('Error') +': ' + e + '\n');
+                }
+            
+        }
+    }
 
 });

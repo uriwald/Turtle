@@ -8,12 +8,12 @@
     }
     $programtitle               =   $_POST['programtitle'];
     $programUpdate              =   $_POST['update'];
-    $programId                  =   $_POST['programid'];
+    $program_id                  =   $_POST['programid'];
     $ispublic                   =   $_POST['ispublic'];
     $img                      =   $_POST['imgBase64'];
     $precedence                 =   "99";
     
-    $return['programId']        =   $programId;
+    $return['programId']        =   $program_id;
     $return['username']         =   $username; 
     $return['programCode']      =   $programCode;
     $return['programUpdate']    =   $programUpdate;
@@ -21,8 +21,8 @@
     
     $m                          =   new Mongo();
     $db                         =   $m->turtleTestDb;
-    $userPrograms               =   "programs";
-    $userProgramsCollection     =   $db->$userPrograms;
+    $user_programs               =   "programs";
+    $userProgramsCollection     =   $db->$user_programs;
     
 
     if ($programUpdate == "false")
@@ -37,8 +37,8 @@
     else
     {
         //Fetching the current object
-        $theObjId                   =   new MongoId($programId);
-        $criteria                   =   $userProgramsCollection->findOne(array("_id" => $theObjId));
+        $the_object_id                   =   new MongoId($program_id);
+        $criteria                   =   $userProgramsCollection->findOne(array("_id" => $the_object_id));
         //Changing all the values but createdDate
         $dateCreated    = $criteria["dateCreated"];
         $numOfComments  = $criteria["numOfComments"];

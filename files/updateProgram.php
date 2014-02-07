@@ -20,58 +20,58 @@ require_once('progdoc.php');
         ?>  
     </title>     
 
-    <script src="<?php echo $sitePath ;?>/files/codemirror/lib/codemirror.js"></script>
-    <script src="<?php echo $sitePath ;?>/files/codemirror/addon/runmode/runmode.js"></script>
-    <script src="<?php echo $sitePath ;?>/files/codemirror/addon/edit/closebrackets.js"></script>
-    <script src="<?php echo $sitePath ;?>/files/codemirror/addon/edit/matchbrackets.js"></script>
-    <script src="<?php echo $sitePath ;?>/files/codemirror/addon/display/placeholder.js"></script> 
+    <script src="<?php echo $site_path ;?>/files/codemirror/lib/codemirror.js"></script>
+    <script src="<?php echo $site_path ;?>/files/codemirror/addon/runmode/runmode.js"></script>
+    <script src="<?php echo $site_path ;?>/files/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="<?php echo $site_path ;?>/files/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="<?php echo $site_path ;?>/files/codemirror/addon/display/placeholder.js"></script> 
 
-    <script src="<?php echo $sitePath ;?>/files/codemirror/addon/selection/active-line.js"></script>
+    <script src="<?php echo $site_path ;?>/files/codemirror/addon/selection/active-line.js"></script>
 
 
-    <script src="<?php echo $sitePath ;?>/files/codemirror/mode/logo/logo.js"></script>    
-    <link rel="stylesheet" href="<?php echo $sitePath ;?>/files/codemirror/mode/logo/logo.css">
-    <link rel="stylesheet" href="<?php echo $sitePath ;?>/files/codemirror/lib/codemirror_turtle.css">
-     <link rel="stylesheet" href="<?php echo $sitePath ;?>/files/codemirror/lib/codemirror.css">
+    <script src="<?php echo $site_path ;?>/files/codemirror/mode/logo/logo.js"></script>    
+    <link rel="stylesheet" href="<?php echo $site_path ;?>/files/codemirror/mode/logo/logo.css">
+    <link rel="stylesheet" href="<?php echo $site_path ;?>/files/codemirror/lib/codemirror_turtle.css">
+     <link rel="stylesheet" href="<?php echo $site_path ;?>/files/codemirror/lib/codemirror.css">
     <?php
     require_once("utils/includeCssAndJsFiles.php"); 
-    includeCssAndJsFiles::includePageFiles("user-program"); 
-    echo "<script type='application/javascript' src='" . $rootDir . "files/jquery.Storage.js' ></script>";
+    includeCssAndJsFiles::include_all_page_files("user-program"); 
+    echo "<script type='application/javascript' src='" . $root_dir . "files/jquery.Storage.js' ></script>";
     ?>   
 
     <?php
-    $file_path = "../locale/" . $localeDomain . "/LC_MESSAGES/messages.po";
-    $po_file = "<link   rel='gettext' type='application/x-po' href='$sitePath/locale/" . $localeDomain . "/LC_MESSAGES/messages.po'" . " />";
+    $file_path = "../locale/" . $locale_domain . "/LC_MESSAGES/messages.po";
+    $po_file = "<link   rel='gettext' type='application/x-po' href='$site_path/locale/" . $locale_domain . "/LC_MESSAGES/messages.po'" . " />";
     
     if (file_exists($file_path))
        echo $po_file;
     else {
         echo "<script> var translationNotLoaded = 5; </script>";      
       } 
-    echo "<script type='application/javascript' src='".$rootDir."files/Gettext.js' ></script>" ; 
-    echo "<script type='application/javascript' src='" . $rootDir . "files/jqconsole.js' ></script>\n";
-    echo "<script type='application/javascript' src='" . $rootDir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
+    echo "<script type='application/javascript' src='".$root_dir."files/Gettext.js' ></script>" ; 
+    echo "<script type='application/javascript' src='" . $root_dir . "files/jqconsole.js' ></script>\n";
+    echo "<script type='application/javascript' src='" . $root_dir . "ajax/libs/jquery/editable/jquery.editable.js'></script>";
     ?>        
-    <link rel="stylesheet" href="<?php echo $sitePath ;?>/files/codemirror/mode/logo/logo.css">
+    <link rel="stylesheet" href="<?php echo $site_path ;?>/files/codemirror/mode/logo/logo.css">
 </head>
 <html dir="<?php echo $dir ?>" lang="<?php echo $lang ?>"> 
 <body>
     <?php
     //Printing the topbar menu
-    topbarUtil::printTopBar("programUpdate"); 
-    $programId = $_GET['programid'];
+    topbarUtil::print_topbar("programUpdate"); 
+    $program_id = $_GET['programid'];
     $m = new Mongo();
     $db = $m->turtleTestDb;
     $programs = "programs";
-    $programsCollection = $db->$programs;
-    $theObjId = new MongoId($programId);
-    $criteria = $programsCollection->findOne(array("_id" => $theObjId));
-    $programName = $criteria['programName'];
+    $programs_collection = $db->$programs;
+    $the_object_id = new MongoId($program_id);
+    $criteria = $programs_collection->findOne(array("_id" => $the_object_id));
+    $program_name = $criteria['programName'];
     $bodytag = str_replace("\n", "↵", $criteria['code']);
     ?>
     <div class="container" style="width:1200px;">
         <div id="program-info">
-            <h2 id="program-info-header"><?php echo $programName; ?></h2>
+            <h2 id="program-info-header"><?php echo $program_name; ?></h2>
                 <!-- <textarea class='input-xlarge' type='text'  id='program-title-txt' placeholder='Enter  your program title...'></textarea> -->
         </div>
         <div id="command-to-draw">
@@ -115,9 +115,9 @@ require_once('progdoc.php');
             <div id ="tab-row">
             </div>
             <?php
-                echo $programDoc;
+                echo $program_documentation;
             ?>
-        </div> <!-- Closing of instruction  /* rtlMoveVisually : <?php if ($localeDomain == "he_IL") echo "true"; else echo"false" ?>, */ -->
+        </div> <!-- Closing of instruction  /* rtlMoveVisually : <?php if ($locale_domain == "he_IL") echo "true"; else echo"false" ?>, */ -->
        
 </body>
 <script>
@@ -131,20 +131,20 @@ require_once('progdoc.php');
     });
         
     editor.setValue('<?php echo $bodytag; ?>'); 
-    var programid = '<?php echo $programId ?>' ;
+    var programid = '<?php echo $program_id ?>' ;
     <?php
         if (isset($_SESSION['username']))
             echo "var username = '" . $_SESSION['username'] . "';";
         else
             echo "var username = null;";
     ?> 
-    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $rootDir; ?>program/update/<?php  echo $_GET['programid'];?>/" , "updateProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
+    selectLanguage("<?php echo $_SESSION['locale']; ?>" , "<?php echo $root_dir; ?>program/update/<?php  echo $_GET['programid'];?>/" , "updateProgram.php" ,"<?php echo substr($_SESSION['locale'], 0, 2) ?>" );
     
     $("#btn_public_page").click(function() {    
         jConfirm('Are you sure you want to go to your public page?'  , 'Public Page', function(r) {
             if (r)
             {
-                location.href = "<?php echo $sitePath; ?>" + "/users/programs/" + "<?php  echo $_GET['programid'];?>";           
+                location.href = "<?php echo $site_path; ?>" + "/users/programs/" + "<?php  echo $_GET['programid'];?>";           
             }
             else
             {

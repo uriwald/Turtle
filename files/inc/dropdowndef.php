@@ -4,9 +4,9 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <?php
-    if (!isset ($rootDir))
-        $rootDir = "/";
-    $ddPath =  $rootDir . "files/dd/"; 
+    if (!isset ($root_dir))
+        $root_dir = "/";
+    $ddPath =  $root_dir . "files/dd/"; 
 ?>
  
         <!-- Starting the dropdown dd directory related -->

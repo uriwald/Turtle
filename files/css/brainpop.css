@@ -1,0 +1,285 @@
+/* 
+    Document   : interface
+    Created on : 09/10/2011, 14:13:45
+    Author     : turtle academy
+    Description: css for index of turtle academy.com
+*/
+
+root { 
+    display: block;
+}
+#carousel-control-left , #carousel-control-right{
+    position : relative; float:right; margin-top:0px;line-height: 20px;min-width:10px;
+    
+}
+#carousel-control-right{
+   /* margin-right:100;*/
+}
+#myCarousel{
+  //  height: 45px;
+}
+.jqconsole {
+    background-color: #EEE;
+    color: black;
+    font-family: monospace;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+
+    /*bottom: 0;
+    left: 0;*/
+    margin: 0;
+    padding: 10px;
+    padding-bottom: 10px;
+    position: absolute;
+    width : 530px;
+    height: 250px;
+    overflow: scroll;
+    /*right: 0;
+    top: 0;*/
+}
+.jqconsole-cursor {
+    background-color: blue;        
+}
+.jqconsole-blurred .jqconsole-cursor {
+    background-color: #666;
+}
+.jqconsole-prompt {
+    color: #060;
+}
+.jqconsole-old-prompt {
+    color: #040;
+    font-weight: normal;
+}
+.jqconsole-input {
+    color: #dd0;
+}
+.jqconsole-old-input {
+    color: #bb0;
+    font-weight: normal;
+}
+.brace {
+    color: #077;
+}
+.paran {
+    color: #707;
+}
+.bracket {
+    color: #770;
+}
+
+#console {
+    width: 530px;
+    min-height: 1px;
+    clear: both;
+    margin: 3px 0px;
+    height: 250px;
+}      
+
+body, p {
+    font-family: sans-serif; 
+    font-size: 16px;
+}
+
+dt, dd {
+    font-size: 8pt;
+}
+
+code { font-family: monospace; }
+
+#guide {
+    position: absolute;
+    right:10px;
+    top: 10px;
+    width: 300px;
+    /*height: 400px;*/
+
+    padding: 5pt;
+    padding-top: 0px;
+
+    z-index: 10;
+
+    color: black;
+    background-color: white;
+    border: solid 1px black;
+}
+
+.menu {
+    padding:0; 
+    margin:0; 
+    list-style-type:none;
+    white-space:nowrap;
+}
+* html .menu a {
+    width:100px;
+}
+.menu a span {
+    display:block; 
+    color:#1c94c4; 
+    background:whitesmoke; 
+    border:1px solid #fff; 
+    border-width:2px 1px; 
+    text-align:center; 
+    padding:4px 16px; 
+    cursor:pointer;
+}
+* html .menu a span {
+    width:100px; 
+    cursor:hand; 
+    /*width:66px;*/
+}
+.menu a b {
+    display:block; 
+    border-bottom:2px solid #06a;
+}
+.menu a em {
+    display:none;
+}
+.menu a:hover {
+    background:#fff;
+}
+.menu a:hover span {
+    color:#fff; 
+    background:#08c;
+}
+
+#main {
+    margin:auto;
+    overflow: hidden;
+    width: 870px;
+}
+
+
+#display {
+    width: 550px;
+    height: 350px;
+    position: relative;
+    margin-top: 1px;
+}
+#displayplain {
+    width: 100%;
+    height: 500px; 
+   /* position: relative;
+    margin-top: 1px; */
+}
+#turtletitle {
+       margin:auto;
+       overflow: hidden;
+       width: 500px; 
+       font-size: 1.7em; 
+}
+
+
+#sandbox{
+    position: absolute;
+    z-index: 0;
+}
+
+#turtle{
+    position: absolute;
+    z-index: 1;
+}
+#ddmenu{
+  text-align: left;
+  color: rgb(0, 136, 204);
+  background-color: white;
+  z-index: 1000;
+  position: absolute;
+  padding-right: 20px;
+  right: -1px;
+}
+.dropdown-menu > li > a{
+   /* width : 50px; */
+}
+.dropdown-menu li a.innerLink{
+     color: rgb(0, 136, 204);
+     background-color: rgba(0, 0, 0,0);
+}
+#accorPlusNav{
+    width: 300px;
+}
+h3.ui-accordion-header{
+    font-size: 13px;
+}
+a.lucio{
+    font-size: 13px;
+} 
+#carouselNextBtn{
+    float: right;
+}
+#headprev , #headnext
+{
+    width: 30px; 
+    float: left;
+}
+#headcar{
+    width: 800px; 
+    float: left; 
+}
+#rs-carousel ul li {
+    min-width: 170px;
+}
+#accordionLessonTitle{
+-webkit-background-clip: border-box;
+-webkit-background-origin: padding-box;
+-webkit-background-size: auto;
+background-attachment: scroll;
+background-clip: border-box;
+background-color: rgb(255, 255, 255);
+
+background-origin: padding-box;
+background-size: auto;
+border-bottom-color: rgb(251, 216, 80);
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-left-color: rgb(251, 216, 80);
+border-left-style: solid;
+border-left-width: 1px;
+border-right-color: rgb(251, 216, 80);
+border-right-style: solid;
+border-right-width: 1px;
+border-top-color: rgb(251, 216, 80);
+border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+border-top-style: solid;
+border-top-width: 1px;
+color: black;
+cursor: pointer;
+display: block;
+font-family: 'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
+font-size: 13px;
+font-weight: bold;
+height: auto;
+line-height: 16px;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 2px;
+min-height: 0px;
+
+padding-bottom: 6.5px;
+padding-left: 28.59375px;
+padding-right: 6.5px;
+padding-top: 6.5px;
+
+position: relative;
+text-decoration: none;
+text-rendering: optimizelegibility;
+}
+#cmdline{
+    position: absolute;
+    width : 100%;
+    margin-top: 220px;
+    
+}
+#btnExecuteCommand{
+    margin-bottom: 10px;
+}
+#txtExecuteCommand{
+    width : 440px;
+}
+/*
+.ui-accordion-content{
+    max-height: 210px;
+}
+*/

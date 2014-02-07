@@ -6,8 +6,8 @@
         $m          = new Mongo();
         $db         = $m->turtleTestDb;
         $colname    = $db->news;
-        $theObjId   = new MongoId($_GET['itemid']);
-        $cursor     = $colname->findOne(array("_id" => $theObjId));
+        $the_object_id   = new MongoId($_GET['itemid']);
+        $cursor     = $colname->findOne(array("_id" => $the_object_id));
     }
 ?>
 

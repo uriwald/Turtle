@@ -1,6 +1,6 @@
 <?php
 
-class loadFiles {
+class load_files {
     
     protected $root; 
     protected $env;
@@ -12,7 +12,7 @@ class loadFiles {
             $this->addr = $root . $address;
 
      }  
-    public function loadFiles(){}
+    public function load_files(){}
 
 }
 ?>

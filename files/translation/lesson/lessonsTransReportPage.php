@@ -27,7 +27,7 @@
     $lessons            = $strcol->find();
     //Should be sorted by precedence
     $lessons->sort(array('precedence' => 1));
-    $lang               = getLanguage($locale);
+    $lang               = translationUtil::get_language($locale);
     
     echo "<div> <h1> Lesson translate to " . $lang . " report </h1></div>";
     foreach ($lessons as $lesson)
@@ -96,6 +96,7 @@
 
                 echo "<span><a href='../strings/showStrByLocale.php?locale=$locale' > <span class='lessonh'>Translate Strings</span> </a></span><br/>";
                 echo "<span><a href='../../turtleNews/newsTrans.php?locale=$locale' > <span class='lessonh'>Translate News</span> </a></span>";
+                echo "<span><a href='../../faq/faqTranslateReportPage.php?locale=$locale' > <span class='lessonh'>Translate Faq</span> </a></span>";
             ?>
         </span> 
     </div>
@@ -121,6 +122,10 @@
             $lang = "Polish";
         else if ($locale == "nl_NL")
             $lang = "Duetch";
+        else if ($locale == "it_IT")
+            $lang = "Italian";
+        else if ($locale == "hr_HR")
+            $lang = "Croatian";
         return $lang;
     }
     ?>

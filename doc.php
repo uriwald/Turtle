@@ -4,8 +4,8 @@
         <title> <?php  echo _("Project Documentation"); ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
         <?php   
-            if (!isset ($rootDir))
-                $rootDir = "/";
+            if (!isset ($root_dir))
+                $root_dir = "/";
             if (!isset($locale))
                 if (isset($_GET['locale']))
                     $locale = $_GET['locale'];
@@ -13,7 +13,7 @@
                      $locale = "en_US";
             require_once("localization.php");
             $file_path = "locale/".$locale."/LC_MESSAGES/messages.po";
-            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$rootDir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";             
+            $po_file =  "<link   rel='gettext' type='application/x-po' href='".$root_dir."locale/".$locale."/LC_MESSAGES/messages.po'"." />";             
             if ( file_exists($file_path))
                 echo $po_file;   
                   
@@ -22,6 +22,9 @@
     </head>
     <body>
         <div>
+            <h1> Page is obsolete go to new Turtle Academy site here
+                <a target='_blank' href='http://www.turtleacademy.com'> TurtleAcademy </a>
+            </h1>
             <h2>
                 <?php  echo _("About the project"); ?> 
             </h2>            
@@ -104,6 +107,10 @@
              </h3>
             
         <a href="mailto:webmaster@turtleacademy.com"> <?php echo _("Send an email"); ?> </a>
+        <?php
+            if (isset($footer))
+                echo $footer;
+        ?>    
         </div>
         <script>
             function do_logo(id ,cmd) {
