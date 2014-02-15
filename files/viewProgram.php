@@ -11,6 +11,12 @@ require_once("utils/languageUtil.php");
 require_once('utils/topbarUtil.php');
 require_once('utils/programUtil.php');
 require_once('progdoc.php');
+$logged_in_user = false;
+if (isset($_SESSION['username']))
+{
+    $logged_in_user = true;
+    $sendTo = $_SESSION['username'];
+}
 ?>    
 <head> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -102,53 +108,25 @@ require_once('progdoc.php');
                 <input id="err-msg" type="text" placeholder="An error message will appear here"> </input>    
             </div>
             <div id="action-buttons" > 
-                <form> 
-                    <input id="runbtn" type="button" value="<?php echo _('run'); ?>" class="btn small info pressed"></input>
-                </form>
-            </div>
-            
-            <div id="comments">
-                <!--
-                <div id="comment-in">
-                     <form> 
-                        <textarea id="commentTxtArea" placeholder="Add comment to the program.."></textarea>
-                        <input id="btn_comment" type="button" value="submit comment" class="btn small info pressed"></input>
+                <div>
+                    <form> 
+                        <input id="runbtn" type="button" value="<?php echo _('run'); ?>" class="btn small info pressed"></input>
+                        <?php
+                            if ($logged_in_user)
+                            {
+                        ?>
+                        <input id="btn-spin-off" type="button" value="<?php echo _('Save as spin-off'); ?>" class="btn small info pressed"></input>
+                        <?php
+                            }
+                        ?>
                     </form>
                 </div>
-                <div id="numOfComments">
-                    <?php echo $criteria['numOfComments']; echo " " ; echo "Comments"?>
+                <div id="rank">
+                    
                 </div>
-                <div id ="user-comments">
-                   <?php
-                        $comments = programUtil::find_program_comments($the_object_id);
-                        //print_r($comments); 
-                        if (is_array($comments) )
-                        {
-                            foreach ($comments as $comment)
-                            {
-                                echo "<div class='comment-contain'>";
-                                    echo "<div class='comment-title'>"; 
-                                    ?>
-                                    <a class='' href="<?php
-                                            echo $root_dir . "users/profile/";
-                                            echo $comment['user'];
-                                            ?>"> 
-                                            <?php echo $program['username'];?>  
-                                    </a>
-                                    <?php
-                                        
-                                    echo "</div>";
-                                    echo "<div class='comment-content'>"; 
-                                        echo "<p>";
-                                            echo $comment['comment'];
-                                        echo "</p>";
-                                    echo "</div>";
-                                echo "</div>";  // Closing of comment-contain
-                            }
-                        }
-                   ?>
-                </div>
-                -->
+            </div>
+            
+            <div id="comments"> <!-- Comments load dynamically -->
             </div>
             <?php
                 echo $program_documentation;
