@@ -22,11 +22,7 @@ require_once ('files/utils/topbarUtil.php');
 
         require_once("files/utils/includeCssAndJsFiles.php"); 
         includeCssAndJsFiles::include_all_page_files("registration");
-        ?>     
-        <!--
-        <link rel='stylesheet' href='<?php echo $root_dir; ?>files/css/zocial.css' type='text/css' media='all'/>   
-        <script src="ajax/libs/jquery/validator/dist/jquery.validate.js" type="text/javascript"></script>
-        -->
+        ?> 
         <script type='text/javascript'> 
             $(document).ready(function(){
                 var gt = new Gettext({'domain' : 'messages'});
@@ -110,29 +106,7 @@ require_once ('files/utils/topbarUtil.php');
                 } catch(e) {
                     console.log(e);	
                 }
-                $('#termsofuse').each(function() {
-                    var locale      = $.Storage.get('locale');      
-                    if (locale != "he_IL")
-                        var $dialog = $('<div dir="ltr"></div>');
-                    else
-                        var $dialog = $('<div dir="rtl"></div>');
-                    var $link = $(this).one('click', function() {                      
-                        $dialog                           
-                        .load('termsOfUse.php')
-                        .dialog({
-                            title: "Terms of use",
-                            width: 700,
-                            close: function( event, ui ) {
-                            }
-
-                        }); 
-                        $link.click(function() {
-                            $dialog.dialog('open');
-                            return false;
-                        });
-                        return false;                       
-                    });                                           
-                });                       
+                                  
             });
  
             $(document).delegate('.switch', 'click', function(){
@@ -312,7 +286,7 @@ require_once ('files/utils/topbarUtil.php');
                             <li>
                                 <label class="checkCondition" lang="<?php echo $dir ?>">
                                     <input type="checkbox" name="terms_up" id='terms_up' value="yes" checked='true' />
-                                    <span for='terms_up' id="signupAgreeToTerms"><?php echo _("Agree to"); ?> <a id="termsofuse" href='#'><?php echo _("Terms of Use"); ?></a></span>
+                                    <span for='terms_up' id="signupAgreeToTerms"><?php echo _("Agree to"); ?> <a id="termsofuse" href='termsOfUse.php' target="_blank"><?php echo _("Terms of Use"); ?></a></span>
                                 </label>
                             </li>
                         </ul>       
@@ -488,3 +462,30 @@ require_once ('files/utils/topbarUtil.php');
             }
         }
 ?>
+<script>
+    /*
+  $('#termsofuse').each(function() {
+                    var locale      = $.Storage.get('locale');      
+                    if (locale != "he_IL")
+                        var $dialog = $('<div dir="ltr"></div>');
+                    else
+                        var $dialog = $('<div dir="rtl"></div>');
+                    var $link = $(this).one('click', function() {                      
+                        $dialog                           
+                        .load('termsOfUse.php')
+                        .dialog({
+                            title: "Terms of use",
+                            width: 700,
+                            close: function( event, ui ) {
+                            }
+
+                        }); 
+                        $link.click(function() {
+                            $dialog.dialog('open');
+                            return false;
+                        });
+                        return false;                       
+                    });                                           
+                });   
+                */
+</script>                

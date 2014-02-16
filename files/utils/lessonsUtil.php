@@ -30,7 +30,7 @@ class lessonsUtil {
                 $this->lessonObjId = $lessonObjId;
                 $this->precedence = 50 ;
                 $this->turtleId = 50 ;
-                self ::setLessonStepsAndTitles();
+                self ::set_lesson_steps_and_titles();
      }  
 
     public function __get($property) {

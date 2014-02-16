@@ -9,8 +9,8 @@
     $m                          =   new Mongo();
     $db                         =   $m->turtleTestDb;
     $user_programs               =   "programs";
-    $userProgramsCollection     =   $db->$user_programs;
+    $user_Programs_Collection     =   $db->$user_programs;
     $the_object_id                   =   new MongoId($program_id);
-    $userProgramsCollection->remove(array("_id" => $the_object_id), array("username" => $username));
+    $user_Programs_Collection->remove(array("_id" => $the_object_id), array("username" => $username));
     echo json_encode($return);
 ?>

@@ -28,6 +28,10 @@ var lastLessonClick = null ;
             }
         }
     };
+    $(".rank").click(function() {    
+        var value = $( this ).text();
+        save_user_rank(value);
+     }); 
     $("#btn_comment").click(function() {  
         //programid username
         if (username != null)
@@ -76,9 +80,32 @@ var lastLessonClick = null ;
              alert('Only register users can comment');
          }
     });
+        //Will save the rank given to the program by the user
+    function save_user_rank(value)
+    {
+        var saveProgramUrl  = sitePath + "files/savePorgramRank.php";
+         $.ajax({
+                type : 'POST',
+                url : saveProgramUrl,
+                dataType : 'json',
+                data: {
+                    programid       :   programid,
+                    value           :   value,
+                    username        : username
+                },
+
+                success : function(data){
+                    $("#rank").lood(sitePath + 'files/rank.php?programid=' + programid);             
+                },       
+                error : function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.responseText);  
+                }
+            });
+    }
 $(function() {
     // Compile templates used later
     $("#comments").load(sitePath + 'files/comments.php?programid=' + programid);
+    $("#rank").load(sitePath + 'files/rank.php?programid=' + programid);
     var gt = new Gettext({
         'domain' : 'messages'
     });
@@ -86,6 +113,9 @@ $(function() {
     $("#runbtn").click(function() {  
         $("#err-msg").val('');
         handler(editor.getValue());
+    }); 
+    $("#btn-spin-off").click(function() {  
+        save_program_spin_off();
     });  
      $("#btn_save_canvas").click(function() {  
         var canvas_element = document.getElementById("sandbox");
@@ -150,7 +180,6 @@ $(function() {
     $("#program-info-header").editable("click", function(e){
         //alert(e.value);
     });
-    
     // Initiate the first prompt.
     handler();
     //Will delete user program
@@ -188,18 +217,21 @@ $(function() {
 
         
     }
+
+    
+    // Will save or update program according to the input
     function saveprogram(isSave , isRedirect)
     {
         var canvas_element = document.getElementById("sandbox");
         var dataURL = canvas_element.toDataURL(); 
         var programname     =   $("#program-info-header").text();
+        var update          =   !isSave;
         var ispublic = true;
         if (!isSave)
         {
              ispublic        =   $("#publicProgramsCheckbox").is(':checked');
         }
         var programCode     =   editor.getValue();
-        var update          =   !isSave;
         var saveProgramUrl  = sitePath + "files/saveUserProgram.php";
         if (typeof username == 'undefined')
         {
@@ -240,7 +272,50 @@ $(function() {
                     }                 
                 },       
                 error : function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert('fail');  
+                    alert(XMLHttpRequest.responseText);  
+                }
+            });
+        }
+    }
+    function save_program_spin_off()
+    {
+        var programname     =   $("#program-info-header").text() + " spin-off";
+        programname         =   prompt("Save as.. ",programname);
+        var ispublic = true;
+        
+        var programCode     =   editor.getValue();
+        var saveProgramUrl  = sitePath + "files/saveUserSpinOff.php";
+        if (typeof username == 'undefined')
+        {
+            alert("Only register user can save their programs , you must log-in");
+            return;
+        }
+        var programtitle = programname;
+        
+        if (programtitle!=null){
+                $.ajax({
+                type : 'POST',
+                url : saveProgramUrl,
+                dataType : 'json',
+                data: {
+                    programtitle    :   programtitle ,
+                    programCode     :   programCode ,
+                    programid       :   programid,
+                    ispublic        :   ispublic,
+                    username        :   username
+                },
+
+                success : function(data){
+                    var new_prog_page   =   data.new_program_id.$id;
+                    jConfirm('Do you want to move to the new program span page ?'  , 'Span program', function(r) {
+                        if (r)
+                        {
+                             location.href = sitePath + "files/updateProgram.php?programid=" + new_prog_page + "&&username=" + username;
+                        }
+                    });           
+                },       
+                error : function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.responseText);  
                 }
             });
         }

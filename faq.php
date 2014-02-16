@@ -61,7 +61,7 @@
                     {                               
                     ?>
                         <li>
-                            <a href="<?php echo $GLOBALS['rootDir']; ?>articles/<?php echo $faq['id']; ?>/<?php echo $lang ;?>">
+                            <a href="<?php echo $GLOBALS['root_dir']; ?>articles/<?php echo $faq['id']; ?>/<?php echo $lang ;?>">
                                 <?php 
                                     if (isset($faq['question'][$locale]) && strlen($faq['question'][$locale]) > 3)
                                         echo $faq['question'][$locale]; 
@@ -183,13 +183,13 @@
                                         </h2>
                                         <ul>
                                             <li>
-                                                    <a href="<?php echo $GLOBALS['rootDir']; ?>articles/<?php echo $faq['id']; ?>"><?php echo  _("Report a problem") ?></a>
+                                                    <a href="<?php echo $GLOBALS['root_dir']; ?>articles/<?php echo $faq['id']; ?>"><?php echo  _("Report a problem") ?></a>
                                             </li>
                                             <li>
-                                                    <a href="<?php echo $GLOBALS['rootDir']; ?>articles/<?php echo $faq['id']; ?>"><?php echo  _("Submit a comment") ?></a>
+                                                    <a href="<?php echo $GLOBALS['root_dir']; ?>articles/<?php echo $faq['id']; ?>"><?php echo  _("Submit a comment") ?></a>
                                             </li>
                                             <li>
-                                                    <a href="<?php echo $GLOBALS['rootDir']; ?>articles/<?php echo $faq['id']; ?>"><?php echo  _("Suggest a feature") ?></a>
+                                                    <a href="<?php echo $GLOBALS['root_dir']; ?>articles/<?php echo $faq['id']; ?>"><?php echo  _("Suggest a feature") ?></a>
                                             </li>
                                         </ul>
                                     </div>  

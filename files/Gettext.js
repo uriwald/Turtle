@@ -291,7 +291,11 @@ Gettext.prototype.try_load_lang = function() {
                 }
             } else if (link.type == 'application/x-po') {
                 if (! this.try_load_lang_po(link.href) ) {
-                    throw new Error("Error: Gettext 'try_load_lang_po' failed. Unable to exec xmlhttprequest for link ["+link.href+"]");
+                    link.href = sitePathAlter;
+                    if (! this.try_load_lang_po(link.href))
+                    {
+                        throw new Error("Error: Gettext 'try_load_lang_po' failed. Unable to exec xmlhttprequest for link ["+link.href+"]");
+                    }
                 }
             } else {
                 // TODO: implement the other types (.mo)

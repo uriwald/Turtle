@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TurtleAcademy\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-06 17:27+0800\n"
-"PO-Revision-Date: 2014-02-06 18:41+0800\n"
+"PO-Revision-Date: 2014-02-12 19:29+0800\n"
 "Last-Translator: \n"
 "Language-Team: Wald\n"
 "MIME-Version: 1.0\n"
@@ -125,7 +125,7 @@ msgstr "De browser ondersteunt het canvas niet"
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground11.php:244
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/testBackup/playground_1.php:251
 msgid "We recoomnd you to use Chrome or Firefox browsers"
-msgstr ""
+msgstr "We raden aan om een Chrome of Firefox browser te gebruiken"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/brainPOP.php:98
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/brainPOP.php:120
@@ -167,7 +167,7 @@ msgstr ""
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:31
 msgid "Thank you"
-msgstr ""
+msgstr "Bedankt"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:32
 msgid "Please"
@@ -179,11 +179,11 @@ msgstr ""
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:34
 msgid "Please double check your email"
-msgstr ""
+msgstr "Kijk nogmaals in je e-mail"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:35
 msgid "The key or email doesn't appear in our database"
-msgstr ""
+msgstr "De sleutel of e-mail adres komt niet voor in onze database"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:42
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirm.php:87
@@ -195,7 +195,7 @@ msgstr "login"
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirmHeader.php:6
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/registration/inc/elements/header.php:9
 msgid "confirm registration"
-msgstr ""
+msgstr "Bevestig registratie"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/confirmHeader.php:23
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/registration/inc/elements/header.php:26
@@ -257,7 +257,7 @@ msgstr ""
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:138
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:163
 msgid "Why was it done"
-msgstr ""
+msgstr "Waarom is het gedaan"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:46
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:84
@@ -267,6 +267,7 @@ msgid ""
 "My brother has been volunteering in a primary school in Israel for the past "
 "few years."
 msgstr ""
+"Mijn broer was de laatste jaren vrijwilliger op een basisschool in Israel"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:47
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:85
@@ -276,6 +277,8 @@ msgid ""
 "He was trying to instill the basic programming skills in the children and he "
 "discovered that there are three main problems."
 msgstr ""
+"Hij probeerde de kinderen de basis programmeer technieken bij te brengen en "
+"merkte dat er drie belangrijke problemenen zijn."
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:48
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:86
@@ -285,6 +288,8 @@ msgid ""
 "The first is the language barrier (all the programming languages are using "
 "English and the children's do not speak the language ),"
 msgstr ""
+"De eerste is de taal barierre. De meeste programmeer talen gebruiken engels. "
+"En niet alle kinderen spreken die taal."
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:49
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:87
@@ -294,6 +299,8 @@ msgid ""
 "the second issue is that currently there are not many online learning "
 "programs which address children."
 msgstr ""
+"De tweede reden is dat er niet zo veel online leer programma's zijn gericht "
+"op kinderen."
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:50
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:88
@@ -303,6 +310,8 @@ msgid ""
 "The third issue is the installation requirement of an appropriate "
 "programming environment in order to be able to start programming."
 msgstr ""
+"De derde reden is de installatie van een relevante programmeer omgeving die "
+"nodig is om te beginnen met programmeren."
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:55
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:89
@@ -312,6 +321,8 @@ msgid ""
 "For this reason we thought it would be a good idea to join forces and create "
 "TurtleAcademy"
 msgstr ""
+"Om deze reden vonden we het een goed idee om onze krachten te bundelen en de "
+"Turtle Academy te maken"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:56
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:90
@@ -328,7 +339,7 @@ msgstr ""
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:51
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:138
 msgid "Who we are ?"
-msgstr ""
+msgstr "Wie zijn wij?"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:65
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:161
@@ -425,7 +436,7 @@ msgstr ""
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:141
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:219
 msgid "Credits"
-msgstr ""
+msgstr "Credits"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/doc.php:94
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:253
@@ -488,7 +499,7 @@ msgstr "Neem contact op"
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/documentation130320.php:207
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/testbootstrapsample.php:241
 msgid "Send an email"
-msgstr ""
+msgstr "Stuur een e-mail"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:37
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:47
@@ -519,6 +530,8 @@ msgid ""
 "Your progress will be kept , and you will be able to see exactly which steps "
 "you have done before"
 msgstr ""
+"Je voortgang wordt bijgehouden en je kan precies zien welke stappen je "
+"eerder hebt gedaan"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/documentation.php:112
 msgid "Remember your special commands"
@@ -1205,7 +1218,7 @@ msgstr "Gebruiken van de Turtle Academy site"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/faq.php:140
 msgid "Volunteering"
-msgstr ""
+msgstr "Aanmelden als vrijwilliger"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/faq.php:154
 msgid "Turtle Academy for teachers"
@@ -1223,7 +1236,7 @@ msgstr ""
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/faq.php:186
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/faq/faqSideNav.php:2
 msgid "Report a problem"
-msgstr ""
+msgstr "Een probleem melden"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/faq.php:189
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/faq/faqSideNav.php:3
@@ -1259,13 +1272,15 @@ msgstr ""
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:37
 msgid "The easy way to learn programming"
-msgstr ""
+msgstr "De eenvoudige manier om programmeren te leren"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:38
 msgid ""
 "Turtle Academy makes it surprisingly easy to start creating amazing shapes "
 "using the LOGO language"
 msgstr ""
+"De Turtle Academy maakt het verrassend eenvoudig om bijzondere vormen te "
+"tekenen met de Logo taal"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:39
 msgid "Here are some examples for easy and fun programming"
@@ -1301,7 +1316,7 @@ msgstr "Laten we beginnen met programmeren"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:67
 msgid "Free Lessons"
-msgstr ""
+msgstr "Gratis lessen"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:67
 msgid "Sign In for free"
@@ -1309,7 +1324,7 @@ msgstr "Inloggen"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:79
 msgid "I got the passion for programming thanks to Turtle Academy"
-msgstr ""
+msgstr "Ik heb plezier in programmeren gekregen dankzij de Turtle Academy"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:81
 msgid "Jin Sin Lin - China"
@@ -1340,6 +1355,9 @@ msgid ""
 "Our objective is to teach programming principles in a fun and easy way "
 "making programming an accessible competancy to every child in the world"
 msgstr ""
+"Ons doel is het aanleren van programmeer principes op een leuke eenvoudige "
+"manier. Hiermee wordt de kunst van het programmeren toegankelijk voor ieder "
+"kind in de wereld"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:111
 msgid ""
@@ -1347,6 +1365,9 @@ msgid ""
 "programming abilities, and therefore it is important to learn this skill and "
 "learn to like it"
 msgstr ""
+"In de (nabije) toekomst zal voor veel van wat we doen basale programmeer "
+"kennis nodig zijn. Het is daarom belangrijk om hier op een leuke manier "
+"kennis over op te doen"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:112
 msgid ""
@@ -1354,6 +1375,9 @@ msgid ""
 "making it perfect for young children who often have trouble setting long "
 "term goals"
 msgstr ""
+"Het visualiseren van programmeren geeft een snelle beloning voor de "
+"inspanning. Dit maakt het perfect voor jonge kinderen die vaak problemen "
+"hebben met lange termijn doelstellingen"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/index.php:116
 msgid "Want to help"
@@ -1587,6 +1611,7 @@ msgstr ""
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:133
 msgid "TurtleAcademy aspires to be available for kids all around the world. "
 msgstr ""
+"TurtleAcademy heeft de wense om er te zijn voor kinderen van de hele wereld."
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/needed.php:134
 msgid "if you wish to help translating the project please contact us."
@@ -1639,7 +1664,7 @@ msgstr "Een probleem met het verzenden van de confirmatie email"
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:160
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:129
 msgid "please contact the TurtleAcademy support"
-msgstr ""
+msgstr "Neem contact op met de Turtle Academy support"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:162
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:452
@@ -1658,7 +1683,7 @@ msgstr "Het email adres is in gebruik bij een geregistreerde gebruiker"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:166
 msgid "if you forgot your password please press reset password"
-msgstr ""
+msgstr "Selecteer 'reset password' als je je wachtwoord vergeten bent"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:167
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:134
@@ -1711,7 +1736,7 @@ msgstr "Aanmelden"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:325
 msgid "Forgot Password"
-msgstr ""
+msgstr "Password vergeten"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:332
 msgid "Never mind, I remember my password"
@@ -1755,7 +1780,7 @@ msgstr "Bedankt voor het aanmelden"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/registration.php:473
 msgid "Please check your email for confirmation"
-msgstr ""
+msgstr "Check je e-mail voor de bevestiging"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/reset.php:300
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/test/reset.php:300
@@ -1885,7 +1910,7 @@ msgstr ""
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:143
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users_1.php:125
 msgid "Create a new program"
-msgstr ""
+msgstr "Maak een nieuw programma"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:149
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users_1.php:131
@@ -1908,7 +1933,7 @@ msgstr "Gebruikers voortgang"
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users_1.php:144
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users_1.php:171
 msgid "My progress"
-msgstr ""
+msgstr "Mijn voortgang"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:217
 msgid "My private profile"
@@ -1938,7 +1963,7 @@ msgstr "Gebruiker programma's"
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:311
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users_1.php:282
 msgid "Your Programs"
-msgstr ""
+msgstr "Jouw programma's"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users.php:356
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users_1.php:323
@@ -1951,7 +1976,7 @@ msgstr ""
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users_1.php:152
 msgid "User Public Profile"
-msgstr ""
+msgstr "Publiek profiel van gebruiker"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/users_1.php:154
 msgid "My Public Profile"
@@ -2056,7 +2081,7 @@ msgstr ""
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:266
 msgid "Add existing student"
-msgstr ""
+msgstr "Bestaande student toevoegen"
 
 #: C:\Users\Lucio\Documents\NetBeansProjects\Turtle/files/institute/addInstituteUser.php:273
 msgid "Back to add non existing user"

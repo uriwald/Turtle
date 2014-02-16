@@ -41,7 +41,7 @@ require_once('utils/programUtil.php');
                     }
                     else{
                 ?>
-<div><span> You must <a href="<?php echo $root_dir . "registration.php";?>">login</a> to comment</span></div>
+<div><span> <?php echo _("You must"); ?> <a href="<?php echo $root_dir . "registration.php";?>"><?php echo _("login"); ?> </a> <?php echo _("to comment"); ?></span></div>
                 <?php
                     }
                  ?> 

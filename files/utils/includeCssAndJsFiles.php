@@ -162,7 +162,13 @@ class includeCssAndJsFiles {
         $file_path = "locale/" . $locale_domain . "/LC_MESSAGES/messages.po";
         $po_file = "<link   rel='gettext' type='application/x-po' href='$site_path/locale/" . $locale_domain . "/LC_MESSAGES/messages.po'" . " />";
         if (file_exists($file_path))
-            echo $po_file;
+            try{
+                echo $po_file;
+            }catch(Exception $e)
+            {
+               $po_file =  "<link   rel='gettext' type='application/x-po' href='$site_pate_with_www/locale/" . $locale_domain . "/LC_MESSAGES/messages.po'" . " />"; 
+               echo $po_file;
+            }
         
         //End Loading translation file   
         $is_user_login =   isset($_SESSION['username']);

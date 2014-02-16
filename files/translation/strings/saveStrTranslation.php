@@ -5,7 +5,7 @@
     $translationInput = $_POST['input'];
     $locale     = $_POST['locale'];
     $return["nothi"] = "nothing";
-    
+    $lastUpdated                =   date('Y-m-d H:i:s');
     $flag = true ;
     if ($flag)
     {
@@ -29,7 +29,7 @@
             $display        =   $strExist['display'];
             $pagecode       =   $strExist['pagecode'];
 
-            $strTranslate[$locale] = $translationInput;
+            $strTranslate[$locale] = $translationInput . " - " . $lastUpdated;
             $return["info"] = $locale ." was affected"; 
 
             $result     =   $strcol->update($strExist, array("str" => $str , "page" => $page ,"pagecode" => $pagecode , "context" => $context ,

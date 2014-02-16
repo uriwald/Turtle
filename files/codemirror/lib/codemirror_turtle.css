@@ -352,6 +352,12 @@ body, p {
 #program-info{
     margin-left: 25px;
 }
+#program_score{
+    font-size : 24px;
+}
+.tiny_rank{
+    font-size : 16px;
+}
 #comments{
     margin-left: 29px;
     width : 510px;
@@ -378,12 +384,26 @@ body, p {
 .comment-contain{
     /*border : 1px solid #ddd;*/
 }
+.rank , .rank_active{
+    border: 1px solid #000099;
+    color: #000;
+    width : 20px;
+    padding: 2px 5px 2px 5px;
+    cursor: pointer;
+}
+.rank_active{
+    color: red;
+}
+#rank_div{
+    height: 20px;
+}
 .comment-content p{
     white-space: pre;
 }
 .title-time{
     float: right;
 }
+
 #logoerplain{
     height: 420px;
     width: 600px;

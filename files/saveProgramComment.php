@@ -20,10 +20,10 @@
     $commentOld                 =   $criteria['comments'];
     $commentUpdated             =   $commentOld;
     $commentUpdated[]           =   $newComment;
-    $numOfComments              =   $criteria['numOfComments'];
-    $numOfComments++;
+    $num_comments              =   $criteria['numOfComments'];
+    $num_comments++;
     collectionUtil ::collection_item_change_attrivute_val ("turtleTestDb","programs" ,$the_object_id , "comments"  , $commentUpdated);
-    collectionUtil ::collection_item_change_attrivute_val ("turtleTestDb","programs" ,$the_object_id , "numOfComments"  , $numOfComments);
+    collectionUtil ::collection_item_change_attrivute_val ("turtleTestDb","programs" ,$the_object_id , "numOfComments"  , $num_comments);
 
     echo json_encode($return);
 ?>

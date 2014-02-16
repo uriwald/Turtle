@@ -18,6 +18,10 @@
         </title>     
         <?php
         require_once("files/utils/includeCssAndJsFiles.php"); 
+        $file_path = "locale/" . $locale_domain . "/LC_MESSAGES/messages.po";
+        $po_file = "<link   rel='gettext' type='application/x-po' href='$root_dir/locale/" . $locale_domain . "/LC_MESSAGES/messages.po'" . " />";
+        if (file_exists($file_path))
+           // echo $po_file;
         includeCssAndJsFiles::include_all_page_files("index"); 
         // Case user logged in we will clear the storage data and load it from db
         $is_user_log_in =   isset($_SESSION['username']);
