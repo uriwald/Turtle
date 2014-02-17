@@ -100,12 +100,16 @@ if (isset($_SESSION['username']))
                     </canvas>
                     <canvas id="turtle" width="600" height="400px" >    
                     </canvas>
+                    
                 </div>
             </div>
+
         </div> <!-- Close div command to drawing -->
+
         <div id="instructions"> 
             <div id="code-error-div">
                 <input id="err-msg" type="text" placeholder="An error message will appear here"> </input>    
+                <textarea id="console-output" name="code" style="width: 100px;" placeholder="print output..."></textarea>
             </div>
             <div id="action-buttons" > 
                 <div>

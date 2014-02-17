@@ -19,7 +19,10 @@ var lastLessonClick = null ;
                 g_logo.run("cs");
                 g_logo.run("pd");
                 g_logo.run("setcolor 0");
+                $("#console-output").val("");
+                $("#console-output").css('visibility', 'hidden');
                 g_logo.run(command);
+                
             } catch (e) {
                 // Write the failure to our console
                 var i = $("#err-msg").val();
@@ -320,18 +323,29 @@ $(function() {
             });
         }
     }
-
+    
     ////////////////////////////////////
     // Create the logo interperter
     ////////////////////////////////////
-
     var stream = {
         read: function(s) {
             return window.prompt(s ? s : "");
         },
         write: function() {
+            $("#console-output").css('visibility', 'visible');
+            var prnt = $("#console-output").val(); ;
             for (var i = 0; i < arguments.length; i += 1) {
-                jqconsole.Write(arguments[i]);
+                try
+                {
+                $("#err-msg").val(e + '\n');
+                } 
+                catch (err)
+                {
+                    
+                }
+                prnt = prnt + arguments[i];
+                $("#console-output").val(prnt);
+                
             }
         },
         clear: function() {

@@ -311,9 +311,14 @@ body, p {
     /* margin-top: 420px; */
     position: absolute;
 }
-#err-msg{
+#console-output{
+     margin-left: 30px;
+    /*margin-top: 10px;*/
+    visibility: hidden;
+}
+#err-msg {
     margin-left: 30px;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     visibility: hidden;
     width : 550px;
     color :red ;
